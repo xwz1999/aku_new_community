@@ -1,9 +1,9 @@
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
-import 'package:fluro/fluro.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -43,7 +43,8 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.yellow,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: TabNavigator(),
+          // home: TabNavigator(),
+          home: SignInPage(),
           //国际化支持
           localizationsDelegates: [
             PickerLocalizationsDelegate.delegate,

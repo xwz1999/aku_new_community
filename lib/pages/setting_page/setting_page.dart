@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -130,9 +131,19 @@ class _SettingPageState extends State<SettingPage> {
   /// 具体使用方式
   Future<int> showPayActionSheets(
       {@required BuildContext context, String title, String subtitle}) {
-    return showCustomBottomSheet(context: context, title: title, children: [
-      actionItem(context: context, index: 1, title: subtitle, isLastOne: true),
-    ]);
+    return showCustomBottomSheet(
+      context: context,
+      title: title,
+      children: [
+        actionItem(
+          context: context,
+          index: 1,
+          title: subtitle,
+          isLastOne: true,
+          onTap: () {},
+        ),
+      ],
+    );
   }
 
   Widget _inkWellListTile(String title, bool isSwitch) {
@@ -152,7 +163,40 @@ class _SettingPageState extends State<SettingPage> {
             _showDialog('是否清除缓存?');
             break;
           case '账号管理':
-            _selectAction('确定注销吗?', '注销');
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return CupertinoActionSheet(
+                  message: Text('退出注销当前账号'),
+                  actions: [
+                    CupertinoButton(
+                      child: Text(
+                        '确定',
+                        style: TextStyle(
+                          color: Colors.red.withOpacity(0.7),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.popUntil(context, (route) {
+                          return !Navigator.canPop(context);
+                        });
+                        Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => SignInPage(),
+                            ));
+                      },
+                    ),
+                  ],
+                  cancelButton: CupertinoButton(
+                    child: Text('取消'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                );
+              },
+            );
             break;
           case '用户协议和隐私政策':
             Navigator.pushNamed(context, PageName.agreement_page.toString(),
@@ -212,7 +256,40 @@ class _SettingPageState extends State<SettingPage> {
   Widget _containerQuit() {
     return InkWell(
       onTap: () {
-        _selectAction('确定退出吗?', '退出');
+        showCupertinoModalPopup(
+          context: context,
+          builder: (context) {
+            return CupertinoActionSheet(
+              message: Text('退出当前账号'),
+              actions: [
+                CupertinoButton(
+                  child: Text(
+                    '确定',
+                    style: TextStyle(
+                      color: Colors.red.withOpacity(0.7),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.popUntil(context, (route) {
+                      return !Navigator.canPop(context);
+                    });
+                    Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => SignInPage(),
+                        ));
+                  },
+                ),
+              ],
+              cancelButton: CupertinoButton(
+                child: Text('取消'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            );
+          },
+        );
       },
       child: Container(
         color: Colors.white,

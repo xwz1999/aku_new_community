@@ -1,3 +1,4 @@
+import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -97,7 +98,10 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                    context, PageName.market_cart_page.toString());
+              },
             ),
             SizedBox(width: ScreenUtil().setWidth(53)),
             InkWell(

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -33,6 +34,17 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
           Navigator.pop(context);
         },
       ),
+      actions: [
+        MaterialButton(
+          child: Text('跳过'),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              CupertinoPageRoute(builder: (context) => TabNavigator()),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -130,9 +142,15 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> _listWidget = [
-      {'title': '请输入您的昵称', 'widget': _containerTextField(_userNickName, '为保护个人隐私，在与邻居交流时将显示昵称')},
+      {
+        'title': '请输入您的昵称',
+        'widget': _containerTextField(_userNickName, '为保护个人隐私，在与邻居交流时将显示昵称')
+      },
       {'title': '请输入您的姓名', 'widget': _containerTextField(_userName, '请输入您的姓名')},
-      {'title': '请输入您的身份证', 'widget': _containerTextField(_userIDCard, '请输入您的身份证号')},
+      {
+        'title': '请输入您的身份证',
+        'widget': _containerTextField(_userIDCard, '请输入您的身份证号')
+      },
     ];
     List<Widget> _listView() {
       return _listWidget
@@ -162,6 +180,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
               ))
           .toList();
     }
+
     return Scaffold(
       appBar: _appBar(),
       body: SingleChildScrollView(

@@ -1,10 +1,10 @@
+import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -22,12 +22,12 @@ class _SignInPageState extends State<SignInPage> {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
+      // leading: IconButton(
+      //   icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+      //   onPressed: () {
+      //     Navigator.pop(context);
+      //   },
+      // ),
     );
   }
 
@@ -120,8 +120,11 @@ class _SignInPageState extends State<SignInPage> {
 
   InkWell _inkWellLogin() {
     return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context, PageName.user_authentication_page.toString());
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (context) => UserAuthenticationPage()),
+        );
       },
       child: Container(
         alignment: Alignment.center,
@@ -149,6 +152,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
     return Scaffold(
       appBar: _appBar(),
       body: SingleChildScrollView(

@@ -95,12 +95,14 @@ Widget actionItem({
   bool isLastOne = false, // 是否为最后一个，最后一个如果有圆角的话需要增加底部圆角
   double height = 45,
   double fontSize = 15,
+  VoidCallback onTap,
 }) {
   assert(context != null);
   assert(title != null);
   assert(index > 0);
   return GestureDetector(
       onTap: () {
+        onTap();
         Navigator.pop(context, index);
       },
       child: Column(
