@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'widget/address_edit_item.dart';
+
+class AddressEditPage extends StatefulWidget {
+  final Bundle bundle;
+  AddressEditPage({Key key, this.bundle}) : super(key: key);
+
+  @override
+  _AddressEditPageState createState() => _AddressEditPageState();
+}
+
+class _AddressEditPageState extends State<AddressEditPage> {
+  var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey _formKey = new GlobalKey<FormState>();
+  bool isDefault = false;
+
+  Widget _containerSelectDefault() {
+    return Container(
+      color: Colors.white,
+      height: Screenutil.length(96),
+      padding: EdgeInsets.symmetric(
+        vertical: Screenutil.length(28),
+        horizontal: Screenutil.length(32),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '设为默认地址',
+            style: TextStyle(
+              fontSize: Screenutil.size(28),
+              color: Color(0xff333333),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                isDefault = !isDefault;
+              });
+            },
+            child: CupertinoSwitch(
+              value: isDefault,
+              activeColor: Color(0xffffc40c), // 激活时原点颜色
+              onChanged: (bool val) {
+                setState(() {
+                  isDefault = !isDefault;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _containerDelete() {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        color: Colors.white,
+        height: Screenutil.length(96),
+        padding: EdgeInsets.symmetric(
+          vertical: Screenutil.length(28),
+          horizontal: Screenutil.length(32),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          '删除地址',
+          style: TextStyle(
+            fontSize: Screenutil.size(28),
+            color: Color(0xffe60e0e),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        child: CommonAppBar(
+          title: '${widget.bundle.getMap('details')['title']}',
+          subtitle: '保存',
+        ),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+      ),
+      body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: Container(
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Column(
+              children: [
+                Form(
+                  key: _formKey,
+                  autovalidate: true,
+                  child: Column(
+                    children: [
+                      AddressEditItem(addressInfo: {
+                        'name': widget.bundle.getMap('details')['name'],
+                        'phone': widget.bundle.getMap('details')['phone'],
+                        'address': widget.bundle.getMap('details')['address']
+                      }),
+                    ],
+                  ),
+                ),
+                SizedBox(height: Screenutil.length(66)),
+                _containerSelectDefault(),
+                SizedBox(height: Screenutil.length(66)),
+                widget.bundle.getMap('details')['isDelete']
+                    ? _containerDelete()
+                    : SizedBox(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/widget/common_app_bar.dart';
+
+class SelectParkingPage extends StatefulWidget {
+  final Bundle bundle;
+  SelectParkingPage({Key key, this.bundle}) : super(key: key);
+
+  @override
+  _SelectParkingPageState createState() => _SelectParkingPageState();
+}
+
+class _SelectParkingPageState extends State<SelectParkingPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        child: CommonAppBar(
+          title: '车位列表',
+        ),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+      ),
+      body: ListView(
+        children: [
+          Container(
+            margin: EdgeInsets.all(Screenutil.length(32)),
+            child: Text(
+              '所有社区',
+              style: TextStyle(
+                fontSize: Screenutil.size(28),
+                color: Color(0xff333333),
+              ),
+            ),
+          ),
+          Column(
+            children: List.generate(
+              11,
+              (index) => InkWell(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.white,
+                  padding: EdgeInsets.symmetric(
+                      vertical: Screenutil.length(28),
+                      horizontal: Screenutil.length(32)),
+                  child: Text(
+                    '${widget.bundle.getString('title')}地下车库11号${index + 1}',
+                    style: TextStyle(
+                      fontSize: Screenutil.size(28),
+                      color: Color(0xff333333),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

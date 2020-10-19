@@ -1,0 +1,207 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:akuCommunity/utils/screenutil.dart';
+
+class MarketDetailsAppBar extends StatefulWidget {
+  final String title;
+  MarketDetailsAppBar({Key key, this.title}) : super(key: key);
+
+  @override
+  _MarketDetailsAppBarState createState() => _MarketDetailsAppBarState();
+}
+
+class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
+  List<Map<String, dynamic>> _classList = [
+    {'title': '居家生活'},
+    {'title': '数码家电'},
+    {'title': '休闲副食'},
+    {'title': '滋补保健'},
+    {'title': '彩妆香水'},
+    {'title': '服饰箱包'},
+    {'title': '母婴玩具'},
+    {'title': '饮料酒水'},
+  ];
+
+  /// 弹出顶部框
+  void _showModelTopSheet() {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "",
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 250),
+      barrierDismissible: true,
+      pageBuilder: (BuildContext context, Animation animation,
+          Animation secondaryAnimation) {
+        return Stack(
+          children: <Widget>[
+            Container(
+              alignment:
+                  Alignment.lerp(Alignment.topCenter, Alignment.center, 0.25),
+              margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+              child: Material(
+                color: Color(0xffffffff),
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  height: Screenutil.length(282),
+                  width: Screenutil.length(686),
+                  color: Colors.black.withOpacity(animation.value),
+                  child: GridView.builder(
+                    padding: EdgeInsets.only(
+                      top: Screenutil.length(36),
+                      left: Screenutil.length(25),
+                      right: Screenutil.length(25),
+                      bottom: Screenutil.length(30),
+                    ),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: _classList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xfffbfbfb),
+                            border: Border.all(
+                              color: _classList[index]['title'] == widget.title
+                                  ? Color(0xffe60e0e)
+                                  : Color(0xff979797),
+                              width: Screenutil.length(1),
+                            ),
+                          ),
+                          child: Center(
+                              child: Text(
+                            _classList[index]['title'],
+                            style: TextStyle(
+                                color:
+                                    _classList[index]['title'] == widget.title
+                                        ? Color(0xffe60e0e)
+                                        : Color(0xff333333),
+                                fontSize: Screenutil.size(24)),
+                          )),
+                        ),
+                      );
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisSpacing: Screenutil.length(20),
+                        crossAxisSpacing: Screenutil.length(30),
+                        childAspectRatio:
+                            Screenutil.length(192) / Screenutil.length(58)),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 78,
+              left: MediaQuery.of(context).size.width / 2.05,
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  child: Icon(
+                    AntDesign.caretup,
+                    color: Color(0xffffffff),
+                    size: Screenutil.size(36),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return ScaleTransition(
+          alignment: Alignment.lerp(
+              Alignment.topCenter, Alignment.center, 0.145), // 添加这个
+          scale: anim,
+          child: child,
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xffffffff),
+        leading: IconButton(
+            padding: EdgeInsets.all(0),
+            icon: Icon(AntDesign.left, size: Screenutil.size(37)),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: InkWell(
+          onTap: _showModelTopSheet,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                widget.title,
+                style: TextStyle(
+                    fontSize: Screenutil.size(32), color: Color(0xff333333)),
+              ),
+              SizedBox(width: Screenutil.length(10)),
+              Container(
+                padding: EdgeInsets.only(top: 1),
+                child: Icon(
+                  AntDesign.caretdown,
+                  size: Screenutil.size(18),
+                  color: Color(0xff000000),
+                ),
+              )
+            ],
+          ),
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              AntDesign.search1,
+              size: Screenutil.size(38),
+              color: Color(0xff666666),
+            ),
+            onPressed: () {},
+          )
+        ],
+        // bottom: TabBar(
+        //   controller: _controller,
+        //   labelPadding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(15)),
+        //   indicator: BoxDecoration(),
+        //   isScrollable: true,
+        //   unselectedLabelStyle: TextStyle(
+        //     fontSize: ScreenUtil().setSp(24),
+        //   ),
+        //   labelStyle: TextStyle(
+        //     fontWeight: FontWeight.w600,
+        //     fontSize: ScreenUtil().setSp(24),
+        //   ),
+        //   unselectedLabelColor: Color(0xff333333),
+        //   labelColor: Color(0xffe60e0e),
+        //   tabs: List.generate(
+        //     treeList.length,
+        //     (index) => Container(
+        //       padding: EdgeInsets.symmetric(vertical:ScreenUtil().setWidth(32)),
+        //       child: Column(
+        //         children: <Widget>[
+        //           Image.asset(
+        //             treeList[index]['imagePath'],
+        //             height: ScreenUtil().setWidth(110),
+        //             width: ScreenUtil().setWidth(110),
+        //             fit: BoxFit.fill,
+        //           ),
+        //           SizedBox(height: ScreenUtil().setWidth(14)),
+        //           Text(treeList[index]['name'])
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
+      ),
+    );
+  }
+}

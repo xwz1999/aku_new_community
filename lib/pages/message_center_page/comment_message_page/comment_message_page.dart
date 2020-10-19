@@ -1,0 +1,188 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/widget/common_app_bar.dart';
+
+class CommentMessagePage extends StatefulWidget {
+  CommentMessagePage({Key key}) : super(key: key);
+
+  @override
+  _CommentMessagePageState createState() => _CommentMessagePageState();
+}
+
+class _CommentMessagePageState extends State<CommentMessagePage> {
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+  List<Map<String, dynamic>> _listNotice = [
+    {
+      'name': '马泽鹏',
+      'imageHeader': 'assets/example/touxiang1.png',
+      'content': '教师节，我们为老师唱首歌吧，顺便给老师过生日。',
+      'time': '1分钟前',
+      'imagePath': 'assets/example/jiaoshijie.png'
+    },
+    {
+      'name': '周玲慧',
+      'imageHeader': 'assets/example/touxiang2.png',
+      'content': '回复了马泽鹏: 小马好主意',
+      'time': '10分钟前',
+      'imagePath': 'assets/example/jiaoshijie.png'
+    },
+    {
+      'name': '王珂',
+      'imageHeader': 'assets/example/touxiang1.png',
+      'content': '教师节，我们为老师唱首歌吧，顺便给老师过生日。',
+      'time': '20分钟前',
+      'imagePath': 'assets/example/jiaoshijie.png'
+    },
+    {
+      'name': '王珂',
+      'imageHeader': 'assets/example/touxiang1.png',
+      'content': '回复了马泽鹏: 小马就是鬼主意多',
+      'time': '昨天 20:23',
+      'imagePath': 'assets/example/jiaoshijie.png'
+    },
+  ];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void noteCreateRouter() {
+    // Navigator.pushNamed(
+    //   context,
+    //   PageName.note_create_page.toString(),
+    // );
+  }
+
+  void _onRefresh() async {
+    await Future.delayed(Duration(milliseconds: 1500));
+
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async {
+    await Future.delayed(Duration(milliseconds: 1500));
+
+    if (mounted) setState(() {});
+    _refreshController.loadComplete();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _refreshController.dispose();
+  }
+
+  Container _containerCommentCard(
+      String name, imageHeader, content, time, imagePath) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      padding: EdgeInsets.only(
+        top: Screenutil.length(32),
+        bottom: Screenutil.length(16),
+      ),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: Divider.createBorderSide(context,
+              color: Color(0xffe5e5e5), width: 0.5),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+            ),
+            child: Image.asset(
+              imageHeader,
+              height: Screenutil.length(86),
+              width: Screenutil.length(86),
+              fit: BoxFit.fill,
+            ),
+          ),
+          SizedBox(width: Screenutil.length(20)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: TextStyle(
+                  fontSize: Screenutil.size(36),
+                  color: Color(0xff333333),
+                ),
+              ),
+              SizedBox(height: Screenutil.length(6)),
+              Container(
+                width: Screenutil.length(392),
+                child: Text(
+                  content,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: Screenutil.size(28),
+                    color: Color(0xff333333),
+                  ),
+                ),
+              ),
+              SizedBox(height: Screenutil.length(16)),
+              Text(
+                time,
+                style: TextStyle(
+                  fontSize: Screenutil.size(28),
+                  color: Color(0xff999999),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: Screenutil.length(12)),
+          Image.asset(
+            imagePath,
+            height: Screenutil.length(158),
+            width: Screenutil.length(158),
+            fit: BoxFit.fill,
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        child: CommonAppBar(
+          title: '评论通知',
+          subtitle: '清空',
+        ),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+      ),
+      body: Container(
+        color: Colors.white,
+        child: RefreshConfiguration(
+          hideFooterWhenNotFull: true,
+          child: SmartRefresher(
+            controller: _refreshController,
+            header: WaterDropHeader(),
+            footer: ClassicFooter(),
+            onRefresh: _onRefresh,
+            onLoading: _onLoading,
+            enablePullUp: true,
+            child: ListView.builder(
+              itemBuilder: (context, index) => _containerCommentCard(
+                _listNotice[index]['name'],
+                _listNotice[index]['imageHeader'],
+                _listNotice[index]['content'],
+                _listNotice[index]['time'],
+                _listNotice[index]['imagePath'],
+              ),
+              itemCount: _listNotice.length,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

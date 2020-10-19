@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/base/base_style.dart';
+
+class CommonInput extends StatefulWidget {
+  final TextEditingController inputController;
+  final String hintText;
+  CommonInput({Key key,this.inputController,this.hintText}) : super(key: key);
+
+  @override
+  _CommonInputState createState() => _CommonInputState();
+}
+
+class _CommonInputState extends State<CommonInput> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: TextFormField(
+        cursorColor: Color(0xffffc40c),
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: BaseStyle.color333333,
+          fontSize: BaseStyle.fontSize36,
+        ),
+        controller: widget.inputController,
+        onChanged: (String value) {},
+        maxLines: 1,
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: EdgeInsets.only(
+            top: Screenutil.length(0),
+            bottom: Screenutil.length(0),
+          ),
+          hintText: widget.hintText,
+          border: InputBorder.none, //去掉输入框的下滑线
+          fillColor: Colors.white,
+          filled: true,
+          hintStyle: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: BaseStyle.color999999,
+            fontSize: BaseStyle.fontSize36,
+          ),
+        ),
+      ),
+    );
+  }
+}
