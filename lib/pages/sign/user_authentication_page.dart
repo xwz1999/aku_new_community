@@ -1,13 +1,14 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 
 class UserAuthenticationPage extends StatefulWidget {
-  UserAuthenticationPage({Key key}) : super(key: key);
+  final BuildContext context;
+  UserAuthenticationPage({Key key, this.context}) : super(key: key);
 
   @override
   _UserAuthenticationPageState createState() => _UserAuthenticationPageState();
@@ -38,10 +39,8 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
         MaterialButton(
           child: Text('跳过'),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              CupertinoPageRoute(builder: (context) => TabNavigator()),
-            );
+            ARoute.pop(context);
+            ARoute.pushReplace(context, TabNavigator());
           },
         ),
       ],

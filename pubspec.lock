@@ -15,6 +15,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.39.17"
+  ani_route:
+    dependency: "direct main"
+    description:
+      name: ani_route
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   animate_do:
     dependency: "direct main"
     description:
