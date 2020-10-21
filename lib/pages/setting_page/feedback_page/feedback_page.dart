@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -75,10 +76,22 @@ class _FeedBackPageState extends State<FeedBackPage> {
   Widget _inkWellSubmit() {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
-        Future.delayed(Duration(milliseconds:1000+ Random().nextInt(1000)), () {
-          showToast('提交成功！');
-        });
+        if (TextUtil.isEmpty(_ideaContent.text))
+          showToast('意见不能为空');
+        else {
+          showDialog(
+            context: context,
+            child: Center(
+              child: CupertinoActivityIndicator(),
+            ),
+          );
+          Future.delayed(Duration(milliseconds: 1000 + Random().nextInt(1000)),
+              () {
+            showToast('意见提交成功');
+            Navigator.pop(context);
+            Navigator.pop(context);
+          });
+        }
       },
       child: Container(
         alignment: Alignment.center,
@@ -111,47 +124,47 @@ class _FeedBackPageState extends State<FeedBackPage> {
         preferredSize: Size.fromHeight(kToolbarHeight),
       ),
       body: SingleChildScrollView(
-      child: Container(
-        color: Colors.white,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: Screenutil.length(32),
-              vertical: Screenutil.length(36),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: Screenutil.length(76)),
-                Text(
-                  '意见反馈',
-                  style: TextStyle(
-                      fontSize: Screenutil.size(28),
-                      color: Color(0xff333333)),
-                ),
-                SizedBox(height: Screenutil.length(24)),
-                _containerTextField(),
-                SizedBox(height: Screenutil.length(24)),
-                Text(
-                  '添加图片信息(0/9)',
-                  style: TextStyle(
-                      fontSize: Screenutil.size(28),
-                      color: Color(0xff333333)),
-                ),
-                SizedBox(height: Screenutil.length(24)),
-                CommonImagePicker(),
-                SizedBox(height: Screenutil.length(76)),
-                _inkWellSubmit(),
-              ],
+        child: Container(
+          color: Colors.white,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: Screenutil.length(32),
+                vertical: Screenutil.length(36),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: Screenutil.length(76)),
+                  Text(
+                    '意见反馈',
+                    style: TextStyle(
+                        fontSize: Screenutil.size(28),
+                        color: Color(0xff333333)),
+                  ),
+                  SizedBox(height: Screenutil.length(24)),
+                  _containerTextField(),
+                  SizedBox(height: Screenutil.length(24)),
+                  Text(
+                    '添加图片信息(0/9)',
+                    style: TextStyle(
+                        fontSize: Screenutil.size(28),
+                        color: Color(0xff333333)),
+                  ),
+                  SizedBox(height: Screenutil.length(24)),
+                  CommonImagePicker(),
+                  SizedBox(height: Screenutil.length(76)),
+                  _inkWellSubmit(),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ),
     );
   }
 }
