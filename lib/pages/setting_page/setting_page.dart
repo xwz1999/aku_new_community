@@ -1,16 +1,17 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/custom_action_sheet.dart';
+
+import 'agreement_page/privacy_page.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
@@ -21,7 +22,6 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool isNotice = false;
-  String pathPDF = "";
 
   List<Map<String, dynamic>> _listView = [
     {
@@ -46,37 +46,14 @@ class _SettingPageState extends State<SettingPage> {
       'isSwitch': false,
     },
     {
-      'title': '用户协议和隐私政策',
+      'title': '用户协议',
       'isSwitch': false,
     },
-  ];
-  Future<File> fromAsset(String asset, String filename) async {
-    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
-    Completer<File> completer = Completer();
-
-    try {
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/$filename");
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      await file.writeAsBytes(bytes, flush: true);
-      completer.complete(file);
-    } catch (e) {
-      throw Exception('Error parsing asset file!');
+    {
+      'title':'隐私政策',
+      'isSwitch': false,
     }
-
-    return completer.future;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fromAsset('assets/agreement.pdf', 'demo.pdf').then((f) {
-      setState(() {
-        pathPDF = f.path;
-      });
-    });
-  }
+  ];
 
   void _showDialog(String url) {
     showCupertinoDialog(
@@ -198,9 +175,11 @@ class _SettingPageState extends State<SettingPage> {
               },
             );
             break;
-          case '用户协议和隐私政策':
-            Navigator.pushNamed(context, PageName.agreement_page.toString(),
-                arguments: Bundle()..putString('path', pathPDF));
+          case '用户协议':
+          ARoute.push(context, AgreementPage());
+            break;
+            case '隐私政策':
+            ARoute.push(context,PrivacyPage());
             break;
           default:
         }
@@ -335,7 +314,7 @@ class _SettingPageState extends State<SettingPage> {
           SizedBox(height: Screenutil.length(24)),
           Column(
             children: _listView
-                .take(7)
+                .take(8)
                 .skip(3)
                 .toList()
                 .map((item) => _inkWellListTile(

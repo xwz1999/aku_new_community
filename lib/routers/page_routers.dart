@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -166,6 +167,7 @@ enum PageName {
   things_create_page,
   things_evaluate_page,
   agreement_page,
+  privacy_page,
 }
 
 class Bundle {
@@ -257,7 +259,8 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => UserAuthenticationPage()),
   PageName.common_page:
       PageBuilder(builder: (bundle) => CommonPage(bundle: bundle)),
-
+  PageName.privacy_page:
+  PageBuilder(builder:(bundle)=>PrivacyPage()),
 
   PageName.confirm_order_page:
       PageBuilder(builder: (bundle) => ConfirmOrderPage(bundle: bundle)),
@@ -356,7 +359,7 @@ final Map<PageName, PageBuilder> pageRoutes = {
   PageName.feedback_page:
       PageBuilder(builder: (bundle) => FeedBackPage()),
   PageName.agreement_page:
-      PageBuilder(builder: (bundle) => AgreementPage(bundle: bundle)),
+      PageBuilder(builder: (bundle) => AgreementPage()),
   PageName.things_page:
       PageBuilder(builder: (bundle) => ThingsPage(bundle: bundle)),
   PageName.things_detail_page:

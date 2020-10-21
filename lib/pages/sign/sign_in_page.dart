@@ -1,17 +1,13 @@
-import 'dart:async';
-import 'dart:io';
-
+import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
+import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -24,9 +20,6 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController();
   TextEditingController _code = new TextEditingController();
   String _verifyStr = '获取验证码';
-  String pathPDF = "";
-  bool _agreementvalue = false;
-
   AppBar _appBar() {
     return AppBar(
       elevation: 0,
@@ -155,34 +148,6 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Future<File> fromAsset(String asset, String filename) async {
-    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
-    Completer<File> completer = Completer();
-
-    try {
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/$filename");
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      await file.writeAsBytes(bytes, flush: true);
-      completer.complete(file);
-    } catch (e) {
-      throw Exception('Error parsing asset file!');
-    }
-
-    return completer.future;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fromAsset('assets/agreement.pdf', 'demo.pdf').then((f) {
-      setState(() {
-        pathPDF = f.path;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
@@ -230,12 +195,16 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       FlatButton(
                         onPressed: () {
-                          Navigator.pushNamed(
-                              context, PageName.agreement_page.toString(),
-                              arguments: Bundle()..putString('path', pathPDF));
+                          ARoute.push(context, AgreementPage());
                         },
-                        child: SizedBox(child: Text('用户协议和隐私政策')),
+                        child: Text('用户协议'),
                       ),
+                      SizedBox(width: Screenutil.length(15)),
+                      FlatButton(
+                          onPressed: () {
+                            ARoute.push(context, PrivacyPage());
+                          },
+                          child: Text('隐私政策'))
                     ],
                   )
                 ],
