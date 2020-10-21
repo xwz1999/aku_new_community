@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -129,10 +130,7 @@ class _SignInPageState extends State<SignInPage> {
   InkWell _inkWellLogin() {
     return InkWell(
       onTap: () {
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(builder: (context) => UserAuthenticationPage()),
-        );
+        ARoute.push(context, UserAuthenticationPage());
       },
       child: Container(
         alignment: Alignment.center,
@@ -190,7 +188,7 @@ class _SignInPageState extends State<SignInPage> {
     double _statusHeight = MediaQuery.of(context).padding.top;
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: _appBar(),
       body: SingleChildScrollView(
         child: Container(
