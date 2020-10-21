@@ -8,6 +8,7 @@ import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -123,7 +124,8 @@ class _SignInPageState extends State<SignInPage> {
   InkWell _inkWellLogin() {
     return InkWell(
       onTap: () {
-        ARoute.push(context, UserAuthenticationPage());
+        (_phone.text=='17855823545')&&(_code.text=='000000')?
+        ARoute.push(context, UserAuthenticationPage()):showToast('账号或验证码错误！');
       },
       child: Container(
         alignment: Alignment.center,
