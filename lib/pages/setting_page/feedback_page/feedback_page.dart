@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/common_image_picker.dart';
+import 'package:oktoast/oktoast.dart';
 
 class FeedBackPage extends StatefulWidget {
   FeedBackPage({Key key}) : super(key: key);
@@ -71,6 +74,12 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   Widget _inkWellSubmit() {
     return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        Future.delayed(Duration(milliseconds:1000+ Random().nextInt(1000)), () {
+          showToast('提交成功！');
+        });
+      },
       child: Container(
         alignment: Alignment.center,
         height: Screenutil.length(85),
