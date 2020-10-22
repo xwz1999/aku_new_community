@@ -21,8 +21,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController _phone = new TextEditingController(text: '17855823545');
-  TextEditingController _code = new TextEditingController(text: '000000');
+  TextEditingController _phone = new TextEditingController();
+  TextEditingController _code = new TextEditingController();
   // String _verifyStr = '获取验证码';
   AppBar _appBar() {
     return AppBar(
@@ -95,20 +95,20 @@ class _SignInPageState extends State<SignInPage> {
           //             ),
           //           ),
           //           SizedBox(width: Screenutil.length(16)),
-                    // InkWell(
-                    //   child: Text(
-                    //     _verifyStr,
-                    //     style: TextStyle(
-                    //       color: BaseStyle.color999999,
-                    //       fontSize: BaseStyle.fontSize28,
-                    //       fontWeight: FontWeight.w500,
-                    //     ),
-                    //   ),
-                    //   onTap: null,
-                    // ),
-              //     ],
-              //   )
-              // : SizedBox(),
+          // InkWell(
+          //   child: Text(
+          //     _verifyStr,
+          //     style: TextStyle(
+          //       color: BaseStyle.color999999,
+          //       fontSize: BaseStyle.fontSize28,
+          //       fontWeight: FontWeight.w500,
+          //     ),
+          //   ),
+          //   onTap: null,
+          // ),
+          //     ],
+          //   )
+          // : SizedBox(),
         ],
       ),
     );
