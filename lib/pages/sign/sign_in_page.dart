@@ -23,7 +23,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController(text: '17855823545');
   TextEditingController _code = new TextEditingController(text: '000000');
-  String _verifyStr = '获取验证码';
+  // String _verifyStr = '获取验证码';
   AppBar _appBar() {
     return AppBar(
       elevation: 0,
@@ -94,17 +94,17 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(width: Screenutil.length(16)),
-                    InkWell(
-                      child: Text(
-                        _verifyStr,
-                        style: TextStyle(
-                          color: BaseStyle.color999999,
-                          fontSize: BaseStyle.fontSize28,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      onTap: null,
-                    ),
+                    // InkWell(
+                    //   child: Text(
+                    //     _verifyStr,
+                    //     style: TextStyle(
+                    //       color: BaseStyle.color999999,
+                    //       fontSize: BaseStyle.fontSize28,
+                    //       fontWeight: FontWeight.w500,
+                    //     ),
+                    //   ),
+                    //   onTap: null,
+                    // ),
                   ],
                 )
               : SizedBox(),
@@ -144,7 +144,7 @@ class _SignInPageState extends State<SignInPage> {
               Navigator.pop(context);
               (_phone.text == '17855823545') && (_code.text == '000000')
                   ? ARoute.push(context, UserAuthenticationPage())
-                  : showToast('账号或验证码错误！');
+                  : showToast('账号或密码错误！');
             },
           );
         }
@@ -211,7 +211,7 @@ class _SignInPageState extends State<SignInPage> {
                       AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
                   SizedBox(height: Screenutil.length(27)),
                   _containerTextField(
-                      AssetsImage.CODELOGO, _code, '请输入验证码', true),
+                      AssetsImage.CODELOGO, _code, '请输入密码', true),
                   SizedBox(height: Screenutil.length(59)),
                   _inkWellLogin(),
                   Row(
