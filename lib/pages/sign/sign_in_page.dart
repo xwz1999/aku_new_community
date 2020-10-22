@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:ani_route/ani_route.dart';
+import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -124,8 +127,27 @@ class _SignInPageState extends State<SignInPage> {
   InkWell _inkWellLogin() {
     return InkWell(
       onTap: () {
-        (_phone.text=='17855823545')&&(_code.text=='000000')?
-        ARoute.push(context, UserAuthenticationPage()):showToast('账号或验证码错误！');
+        if (TextUtil.isEmpty(_phone.text))
+          showToast('账号不能为空');
+        else if (TextUtil.isEmpty(_code.text))
+          showToast('密码不能为空');
+        else {
+          showDialog(
+            context: context,
+            child: Center(
+              child: CupertinoActivityIndicator(),
+            ),
+          );
+          Future.delayed(
+            Duration(milliseconds: 1000 + Random().nextInt(500)),
+            () {
+              Navigator.pop(context);
+              (_phone.text == '17855823545') && (_code.text == '000000')
+                  ? ARoute.push(context, UserAuthenticationPage())
+                  : showToast('账号或验证码错误！');
+            },
+          );
+        }
       },
       child: Container(
         alignment: Alignment.center,
