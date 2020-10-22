@@ -31,9 +31,13 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> params = shopInfo["taobao_image"].split(',');
     return Scaffold(
       appBar: PreferredSize(
-        child: GoodsAppBar(),
+        child: GoodsAppBar(
+          shareImg: params.first,
+          title: shopInfo["itemtitle"],
+        ),
         preferredSize: Size.fromHeight(kToolbarHeight),
       ),
       body: Stack(
@@ -41,7 +45,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
           ListView(
             padding: EdgeInsets.only(bottom: Screenutil.length(100)),
             children: [
-              ProductSwiper(imageUrl: shopInfo["taobao_image"].split(',')),
+              ProductSwiper(imageUrl: params),
               ProductContent(
                 itemprice: shopInfo["itemprice"],
                 itemtitle: shopInfo["itemtitle"],

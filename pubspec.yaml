@@ -117,6 +117,8 @@ dependencies:
   path_provider: ^1.6.18
   ani_route: ^0.0.2
 
+  fluwx: ^2.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

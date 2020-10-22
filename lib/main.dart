@@ -4,6 +4,7 @@ import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluwx/fluwx.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -17,11 +18,23 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    RouterInit.setupRouter();
+    registerWxApi(appId: 'wxd7bdef0d4849ddb8');
+  }
+
   @override
   Widget build(BuildContext context) {
-    RouterInit.setupRouter();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvidde()),
