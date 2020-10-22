@@ -21,8 +21,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController _phone = new TextEditingController();
-  TextEditingController _code = new TextEditingController();
+  TextEditingController _phone = new TextEditingController(text: '17855823545');
+  TextEditingController _code = new TextEditingController(text: '000000');
   String _verifyStr = '获取验证码';
   AppBar _appBar() {
     return AppBar(
