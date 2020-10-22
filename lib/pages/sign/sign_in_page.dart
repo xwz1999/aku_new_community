@@ -57,6 +57,7 @@ class _SignInPageState extends State<SignInPage> {
           SizedBox(width: Screenutil.length(24)),
           Expanded(
             child: TextFormField(
+              obscureText: isCode,
               cursorColor: Color(0xffffc40c),
               style: TextStyle(
                 fontSize: BaseStyle.fontSize28,
@@ -82,18 +83,18 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
           ),
-          isCode
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 2,
-                      height: Screenutil.length(29),
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(color: Color(0xffd8d8d8)),
-                      ),
-                    ),
-                    SizedBox(width: Screenutil.length(16)),
+          // isCode
+          //     ? Row(
+          //         mainAxisAlignment: MainAxisAlignment.start,
+          //         children: [
+          //           SizedBox(
+          //             width: 2,
+          //             height: Screenutil.length(29),
+          //             child: DecoratedBox(
+          //               decoration: BoxDecoration(color: Color(0xffd8d8d8)),
+          //             ),
+          //           ),
+          //           SizedBox(width: Screenutil.length(16)),
                     // InkWell(
                     //   child: Text(
                     //     _verifyStr,
@@ -105,9 +106,9 @@ class _SignInPageState extends State<SignInPage> {
                     //   ),
                     //   onTap: null,
                     // ),
-                  ],
-                )
-              : SizedBox(),
+              //     ],
+              //   )
+              // : SizedBox(),
         ],
       ),
     );
