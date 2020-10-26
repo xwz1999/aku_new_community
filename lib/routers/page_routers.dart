@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -168,6 +169,7 @@ enum PageName {
   things_evaluate_page,
   agreement_page,
   privacy_page,
+  alarm_page,
 }
 
 class Bundle {
@@ -368,4 +370,6 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => ThingsCreatePage(bundle: bundle)),
   PageName.things_evaluate_page:
       PageBuilder(builder: (bundle) => ThingsEvaluatePage(bundle: bundle)),
+  PageName.alarm_page:
+      PageBuilder(builder: (bundle)=>AlarmPage(bundle:bundle),)
 };
