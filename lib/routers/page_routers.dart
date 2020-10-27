@@ -80,7 +80,6 @@ import 'package:akuCommunity/pages/market_class/market_class_page.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 
-import 'package:akuCommunity/pages/one_alarm/one_alarm_page.dart';
 
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 
@@ -348,8 +347,6 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => AddressPage()),
   PageName.address_edit_page:
       PageBuilder(builder: (bundle) => AddressEditPage(bundle: bundle)),
-  PageName.one_alarm_page:
-      PageBuilder(builder: (bundle) => OneAlarmPage()),
   PageName.fitup_manage_page:
       PageBuilder(builder: (bundle) => FitupManagePage()),
   PageName.setting_page:
