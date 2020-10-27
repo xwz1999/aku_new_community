@@ -23,8 +23,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController _phone = new TextEditingController(text: '17855823545');
-  TextEditingController _code = new TextEditingController(text: '000000');
+  TextEditingController _phone = new TextEditingController();
+  TextEditingController _code = new TextEditingController();
   // String _verifyStr = '获取验证码';
   AppBar _appBar() {
     return AppBar(
@@ -196,10 +196,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
-
-    ScreenUtil.init(context,
-        designSize: Size(750, 1334), allowFontScaling: true);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),
