@@ -19,6 +19,7 @@ class GoodsDetailsBottomBar extends StatefulWidget {
 
 class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
   int count = 1;
+  bool _isCollected = false;
   void _showModelBotoomSheet(String type) {
     showModalBottomSheet(
       // isScrollControlled: true,
@@ -62,11 +63,17 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    AntDesign.staro,
-                    color: Color(0xff000000),
-                    size: ScreenUtil().setSp(38),
-                  ),
+                  _isCollected
+                      ? Icon(
+                          AntDesign.star,
+                          color: Colors.red,
+                          size: 38.sp,
+                        )
+                      : Icon(
+                          AntDesign.staro,
+                          color: Color(0xff000000),
+                          size: ScreenUtil().setSp(38),
+                        ),
                   SizedBox(height: 2),
                   Text(
                     '收藏',
@@ -76,7 +83,11 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  _isCollected = !_isCollected;
+                });
+              },
             ),
             SizedBox(width: ScreenUtil().setWidth(46)),
             InkWell(
