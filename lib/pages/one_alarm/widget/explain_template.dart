@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_beautiful_popup/main.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class ExplainTemplate extends BeautifulPopupTemplate {
@@ -14,7 +15,7 @@ class ExplainTemplate extends BeautifulPopupTemplate {
   @override
   Color get primaryColor => options.primaryColor ?? Color(0xff15c0ec);
   @override
-  final maxWidth = Screenutil.length(400);
+  final maxWidth = 400.w;
   @override
   final maxHeight = Screenutil.length(617);
   @override

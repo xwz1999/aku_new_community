@@ -7,7 +7,6 @@ import 'widget/goods_app_bar.dart';
 import 'widget/product_swiper.dart';
 import 'widget/product_content.dart';
 import 'widget/product_service.dart';
-import 'widget/product_specs.dart';
 import 'widget/product_evaluate.dart';
 import 'widget/product_detail.dart';
 import 'widget/goods_details_bottom_bar.dart';

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,6 @@ import 'package:akuCommunity/pages/market_class/market_class_page.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 
-import 'package:akuCommunity/pages/one_alarm/one_alarm_page.dart';
 
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 
@@ -168,6 +168,7 @@ enum PageName {
   things_evaluate_page,
   agreement_page,
   privacy_page,
+  alarm_page,
 }
 
 class Bundle {
@@ -346,8 +347,6 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => AddressPage()),
   PageName.address_edit_page:
       PageBuilder(builder: (bundle) => AddressEditPage(bundle: bundle)),
-  PageName.one_alarm_page:
-      PageBuilder(builder: (bundle) => OneAlarmPage()),
   PageName.fitup_manage_page:
       PageBuilder(builder: (bundle) => FitupManagePage()),
   PageName.setting_page:
@@ -368,4 +367,6 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => ThingsCreatePage(bundle: bundle)),
   PageName.things_evaluate_page:
       PageBuilder(builder: (bundle) => ThingsEvaluatePage(bundle: bundle)),
+  PageName.alarm_page:
+      PageBuilder(builder: (bundle)=>AlarmPage(bundle:bundle),)
 };

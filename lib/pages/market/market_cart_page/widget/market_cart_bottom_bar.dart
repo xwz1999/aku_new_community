@@ -1,3 +1,7 @@
+
+import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +44,7 @@ class MarketCartBottomBar extends StatelessWidget {
     );
   }
 
-  Widget _settlement(CartProvidde model) {
+  Widget _settlement(CartProvidde model,BuildContext context) {
     return Row(
       children: [
         model.allPrice != 0
@@ -94,7 +98,7 @@ class MarketCartBottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _selectAll(model),
-            _settlement(model),
+            _settlement(model,context,)
           ],
         ),
       );

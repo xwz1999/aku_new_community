@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,9 @@ import 'package:oktoast/oktoast.dart';
 import 'package:akuCommunity/routers/router_init.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   ARoute.init(true);
+  AmapLocation.instance.init(iosKey: 'ios key');
   runApp(MyApp());
 }
 
