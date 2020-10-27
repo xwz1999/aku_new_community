@@ -25,7 +25,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController();
   TextEditingController _code = new TextEditingController();
-  // String _verifyStr = '获取验证码';
+  String _verifyStr = '获取验证码';
   AppBar _appBar() {
     return AppBar(
       elevation: 0,
@@ -59,7 +59,8 @@ class _SignInPageState extends State<SignInPage> {
           SizedBox(width: Screenutil.length(24)),
           Expanded(
             child: TextFormField(
-              obscureText: isCode,
+              obscureText: false,
+              obscuringCharacter:'*',
               cursorColor: Color(0xffffc40c),
               style: TextStyle(
                 fontSize: BaseStyle.fontSize28,
@@ -85,32 +86,32 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
           ),
-          // isCode
-          //     ? Row(
-          //         mainAxisAlignment: MainAxisAlignment.start,
-          //         children: [
-          //           SizedBox(
-          //             width: 2,
-          //             height: Screenutil.length(29),
-          //             child: DecoratedBox(
-          //               decoration: BoxDecoration(color: Color(0xffd8d8d8)),
-          //             ),
-          //           ),
-          //           SizedBox(width: Screenutil.length(16)),
-          // InkWell(
-          //   child: Text(
-          //     _verifyStr,
-          //     style: TextStyle(
-          //       color: BaseStyle.color999999,
-          //       fontSize: BaseStyle.fontSize28,
-          //       fontWeight: FontWeight.w500,
-          //     ),
-          //   ),
-          //   onTap: null,
-          // ),
-          //     ],
-          //   )
-          // : SizedBox(),
+          isCode
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 2,
+                      height: Screenutil.length(29),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(color: Color(0xffd8d8d8)),
+                      ),
+                    ),
+                    SizedBox(width: Screenutil.length(16)),
+          InkWell(
+            child: Text(
+              _verifyStr,
+              style: TextStyle(
+                color: BaseStyle.color999999,
+                fontSize: BaseStyle.fontSize28,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onTap: null,
+          ),
+              ],
+            )
+          : SizedBox(),
         ],
       ),
     );
@@ -231,7 +232,7 @@ class _SignInPageState extends State<SignInPage> {
                         AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
                     SizedBox(height: Screenutil.length(27)),
                     _containerTextField(
-                        AssetsImage.CODELOGO, _code, '请输入密码', true),
+                        AssetsImage.CODELOGO, _code, '请输入验证码', true),
                     SizedBox(height: Screenutil.length(59)),
                     _inkWellLogin(),
                     Row(
