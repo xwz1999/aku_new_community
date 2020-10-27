@@ -1,3 +1,5 @@
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -8,6 +10,7 @@ import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonalIndex extends StatefulWidget {
   PersonalIndex({Key key}) : super(key: key);
@@ -20,6 +23,8 @@ class _PersonalIndexState extends State<PersonalIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   @override
   bool get wantKeepAlive => true;
+
+  bool _isSigned = false;
 
   SliverAppBar _sliverAppBar(double height) {
     return SliverAppBar(
@@ -60,19 +65,32 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1851283359,3457678391&fm=26&gp=0.jpg',
                                 width: Screenutil.length(106),
                                 height: Screenutil.length(106),
+                                isSigned: _isSigned,
                               ),
                             ),
                           ),
-                          Container(
-                            margin:
-                                EdgeInsets.only(left: Screenutil.length(16)),
-                            child: Text(
-                              'Cheailune',
-                              style: TextStyle(
-                                fontSize: Screenutil.size(32),
-                                color: Color(0xffad8940),
-                              ),
-                            ),
+                          InkWell(
+                            onTap: (){
+                              _isSigned? ARoute.push(context, SignInPage()):null;
+                            },
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                    left: Screenutil.length(16)),
+                                child: _isSigned
+                                    ? Text(
+                                        'Cheailune',
+                                        style: TextStyle(
+                                          fontSize: 32.sp,
+                                          color: Color(0xffad8940),
+                                        ),
+                                      )
+                                    : Text(
+                                        '登录/注册',
+                                        style: TextStyle(
+                                          fontSize: 32.sp,
+                                          color: Color(0xffad8940),
+                                        ),
+                                      )),
                           ),
                         ],
                       ),
