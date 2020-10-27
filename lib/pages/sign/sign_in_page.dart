@@ -1,17 +1,19 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:ani_route/ani_route.dart';
+import 'package:extended_text/extended_text.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -95,20 +97,20 @@ class _SignInPageState extends State<SignInPage> {
           //             ),
           //           ),
           //           SizedBox(width: Screenutil.length(16)),
-                    // InkWell(
-                    //   child: Text(
-                    //     _verifyStr,
-                    //     style: TextStyle(
-                    //       color: BaseStyle.color999999,
-                    //       fontSize: BaseStyle.fontSize28,
-                    //       fontWeight: FontWeight.w500,
-                    //     ),
-                    //   ),
-                    //   onTap: null,
-                    // ),
-              //     ],
-              //   )
-              // : SizedBox(),
+          // InkWell(
+          //   child: Text(
+          //     _verifyStr,
+          //     style: TextStyle(
+          //       color: BaseStyle.color999999,
+          //       fontSize: BaseStyle.fontSize28,
+          //       fontWeight: FontWeight.w500,
+          //     ),
+          //   ),
+          //   onTap: null,
+          // ),
+          //     ],
+          //   )
+          // : SizedBox(),
         ],
       ),
     );
@@ -133,19 +135,37 @@ class _SignInPageState extends State<SignInPage> {
         else if (TextUtil.isEmpty(_code.text))
           showToast('密码不能为空');
         else {
-          showDialog(
+          showCupertinoDialog(
             context: context,
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          );
-          Future.delayed(
-            Duration(milliseconds: 1000 + Random().nextInt(500)),
-            () {
-              Navigator.pop(context);
-              (_phone.text == '17855823545') && (_code.text == '000000')
-                  ? ARoute.push(context, UserAuthenticationPage())
-                  : showToast('账号或密码错误！');
+            builder: (context) {
+              return CupertinoAlertDialog(
+                title: Text('点击登录即表示您已阅读并同意'),
+                content: Text(
+                    '''点击登录即表示您已阅读并同意《闲鱼用户服务协议》《支付服务协议》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
+                actions: [
+                  CupertinoDialogAction(
+                    child: Text('同意'),
+                    onPressed: () {
+                      Future.delayed(
+                        Duration(milliseconds: 1000 + Random().nextInt(500)),
+                        () {
+                          Navigator.pop(context);
+                          (_phone.text == '17855823545') &&
+                                  (_code.text == '000000')
+                              ? ARoute.push(context, UserAuthenticationPage())
+                              : showToast('账号或密码错误！');
+                        },
+                      );
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: Text('拒绝'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
             },
           );
         }
@@ -176,7 +196,10 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
+
+    ScreenUtil.init(context,
+        designSize: Size(750, 1334), allowFontScaling: true);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),
@@ -188,53 +211,52 @@ class _SignInPageState extends State<SignInPage> {
               FocusScope.of(context).requestFocus(FocusNode());
             },
             child: Container(
-              color: Colors.white,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  SizedBox(
-                    height: Screenutil.length(153),
-                  ),
-                  _containerImage(),
-                  SizedBox(height: Screenutil.length(16)),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      '欢迎登录小蜜蜂',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: BaseStyle.fontSize38,
-                          color: BaseStyle.color333333),
+                color: Colors.white,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    SizedBox(
+                      height: Screenutil.length(153),
                     ),
-                  ),
-                  SizedBox(height: Screenutil.length(89)),
-                  _containerTextField(
-                      AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
-                  SizedBox(height: Screenutil.length(27)),
-                  _containerTextField(
-                      AssetsImage.CODELOGO, _code, '请输入密码', true),
-                  SizedBox(height: Screenutil.length(59)),
-                  _inkWellLogin(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FlatButton(
-                        onPressed: () {
-                          ARoute.push(context, AgreementPage());
-                        },
-                        child: Text('用户协议'),
+                    _containerImage(),
+                    SizedBox(height: Screenutil.length(16)),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '欢迎登录小蜜蜂',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: BaseStyle.fontSize38,
+                            color: BaseStyle.color333333),
                       ),
-                      SizedBox(width: Screenutil.length(15)),
-                      FlatButton(
+                    ),
+                    SizedBox(height: Screenutil.length(89)),
+                    _containerTextField(
+                        AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
+                    SizedBox(height: Screenutil.length(27)),
+                    _containerTextField(
+                        AssetsImage.CODELOGO, _code, '请输入密码', true),
+                    SizedBox(height: Screenutil.length(59)),
+                    _inkWellLogin(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FlatButton(
                           onPressed: () {
-                            ARoute.push(context, PrivacyPage());
+                            ARoute.push(context, AgreementPage());
                           },
-                          child: Text('隐私政策'))
-                    ],
-                  )
-                ],
-              ),
-            ),
+                          child: Text('用户协议'),
+                        ),
+                        SizedBox(width: Screenutil.length(15)),
+                        FlatButton(
+                            onPressed: () {
+                              ARoute.push(context, PrivacyPage());
+                            },
+                            child: Text('隐私政策'))
+                      ],
+                    ),
+                  ],
+                )),
           ),
         ),
       ),

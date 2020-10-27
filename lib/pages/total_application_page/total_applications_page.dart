@@ -1,3 +1,5 @@
+import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
+import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -195,8 +197,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                             context, PageName.goods_manage_page.toString());
                         break;
                       case '一键报警':
-                        Navigator.pushNamed(
-                            context, PageName.one_alarm_page.toString());
+                        ARoute.push(context, AlarmPage());
                         break;
                       default:
                         break;
