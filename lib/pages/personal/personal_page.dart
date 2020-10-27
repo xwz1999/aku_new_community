@@ -71,7 +71,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                           ),
                           InkWell(
                             onTap: (){
-                              _isSigned? ARoute.push(context, SignInPage()):null;
+                              _isSigned? null:ARoute.push(context, SignInPage());
                             },
                             child: Container(
                                 margin: EdgeInsets.only(
