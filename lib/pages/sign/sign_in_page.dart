@@ -196,10 +196,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
-
-    ScreenUtil.init(context,
-        designSize: Size(750, 1334), allowFontScaling: true);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -76,6 +77,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        designSize: Size(750, 1334), allowFontScaling: true);
     return Scaffold(
       appBar: PreferredSize(
         child: HomeAppBar(),

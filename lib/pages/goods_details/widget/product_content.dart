@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluwx/fluwx.dart';
 
 class ProductContent extends StatelessWidget {
   final String itemprice, itemtitle, itemshorttitle, itemdesc;
@@ -102,7 +103,14 @@ class ProductContent extends StatelessWidget {
       right: 0,
       top: ScreenUtil().setWidth(169),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          shareToWeChat(WeChatShareWebPageModel(
+              'https://mobile.baidu.com/item?docid=27505288',
+              
+              title:itemtitle,
+              description: '前往小蜜蜂智慧社区查看吧',
+            ));
+        },
         child: Container(
           decoration: BoxDecoration(
             color: Color(0xfff0f0f0),

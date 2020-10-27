@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:akuCommunity/pages/home/home_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +64,7 @@ class _MyAppState extends State<MyApp> {
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           // home: TabNavigator(),
-          home: SignInPage(),
+          home: TabNavigator(),
           //国际化支持
           localizationsDelegates: [
             PickerLocalizationsDelegate.delegate,
