@@ -16,8 +16,8 @@ class _DetailsCardState extends State<DetailsCard> {
   Container _detailHeader() {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(20),
-        bottom: Screenutil.length(18),
+        top: 20.w,
+        bottom: 18.w,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class _DetailsCardState extends State<DetailsCard> {
     return InkWell(
       onTap: fun,
       child:Container(
-      margin: EdgeInsets.only(top: Screenutil.length(32)),
+      margin: EdgeInsets.only(top: 32.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -56,9 +56,9 @@ class _DetailsCardState extends State<DetailsCard> {
               Icon(
                 Icons.radio_button_unchecked,
                 color: BaseStyle.color999999,
-                size: Screenutil.length(40),
+                size: 40.w,
               ),
-              SizedBox(width: Screenutil.length(24)),
+              SizedBox(width: 24.w),
               Text(
                 '2019上半年',
                 style: TextStyle(
@@ -78,11 +78,11 @@ class _DetailsCardState extends State<DetailsCard> {
                   color: Color(0xfffc361d),
                 ),
               ),
-              SizedBox(width: Screenutil.length(28)),
+              SizedBox(width: 28.w),
               Icon(
                 AntDesign.right,
                 color: BaseStyle.color999999,
-                size: Screenutil.length(30),
+                size: 30.w,
               ),
             ],
           ),
@@ -96,14 +96,14 @@ class _DetailsCardState extends State<DetailsCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        bottom: Screenutil.length(32),
+        left: 32.w,
+        right: 32.w,
+        bottom: 32.w,
       ),
       decoration: BoxDecoration(
         color: Colors.white,

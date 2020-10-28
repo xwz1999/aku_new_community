@@ -65,7 +65,7 @@ class _StaffListState extends State<StaffList> {
 
   TextStyle _subStyle() {
     return TextStyle(
-      fontSize: Screenutil.size(24),
+      fontSize: 24.sp,
       color: Color(0xff999999),
     );
   }
@@ -73,11 +73,11 @@ class _StaffListState extends State<StaffList> {
   Positioned _positionedTag(String tag) {
     return Positioned(
       top: 0,
-      right: Screenutil.length(20),
+      right: 20.w,
       child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: Screenutil.length(21.5),
-            vertical: Screenutil.length(5.5)),
+            horizontal: 21.5.w,
+            vertical: 5.5.w),
         decoration: BoxDecoration(
             color: Color(0xfffff3cd),
             border: Border.all(color: Color(0xffffc40c), width: 0.5),
@@ -85,7 +85,7 @@ class _StaffListState extends State<StaffList> {
         child: Text(
           tag,
           style: TextStyle(
-            fontSize: Screenutil.size(24),
+            fontSize: 24.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -97,14 +97,14 @@ class _StaffListState extends State<StaffList> {
       String tenure, String post, String tag) {
     return Container(
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        top: Screenutil.length(20),
+        left: 32.w,
+        right: 32.w,
+        top: 20.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(20),
-        top: Screenutil.length(20),
-        bottom: Screenutil.length(20),
+        left: 20.w,
+        top: 20.w,
+        bottom: 20.w,
       ),
       decoration: BoxDecoration(
           color: Color(0xffffffff),
@@ -116,10 +116,10 @@ class _StaffListState extends State<StaffList> {
             children: [
               CachedImageWrapper(
                 url: imagePath,
-                height: Screenutil.length(150),
-                width: Screenutil.length(150),
+                height: 150.w,
+                width: 150.w,
               ),
-              SizedBox(width: Screenutil.length(24)),
+              SizedBox(width: 24.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -127,21 +127,21 @@ class _StaffListState extends State<StaffList> {
                     name,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                       color: Color(0xff333333),
                     ),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '住址：${address}',
                     style: _subStyle(),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '任职期限：${tenure}',
                     style: _subStyle(),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '从事岗位：${post}',
                     style: _subStyle(),

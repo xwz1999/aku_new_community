@@ -18,8 +18,8 @@ class _CommonPickerState extends State<CommonPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Screenutil.length(96),
-      padding: EdgeInsets.symmetric(vertical: Screenutil.length(28)),
+      height: 96.w,
+      padding: EdgeInsets.symmetric(vertical: 28.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -27,11 +27,11 @@ class _CommonPickerState extends State<CommonPicker> {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(30)),
+            margin: EdgeInsets.only(right: 30.w),
             child: Text(
               widget.title,
               style: TextStyle(
-                  fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                  fontSize: 28.sp, color: Color(0xff333333)),
             ),
           ),
           InkWell(
@@ -62,16 +62,16 @@ class _CommonPickerState extends State<CommonPicker> {
                       title: Text(
                         "物品名称",
                         style: TextStyle(
-                          fontSize: Screenutil.size(32),
+                          fontSize: 32.sp,
                           color: Color(0xff333333),
                         ),
                       ),
                       confirmTextStyle: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xffffc40c),
                       ),
                       cancelTextStyle: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333),
                       ),
                       onConfirm: (Picker picker, List value) {
@@ -85,21 +85,21 @@ class _CommonPickerState extends State<CommonPicker> {
               }
             },
             child: Container(
-              width: Screenutil.length(538),
-              height: Screenutil.length(40),
+              width: 538.w,
+              height: 40.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     pickerData,
                     style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff999999)),
                   ),
                   Icon(
                     AntDesign.right,
                     color: Color(0xff999999),
-                    size: Screenutil.size(32),
+                    size: 32.sp,
                   ),
                 ],
               ),

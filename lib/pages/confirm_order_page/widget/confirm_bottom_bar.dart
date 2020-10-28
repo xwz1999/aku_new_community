@@ -19,7 +19,7 @@ class ConfirmBottomBar extends StatelessWidget {
             fontSize: BaseStyle.fontSize24,
           ),
         ),
-        SizedBox(width: Screenutil.length(10)),
+        SizedBox(width: 10.w),
         Text(
           '合计:￥${(double.parse(cartMap["itemprice"]) * cartMap["count"]).toStringAsFixed(2)}',
           style: TextStyle(
@@ -43,8 +43,8 @@ class ConfirmBottomBar extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(33)),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: Screenutil.length(39),
-          vertical: Screenutil.length(12),
+          horizontal: 39.w,
+          vertical: 12.w,
         ),
         child: Text(
           '提交订单',
@@ -62,18 +62,18 @@ class ConfirmBottomBar extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: MediaQuery.of(context).size.width,
-      height: Screenutil.length(98),
+      height: 98.w,
       padding: EdgeInsets.only(
-        top: Screenutil.length(15),
-        bottom: Screenutil.length(17),
-        right: Screenutil.length(34),
+        top: 15.w,
+        bottom: 17.w,
+        right: 34.w,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           _countPrice(),
-          SizedBox(width: Screenutil.length(12)),
+          SizedBox(width: 12.w),
           _submit(context),
         ],
       ),

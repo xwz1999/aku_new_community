@@ -14,13 +14,13 @@ class _AgreementPageState extends State<AgreementPage> {
         title: Text('用户协议'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(Screenutil.length(16)),
+        padding: EdgeInsets.all(16.w),
         child: Column(
           children: [
             Text(
               '《用户协议》',
               style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: Screenutil.length(35)),
+                  fontWeight: FontWeight.w600, fontSize: 35.w),
             ),
             Text(
               '''
@@ -223,7 +223,7 @@ class _AgreementPageState extends State<AgreementPage> {
 
       ''',
               style: TextStyle(
-                fontSize: Screenutil.length(30),
+                fontSize: 30.w,
               ),
             ),
           ],

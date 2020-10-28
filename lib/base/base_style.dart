@@ -4,27 +4,27 @@ import 'package:akuCommunity/utils/screenutil.dart';
 
 class BaseStyle {
   ///字体类
-  static final double fontSize18 = Screenutil.size(18);
+  static final double fontSize18 = 18.sp;
   
-  static final double fontSize22 = Screenutil.size(22);
+  static final double fontSize22 = 22.sp;
 
-  static final double fontSize24 = Screenutil.size(24);
+  static final double fontSize24 = 24.sp;
 
-  static final double fontSize26 = Screenutil.size(26);
+  static final double fontSize26 = 26.sp;
   
-  static final double fontSize28 = Screenutil.size(28);
+  static final double fontSize28 = 28.sp;
 
-  static final double fontSize30 = Screenutil.size(30);
+  static final double fontSize30 = 30.sp;
 
-  static final double fontSize32 = Screenutil.size(32);
+  static final double fontSize32 = 32.sp;
 
-  static final double fontSize34 = Screenutil.size(34);
+  static final double fontSize34 = 34.sp;
 
-  static final double fontSize36 = Screenutil.size(36);
+  static final double fontSize36 = 36.sp;
 
-  static final double fontSize38 = Screenutil.size(38);
+  static final double fontSize38 = 38.sp;
 
-  static final double fontSize52 = Screenutil.size(52);
+  static final double fontSize52 = 52.sp;
   ///颜色
   static final Color color333333 = Color(0xff333333);
 

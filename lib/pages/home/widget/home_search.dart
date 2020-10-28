@@ -23,39 +23,39 @@ class _HomeSearchState extends State<HomeSearch> {
         ),
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(9),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        bottom: Screenutil.length(17),
+        top: 9.w,
+        left: 32.w,
+        right: 32.w,
+        bottom: 17.w,
       ),
       child: InkWell(
         onTap: () {
           showSearch(context: context, delegate: searchBarDelegate());
         },
         child: Container(
-          width: Screenutil.length(686),
-          height: Screenutil.length(72),
+          width: 686.w,
+          height: 72.w,
           padding: EdgeInsets.only(
-            top: Screenutil.length(16),
-            bottom: Screenutil.length(16),
-            left: Screenutil.length(24),
+            top: 16.w,
+            bottom: 16.w,
+            left: 24.w,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius:
-                BorderRadius.all(Radius.circular(Screenutil.length(36))),
+                BorderRadius.all(Radius.circular(36.w)),
           ),
           child: Row(children: [
             Icon(
               AntDesign.search1,
               color: Color(0xff999999),
-              size: Screenutil.size(28),
+              size: 28.sp,
             ),
-            SizedBox(width: Screenutil.length(16)),
+            SizedBox(width: 16.w),
             Text(
               '搜索商品、活动、帖子、应用',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff999999),
               ),
             )

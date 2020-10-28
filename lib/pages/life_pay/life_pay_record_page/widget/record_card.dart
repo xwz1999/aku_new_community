@@ -85,7 +85,7 @@ class RecordCard extends StatelessWidget {
   Container _billItem(String title, value, TextStyle titleStyle, valueStyle,
       double top, bool isShow, Function fun) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(top)),
+      margin: EdgeInsets.only(top: top.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -103,11 +103,11 @@ class RecordCard extends StatelessWidget {
                         style: valueStyle,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: Screenutil.length(24)),
+                        margin: EdgeInsets.only(left: 24.w),
                         child: Icon(
                           AntDesign.right,
                           color: BaseStyle.color999999,
-                          size: Screenutil.length(30),
+                          size: 30.w,
                         ),
                       ),
                     ],
@@ -126,15 +126,15 @@ class RecordCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(20),
-        right: Screenutil.length(20),
-        bottom: Screenutil.length(32),
-        top: Screenutil.length(2),
+        left: 20.w,
+        right: 20.w,
+        bottom: 32.w,
+        top: 2.w,
       ),
       decoration: BoxDecoration(
         color: Colors.white,

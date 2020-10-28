@@ -37,10 +37,10 @@ class _CertificationPageState extends State<CertificationPage> {
   Widget _idCardType() {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
-      margin: EdgeInsets.only(bottom: Screenutil.length(60)),
+      margin: EdgeInsets.only(bottom: 60.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -51,15 +51,15 @@ class _CertificationPageState extends State<CertificationPage> {
           Text(
             '证件类型',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Container(
-            width: Screenutil.length(686),
+            width: 686.w,
             child: Text(
               '身份证',
               style: TextStyle(
-                fontSize: Screenutil.size(36),
+                fontSize: 36.sp,
                 color: Color(0xff333333),
                 fontWeight: FontWeight.w600,
               ),
@@ -73,19 +73,19 @@ class _CertificationPageState extends State<CertificationPage> {
   Widget _upLoadImage() {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
-      margin: EdgeInsets.only(bottom: Screenutil.length(60)),
+      margin: EdgeInsets.only(bottom: 60.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             '上传证件照片',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
@@ -104,10 +104,10 @@ class _CertificationPageState extends State<CertificationPage> {
   Widget _input(String title, hintText, TextEditingController controller) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
-      margin: EdgeInsets.only(bottom: Screenutil.length(60)),
+      margin: EdgeInsets.only(bottom: 60.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -118,9 +118,9 @@ class _CertificationPageState extends State<CertificationPage> {
           Text(
             title,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           CommonInput(inputController: controller, hintText: hintText)
         ],
       ),
@@ -131,10 +131,10 @@ class _CertificationPageState extends State<CertificationPage> {
     return InkWell(
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(96),
-        width: Screenutil.length(686),
+        height: 96.w,
+        width: 686.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26),
+          vertical: 26.w,
         ),
         decoration: BoxDecoration(
             color: Color(0xffffc40c),
@@ -143,7 +143,7 @@ class _CertificationPageState extends State<CertificationPage> {
           '确认提交',
           style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333)),
         ),
       ),
@@ -161,9 +161,9 @@ class _CertificationPageState extends State<CertificationPage> {
       ),
       body: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(32),
-          left: Screenutil.length(32),
-          right: Screenutil.length(32),
+          top: 32.w,
+          left: 32.w,
+          right: 32.w,
         ),
         color: Colors.white,
         child: ListView(

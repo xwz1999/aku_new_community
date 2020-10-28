@@ -16,28 +16,28 @@ class ConfirmContent extends StatelessWidget {
       children: [
         CachedImageWrapper(
           url: cartMap["itempic"],
-          height: Screenutil.length(210),
-          width: Screenutil.length(210),
+          height: 210.w,
+          width: 210.w,
         ),
-        SizedBox(width: Screenutil.length(20)),
+        SizedBox(width: 20.w),
         Column(
           children: [
             Container(
-              width: Screenutil.length(288),
+              width: 288.w,
               child: Text(
                 cartMap["itemtitle"],
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: TextStyle(
-                  fontSize: Screenutil.size(24),
+                  fontSize: 24.sp,
                   color: Color(0xff333333),
                 ),
               ),
             ),
-            SizedBox(height: Screenutil.length(10)),
+            SizedBox(height: 10.w),
             Container(
-              width: Screenutil.length(280),
-              padding: EdgeInsets.all(Screenutil.length(10)),
+              width: 280.w,
+              padding: EdgeInsets.all(10.w),
               decoration: BoxDecoration(
                 color: Color(0xfff0f0f0),
                 borderRadius: BorderRadius.all(Radius.circular(2)),
@@ -53,7 +53,7 @@ class ConfirmContent extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: TextStyle(
-                  fontSize: Screenutil.size(20),
+                  fontSize: 20.sp,
                   color: Color(0xff666666),
                 ),
               ),
@@ -73,15 +73,15 @@ class ConfirmContent extends StatelessWidget {
           Text(
             '共计${cartMap["count"]}件',
             style: TextStyle(
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xff999999),
             ),
           ),
-          SizedBox(width: Screenutil.length(10)),
+          SizedBox(width: 10.w),
           Text(
             '合计:￥${(double.parse(cartMap["itemprice"]) * cartMap["count"]).toStringAsFixed(2)}',
             style: TextStyle(
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xffe60e0e),
             ),
           )
@@ -98,7 +98,7 @@ class ConfirmContent extends StatelessWidget {
         child: Text(
           '￥${cartMap["itemprice"]}',
           style: TextStyle(
-            fontSize: Screenutil.size(24),
+            fontSize: 24.sp,
             color: Color(0xffe60e0e),
             fontWeight: FontWeight.w600,
           ),
@@ -110,12 +110,12 @@ class ConfirmContent extends StatelessWidget {
   Widget _cartNum() {
     return Positioned(
       right: 0,
-      top: Screenutil.length(38),
+      top: 38.w,
       child: Container(
         child: Text(
           'x${cartMap["count"]}',
           style: TextStyle(
-            fontSize: Screenutil.size(20),
+            fontSize: 20.sp,
             color: Color(0xff999999),
             fontWeight: FontWeight.w600,
           ),
@@ -131,10 +131,10 @@ class ConfirmContent extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
       padding: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(20),
-        vertical: Screenutil.length(32),
+        horizontal: 20.w,
+        vertical: 32.w,
       ),
       child: Stack(
         children: [
@@ -144,15 +144,15 @@ class ConfirmContent extends StatelessWidget {
               Container(
                 color: Colors.white,
                 padding: EdgeInsets.only(
-                  left: Screenutil.length(30),
-                  right: Screenutil.length(12),
+                  left: 30.w,
+                  right: 12.w,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: EdgeInsets.only(
-                        top: Screenutil.length(56),
+                        top: 56.w,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -160,14 +160,14 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '配送方式',
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff333333)),
                           ),
-                          SizedBox(width: Screenutil.length(26)),
+                          SizedBox(width: 26.w),
                           Text(
                             '普通配送',
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff999999)),
                           ),
                         ],
@@ -175,7 +175,7 @@ class ConfirmContent extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        top: Screenutil.length(56),
+                        top: 56.w,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,7 +183,7 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '开具发票',
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff333333)),
                           ),
                           InkWell(
@@ -196,22 +196,22 @@ class ConfirmContent extends StatelessWidget {
                             child: Row(
                               children: [
                                 Container(
-                                  height: Screenutil.length(80),
-                                  width: Screenutil.length(353),
+                                  height: 80.w,
+                                  width: 353.w,
                                   child: Text(
                                     '增值税电子普通发票-明显-企业-宁波阿库旅游有限公司',
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontSize: Screenutil.size(28),
+                                      fontSize: 28.sp,
                                       color: Color(0xff999999),
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: Screenutil.length(10)),
+                                SizedBox(width: 10.w),
                                 Icon(
                                   AntDesign.right,
-                                  size: Screenutil.size(30),
+                                  size: 30.sp,
                                   color: Color(0xff999999),
                                 ),
                               ],
@@ -222,7 +222,7 @@ class ConfirmContent extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        top: Screenutil.length(56),
+                        top: 56.w,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -230,14 +230,14 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '订单备注',
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff333333)),
                           ),
-                          SizedBox(width: Screenutil.length(14)),
+                          SizedBox(width: 14.w),
                           Text(
                             '选填',
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff999999)),
                           ),
                         ],
@@ -246,7 +246,7 @@ class ConfirmContent extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: Screenutil.length(104)),
+              SizedBox(height: 104.w),
             ],
           ),
           _cartFooter(),

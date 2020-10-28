@@ -27,9 +27,9 @@ class ActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(20),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 20.w,
+        left: 32.w,
+        right: 32.w,
       ),
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -49,7 +49,7 @@ class ActivityCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: Screenutil.length(16)),
+              margin: EdgeInsets.only(bottom: 16.w),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(6),
@@ -57,14 +57,14 @@ class ActivityCard extends StatelessWidget {
                 ),
                 child: CachedImageWrapper(
                   url: imagePath,
-                  width: Screenutil.length(686),
-                  height: Screenutil.length(210),
+                  width: 686.w,
+                  height: 210.w,
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: Screenutil.length(24)),
-              margin: EdgeInsets.only(bottom: Screenutil.length(16)),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              margin: EdgeInsets.only(bottom: 16.w),
               child: Text(
                 title,
                 maxLines: 1,
@@ -75,8 +75,8 @@ class ActivityCard extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: Screenutil.length(22)),
-              margin: EdgeInsets.only(bottom: Screenutil.length(8)),
+              padding: EdgeInsets.symmetric(horizontal: 22.w),
+              margin: EdgeInsets.only(bottom: 8.w),
               child: isVote
                   ? Text(
                       subtitleFirst,
@@ -104,8 +104,8 @@ class ActivityCard extends StatelessWidget {
                     ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: Screenutil.length(22)),
-              margin: EdgeInsets.only(bottom: Screenutil.length(16)),
+              padding: EdgeInsets.symmetric(horizontal: 22.w),
+              margin: EdgeInsets.only(bottom: 16.w),
               child: RichText(
                 text: TextSpan(children: <InlineSpan>[
                   TextSpan(
@@ -125,18 +125,18 @@ class ActivityCard extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(
-                left: Screenutil.length(24),
-                right: Screenutil.length(20),
-                bottom: Screenutil.length(24),
+                left: 24.w,
+                right: 20.w,
+                bottom: 24.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: Screenutil.length(80)),
+                    margin: EdgeInsets.only(left: 80.w),
                     child: ImageStack(
                       imageList: memberList,
-                      imageRadius: Screenutil.size(44),
+                      imageRadius: 44.sp,
                       imageCount: 3,
                       imageBorderWidth: 1,
                       totalCount: 3,
@@ -149,10 +149,10 @@ class ActivityCard extends StatelessWidget {
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      height: Screenutil.length(44),
-                      width: Screenutil.length(120),
+                      height: 44.w,
+                      width: 120.w,
                       padding: EdgeInsets.symmetric(
-                        vertical: Screenutil.length(8),
+                        vertical: 8.w,
                       ),
                       decoration: BoxDecoration(
                         color: isOver

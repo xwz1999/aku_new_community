@@ -17,7 +17,7 @@ class MarketCartBottomBar extends StatelessWidget {
         model.changeALlCheckState(!model.isAllCheck);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: Screenutil.length(29)),
+        margin: EdgeInsets.symmetric(vertical: 29.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -26,14 +26,14 @@ class MarketCartBottomBar extends StatelessWidget {
                   ? Icons.radio_button_checked
                   : Icons.radio_button_unchecked,
               color: model.isAllCheck ? Color(0xffdb0000) : Color(0xff999999),
-              size: Screenutil.length(40),
+              size: 40.w,
             ),
             Container(
-              margin: EdgeInsets.only(left: Screenutil.length(18)),
+              margin: EdgeInsets.only(left: 18.w),
               child: Text(
                 '全选',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -49,11 +49,11 @@ class MarketCartBottomBar extends StatelessWidget {
       children: [
         model.allPrice != 0
             ? Container(
-                margin: EdgeInsets.only(right: Screenutil.length(10)),
+                margin: EdgeInsets.only(right: 10.w),
                 child: Text(
                   '合计:￥${model.allPrice.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xffe60e0e),
                   ),
                 ),
@@ -69,13 +69,13 @@ class MarketCartBottomBar extends StatelessWidget {
                   : Color(0xffd8d8d8),
               borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
-            width: Screenutil.length(198),
-            margin: EdgeInsets.symmetric(vertical: Screenutil.length(16)),
-            padding: EdgeInsets.symmetric(vertical: Screenutil.length(12)),
+            width: 198.w,
+            margin: EdgeInsets.symmetric(vertical: 16.w),
+            padding: EdgeInsets.symmetric(vertical: 12.w),
             child: Text(
               '结算(${model.allGoodsCount})',
               style: TextStyle(
-                fontSize: Screenutil.size(30),
+                fontSize: 30.sp,
                 color:
                     model.allGoodsCount != 0 ? Color(0xff333333) : Colors.white,
               ),
@@ -91,9 +91,9 @@ class MarketCartBottomBar extends StatelessWidget {
     return Consumer<CartProvidde>(builder: (context, model, child) {
       return Container(
         color: Colors.white,
-        height: Screenutil.length(98),
+        height: 98.w,
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

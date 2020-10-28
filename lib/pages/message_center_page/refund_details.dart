@@ -12,9 +12,9 @@ class RefundDetails extends StatelessWidget {
       width: double.infinity,
       color: Color(0xffffd000),
       padding: EdgeInsets.only(
-        top: Screenutil.length(44),
-        bottom: Screenutil.length(44),
-        left: Screenutil.length(33),
+        top: 44.w,
+        bottom: 44.w,
+        left: 33.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,7 @@ class RefundDetails extends StatelessWidget {
               color: BaseStyle.color333333,
             ),
           ),
-          SizedBox(height: Screenutil.length(10)),
+          SizedBox(height: 10.w),
           Text(
             '2020年7月8日 13:28',
             style: TextStyle(
@@ -44,10 +44,10 @@ class RefundDetails extends StatelessWidget {
     return Container(
       color: Color(0xffffffff),
       padding: EdgeInsets.only(
-        top: Screenutil.length(24),
-        bottom: Screenutil.length(24),
-        left: Screenutil.length(33),
-        right: Screenutil.length(32),
+        top: 24.w,
+        bottom: 24.w,
+        left: 33.w,
+        right: 32.w,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,9 +81,9 @@ class RefundDetails extends StatelessWidget {
             color: Color(0xffffffff),
             width: double.infinity,
             padding: EdgeInsets.only(
-              top: Screenutil.length(25),
-              bottom: Screenutil.length(22),
-              left: Screenutil.length(33),
+              top: 25.w,
+              bottom: 22.w,
+              left: 33.w,
             ),
             child: Text(
               '退款信息',
@@ -96,24 +96,24 @@ class RefundDetails extends StatelessWidget {
           Container(
             color: Color(0xfff2f2f2),
             padding: EdgeInsets.only(
-              top: Screenutil.length(30),
-              bottom: Screenutil.length(24),
-              left: Screenutil.length(33),
+              top: 30.w,
+              bottom: 24.w,
+              left: 33.w,
             ),
             child: Row(
               children: [
                 Image.asset(
                   'assets/example/tz1.png',
-                  height: Screenutil.length(120),
-                  width: Screenutil.length(120),
+                  height: 120.w,
+                  width: 120.w,
                   fit: BoxFit.fill,
                 ),
-                SizedBox(width: Screenutil.length(20)),
+                SizedBox(width: 20.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: Screenutil.length(544),
+                      width: 544.w,
                       child: Text(
                         '轻便自由 男士针织休闲西装 全身羊毛修身意大利进口精致裁剪',
                         maxLines: 2,
@@ -124,7 +124,7 @@ class RefundDetails extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: Screenutil.length(10)),
+                    SizedBox(height: 10.w),
                     Text(
                       '规格分类：M 黑色',
                       style: TextStyle(
@@ -141,9 +141,9 @@ class RefundDetails extends StatelessWidget {
             color: Color(0xffffffff),
             width: double.infinity,
             padding: EdgeInsets.only(
-              top: Screenutil.length(22),
-              left: Screenutil.length(33),
-              bottom: Screenutil.length(22),
+              top: 22.w,
+              left: 33.w,
+              bottom: 22.w,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +155,7 @@ class RefundDetails extends StatelessWidget {
                     color: BaseStyle.color999999,
                   ),
                 ),
-                SizedBox(height: Screenutil.length(22)),
+                SizedBox(height: 22.w),
                 Text(
                   '退款金额：${'¥1123.60'}',
                   style: TextStyle(
@@ -163,7 +163,7 @@ class RefundDetails extends StatelessWidget {
                     color: BaseStyle.color999999,
                   ),
                 ),
-                SizedBox(height: Screenutil.length(22)),
+                SizedBox(height: 22.w),
                 Text(
                   '申请时间：${'2020-7-7 21:09'}',
                   style: TextStyle(
@@ -171,7 +171,7 @@ class RefundDetails extends StatelessWidget {
                     color: BaseStyle.color999999,
                   ),
                 ),
-                SizedBox(height: Screenutil.length(22)),
+                SizedBox(height: 22.w),
                 Text(
                   '退款编号：${'8324982349230293'}',
                   style: TextStyle(
@@ -198,7 +198,7 @@ class RefundDetails extends StatelessWidget {
           children: [
             _containerHeader(),
             _containerPrice(),
-            SizedBox(height: Screenutil.length(44)),
+            SizedBox(height: 44.w),
             _containerContent(),
           ],
         ),

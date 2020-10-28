@@ -114,7 +114,7 @@ class _MarketPageState extends State<MarketPage>
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              expandedHeight: Screenutil.length(676),
+              expandedHeight: 676.w,
               backgroundColor: Colors.transparent,
               elevation: 0,
               flexibleSpace: Stack(

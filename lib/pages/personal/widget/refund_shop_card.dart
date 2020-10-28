@@ -13,9 +13,9 @@ class RefundShopCard extends StatelessWidget {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        bottom: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        bottom: 32.w,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,16 +23,16 @@ class RefundShopCard extends StatelessWidget {
         children: [
           Image.asset(
             imagePath,
-            height: Screenutil.length(179),
-            width: Screenutil.length(173),
+            height: 179.w,
+            width: 173.w,
             fit: BoxFit.fill,
           ),
-          SizedBox(width: Screenutil.length(24)),
+          SizedBox(width: 24.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: Screenutil.length(458),
+                width: 458.w,
                 child: Text(
                   content,
                   overflow: TextOverflow.ellipsis,
@@ -43,9 +43,9 @@ class RefundShopCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: Screenutil.length(8)),
+              SizedBox(height: 8.w),
               Container(
-                width: Screenutil.length(456),
+                width: 456.w,
                 child: Text(
                   specs,
                   overflow: TextOverflow.ellipsis,

@@ -18,16 +18,16 @@ class _CircleTrendState extends State<CircleTrend> {
   TextStyle _textStyleTitle() {
     return TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: Screenutil.size(52),
+        fontSize: 52.sp,
         color: Color(0xff333333));
   }
 
   TextStyle _textStyleSubtitle() {
-    return TextStyle(fontSize: Screenutil.size(32), color: Color(0xff333333));
+    return TextStyle(fontSize: 32.sp, color: Color(0xff333333));
   }
 
   TextStyle _textStyleTag() {
-    return TextStyle(fontSize: Screenutil.size(30), color: Color(0xff444444));
+    return TextStyle(fontSize: 30.sp, color: Color(0xff444444));
   }
 
   InkWell _contentDetails(String subtitle, imagePath, Function fun) {
@@ -36,19 +36,19 @@ class _CircleTrendState extends State<CircleTrend> {
         fun(subtitle, imagePath);
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: Screenutil.length(8)),
+        margin: EdgeInsets.only(bottom: 8.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedImageWrapper(
               url: imagePath,
-              width: Screenutil.length(152),
-              height: Screenutil.length(152),
+              width: 152.w,
+              height: 152.w,
             ),
-            SizedBox(width: Screenutil.length(10)),
+            SizedBox(width: 10.w),
             Container(
-              width: Screenutil.length(384),
+              width: 384.w,
               child: Text(
                 subtitle,
                 maxLines: 2,
@@ -66,9 +66,9 @@ class _CircleTrendState extends State<CircleTrend> {
       String title, List<Map<String, dynamic>> contentList, Function fun) {
     return Container(
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        bottom: Screenutil.length(40),
+        left: 32.w,
+        right: 32.w,
+        bottom: 40.w,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class _CircleTrendState extends State<CircleTrend> {
                 )
               : SizedBox(),
           Container(
-            margin: EdgeInsets.only(left: Screenutil.length(30)),
+            margin: EdgeInsets.only(left: 30.w),
             child: Column(
               children: contentList
                   .map((item) => _contentDetails(

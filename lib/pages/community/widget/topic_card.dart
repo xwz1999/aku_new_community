@@ -15,15 +15,15 @@ class TopicCard extends StatefulWidget {
 
 class _TopicCardState extends State<TopicCard> {
   TextStyle _textStyleTitle() {
-    return TextStyle(fontSize: Screenutil.size(28), color: Color(0xff333333));
+    return TextStyle(fontSize: 28.sp, color: Color(0xff333333));
   }
 
   TextStyle _textStyleSubtitle() {
-    return TextStyle(fontSize: Screenutil.size(22), color: Color(0xff666666));
+    return TextStyle(fontSize: 22.sp, color: Color(0xff666666));
   }
 
   TextStyle _textStyleHot() {
-    return TextStyle(fontSize: Screenutil.size(22), color: Color(0xff333333));
+    return TextStyle(fontSize: 22.sp, color: Color(0xff333333));
   }
 
   void topiceDetailRouter(String subtitle, String imagePath) {
@@ -38,16 +38,16 @@ class _TopicCardState extends State<TopicCard> {
       children: [
         Image.asset(
           imagePath,
-          height: Screenutil.length(160),
-          width: Screenutil.length(250),
+          height: 160.w,
+          width: 250.w,
         ),
-        SizedBox(width: Screenutil.length(12)),
+        SizedBox(width: 12.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: Screenutil.length(383),
-              height: Screenutil.length(80),
+              width: 383.w,
+              height: 80.w,
               child: Text(
                 title,
                 maxLines: 2,
@@ -55,9 +55,9 @@ class _TopicCardState extends State<TopicCard> {
                 style: _textStyleTitle(),
               ),
             ),
-            SizedBox(width: Screenutil.length(10)),
+            SizedBox(width: 10.w),
             Container(
-              width: Screenutil.length(365),
+              width: 365.w,
               child: Text(
                 subtitle,
                 maxLines: 1,
@@ -80,9 +80,9 @@ class _TopicCardState extends State<TopicCard> {
           Icon(
             MaterialIcons.whatshot,
             color: Color(0xffd4270a),
-            size: Screenutil.size(23),
+            size: 23.sp,
           ),
-          SizedBox(width: Screenutil.length(10)),
+          SizedBox(width: 10.w),
           Text(
             hotNum,
             style: _textStyleHot(),
@@ -97,11 +97,11 @@ class _TopicCardState extends State<TopicCard> {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        top: Screenutil.length(20),
+        left: 32.w,
+        right: 32.w,
+        top: 20.w,
       ),
-      padding: EdgeInsets.all(Screenutil.length(20)),
+      padding: EdgeInsets.all(20.w),
       child: InkWell(
         onTap: () {
           topiceDetailRouter(

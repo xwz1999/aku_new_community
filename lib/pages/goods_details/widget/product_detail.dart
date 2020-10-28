@@ -12,12 +12,12 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xffffffff),
-      margin: EdgeInsets.only(top: Screenutil.length(30)),
+      margin: EdgeInsets.only(top: 30.w),
       padding: EdgeInsets.only(
-        top: Screenutil.length(20),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        bottom: Screenutil.length(32),
+        top: 20.w,
+        left: 32.w,
+        right: 32.w,
+        bottom: 32.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class ProductDetail extends StatelessWidget {
               color: Color(0xff333333),
             ),
           ),
-          SizedBox(height: Screenutil.length(12)),
+          SizedBox(height: 12.w),
           Container(
             child: AspectRatio(
               aspectRatio: 1,

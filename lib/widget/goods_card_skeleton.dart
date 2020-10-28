@@ -37,14 +37,14 @@ class GoodsCardSkeleton extends StatelessWidget {
                   children: [
                     Container(
                       color: Colors.white,
-                      width: Screenutil.length(333),
-                      height: Screenutil.length(344),
+                      width: 333.w,
+                      height: 344.w,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        left: Screenutil.length(12),
-                        right: Screenutil.length(12),
-                        top: Screenutil.length(22),
+                        left: 12.w,
+                        right: 12.w,
+                        top: 22.w,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,8 +55,8 @@ class GoodsCardSkeleton extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                             ),
                             margin:
-                                EdgeInsets.only(bottom: Screenutil.length(6)),
-                            height: Screenutil.length(30),
+                                EdgeInsets.only(bottom: 6.w),
+                            height: 30.w,
                             width: double.infinity,
                           ),
                           Container(
@@ -65,8 +65,8 @@ class GoodsCardSkeleton extends StatelessWidget {
                               borderRadius: BorderRadius.circular(4),
                             ),
                             margin:
-                                EdgeInsets.only(bottom: Screenutil.length(20)),
-                            height: Screenutil.length(30),
+                                EdgeInsets.only(bottom: 20.w),
+                            height: 30.w,
                             width: double.infinity,
                           ),
                           Container(
@@ -74,8 +74,8 @@ class GoodsCardSkeleton extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            height: Screenutil.length(32),
-                            width: Screenutil.length(61),
+                            height: 32.w,
+                            width: 61.w,
                           ),
                         ],
                       ),
@@ -88,9 +88,9 @@ class GoodsCardSkeleton extends StatelessWidget {
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisSpacing: Screenutil.length(20),
-            crossAxisSpacing: Screenutil.length(20),
-            childAspectRatio: Screenutil.length(333) / Screenutil.length(509)),
+            mainAxisSpacing: 20.w,
+            crossAxisSpacing: 20.w,
+            childAspectRatio: 333.w / 509.w),
       ),
     );
   }

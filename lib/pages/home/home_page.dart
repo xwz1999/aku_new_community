@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage>
                   children: [
                     HomeSearch(),
                     HomeSwiper(),
-                    SizedBox(height: Screenutil.length(100)),
+                    SizedBox(height: 100.w),
                     ContainerComment(
                       radius: 8,
                       customWidget: GridButton(
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage>
                         ),
                       ],
                     ),
-                    SizedBox(height: Screenutil.length(24)),
+                    SizedBox(height: 24.w),
                     Column(
                       children: [
                         HomeTagBar(
@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage>
                         ),
                       ],
                     ),
-                    SizedBox(height: Screenutil.length(30)),
+                    SizedBox(height: 30.w),
                     HomeTagBar(
                       title: '社区商城',
                       tag: '团购',
@@ -176,9 +176,9 @@ class _HomePageState extends State<HomePage>
               ),
               SliverPadding(
                   padding: EdgeInsets.only(
-                    top: Screenutil.length(30),
-                    left: Screenutil.length(32),
-                    right: Screenutil.length(32),
+                    top: 30.w,
+                    left: 32.w,
+                    right: 32.w,
                   ),
                   sliver: _shopList.length == 0
                       ? SliverToBoxAdapter(child: GoodsCardSkeleton())

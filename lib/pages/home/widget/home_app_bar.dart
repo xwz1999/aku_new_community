@@ -42,14 +42,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
           '皇冠花园二期',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(36),
+            fontSize: 36.sp,
             color: Color(0xff333333),
           ),
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         leading: Container(
-          margin: EdgeInsets.only(left: Screenutil.length(32)),
+          margin: EdgeInsets.only(left: 32.w),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,14 +58,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   '深圳',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xff333333),
                   ),
                 ),
                 Text(
                   '阴 27℃',
                   style: TextStyle(
-                    fontSize: Screenutil.size(20),
+                    fontSize: 20.sp,
                     color: Color(0xff333333),
                   ),
                 )

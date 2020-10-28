@@ -33,24 +33,24 @@ class _CommunityCardState extends State<CommunityCard> {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(16)),
+            margin: EdgeInsets.only(bottom: 16.w),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(6)),
               child: CachedImageWrapper(
                 url: imagePath,
-                width: Screenutil.length(160),
-                height: Screenutil.length(120),
+                width: 160.w,
+                height: 120.w,
               ),
             ),
           ),
-          SizedBox(width: Screenutil.length(20)),
+          SizedBox(width: 20.w),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: Screenutil.length(480),
-                margin: EdgeInsets.only(bottom: Screenutil.length(6)),
+                width: 480.w,
+                margin: EdgeInsets.only(bottom: 6.w),
                 child: Text(
                   title,
                   overflow: TextOverflow.ellipsis,
@@ -61,8 +61,8 @@ class _CommunityCardState extends State<CommunityCard> {
                 ),
               ),
               Container(
-                width: Screenutil.length(480),
-                margin: EdgeInsets.only(bottom: Screenutil.length(8)),
+                width: 480.w,
+                margin: EdgeInsets.only(bottom: 8.w),
                 child: Text(
                   subtitle,
                   overflow: TextOverflow.ellipsis,
@@ -73,7 +73,7 @@ class _CommunityCardState extends State<CommunityCard> {
                 ),
               ),
               Container(
-                width: Screenutil.length(480),
+                width: 480.w,
                 child: RichText(
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -103,20 +103,20 @@ class _CommunityCardState extends State<CommunityCard> {
   Container _cardFooter(String imagePath,title,
       List<String> headList, bool isOver, int peopleNum, Function fun) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(40)),
+      margin: EdgeInsets.only(top: 40.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            margin: EdgeInsets.only(left: Screenutil.length(80)),
+            margin: EdgeInsets.only(left: 80.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: Screenutil.length(26)),
+                  margin: EdgeInsets.only(right: 26.w),
                   child: ImageStack(
                     imageList: headList,
-                    imageRadius: Screenutil.size(44),
+                    imageRadius: 44.sp,
                     imageCount: 3,
                     imageBorderWidth: 1,
                     totalCount: 3,
@@ -137,10 +137,10 @@ class _CommunityCardState extends State<CommunityCard> {
             },
             child: Container(
               alignment: Alignment.center,
-              height: Screenutil.length(44),
-              width: Screenutil.length(120),
+              height: 44.w,
+              width: 120.w,
               padding: EdgeInsets.symmetric(
-                vertical: Screenutil.length(7),
+                vertical: 7.w,
               ),
               decoration: BoxDecoration(
                 color: isOver ? BaseStyle.colorababab : BaseStyle.colorffc40c,
@@ -165,15 +165,15 @@ class _CommunityCardState extends State<CommunityCard> {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(
-        top: Screenutil.length(24),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 24.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(12),
-        left: Screenutil.length(10),
-        right: Screenutil.length(16),
-        bottom: Screenutil.length(20),
+        top: 12.w,
+        left: 10.w,
+        right: 16.w,
+        bottom: 20.w,
       ),
       child: Column(
         children: [

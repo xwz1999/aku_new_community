@@ -29,7 +29,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
       elevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -63,10 +63,10 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
   Container _containerRadio() {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(8),
+        top: 8.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(32),
+        left: 32.w,
       ),
       child: Row(
         children: [
@@ -75,11 +75,11 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
             style: TextStyle(
                 fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
           ),
-          SizedBox(width: Screenutil.length(34)),
+          SizedBox(width: 34.w),
           Row(
             children: _listRadio
                 .map((item) => Container(
-                      margin: EdgeInsets.only(left: Screenutil.length(44)),
+                      margin: EdgeInsets.only(left: 44.w),
                       child: InkWell(
                         onTap: () {
                           setState(() {
@@ -98,7 +98,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
                                   ? BaseStyle.colorff8500
                                   : BaseStyle.colord8d8d8,
                             ),
-                            SizedBox(width: Screenutil.length(16)),
+                            SizedBox(width: 16.w),
                             Text(
                               item['radioName'],
                               style: TextStyle(
@@ -122,12 +122,12 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
   Container _containerEvaluateTextField() {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(70),
+        top: 70.w,
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(22),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 22.w,
+        left: 32.w,
+        right: 32.w,
       ),
       color: Colors.white,
       child: Container(
@@ -145,8 +145,8 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.only(
-                  top: Screenutil.length(0),
-                  bottom: Screenutil.length(0),
+                  top: 0.w,
+                  bottom: 0.w,
                 ),
                 hintText: hintText,
                 border: InputBorder.none, //去掉输入框的下滑线
@@ -168,10 +168,10 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
   Container _containerAddImage() {
     return Container(
       padding: EdgeInsets.only(
-          left: Screenutil.length(36),
-          right: Screenutil.length(36),
-          top: Screenutil.length(32),
-          bottom: Screenutil.length(24)),
+          left: 36.w,
+          right: 36.w,
+          top: 32.w,
+          bottom: 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -180,12 +180,12 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
             style: TextStyle(
                 fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
           ),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           InkWell(
             onTap: () {},
             child: Container(
-              width: Screenutil.length(218),
-              height: Screenutil.length(218),
+              width: 218.w,
+              height: 218.w,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -205,10 +205,10 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
     return InkWell(
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(85),
-        width: Screenutil.length(686),
+        height: 85.w,
+        width: 686.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(20),
+          vertical: 20.w,
         ),
         decoration: BoxDecoration(
             color: Color(0xffffc40c),
@@ -243,9 +243,9 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                    top: Screenutil.length(21),
-                    left: Screenutil.length(24),
-                    right: Screenutil.length(24),
+                    top: 21.w,
+                    left: 24.w,
+                    right: 24.w,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -268,7 +268,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: Screenutil.length(26)),
+                SizedBox(height: 26.w),
                 _inkWellRelease(),
               ],
             ),

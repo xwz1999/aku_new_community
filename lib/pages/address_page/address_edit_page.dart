@@ -22,10 +22,10 @@ class _AddressEditPageState extends State<AddressEditPage> {
   Widget _containerSelectDefault() {
     return Container(
       color: Colors.white,
-      height: Screenutil.length(96),
+      height: 96.w,
       padding: EdgeInsets.symmetric(
-        vertical: Screenutil.length(28),
-        horizontal: Screenutil.length(32),
+        vertical: 28.w,
+        horizontal: 32.w,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +33,7 @@ class _AddressEditPageState extends State<AddressEditPage> {
           Text(
             '设为默认地址',
             style: TextStyle(
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -63,16 +63,16 @@ class _AddressEditPageState extends State<AddressEditPage> {
       onTap: () {},
       child: Container(
         color: Colors.white,
-        height: Screenutil.length(96),
+        height: 96.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(28),
-          horizontal: Screenutil.length(32),
+          vertical: 28.w,
+          horizontal: 32.w,
         ),
         alignment: Alignment.center,
         child: Text(
           '删除地址',
           style: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             color: Color(0xffe60e0e),
           ),
         ),
@@ -113,9 +113,9 @@ class _AddressEditPageState extends State<AddressEditPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: Screenutil.length(66)),
+                SizedBox(height: 66.w),
                 _containerSelectDefault(),
-                SizedBox(height: Screenutil.length(66)),
+                SizedBox(height: 66.w),
                 widget.bundle.getMap('details')['isDelete']
                     ? _containerDelete()
                     : SizedBox(),

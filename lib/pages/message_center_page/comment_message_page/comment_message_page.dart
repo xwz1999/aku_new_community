@@ -78,10 +78,10 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
   Container _containerCommentCard(
       String name, imageHeader, content, time, imagePath) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
       padding: EdgeInsets.only(
-        top: Screenutil.length(32),
-        bottom: Screenutil.length(16),
+        top: 32.w,
+        bottom: 16.w,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -98,50 +98,50 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             ),
             child: Image.asset(
               imageHeader,
-              height: Screenutil.length(86),
-              width: Screenutil.length(86),
+              height: 86.w,
+              width: 86.w,
               fit: BoxFit.fill,
             ),
           ),
-          SizedBox(width: Screenutil.length(20)),
+          SizedBox(width: 20.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 name,
                 style: TextStyle(
-                  fontSize: Screenutil.size(36),
+                  fontSize: 36.sp,
                   color: Color(0xff333333),
                 ),
               ),
-              SizedBox(height: Screenutil.length(6)),
+              SizedBox(height: 6.w),
               Container(
-                width: Screenutil.length(392),
+                width: 392.w,
                 child: Text(
                   content,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xff333333),
                   ),
                 ),
               ),
-              SizedBox(height: Screenutil.length(16)),
+              SizedBox(height: 16.w),
               Text(
                 time,
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff999999),
                 ),
               ),
             ],
           ),
-          SizedBox(width: Screenutil.length(12)),
+          SizedBox(width: 12.w),
           Image.asset(
             imagePath,
-            height: Screenutil.length(158),
-            width: Screenutil.length(158),
+            height: 158.w,
+            width: 158.w,
             fit: BoxFit.fill,
           ),
         ],

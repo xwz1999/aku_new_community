@@ -35,35 +35,35 @@ class _HomeCardState extends State<HomeCard> {
 
   Widget _countDown() {
     return Container(
-      width: Screenutil.length(638),
+      width: 638.w,
       color: Color(0xff333333).withOpacity(0.8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.only(
-              left: Screenutil.length(24),
-              top: Screenutil.length(11),
-              bottom: Screenutil.length(12),
+              left: 24.w,
+              top: 11.w,
+              bottom: 12.w,
             ),
             child: Text(
               '剩余时间:09天13时46分',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Color(0xffffffff),
-                  fontSize: Screenutil.size(24)),
+                  fontSize: 24.sp),
             ),
           ),
           Container(
             padding: EdgeInsets.only(
-              right: Screenutil.length(24),
-              top: Screenutil.length(7),
-              bottom: Screenutil.length(7),
+              right: 24.w,
+              top: 7.w,
+              bottom: 7.w,
             ),
             child: Text(
               '¥99.9',
               style: TextStyle(
-                  color: Color(0xffff8200), fontSize: Screenutil.size(36)),
+                  color: Color(0xffff8200), fontSize: 36.sp),
             ),
           ),
         ],
@@ -109,21 +109,21 @@ class _HomeCardState extends State<HomeCard> {
         }
       },
       child: Container(
-        height: Screenutil.length(44),
-        width: Screenutil.length(120),
+        height: 44.w,
+        width: 120.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
           borderRadius:
-              BorderRadius.all(Radius.circular(Screenutil.length(22))),
+              BorderRadius.all(Radius.circular(22.w)),
         ),
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(8)),
+        padding: EdgeInsets.symmetric(vertical: 8.w),
         child: Text(
           buttonName,
           style: TextStyle(
               fontWeight: FontWeight.w600,
               color: Color(0xff4a4b51),
-              fontSize: Screenutil.size(20)),
+              fontSize: 20.sp),
         ),
       ),
     );
@@ -134,21 +134,21 @@ class _HomeCardState extends State<HomeCard> {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(32),
+        horizontal: 32.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(24),
-        right: Screenutil.length(24),
-        bottom: Screenutil.length(40),
+        left: 24.w,
+        right: 24.w,
+        bottom: 40.w,
       ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(Screenutil.length(8))),
+          borderRadius: BorderRadius.all(Radius.circular(8.w)),
           border:
-              Border.all(color: Color(0xffe8e8e8), width: Screenutil.length(2)),
+              Border.all(color: Color(0xffe8e8e8), width: 2.w),
         ),
-        padding: EdgeInsets.only(bottom: Screenutil.length(24)),
+        padding: EdgeInsets.only(bottom: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -157,13 +157,13 @@ class _HomeCardState extends State<HomeCard> {
                 Container(
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Screenutil.length(8)),
-                      topRight: Radius.circular(Screenutil.length(8)),
+                      topLeft: Radius.circular(8.w),
+                      topRight: Radius.circular(8.w),
                     ),
                     child: CachedImageWrapper(
                       url: widget.imagePath,
-                      width: Screenutil.length(638),
-                      height: Screenutil.length(210),
+                      width: 638.w,
+                      height: 210.w,
                     ),
                   ),
                 ),
@@ -171,22 +171,22 @@ class _HomeCardState extends State<HomeCard> {
             ),
             Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(16),
-                left: Screenutil.length(24),
+                top: 16.w,
+                left: 24.w,
               ),
               child: Text(
                 widget.title,
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Color(0xff4a4b51),
-                    fontSize: Screenutil.size(28)),
+                    fontSize: 28.sp),
               ),
             ),
             Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(16),
-                left: Screenutil.length(24),
-                right: Screenutil.length(24),
+                top: 16.w,
+                left: 24.w,
+                right: 24.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,7 +196,7 @@ class _HomeCardState extends State<HomeCard> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          style: TextStyle(fontSize: Screenutil.size(24)),
+                          style: TextStyle(fontSize: 24.sp),
                           children: <InlineSpan>[
                             TextSpan(
                                 text: widget.isActivity ? '地点:' : '原产地区:',
@@ -208,10 +208,10 @@ class _HomeCardState extends State<HomeCard> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: Screenutil.length(8)),
+                        margin: EdgeInsets.only(top: 8.w),
                         child: RichText(
                           text: TextSpan(
-                            style: TextStyle(fontSize: Screenutil.size(24)),
+                            style: TextStyle(fontSize: 24.sp),
                             children: <InlineSpan>[
                               TextSpan(
                                   text: widget.isActivity ? '活动时间:' : '预计到货:',
@@ -232,17 +232,17 @@ class _HomeCardState extends State<HomeCard> {
             widget.isActivity
                 ? Container(
                     margin: EdgeInsets.only(
-                      top: Screenutil.length(16),
-                      right: Screenutil.length(24),
+                      top: 16.w,
+                      right: 24.w,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: Screenutil.length(80)),
+                          margin: EdgeInsets.only(left: 80.w),
                           child: ImageStack(
                             imageList: images,
-                            imageRadius: Screenutil.size(44),
+                            imageRadius: 44.sp,
                             imageCount: 3,
                             imageBorderWidth: 1,
                             totalCount: 3,

@@ -42,7 +42,7 @@ class MarketCartCard extends StatelessWidget {
         child: Icon(
           Icons.check_circle,
           color: cartItem.isCheck ? Color(0xffdb0000) : Color(0xff999999),
-          size: Screenutil.length(36),
+          size: 36.w,
         ),
       ),
     );
@@ -50,13 +50,13 @@ class MarketCartCard extends StatelessWidget {
 
   Widget _image(String imagePath) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(20)),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(2)),
         child: CachedImageWrapper(
           url: imagePath,
-          width: Screenutil.length(180),
-          height: Screenutil.length(180),
+          width: 180.w,
+          height: 180.w,
         ),
       ),
     );
@@ -69,13 +69,13 @@ class MarketCartCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: Screenutil.length(394),
+            width: 394.w,
             child: Text(
               content,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: Color(0xff333333),
               ),
             ),
@@ -83,10 +83,10 @@ class MarketCartCard extends StatelessWidget {
           // InkWell(
           //   onTap: _showGoodsSpecsSheet,
           //   child: Container(
-          //     margin: EdgeInsets.only(top: Screenutil.length(10)),
+          //     margin: EdgeInsets.only(top: 10.w),
           //     padding: EdgeInsets.symmetric(
-          //       vertical: Screenutil.length(5),
-          //       horizontal: Screenutil.length(19),
+          //       vertical: 5.w,
+          //       horizontal: 19.w,
           //     ),
           //     alignment: Alignment.center,
           //     decoration: BoxDecoration(
@@ -101,17 +101,17 @@ class MarketCartCard extends StatelessWidget {
           //         Text(
           //           specs,
           //           style: TextStyle(
-          //             fontSize: Screenutil.size(18),
+          //             fontSize: 18.sp,
           //             color: Color(0xff333333),
           //           ),
           //         ),
           //         Container(
           //           alignment: Alignment.center,
-          //           margin: EdgeInsets.only(left: Screenutil.length(16)),
+          //           margin: EdgeInsets.only(left: 16.w),
           //           child: Icon(
           //             AntDesign.down,
           //             color: Color(0xff333333),
-          //             size: Screenutil.size(22),
+          //             size: 22.sp,
           //           ),
           //         ),
           //       ],
@@ -119,11 +119,11 @@ class MarketCartCard extends StatelessWidget {
           //   ),
           // ),
           Container(
-            margin: EdgeInsets.only(top: Screenutil.length(40)),
+            margin: EdgeInsets.only(top: 40.w),
             child: Text(
               '￥${price}',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xffe60e0e),
               ),
             ),
@@ -138,9 +138,9 @@ class MarketCartCard extends StatelessWidget {
     return Consumer<CartProvidde>(builder: (context, model, child) {
       return Container(
         margin: EdgeInsets.only(
-          top: Screenutil.length(20),
-          left: Screenutil.length(32),
-          right: Screenutil.length(32),
+          top: 20.w,
+          left: 32.w,
+          right: 32.w,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -156,7 +156,7 @@ class MarketCartCard extends StatelessWidget {
                   child: Text(
                     '移至收藏夹',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28), color: Colors.white),
+                        fontSize: 28.sp, color: Colors.white),
                   ),
                   color: renderingMode == SlidableRenderingMode.slide
                       ? Color(0xffffc40c).withOpacity(animation.value)
@@ -181,7 +181,7 @@ class MarketCartCard extends StatelessWidget {
                   child: Text(
                     '删除',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28), color: Colors.white),
+                        fontSize: 28.sp, color: Colors.white),
                   ),
                   // onTap: () => _showSnackBar(context, 'Delete'),
                 );
@@ -191,9 +191,9 @@ class MarketCartCard extends StatelessWidget {
           child: Container(
             color: Colors.white,
             padding: EdgeInsets.only(
-              top: Screenutil.length(30),
-              left: Screenutil.length(15),
-              bottom: Screenutil.length(37),
+              top: 30.w,
+              left: 15.w,
+              bottom: 37.w,
             ),
             child: Stack(
               children: [
@@ -206,7 +206,7 @@ class MarketCartCard extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 0,
-                  right: Screenutil.length(16),
+                  right: 16.w,
                   child: CartCount(
                     cartItem: cartItem,
                     // goodsNum: widget.goodsNum,

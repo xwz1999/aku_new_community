@@ -22,13 +22,13 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
           Text(
             '宁波华茂悦峰',
             style: TextStyle(
-                fontSize: Screenutil.size(40), color: Color(0xffffffff)),
+                fontSize: 40.sp, color: Color(0xffffffff)),
           ),
-          SizedBox(height: Screenutil.length(10)),
+          SizedBox(height: 10.w),
           Text(
             '1幢-1单元-702室',
             style: TextStyle(
-                fontSize: Screenutil.size(26), color: Color(0xffffffff)),
+                fontSize: 26.sp, color: Color(0xffffffff)),
           ),
         ],
       ),
@@ -39,7 +39,7 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffffffff),
-        borderRadius: BorderRadius.all(Radius.circular(Screenutil.length(16))),
+        borderRadius: BorderRadius.all(Radius.circular(16.w)),
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -48,14 +48,14 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
         ],
       ),
       margin: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(75),
-        vertical: Screenutil.length(32),
+        horizontal: 75.w,
+        vertical: 32.w,
       ),
       padding: EdgeInsets.only(
-        bottom: Screenutil.length(16),
-        left: Screenutil.length(32),
-        right: Screenutil.length(21),
-        top: Screenutil.length(25),
+        bottom: 16.w,
+        left: 32.w,
+        right: 21.w,
+        top: 25.w,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -68,17 +68,17 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
                 children: [
                   Icon(
                     AntDesign.contacts,
-                    size: Screenutil.size(40),
+                    size: 40.sp,
                     color: Color(0xff999999),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '马成泽先生',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                        fontSize: Screenutil.size(36),
+                        fontSize: 36.sp,
                         color: Color(0xff333333)),
                   ),
                 ],
@@ -87,17 +87,17 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
                 children: [
                   Icon(
                     AntDesign.car,
-                    size: Screenutil.size(40),
+                    size: 40.sp,
                     color: Color(0xff999999),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '无车辆信息',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: Screenutil.size(36),
+                      fontSize: 36.sp,
                       color: Color(0xff333333),
                     ),
                   ),
@@ -105,22 +105,22 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
               ),
             ],
           ),
-          SizedBox(height: Screenutil.length(13)),
+          SizedBox(height: 13.w),
           Text(
             '有限时间：2020年6月30日',
             style: TextStyle(
-              fontSize: Screenutil.size(26),
+              fontSize: 26.sp,
               color: Color(0xff999999),
             ),
           ),
-          SizedBox(height: Screenutil.length(23)),
+          SizedBox(height: 23.w),
           DottedLine(color: Color(0xfff5f5f5)),
           Container(
             padding: EdgeInsets.only(
-              top: Screenutil.length(30),
-              bottom: Screenutil.length(38),
+              top: 30.w,
+              bottom: 38.w,
             ),
-            height: Screenutil.length(389),
+            height: 389.w,
             alignment: Alignment.center,
             child: Column(
               children: [
@@ -128,15 +128,15 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
                   '020-598-230',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: Screenutil.size(36),
+                    fontSize: 36.sp,
                     color: Color(0xff333333),
                   ),
                 ),
-                SizedBox(height: Screenutil.length(11)),
+                SizedBox(height: 11.w),
                 Image.asset(
                   'assets/example/QR_code.png',
-                  height: Screenutil.length(260),
-                  width: Screenutil.length(260),
+                  height: 260.w,
+                  width: 260.w,
                   color: Color(0xff333333),
                   fit: BoxFit.fill,
                 ),
@@ -144,13 +144,13 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
             ),
           ),
           DottedLine(color: Color(0xfff5f5f5)),
-          SizedBox(height: Screenutil.length(16)),
+          SizedBox(height: 16.w),
           Container(
             alignment: Alignment.center,
             child: Text(
               '进入小区时,请出示此通行证给门岗',
               style: TextStyle(
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: Color(0xff999999),
               ),
             ),
@@ -165,15 +165,15 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
       onTap: () {},
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(98),
-        width: Screenutil.length(750),
+        height: 98.w,
+        width: 750.w,
         padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
         color: Color(0xffffc40c),
         child: Text(
           '发送给访客',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -196,9 +196,9 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
           children: [
             Column(
               children: [
-                SizedBox(height: Screenutil.length(192) - kToolbarHeight),
+                SizedBox(height: 192.w - kToolbarHeight),
                 _header(),
-                SizedBox(height: Screenutil.length(32)),
+                SizedBox(height: 32.w),
                 _card(),
               ],
             ),

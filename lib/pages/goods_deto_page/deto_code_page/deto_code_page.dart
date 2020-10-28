@@ -18,13 +18,13 @@ class DetoCodePage extends StatelessWidget {
           Text(
             '宁波华茂悦峰',
             style: TextStyle(
-                fontSize: Screenutil.size(40), color: Color(0xffffffff)),
+                fontSize: 40.sp, color: Color(0xffffffff)),
           ),
-          SizedBox(height: Screenutil.length(10)),
+          SizedBox(height: 10.w),
           Text(
             '1幢-1单元-702室',
             style: TextStyle(
-                fontSize: Screenutil.size(26), color: Color(0xffffffff)),
+                fontSize: 26.sp, color: Color(0xffffffff)),
           ),
         ],
       ),
@@ -35,7 +35,7 @@ class DetoCodePage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffffffff),
-        borderRadius: BorderRadius.all(Radius.circular(Screenutil.length(16))),
+        borderRadius: BorderRadius.all(Radius.circular(16.w)),
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -44,14 +44,14 @@ class DetoCodePage extends StatelessWidget {
         ],
       ),
       margin: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(75),
-        vertical: Screenutil.length(32),
+        horizontal: 75.w,
+        vertical: 32.w,
       ),
       padding: EdgeInsets.only(
-        bottom: Screenutil.length(16),
-        left: Screenutil.length(32),
-        right: Screenutil.length(21),
-        top: Screenutil.length(25),
+        bottom: 16.w,
+        left: 32.w,
+        right: 21.w,
+        top: 25.w,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -64,39 +64,39 @@ class DetoCodePage extends StatelessWidget {
                 children: [
                   Icon(
                     AntDesign.contacts,
-                    size: Screenutil.size(40),
+                    size: 40.sp,
                     color: Color(0xff999999),
                   ),
-                  SizedBox(width: Screenutil.length(10)),
+                  SizedBox(width: 10.w),
                   Text(
                     '马成泽先生',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: Screenutil.size(36),
+                        fontSize: 36.sp,
                         color: Color(0xff333333)),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: Screenutil.length(13)),
+          SizedBox(height: 13.w),
           Text(
             '有限时间：2020年6月30日',
             style: TextStyle(
-              fontSize: Screenutil.size(26),
+              fontSize: 26.sp,
               color: Color(0xff999999),
             ),
           ),
-          SizedBox(height: Screenutil.length(23)),
+          SizedBox(height: 23.w),
           DottedLine(color: Color(0xfff5f5f5)),
           Container(
             padding: EdgeInsets.only(
-              top: Screenutil.length(30),
-              bottom: Screenutil.length(38),
+              top: 30.w,
+              bottom: 38.w,
             ),
-            height: Screenutil.length(389),
+            height: 389.w,
             alignment: Alignment.center,
             child: Column(
               children: [
@@ -104,27 +104,27 @@ class DetoCodePage extends StatelessWidget {
                   '020-598-230',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: Screenutil.size(36),
+                    fontSize: 36.sp,
                     color: Color(0xff333333),
                   ),
                 ),
-                SizedBox(height: Screenutil.length(11)),
+                SizedBox(height: 11.w),
                 QrImage(
                   padding: EdgeInsets.zero,
                   data: '智慧社区开门码',
-                  size: Screenutil.length(260),
+                  size: 260.w,
                 ),
               ],
             ),
           ),
           DottedLine(color: Color(0xfff5f5f5)),
-          SizedBox(height: Screenutil.length(16)),
+          SizedBox(height: 16.w),
           Container(
             alignment: Alignment.center,
             child: Text(
               '出户时，请出示此证给门岗',
               style: TextStyle(
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: Color(0xff999999),
               ),
             ),
@@ -149,9 +149,9 @@ class DetoCodePage extends StatelessWidget {
           children: [
             Column(
               children: [
-                SizedBox(height: Screenutil.length(192) - kToolbarHeight),
+                SizedBox(height: 192.w - kToolbarHeight),
                 _header(),
-                SizedBox(height: Screenutil.length(32)),
+                SizedBox(height: 32.w),
                 _card(),
               ],
             ),

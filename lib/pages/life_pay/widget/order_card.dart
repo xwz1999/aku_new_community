@@ -16,9 +16,9 @@ class _OrderCardState extends State<OrderCard> {
   Container _orderInfo() {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(20),
-        bottom: Screenutil.length(20),
-        left: Screenutil.length(24),
+        top: 20.w,
+        bottom: 20.w,
+        left: 24.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class _OrderCardState extends State<OrderCard> {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: Screenutil.length(24)),
+            margin: EdgeInsets.symmetric(vertical: 24.w),
             child: Row(
               children: [
                 Text(
@@ -41,7 +41,7 @@ class _OrderCardState extends State<OrderCard> {
                     color: BaseStyle.color333333,
                   ),
                 ),
-                SizedBox(width: Screenutil.length(40)),
+                SizedBox(width: 40.w),
                 Text(
                   '已选：4项',
                   style: TextStyle(
@@ -81,11 +81,11 @@ class _OrderCardState extends State<OrderCard> {
           ..putMap('detailMap', {'title': '去年（2019年）'}));
       },
       child: Container(
-        margin: EdgeInsets.only(top: Screenutil.length(20)),
+        margin: EdgeInsets.only(top: 20.w),
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(7)),
-        height: Screenutil.length(44),
-        width: Screenutil.length(128),
+        padding: EdgeInsets.symmetric(vertical: 7.w),
+        height: 44.w,
+        width: 128.w,
         decoration: BoxDecoration(
           color: Color(0xff2a2a2a),
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -105,11 +105,11 @@ class _OrderCardState extends State<OrderCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
-      padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      padding: EdgeInsets.symmetric(horizontal: 32.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -122,7 +122,7 @@ class _OrderCardState extends State<OrderCard> {
             Icon(
               Icons.radio_button_unchecked,
               color: BaseStyle.color999999,
-              size: Screenutil.length(40),
+              size: 40.w,
             ),
             Expanded(
               child: Row(

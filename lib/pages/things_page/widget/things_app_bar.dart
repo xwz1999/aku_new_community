@@ -26,7 +26,7 @@ class ThingsAppBar extends StatelessWidget {
           onTap: () => Navigator.pop(context),
           child: Icon(
             AntDesign.left,
-            size: Screenutil.size(45),
+            size: 45.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -35,24 +35,24 @@ class ThingsAppBar extends StatelessWidget {
           title,
           style: TextStyle(
             color: Color(0xff333333),
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
         bottom: TabBar(
           unselectedLabelStyle: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
           ),
           labelStyle: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
           ),
           labelPadding:
               EdgeInsets.symmetric(horizontal: Screenutil.length(131.5)),
           indicatorColor: Color(0xffffc40c),
           indicatorSize: TabBarIndicatorSize.label,
           indicatorPadding:
-              EdgeInsets.symmetric(horizontal: Screenutil.length(21)),
+              EdgeInsets.symmetric(horizontal: 21.w),
           isScrollable: true,
           controller: tabController,
           tabs: List.generate(

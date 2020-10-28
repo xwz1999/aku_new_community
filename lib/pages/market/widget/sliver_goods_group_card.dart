@@ -53,8 +53,8 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
       borderRadius: BorderRadius.circular(6),
       child: CachedImageWrapper(
         url: image,
-        height: Screenutil.length(120),
-        width: Screenutil.length(160),
+        height: 120.w,
+        width: 160.w,
       ),
     );
   }
@@ -63,16 +63,16 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
     return InkWell(
       onTap: () {},
       child: Container(
-        height: Screenutil.length(52),
-        width: Screenutil.length(170),
+        height: 52.w,
+        width: 170.w,
         alignment: Alignment.center,
         padding: EdgeInsets.only(
-          top: Screenutil.length(10),
-          bottom: Screenutil.length(9),
+          top: 10.w,
+          bottom: 9.w,
         ),
         decoration: BoxDecoration(
           color: isOverTime ? Color(0xffd9d9d9) : Color(0xffffc40c),
-          borderRadius: BorderRadius.all(Radius.circular(Screenutil.length(4))),
+          borderRadius: BorderRadius.all(Radius.circular(4.w)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -81,16 +81,16 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
               '¥${price}',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: isOverTime ? Color(0xff333333) : Color(0xffe60e0e),
               ),
             ),
-            SizedBox(width: Screenutil.length(10)),
+            SizedBox(width: 10.w),
             Text(
               isOverTime ? '已过期' : '去团购',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(24),
+                  fontSize: 24.sp,
                   color: Color(0xff333333)),
             ),
           ],
@@ -102,52 +102,52 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
   Widget _content(String title, subtitle, remainingTime, address, arrivalTime,
       price, isOverTime) {
     return Container(
-      margin: EdgeInsets.only(left: Screenutil.length(20)),
+      margin: EdgeInsets.only(left: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(8)),
-            width: Screenutil.length(474),
+            margin: EdgeInsets.only(bottom: 8.w),
+            width: 474.w,
             child: Text(
               title,
               textAlign: TextAlign.left,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: Screenutil.size(30),
+                fontSize: 30.sp,
                 color: Color(0xff333333),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(12)),
+            margin: EdgeInsets.only(bottom: 12.w),
             child: Text(
               subtitle,
               style: TextStyle(
-                fontSize: Screenutil.size(20),
+                fontSize: 20.sp,
                 color: Color(0xff333333),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(16)),
+            margin: EdgeInsets.only(bottom: 16.w),
             padding: EdgeInsets.only(
-              top: Screenutil.length(6),
-              left: Screenutil.length(11),
-              bottom: Screenutil.length(7),
-              right: Screenutil.length(20),
+              top: 6.w,
+              left: 11.w,
+              bottom: 7.w,
+              right: 20.w,
             ),
             decoration: BoxDecoration(
               color: isOverTime ? Color(0xffd9d9d9) : Color(0xffffeee3),
               borderRadius:
-                  BorderRadius.all(Radius.circular(Screenutil.length(4))),
+                  BorderRadius.all(Radius.circular(4.w)),
             ),
             child: Row(
               children: [
                 Icon(
                   MaterialIcons.access_time,
-                  size: Screenutil.size(18),
+                  size: 18.sp,
                   color: isOverTime ? Color(0xff333333) : Color(0xffff7f00),
                 ),
                 Text(
@@ -156,15 +156,15 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: isOverTime ? Color(0xff333333) : Color(0xffff7f00),
-                    fontSize: Screenutil.size(18),
+                    fontSize: 18.sp,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(30)),
-            width: Screenutil.length(474),
+            margin: EdgeInsets.only(bottom: 30.w),
+            width: 474.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -175,14 +175,14 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
                       '原产地:${address}',
                       style: TextStyle(
                           color: Color(0xff999999),
-                          fontSize: Screenutil.size(20)),
+                          fontSize: 20.sp),
                     ),
-                    SizedBox(height: Screenutil.length(10)),
+                    SizedBox(height: 10.w),
                     Text(
                       '预计到货:${arrivalTime}',
                       style: TextStyle(
                           color: Color(0xff999999),
-                          fontSize: Screenutil.size(20)),
+                          fontSize: 20.sp),
                     )
                   ],
                 ),
@@ -201,19 +201,19 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
       delegate: SliverChildBuilderDelegate((BuildContext content, int index) {
         return Container(
           margin: EdgeInsets.only(
-            top: Screenutil.length(20),
-            left: Screenutil.length(32),
-            right: Screenutil.length(32),
+            top: 20.w,
+            left: 32.w,
+            right: 32.w,
           ),
           padding: EdgeInsets.only(
-            top: Screenutil.length(12),
-            left: Screenutil.length(12),
-            right: Screenutil.length(20),
+            top: 12.w,
+            left: 12.w,
+            right: 20.w,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius:
-                BorderRadius.all(Radius.circular(Screenutil.length(8))),
+                BorderRadius.all(Radius.circular(8.w)),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

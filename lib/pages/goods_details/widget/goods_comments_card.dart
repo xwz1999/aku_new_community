@@ -41,12 +41,12 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(12)),
+            margin: EdgeInsets.only(right: 12.w),
             child: ClipOval(
               child: CachedImageWrapper(
                 url: imagePath,
-                width: Screenutil.length(50),
-                height: Screenutil.length(50),
+                width: 50.w,
+                height: 50.w,
               ),
             ),
           ),
@@ -60,7 +60,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
                   color: BaseStyle.color333333,
                 ),
               ),
-              SizedBox(height: Screenutil.length(4)),
+              SizedBox(height: 4.w),
               Text(
                 subtitle,
                 style: TextStyle(
@@ -80,13 +80,13 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
     List<String> contentImageList,
   ) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(15)),
-      padding: EdgeInsets.only(bottom: Screenutil.length(20)),
+      margin: EdgeInsets.only(top: 15.w),
+      padding: EdgeInsets.only(bottom: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(20)),
+            margin: EdgeInsets.only(bottom: 20.w),
             child: ExpandableText(
               text: content,
               maxLines: 3,
@@ -124,7 +124,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
                   size: BaseStyle.fontSize22,
                   color: BaseStyle.color333333,
                 ),
-                SizedBox(width: Screenutil.length(10)),
+                SizedBox(width: 10.w),
                 Text(
                   '有用',
                   style: TextStyle(
@@ -144,11 +144,11 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
-      padding: EdgeInsets.only(bottom: Screenutil.length(32)),
+      padding: EdgeInsets.only(bottom: 32.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffd8d8d8), width: 0.5)),

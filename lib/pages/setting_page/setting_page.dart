@@ -63,7 +63,7 @@ class _SettingPageState extends State<SettingPage> {
           title: Text(
             url,
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -72,7 +72,7 @@ class _SettingPageState extends State<SettingPage> {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -85,7 +85,7 @@ class _SettingPageState extends State<SettingPage> {
                 '确认',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -186,9 +186,9 @@ class _SettingPageState extends State<SettingPage> {
       },
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: Screenutil.length(28)),
+          padding: EdgeInsets.symmetric(vertical: 28.w),
           decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -222,7 +222,7 @@ class _SettingPageState extends State<SettingPage> {
                     )
                   : Icon(
                       AntDesign.right,
-                      size: Screenutil.size(36),
+                      size: 36.sp,
                       color: BaseStyle.color999999,
                     ),
             ],
@@ -272,10 +272,10 @@ class _SettingPageState extends State<SettingPage> {
       },
       child: Container(
         color: Colors.white,
-        height: Screenutil.length(96),
+        height: 96.w,
         padding: EdgeInsets.only(
-          top: Screenutil.length(26),
-          bottom: Screenutil.length(25),
+          top: 26.w,
+          bottom: 25.w,
         ),
         alignment: Alignment.center,
         child: Text(
@@ -311,7 +311,7 @@ class _SettingPageState extends State<SettingPage> {
                     ))
                 .toList(),
           ),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           Column(
             children: _listView
                 .take(8)
@@ -323,7 +323,7 @@ class _SettingPageState extends State<SettingPage> {
                     ))
                 .toList(),
           ),
-          SizedBox(height: Screenutil.length(52)),
+          SizedBox(height: 52.w),
           _containerQuit(),
         ],
       ),

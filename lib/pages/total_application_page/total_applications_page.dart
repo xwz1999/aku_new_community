@@ -22,11 +22,11 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
   Widget _myApp() {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
-      padding: EdgeInsets.only(bottom: Screenutil.length(16)),
+      padding: EdgeInsets.only(bottom: 16.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffd8d8d8), width: 0.5)),
@@ -37,7 +37,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
           Text(
             '我的应用',
             style: TextStyle(
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -49,8 +49,8 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
             },
             child: Container(
               alignment: Alignment.center,
-              width: Screenutil.length(90),
-              padding: EdgeInsets.symmetric(vertical: Screenutil.length(6)),
+              width: 90.w,
+              padding: EdgeInsets.symmetric(vertical: 6.w),
               decoration: BoxDecoration(
                 color: Color(0xffffd000),
                 borderRadius: BorderRadius.all(Radius.circular(2)),
@@ -59,7 +59,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                 isEdit ? '完成' : '编辑',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -213,15 +213,15 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                     children: <Widget>[
                       Image.asset(
                         gridList[index]['imagePath'],
-                        height: Screenutil.length(75),
-                        width: Screenutil.length(75),
+                        height: 75.w,
+                        width: 75.w,
                         fit: BoxFit.cover,
                       ),
-                      SizedBox(height: Screenutil.length(8)),
+                      SizedBox(height: 8.w),
                       Text(
                         gridList[index]['title'],
                         style: TextStyle(
-                          fontSize: Screenutil.size(24),
+                          fontSize: 24.sp,
                           color: Color(0xff4a4b51),
                         ),
                       )
@@ -230,13 +230,13 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                   isEdit
                       ? Positioned(
                           right: 0,
-                          top: Screenutil.length(24),
+                          top: 24.w,
                           child: Image.asset(
                             count == 3
                                 ? AssetsImage.APPADD
                                 : AssetsImage.APPREDUCE,
-                            height: Screenutil.length(24),
-                            width: Screenutil.length(24),
+                            height: 24.w,
+                            width: 24.w,
                           ),
                         )
                       : SizedBox(),
@@ -258,25 +258,25 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
       child: Stack(
         children: [
           Container(
-            height: Screenutil.length(88),
+            height: 88.w,
             alignment: Alignment.center,
             color: _currentIndex == index ? Colors.white : Colors.transparent,
-            padding: EdgeInsets.symmetric(vertical: Screenutil.length(24)),
+            padding: EdgeInsets.symmetric(vertical: 24.w),
             child: Text(
               _leftNav[index],
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff333333),
               ),
             ),
           ),
           _currentIndex == index
               ? Positioned(
-                  top: Screenutil.length(24),
+                  top: 24.w,
                   left: 1,
                   child: SizedBox(
-                    width: Screenutil.length(4),
-                    height: Screenutil.length(40),
+                    width: 4.w,
+                    height: 40.w,
                     child: DecoratedBox(
                       decoration: BoxDecoration(color: Color(0xffffd000)),
                     ),
@@ -311,13 +311,13 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
             child: _myAppGrid(AssetsImage.mineAppList, 4),
           ),
           Container(
-            margin: EdgeInsets.only(top: Screenutil.length(32)),
+            margin: EdgeInsets.only(top: 32.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: Screenutil.length(172),
+                  width: 172.w,
                   child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: 3,
@@ -326,7 +326,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                       }),
                 ),
                 Container(
-                  width: Screenutil.length(578),
+                  width: 578.w,
                   color: Colors.white,
                   child: ListView(
                     shrinkWrap: true,

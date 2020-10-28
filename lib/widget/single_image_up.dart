@@ -95,23 +95,23 @@ class _SingleImageUpState extends State<SingleImageUp> {
             Stack(
               children: [
                 Container(
-                  width: Screenutil.length(328),
-                  height: Screenutil.length(180),
+                  width: 328.w,
+                  height: 180.w,
                   decoration: BoxDecoration(
                     border: Border.all(
                         color: Color(0xffe8e8e8),
-                        width: images.length == 0 ? 0 : Screenutil.length(4)),
+                        width: images.length == 0 ? 0 : 4.w),
                     borderRadius:
-                        BorderRadius.all(Radius.circular(Screenutil.length(6))),
+                        BorderRadius.all(Radius.circular(6.w)),
                   ),
                   child: ClipRRect(
                     borderRadius:
-                        BorderRadius.all(Radius.circular(Screenutil.length(6))),
+                        BorderRadius.all(Radius.circular(6.w)),
                     child: images.length == 0
                         ? Image.asset(
                             widget.imagePath,
-                            width: Screenutil.length(328),
-                            height: Screenutil.length(180),
+                            width: 328.w,
+                            height: 180.w,
                           )
                         : AssetThumb(asset: images[0], width: 328, height: 180),
                   ),
@@ -130,13 +130,13 @@ class _SingleImageUpState extends State<SingleImageUp> {
                           child: Icon(
                             AntDesign.closecircle,
                             color: BaseStyle.colorffc40c,
-                            size: Screenutil.size(36),
+                            size: 36.sp,
                           ),
                         ),
                       ),
               ],
             ),
-            SizedBox(height: Screenutil.length(16)),
+            SizedBox(height: 16.w),
             Text(
               widget.title,
               style: TextStyle(
@@ -151,9 +151,9 @@ class _SingleImageUpState extends State<SingleImageUp> {
       //   physics: NeverScrollableScrollPhysics(),
       //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       //     crossAxisCount: 2,
-      //     mainAxisSpacing: Screenutil.length(30),
-      //     crossAxisSpacing: Screenutil.length(32),
-      //     childAspectRatio: Screenutil.length(328) / Screenutil.length(230),
+      //     mainAxisSpacing: 30.w,
+      //     crossAxisSpacing: 32.w,
+      //     childAspectRatio: 328.w / 230.w,
       //   ),
       //   itemBuilder: (BuildContext context, int index) {
       //     return index == images.length
@@ -167,14 +167,14 @@ class _SingleImageUpState extends State<SingleImageUp> {
       //               children: [
       //                 ClipRRect(
       //                   borderRadius: BorderRadius.all(
-      //                       Radius.circular(Screenutil.length(6))),
+      //                       Radius.circular(6.w)),
       //                   child: Image.asset(
       //                     widget.imagePath,
-      //                     width: Screenutil.length(328),
-      //                     height: Screenutil.length(180),
+      //                     width: 328.w,
+      //                     height: 180.w,
       //                   ),
       //                 ),
-      //                 SizedBox(height: Screenutil.length(16)),
+      //                 SizedBox(height: 16.w),
       //                 Text(
       //                   widget.title,
       //                   style: TextStyle(
@@ -192,7 +192,7 @@ class _SingleImageUpState extends State<SingleImageUp> {
       //                 children: [
       //                   ClipRRect(
       //                     borderRadius: BorderRadius.all(
-      //                         Radius.circular(Screenutil.length(6))),
+      //                         Radius.circular(6.w)),
       //                     child: AssetThumb(
       //                       asset: images[index],
       //                       width: 328,
@@ -201,11 +201,11 @@ class _SingleImageUpState extends State<SingleImageUp> {
 
       //                     // Image.asset(
       //                     //   widget.imagePath,
-      //                     //   width: Screenutil.length(328),
-      //                     //   height: Screenutil.length(180),
+      //                     //   width: 328.w,
+      //                     //   height: 180.w,
       //                     // ),
       //                   ),
-      //                   SizedBox(height: Screenutil.length(16)),
+      //                   SizedBox(height: 16.w),
       //                   Text(
       //                     widget.title,
       //                     style: TextStyle(
@@ -226,7 +226,7 @@ class _SingleImageUpState extends State<SingleImageUp> {
       //                   child: Icon(
       //                     AntDesign.closecircle,
       //                     color: BaseStyle.colorffc40c,
-      //                     size: Screenutil.size(36),
+      //                     size: 36.sp,
       //                   ),
       //                 ),
       //               ),

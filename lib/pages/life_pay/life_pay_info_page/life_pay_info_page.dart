@@ -31,7 +31,7 @@ class _LifePayInfoPageState extends State<LifePayInfoPage> {
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.only(bottom: Screenutil.length(130)),
+            padding: EdgeInsets.only(bottom: 130.w),
             children: [
               DetailsCard(fun: billRouter),
             ],

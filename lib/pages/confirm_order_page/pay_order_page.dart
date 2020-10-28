@@ -15,7 +15,7 @@ class PayOrderPage extends StatelessWidget {
     isCloseButton: false,
     isOverlayTapDismiss: false,
     titleStyle:
-        TextStyle(fontSize: Screenutil.size(38), color: Color(0xff333333)),
+        TextStyle(fontSize: 38.sp, color: Color(0xff333333)),
   );
 
   List<Map<String, dynamic>> _listPay = [
@@ -24,7 +24,7 @@ class PayOrderPage extends StatelessWidget {
       'widget': Icon(
         AntDesign.alipay_circle,
         color: Color(0xff06b4fd),
-        size: Screenutil.length(50),
+        size: 50.w,
       ),
       'id': 'alipay',
       'isCheck': true
@@ -33,8 +33,8 @@ class PayOrderPage extends StatelessWidget {
       'title': '微信支付',
       'widget': Image.asset(
         AssetsImage.WXPAY,
-        height: Screenutil.length(60),
-        width: Screenutil.length(60),
+        height: 60.w,
+        width: 60.w,
       ),
       'id': 'wxpay',
       'isCheck': false
@@ -57,9 +57,9 @@ class PayOrderPage extends StatelessWidget {
           context: context,
           title: "支付成功!~",
           image: Container(
-            margin: EdgeInsets.only(top: Screenutil.length(40)),
-            height: Screenutil.length(200),
-            width: Screenutil.length(200),
+            margin: EdgeInsets.only(top: 40.w),
+            height: 200.w,
+            width: 200.w,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -68,12 +68,12 @@ class PayOrderPage extends StatelessWidget {
                 colors: [Color(0xffffe16b), Color(0xffffc40d)],
               ),
               borderRadius:
-                  BorderRadius.all(Radius.circular(Screenutil.length(200))),
+                  BorderRadius.all(Radius.circular(200.w)),
             ),
             child: Icon(
               Icons.check,
               color: Colors.white,
-              size: Screenutil.length(150),
+              size: 150.w,
             ),
           ),
           style: alertStyle,
@@ -86,7 +86,7 @@ class PayOrderPage extends StatelessWidget {
               ),
               onPressed: () => Navigator.pop(context),
               color: Color(0xffffc40d),
-              radius: BorderRadius.circular(Screenutil.length(8)),
+              radius: BorderRadius.circular(8.w),
             ),
           ],
         ).show();
@@ -94,8 +94,8 @@ class PayOrderPage extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.only(
-          bottom: Screenutil.length(27),
-          top: Screenutil.length(28),
+          bottom: 27.w,
+          top: 28.w,
         ),
         decoration: BoxDecoration(
           border:
@@ -107,18 +107,18 @@ class PayOrderPage extends StatelessWidget {
             Row(
               children: [
                 widget,
-                SizedBox(width: Screenutil.length(24)),
+                SizedBox(width: 24.w),
                 Text(
                   title,
                   style: TextStyle(
-                      fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                      fontSize: 28.sp, color: Color(0xff333333)),
                 ),
               ],
             ),
             Icon(
               AntDesign.right,
               color: Color(0xff999999),
-              size: Screenutil.length(32),
+              size: 32.w,
             ),
           ],
         ),
@@ -139,21 +139,21 @@ class PayOrderPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(130),
-                bottom: Screenutil.length(130),
+                top: 130.w,
+                bottom: 130.w,
               ),
               alignment: Alignment.center,
               child: Text(
                 '¥${(double.parse(bundle.getMap('cartMap')["itemprice"]) * bundle.getMap('cartMap')["count"]).toStringAsFixed(2)}',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(48),
+                  fontSize: 48.sp,
                   color: Color(0xffe60e0e),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+              margin: EdgeInsets.symmetric(horizontal: 32.w),
               child: Column(
                 children: List.generate(
                     _listPay.length,

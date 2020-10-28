@@ -65,13 +65,13 @@ class NoticePage extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(12)),
+            margin: EdgeInsets.only(right: 12.w),
             child: ClipOval(
               child: CachedImageWrapper(
                 url:
                     'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1380335538,732392216&fm=26&gp=0.jpg',
-                width: Screenutil.length(45),
-                height: Screenutil.length(45),
+                width: 45.w,
+                height: 45.w,
               ),
             ),
           ),
@@ -81,21 +81,21 @@ class NoticePage extends StatelessWidget {
                 TextSpan(
                   text: '管理员 ',
                   style: TextStyle(
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xff999999),
                   ),
                 ),
                 TextSpan(
                   text: ' 发布于  ',
                   style: TextStyle(
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xff666666),
                   ),
                 ),
                 TextSpan(
                   text: '2020-08-12',
                   style: TextStyle(
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xff999999),
                   ),
                 ),
@@ -122,32 +122,32 @@ class NoticePage extends StatelessWidget {
           color: Colors.white,
           child: ListView(
             padding: EdgeInsets.only(
-                top: Screenutil.length(26),
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
-                bottom: Screenutil.length(60)),
+                top: 26.w,
+                left: 32.w,
+                right: 32.w,
+                bottom: 60.w),
             children: [
               Text(
                 bundle.getMap('details')['title'],
                 style: TextStyle(
-                    fontSize: Screenutil.size(32),
+                    fontSize: 32.sp,
                     color: Color(0xff333333),
                     fontWeight: FontWeight.w600,),
               ),
               Container(
-                margin: EdgeInsets.only(top: Screenutil.length(45)),
+                margin: EdgeInsets.only(top: 45.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                   child: CachedImageWrapper(
                     url: bundle.getMap('details')['imagePath'],
-                    width: Screenutil.length(686),
-                    height: Screenutil.length(228),
+                    width: 686.w,
+                    height: 228.w,
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: Screenutil.length(44)),
-                width: Screenutil.length(647),
+                margin: EdgeInsets.only(top: 44.w),
+                width: 647.w,
                 child: Html(data: htmlData),
               ),
               _creater(),

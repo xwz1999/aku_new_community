@@ -19,7 +19,7 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
         Text(
           title,
           style: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             color: Color(0xff666666),
           ),
         ),
@@ -27,7 +27,7 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
           subtitle,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -48,21 +48,21 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
         children: [
           Container(
             margin: EdgeInsets.only(
-                top: Screenutil.length(32),
-                left: Screenutil.length(32),
-                right: Screenutil.length(32)),
+                top: 32.w,
+                left: 32.w,
+                right: 32.w),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(6)),
             ),
             padding: EdgeInsets.symmetric(
-              horizontal: Screenutil.length(20),
-              vertical: Screenutil.length(32),
+              horizontal: 20.w,
+              vertical: 32.w,
             ),
             child: Column(
               children: [
                 _cardList('收费项目', '公共能耗费'),
-                SizedBox(height: Screenutil.length(30)),
+                SizedBox(height: 30.w),
                 _cardList('收费地址', '深蓝公寓 1幢1单元306室'),
               ],
             ),

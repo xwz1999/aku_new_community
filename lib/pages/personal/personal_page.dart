@@ -38,7 +38,7 @@ class _PersonalIndexState extends State<PersonalIndex>
       elevation: 0,
       stretch: true,
       floating: true,
-      expandedHeight: Screenutil.length(450) - height,
+      expandedHeight: 450.w - height,
       backgroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
@@ -60,8 +60,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                     Spacer(),
                     Container(
                       margin: EdgeInsets.only(
-                          top: Screenutil.length(175),
-                          left: Screenutil.length(32)),
+                          top: 175.w,
+                          left: 32.w),
                       child: Row(
                         children: [
                           Container(
@@ -69,8 +69,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                               child: CachedImageWrapper(
                                 url:
                                     'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1851283359,3457678391&fm=26&gp=0.jpg',
-                                width: Screenutil.length(106),
-                                height: Screenutil.length(106),
+                                width: 106.w,
+                                height: 106.w,
                                 isSigned: _isSigned,
                               ),
                             ),
@@ -81,7 +81,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                             },
                             child: Container(
                                 margin: EdgeInsets.only(
-                                    left: Screenutil.length(16)),
+                                    left: 16.w),
                                 child: _isSigned
                                     ? Text(
                                         'Cheailune',
@@ -103,14 +103,14 @@ class _PersonalIndexState extends State<PersonalIndex>
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                        top: Screenutil.length(38),
-                        left: Screenutil.length(36),
-                        right: Screenutil.length(36),
+                        top: 38.w,
+                        left: 36.w,
+                        right: 36.w,
                       ),
                       child: Image.asset(
                         'assets/images/member_bg.png',
-                        width: Screenutil.length(678),
-                        height: Screenutil.length(129),
+                        width: 678.w,
+                        height: 129.w,
                       ),
                     ),
                   ],
@@ -126,7 +126,7 @@ class _PersonalIndexState extends State<PersonalIndex>
   Container _containerBar(String title) {
     return Container(
       color: title == '我的物业' ? Colors.white : BaseStyle.colorf9f9f9,
-      padding: EdgeInsets.all(title == '我的物业' ? 0 : Screenutil.length(32)),
+      padding: EdgeInsets.all(title == '我的物业' ? 0 : 32.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -156,7 +156,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                           color: BaseStyle.color333333,
                         ),
                       ),
-                      SizedBox(width: Screenutil.length(8)),
+                      SizedBox(width: 8.w),
                       Icon(
                         AntDesign.right,
                         size: BaseStyle.fontSize28,
@@ -183,7 +183,7 @@ class _PersonalIndexState extends State<PersonalIndex>
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(top: Screenutil.length(10)),
+              margin: EdgeInsets.only(top: 10.w),
               color: BaseStyle.colorf9f9f9,
               child: GridButton(
                 gridList: AssetsImage.orderGridList,
@@ -194,9 +194,9 @@ class _PersonalIndexState extends State<PersonalIndex>
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(
-                  top: Screenutil.length(32),
-                  left: Screenutil.length(32),
-                  right: Screenutil.length(32)),
+                  top: 32.w,
+                  left: 32.w,
+                  right: 32.w),
               child: Divider(
                 color: Color(0xffd8d8d8),
               ),
@@ -208,7 +208,7 @@ class _PersonalIndexState extends State<PersonalIndex>
           SliverToBoxAdapter(
             child: Container(
               color: BaseStyle.colorf9f9f9,
-              margin: EdgeInsets.only(top: Screenutil.length(10)),
+              margin: EdgeInsets.only(top: 10.w),
               alignment: Alignment.center,
               child: GridButton(
                 gridList: AssetsImage.orderGridList.take(3).skip(1).toList(),
@@ -233,8 +233,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                   ),
                 ],
               ),
-              margin: EdgeInsets.all(Screenutil.length(20)),
-              padding: EdgeInsets.all(Screenutil.length(12)),
+              margin: EdgeInsets.all(20.w),
+              padding: EdgeInsets.all(12.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -25,7 +25,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
       elevation: 0,
       backgroundColor: BaseStyle.colorffd000,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -59,13 +59,13 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
   Container _containerRefundPrice(double payPrice) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(22),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 22.w,
+        left: 32.w,
+        right: 32.w,
       ),
       color: Colors.white,
       child: Container(
-        padding: EdgeInsets.only(bottom: Screenutil.length(26)),
+        padding: EdgeInsets.only(bottom: 26.w),
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -97,13 +97,13 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
   Container _containerRefundTextField() {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(22),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 22.w,
+        left: 32.w,
+        right: 32.w,
       ),
       color: Colors.white,
       child: Container(
-        padding: EdgeInsets.only(bottom: Screenutil.length(26)),
+        padding: EdgeInsets.only(bottom: 26.w),
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -118,7 +118,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
                 color: BaseStyle.color333333,
               ),
             ),
-            SizedBox(height: Screenutil.length(23)),
+            SizedBox(height: 23.w),
             TextFormField(
               cursorColor: Color(0xffffc40c),
               style: TextStyle(
@@ -130,8 +130,8 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.only(
-                  top: Screenutil.length(0),
-                  bottom: Screenutil.length(0),
+                  top: 0.w,
+                  bottom: 0.w,
                 ),
                 hintText: hintText,
                 border: InputBorder.none, //去掉输入框的下滑线
@@ -157,7 +157,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
         alignment: Alignment.center,
         color: BaseStyle.colorffc40c,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26.5),
+          vertical: 26.5.w,
         ),
         child: Text(
           '提交',
@@ -193,11 +193,11 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
               children: [
                 Column(
                   children: [
-                    SizedBox(height: Screenutil.length(24)),
+                    SizedBox(height: 24.w),
                     _containerContentList(
                       widget.bundle.getMap('details')['listContent'],
                     ),
-                    SizedBox(height: Screenutil.length(24)),
+                    SizedBox(height: 24.w),
                     RefundTileCard(
                         listTile:
                             widget.bundle.getMap('details')['isRefundGood']
@@ -205,7 +205,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
                                 : _listTile.take(1).toList()),
                     _containerRefundPrice(
                         widget.bundle.getMap('details')['payPrice']),
-                    SizedBox(height: Screenutil.length(24)),
+                    SizedBox(height: 24.w),
                     _containerRefundTextField(),
                   ],
                 ),
@@ -213,7 +213,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
                   bottom: 0,
                   child: Container(
                     alignment: Alignment.center,
-                    height: Screenutil.length(98),
+                    height: 98.w,
                     width: MediaQuery.of(context).size.width,
                     child: Row(children: [Expanded(child: _inkWellBottom())]),
                   ),

@@ -22,11 +22,11 @@ class ConfirmOrderPage extends StatelessWidget {
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.only(bottom: Screenutil.length(98)),
+            padding: EdgeInsets.only(bottom: 98.w),
             children: [
-              SizedBox(height: Screenutil.length(20)),
+              SizedBox(height: 20.w),
               ConfirmAddress(),
-              SizedBox(height: Screenutil.length(20)),
+              SizedBox(height: 20.w),
               ConfirmContent(cartMap: bundle.getMap('cartMap')),
             ],
           ),

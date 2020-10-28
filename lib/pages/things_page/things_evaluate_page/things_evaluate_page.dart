@@ -28,8 +28,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(27),
-        bottom: Screenutil.length(52),
+        top: 27.w,
+        bottom: 52.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,22 +37,22 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
           Text(
             '请您对本次服务进行评价',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff999999)),
+                fontSize: 28.sp, color: Color(0xff999999)),
           ),
-          SizedBox(height: Screenutil.length(50)),
+          SizedBox(height: 50.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 '综合评价',
                 style: TextStyle(
-                    fontSize: Screenutil.size(28), color: Color(0xff999999)),
+                    fontSize: 28.sp, color: Color(0xff999999)),
               ),
-              SizedBox(width: Screenutil.length(47)),
+              SizedBox(width: 47.w),
               SmoothStarRating(
                 rating: rating,
                 isReadOnly: false,
-                size: Screenutil.size(46),
+                size: 46.sp,
                 filledIconData: AntDesign.star,
                 // halfFilledIconData: Icons.star_half,
                 defaultIconData: AntDesign.staro,
@@ -60,7 +60,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
                 borderColor: Color(0xffffc40c),
                 starCount: 5,
                 allowHalfRating: false,
-                spacing: Screenutil.length(20),
+                spacing: 20.w,
                 onRated: (value) {
                   print("rating value -> $value");
                   // print("rating value dd -> ${value.truncate()}");
@@ -76,9 +76,9 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
   Container _containerTextField(String hintText) {
     return Container(
       padding: EdgeInsets.only(
-          top: Screenutil.length(32),
-          left: Screenutil.length(22),
-          right: Screenutil.length(35)),
+          top: 32.w,
+          left: 22.w,
+          right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -86,7 +86,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
       child: TextFormField(
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
-          fontSize: Screenutil.size(28),
+          fontSize: 28.sp,
           fontWeight: FontWeight.w600,
         ),
         controller: _proposeContent,
@@ -95,8 +95,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: hintText,
           border: InputBorder.none, //去掉输入框的下滑线
@@ -104,7 +104,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
           filled: true,
           hintStyle: TextStyle(
             color: Color(0xff999999),
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -116,8 +116,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
     return InkWell(
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(96),
-        margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+        height: 96.w,
+        margin: EdgeInsets.symmetric(horizontal: 32.w),
         padding: EdgeInsets.symmetric(vertical: Screenutil.length(25.5)),
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
@@ -127,7 +127,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
           title,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -154,8 +154,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(32),
-                vertical: Screenutil.length(36),
+                horizontal: 32.w,
+                vertical: 36.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,12 +171,12 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
                             Text(
                               '请输入内容',
                               style: TextStyle(
-                                  fontSize: Screenutil.size(28),
+                                  fontSize: 28.sp,
                                   color: Color(0xff333333)),
                             ),
-                            SizedBox(height: Screenutil.length(24)),
+                            SizedBox(height: 24.w),
                             _containerTextField(hintText),
-                            SizedBox(height: Screenutil.length(42)),
+                            SizedBox(height: 42.w),
                           ],
                         ),
                   _inkWellButton('确认提交'),
@@ -192,7 +192,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
     //         child: Column(
     //           children: [
     //             _containerEvaluateCard(),
-    //             SizedBox(height: Screenutil.length(42)),
+    //             SizedBox(height: 42.w),
     //             _inkWellButton('确认'),
     //           ],
     //         ),
@@ -210,8 +210,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
     //             },
     //             child: Container(
     //               padding: EdgeInsets.symmetric(
-    //                 horizontal: Screenutil.length(32),
-    //                 vertical: Screenutil.length(36),
+    //                 horizontal: 32.w,
+    //                 vertical: 36.w,
     //               ),
     //               child: Column(
     //                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,12 +220,12 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
     //                   Text(
     //                     '请输入内容',
     //                     style: TextStyle(
-    //                         fontSize: Screenutil.size(28),
+    //                         fontSize: 28.sp,
     //                         color: Color(0xff333333)),
     //                   ),
-    //                   SizedBox(height: Screenutil.length(24)),
+    //                   SizedBox(height: 24.w),
     //                   _containerTextField(hintText),
-    //                   SizedBox(height: Screenutil.length(42)),
+    //                   SizedBox(height: 42.w),
     //                   _inkWellButton(widget.isPropose ? '确认提交' : '发布'),
     //                 ],
     //               ),

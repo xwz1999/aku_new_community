@@ -53,36 +53,36 @@ class _AddressEditItemState extends State<AddressEditItem> {
                     ? TextInputType.number
                     : TextInputType.name,
                 cursorColor: Color(0xffffc40c),
-                style: TextStyle(fontSize: Screenutil.size(28)),
+                style: TextStyle(fontSize: 28.sp),
                 controller: item['controller'],
                 onChanged: (String value) {},
                 maxLines: item['title'] == '详细地址' ? 5 : 1,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
-                    right: Screenutil.length(32),
-                    top: Screenutil.length(28),
-                    bottom: Screenutil.length(28),
+                    right: 32.w,
+                    top: 28.w,
+                    bottom: 28.w,
                   ),
                   hintText: item['hintText'],
                   border: InputBorder.none, //去掉输入框的下滑线
                   fillColor: Colors.white,
                   filled: true,
                   hintStyle: TextStyle(
-                      color: Color(0xff999999), fontSize: Screenutil.size(28)),
+                      color: Color(0xff999999), fontSize: 28.sp),
                   prefixIcon: Padding(
                     padding: EdgeInsets.only(
-                      left: Screenutil.length(32),
+                      left: 32.w,
                       right:
-                          Screenutil.length(item['title'] == '收货人' ? 88 : 60),
-                      top: Screenutil.length(28),
+                          (item['title'] == '收货人' ? 88 : 60).w,
+                      top: 28.w,
                       bottom:
-                          Screenutil.length(item['title'] == '详细地址' ? 158 : 28),
+                          (item['title'] == '详细地址' ? 158 : 28).w,
                     ),
                     child: Text(
                       item['title'],
                       style: TextStyle(
                         color: Color(0xff333333),
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

@@ -36,10 +36,10 @@ class _InvoiceInputState extends State<InvoiceInput> {
       return listInput
           .map((item) => Container(
                 padding: EdgeInsets.only(
-                  left: Screenutil.length(77),
-                  right: Screenutil.length(32),
-                  top: Screenutil.length(28),
-                  // bottom: Screenutil.length(28),
+                  left: 77.w,
+                  right: 32.w,
+                  top: 28.w,
+                  // bottom: 28.w,
                 ),
                 child: Column(
                   children: [
@@ -49,7 +49,7 @@ class _InvoiceInputState extends State<InvoiceInput> {
                         Text(
                           item['title'],
                           style: TextStyle(
-                            fontSize: Screenutil.size(28),
+                            fontSize: 28.sp,
                             color: Color(0xff333333),
                           ),
                         ),
@@ -61,15 +61,15 @@ class _InvoiceInputState extends State<InvoiceInput> {
                             //       ]
                             //     : [],
                             cursorColor: Color(0xffffc40c),
-                            style: TextStyle(fontSize: Screenutil.size(28)),
+                            style: TextStyle(fontSize: 28.sp),
                             controller: item['controller'],
                             onChanged: (String value) {},
                             textAlign: TextAlign.end,
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.only(
-                                top: Screenutil.length(0),
-                                bottom: Screenutil.length(0),
+                                top: 0.w,
+                                bottom: 0.w,
                               ),
                               hintText: item['hintText'],
                               border: InputBorder.none, //去掉输入框的下滑线
@@ -77,13 +77,13 @@ class _InvoiceInputState extends State<InvoiceInput> {
                               filled: true,
                               hintStyle: TextStyle(
                                   color: Color(0xff999999),
-                                  fontSize: Screenutil.size(24)),
+                                  fontSize: 24.sp),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: Screenutil.length(28)),
+                    SizedBox(height: 28.w),
                     Divider(height: 1),
                   ],
                 ),

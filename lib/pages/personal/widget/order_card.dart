@@ -26,7 +26,7 @@ class _OrderCardState extends State<OrderCard> {
   Container _containerStatus(String status) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(bottom: Screenutil.length(13)),
+      padding: EdgeInsets.only(bottom: 13.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffd8d8d8), width: 0.5)),
@@ -45,7 +45,7 @@ class _OrderCardState extends State<OrderCard> {
   Container _containerContent(
       String imagePath, content, specs, double price, int shopNum) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(24)),
+      margin: EdgeInsets.only(top: 24.w),
       child: Stack(
         children: [
           Row(
@@ -54,16 +54,16 @@ class _OrderCardState extends State<OrderCard> {
             children: [
               Image.asset(
                 imagePath,
-                height: Screenutil.length(179),
-                width: Screenutil.length(173),
+                height: 179.w,
+                width: 173.w,
                 fit: BoxFit.fill,
               ),
-              SizedBox(width: Screenutil.length(24)),
+              SizedBox(width: 24.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: Screenutil.length(262),
+                    width: 262.w,
                     child: Text(
                       content,
                       overflow: TextOverflow.ellipsis,
@@ -74,7 +74,7 @@ class _OrderCardState extends State<OrderCard> {
                       ),
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(16)),
+                  SizedBox(height: 16.w),
                   Text(
                     specs,
                     style: TextStyle(
@@ -88,7 +88,7 @@ class _OrderCardState extends State<OrderCard> {
           ),
           Positioned(
             top: 0,
-            right: Screenutil.length(8),
+            right: 8.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -134,7 +134,7 @@ class _OrderCardState extends State<OrderCard> {
 
   Container _containerPayInfo(double totalPrice, payPrice) {
     return Container(
-      margin: EdgeInsets.only(right: Screenutil.length(8)),
+      margin: EdgeInsets.only(right: 8.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -145,7 +145,7 @@ class _OrderCardState extends State<OrderCard> {
               color: BaseStyle.color999999,
             ),
           ),
-          SizedBox(width: Screenutil.length(16)),
+          SizedBox(width: 16.w),
           Text(
             '实付款￥${payPrice}',
             style: TextStyle(
@@ -188,10 +188,10 @@ class _OrderCardState extends State<OrderCard> {
         }
       },
       child: Container(
-        margin: EdgeInsets.only(left: Screenutil.length(16)),
+        margin: EdgeInsets.only(left: 16.w),
         alignment: Alignment.center,
-        width: Screenutil.length(171),
-        height: Screenutil.length(60),
+        width: 171.w,
+        height: 60.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(30)),
           border: Border.all(color: buttonColor, width: 1),
@@ -210,8 +210,8 @@ class _OrderCardState extends State<OrderCard> {
   Container _containerButtonList(List<Map<String, dynamic>> listButton) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(42),
-        right: Screenutil.length(8),
+        top: 42.w,
+        right: 8.w,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -249,15 +249,15 @@ class _OrderCardState extends State<OrderCard> {
           ],
         ),
         padding: EdgeInsets.only(
-          top: Screenutil.length(18),
-          left: Screenutil.length(20),
-          right: Screenutil.length(16),
-          bottom: Screenutil.length(42),
+          top: 18.w,
+          left: 20.w,
+          right: 16.w,
+          bottom: 42.w,
         ),
         margin: EdgeInsets.only(
-          top: Screenutil.length(24),
-          left: Screenutil.length(32),
-          right: Screenutil.length(32),
+          top: 24.w,
+          left: 32.w,
+          right: 32.w,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -42,7 +42,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
           title: Text(
             '0574-88478909',
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -51,7 +51,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -64,7 +64,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                 '呼叫',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -97,12 +97,12 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
         color: color,
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26.5),
+          vertical: 26.5.w,
         ),
         child: Text(
           title,
           style: TextStyle(
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: fontColor,
           ),
         ),
@@ -115,7 +115,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
       bottom: 0,
       child: Container(
         height:
-            Screenutil.length(98) + MediaQuery.of(context).viewPadding.bottom,
+            98.w + MediaQuery.of(context).viewPadding.bottom,
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: _listBottom

@@ -73,10 +73,10 @@ class _MarketClassPageState extends State<MarketClassPage> {
       child: Stack(
         children: [
           Container(
-            height: Screenutil.length(120),
+            height: 120.w,
             alignment: Alignment.center,
             color: _currentIndex == index ? Colors.white : Colors.transparent,
-            padding: EdgeInsets.symmetric(vertical: Screenutil.length(24)),
+            padding: EdgeInsets.symmetric(vertical: 24.w),
             child: Text(
               _shopClassList[index].mainName,
               style: TextStyle(
@@ -89,11 +89,11 @@ class _MarketClassPageState extends State<MarketClassPage> {
           ),
           _currentIndex == index
               ? Positioned(
-                  top: Screenutil.length(42),
+                  top: 42.w,
                   left: 1,
                   child: SizedBox(
-                    width: Screenutil.length(8),
-                    height: Screenutil.length(40),
+                    width: 8.w,
+                    height: 40.w,
                     child: DecoratedBox(
                       decoration: BoxDecoration(color: BaseStyle.colorffc40c),
                     ),
@@ -127,11 +127,11 @@ class _MarketClassPageState extends State<MarketClassPage> {
                   children: [
                     CachedImageWrapper(
                       url: infoList[index].imgurl,
-                      width: Screenutil.length(152),
-                      height: Screenutil.length(152),
+                      width: 152.w,
+                      height: 152.w,
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: Screenutil.length(14)),
+                      margin: EdgeInsets.only(top: 14.w),
                       child: Text(
                         infoList[index].sonName,
                         style: TextStyle(
@@ -146,7 +146,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          childAspectRatio: Screenutil.length(152) / Screenutil.length(210),
+          childAspectRatio: 152.w / 210.w,
         ),
       ),
     );
@@ -154,14 +154,14 @@ class _MarketClassPageState extends State<MarketClassPage> {
 
   Widget _classList(String nextName, List<Info> infoList) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(24)),
-            padding: EdgeInsets.symmetric(vertical: Screenutil.length(14)),
-            width: Screenutil.length(476),
+            margin: EdgeInsets.only(bottom: 24.w),
+            padding: EdgeInsets.symmetric(vertical: 14.w),
+            width: 476.w,
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: Color(0xffe8e8e8), width: 0.5),
@@ -202,7 +202,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: Screenutil.length(203),
+                    width: 203.w,
                     height: MediaQuery.of(context).size.height -
                         kToolbarHeight -
                         _statusHeight,
@@ -219,7 +219,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
                         }),
                   ),
                   Container(
-                    width: Screenutil.length(547),
+                    width: 547.w,
                     height: MediaQuery.of(context).size.height -
                         kToolbarHeight -
                         _statusHeight,

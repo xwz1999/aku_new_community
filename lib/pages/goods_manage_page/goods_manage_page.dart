@@ -60,15 +60,15 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
   Container _goodsCard(String imagePath, title, int goodsNum) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(20),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 20.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(12),
-        left: Screenutil.length(10),
-        right: Screenutil.length(10),
-        bottom: Screenutil.length(17),
+        top: 12.w,
+        left: 10.w,
+        right: 10.w,
+        bottom: 17.w,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -79,12 +79,12 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(20)),
+            margin: EdgeInsets.only(right: 20.w),
             child: ClipRRect(
               child: CachedImageWrapper(
                 url: imagePath,
-                width: Screenutil.length(160),
-                height: Screenutil.length(120),
+                width: 160.w,
+                height: 120.w,
               ),
             ),
           ),
@@ -95,15 +95,15 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
               Text(
                 '物品名称：${title}',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff4a4b51),
                 ),
               ),
-              SizedBox(height: Screenutil.length(20)),
+              SizedBox(height: 20.w),
               Text(
                 '数量剩余：${goodsNum}个',
                 style: TextStyle(
-                  fontSize: Screenutil.size(24),
+                  fontSize: 24.sp,
                   color: Color(0xff999999),
                 ),
               ),

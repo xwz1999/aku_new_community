@@ -22,8 +22,8 @@ class SliverGoodsCard extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(16),
-                vertical: Screenutil.length(8),
+                horizontal: 16.w,
+                vertical: 8.w,
               ),
               color: Color(0xff000000).withOpacity(0.6),
               child: Text(
@@ -31,7 +31,7 @@ class SliverGoodsCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: Color(0xffffffff), fontSize: Screenutil.size(20)),
+                    color: Color(0xffffffff), fontSize: 20.sp),
               ),
             ),
           ),
@@ -61,26 +61,26 @@ class SliverGoodsCard extends StatelessWidget {
                       Container(
                         child: CachedImageWrapper(
                           url: shoplist[index].itempic,
-                          width: Screenutil.length(333),
-                          height: Screenutil.length(344),
+                          width: 333.w,
+                          height: 344.w,
                         ),
                       ),
                     ],
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      left: Screenutil.length(12),
-                      right: Screenutil.length(25),
-                      top: Screenutil.length(20),
+                      left: 12.w,
+                      right: 25.w,
+                      top: 20.w,
                     ),
                     child: Container(
-                      width: Screenutil.length(296),
+                      width: 296.w,
                       child: Text(
                         shoplist[index].itemtitle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: Screenutil.size(24),
+                          fontSize: 24.sp,
                           color: Color(0xff4a4b51),
                         ),
                       ),
@@ -88,10 +88,10 @@ class SliverGoodsCard extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      top: Screenutil.length(20),
-                      left: Screenutil.length(12),
-                      right: Screenutil.length(8),
-                      bottom: Screenutil.length(17),
+                      top: 20.w,
+                      left: 12.w,
+                      right: 8.w,
+                      bottom: 17.w,
                     ),
                     child: Row(
                       mainAxisAlignment: isShow
@@ -99,12 +99,12 @@ class SliverGoodsCard extends StatelessWidget {
                           : MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right: Screenutil.length(8)),
+                          margin: EdgeInsets.only(right: 8.w),
                           child: Text(
                             '￥${shoplist[index].itemprice}',
                             style: TextStyle(
                               color: Color(0xffe60e0e),
-                              fontSize: Screenutil.size(28),
+                              fontSize: 28.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -114,7 +114,7 @@ class SliverGoodsCard extends StatelessWidget {
                                 '${shoplist[index].itemsale}人已付款',
                                 style: TextStyle(
                                   color: Color(0xff999999),
-                                  fontSize: Screenutil.length(20),
+                                  fontSize: 20.w,
                                 ),
                               )
                             : InkWell(
@@ -129,21 +129,21 @@ class SliverGoodsCard extends StatelessWidget {
                                                 .toString()));
                                 },
                                 child: Container(
-                                  width: Screenutil.length(134),
+                                  width: 134.w,
                                   alignment: Alignment.center,
                                   padding: EdgeInsets.only(
-                                    top: Screenutil.length(6),
-                                    bottom: Screenutil.length(5),
+                                    top: 6.w,
+                                    bottom: 5.w,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0xffffc40c),
                                     borderRadius: BorderRadius.all(
-                                        Radius.circular(Screenutil.length(20))),
+                                        Radius.circular(20.w)),
                                   ),
                                   child: Text(
                                     '立即购买',
                                     style: TextStyle(
-                                      fontSize: Screenutil.size(24),
+                                      fontSize: 24.sp,
                                       color: Color(0xff333333),
                                     ),
                                   ),
@@ -161,9 +161,9 @@ class SliverGoodsCard extends StatelessWidget {
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: Screenutil.length(30),
-          crossAxisSpacing: Screenutil.length(20),
-          childAspectRatio: Screenutil.length(343) / Screenutil.length(539)),
+          mainAxisSpacing: 30.w,
+          crossAxisSpacing: 20.w,
+          childAspectRatio: 343.w / 539.w),
     );
   }
 }

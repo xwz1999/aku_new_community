@@ -39,8 +39,8 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
   Widget _cardList(String title, Widget widget) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -52,9 +52,9 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
           Text(
             title,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           widget
         ],
       ),
@@ -64,8 +64,8 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
   Widget _upLoadImage() {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -77,9 +77,9 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
           Text(
             '上传证件照片',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(

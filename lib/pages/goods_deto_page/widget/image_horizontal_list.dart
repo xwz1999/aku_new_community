@@ -26,7 +26,7 @@ class ImageHorizontalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Screenutil.length(184),
+      height: 184.w,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -34,7 +34,7 @@ class ImageHorizontalList extends StatelessWidget {
           return AspectRatio(
             aspectRatio: 1,
             child: Container(
-              margin: EdgeInsets.only(right: Screenutil.length(16)),
+              margin: EdgeInsets.only(right: 16.w),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 child: GalleryExampleItemThumbnail(

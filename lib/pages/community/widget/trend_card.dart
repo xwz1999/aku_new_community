@@ -36,7 +36,7 @@ class _TrendCardState extends State<TrendCard> {
           title: Text(
             '是否${url}?',
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -45,7 +45,7 @@ class _TrendCardState extends State<TrendCard> {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -58,7 +58,7 @@ class _TrendCardState extends State<TrendCard> {
                 '确定',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -84,11 +84,11 @@ class _TrendCardState extends State<TrendCard> {
     return Container(
       color: Colors.white,
       height:
-          Screenutil.length(300) + MediaQuery.of(context).viewPadding.bottom,
+          300.w + MediaQuery.of(context).viewPadding.bottom,
       child: Stack(
         children: [
           Container(
-            height: Screenutil.length(160),
+            height: 160.w,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
@@ -98,12 +98,12 @@ class _TrendCardState extends State<TrendCard> {
                     _showDialog(nameItems[index]['title']);
                   },
                   child: Container(
-                    height: Screenutil.length(160),
-                    width: Screenutil.length(160),
+                    height: 160.w,
+                    width: 160.w,
                     margin: EdgeInsets.only(
-                      left: Screenutil.length(10),
-                      right: Screenutil.length(10),
-                      top: Screenutil.length(40),
+                      left: 10.w,
+                      right: 10.w,
+                      top: 40.w,
                     ),
                     alignment: Alignment.center,
                     child: Column(
@@ -111,15 +111,15 @@ class _TrendCardState extends State<TrendCard> {
                       children: [
                         Image.asset(
                           nameItems[index]['image'],
-                          width: Screenutil.length(65),
-                          height: Screenutil.length(65),
+                          width: 65.w,
+                          height: 65.w,
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: Screenutil.length(10)),
+                          margin: EdgeInsets.only(top: 10.w),
                           child: Text(
                             nameItems[index]['title'],
                             style: TextStyle(
-                              fontSize: Screenutil.size(26),
+                              fontSize: 26.sp,
                               color: Color(0xff333333),
                             ),
                           ),
@@ -140,7 +140,7 @@ class _TrendCardState extends State<TrendCard> {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: Screenutil.length(98),
+                height: 98.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -155,7 +155,7 @@ class _TrendCardState extends State<TrendCard> {
                 child: Text(
                   '取消',
                   style: TextStyle(
-                    fontSize: Screenutil.size(38),
+                    fontSize: 38.sp,
                     color: Color(0xff333333),
                   ),
                 ),
@@ -175,28 +175,28 @@ class _TrendCardState extends State<TrendCard> {
 
   TextStyle _textStyleName() {
     return TextStyle(
-      fontSize: Screenutil.size(36),
+      fontSize: 36.sp,
       color: Color(0xff333333),
     );
   }
 
   TextStyle _textStyleContent() {
     return TextStyle(
-      fontSize: Screenutil.size(32),
+      fontSize: 32.sp,
       color: Color(0xff333333),
     );
   }
 
   TextStyle _textStyleTag() {
     return TextStyle(
-      fontSize: Screenutil.size(28),
+      fontSize: 28.sp,
       color: Color(0xff999999),
     );
   }
 
   TextStyle _textStylePopup() {
     return TextStyle(
-      fontSize: Screenutil.size(28),
+      fontSize: 28.sp,
       color: Color(0xff333333),
     );
   }
@@ -211,7 +211,7 @@ class _TrendCardState extends State<TrendCard> {
         elevation: 0,
         offset: Offset(0, -53),
         child: Container(
-          width: Screenutil.length(54),
+          width: 54.w,
           decoration: BoxDecoration(
             color: Color(0xffd8d8d8),
             borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -219,7 +219,7 @@ class _TrendCardState extends State<TrendCard> {
           child: Icon(
             Feather.more_horizontal,
             color: Colors.white,
-            size: Screenutil.size(36),
+            size: 36.sp,
           ),
         ),
         onSelected: (String value) {
@@ -243,17 +243,17 @@ class _TrendCardState extends State<TrendCard> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                      height: Screenutil.length(68),
-                      width: Screenutil.length(181),
+                      height: 68.w,
+                      width: 181.w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             AntDesign.hearto,
-                            size: Screenutil.size(30),
+                            size: 30.sp,
                             color: Color(0xff000000),
                           ),
-                          SizedBox(width: Screenutil.length(11)),
+                          SizedBox(width: 11.w),
                           Text(
                             '赞',
                             style: _textStylePopup(),
@@ -264,7 +264,7 @@ class _TrendCardState extends State<TrendCard> {
                   ),
                   SizedBox(
                     width: 1,
-                    height: Screenutil.length(48),
+                    height: 48.w,
                     child: DecoratedBox(
                       decoration: BoxDecoration(color: Color(0xff979797)),
                     ),
@@ -275,17 +275,17 @@ class _TrendCardState extends State<TrendCard> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                      height: Screenutil.length(68),
-                      width: Screenutil.length(181),
+                      height: 68.w,
+                      width: 181.w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Feather.message_square,
-                            size: Screenutil.size(30),
+                            size: 30.sp,
                             color: Color(0xff000000),
                           ),
-                          SizedBox(width: Screenutil.length(11)),
+                          SizedBox(width: 11.w),
                           Text(
                             '评论',
                             style: _textStylePopup(),
@@ -317,20 +317,20 @@ class _TrendCardState extends State<TrendCard> {
                   height: 86.w,
                   child: avatar,
                 ),
-                SizedBox(width: Screenutil.length(9)),
+                SizedBox(width: 9.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: Screenutil.length(10)),
+                      padding: EdgeInsets.only(left: 10.w),
                       child: Text(
                         name,
                         style: _textStyleName(),
                       ),
                     ),
-                    SizedBox(height: Screenutil.length(6)),
+                    SizedBox(height: 6.w),
                     Container(
-                      padding: EdgeInsets.only(left: Screenutil.length(14)),
+                      padding: EdgeInsets.only(left: 14.w),
                       child: ExpandableText(
                         text: content,
                         maxLines: 2,
@@ -342,13 +342,13 @@ class _TrendCardState extends State<TrendCard> {
                 ),
               ],
             ),
-            SizedBox(height: Screenutil.length(20)),
+            SizedBox(height: 20.w),
             Padding(
-              padding: EdgeInsets.only(left: Screenutil.length(95)),
+              padding: EdgeInsets.only(left: 95.w),
               child: Column(
                 children: [
                   ImageGrid(widget.imageUrl),
-                  SizedBox(height: Screenutil.length(20)),
+                  SizedBox(height: 20.w),
                   Stack(
                     children: [
                       Row(
@@ -374,7 +374,7 @@ class _TrendCardState extends State<TrendCard> {
                             _isLike ? AntDesign.heart : AntDesign.hearto,
                             color:
                                 _isLike ? Color(0xffff6666) : Color(0xffd8d8d8),
-                            size: Screenutil.size(36),
+                            size: 36.sp,
                           ),
                         ),
                       ),
@@ -386,7 +386,7 @@ class _TrendCardState extends State<TrendCard> {
                           child: Icon(
                             AntDesign.message1,
                             color: Color(0xffd8d8d8),
-                            size: Screenutil.size(36),
+                            size: 36.sp,
                           ),
                         ),
                       ),
@@ -426,10 +426,10 @@ class _TrendCardState extends State<TrendCard> {
         ),
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(46),
-        left: Screenutil.length(32),
-        bottom: Screenutil.length(22),
-        right: Screenutil.length(32),
+        top: 46.w,
+        left: 32.w,
+        bottom: 22.w,
+        right: 32.w,
       ),
       child: _columnCard(widget.name, widget.content,widget.avatar)
     );

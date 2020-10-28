@@ -51,8 +51,8 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
             }
           : null,
       child: Container(
-        width: Screenutil.length(52),
-        height: Screenutil.length(52),
+        width: 52.w,
+        height: 52.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: count > 1 ? Color(0xffffffff) : Colors.black12,
@@ -61,7 +61,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
         child: Icon(
           Icons.remove,
           color: Color(0xff979797),
-          size: Screenutil.size(38),
+          size: 38.sp,
         ),
       ),
     );
@@ -76,8 +76,8 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
         });
       },
       child: Container(
-        width: Screenutil.length(52),
-        height: Screenutil.length(52),
+        width: 52.w,
+        height: 52.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: Color(0xffffffff),
@@ -86,7 +86,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
         child: Icon(
           Icons.add,
           color: Color(0xff979797),
-          size: Screenutil.size(38),
+          size: 38.sp,
         ),
       ),
     );
@@ -95,14 +95,14 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
   //中间数量显示区域
   Widget _countArea() {
     return Container(
-      width: Screenutil.length(52),
-      height: Screenutil.length(52),
+      width: 52.w,
+      height: 52.w,
       alignment: Alignment.center,
       color: Colors.white,
       child: Text(
         '${count}',
         style: TextStyle(
-          fontSize: Screenutil.size(24),
+          fontSize: 24.sp,
           color: Color(0xff333333),
         ),
       ),
@@ -113,19 +113,19 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.all(Screenutil.length(32)),
+          padding: EdgeInsets.all(32.w),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                margin: EdgeInsets.only(right: Screenutil.length(20)),
+                margin: EdgeInsets.only(right: 20.w),
                 child: ClipRRect(
                   borderRadius:
-                      BorderRadius.all(Radius.circular(Screenutil.length(4))),
+                      BorderRadius.all(Radius.circular(4.w)),
                   child: CachedImageWrapper(
                     url: image,
-                    height: Screenutil.length(180),
-                    width: Screenutil.length(180),
+                    height: 180.w,
+                    width: 180.w,
                   ),
                 ),
               ),
@@ -137,25 +137,25 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
                     '价格：￥${price}',
                     style: TextStyle(
                       color: Color(0xffe60e0e),
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(5)),
+                  SizedBox(height: 5.w),
                   // Row(
                   //   children: [
                   //     Text(
                   //       '已选中:',
                   //       style: TextStyle(
                   //         color: Color(0xff333333),
-                  //         fontSize: Screenutil.size(28),
+                  //         fontSize: 28.sp,
                   //       ),
                   //     ),
-                  //     SizedBox(width: Screenutil.length(10)),
+                  //     SizedBox(width: 10.w),
                   //     Text(
                   //       '中蓝XS（170/80A）',
                   //       style: TextStyle(
                   //         color: Color(0xff333333),
-                  //         fontSize: Screenutil.size(28),
+                  //         fontSize: 28.sp,
                   //       ),
                   //     ),
                   //   ],
@@ -171,7 +171,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
           child: IconButton(
             icon: Icon(
               AntDesign.close,
-              size: Screenutil.size(38),
+              size: 38.sp,
               color: Color(0xff999999),
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -183,7 +183,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
 
   Widget _paddingSelect(String title, List<Map<String, dynamic>> selectList) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Screenutil.length(52)),
+      padding: EdgeInsets.symmetric(horizontal: 52.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -191,13 +191,13 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
             title,
             style: TextStyle(
               color: Color(0xff333333),
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
             ),
           ),
-          SizedBox(height: Screenutil.length(20)),
+          SizedBox(height: 20.w),
           Wrap(
-            spacing: Screenutil.length(30),
-            runSpacing: Screenutil.length(20),
+            spacing: 30.w,
+            runSpacing: 20.w,
             children: selectList
                 .map((item) => InkWell(
                       onTap: () {
@@ -220,13 +220,13 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
                                 width: 0.5),
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         padding: EdgeInsets.symmetric(
-                          horizontal: Screenutil.length(32),
-                          vertical: Screenutil.length(15),
+                          horizontal: 32.w,
+                          vertical: 15.w,
                         ),
                         child: Text(
                           item['title'],
                           style: TextStyle(
-                            fontSize: Screenutil.size(28),
+                            fontSize: 28.sp,
                             color: Color(0xff333333),
                           ),
                         ),
@@ -241,7 +241,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
 
   Widget _paddingNum() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Screenutil.length(52)),
+      padding: EdgeInsets.symmetric(horizontal: 52.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -249,13 +249,13 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
             '数量',
             style: TextStyle(
               color: Color(0xff333333),
-              fontSize: Screenutil.length(28),
+              fontSize: 28.w,
             ),
           ),
-          SizedBox(height: Screenutil.length(20)),
+          SizedBox(height: 20.w),
           // CartCount(),
           Container(
-            width: Screenutil.length(160),
+            width: 160.w,
             decoration: BoxDecoration(
                 border: Border.all(
                     width: 0.5, color: Colors.black12) //设置所有的边框宽度为1 颜色为浅灰
@@ -316,12 +316,12 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
           ],
         ),
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: Screenutil.length(52)),
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(20)),
+        margin: EdgeInsets.symmetric(horizontal: 52.w),
+        padding: EdgeInsets.symmetric(vertical: 20.w),
         child: Text(
           '确认',
           style: TextStyle(
-            fontSize: Screenutil.length(32),
+            fontSize: 32.w,
             color: Color(0xff333333),
           ),
         ),
@@ -332,24 +332,24 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: Screenutil.length(1334),
+      // height: 1334.w,
       child: Container(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _stackHeader(widget.itempic, widget.itemprice),
-            SizedBox(height: Screenutil.length(91)),
+            SizedBox(height: 91.w),
             // _paddingSelect('颜色', colorsList),
-            // SizedBox(height: Screenutil.length(70)),
+            // SizedBox(height: 70.w),
             // _paddingSelect('尺寸', sizesList),
-            // SizedBox(height: Screenutil.length(50)),
+            // SizedBox(height: 50.w),
             _paddingNum(),
-            SizedBox(height: Screenutil.length(79)),
+            SizedBox(height: 79.w),
             Consumer<CartProvidde>(builder: (context, model, child) {
               return _inkwellSubmit(widget.type, model);
             }),
-            SizedBox(height: Screenutil.length(79)),
+            SizedBox(height: 79.w),
           ],
         ),
       ),

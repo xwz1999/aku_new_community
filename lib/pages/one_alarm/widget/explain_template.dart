@@ -17,7 +17,7 @@ class ExplainTemplate extends BeautifulPopupTemplate {
   @override
   final maxWidth = 400.w;
   @override
-  final maxHeight = Screenutil.length(617);
+  final maxHeight = 617.w;
   @override
   final bodyMargin = 0;
   @override
@@ -55,9 +55,9 @@ class ExplainTemplate extends BeautifulPopupTemplate {
 //     return Container(
 //       color: Colors.white,
 //       padding: EdgeInsets.only(
-//         top: Screenutil.length(32),
-//         left: Screenutil.length(32),
-//         right: Screenutil.length(32),
+//         top: 32.w,
+//         left: 32.w,
+//         right: 32.w,
 //       ),
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,7 @@ class ExplainTemplate extends BeautifulPopupTemplate {
 //             ),
 //           ),
 //           Container(
-//             margin: EdgeInsets.only(top: Screenutil.length(20)),
+//             margin: EdgeInsets.only(top: 20.w),
 //             child: Text(
 //               '点击“呼叫110”后，您可以直接拨打本地110。页面中提供了您当前所在位置，以便您与警方沟通。（GPS信号弱时，位置可能存在偏移）',
 //               style: TextStyle(

@@ -145,11 +145,11 @@ class _CommonPageState extends State<CommonPage> {
         showSearch(context: context, delegate: searchBarDelegate());
       },
       child: Container(
-        margin: EdgeInsets.only(right: Screenutil.length(32)),
+        margin: EdgeInsets.only(right: 32.w),
         padding: EdgeInsets.only(
-            left: Screenutil.length(40),
-            top: Screenutil.length(15),
-            bottom: Screenutil.length(15)),
+            left: 40.w,
+            top: 15.w,
+            bottom: 15.w),
         decoration: BoxDecoration(
           color: BaseStyle.colorf3f3f3,
           borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -179,7 +179,7 @@ class _CommonPageState extends State<CommonPage> {
       backgroundColor: Color(0xffffffff),
       leading: InkWell(
         onTap: () => Navigator.pop(context),
-        child: Icon(AntDesign.left, size: Screenutil.size(40)),
+        child: Icon(AntDesign.left, size: 40.sp),
       ),
       centerTitle: true,
       title: Builder(builder: (_) {
@@ -195,7 +195,7 @@ class _CommonPageState extends State<CommonPage> {
                   : widget.bundle.getMap('commentMap')['title'],
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: Screenutil.size(32),
+                fontSize: 32.sp,
                 color: Color(0xff333333),
               ),
             );
@@ -249,7 +249,7 @@ class _CommonPageState extends State<CommonPage> {
                   }
                 },
                 child: Container(
-                  margin: EdgeInsets.only(right: Screenutil.length(32)),
+                  margin: EdgeInsets.only(right: 32.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -294,7 +294,7 @@ class _CommonPageState extends State<CommonPage> {
                         return Text(
                           title,
                           style: TextStyle(
-                            fontSize: Screenutil.size(28),
+                            fontSize: 28.sp,
                             color: Color(0xff333333),
                           ),
                         );

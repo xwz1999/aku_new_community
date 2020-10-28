@@ -28,7 +28,7 @@ class GoodsInfoCardButton extends StatelessWidget {
           title: Text(
             url,
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -37,7 +37,7 @@ class GoodsInfoCardButton extends StatelessWidget {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -50,7 +50,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                 '呼叫',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -75,7 +75,7 @@ class GoodsInfoCardButton extends StatelessWidget {
           bottomRight: Radius.circular(6),
         ),
       ),
-      height: Screenutil.length(96),
+      height: 96.w,
       child: Row(
         children: _listButton
             .asMap()
@@ -112,17 +112,17 @@ class GoodsInfoCardButton extends StatelessWidget {
                         children: [
                           Icon(
                             _listButton[index]['icon'],
-                            size: Screenutil.size(36),
+                            size: 36.sp,
                             color: Color(0xff333333),
                           ),
                           Container(
                             margin:
-                                EdgeInsets.only(left: Screenutil.length(14)),
+                                EdgeInsets.only(left: 14.w),
                             child: Text(
                               _listButton[index]['title'],
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: Screenutil.size(32),
+                                fontSize: 32.sp,
                                 color: Color(0xff333333),
                               ),
                             ),

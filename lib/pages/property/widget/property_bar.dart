@@ -14,14 +14,14 @@ class PropertyBar extends StatelessWidget {
 
   TextStyle _textStyleTitle() {
     return TextStyle(
-      fontSize: Screenutil.size(36),
+      fontSize: 36.sp,
       color: Color(0xff333333),
     );
   }
 
   TextStyle _textStyleSubtitle() {
     return TextStyle(
-      fontSize: Screenutil.size(24),
+      fontSize: 24.sp,
       color: Color(0xff999999),
     );
   }
@@ -36,16 +36,16 @@ class PropertyBar extends StatelessWidget {
         maxHeight: 93,
         child: Container(
           margin: EdgeInsets.only(
-            top: Screenutil.length(40),
-            bottom: Screenutil.length(32),
-            left: Screenutil.length(32),
-            right: Screenutil.length(32),
+            top: 40.w,
+            bottom: 32.w,
+            left: 32.w,
+            right: 32.w,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: _textStyleTitle()),
-              SizedBox(height: Screenutil.length(10)),
+              SizedBox(height: 10.w),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -58,11 +58,11 @@ class PropertyBar extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(more, style: _textStyleSubtitle()),
-                              SizedBox(width: Screenutil.length(12)),
+                              SizedBox(width: 12.w),
                               Icon(
                                 AntDesign.right,
                                 color: Color(0xff999999),
-                                size: Screenutil.size(20),
+                                size: 20.sp,
                               ),
                             ],
                           ),

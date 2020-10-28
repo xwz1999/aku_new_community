@@ -15,12 +15,12 @@ class _PrivacyPageState extends State<PrivacyPage> {
         title: Text('隐私政策'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(Screenutil.size(16)),
+        padding: EdgeInsets.all(16.sp),
         child: Column(
           children: [Text(
               '小蜜蜂智慧社区隐私政策',
               style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: Screenutil.length(35)),
+                  fontWeight: FontWeight.w600, fontSize: 35.w),
             ),
             Text(
               '''
@@ -125,7 +125,7 @@ class _PrivacyPageState extends State<PrivacyPage> {
 2020年10月20日
     ''',
               style: TextStyle(
-                fontSize: Screenutil.length(30),
+                fontSize: 30.w,
               ),
             ),
           ],

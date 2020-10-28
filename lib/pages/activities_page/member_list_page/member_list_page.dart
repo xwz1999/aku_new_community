@@ -101,12 +101,12 @@ class _MemberListPageState extends State<MemberListPage> {
   Container _memberCard(String imagePath, name, phone) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(18),
-        bottom: Screenutil.length(18),
-        left: Screenutil.length(20),
-        right: Screenutil.length(10),
+        top: 18.w,
+        bottom: 18.w,
+        left: 20.w,
+        right: 10.w,
       ),
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
       decoration: BoxDecoration(
         border: Border(
             bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -117,12 +117,12 @@ class _MemberListPageState extends State<MemberListPage> {
           Row(
             children: [
               Container(
-                margin: EdgeInsets.only(right: Screenutil.length(18)),
+                margin: EdgeInsets.only(right: 18.w),
                 child: ClipOval(
                   child: CachedImageWrapper(
                     url: imagePath,
-                    width: Screenutil.length(60),
-                    height: Screenutil.length(60),
+                    width: 60.w,
+                    height: 60.w,
                   ),
                 ),
               ),

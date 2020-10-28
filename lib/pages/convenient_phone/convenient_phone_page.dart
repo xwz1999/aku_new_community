@@ -24,14 +24,14 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
         },
         child: Container(
           margin: EdgeInsets.only(
-            left: Screenutil.length(32),
-            right: Screenutil.length(32),
-            top: Screenutil.length(12),
-            bottom: Screenutil.length(20),
+            left: 32.w,
+            right: 32.w,
+            top: 12.w,
+            bottom: 20.w,
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: Screenutil.length(32),
-            vertical: Screenutil.length(16),
+            horizontal: 32.w,
+            vertical: 16.w,
           ),
           decoration: BoxDecoration(
             color: Color(0xfff9f9f9),
@@ -54,7 +54,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
 
   List<Widget> _silverBuilder(BuildContext context, bool innerBoxIsScrolled) {
     double statusBarHeight = MediaQuery.of(context).padding.top;
-    double _swiperHeight = Screenutil.length(122);
+    double _swiperHeight = 122.w;
     double _spikeHeight = 25;
     double _appBarHeight = _swiperHeight - _spikeHeight - statusBarHeight;
     return <Widget>[
@@ -63,7 +63,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
             child: Container(),
-            preferredSize: Size.fromHeight(Screenutil.length(_appBarHeight))),
+            preferredSize: Size.fromHeight((_appBarHeight).h)),
         flexibleSpace: Column(
           children: <Widget>[
             _containerSearch(),
@@ -78,11 +78,11 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
             child: Container(
               color: Colors.white,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+              padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: Text(
                 '小区服务电话',
                 style: TextStyle(
-                  fontSize: Screenutil.size(32),
+                  fontSize: 32.sp,
                 ),
               ),
             )),

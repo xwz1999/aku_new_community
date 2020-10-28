@@ -22,7 +22,7 @@ class _RefundSelectPageState extends State<RefundSelectPage> {
       elevation: 0,
       backgroundColor: BaseStyle.colorffd000,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -89,11 +89,11 @@ class _RefundSelectPageState extends State<RefundSelectPage> {
       appBar: _appBar(),
       body: ListView(
         children: [
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           _containerContentList(
             widget.bundle.getMap('details')['listContent'],
           ),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           RefundTileCard(listTile: _listTile)
         ],
       ),

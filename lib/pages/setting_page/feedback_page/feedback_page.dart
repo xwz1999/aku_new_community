@@ -22,9 +22,9 @@ class _FeedBackPageState extends State<FeedBackPage> {
   Widget _containerTextField() {
     return Container(
       padding: EdgeInsets.only(
-          top: Screenutil.length(24),
-          left: Screenutil.length(24),
-          right: Screenutil.length(32)),
+          top: 24.w,
+          left: 24.w,
+          right: 32.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(6)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -32,7 +32,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
       child: TextFormField(
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
-          fontSize: Screenutil.size(28),
+          fontSize: 28.sp,
           fontWeight: FontWeight.w600,
         ),
         controller: _ideaContent,
@@ -41,8 +41,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: '请输入',
           border: InputBorder.none, //去掉输入框的下滑线
@@ -50,7 +50,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
           filled: true,
           hintStyle: TextStyle(
             color: Color(0xff999999),
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -60,8 +60,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   Widget _containerAddImage() {
     return Container(
-      width: Screenutil.length(218),
-      height: Screenutil.length(218),
+      width: 218.w,
+      height: 218.w,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -95,9 +95,9 @@ class _FeedBackPageState extends State<FeedBackPage> {
       },
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(85),
-        width: Screenutil.length(686),
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(20)),
+        height: 85.w,
+        width: 686.w,
+        padding: EdgeInsets.symmetric(vertical: 20.w),
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
           borderRadius: BorderRadius.all(Radius.circular(2)),
@@ -106,7 +106,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
           '确认提交',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -133,31 +133,31 @@ class _FeedBackPageState extends State<FeedBackPage> {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(32),
-                vertical: Screenutil.length(36),
+                horizontal: 32.w,
+                vertical: 36.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: Screenutil.length(76)),
+                  SizedBox(height: 76.w),
                   Text(
                     '意见反馈',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333)),
                   ),
-                  SizedBox(height: Screenutil.length(24)),
+                  SizedBox(height: 24.w),
                   _containerTextField(),
-                  SizedBox(height: Screenutil.length(24)),
+                  SizedBox(height: 24.w),
                   Text(
                     '添加图片信息(0/9)',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333)),
                   ),
-                  SizedBox(height: Screenutil.length(24)),
+                  SizedBox(height: 24.w),
                   CommonImagePicker(),
-                  SizedBox(height: Screenutil.length(76)),
+                  SizedBox(height: 76.w),
                   _inkWellSubmit(),
                 ],
               ),

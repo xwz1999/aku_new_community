@@ -108,16 +108,16 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.only(
-        top: Screenutil.length(29),
-        left: Screenutil.length(32),
-        bottom: Screenutil.length(40),
+        top: 29.w,
+        left: 32.w,
+        bottom: 40.w,
       ),
       width: MediaQuery.of(context).size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(25)),
+            margin: EdgeInsets.only(bottom: 25.w),
             child: Text(
               '按分类评价',
               style: TextStyle(
@@ -127,8 +127,8 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
             ),
           ),
           Wrap(
-            spacing: Screenutil.length(10),
-            runSpacing: Screenutil.length(20),
+            spacing: 10.w,
+            runSpacing: 20.w,
             children: _commentsClassList
                 .map((item) => InkWell(
                       onTap: () {
@@ -143,10 +143,10 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
                         borderRadius: BorderRadius.all(Radius.circular(24)),
                         child: Container(
                           padding: EdgeInsets.only(
-                            left: Screenutil.length(24),
-                            right: Screenutil.length(23),
-                            top: Screenutil.length(9),
-                            bottom: Screenutil.length(10),
+                            left: 24.w,
+                            right: 23.w,
+                            top: 9.w,
+                            bottom: 10.w,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -198,7 +198,7 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
                   onLoading: _onLoading,
                   enablePullUp: true,
                   child: ListView.builder(
-                    padding: EdgeInsets.only(top: Screenutil.length(30)),
+                    padding: EdgeInsets.only(top: 30.w),
                     itemBuilder: (BuildContext context, int index) => Container(
                       color: Colors.white,
                       child: GoodsCommentsCard(

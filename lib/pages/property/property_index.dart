@@ -124,7 +124,7 @@ class _PropertyIndexState extends State<PropertyIndex>
         title: Text(
           '物业',
           style: TextStyle(
-            fontSize: Screenutil.size(36),
+            fontSize: 36.sp,
             color: Color(0xff333333),
           ),
         ),

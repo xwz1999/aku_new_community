@@ -18,11 +18,11 @@ class _CarAddPageState extends State<CarAddPage> {
     return InkWell(
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(19),
-          bottom: Screenutil.length(21),
+          top: 19.w,
+          bottom: 21.w,
         ),
         alignment: Alignment.center,
-        width: Screenutil.length(686),
+        width: 686.w,
         decoration: BoxDecoration(
           color: Color(0xffffd000),
           borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -37,7 +37,7 @@ class _CarAddPageState extends State<CarAddPage> {
           '保存',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -64,17 +64,17 @@ class _CarAddPageState extends State<CarAddPage> {
             },
             child: Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(32),
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
+                top: 32.w,
+                left: 32.w,
+                right: 32.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     padding: EdgeInsets.only(
-                      top: Screenutil.length(23),
-                      bottom: Screenutil.length(24),
+                      top: 23.w,
+                      bottom: 24.w,
                     ),
                     decoration: BoxDecoration(
                       border: Border(
@@ -87,10 +87,10 @@ class _CarAddPageState extends State<CarAddPage> {
                         Text(
                           '您的车牌号',
                           style: TextStyle(
-                              fontSize: Screenutil.size(28),
+                              fontSize: 28.sp,
                               color: Color(0xff333333)),
                         ),
-                        SizedBox(height: Screenutil.length(25)),
+                        SizedBox(height: 25.w),
                         CommonInput(
                           hintText: '请输入您的车牌号',
                           inputController: _carNum,
@@ -98,7 +98,7 @@ class _CarAddPageState extends State<CarAddPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(89)),
+                  SizedBox(height: 89.w),
                   _inkWellSave(),
                 ],
               ),

@@ -168,7 +168,7 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
                       hotNum: _topicList[index]['hotNum'],
                     )
                   : Container(
-                      margin: EdgeInsets.only(top: Screenutil.length(32)),
+                      margin: EdgeInsets.only(top: 32.w),
                       child: CircleTrend(
                         title: _circleList[index]['title'],
                         contentList: _circleList[index]['contentList'],

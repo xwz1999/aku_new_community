@@ -23,7 +23,7 @@ class _RecordItemState extends State<RecordItem>
   Positioned _positionedAgain() {
     return Positioned(
       right: 0,
-      top: Screenutil.length(16),
+      top: 16.w,
       child: InkWell(
         onTap: () {},
         child: Container(
@@ -31,18 +31,18 @@ class _RecordItemState extends State<RecordItem>
           decoration: BoxDecoration(
               color: Color(0xffffffff),
               borderRadius:
-                  BorderRadius.all(Radius.circular(Screenutil.length(36))),
+                  BorderRadius.all(Radius.circular(36.w)),
               border: Border.all(
-                  color: Color(0xffffc500), width: Screenutil.length(3))),
+                  color: Color(0xffffc500), width: 3.w)),
           padding: EdgeInsets.symmetric(
-            vertical: Screenutil.length(11),
-            horizontal: Screenutil.length(32),
+            vertical: 11.w,
+            horizontal: 32.w,
           ),
           child: Text(
             '再次邀请',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -54,18 +54,18 @@ class _RecordItemState extends State<RecordItem>
   Positioned _positionedQRcode() {
     return Positioned(
       right: 0,
-      top: Screenutil.length(16),
+      top: 16.w,
       child: Row(
         children: [
           Icon(
             AntDesign.qrcode,
-            size: Screenutil.size(40),
+            size: 40.sp,
             color: Color(0xff999999),
           ),
-          SizedBox(height: Screenutil.length(18)),
+          SizedBox(height: 18.w),
           Icon(
             AntDesign.right,
-            size: Screenutil.size(40),
+            size: 40.sp,
             color: Color(0xff999999),
           ),
         ],
@@ -79,9 +79,9 @@ class _RecordItemState extends State<RecordItem>
       onTap: recordPass,
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(32),
-          left: Screenutil.length(32),
-          right: Screenutil.length(32),
+          top: 32.w,
+          left: 32.w,
+          right: 32.w,
         ),
         color: Colors.white,
         child: Stack(
@@ -92,19 +92,19 @@ class _RecordItemState extends State<RecordItem>
                 Text(
                   '马成泽(浙A88888)',
                   style: TextStyle(
-                    fontSize: Screenutil.size(32),
+                    fontSize: 32.sp,
                     color: Color(0xff333333),
                   ),
                 ),
-                SizedBox(height: Screenutil.length(8)),
+                SizedBox(height: 8.w),
                 Text(
                   '2020年6月30日',
                   style: TextStyle(
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xff999999),
                   ),
                 ),
-                SizedBox(height: Screenutil.length(33)),
+                SizedBox(height: 33.w),
                 Divider()
               ],
             ),

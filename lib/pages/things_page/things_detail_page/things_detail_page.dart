@@ -26,9 +26,9 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
       String tag, String content, String time, List<String> imageList) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(46),
-        left: Screenutil.length(33),
-        right: Screenutil.length(44),
+        top: 46.w,
+        left: 33.w,
+        right: 44.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,27 +36,27 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
           Text(
             tag,
             style: TextStyle(
-              fontSize: Screenutil.size(38),
+              fontSize: 38.sp,
               color: Color(0xff333333),
             ),
           ),
-          SizedBox(height: Screenutil.length(30)),
+          SizedBox(height: 30.w),
           ExpandableText(
             text: content,
             maxLines: 2,
             style: TextStyle(
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff666666),
             ),
             expand: false,
           ),
-          SizedBox(height: Screenutil.length(29)),
+          SizedBox(height: 29.w),
           imageList.length != 0 ? ImageGrid(imageList) : SizedBox(),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           Text(
             time,
             style: TextStyle(
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xff999999),
             ),
           ),
@@ -82,15 +82,15 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
         },
         child: Container(
           alignment: Alignment.center,
-          height: Screenutil.length(98),
-          width: Screenutil.length(750),
+          height: 98.w,
+          width: 750.w,
           padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
           color: Color(0xffffc40c),
           child: Text(
             widget.bundle.getMap('things')['isRepair'] ? '确认完成' : '继续提问',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -115,7 +115,7 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
           children: [
             widget.bundle.getMap('things')['isRepair']
                 ? ListView(
-                    padding: EdgeInsets.only(bottom: Screenutil.length(108)),
+                    padding: EdgeInsets.only(bottom: 108.w),
                     children: [
                       GoodsInfoCard(
                         status: widget.bundle.getMap('things')['time'],
@@ -147,7 +147,7 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
                     ],
                   )
                 : ListView(
-                    padding: EdgeInsets.only(bottom: Screenutil.length(108)),
+                    padding: EdgeInsets.only(bottom: 108.w),
                     children: [
                       _containerCard(
                         '您的建议',
@@ -155,7 +155,7 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
                         widget.bundle.getMap('things')['time'],
                         widget.bundle.getMap('things')['imageList'],
                       ),
-                      SizedBox(height: Screenutil.length(3)),
+                      SizedBox(height: 3.w),
                       _containerCard(
                         '物业回复',
                         widget.bundle.getMap('things')['content'],

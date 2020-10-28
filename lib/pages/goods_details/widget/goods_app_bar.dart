@@ -24,15 +24,15 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
       backgroundColor: Color(0xffffffff),
       titleSpacing: 0,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
       title: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: Screenutil.length(40),
-          vertical: Screenutil.length(15),
+          horizontal: 40.w,
+          vertical: 15.w,
         ),
         decoration: BoxDecoration(
           color: Color(0xfff3f3f3),
@@ -66,7 +66,7 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
         IconButton(
           icon: Icon(
             SimpleLineIcons.share,
-            size: Screenutil.size(40),
+            size: 40.sp,
             color: Color(0xff666666),
           ),
           onPressed: () {
@@ -81,7 +81,7 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
         IconButton(
           icon: Icon(
             AntDesign.shoppingcart,
-            size: Screenutil.size(40),
+            size: 40.sp,
             color: Color(0xff666666),
           ),
           onPressed: () {

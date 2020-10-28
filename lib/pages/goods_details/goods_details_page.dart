@@ -42,7 +42,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.only(bottom: Screenutil.length(100)),
+            padding: EdgeInsets.only(bottom: 100.w),
             children: [
               ProductSwiper(imageUrl: params),
               ProductContent(

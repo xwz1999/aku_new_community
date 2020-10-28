@@ -74,7 +74,7 @@ class _CommunityIndexState extends State<CommunityIndex>
             indicatorWeight: 2.0,
             indicatorSize: TabBarIndicatorSize.label,
             labelStyle: TextStyle(
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff333333),
               fontWeight: FontWeight.w600,
             ),
@@ -96,7 +96,7 @@ class _CommunityIndexState extends State<CommunityIndex>
       child: Icon(
         Icons.add,
         color: Colors.white,
-        size: Screenutil.size(40),
+        size: 40.sp,
       ),
       onPressed: noteCreateRouter,
     );

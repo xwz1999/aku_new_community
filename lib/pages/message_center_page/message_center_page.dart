@@ -34,14 +34,14 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
   TextStyle _textStyleTitle() {
     return TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: Screenutil.size(32),
+      fontSize: 32.sp,
       color: Color(0xff333333),
     );
   }
 
   TextStyle _textStyleSubtitle() {
     return TextStyle(
-      fontSize: Screenutil.size(28),
+      fontSize: 28.sp,
       color: Color(0xff333333),
     );
   }
@@ -78,11 +78,11 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                     },
                     child: Container(
                       padding: EdgeInsets.only(
-                        top: Screenutil.length(36),
-                        bottom: Screenutil.length(19),
+                        top: 36.w,
+                        bottom: 19.w,
                       ),
                       margin: EdgeInsets.symmetric(
-                          horizontal: Screenutil.length(32)),
+                          horizontal: 32.w),
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: Divider.createBorderSide(context,
@@ -94,10 +94,10 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                         children: [
                           Image.asset(
                             _messageList[index]['imagePath'],
-                            height: Screenutil.length(90),
-                            width: Screenutil.length(90),
+                            height: 90.w,
+                            width: 90.w,
                           ),
-                          SizedBox(width: Screenutil.length(14)),
+                          SizedBox(width: 14.w),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -105,7 +105,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                                 _messageList[index]['title'],
                                 style: _textStyleTitle(),
                               ),
-                              SizedBox(height: Screenutil.length(5)),
+                              SizedBox(height: 5.w),
                               Text(
                                 _messageList[index]['subtitle'],
                                 maxLines: 1,
