@@ -249,14 +249,15 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.popUntil(context, (route) {
-                      return !Navigator.canPop(context);
-                    });
-                    Navigator.pushReplacement(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => SignInPage(),
-                        ));
+                    // Navigator.popUntil(context, (route) {
+                    //   return !Navigator.canPop(context);
+                    // });
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     CupertinoPageRoute(
+                    //       builder: (context) => SignInPage(),
+                    //     ));
+                    ARoute.push(context, SignInPage());
                   },
                 ),
               ],
