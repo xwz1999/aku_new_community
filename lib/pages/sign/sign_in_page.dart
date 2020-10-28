@@ -60,7 +60,7 @@ class _SignInPageState extends State<SignInPage> {
           Expanded(
             child: TextFormField(
               obscureText: false,
-              obscuringCharacter:'*',
+              obscuringCharacter: '*',
               cursorColor: Color(0xffffc40c),
               style: TextStyle(
                 fontSize: BaseStyle.fontSize28,
@@ -98,20 +98,20 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(width: Screenutil.length(16)),
-          InkWell(
-            child: Text(
-              _verifyStr,
-              style: TextStyle(
-                color: BaseStyle.color999999,
-                fontSize: BaseStyle.fontSize28,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            onTap: null,
-          ),
-              ],
-            )
-          : SizedBox(),
+                    InkWell(
+                      child: Text(
+                        _verifyStr,
+                        style: TextStyle(
+                          color: BaseStyle.color999999,
+                          fontSize: BaseStyle.fontSize28,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      onTap: null,
+                    ),
+                  ],
+                )
+              : SizedBox(),
         ],
       ),
     );
@@ -132,9 +132,9 @@ class _SignInPageState extends State<SignInPage> {
     return InkWell(
       onTap: () {
         if (TextUtil.isEmpty(_phone.text))
-          showToast('账号不能为空');
+          showToast('手机号不能为空');
         else if (TextUtil.isEmpty(_code.text))
-          showToast('密码不能为空');
+          showToast('验证码不能为空');
         else {
           showCupertinoDialog(
             context: context,
@@ -142,7 +142,7 @@ class _SignInPageState extends State<SignInPage> {
               return CupertinoAlertDialog(
                 title: Text('点击登录即表示您已阅读并同意'),
                 content: Text(
-                    '''点击登录即表示您已阅读并同意《闲鱼用户服务协议》《支付服务协议》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
+                    '''点击登录即表示您已阅读并同意《小蜜蜂用户协议》《小蜜蜂隐私政策》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
                 actions: [
                   CupertinoDialogAction(
                     child: Text('同意'),
@@ -151,8 +151,8 @@ class _SignInPageState extends State<SignInPage> {
                         Duration(milliseconds: 1000 + Random().nextInt(500)),
                         () {
                           Navigator.pop(context);
-                          (_phone.text == '17855823545') &&
-                                  (_code.text == '000000')
+                          (_phone.text == '18067170899') &&
+                                  (_code.text == '123456')
                               ? ARoute.push(context, UserAuthenticationPage())
                               : showToast('账号或密码错误！');
                         },
@@ -239,17 +239,28 @@ class _SignInPageState extends State<SignInPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FlatButton(
-                          onPressed: () {
-                            ARoute.push(context, AgreementPage());
-                          },
-                          child: Text('用户协议'),
-                        ),
-                        SizedBox(width: Screenutil.length(15)),
+                          padding: EdgeInsets.zero,
+                            onPressed: () {
+                              ARoute.push(context, AgreementPage());
+                            },
+                            child: Text(
+                              '《小蜜蜂用户协议》',
+                              style: TextStyle(
+                                color: Colors.lightBlue,
+                              ),
+                            )),
+                        SizedBox(width: 15.w),
                         FlatButton(
+                          padding: EdgeInsets.zero,
                             onPressed: () {
                               ARoute.push(context, PrivacyPage());
                             },
-                            child: Text('隐私政策'))
+                            child: Text(
+                              '《小蜜蜂隐私政策》',
+                              style: TextStyle(
+                                color: Colors.lightBlue,
+                              ),
+                            ))
                       ],
                     ),
                   ],

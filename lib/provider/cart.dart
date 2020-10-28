@@ -37,7 +37,12 @@ class CartProvidde with ChangeNotifier {
         "isCheck": false
       };
       tempList.add(newGoods);
-      cartList.add(AkuShopModel.fromJson(newGoods));
+   AkuShopModel  _newgoods= AkuShopModel.fromJson(newGoods);
+  int _goodIndex= cartList.indexWhere((element) {
+     return element.itemid==_newgoods.itemid;
+   });
+   _goodIndex>-1?cartList[_goodIndex].count+=count:
+      cartList.add(_newgoods);
     }
     cartString = json.encode(tempList).toString();
     print(cartString);
@@ -139,26 +144,27 @@ class CartProvidde with ChangeNotifier {
   }
 
   ///商品数量加减
-  addOrReduceAction(var cartItem, String todo) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    cartString = prefs.getString("cartInfo");
-    List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
-    int tempIndex = 0;
-    int changeIndex = 0;
-    tempList.forEach((item) {
-      if (item["itemid"] == cartItem.itemid) {
-        changeIndex = tempIndex;
-      }
-      tempIndex++;
-    });
+  addOrReduceAction(AkuShopModel cartItem, String todo) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // cartString = prefs.getString("cartInfo");
+    // List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+    // int tempIndex = 0;
+    // int changeIndex = 0;
+    // tempList.forEach((item) {
+    //   if (item["itemid"] == cartItem.itemid) {
+    //     changeIndex = tempIndex;
+    //   }
+    //   tempIndex++;
+    // });
     if (todo == 'add') {
       cartItem.count++;
     } else if (cartItem.count > 1) {
       cartItem.count--;
     }
-    tempList[changeIndex] = cartItem.toJson();
-    cartString = json.encode(tempList).toString();
-    prefs.setString("cartInfo", cartString);
-    await getCartInfo();
+    notifyListeners();
+    // tempList[changeIndex] = cartItem.toJson();
+    // cartString = json.encode(tempList).toString();
+    // // prefs.setString("cartInfo", cartString);
+    // await getCartInfo();
   }
 }

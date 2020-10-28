@@ -47,7 +47,11 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
       'name': '马泽鹏',
       'subtitle': "47天前 尺码[170-185cm] 颜色分类：黑色",
       'content': '太好蓝了，现在天气有点热，赶快到秋天',
-      'contentImageList': imageUrl,
+      'contentImageList': [
+        'https://img.alicdn.com/imgextra/i3/409405727/O1CN01yNXzbp1sB0pPy06vu_!!409405727.jpg',
+        'https://img.alicdn.com/imgextra/i3/409405727/O1CN01yNXzbp1sB0pPy06vu_!!409405727.jpg',
+        'https://img.alicdn.com/imgextra/i2/409405727/O1CN01oaedss1sB0pPDo1JB_!!409405727.jpg'
+      ],
       'viewNum': '532',
     },
     {
@@ -56,7 +60,11 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
       'name': '王珂珂',
       'subtitle': "4天前 尺码[170-185cm] 颜色分类：黑色",
       'content': '面料和版型都不错，会回购',
-      'contentImageList': imageUrl,
+      'contentImageList': [
+        'https://img.alicdn.com/bao/uploaded/i4/O1CN01XIzuhk1FdADbW7Cwf_!!0-rate.jpg_400x400.jpg',
+        'https://img.alicdn.com/bao/uploaded/i1/O1CN01KNMhVC242YySXXE4f_!!0-rate.jpg_400x400.jpg',
+        'https://img.alicdn.com/bao/uploaded/i4/O1CN01A2q4Bb2LhBZJ5elrj_!!0-rate.jpg_400x400.jpg',
+      ],
       'viewNum': '235',
     },
   ];
