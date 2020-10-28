@@ -9,16 +9,11 @@ import 'property/property_index.dart';
 import 'community/community_index.dart';
 import 'personal/personal_page.dart';
 
-//页面列表
-List<Widget> _pages = <Widget>[
-  HomePage(),
-  MarketPage(),
-  PropertyIndex(),
-  CommunityIndex(),
-  PersonalIndex()
-];
 
 class TabNavigator extends StatefulWidget {
+  final bool isSign;
+
+  const TabNavigator({Key key, this.isSign=false}) : super(key: key);
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
 }
@@ -28,9 +23,23 @@ class _TabNavigatorState extends State<TabNavigator> {
   int _currentIndex = 0;
   DateTime _lastPressed;
 
+  //页面列表
+List<Widget> _pages = <Widget>[
+];
+
   @override
   void initState() {
     super.initState();
+_pages=[
+  
+  HomePage(),
+  MarketPage(),
+  PropertyIndex(),
+  CommunityIndex(),
+  PersonalIndex(
+    isSign: widget.isSign,
+  )
+];
   }
 
   @override

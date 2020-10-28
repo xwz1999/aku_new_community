@@ -39,8 +39,8 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
         MaterialButton(
           child: Text('跳过'),
           onPressed: () {
-            ARoute.pop(context);
-            ARoute.pushReplace(context, TabNavigator());
+            ARoute.pop(context,root: true);
+            ARoute.pushReplace(context, TabNavigator(isSign: true,));
           },
         ),
       ],

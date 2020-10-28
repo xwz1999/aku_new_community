@@ -13,7 +13,8 @@ import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonalIndex extends StatefulWidget {
-  PersonalIndex({Key key}) : super(key: key);
+  final bool isSign;
+  PersonalIndex({Key key, this.isSign}) : super(key: key);
 
   @override
   _PersonalIndexState createState() => _PersonalIndexState();
@@ -24,7 +25,12 @@ class _PersonalIndexState extends State<PersonalIndex>
   @override
   bool get wantKeepAlive => true;
 
-  bool _isSigned = false;
+  bool _isSigned=false;
+  @override
+  void initState() { 
+    super.initState();
+    _isSigned=widget.isSign;
+  }
 
   SliverAppBar _sliverAppBar(double height) {
     return SliverAppBar(
