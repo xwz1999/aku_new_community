@@ -12,8 +12,6 @@ class CartProvidde with ChangeNotifier {
   int allGoodsCount = 0;
   bool isAllCheck = true;
 
-  
-
   save(itemid, itemtitle, count, itemprice, itempic) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString("cartString");
@@ -60,7 +58,7 @@ class CartProvidde with ChangeNotifier {
   getCartInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString("cartInfo");
-    cartList = [];
+    // cartList = [];
     if (cartString == null) {
       cartList = [];
     } else {
@@ -85,21 +83,24 @@ class CartProvidde with ChangeNotifier {
 
   ///删除单个购物车商品
   deleteGoods(String itemid) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    cartString = prefs.getString("cartInfo");
-    List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
-    int tempIndex = 0;
-    int deleteIndex = 0;
-    tempList.forEach((item) {
-      if (item["itemid"] == itemid) {
-        deleteIndex = tempIndex;
-      }
-      tempIndex++;
-    });
-    tempList.removeAt(deleteIndex);
-    cartString = json.encode(tempList).toString();
-    prefs.setString("cartInfo", cartString);
-    await getCartInfo();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // cartString = prefs.getString("cartInfo");
+    // List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+    // int tempIndex = 0;
+    // int deleteIndex = 0;
+    // tempList.forEach((item) {
+    //   if (item["itemid"] == itemid) {
+    //     deleteIndex = tempIndex;
+    //   }
+    //   tempIndex++;
+    // });
+    // tempList.removeAt(deleteIndex);
+    // cartString = json.encode(tempList).toString();
+    // prefs.setString("cartInfo", cartString);
+    // await getCartInfo();
+
+    cartList.removeWhere((element) => element.itemid == itemid);
+    notifyListeners();
   }
 
   ///单选商品

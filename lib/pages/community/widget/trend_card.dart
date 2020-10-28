@@ -1,3 +1,4 @@
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,13 +6,15 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/widget/image_grid.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TrendCard extends StatefulWidget {
   final String name;
   final String content;
   final List<String> imageUrl;
   final bool isLike;
-  TrendCard({Key key, this.name, this.content, this.imageUrl, this.isLike})
+  final Image avatar;
+  TrendCard({Key key, this.name, this.content, this.imageUrl, this.isLike, this.avatar})
       : super(key: key);
 
   @override
@@ -19,6 +22,12 @@ class TrendCard extends StatefulWidget {
 }
 
 class _TrendCardState extends State<TrendCard> {
+  bool _isLike;
+  @override
+  void initState() { 
+    super.initState();
+    _isLike=widget.isLike??false;
+  }
   void _showDialog(String url) {
     showCupertinoDialog(
       context: context,
@@ -294,7 +303,7 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
-  Widget _columnCard(String name, String content, bool isLike) {
+  Widget _columnCard(String name, String content,Image avatar) {
     return Stack(
       children: [
         Column(
@@ -303,10 +312,10 @@ class _TrendCardState extends State<TrendCard> {
           children: [
             Row(
               children: [
-                Image.asset(
-                  'assets/example/touxiang1.png',
-                  height: Screenutil.length(86),
-                  width: Screenutil.length(86),
+                Container(
+                  width: 86.w,
+                  height: 86.w,
+                  child: avatar,
                 ),
                 SizedBox(width: Screenutil.length(9)),
                 Column(
@@ -356,12 +365,15 @@ class _TrendCardState extends State<TrendCard> {
                         bottom: 0,
                         child: InkWell(
                           onTap: () {
-                            isLike = !isLike;
+                            setState(() {
+                              _isLike = !_isLike;
+                            });
+                            
                           },
                           child: Icon(
-                            isLike ? AntDesign.heart : AntDesign.hearto,
+                            _isLike ? AntDesign.heart : AntDesign.hearto,
                             color:
-                                isLike ? Color(0xffff6666) : Color(0xffd8d8d8),
+                                _isLike ? Color(0xffff6666) : Color(0xffd8d8d8),
                             size: Screenutil.size(36),
                           ),
                         ),
@@ -419,7 +431,7 @@ class _TrendCardState extends State<TrendCard> {
         bottom: Screenutil.length(22),
         right: Screenutil.length(32),
       ),
-      child: _columnCard(widget.name, widget.content, widget.isLike),
+      child: _columnCard(widget.name, widget.content,widget.avatar)
     );
   }
 }

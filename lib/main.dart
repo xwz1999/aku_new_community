@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:akuCommunity/pages/home/home_page.dart';
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';

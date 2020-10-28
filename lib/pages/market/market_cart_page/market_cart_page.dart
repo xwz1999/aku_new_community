@@ -116,40 +116,29 @@ class MarketCartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        child: MarketCartAppBar(),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
-      body: FutureBuilder(
-        future: _getCartInfo(context),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
-            // List cartList = Provider.of<CartProvidde>(context).cartList;
-            return Stack(
-              children: [
-                Consumer<CartProvidde>(
-                  builder: (context, model, child) {
-                    List cartList = model.cartList;
-                    return ListView.builder(
-                        itemCount: cartList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return MarketCartCard(
-                            cartItem: cartList[index],
-                          );
-                        });
-                  },
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: MarketCartBottomBar(),
-                ),
-              ],
-            );
-          } else {
-            return Text('正在加载中');
-          }
-        },
-      ),
-    );
+        appBar: PreferredSize(
+          child: MarketCartAppBar(),
+          preferredSize: Size.fromHeight(kToolbarHeight),
+        ),
+        body: Stack(
+          children: [
+            Consumer<CartProvidde>(
+              builder: (context, model, child) {
+                List cartList = model.cartList;
+                return ListView.builder(
+                    itemCount: cartList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return MarketCartCard(
+                        cartItem: cartList[index],
+                      );
+                    });
+              },
+            ),
+            Positioned(
+              bottom: 0,
+              child: MarketCartBottomBar(),
+            ),
+          ],
+        ));
   }
 }
