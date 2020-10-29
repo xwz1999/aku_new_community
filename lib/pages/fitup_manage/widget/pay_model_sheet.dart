@@ -20,7 +20,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
       'widget': Icon(
         AntDesign.alipay_circle,
         color: Color(0xff06b4fd),
-        size: Screenutil.length(50),
+        size: 50.w,
       ),
       'id': 'alipay',
       'isCheck': true
@@ -29,8 +29,8 @@ class _PayModelSheetState extends State<PayModelSheet> {
       'title': '微信支付',
       'widget': Image.asset(
         AssetsImage.WXPAY,
-        height: Screenutil.length(60),
-        width: Screenutil.length(60),
+        height: 60.w,
+        width: 60.w,
       ),
       'id': 'wxpay',
       'isCheck': false
@@ -53,9 +53,9 @@ class _PayModelSheetState extends State<PayModelSheet> {
       builder: (context) {
         return Container(
           margin: EdgeInsets.only(
-            top: Screenutil.length(20),
-            left: Screenutil.length(20),
-            right: Screenutil.length(20),
+            top: 20.w,
+            left: 20.w,
+            right: 20.w,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +73,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                     IconButton(
                       icon: Icon(
                         AntDesign.left,
-                        size: Screenutil.size(40),
+                        size: 40.sp,
                         color: BaseStyle.color999999,
                       ),
                       onPressed: () {
@@ -81,7 +81,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                       },
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: Screenutil.length(190)),
+                      padding: EdgeInsets.only(left: 190.w),
                       child: Text(
                         '选择付款方式',
                         style: TextStyle(
@@ -123,18 +123,18 @@ class _PayModelSheetState extends State<PayModelSheet> {
       },
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(10),
+          top: 10.w,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             logo,
-            SizedBox(width: Screenutil.length(24)),
+            SizedBox(width: 24.w),
             Expanded(
               child: Container(
                 padding: EdgeInsets.only(
-                  bottom: Screenutil.length(27),
-                  top: Screenutil.length(28),
+                  bottom: 27.w,
+                  top: 28.w,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
@@ -154,7 +154,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                         ? Icon(
                             AntDesign.check,
                             color: BaseStyle.colorffc40c,
-                            size: Screenutil.length(50),
+                            size: 50.w,
                           )
                         : SizedBox(),
                   ],
@@ -172,8 +172,8 @@ class _PayModelSheetState extends State<PayModelSheet> {
       onTap: _showModelBotoomSheet,
       child: Container(
         padding: EdgeInsets.only(
-          bottom: Screenutil.length(27),
-          top: Screenutil.length(28),
+          bottom: 27.w,
+          top: 28.w,
         ),
         decoration: BoxDecoration(
           border: Border(
@@ -185,7 +185,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
             Row(
               children: [
                 _listPay[_currentindex]['widget'],
-                SizedBox(width: Screenutil.length(24)),
+                SizedBox(width: 24.w),
                 Text(
                   _listPay[_currentindex]['title'],
                   style: TextStyle(
@@ -197,7 +197,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
             Icon(
               AntDesign.right,
               color: BaseStyle.color999999,
-              size: Screenutil.length(32),
+              size: 32.w,
             ),
           ],
         ),
@@ -212,9 +212,9 @@ class _PayModelSheetState extends State<PayModelSheet> {
         children: [
           Container(
             margin: EdgeInsets.only(
-              top: Screenutil.length(36),
-              left: Screenutil.length(32),
-              right: Screenutil.length(32),
+              top: 36.w,
+              left: 32.w,
+              right: 32.w,
             ),
             child: Column(
               children: [
@@ -225,7 +225,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                         bottom: BorderSide(
                             color: BaseStyle.coloreeeeee, width: 0.5)),
                   ),
-                  padding: EdgeInsets.only(bottom: Screenutil.length(20)),
+                  padding: EdgeInsets.only(bottom: 20.w),
                   child: Text(
                     '付款详情',
                     style: TextStyle(
@@ -237,8 +237,8 @@ class _PayModelSheetState extends State<PayModelSheet> {
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                    bottom: Screenutil.length(80),
-                    top: Screenutil.length(89),
+                    bottom: 80.w,
+                    top: 89.w,
                   ),
                   decoration: BoxDecoration(
                     border: Border(
@@ -258,7 +258,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(height: Screenutil.length(20)),
+                      SizedBox(height: 20.w),
                       Text(
                         '注释：装修押金${5000}元，垃圾清理费${300}元',
                         style: TextStyle(

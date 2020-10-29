@@ -29,8 +29,8 @@ class _CommonInputState extends State<CommonInput> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: widget.hintText,
           border: InputBorder.none, //去掉输入框的下滑线

@@ -28,14 +28,14 @@ class CommonAppBar extends StatelessWidget {
           '功能说明',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff15c0ec),
           ),
         ),
         content: Text(
           '点击“呼叫110”后,您可以直接拨打本地110。页面中提供了您当前所在位置,以便您与警方沟通。(GPS信号弱时，位置可能存在偏移)',
           style: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             color: Color(0xff666666),
           ),
         ),
@@ -65,7 +65,7 @@ class CommonAppBar extends StatelessWidget {
           onTap: () => Navigator.pop(context),
           child: Icon(
             AntDesign.left,
-            size: Screenutil.size(45),
+            size: 45.sp,
             color: (title == '访客通行证' || title == '出户二维码')
                 ? Colors.white
                 : Color(0xff333333),
@@ -78,7 +78,7 @@ class CommonAppBar extends StatelessWidget {
             color: (title == '访客通行证' || title == '出户二维码')
                 ? Colors.white
                 : Color(0xff333333),
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -121,11 +121,11 @@ class CommonAppBar extends StatelessWidget {
                   child: Container(
                     height: kToolbarHeight,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.only(right: Screenutil.length(32)),
+                    margin: EdgeInsets.only(right: 32.w),
                     child: Text(
                       subtitle,
                       style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333),
                       ),
                     ),
@@ -136,18 +136,18 @@ class CommonAppBar extends StatelessWidget {
         bottom: treeList != null
             ? TabBar(
                 unselectedLabelStyle: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                 ),
                 labelStyle: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                 ),
                 labelPadding:
-                    EdgeInsets.symmetric(horizontal: Screenutil.length(131.5)),
+                    EdgeInsets.symmetric(horizontal: 131.5.w),
                 indicatorColor: Color(0xffffc40c),
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorPadding:
-                    EdgeInsets.symmetric(horizontal: Screenutil.length(21)),
+                    EdgeInsets.symmetric(horizontal: 21.w),
                 isScrollable: true,
                 controller: tabController,
                 tabs: List.generate(

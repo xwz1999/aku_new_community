@@ -25,11 +25,11 @@ class _SelectParkingPageState extends State<SelectParkingPage> {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.all(Screenutil.length(32)),
+            margin: EdgeInsets.all(32.w),
             child: Text(
               '所有社区',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff333333),
               ),
             ),
@@ -42,12 +42,12 @@ class _SelectParkingPageState extends State<SelectParkingPage> {
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
                   padding: EdgeInsets.symmetric(
-                      vertical: Screenutil.length(28),
-                      horizontal: Screenutil.length(32)),
+                      vertical: 28.w,
+                      horizontal: 32.w),
                   child: Text(
                     '${widget.bundle.getString('title')}地下车库11号${index + 1}',
                     style: TextStyle(
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                       color: Color(0xff333333),
                     ),
                   ),

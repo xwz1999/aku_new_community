@@ -93,7 +93,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
           title: Text(
             '是否确定投${url}一票',
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -102,7 +102,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -115,7 +115,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                 '确定',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -143,9 +143,9 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
               setState(() {});
             },
       child: Container(
-        margin: EdgeInsets.only(top: Screenutil.length(39)),
+        margin: EdgeInsets.only(top: 39.w),
         padding: EdgeInsets.only(
-            left: Screenutil.length(41), bottom: Screenutil.length(40)),
+            left: 41.w, bottom: 40.w),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(color: BaseStyle.colord8d8d8, width: 0.5),
@@ -156,7 +156,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: Screenutil.length(150),
+              height: 150.w,
               alignment: Alignment.center,
               child: Icon(
                 isOver
@@ -169,20 +169,20 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                     : _listView[index]['isCheck']
                         ? Colors.red
                         : BaseStyle.color979797,
-                size: Screenutil.length(36),
+                size: 36.w,
               ),
             ),
             Container(
               margin: EdgeInsets.only(
-                left: Screenutil.length(17),
-                right: Screenutil.length(30),
+                left: 17.w,
+                right: 30.w,
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 child: CachedImageWrapper(
                   url: imagePath,
-                  width: Screenutil.length(150),
-                  height: Screenutil.length(150),
+                  width: 150.w,
+                  height: 150.w,
                 ),
               ),
             ),
@@ -197,7 +197,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                     color: BaseStyle.color333333,
                   ),
                 ),
-                SizedBox(height: Screenutil.length(10)),
+                SizedBox(height: 10.w),
                 Text(
                   name,
                   style: TextStyle(
@@ -219,7 +219,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
         Navigator.pushNamed(context, PageName.member_list_page.toString());
       },
       child: Container(
-        padding: EdgeInsets.only(bottom: Screenutil.length(24)),
+        padding: EdgeInsets.only(bottom: 24.w),
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -228,10 +228,10 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: Screenutil.length(80)),
+              margin: EdgeInsets.only(left: 80.w),
               child: ImageStack(
                 imageList: memberList,
-                imageRadius: Screenutil.size(44),
+                imageRadius: 44.sp,
                 imageCount: 3,
                 imageBorderWidth: 1,
                 totalCount: 3,
@@ -240,7 +240,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: Screenutil.length(16)),
+                  margin: EdgeInsets.only(right: 16.w),
                   child: Text(
                     '已有${320}人参加',
                     style: TextStyle(
@@ -250,7 +250,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                 ),
                 Icon(
                   AntDesign.right,
-                  size: Screenutil.size(36),
+                  size: 36.sp,
                   color: BaseStyle.color999999,
                 ),
               ],
@@ -276,15 +276,14 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
             color: Colors.white,
             child: ListView(
               padding: EdgeInsets.only(
-                  bottom: Screenutil.length(
-                      widget.bundle.getMap('details')['isVote'] ? 0 : 170)),
+                  bottom: ( widget.bundle.getMap('details')['isVote'] ? 0 : 170).w),
               children: [
                 Container(
                   padding: EdgeInsets.only(
-                      top: Screenutil.length(26),
-                      left: Screenutil.length(32),
-                      right: Screenutil.length(32),
-                      bottom: Screenutil.length(60)),
+                      top: 26.w,
+                      left: 32.w,
+                      right: 32.w,
+                      bottom: 60.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -296,19 +295,19 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: Screenutil.length(45)),
+                        margin: EdgeInsets.only(top: 45.w),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(6)),
                           child: CachedImageWrapper(
                             url: widget.bundle.getMap('details')['imagePath'],
-                            width: Screenutil.length(686),
-                            height: Screenutil.length(228),
+                            width: 686.w,
+                            height: 228.w,
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: Screenutil.length(44)),
-                        width: Screenutil.length(647),
+                        margin: EdgeInsets.only(top: 44.w),
+                        width: 647.w,
                         child: Html(
                             data: widget.bundle.getMap('details')['isVote']
                                 ? htmlData
@@ -320,23 +319,23 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                 widget.bundle.getMap('details')['isVote']
                     ? SizedBox()
                     : SizedBox(
-                        height: Screenutil.length(24),
+                        height: 24.w,
                         child: Container(color: BaseStyle.colorf9f9f9),
                       ),
                 Container(
                   padding: EdgeInsets.only(
-                      top: Screenutil.length(26),
-                      left: Screenutil.length(32),
-                      right: Screenutil.length(32),
-                      bottom: Screenutil.length(60)),
+                      top: 26.w,
+                      left: 32.w,
+                      right: 32.w,
+                      bottom: 60.w),
                   child: widget.bundle.getMap('details')['isVote']
                       ? Container(
-                          margin: EdgeInsets.only(top: Screenutil.length(44)),
+                          margin: EdgeInsets.only(top: 44.w),
                           padding: EdgeInsets.only(
-                              top: Screenutil.length(50),
-                              left: Screenutil.length(32),
-                              right: Screenutil.length(25)),
-                          width: Screenutil.length(686),
+                              top: 50.w,
+                              left: 32.w,
+                              right: 25.w),
+                          width: 686.w,
                           decoration: BoxDecoration(
                             color: BaseStyle.colorf3f3f3,
                             borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -354,7 +353,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                               ),
                               Container(
                                 padding:
-                                    EdgeInsets.only(left: Screenutil.length(3)),
+                                    EdgeInsets.only(left: 3.w),
                                 child: Column(
                                   children: _listView
                                       .asMap()

@@ -37,7 +37,7 @@ class _InvoicePageState extends State<InvoicePage> {
       elevation: 0,
       backgroundColor: Color(0xffffffff),
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -47,7 +47,7 @@ class _InvoicePageState extends State<InvoicePage> {
         '开具发票',
         style: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: Screenutil.size(32),
+          fontSize: 32.sp,
           color: Color(0xff333333),
         ),
       ),
@@ -57,10 +57,10 @@ class _InvoicePageState extends State<InvoicePage> {
   Container _containerInvoiceDetailCheck() {
     return Container(
       color: Colors.white,
-      height: Screenutil.length(96),
+      height: 96.w,
       padding: EdgeInsets.symmetric(
-        vertical: Screenutil.length(28),
-        horizontal: Screenutil.length(32),
+        vertical: 28.w,
+        horizontal: 32.w,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,14 +72,14 @@ class _InvoicePageState extends State<InvoicePage> {
                 Text(
                   '发票内容',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xff333333),
                   ),
                 ),
-                SizedBox(width: Screenutil.length(6)),
+                SizedBox(width: 6.w),
                 Icon(
                   AntDesign.exclamationcircleo,
-                  size: Screenutil.size(20),
+                  size: 20.sp,
                   color: Color(0xff999999),
                 ),
               ],
@@ -100,18 +100,18 @@ class _InvoicePageState extends State<InvoicePage> {
       onTap: () {},
       child: Container(
         color: Color(0xffffc40c),
-        height: Screenutil.length(85),
+        height: 85.w,
         margin: EdgeInsets.symmetric(
-          horizontal: Screenutil.length(43),
+          horizontal: 43.w,
         ),
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(20),
+          vertical: 20.w,
         ),
         alignment: Alignment.center,
         child: Text(
           '确认',
           style: TextStyle(
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -132,14 +132,14 @@ class _InvoicePageState extends State<InvoicePage> {
                 Text(
                   '增值税电子普票',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xff333333),
                   ),
                 ),
-                SizedBox(width: Screenutil.length(12)),
+                SizedBox(width: 12.w),
                 Icon(
                   AntDesign.right,
-                  size: Screenutil.size(20),
+                  size: 20.sp,
                   color: Color(0xff333333),
                 ),
               ],
@@ -165,7 +165,7 @@ class _InvoicePageState extends State<InvoicePage> {
                 },
                 title: '个人/事业单位',
               ),
-              SizedBox(width: Screenutil.length(12)),
+              SizedBox(width: 12.w),
               RoundCheckBox(
                 value: _checkRise[1],
                 onChanged: () {
@@ -200,10 +200,10 @@ class _InvoicePageState extends State<InvoicePage> {
           children: _listHeader
               .map((item) => Container(
                     padding: EdgeInsets.only(
-                      left: Screenutil.length(77),
-                      right: Screenutil.length(32),
-                      top: Screenutil.length(28),
-                      // bottom: Screenutil.length(28),
+                      left: 77.w,
+                      right: 32.w,
+                      top: 28.w,
+                      // bottom: 28.w,
                     ),
                     child: Column(
                       children: [
@@ -213,14 +213,14 @@ class _InvoicePageState extends State<InvoicePage> {
                             Text(
                               item['title'],
                               style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff333333),
                               ),
                             ),
                             item['rightWidget']
                           ],
                         ),
-                        SizedBox(height: Screenutil.length(28)),
+                        SizedBox(height: 28.w),
                         Divider(height: 1),
                       ],
                     ),
@@ -235,7 +235,7 @@ class _InvoicePageState extends State<InvoicePage> {
       appBar: _appBar(),
       body: SingleChildScrollView(
         child: Container(
-          height: Screenutil.length(1334),
+          height: 1334.w,
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
@@ -251,9 +251,9 @@ class _InvoicePageState extends State<InvoicePage> {
                     children: [InvoiceInput(isEnterprise: isEnterprise)],
                   ),
                 ),
-                SizedBox(height: Screenutil.length(66)),
+                SizedBox(height: 66.w),
                 _containerInvoiceDetailCheck(),
-                SizedBox(height: Screenutil.length(92)),
+                SizedBox(height: 92.w),
                 _containerSubmit(),
               ],
             ),

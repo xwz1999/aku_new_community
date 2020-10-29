@@ -71,7 +71,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
 
   Widget _questionCard(String title, List<Map<String, dynamic>> optionList) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(64)),
+      margin: EdgeInsets.only(top:64.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -84,9 +84,9 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: Screenutil.length(64)),
+            margin: EdgeInsets.only(top: 64.w),
             child: Wrap(
-              runSpacing: Screenutil.length(48),
+              runSpacing: 48.w,
               children: optionList
                   .map((item) => InkWell(
                         onTap: () {
@@ -95,7 +95,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: Screenutil.length(15)),
+                          margin: EdgeInsets.only(left:15.w),
                           width: MediaQuery.of(context).size.width / 2.35,
                           child: Row(
                             children: [
@@ -106,11 +106,11 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                                 color: item['isCheck']
                                     ? BaseStyle.colorffc40c
                                     : BaseStyle.color979797,
-                                size: Screenutil.length(32),
+                                size: 32.w,
                               ),
                               Container(
                                 margin: EdgeInsets.only(
-                                    left: Screenutil.length(16)),
+                                    left: 16.w),
                                 width: MediaQuery.of(context).size.width / 3.2,
                                 child: Text(
                                   item['title'],
@@ -139,9 +139,9 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
   Widget _containerTextField() {
     return Container(
       padding: EdgeInsets.only(
-          top: Screenutil.length(24),
-          left: Screenutil.length(24),
-          right: Screenutil.length(32)),
+          top: 24.w,
+          left: 24.w,
+          right: 32.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(6)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -158,8 +158,8 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0,
+            bottom: 0,
           ),
           hintText: hintText,
           border: InputBorder.none, //去掉输入框的下滑线
@@ -180,7 +180,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
       bottom: 0,
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(98),
+        height: 98.w,
         width: MediaQuery.of(context).size.width,
         child: InkWell(
           onTap: () {},
@@ -188,7 +188,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
             alignment: Alignment.center,
             color: BaseStyle.colorffc40c,
             padding: EdgeInsets.symmetric(
-              vertical: Screenutil.length(26.5),
+              vertical: 26.5.w,
             ),
             child: Text(
               '确认提交',
@@ -219,25 +219,25 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
           children: [
             Container(
               padding: EdgeInsets.only(
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
-                bottom: Screenutil.length(155),
+                left: 32.w,
+                right: 32.w,
+                bottom: 155.w,
               ),
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(24)),
+                    margin: EdgeInsets.only(top: 24.w),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderRadius: BorderRadius.all(Radius.circular(4.w)),
                       child: CachedImageWrapper(
                         url: widget.bundle.getMap('details')['imagePath'],
-                        width: Screenutil.length(686),
-                        height: Screenutil.length(228),
+                        width: 686.w,
+                        height: 228.w,
                       ),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(40)),
+                    margin: EdgeInsets.only(top: 40.w),
                     alignment: Alignment.center,
                     child: Text(
                       widget.bundle.getMap('details')['title'],
@@ -249,13 +249,13 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(35)),
+                    margin: EdgeInsets.only(top: 35.w),
                     alignment: Alignment.center,
-                    width: Screenutil.length(672),
+                    width: 672.w,
                     child: Html(data: htmlData),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(129)),
+                    margin: EdgeInsets.only(top: 129.w),
                     child: Column(
                       children: _listQuestion
                           .map((item) => _questionCard(
@@ -267,8 +267,8 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        top: Screenutil.length(80),
-                        bottom: Screenutil.length(24)),
+                        top: 80.w,
+                        bottom: 24.w),
                     child: Text(
                       '您的觉得我们需要改进的地方',
                       style: TextStyle(

@@ -47,16 +47,16 @@ class _CommonSelectState extends State<CommonSelect> {
                       title: Text(
                         "证件类型",
                         style: TextStyle(
-                          fontSize: Screenutil.size(32),
+                          fontSize: 32.sp,
                           color: Color(0xff333333),
                         ),
                       ),
                       confirmTextStyle: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xffffc40c),
                       ),
                       cancelTextStyle: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333),
                       ),
                       onConfirm: (Picker picker, List value) {
@@ -84,7 +84,7 @@ class _CommonSelectState extends State<CommonSelect> {
               Icon(
                 AntDesign.right,
                 color: BaseStyle.color999999,
-                size: Screenutil.length(32),
+                size: 32.w,
               ),
             ],
           ),

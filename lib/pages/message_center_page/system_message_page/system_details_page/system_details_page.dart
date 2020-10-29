@@ -23,9 +23,9 @@ class SystemDetailsPage extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(
-                top: Screenutil.length(42),
-                left: Screenutil.length(34),
-                right: Screenutil.length(44),
+                top: 42.w,
+                left: 34.w,
+                right: 44.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,23 +34,23 @@ class SystemDetailsPage extends StatelessWidget {
                     '系统通知',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: Screenutil.size(32),
+                      fontSize: 32.sp,
                       color: Color(0xff333333),
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(5)),
+                  SizedBox(height: 5.w),
                   Text(
                     bundle.getMap('detailsMap')['type'],
                     style: TextStyle(
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                       color: Color(0xff333333),
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(110)),
+                  SizedBox(height: 110.w),
                   Text(
                     bundle.getMap('detailsMap')['content'],
                     style: TextStyle(
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                       color: Color(0xff333333),
                     ),
                   ),

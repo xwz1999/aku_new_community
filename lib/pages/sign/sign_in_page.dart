@@ -31,7 +31,7 @@ class _SignInPageState extends State<SignInPage> {
       elevation: 0,
       backgroundColor: Colors.white,
       // leading: IconButton(
-      //   icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+      //   icon: Icon(AntDesign.left, size: 40.sp),
       //   onPressed: () {
       //     Navigator.pop(context);
       //   },
@@ -42,8 +42,8 @@ class _SignInPageState extends State<SignInPage> {
   Container _containerTextField(String imagePath,
       TextEditingController controller, String hintText, bool isCode) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: Screenutil.length(29)),
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(82)),
+      padding: EdgeInsets.symmetric(horizontal: 29.w),
+      margin: EdgeInsets.symmetric(horizontal: 82.w),
       decoration: BoxDecoration(
         color: Color(0xfffff4d7),
         borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -53,10 +53,10 @@ class _SignInPageState extends State<SignInPage> {
         children: [
           Image.asset(
             imagePath,
-            height: Screenutil.length(50),
-            width: Screenutil.length(50),
+            height: 50.w,
+            width: 50.w,
           ),
-          SizedBox(width: Screenutil.length(24)),
+          SizedBox(width: 24.w),
           Expanded(
             child: TextFormField(
               obscureText: false,
@@ -72,7 +72,7 @@ class _SignInPageState extends State<SignInPage> {
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.symmetric(
-                  vertical: Screenutil.length(25),
+                  vertical: 25.w,
                 ),
                 hintText: hintText,
                 border: InputBorder.none, //去掉输入框的下滑线
@@ -92,12 +92,12 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     SizedBox(
                       width: 2,
-                      height: Screenutil.length(29),
+                      height: 29.w,
                       child: DecoratedBox(
                         decoration: BoxDecoration(color: Color(0xffd8d8d8)),
                       ),
                     ),
-                    SizedBox(width: Screenutil.length(16)),
+                    SizedBox(width: 16.w),
                     InkWell(
                       child: Text(
                         _verifyStr,
@@ -122,8 +122,8 @@ class _SignInPageState extends State<SignInPage> {
       alignment: Alignment.center,
       child: Image.asset(
         AssetsImage.LOGO,
-        height: Screenutil.length(184),
-        width: Screenutil.length(266),
+        height: 184.w,
+        width: 266.w,
       ),
     );
   }
@@ -173,11 +173,11 @@ class _SignInPageState extends State<SignInPage> {
       },
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(89),
-        width: Screenutil.length(586),
+        height: 89.w,
+        width: 586.w,
         padding: EdgeInsets.only(
-            top: Screenutil.length(25), bottom: Screenutil.length(24)),
-        margin: EdgeInsets.symmetric(horizontal: Screenutil.length(82)),
+            top: 25.w, bottom: 24.w),
+        margin: EdgeInsets.symmetric(horizontal: 82.w),
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
           borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -213,10 +213,10 @@ class _SignInPageState extends State<SignInPage> {
                   shrinkWrap: true,
                   children: [
                     SizedBox(
-                      height: Screenutil.length(153),
+                      height: 153.w,
                     ),
                     _containerImage(),
-                    SizedBox(height: Screenutil.length(16)),
+                    SizedBox(height: 16.w),
                     Container(
                       alignment: Alignment.center,
                       child: Text(
@@ -227,13 +227,13 @@ class _SignInPageState extends State<SignInPage> {
                             color: BaseStyle.color333333),
                       ),
                     ),
-                    SizedBox(height: Screenutil.length(89)),
+                    SizedBox(height: 89.w),
                     _containerTextField(
                         AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
-                    SizedBox(height: Screenutil.length(27)),
+                    SizedBox(height: 27.w),
                     _containerTextField(
                         AssetsImage.CODELOGO, _code, '请输入验证码', true),
-                    SizedBox(height: Screenutil.length(59)),
+                    SizedBox(height: 59.w),
                     _inkWellLogin(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

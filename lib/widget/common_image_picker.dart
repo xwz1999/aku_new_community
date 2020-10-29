@@ -99,8 +99,8 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                     child: Image.asset(
                       AssetsImage.IMAGEADD,
-                      width: Screenutil.length(218),
-                      height: Screenutil.length(218),
+                      width: 218.w,
+                      height: 218.w,
                     ),
                   ),
                 )
@@ -126,7 +126,7 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
                         child: Icon(
                           AntDesign.closecircle,
                           color: BaseStyle.colorffc40c,
-                          size: Screenutil.size(36),
+                          size: 36.sp,
                         ),
                       ),
                     ),

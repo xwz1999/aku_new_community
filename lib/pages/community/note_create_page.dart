@@ -34,19 +34,19 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
       title: Text(
         '社区',
         style: TextStyle(
-          fontSize: Screenutil.size(36),
+          fontSize: 36.sp,
           color: Color(0xff333333),
         ),
       ),
       leading: InkWell(
         onTap: () => Navigator.pop(context),
         child: Container(
-          padding: EdgeInsets.only(left: Screenutil.length(32)),
+          padding: EdgeInsets.only(left: 32.w),
           alignment: Alignment.center,
           child: Text(
             '取消',
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -55,12 +55,12 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
       actions: [
         Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.only(right: Screenutil.length(32)),
+          padding: EdgeInsets.only(right: 32.w),
           child: InkWell(
             onTap: () {},
             child: Container(
-              height: Screenutil.length(64),
-              width: Screenutil.length(116),
+              height: 64.w,
+              width: 116.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Color(0xffffd000),
@@ -69,7 +69,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
               child: Text(
                 '发表',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff030303),
                 ),
               ),
@@ -85,7 +85,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
       child: TextFormField(
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
-          fontSize: Screenutil.size(34),
+          fontSize: 34.sp,
         ),
         controller: _noteContent,
         onChanged: (String value) {},
@@ -93,8 +93,8 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: hintText,
           border: InputBorder.none, //去掉输入框的下滑线
@@ -102,7 +102,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
           filled: true,
           hintStyle: TextStyle(
             color: Color(0xff999999),
-            fontSize: Screenutil.size(34),
+            fontSize: 34.sp,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -114,8 +114,8 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: Screenutil.length(196),
-        height: Screenutil.length(196),
+        width: 196.w,
+        height: 196.w,
         decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
@@ -134,7 +134,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
         });
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(30)),
+        padding: EdgeInsets.symmetric(vertical: 30.w),
         decoration: BoxDecoration(
           border: Border(
             top: BorderSide(color: Color(0xffd8d8d8), width: 1),
@@ -150,13 +150,13 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
                 Icon(
                   AntDesign.message1,
                   color: Color(0xff333333),
-                  size: Screenutil.size(28),
+                  size: 28.sp,
                 ),
-                SizedBox(width: Screenutil.length(10)),
+                SizedBox(width: 10.w),
                 Text(
                   '不可评论',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xff333333),
                   ),
                 ),
@@ -166,9 +166,9 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
                 ? Icon(
                     AntDesign.check,
                     color: Color(0xffffd003),
-                    size: Screenutil.size(40),
+                    size: 40.sp,
                   )
-                : SizedBox(height: Screenutil.size(40)),
+                : SizedBox(height: 40.sp),
           ],
         ),
       ),
@@ -177,20 +177,20 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
 
   Wrap _wrapThemeList() {
     return Wrap(
-        spacing: Screenutil.length(15),
-        runSpacing: Screenutil.length(20),
+        spacing: 15.w,
+        runSpacing: 20.w,
         children: _themeList
             .asMap()
             .keys
             .map((index) => index == 0
                 ? Container(
-                  padding: EdgeInsets.only(top: Screenutil.length(10)),
-                  width: Screenutil.length(156),
+                  padding: EdgeInsets.only(top: 10.w),
+                  width: 156.w,
                   alignment: Alignment.centerLeft,
                   child: Text(
                     _themeList[index]['title'],
                     style: TextStyle(
-                      fontSize: Screenutil.size(34),
+                      fontSize: 34.sp,
                       color: Color(0xff333333),
                     ),
                   ),
@@ -216,13 +216,13 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
                               width: 0.5),
                           borderRadius: BorderRadius.all(Radius.circular(36))),
                       padding: EdgeInsets.symmetric(
-                        horizontal: Screenutil.length(29),
-                        vertical: Screenutil.length(13),
+                        horizontal: 29.w,
+                        vertical: 13.w,
                       ),
                       child: Text(
                         _themeList[index]['title'],
                         style: TextStyle(
-                          fontSize: Screenutil.size(34),
+                          fontSize: 34.sp,
                           color: _themeList[index]['isSelect']
                               ? Color(0xff333333)
                               : Color(0xff999999),
@@ -251,18 +251,18 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
             },
             child: Container(
               padding: EdgeInsets.only(
-                top: Screenutil.length(49),
-                left: Screenutil.length(62),
-                right: Screenutil.length(62),
+                top: 49.w,
+                left: 62.w,
+                right: 62.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _containerTextField(),
                   _containerAddImage(),
-                  SizedBox(height: Screenutil.length(202)),
+                  SizedBox(height: 202.w),
                   _inkWellSelect(),
-                  SizedBox(height: Screenutil.length(28)),
+                  SizedBox(height: 28.w),
                   _wrapThemeList(),
                 ],
               ),

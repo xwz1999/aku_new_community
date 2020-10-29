@@ -17,7 +17,7 @@ class _HouseInfoState extends State<HouseInfo> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(
-          bottom: Screenutil.length(32),
+          bottom: 32.w,
         ),
         decoration: BoxDecoration(
           border: Border(
@@ -29,10 +29,10 @@ class _HouseInfoState extends State<HouseInfo> {
           children: [
             Image.asset(
               AssetsImage.HOUSEATTESTATION,
-              height: Screenutil.length(48),
-              width: Screenutil.length(48),
+              height: 48.w,
+              width: 48.w,
             ),
-            SizedBox(width: Screenutil.length(20)),
+            SizedBox(width: 20.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,7 +43,7 @@ class _HouseInfoState extends State<HouseInfo> {
                     color: BaseStyle.color474747,
                   ),
                 ),
-                SizedBox(height: Screenutil.length(10)),
+                SizedBox(height: 10.w),
                 Text(
                   widget.subtitle,
                   style: TextStyle(

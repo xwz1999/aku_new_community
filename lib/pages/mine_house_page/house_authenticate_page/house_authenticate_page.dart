@@ -32,11 +32,11 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
     return InkWell(
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(19),
-          bottom: Screenutil.length(21),
+          top: 19.w,
+          bottom: 21.w,
         ),
         alignment: Alignment.center,
-        width: Screenutil.length(686),
+        width: 686.w,
         decoration: BoxDecoration(
           color: Color(0xffffd000),
           borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -51,7 +51,7 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
           '保存',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.length(32),
+            fontSize: 32.w,
             color: Color(0xff333333),
           ),
         ),
@@ -78,9 +78,9 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
             },
             child: Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(32),
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
+                top: 32.w,
+                left: 32.w,
+                right: 32.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,8 +90,8 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
                       _inputList.length,
                       (index) => Container(
                         padding: EdgeInsets.only(
-                          top: Screenutil.length(23),
-                          bottom: Screenutil.length(24),
+                          top: 23.w,
+                          bottom: 24.w,
                         ),
                         decoration: BoxDecoration(
                           border: Border(
@@ -104,10 +104,10 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
                             Text(
                               _inputList[index]['title'],
                               style: TextStyle(
-                                  fontSize: Screenutil.size(28),
+                                  fontSize: 28.sp,
                                   color: Color(0xff333333)),
                             ),
-                            SizedBox(height: Screenutil.length(25)),
+                            SizedBox(height: 25.w),
                             CommonInput(
                               hintText: _inputList[index]['hintText'],
                               inputController: _inputList[index]
@@ -119,7 +119,7 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(89)),
+                  SizedBox(height: 89.w),
                   _inkWellSave(),
                 ],
               ),

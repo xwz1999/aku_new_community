@@ -74,9 +74,9 @@ class _AlarmPageState extends State<AlarmPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  margin: EdgeInsets.only(top: Screenutil.length(32)),
+                  margin: EdgeInsets.only(top: 32.w),
                   width: 686.w,
-                  height: Screenutil.length(148),
+                  height: 148.w,
                   decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(16),
@@ -88,41 +88,41 @@ class _AlarmPageState extends State<AlarmPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: Screenutil.length(24)),
+                      SizedBox(height: 24.w),
                       Container(
                         margin: EdgeInsets.only(
-                            top: Screenutil.length(24),
-                            left: Screenutil.length(32)),
+                            top: 24.w,
+                            left: 32.w),
                         child: Text(
                           '当前位置(仅供参考)',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Color(0xff333333),
-                              fontSize: Screenutil.size(28)),
+                              fontSize: 28.sp),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                            top: Screenutil.length(20),
-                            left: Screenutil.length(32)),
+                            top: 20.w,
+                            left: 32.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
                               Entypo.location_pin,
                               color: Color(0xff666666),
-                              size: Screenutil.size(29),
+                              size: 29.sp,
                             ),
                             Container(
                               margin:
-                                  EdgeInsets.only(left: Screenutil.length(5)),
+                                  EdgeInsets.only(left: 5.w),
                               child: Text(
                                 (_location == null)
                                     ? '加载中……'
                                     : _location.aoiName,
                                 style: TextStyle(
                                   color: Color(0xff666666),
-                                  fontSize: Screenutil.size(28),
+                                  fontSize: 28.sp,
                                 ),
                               ),
                             ),
@@ -137,11 +137,11 @@ class _AlarmPageState extends State<AlarmPage> {
                   Spacer(),
                   Container(
                     alignment: Alignment.center,
-                    width: Screenutil.length(66),
-                    height: Screenutil.length(66),
+                    width: 66.w,
+                    height: 66.w,
                     decoration: BoxDecoration(
                         borderRadius:
-                            BorderRadius.circular(Screenutil.length(66)),
+                            BorderRadius.circular(66.w),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Color(0x1F000000),
@@ -154,7 +154,7 @@ class _AlarmPageState extends State<AlarmPage> {
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
                           borderRadius:
-                              BorderRadius.circular(Screenutil.length(66))),
+                              BorderRadius.circular(66.w)),
                       color: Color(0xFFFFFFFF),
                       onPressed: () {
                         _amapController?.setCenterCoordinate(
@@ -165,19 +165,19 @@ class _AlarmPageState extends State<AlarmPage> {
                       },
                       child: Icon(
                         Icons.location_searching,
-                        size: Screenutil.length(44),
+                        size: 44.w,
                       ),
                     ),
                   ),
-                  SizedBox(width: Screenutil.length(34)),
+                  SizedBox(width: 34.w),
                 ],
               ),
               SizedBox(
-                height: Screenutil.length(29),
+                height: 29.w,
               ),
               Container(
                 width: double.infinity,
-                height: Screenutil.length(271),
+                height: 271.w,
                 alignment: Alignment.center,
                 decoration:
                     BoxDecoration(color: Color(0xFFFFFFFF).withOpacity(0.9)),
@@ -186,19 +186,19 @@ class _AlarmPageState extends State<AlarmPage> {
                   alignment: Alignment.topCenter,
                   children: [
                     Positioned(
-                      bottom: Screenutil.length(173),
+                      bottom: 173.w,
                       child: Container(
-                        padding: EdgeInsets.all(Screenutil.length(12)),
-                        height: Screenutil.length(196),
-                        width: Screenutil.length(196),
+                        padding: EdgeInsets.all(12.w),
+                        height: 196.w,
+                        width: 196.w,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(
-                              Radius.circular(Screenutil.length(196))),
+                              Radius.circular(196.w)),
                         ),
                         child: Container(
-                          height: Screenutil.length(172),
-                          width: Screenutil.length(172),
+                          height: 172.w,
+                          width: 172.w,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.bottomLeft,
@@ -206,20 +206,20 @@ class _AlarmPageState extends State<AlarmPage> {
                               colors: [Color(0xffef0909), Color(0xffff8880)],
                             ),
                             borderRadius: BorderRadius.all(
-                                Radius.circular(Screenutil.length(172))),
+                                Radius.circular(172.w)),
                             boxShadow: <BoxShadow>[
                               BoxShadow(
                                 color: Color(0xfffd7770).withOpacity(0.33),
-                                offset: Offset(0, Screenutil.length(10)),
-                                blurRadius: Screenutil.length(20),
-                                spreadRadius: Screenutil.length(4),
+                                offset: Offset(0, 10.w),
+                                blurRadius: 20.w,
+                                spreadRadius: 4.w,
                               )
                             ],
                           ),
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
-                                    Screenutil.length(172))),
+                                    172.w)),
                             onPressed: () {
                               setState(() {
                                 _makephonenum('tel:110');
@@ -228,7 +228,7 @@ class _AlarmPageState extends State<AlarmPage> {
                             child: Icon(
                               Feather.phone_call,
                               color: Colors.white,
-                              size: Screenutil.size(87),
+                              size: 87.sp,
                             ),
                           ),
                         ),
@@ -236,12 +236,12 @@ class _AlarmPageState extends State<AlarmPage> {
                     ),
                     Column(
                       children: [
-                        SizedBox(height: Screenutil.length(146)),
+                        SizedBox(height: 146.w),
                         Text(
                           '谎报警情，依法追责',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: Screenutil.size(32),
+                            fontSize: 32.sp,
                             color: Color(0xffe02020),
                           ),
                         ),
@@ -249,7 +249,7 @@ class _AlarmPageState extends State<AlarmPage> {
                         Text(
                           '谎报警情将可能被处以五日以上十日以下拘留',
                           style: TextStyle(
-                            fontSize: Screenutil.size(24),
+                            fontSize: 24.sp,
                             color: Color(0xff999999),
                           ),
                         ),

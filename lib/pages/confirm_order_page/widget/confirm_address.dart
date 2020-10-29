@@ -15,11 +15,11 @@ class ConfirmAddress extends StatefulWidget {
 class _ConfirmAddressState extends State<ConfirmAddress> {
   Container _containerImage() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: Screenutil.length(12)),
+      padding: EdgeInsets.symmetric(vertical: 12.w),
       child: Image.asset(
         AssetsImage.LOCATION,
-        height: Screenutil.length(54),
-        width: Screenutil.length(54),
+        height: 54.w,
+        width: 54.w,
       ),
     );
   }
@@ -34,27 +34,27 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
               Text(
                 '周玲慧',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
-              SizedBox(width: Screenutil.length(20)),
+              SizedBox(width: 20.w),
               Text(
                 '18868945727',
                 style: TextStyle(
-                  fontSize: Screenutil.size(24),
+                  fontSize: 24.sp,
                   color: Color(0xff999999),
                 ),
               ),
             ],
           ),
-          SizedBox(height: Screenutil.length(6)),
+          SizedBox(height: 6.w),
           Text(
             '浙江省 宁波市 江北区 工程学院阿库旅游f6',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xff999999),
             ),
           ),
@@ -65,11 +65,11 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
   Positioned _positionedIcon() {
     return Positioned(
-      bottom: Screenutil.length(58),
+      bottom: 58.w,
       right: 0,
       child: Icon(
         AntDesign.right,
-        size: Screenutil.size(34),
+        size: 34.sp,
         color: Color(0xff999999),
       ),
     );
@@ -84,8 +84,8 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
               ..putMap('commentMap', {'title': '我的地址', 'isActions': true}));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
-        padding: EdgeInsets.symmetric(horizontal: Screenutil.length(18)),
+        margin: EdgeInsets.symmetric(horizontal: 32.w),
+        padding: EdgeInsets.symmetric(horizontal: 18.w),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -94,14 +94,14 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(18),
-                vertical: Screenutil.length(32),
+                horizontal: 18.w,
+                vertical: 32.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _containerImage(),
-                  SizedBox(width: Screenutil.length(18)),
+                  SizedBox(width: 18.w),
                   _containerContent(),
                 ],
               ),

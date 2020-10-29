@@ -46,11 +46,11 @@ class _OrderPageState extends State<OrderPage>
           labelColor: BaseStyle.colorff8500,
           unselectedLabelColor: BaseStyle.color333333,
           labelStyle: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.w600,
           ),
           unselectedLabelStyle: TextStyle(
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.w500,
           ),
           tabs: List.generate(
@@ -68,11 +68,11 @@ class _OrderPageState extends State<OrderPage>
     return InkWell(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.only(right: Screenutil.length(32)),
+        margin: EdgeInsets.only(right: 32.w),
         padding: EdgeInsets.only(
-            left: Screenutil.length(40),
-            top: Screenutil.length(20),
-            bottom: Screenutil.length(20)),
+            left: 40.w,
+            top: 20.w,
+            bottom: 20.w),
         decoration: BoxDecoration(
           color: BaseStyle.colorf3f3f3,
           borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -109,7 +109,7 @@ class _OrderPageState extends State<OrderPage>
       backgroundColor: Color(0xffffffff),
       leading: InkWell(
         onTap: () => Navigator.pop(context),
-        child: Icon(AntDesign.left, size: Screenutil.size(40)),
+        child: Icon(AntDesign.left, size: 40.sp),
       ),
       centerTitle: false,
       title: _inkWellSearch(),

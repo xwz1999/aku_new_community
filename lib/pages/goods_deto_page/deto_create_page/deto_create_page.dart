@@ -32,8 +32,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   Widget _houseAddress(String title, subtitle) {
     return Container(
-      padding: EdgeInsets.only(bottom: Screenutil.length(24)),
-      margin: EdgeInsets.only(bottom: Screenutil.length(40)),
+      padding: EdgeInsets.only(bottom: 24.w),
+      margin: EdgeInsets.only(bottom: 40.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -42,11 +42,11 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: Screenutil.length(32)),
+            margin: EdgeInsets.only(bottom: 32.w),
             child: Text(
               '出户房屋',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff333333),
               ),
             ),
@@ -56,11 +56,11 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(right: Screenutil.length(42)),
+                margin: EdgeInsets.only(right: 42.w),
                 child: Image.asset(
                   AssetsImage.HOUSEATTESTATION,
-                  height: Screenutil.length(59),
-                  width: Screenutil.length(59),
+                  height: 59.w,
+                  width: 59.w,
                 ),
               ),
               Column(
@@ -70,16 +70,16 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                     title,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: Screenutil.size(32),
+                      fontSize: 32.sp,
                       color: Color(0xff333333),
                     ),
                   ),
-                  SizedBox(height: Screenutil.length(10)),
+                  SizedBox(height: 10.w),
                   Text(
                     subtitle,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: Screenutil.size(32),
+                      fontSize: 32.sp,
                       color: Color(0xff333333),
                     ),
                   )
@@ -95,7 +95,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   Widget _inkWellCheckbox() {
     return InkWell(
       child: Container(
-        padding: EdgeInsets.only(bottom: Screenutil.length(24)),
+        padding: EdgeInsets.only(bottom: 24.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -112,7 +112,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
               child: Text(
                 '是否需要物业提供搬家公司联系方式',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -125,8 +125,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   Widget _checkCard(String title, List<Map<String, dynamic>> list) {
     return Container(
-      height: Screenutil.length(96),
-      padding: EdgeInsets.symmetric(vertical: Screenutil.length(28)),
+      height: 96.w,
+      padding: EdgeInsets.symmetric(vertical: 28.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -134,11 +134,11 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(30)),
+            margin: EdgeInsets.only(right: 30.w),
             child: Text(
               title,
               style: TextStyle(
-                  fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                  fontSize: 28.sp, color: Color(0xff333333)),
             ),
           ),
           CommonRadio(
@@ -172,9 +172,9 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           children: [
             Container(
               padding: EdgeInsets.only(
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
-                top: Screenutil.length(32),
+                left: 32.w,
+                right: 32.w,
+                top: 32.w,
               ),
               child: ListView(
                 children: [
@@ -186,12 +186,12 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   _inkWellCheckbox(),
                   Container(
                     margin: EdgeInsets.only(
-                        top: Screenutil.length(54),
-                        bottom: Screenutil.length(24)),
+                        top: 54.w,
+                        bottom: 24.w),
                     child: Text(
                       '添加图片信息(0/9)',
                       style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333),
                       ),
                     ),

@@ -22,9 +22,9 @@ class _HomeTagBarState extends State<HomeTagBar> {
     return Container(
       color: widget.isShowTitle ? Colors.transparent : Colors.white,
       margin: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(32),
+        horizontal: 32.w,
       ),
-      padding: EdgeInsets.all(Screenutil.length(24)),
+      padding: EdgeInsets.all(24.w),
       child: Stack(
         children: <Widget>[
           Row(
@@ -34,11 +34,11 @@ class _HomeTagBarState extends State<HomeTagBar> {
                 children: [
                   widget.isShowImage
                       ? Container(
-                          margin: EdgeInsets.only(right: Screenutil.length(24)),
+                          margin: EdgeInsets.only(right: 24.w),
                           child: Image.asset(
                             AssetsImage.NOTIFICATION,
-                            height: Screenutil.length(38),
-                            width: Screenutil.length(38),
+                            height: 38.w,
+                            width: 38.w,
                           ),
                         )
                       : SizedBox(),
@@ -46,8 +46,8 @@ class _HomeTagBarState extends State<HomeTagBar> {
                     widget.title,
                     style: TextStyle(
                         fontSize: widget.isShowImage
-                            ? Screenutil.size(28)
-                            : Screenutil.size(32),
+                            ? 28.sp
+                            : 32.sp,
                         fontWeight: widget.isShowImage
                             ? FontWeight.normal
                             : FontWeight.w600,
@@ -64,13 +64,13 @@ class _HomeTagBarState extends State<HomeTagBar> {
                     '更多${widget.tag}',
                     style: TextStyle(
                         color: Color(0xff999999),
-                        fontSize: Screenutil.size(20)),
+                        fontSize: 20.sp),
                   ),
-                  SizedBox(width: Screenutil.length(8)),
+                  SizedBox(width: 8.w),
                   Icon(
                     AntDesign.right,
                     color: Color(0xff999999),
-                    size: Screenutil.size(20),
+                    size: 20.sp,
                   ),
                 ]),
               ),
@@ -79,7 +79,7 @@ class _HomeTagBarState extends State<HomeTagBar> {
           widget.isShowImage
               ? SizedBox()
               : Positioned(
-                  top: Screenutil.length(30),
+                  top: 30.w,
                   left: 0,
                   child: Container(
                       decoration: BoxDecoration(
@@ -91,8 +91,8 @@ class _HomeTagBarState extends State<HomeTagBar> {
                               blurRadius: 10.0),
                         ],
                       ),
-                      width: Screenutil.length(126),
-                      height: Screenutil.length(8)),
+                      width: 126.w,
+                      height: 8.w),
                 )
         ],
       ),

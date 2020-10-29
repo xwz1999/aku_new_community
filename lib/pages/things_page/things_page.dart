@@ -139,15 +139,15 @@ class _ThingsPageState extends State<ThingsPage> with TickerProviderStateMixin {
         },
         child: Container(
           alignment: Alignment.center,
-          height: Screenutil.length(98),
-          width: Screenutil.length(750),
-          padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
+          height: 98.w,
+          width: 750.w,
+          padding: EdgeInsets.symmetric(vertical: 26.5.w),
           color: Color(0xffffc40c),
           child: Text(
             '新增',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333),
             ),
           ),

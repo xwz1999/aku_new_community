@@ -78,11 +78,11 @@ class _OwnerManageState extends State<OwnerManage>
         .keys
         .map((index) => Container(
               padding: EdgeInsets.only(
-                top: Screenutil.length(23),
-                bottom: Screenutil.length(24),
+                top: 23.w,
+                bottom: 24.w,
               ),
               margin: EdgeInsets.only(
-                  bottom: Screenutil.length(index == 2 ? 117 : 0)),
+                  bottom:(index == 2 ? 117 : 0).w),
               decoration: BoxDecoration(
                 border: Border(
                     bottom:
@@ -97,7 +97,7 @@ class _OwnerManageState extends State<OwnerManage>
                         fontSize: BaseStyle.fontSize28,
                         color: BaseStyle.color333333),
                   ),
-                  SizedBox(height: Screenutil.length(25)),
+                  SizedBox(height: 25.w),
                   _listWidget[index]['widget'],
                 ],
               ),
@@ -120,9 +120,9 @@ class _OwnerManageState extends State<OwnerManage>
                 },
                 child: Container(
                   margin: EdgeInsets.only(
-                    top: Screenutil.length(32),
-                    left: Screenutil.length(32),
-                    right: Screenutil.length(32),
+                    top: 32.w,
+                    left: 32.w,
+                    right: 32.w,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -138,7 +138,7 @@ class _OwnerManageState extends State<OwnerManage>
                       Column(
                         children: _listView(),
                       ),
-                      SizedBox(height: Screenutil.length(89)),
+                      SizedBox(height: 89.w),
                     ],
                   ),
                 ),

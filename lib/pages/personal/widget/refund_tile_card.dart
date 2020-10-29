@@ -16,7 +16,7 @@ class _RefundTileCardState extends State<RefundTileCard> {
   Container _refundTile(String title, subtitle) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(bottom: Screenutil.length(26)),
+      padding: EdgeInsets.only(bottom: 26.w),
       decoration: BoxDecoration(
         border: Border(
             bottom: BorderSide(color: BaseStyle.coloreeeeee, width: 0.5)),
@@ -31,7 +31,7 @@ class _RefundTileCardState extends State<RefundTileCard> {
               color: BaseStyle.color333333,
             ),
           ),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           Text(
             subtitle,
             style: TextStyle(
@@ -56,9 +56,9 @@ class _RefundTileCardState extends State<RefundTileCard> {
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.only(
-                    top: Screenutil.length(22),
-                    left: Screenutil.length(32),
-                    right: Screenutil.length(32),
+                    top: 22.w,
+                    left: 32.w,
+                    right: 32.w,
                   ),
                   color: Colors.white,
                   child: Stack(
@@ -69,11 +69,11 @@ class _RefundTileCardState extends State<RefundTileCard> {
                       ),
                       item['isRight']
                           ? Positioned(
-                              top: Screenutil.length(45),
+                              top: 45.w,
                               right: 0,
                               child: Icon(
                                 AntDesign.right,
-                                size: Screenutil.size(40),
+                                size: 40.sp,
                                 color: BaseStyle.colord8d8d8,
                               ),
                             )

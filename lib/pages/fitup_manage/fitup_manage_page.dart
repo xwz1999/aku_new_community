@@ -53,11 +53,11 @@ class _FitupManagePageState extends State<FitupManagePage>
                 fontSize: BaseStyle.fontSize28,
               ),
               labelPadding:
-                  EdgeInsets.symmetric(horizontal: Screenutil.length(131.5)),
+                  EdgeInsets.symmetric(horizontal: (131.5).w),
               indicatorColor: Color(0xffffc40c),
               indicatorSize: TabBarIndicatorSize.label,
               indicatorPadding:
-                  EdgeInsets.symmetric(horizontal: Screenutil.length(21)),
+                  EdgeInsets.symmetric(horizontal: 21.w),
               isScrollable: true,
               controller: _controller,
               tabs: List.generate(

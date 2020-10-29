@@ -1,4 +1,3 @@
-import 'package:akuCommunity/model/aku_shop_class_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
@@ -39,7 +38,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
         child: Icon(
           Icons.check_circle,
           color: cartItem.isCheck ? Color(0xffdb0000) : Color(0xff999999),
-          size: Screenutil.length(36),
+          size: 36.w,
         ),
       ),
     );
@@ -47,13 +46,13 @@ class _MarketCartPageState extends State<MarketCartPage> {
 
   Widget _image(String imagePath) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(20)),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(2)),
         child: CachedImageWrapper(
           url: imagePath,
-          width: Screenutil.length(180),
-          height: Screenutil.length(180),
+          width: 180.w,
+          height: 180.w,
         ),
       ),
     );
@@ -66,23 +65,23 @@ class _MarketCartPageState extends State<MarketCartPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: Screenutil.length(394),
+            width: 394.w,
             child: Text(
               content,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: Color(0xff333333),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: Screenutil.length(40)),
+            margin: EdgeInsets.only(top: 40.w),
             child: Text(
               '￥${price}',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xffe60e0e),
               ),
             ),
@@ -235,7 +234,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
         });
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: Screenutil.length(29)),
+        margin: EdgeInsets.symmetric(vertical: 29.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -244,14 +243,14 @@ class _MarketCartPageState extends State<MarketCartPage> {
                   ? Icons.radio_button_checked
                   : Icons.radio_button_unchecked,
               color: model.isAllCheck ? Color(0xffdb0000) : Color(0xff999999),
-              size: Screenutil.length(40),
+              size: 40.w,
             ),
             Container(
-              margin: EdgeInsets.only(left: Screenutil.length(18)),
+              margin: EdgeInsets.only(left: 18.w),
               child: Text(
                 '全选',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -267,11 +266,11 @@ class _MarketCartPageState extends State<MarketCartPage> {
       children: [
         model.allPrice != null
             ? Container(
-                margin: EdgeInsets.only(right: Screenutil.length(10)),
+                margin: EdgeInsets.only(right: 10.w),
                 child: Text(
                   '合计:￥${_allprice.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xffe60e0e),
                   ),
                 ),
@@ -287,13 +286,13 @@ class _MarketCartPageState extends State<MarketCartPage> {
                   : Color(0xffd8d8d8),
               borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
-            width: Screenutil.length(198),
-            margin: EdgeInsets.symmetric(vertical: Screenutil.length(16)),
-            padding: EdgeInsets.symmetric(vertical: Screenutil.length(12)),
+            width: 198.w,
+            margin: EdgeInsets.symmetric(vertical: 16.w),
+            padding: EdgeInsets.symmetric(vertical: 12.w),
             child: Text(
               '结算(${_goodsCount})',
               style: TextStyle(
-                fontSize: Screenutil.size(30),
+                fontSize: 30.sp,
                 color:
                     model.allGoodsCount != 0 ? Color(0xff333333) : Colors.white,
               ),
@@ -308,9 +307,9 @@ class _MarketCartPageState extends State<MarketCartPage> {
     return Consumer<CartProvidde>(builder: (context, model, child) {
       return Container(
         margin: EdgeInsets.only(
-          top: Screenutil.length(20),
-          left: Screenutil.length(32),
-          right: Screenutil.length(32),
+          top: 20.w,
+          left: 32.w,
+          right: 32.w,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -326,7 +325,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                   child: Text(
                     '移至收藏夹',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28), color: Colors.white),
+                        fontSize: 28.sp, color: Colors.white),
                   ),
                   color: renderingMode == SlidableRenderingMode.slide
                       ? Color(0xffffc40c).withOpacity(animation.value)
@@ -351,7 +350,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                   child: Text(
                     '删除',
                     style: TextStyle(
-                        fontSize: Screenutil.size(28), color: Colors.white),
+                        fontSize: 28.sp, color: Colors.white),
                   ),
                   // onTap: () => _showSnackBar(context, 'Delete'),
                 );
@@ -361,9 +360,9 @@ class _MarketCartPageState extends State<MarketCartPage> {
           child: Container(
             color: Colors.white,
             padding: EdgeInsets.only(
-              top: Screenutil.length(30),
-              left: Screenutil.length(15),
-              bottom: Screenutil.length(37),
+              top: 30.w,
+              left: 15.w,
+              bottom: 37.w,
             ),
             child: Stack(
               children: [
@@ -376,7 +375,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                 ),
                 Positioned(
                   bottom: 0,
-                  right: Screenutil.length(16),
+                  right: 16.w,
                   child: CartCount(
                     cartItem: cartItem,
                     // goodsNum: widget.goodsNum,
@@ -404,9 +403,9 @@ class _MarketCartPageState extends State<MarketCartPage> {
             Consumer<CartProvidde>(builder: (context, model, child) {
           return Container(
             color: Colors.white,
-            height: Screenutil.length(98),
+            height: 98.w,
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+            padding: EdgeInsets.symmetric(horizontal: 32.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

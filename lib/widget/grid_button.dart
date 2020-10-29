@@ -184,14 +184,14 @@ class GridButton extends StatelessWidget {
               children: <Widget>[
                 Image.asset(
                   gridList[index]['imagePath'],
-                  height: Screenutil.length(53),
-                  width: Screenutil.length(53),
+                  height: 53.w,
+                  width: 53.w,
                   fit: BoxFit.cover,
                 ),
                 SizedBox(height: 5),
                 Text(
                   gridList[index]['title'],
-                  style: TextStyle(fontSize: Screenutil.size(24)),
+                  style: TextStyle(fontSize: 24.sp),
                 )
               ],
             ),

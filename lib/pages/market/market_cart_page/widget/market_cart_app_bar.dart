@@ -14,7 +14,7 @@ class MarketCartAppBar extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           padding: EdgeInsets.all(0),
-          icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+          icon: Icon(AntDesign.left, size: 40.sp),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -29,12 +29,12 @@ class MarketCartAppBar extends StatelessWidget {
               TextSpan(
                 text: '购物车  ',
                 style: TextStyle(
-                  fontSize: Screenutil.size(38),
+                  fontSize: 38.sp,
                 ),
               ),
               TextSpan(
                 text: '业主尊享，购物更省心',
-                style: TextStyle(fontSize: Screenutil.size(24)),
+                style: TextStyle(fontSize: 24.sp),
               ),
             ],
           ),

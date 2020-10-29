@@ -221,9 +221,9 @@ class _MarketListState extends State<MarketList>
                 ? SliverGoodsGroupCard()
                 : SliverPadding(
                     padding: EdgeInsets.only(
-                      top: Screenutil.length(30),
-                      left: Screenutil.length(32),
-                      right: Screenutil.length(32),
+                      top: 30.w,
+                      left: 32.w,
+                      right: 32.w,
                     ),
                     sliver: _shopList.length == 0
                         ? SliverToBoxAdapter(child: GoodsCardSkeleton())

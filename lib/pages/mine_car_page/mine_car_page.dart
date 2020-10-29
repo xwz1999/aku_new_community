@@ -25,15 +25,15 @@ class _MineCarPageState extends State<MineCarPage> {
   Widget _containerHouseCard(String title, subtitle) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(24),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 24.w,
+        left: 32.w,
+        right: 32.w,
       ),
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(41),
-          bottom: Screenutil.length(41),
-          left: Screenutil.length(27),
+          top: 41.w,
+          bottom: 41.w,
+          left: 27.w,
         ),
         decoration: BoxDecoration(
           border:
@@ -45,25 +45,25 @@ class _MineCarPageState extends State<MineCarPage> {
           children: [
             Image.asset(
               AssetsImage.HOUSEATTESTATION,
-              height: Screenutil.length(48),
-              width: Screenutil.length(48),
+              height: 48.w,
+              width: 48.w,
             ),
-            SizedBox(width: Screenutil.length(20)),
+            SizedBox(width: 20.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: Screenutil.size(32),
+                    fontSize: 32.sp,
                     color: Color(0xff474747),
                   ),
                 ),
-                SizedBox(height: Screenutil.length(10)),
+                SizedBox(height: 10.w),
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: Screenutil.size(32),
+                    fontSize: 32.sp,
                     color: Color(0xff474747),
                   ),
                 )
@@ -91,11 +91,11 @@ class _MineCarPageState extends State<MineCarPage> {
       },
       child: Container(
         padding: EdgeInsets.only(
-          top: Screenutil.length(11),
-          bottom: Screenutil.length(10),
+          top: 11.w,
+          bottom: 10.w,
         ),
         alignment: Alignment.center,
-        width: Screenutil.length(167),
+        width: 167.w,
         decoration: BoxDecoration(
           color: Color(0xffffd000),
           borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -110,7 +110,7 @@ class _MineCarPageState extends State<MineCarPage> {
           '去添加',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: Screenutil.size(32),
+            fontSize: 32.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -120,34 +120,34 @@ class _MineCarPageState extends State<MineCarPage> {
 
   Widget _containerAttestation(String tag) {
     return Container(
-      margin: EdgeInsets.only(top: Screenutil.length(156)),
+      margin: EdgeInsets.only(top: 156.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             AssetsImage.CARHEADER,
-            height: Screenutil.length(240),
-            width: Screenutil.length(130),
+            height: 240.w,
+            width: 130.w,
           ),
-          SizedBox(height: Screenutil.length(24)),
+          SizedBox(height: 24.w),
           Text(
             '马泽鹏',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff474747),
             ),
           ),
-          SizedBox(height: Screenutil.length(8)),
+          SizedBox(height: 8.w),
           Text(
             '尊敬的业主/租客，您还没有添加您的${tag}',
             style: TextStyle(
-              fontSize: Screenutil.size(24),
+              fontSize: 24.sp,
               color: Color(0xff999999),
             ),
           ),
-          SizedBox(height: Screenutil.length(39)),
+          SizedBox(height: 39.w),
           _inkWellCheck(widget.bundle.getMap('carType')['type']),
         ],
       ),
@@ -157,16 +157,16 @@ class _MineCarPageState extends State<MineCarPage> {
   Widget _containerInfoCard(String title, bool isDelete) {
     return Container(
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        top: Screenutil.length(26),
-        right: Screenutil.length(32),
+        left: 32.w,
+        top: 26.w,
+        right: 32.w,
       ),
       child: Container(
         padding: EdgeInsets.only(
-          left: Screenutil.length(40),
-          right: Screenutil.length(26),
-          top: Screenutil.length(26),
-          bottom: Screenutil.length(25),
+          left: 40.w,
+          right: 26.w,
+          top: 26.w,
+          bottom: 25.w,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -179,7 +179,7 @@ class _MineCarPageState extends State<MineCarPage> {
               title,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: Screenutil.size(32),
+                fontSize: 32.sp,
                 color: Color(0xff333333),
               ),
             ),
@@ -188,7 +188,7 @@ class _MineCarPageState extends State<MineCarPage> {
                     child: Text(
                       '移除',
                       style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff999999),
                       ),
                     ),
@@ -207,18 +207,18 @@ class _MineCarPageState extends State<MineCarPage> {
         onTap: () {},
         child: Container(
           padding: EdgeInsets.only(
-            top: Screenutil.length(23),
-            bottom: Screenutil.length(22),
+            top: 23.w,
+            bottom: 22.w,
           ),
           color: Color(0xffffd000),
           alignment: Alignment.center,
-          height: Screenutil.length(85),
+          height: 85.w,
           width: MediaQuery.of(context).size.width,
           child: Text(
             buttonName,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -243,7 +243,7 @@ class _MineCarPageState extends State<MineCarPage> {
             ListView(
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: Screenutil.length(85)),
+                  margin: EdgeInsets.only(bottom: 85.w),
                   child: Column(
                     children: [
                       Column(
@@ -255,7 +255,7 @@ class _MineCarPageState extends State<MineCarPage> {
                             .toList(),
                       ),
                       // Container(
-                      //   margin: EdgeInsets.only(top: Screenutil.length(64)),
+                      //   margin: EdgeInsets.only(top: 64.w),
                       //   child: Column(
                       //     children: _listCart
                       //         .map((item) => _containerInfoCard(

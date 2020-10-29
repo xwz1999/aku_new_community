@@ -96,9 +96,9 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
           Text(
             lookType,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          Icon(AntDesign.right, size: Screenutil.size(40)),
+          Icon(AntDesign.right, size: 40.sp),
         ],
       ),
     );
@@ -107,15 +107,15 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
   Container _containerCard(String status, type, imagePath, content, lookType) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-          top: Screenutil.length(21),
-          bottom: Screenutil.length(14),
-          left: Screenutil.length(30),
-          right: Screenutil.length(20)),
+          top: 21.w,
+          bottom: 14.w,
+          left: 30.w,
+          right: 20.w),
       decoration: BoxDecoration(
         color: Color(0xffffffff),
         borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -130,7 +130,7 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: Screenutil.length(2)),
+            padding: EdgeInsets.only(left: 2.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -141,39 +141,39 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
                       '商城通知',
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: Screenutil.size(32),
+                          fontSize: 32.sp,
                           color: Color(0xff333333)),
                     ),
                     Text(
                       status,
                       style: TextStyle(
-                          fontSize: Screenutil.size(32),
+                          fontSize: 32.sp,
                           color: Color(0xff999999)),
                     ),
                   ],
                 ),
-                SizedBox(height: Screenutil.length(5)),
+                SizedBox(height: 5.w),
                 Text(type,
                     style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333))),
-                SizedBox(height: Screenutil.length(8)),
+                SizedBox(height: 8.w),
                 Row(
                   children: [
                     Image.asset(
                       imagePath,
-                      height: Screenutil.length(120),
-                      width: Screenutil.length(120),
+                      height: 120.w,
+                      width: 120.w,
                     ),
-                    SizedBox(width: Screenutil.length(32)),
+                    SizedBox(width: 32.w),
                     Container(
-                      width: Screenutil.length(439),
+                      width: 439.w,
                       child: Text(
                         content,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontSize: Screenutil.size(28),
+                            fontSize: 28.sp,
                             color: Color(0xff999999)),
                       ),
                     ),
@@ -182,7 +182,7 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
               ],
             ),
           ),
-          SizedBox(height: Screenutil.length(30)),
+          SizedBox(height: 30.w),
           Divider(),
           _inkWellLook(type, content, lookType),
         ],

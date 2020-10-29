@@ -40,15 +40,15 @@ class PropertyActivityCard extends StatelessWidget {
   ];
 
   TextStyle _textStyleTitle() {
-    return TextStyle(fontSize: Screenutil.size(28), color: Color(0xff4a4b51));
+    return TextStyle(fontSize: 28.sp, color: Color(0xff4a4b51));
   }
 
   TextStyle _textStyleTag() {
-    return TextStyle(fontSize: Screenutil.size(24), color: Color(0xff999999));
+    return TextStyle(fontSize: 24.sp, color: Color(0xff999999));
   }
 
   TextStyle _textStyleSubtitle() {
-    return TextStyle(fontSize: Screenutil.size(24), color: Color(0xff4a4b51));
+    return TextStyle(fontSize: 24.sp, color: Color(0xff4a4b51));
   }
 
   Container _activityCard(String imagePath, title, subtitleFirst,
@@ -59,28 +59,28 @@ class PropertyActivityCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       margin: EdgeInsets.only(
-        top: index == 0 ? 0 : Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: index == 0 ? 0 : 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-          top: Screenutil.length(12),
-          left: Screenutil.length(10),
-          right: Screenutil.length(22),
-          bottom: Screenutil.length(20)),
+          top: 12.w,
+          left: 10.w,
+          right: 22.w,
+          bottom: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Container(
-                margin: EdgeInsets.only(right: Screenutil.length(20)),
+                margin: EdgeInsets.only(right: 20.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                   child: CachedImageWrapper(
                     url: imagePath,
-                    width: Screenutil.length(160),
-                    height: Screenutil.length(120),
+                    width: 160.w,
+                    height: 120.w,
                   ),
                 ),
               ),
@@ -88,14 +88,14 @@ class PropertyActivityCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: Screenutil.length(6)),
+                    margin: EdgeInsets.only(bottom: 6.w),
                     child: Text(
                       title,
                       style: _textStyleTitle(),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: Screenutil.length(8)),
+                    margin: EdgeInsets.only(bottom: 8.w),
                     child: RichText(
                       text: TextSpan(
                         text: '地点:',
@@ -121,7 +121,7 @@ class PropertyActivityCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: Screenutil.length(40)),
+          SizedBox(height: 40.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -129,16 +129,16 @@ class PropertyActivityCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: Screenutil.length(80)),
+                    margin: EdgeInsets.only(left: 80.w),
                     child: ImageStack(
                       imageList: images,
-                      imageRadius: Screenutil.size(44),
+                      imageRadius: 44.sp,
                       imageCount: 3,
                       imageBorderWidth: 1,
                       totalCount: 3,
                     ),
                   ),
-                  SizedBox(width: Screenutil.length(26)),
+                  SizedBox(width: 26.w),
                   Text(
                     '${peopleNum}人已参加',
                     style: _textStyleSubtitle(),
@@ -151,10 +151,10 @@ class PropertyActivityCard extends StatelessWidget {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  height: Screenutil.length(44),
-                  width: Screenutil.length(120),
+                  height: 44.w,
+                  width: 120.w,
                   padding: EdgeInsets.symmetric(
-                    vertical: Screenutil.length(7),
+                    vertical: 7.w,
                   ),
                   decoration: BoxDecoration(
                     color: Color(0xffffc40c),

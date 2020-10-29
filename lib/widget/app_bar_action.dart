@@ -85,7 +85,7 @@ class _AppBarActionState extends State<AppBarAction> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: Screenutil.length(32)),
+      margin: EdgeInsets.only(right: 32.w),
       child: InkWell(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -94,11 +94,11 @@ class _AppBarActionState extends State<AppBarAction> {
                 widget.icon,
                 color: Color(0xff333333),
               ),
-              SizedBox(height: Screenutil.length(4)),
+              SizedBox(height: 4.w),
               Text(
                 widget.title,
                 style: TextStyle(
-                  fontSize: Screenutil.size(20),
+                  fontSize: 20.sp,
                   color: Color(0xff333333),
                 ),
               )

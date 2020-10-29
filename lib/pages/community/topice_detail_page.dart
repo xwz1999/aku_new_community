@@ -52,13 +52,13 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
 
   SliverAppBar _sliverAppBar(String imagePath) {
     return SliverAppBar(
-      expandedHeight: Screenutil.length(500),
+      expandedHeight: 500.w,
       pinned: true,
       floating: true,
       elevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -75,14 +75,14 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
 
   Positioned _positionedFloatActionButton(){
     return Positioned(
-      bottom: Screenutil.length(124),
-      right: Screenutil.length(32),
+      bottom: 124.w,
+      right: 32.w,
       child: FloatingActionButton(
       backgroundColor: Color(0xffffd000),
       child: Icon(
         Icons.add,
         color: Colors.white,
-        size: Screenutil.size(40),
+        size: 40.sp,
       ),
       onPressed: noteCreateRouter,
     ));

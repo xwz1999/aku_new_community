@@ -25,11 +25,11 @@ class _CommonUploadImageState extends State<CommonUploadImage> {
               borderRadius: BorderRadius.all(Radius.circular(6)),
               child: Image.asset(
                 widget.imagePath,
-                width: Screenutil.length(328),
-                height: Screenutil.length(180),
+                width: 328.w,
+                height: 180.w,
               ),
             ),
-            SizedBox(height: Screenutil.length(16)),
+            SizedBox(height: 16.w),
             Text(
               widget.title,
               style: TextStyle(

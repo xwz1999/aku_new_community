@@ -105,7 +105,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: Screenutil.length(98)),
+            padding: EdgeInsets.only(bottom: 98.w),
             child: RefreshConfiguration(
               hideFooterWhenNotFull: true,
               child: SmartRefresher(

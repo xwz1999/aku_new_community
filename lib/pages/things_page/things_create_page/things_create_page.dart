@@ -57,10 +57,10 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
         children: [
           Image.asset(
             AssetsImage.HOUSE,
-            height: Screenutil.length(60),
-            width: Screenutil.length(60),
+            height: 60.w,
+            width: 60.w,
           ),
-          SizedBox(width: Screenutil.length(40)),
+          SizedBox(width: 40.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -68,15 +68,15 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
                 '深证华茂悦峰',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: Screenutil.size(34),
+                    fontSize: 34.sp,
                     color: Color(0xff333333)),
               ),
-              SizedBox(width: Screenutil.length(10)),
+              SizedBox(width: 10.w),
               Text(
                 '1幢-1单元-702室',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: Screenutil.size(34),
+                    fontSize: 34.sp,
                     color: Color(0xff333333)),
               )
             ],
@@ -96,10 +96,10 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
         setState(() {});
       },
       child: Container(
-        height: Screenutil.length(72),
-        width: Screenutil.length(176),
+        height: 72.w,
+        width: 176.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(10),
+          vertical: 10.w,
         ),
         decoration: BoxDecoration(
             color: isCheck ? Color(0xfffff4d3) : Color(0xffffffff),
@@ -113,16 +113,16 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
             image != null
                 ? Image.asset(
                     image,
-                    height: Screenutil.length(30),
-                    width: Screenutil.length(30),
+                    height: 30.w,
+                    width: 30.w,
                     color: isCheck ? Color(0xff333333) : Color(0xff979797),
                   )
                 : SizedBox(),
-            SizedBox(width: Screenutil.length(9)),
+            SizedBox(width: 9.w),
             Text(
               title,
               style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: isCheck ? Color(0xff333333) : Color(0xff979797)),
             ),
           ],
@@ -134,9 +134,9 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
   Widget _containerTextField() {
     return Container(
       padding: EdgeInsets.only(
-          top: Screenutil.length(32),
-          left: Screenutil.length(22),
-          right: Screenutil.length(35)),
+          top: 32.w,
+          left: 22.w,
+          right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -144,7 +144,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
       child: TextFormField(
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
-          fontSize: Screenutil.size(28),
+          fontSize: 28.sp,
           fontWeight: FontWeight.w600,
         ),
         controller: _thingsContent,
@@ -153,8 +153,8 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: hintText,
           border: InputBorder.none, //去掉输入框的下滑线
@@ -162,7 +162,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
           filled: true,
           hintStyle: TextStyle(
             color: Color(0xff999999),
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -176,15 +176,15 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
       child: InkWell(
         child: Container(
           alignment: Alignment.center,
-          height: Screenutil.length(98),
-          width: Screenutil.length(750),
-          padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
+          height: 98.w,
+          width: 750.w,
+          padding: EdgeInsets.symmetric(vertical:26.5.w),
           color: Color(0xffffc40c),
           child: Text(
             '确认提交',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333),
             ),
           ),
@@ -196,9 +196,9 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
   Widget _cardList(String title, Widget widget) {
     return Container(
       padding: EdgeInsets.only(
-        left: Screenutil.length(36),
-        right: Screenutil.length(36),
-        top: Screenutil.length(32),
+        left: 36.w,
+        right: 36.w,
+        top: 32.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,11 +206,11 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
           Text(
             title,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(32)),
+          SizedBox(height: 32.w),
           widget,
-          SizedBox(height: Screenutil.length(26)),
+          SizedBox(height: 26.w),
           // index == 0 ? Divider() : SizedBox(),
         ],
       ),
@@ -223,7 +223,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
         children: [
           _inkWellType(_typeList[0]['title'], _typeList[0]['image'],
               _typeList[0]['isCheck'], 0),
-          SizedBox(width: Screenutil.length(80)),
+          SizedBox(width: 80.w),
           _inkWellType(_typeList[1]['title'], _typeList[1]['image'],
               _typeList[1]['isCheck'], 1),
         ],
@@ -246,9 +246,9 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
     //       .keys
     //       .map((index) => Container(
     //             padding: EdgeInsets.only(
-    //               left: Screenutil.length(36),
-    //               right: Screenutil.length(36),
-    //               top: Screenutil.length(32),
+    //               left: 36.w,
+    //               right: 36.w,
+    //               top: 32.w,
     //             ),
     //             child: Column(
     //               crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,12 +256,12 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
     //                 Text(
     //                   _listWidget[index]['title'],
     //                   style: TextStyle(
-    //                       fontSize: Screenutil.size(28),
+    //                       fontSize: 28.sp,
     //                       color: Color(0xff333333)),
     //                 ),
-    //                 SizedBox(height: Screenutil.length(32)),
+    //                 SizedBox(height: 32.w),
     //                 _listWidget[index]['widget'],
-    //                 SizedBox(height: Screenutil.length(26)),
+    //                 SizedBox(height: 26.w),
     //                 index == 0 ? Divider() : SizedBox(),
     //               ],
     //             ),

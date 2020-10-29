@@ -20,14 +20,14 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
           title: Text(
             '实名认证',
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
           content: Text(
             '\n为了小区的安全，需要先进行实名认证',
             style: TextStyle(
-              fontSize: Screenutil.size(28),
+              fontSize: 28.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -36,7 +36,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
               child: Text(
                 '考虑考虑',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -49,7 +49,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                 '前去认证',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -80,7 +80,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
         child: ListView(
           children: [
             Container(
-              margin: EdgeInsets.only(top: Screenutil.length(220)),
+              margin: EdgeInsets.only(top: 220.w),
               child: Column(
                 children: [
                   InkWell(
@@ -89,22 +89,22 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          width: Screenutil.length(400),
-                          height: Screenutil.length(420),
+                          width: 400.w,
+                          height: 420.w,
                           child: Image.asset(
                             'assets/images/open_door.png',
-                            width: Screenutil.length(400),
-                            height: Screenutil.length(420),
+                            width: 400.w,
+                            height: 420.w,
                             fit: BoxFit.fill,
                           ),
                         ),
                         Positioned(
-                          top: Screenutil.length(120),
-                          left: Screenutil.length(137.5),
+                          top: 120.w,
+                          left:137.5.w,
                           child: Image.asset(
                             'assets/images/lock.png',
-                            width: Screenutil.length(125),
-                            height: Screenutil.length(150),
+                            width: 125.w,
+                            height: 150.w,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -112,11 +112,11 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(40)),
+                    margin: EdgeInsets.only(top: 40.w),
                     child: Text(
                       '未检测到相关设备',
                       style: TextStyle(
-                        fontSize: Screenutil.length(44),
+                        fontSize: 44.w,
                         color: Color(0xff999999),
                         fontWeight: FontWeight.w600,
                       ),

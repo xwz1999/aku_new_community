@@ -27,9 +27,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   Widget _house() {
     return Container(
       padding: EdgeInsets.only(
-        left: Screenutil.length(36),
-        right: Screenutil.length(36),
-        top: Screenutil.length(32),
+        left: 36.w,
+        right: 36.w,
+        top: 32.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +37,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           Text(
             '来访房屋',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(32)),
+          SizedBox(height: 32.w),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,10 +49,10 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                   children: [
                     Image.asset(
                       AssetsImage.HOUSE,
-                      height: Screenutil.length(60),
-                      width: Screenutil.length(60),
+                      height: 60.w,
+                      width: 60.w,
                     ),
-                    SizedBox(width: Screenutil.length(40)),
+                    SizedBox(width: 40.w),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -60,15 +60,15 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                           '宁波华茂悦峰',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: Screenutil.size(34),
+                              fontSize: 34.sp,
                               color: Color(0xff333333)),
                         ),
-                        SizedBox(height: Screenutil.length(10)),
+                        SizedBox(height: 10.w),
                         Text(
                           '1幢-1单元-702室',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: Screenutil.size(34),
+                              fontSize: 34.sp,
                               color: Color(0xff333333)),
                         )
                       ],
@@ -78,8 +78,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(
-                    vertical: Screenutil.length(14),
-                    horizontal: Screenutil.length(21),
+                    vertical: 14.w,
+                    horizontal: 21.w,
                   ),
                   decoration: BoxDecoration(
                     color: Color(0xffFEC200),
@@ -89,14 +89,14 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     '邀请客户填写',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333)),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: Screenutil.length(26)),
+          SizedBox(height: 26.w),
           Divider(),
         ],
       ),
@@ -106,12 +106,12 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   Widget _input(String title, hintText, TextEditingController controller) {
     return Container(
       padding: EdgeInsets.only(
-        left: Screenutil.length(36),
-        right: Screenutil.length(36),
-        top: Screenutil.length(32),
-        bottom: Screenutil.length(24),
+        left: 36.w,
+        right: 36.w,
+        top: 32.w,
+        bottom: 24.w,
       ),
-      margin: EdgeInsets.only(bottom: Screenutil.length(60)),
+      margin: EdgeInsets.only(bottom: 60.w),
       decoration: BoxDecoration(
         border:
             Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
@@ -122,9 +122,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           Text(
             title,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           CommonInput(inputController: controller, hintText: hintText)
         ],
       ),
@@ -141,10 +141,10 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         setState(() {});
       },
       child: Container(
-        height: Screenutil.length(72),
-        width: Screenutil.length(176),
+        height: 72.w,
+        width: 176.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(13),
+          vertical: 13.w,
         ),
         decoration: BoxDecoration(
             color: Color(0xffffffff),
@@ -157,15 +157,15 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           children: [
             Icon(
               sexIcon,
-              size: Screenutil.size(32),
+              size: 32.sp,
               color: isCheck ? Color(0xff333333) : Color(0xff979797),
             ),
-            SizedBox(width: Screenutil.length(9)),
+            SizedBox(width: 9.w),
             Text(
               sex,
               style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(30),
+                  fontSize: 30.sp,
                   color: isCheck ? Color(0xff333333) : Color(0xff979797)),
             ),
           ],
@@ -177,8 +177,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   Widget _sexSelect() {
     return Container(
       padding: EdgeInsets.only(
-        left: Screenutil.length(36),
-        right: Screenutil.length(36),
+        left: 36.w,
+        right: 36.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,21 +186,21 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           Text(
             '访客性别',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(32)),
+          SizedBox(height: 32.w),
           Container(
             child: Row(
               children: [
                 _sexButton(_sexList[0]['sex'], _sexList[0]['sexIcon'],
                     _sexList[0]['isCheck'], 0),
-                SizedBox(width: Screenutil.length(80)),
+                SizedBox(width: 80.w),
                 _sexButton(_sexList[1]['sex'], _sexList[1]['sexIcon'],
                     _sexList[1]['isCheck'], 1),
               ],
             ),
           ),
-          SizedBox(height: Screenutil.length(26)),
+          SizedBox(height: 26.w),
         ],
       ),
     );
@@ -222,8 +222,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
       },
       child: Container(
         padding: EdgeInsets.only(
-          left: Screenutil.length(36),
-          right: Screenutil.length(36),
+          left: 36.w,
+          right: 36.w,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,9 +231,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
             Text(
               '到访时间',
               style: TextStyle(
-                  fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                  fontSize: 28.sp, color: Color(0xff333333)),
             ),
-            SizedBox(height: Screenutil.length(32)),
+            SizedBox(height: 32.w),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -242,18 +242,18 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     '${dateTime}',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: Screenutil.size(34),
+                        fontSize: 34.sp,
                         color: Color(0xff333333)),
                   ),
                   Icon(
                     AntDesign.right,
-                    size: Screenutil.size(36),
+                    size: 36.sp,
                     color: Color(0xffd8d8d8),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: Screenutil.length(26)),
+            SizedBox(height: 26.w),
             Divider(),
           ],
         ),
@@ -265,10 +265,10 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     return InkWell(
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(96),
-        width: Screenutil.length(686),
+        height: 96.w,
+        width: 686.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26),
+          vertical: 26.w,
         ),
         decoration: BoxDecoration(
             color: Color(0xffffc40c),
@@ -277,7 +277,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           '生成通行证',
           style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333)),
         ),
       ),
@@ -288,12 +288,12 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     return Container(
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(8),
+          vertical: 8.w,
         ),
         child: Text(
           '通行证只在到访当天单次有效,逾期或超次需要重新生成',
           style: TextStyle(
-              fontSize: Screenutil.size(20), color: Color(0xff999999)),
+              fontSize: 20.sp, color: Color(0xff999999)),
         ),
       ),
     );
@@ -325,7 +325,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _sexSelect(),
                     _input('是否驾车', '请输入,例如浙A88888(没有驾车可不填)', _userCarNum),
                     _selectTime(),
-                    SizedBox(height: Screenutil.length(64)),
+                    SizedBox(height: 64.w),
                     _create(),
                     _tips(),
                   ],

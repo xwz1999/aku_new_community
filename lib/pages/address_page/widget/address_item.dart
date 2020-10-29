@@ -15,12 +15,12 @@ class AddressItem extends StatelessWidget {
   Widget _containerImage() {
     return Container(
       alignment: Alignment.center,
-      width: Screenutil.length(76),
-      height: Screenutil.length(76),
+      width: 76.w,
+      height: 76.w,
       margin: EdgeInsets.only(
-        right: Screenutil.length(20),
+        right: 20.w,
       ),
-      padding: EdgeInsets.symmetric(vertical: Screenutil.length(12)),
+      padding: EdgeInsets.symmetric(vertical: 12.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
@@ -29,7 +29,7 @@ class AddressItem extends StatelessWidget {
               ? [Color(0xffffd000), Color(0xffff8500)]
               : [Color(0xffd8d8d8), Color(0xffd8d8d8)],
         ),
-        borderRadius: BorderRadius.all(Radius.circular(Screenutil.length(76))),
+        borderRadius: BorderRadius.all(Radius.circular(76.w)),
       ),
       child: Icon(SimpleLineIcons.location_pin, color: Colors.white),
     );
@@ -45,23 +45,23 @@ class AddressItem extends StatelessWidget {
               Text(
                 name,
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff333333),
                 ),
               ),
-              SizedBox(width: Screenutil.length(20)),
+              SizedBox(width: 20.w),
               Text(
                 phone,
                 style: TextStyle(
-                  fontSize: Screenutil.size(24),
+                  fontSize: 24.sp,
                   color: Color(0xff999999),
                 ),
               ),
             ],
           ),
-          SizedBox(height: Screenutil.length(12)),
+          SizedBox(height: 12.w),
           Container(
-            width: Screenutil.length(432),
+            width: 432.w,
             child: ExtendedText.rich(
               TextSpan(
                 children: [
@@ -69,7 +69,7 @@ class AddressItem extends StatelessWidget {
                       ? ExtendedWidgetSpan(
                           child: Container(
                             margin:
-                                EdgeInsets.only(right: Screenutil.length(16)),
+                                EdgeInsets.only(right: 16.w),
                             decoration: BoxDecoration(
                                 color: Color(0xfffff7d2),
                                 border: Border.all(
@@ -77,13 +77,13 @@ class AddressItem extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             padding: EdgeInsets.symmetric(
-                              horizontal: Screenutil.length(20),
-                              vertical: Screenutil.length(4),
+                              horizontal: 20.w,
+                              vertical: 4.w,
                             ),
                             child: Text(
                               '默认',
                               style: TextStyle(
-                                fontSize: Screenutil.size(24),
+                                fontSize: 24.sp,
                                 color: Color(0xff333333),
                               ),
                             ),
@@ -93,7 +93,7 @@ class AddressItem extends StatelessWidget {
                   TextSpan(
                     text: address,
                     style: TextStyle(
-                        fontSize: Screenutil.size(24),
+                        fontSize: 24.sp,
                         color: Color(0xff999999),
                         height: 1.5),
                   )
@@ -111,7 +111,7 @@ class AddressItem extends StatelessWidget {
   Widget _positionedEdit(BuildContext context) {
     return Positioned(
       right: 0,
-      top: Screenutil.length(55),
+      top: 55.w,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, PageName.address_edit_page.toString(),
@@ -126,19 +126,19 @@ class AddressItem extends StatelessWidget {
         },
         child: Row(
           children: [
-            SizedBox(width: Screenutil.length(13)),
+            SizedBox(width: 13.w),
             SizedBox(
               width: 1,
-              height: Screenutil.length(30),
+              height: 30.w,
               child: DecoratedBox(
                 decoration: BoxDecoration(color: Color(0xffd8d8d8)),
               ),
             ),
-            SizedBox(width: Screenutil.length(13)),
+            SizedBox(width: 13.w),
             Text(
               '编辑',
               style: TextStyle(
-                fontSize: Screenutil.size(24),
+                fontSize: 24.sp,
                 color: Color(0xff999999),
               ),
             ),
@@ -156,13 +156,13 @@ class AddressItem extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        top: Screenutil.length(20),
+        left: 32.w,
+        right: 32.w,
+        top: 20.w,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(20),
-        vertical: Screenutil.length(32),
+        horizontal: 20.w,
+        vertical: 32.w,
       ),
       child: Stack(
         children: [

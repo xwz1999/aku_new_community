@@ -21,7 +21,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       elevation: 0,
       backgroundColor: BaseStyle.colorffd000,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -43,9 +43,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       width: double.infinity,
       color: Color(0xffffd000),
       padding: EdgeInsets.only(
-        top: Screenutil.length(44),
-        bottom: Screenutil.length(44),
-        left: Screenutil.length(33),
+        top: 44.w,
+        bottom: 44.w,
+        left: 33.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               color: BaseStyle.color333333,
             ),
           ),
-          SizedBox(height: Screenutil.length(10)),
+          SizedBox(height: 10.w),
           Text(
             '还剩9小时33分自动确认',
             style: TextStyle(
@@ -75,19 +75,19 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     return Container(
       color: Color(0xffffffff),
       padding: EdgeInsets.only(
-        left: Screenutil.length(32),
-        top: Screenutil.length(24),
-        bottom: Screenutil.length(24),
+        left: 32.w,
+        top: 24.w,
+        bottom: 24.w,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
             AssetsImage.LOCATION,
-            height: Screenutil.length(78),
-            width: Screenutil.length(78),
+            height: 78.w,
+            width: 78.w,
           ),
-          SizedBox(width: Screenutil.length(24)),
+          SizedBox(width: 24.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -101,7 +101,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       color: BaseStyle.color333333,
                     ),
                   ),
-                  SizedBox(width: Screenutil.length(16)),
+                  SizedBox(width: 16.w),
                   Text(
                     '18809801254',
                     style: TextStyle(
@@ -111,9 +111,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                 ],
               ),
-              SizedBox(height: Screenutil.length(16)),
+              SizedBox(height: 16.w),
               Container(
-                width: Screenutil.length(584),
+                width: 584.w,
                 child: ExtendedText.rich(
                   TextSpan(
                     children: [
@@ -150,8 +150,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       },
       child: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(6)),
-        width: Screenutil.length(134),
+        padding: EdgeInsets.symmetric(vertical: 6.w),
+        width: 134.w,
         decoration: BoxDecoration(
           border: Border.all(color: BaseStyle.color999999, width: 0.5),
           borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -185,16 +185,16 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 children: [
                   Image.asset(
                     imagePath,
-                    height: Screenutil.length(179),
-                    width: Screenutil.length(173),
+                    height: 179.w,
+                    width: 173.w,
                     fit: BoxFit.fill,
                   ),
-                  SizedBox(width: Screenutil.length(24)),
+                  SizedBox(width: 24.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: Screenutil.length(252),
+                        width: 252.w,
                         child: Text(
                           content,
                           overflow: TextOverflow.ellipsis,
@@ -205,7 +205,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: Screenutil.length(16)),
+                      SizedBox(height: 16.w),
                       Text(
                         specs,
                         style: TextStyle(
@@ -217,12 +217,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                 ],
               ),
-              SizedBox(height: Screenutil.length(73)),
+              SizedBox(height: 73.w),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: Screenutil.length(25)),
+                    margin: EdgeInsets.only(right: 25.w),
                     child: Text(
                       '实付款￥${payPrice}',
                       style: TextStyle(
@@ -238,7 +238,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           ),
           Positioned(
             top: 0,
-            right: Screenutil.length(23),
+            right: 23.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -262,7 +262,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             ),
           ),
           Positioned(
-            top: Screenutil.length(103),
+            top: 103.w,
             right: 0,
             child: _inkWellRefund(listContent,payPrice),
           ),
@@ -275,12 +275,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       List<Map<String, dynamic>> listContent, double payPrice) {
     return Container(
       color: Color(0xffffffff),
-      margin: EdgeInsets.only(top: Screenutil.length(32)),
+      margin: EdgeInsets.only(top: 32.w),
       padding: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        bottom: Screenutil.length(24),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
+        bottom: 24.w,
       ),
       child: Column(
         children: listContent
@@ -302,11 +302,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     return Container(
       color: Color(0xffffffff),
       width: double.infinity,
-      margin: EdgeInsets.only(top: Screenutil.length(24)),
+      margin: EdgeInsets.only(top: 24.w),
       padding: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(31),
-        bottom: Screenutil.length(39),
+        top: 32.w,
+        left: 31.w,
+        bottom: 39.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +321,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           Column(
             children: listOrderDetail
                 .map((item) => Container(
-                      margin: EdgeInsets.only(top: Screenutil.length(22)),
+                      margin: EdgeInsets.only(top: 22.w),
                       child: Row(
                         children: [
                           Text(
@@ -330,7 +330,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                 fontSize: BaseStyle.fontSize24,
                                 color: BaseStyle.color999999),
                           ),
-                          SizedBox(width: Screenutil.length(75)),
+                          SizedBox(width: 75.w),
                           Text(
                             item['subtitle'],
                             style: TextStyle(
@@ -354,7 +354,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         alignment: Alignment.center,
         color: color,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26.5),
+          vertical: 26.5.w,
         ),
         child: Text(
           title,
@@ -438,7 +438,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       bottom: 0,
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(98),
+        height: 98.w,
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: _listBottom

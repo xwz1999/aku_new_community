@@ -67,13 +67,13 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  top: Screenutil.length(34),
-                  left: Screenutil.length(32),
-                  right: Screenutil.length(32),
+                  top: 34.w,
+                  left: 32.w,
+                  right: 32.w,
                 ),
                 child: RichText(
                   text: TextSpan(
-                      style: TextStyle(fontSize: Screenutil.size(24)),
+                      style: TextStyle(fontSize: 24.sp),
                       children: <InlineSpan>[
                         TextSpan(
                             text: '如果有疑问，请联系物业客服',

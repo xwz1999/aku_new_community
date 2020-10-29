@@ -48,32 +48,32 @@ class _ThingsCardState extends State<ThingsCard> {
                 Text(
                   time,
                   style: TextStyle(
-                    fontSize: Screenutil.size(32),
+                    fontSize: 32.sp,
                     color: Color(0xff333333),
                   ),
                 ),
                 Text(
                   tag,
                   style: TextStyle(
-                    fontSize: Screenutil.size(24),
+                    fontSize: 24.sp,
                     color: Color(0xffff8200),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: Screenutil.length(24)),
+            SizedBox(height: 24.w),
             Divider(height: 0.5),
-            SizedBox(height: Screenutil.length(24)),
+            SizedBox(height: 24.w),
             ExpandableText(
               text: content,
               maxLines: 2,
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff333333),
               ),
               expand: false,
             ),
-            SizedBox(height: Screenutil.length(29)),
+            SizedBox(height: 29.w),
             imageList.length != 0 ? ImageGrid(imageList):SizedBox()
           ],
         ),
@@ -88,15 +88,15 @@ class _ThingsCardState extends State<ThingsCard> {
           color: Color(0xffffffff),
           borderRadius: BorderRadius.all(Radius.circular(8))),
       margin: EdgeInsets.only(
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
-        top: Screenutil.length(20),
+        left: 32.w,
+        right: 32.w,
+        top: 20.w,
       ),
       padding: EdgeInsets.only(
-        left: Screenutil.length(28),
-        right: Screenutil.length(28),
-        top: Screenutil.length(21),
-        bottom: Screenutil.length(24),
+        left: 28.w,
+        right: 28.w,
+        top: 21.w,
+        bottom: 24.w,
       ),
       child: _inkWellPropose(
         widget.time,

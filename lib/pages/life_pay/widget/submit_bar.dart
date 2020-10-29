@@ -15,16 +15,16 @@ class _SubmitBarState extends State<SubmitBar> {
   InkWell _selectAll() {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: Screenutil.length(29)),
+        margin: EdgeInsets.symmetric(vertical: 29.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
               Icons.radio_button_unchecked,
               color: BaseStyle.color999999,
-              size: Screenutil.length(40),
+              size: 40.w,
             ),
-            SizedBox(width: Screenutil.length(16)),
+            SizedBox(width: 16.w),
             Text(
               '全选',
               style: TextStyle(
@@ -38,11 +38,11 @@ class _SubmitBarState extends State<SubmitBar> {
 
   Container _submitOrder(String title) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: Screenutil.length(12)),
+      margin: EdgeInsets.symmetric(vertical: 12.w),
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: Screenutil.length(16)),
+            margin: EdgeInsets.only(right: 16.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -76,11 +76,11 @@ class _SubmitBarState extends State<SubmitBar> {
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.only(
-                top: Screenutil.length(15),
-                bottom: Screenutil.length(14),
+                top: 15.w,
+                bottom: 14.w,
               ),
-              height: Screenutil.length(74),
-              width: Screenutil.length(198),
+              height: 74.w,
+              width: 198.w,
               decoration: BoxDecoration(
                 color: BaseStyle.colorffc40c,
                 borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -104,9 +104,9 @@ class _SubmitBarState extends State<SubmitBar> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: Screenutil.length(98),
+      height: 98.w,
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      padding: EdgeInsets.symmetric(horizontal: 32.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

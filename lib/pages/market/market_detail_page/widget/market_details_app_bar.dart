@@ -38,20 +38,20 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
             Container(
               alignment:
                   Alignment.lerp(Alignment.topCenter, Alignment.center, 0.25),
-              margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+              margin: EdgeInsets.symmetric(horizontal: 32.w),
               child: Material(
                 color: Color(0xffffffff),
                 child: Container(
                   alignment: Alignment.topCenter,
-                  height: Screenutil.length(282),
-                  width: Screenutil.length(686),
+                  height: 282.w,
+                  width: 686.w,
                   color: Colors.black.withOpacity(animation.value),
                   child: GridView.builder(
                     padding: EdgeInsets.only(
-                      top: Screenutil.length(36),
-                      left: Screenutil.length(25),
-                      right: Screenutil.length(25),
-                      bottom: Screenutil.length(30),
+                      top: 36.w,
+                      left: 25.w,
+                      right: 25.w,
+                      bottom: 30.w,
                     ),
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -68,7 +68,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
                               color: _classList[index]['title'] == widget.title
                                   ? Color(0xffe60e0e)
                                   : Color(0xff979797),
-                              width: Screenutil.length(1),
+                              width: 1.w,
                             ),
                           ),
                           child: Center(
@@ -79,17 +79,17 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
                                     _classList[index]['title'] == widget.title
                                         ? Color(0xffe60e0e)
                                         : Color(0xff333333),
-                                fontSize: Screenutil.size(24)),
+                                fontSize: 24.sp),
                           )),
                         ),
                       );
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
-                        mainAxisSpacing: Screenutil.length(20),
-                        crossAxisSpacing: Screenutil.length(30),
+                        mainAxisSpacing: 20.w,
+                        crossAxisSpacing: 30.w,
                         childAspectRatio:
-                            Screenutil.length(192) / Screenutil.length(58)),
+                            192.w / 58.w),
                   ),
                 ),
               ),
@@ -103,7 +103,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
                   child: Icon(
                     AntDesign.caretup,
                     color: Color(0xffffffff),
-                    size: Screenutil.size(36),
+                    size: 36.sp,
                   ),
                 ),
               ),
@@ -130,7 +130,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
         backgroundColor: Color(0xffffffff),
         leading: IconButton(
             padding: EdgeInsets.all(0),
-            icon: Icon(AntDesign.left, size: Screenutil.size(37)),
+            icon: Icon(AntDesign.left, size: 37.sp),
             onPressed: () {
               Navigator.pop(context);
             }),
@@ -143,14 +143,14 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
               Text(
                 widget.title,
                 style: TextStyle(
-                    fontSize: Screenutil.size(32), color: Color(0xff333333)),
+                    fontSize: 32.sp, color: Color(0xff333333)),
               ),
-              SizedBox(width: Screenutil.length(10)),
+              SizedBox(width: 10.w),
               Container(
                 padding: EdgeInsets.only(top: 1),
                 child: Icon(
                   AntDesign.caretdown,
-                  size: Screenutil.size(18),
+                  size: 18.sp,
                   color: Color(0xff000000),
                 ),
               )
@@ -162,7 +162,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
           IconButton(
             icon: Icon(
               AntDesign.search1,
-              size: Screenutil.size(38),
+              size: 38.sp,
               color: Color(0xff666666),
             ),
             onPressed: () {},

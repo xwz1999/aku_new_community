@@ -22,9 +22,9 @@ class GoodsInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(32),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 32.w,
+        left: 32.w,
+        right: 32.w,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -47,14 +47,14 @@ class GoodsInfoCard extends StatelessWidget {
               ],
             ),
             padding: EdgeInsets.only(
-                top: Screenutil.length(25),
-                left: Screenutil.length(24),
-                right: Screenutil.length(24)),
+                top: 25.w,
+                left: 24.w,
+                right: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.only(bottom: Screenutil.length(24)),
+                  padding: EdgeInsets.only(bottom: 24.w),
                   decoration: BoxDecoration(
                     border: Border(
                         bottom:
@@ -67,21 +67,21 @@ class GoodsInfoCard extends StatelessWidget {
                         '出户信息',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: Screenutil.size(32),
+                            fontSize: 32.sp,
                             color: Color(0xff333333)),
                       ),
                       Text(status,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: Screenutil.size(28),
+                              fontSize: 28.sp,
                               color: Color(0xff333333))),
                     ],
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                    bottom: Screenutil.length(33),
-                    top: Screenutil.length(16),
+                    bottom: 33.w,
+                    top: 16.w,
                   ),
                   decoration: BoxDecoration(
                     border: Border(
@@ -90,11 +90,11 @@ class GoodsInfoCard extends StatelessWidget {
                   ),
                   child: infodetails != null
                       ? Container(
-                          width: Screenutil.length(630),
+                          width: 630.w,
                           child: Text(
                             infodetails,
                             style: TextStyle(
-                                fontSize: Screenutil.size(28),
+                                fontSize: 28.sp,
                                 color: Color(0xff333333)),
                           ),
                         )
@@ -104,7 +104,7 @@ class GoodsInfoCard extends StatelessWidget {
                               .map(
                                 (item) => Container(
                                   padding: EdgeInsets.only(
-                                      top: Screenutil.length(8)),
+                                      top: 8.w),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -112,13 +112,13 @@ class GoodsInfoCard extends StatelessWidget {
                                       Text(
                                         item['title'],
                                         style: TextStyle(
-                                            fontSize: Screenutil.size(28),
+                                            fontSize: 28.sp,
                                             color: Color(0xff999999)),
                                       ),
                                       Text(
                                         item['content'],
                                         style: TextStyle(
-                                            fontSize: Screenutil.size(28),
+                                            fontSize: 28.sp,
                                             color: Color(0xff333333)),
                                       ),
                                     ],
@@ -131,19 +131,19 @@ class GoodsInfoCard extends StatelessWidget {
                 listImage != null
                     ? Container(
                         margin: EdgeInsets.only(
-                          top: Screenutil.length(19),
-                          bottom: Screenutil.length(30),
+                          top: 19.w,
+                          bottom: 30.w,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               margin: EdgeInsets.only(
-                                  bottom: Screenutil.length(25)),
+                                  bottom: 25.w),
                               child: Text(
                                 '图片信息',
                                 style: TextStyle(
-                                    fontSize: Screenutil.size(28),
+                                    fontSize: 28.sp,
                                     color: Color(0xff333333)),
                               ),
                             ),

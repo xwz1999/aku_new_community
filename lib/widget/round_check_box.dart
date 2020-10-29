@@ -27,19 +27,19 @@ class _RoundCheckBoxState extends State<RoundCheckBox> {
             widget.value
                 ? Icon(
                     Icons.check_circle,
-                    size: Screenutil.size(30),
+                    size: 30.sp,
                     color: Color(0xffffc40c),
                   )
                 : Icon(
                     Icons.panorama_fish_eye,
-                    size: Screenutil.size(30),
+                    size: 30.sp,
                     color: Color(0xff979797),
                   ),
-            SizedBox(width: Screenutil.length(10)),
+            SizedBox(width: 10.w),
             Text(
               widget.title,
               style: TextStyle(
-                fontSize: Screenutil.size(26),
+                fontSize: 26.sp,
                 color: Color(0xff333333),
               ),
             ),

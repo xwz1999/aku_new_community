@@ -49,7 +49,7 @@ class _DirectorManageState extends State<DirectorManage>
 
   Widget _doorIdCard() {
     return Container(
-      width: Screenutil.length(686),
+      width: 686.w,
       child: RichText(
         text: TextSpan(children: <InlineSpan>[
           TextSpan(
@@ -76,8 +76,8 @@ class _DirectorManageState extends State<DirectorManage>
   Widget _cardList(String title, Widget widget) {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -89,9 +89,9 @@ class _DirectorManageState extends State<DirectorManage>
           Text(
             title,
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           widget
         ],
       ),
@@ -101,8 +101,8 @@ class _DirectorManageState extends State<DirectorManage>
   Widget _upLoadImage() {
     return Container(
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(24),
+        top: 23.w,
+        bottom: 24.w,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -114,9 +114,9 @@ class _DirectorManageState extends State<DirectorManage>
           Text(
             '上传凭证',
             style: TextStyle(
-                fontSize: Screenutil.size(28), color: Color(0xff333333)),
+                fontSize: 28.sp, color: Color(0xff333333)),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
@@ -127,7 +127,7 @@ class _DirectorManageState extends State<DirectorManage>
               ),
             ),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
@@ -140,7 +140,7 @@ class _DirectorManageState extends State<DirectorManage>
               ),
             ),
           ),
-          SizedBox(height: Screenutil.length(25)),
+          SizedBox(height: 25.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
@@ -162,16 +162,16 @@ class _DirectorManageState extends State<DirectorManage>
     return InkWell(
       child: Center(
         child: Container(
-          margin: EdgeInsets.only(bottom: Screenutil.length(64)),
+          margin: EdgeInsets.only(bottom: 64.w),
           decoration: BoxDecoration(
             color: BaseStyle.colorffc40c,
             borderRadius: BorderRadius.all(Radius.circular(36)),
           ),
-          width: Screenutil.length(426),
-          height: Screenutil.length(82),
+          width: 426.w,
+          height: 82.w,
           padding: EdgeInsets.only(
-            top: Screenutil.length(19),
-            bottom: Screenutil.length(18),
+            top: 19.w,
+            bottom: 18.w,
           ),
           alignment: Alignment.center,
           child: Text(
@@ -201,9 +201,9 @@ class _DirectorManageState extends State<DirectorManage>
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  top: Screenutil.length(32),
-                  left: Screenutil.length(32),
-                  right: Screenutil.length(32),
+                  top: 32.w,
+                  left: 32.w,
+                  right: 32.w,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +223,7 @@ class _DirectorManageState extends State<DirectorManage>
                             hintText: '请输入公司名称')),
                     _cardList('门禁卡数量', _doorIdCard()),
                     _upLoadImage(),
-                    SizedBox(height: Screenutil.length(78)),
+                    SizedBox(height: 78.w),
                     Text(
                       '装修人员',
                       style: TextStyle(
@@ -242,10 +242,10 @@ class _DirectorManageState extends State<DirectorManage>
                         });
                       },
                       child: Container(
-                        margin: EdgeInsets.only(top: Screenutil.length(54)),
+                        margin: EdgeInsets.only(top: 54.w),
                         padding: EdgeInsets.only(
-                          top: Screenutil.length(16),
-                          bottom: Screenutil.length(16),
+                          top: 16.w,
+                          bottom: 16.w,
                         ),
                         alignment: Alignment.center,
                         child: Text(

@@ -40,7 +40,7 @@ class PropertyCard extends StatelessWidget {
           title: Text(
             url,
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -49,7 +49,7 @@ class PropertyCard extends StatelessWidget {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -62,7 +62,7 @@ class PropertyCard extends StatelessWidget {
                 '呼叫',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -81,8 +81,8 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: Screenutil.length(32),
-        vertical: Screenutil.length(20),
+        horizontal: 32.w,
+        vertical: 20.w,
       ),
       child: GridView.builder(
         shrinkWrap: true,
@@ -102,8 +102,8 @@ class PropertyCard extends StatelessWidget {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(19),
-                vertical: Screenutil.length(36),
+                horizontal: 19.w,
+                vertical: 36.w,
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -124,8 +124,8 @@ class PropertyCard extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.center,
-                    height: Screenutil.length(88),
-                    width: Screenutil.length(88),
+                    height: 88.w,
+                    width: 88.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
@@ -143,28 +143,28 @@ class PropertyCard extends StatelessWidget {
                     child: Image.asset(
                       _listCard[index]['image'],
                       fit: BoxFit.fill,
-                      height: Screenutil.length(64),
-                      width: Screenutil.length(77),
+                      height: 64.w,
+                      width: 77.w,
                     ),
                   ),
-                  SizedBox(width: Screenutil.length(24)),
+                  SizedBox(width: 24.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: Screenutil.length(5)),
+                      SizedBox(height: 5.w),
                       Text(
                         _listCard[index]['title'],
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: Screenutil.size(32),
+                          fontSize: 32.sp,
                           color: Color(0xffffffff),
                         ),
                       ),
-                      SizedBox(height: Screenutil.length(4)),
+                      SizedBox(height: 4.w),
                       Text(
                         _listCard[index]['subtitle'],
                         style: TextStyle(
-                          fontSize: Screenutil.size(20),
+                          fontSize: 20.sp,
                           color: Color(0xffffffff),
                         ),
                       ),
@@ -177,8 +177,8 @@ class PropertyCard extends StatelessWidget {
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: Screenutil.length(40),
-            childAspectRatio: Screenutil.length(323) / Screenutil.length(160)),
+            crossAxisSpacing: 40.w,
+            childAspectRatio: 323.w / 160.w),
       ),
     );
   }

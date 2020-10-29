@@ -28,54 +28,54 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
           children: [
             Container(
               margin: EdgeInsets.only(
-                top: Screenutil.length(70),
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
-                bottom: Screenutil.length(76),
+                top: 70.w,
+                left: 32.w,
+                right: 32.w,
+                bottom: 76.w,
               ),
               padding: EdgeInsets.symmetric(
-                horizontal: Screenutil.length(20),
-                vertical: Screenutil.length(32),
+                horizontal: 20.w,
+                vertical: 32.w,
               ),
               decoration: BoxDecoration(
                 color: Color(0xffffffff),
                 borderRadius:
-                    BorderRadius.all(Radius.circular(Screenutil.length(8))),
+                    BorderRadius.all(Radius.circular(8.w)),
               ),
-              height: Screenutil.length(746),
-              width: Screenutil.length(686),
+              height: 746.w,
+              width: 686.w,
               child: Column(
                 children: [
                   Container(
                     margin: EdgeInsets.only(
-                      top: Screenutil.length(44),
-                      bottom: Screenutil.length(32),
+                      top: 44.w,
+                      bottom: 32.w,
                     ),
-                    height: Screenutil.length(460),
-                    width: Screenutil.length(460),
+                    height: 460.w,
+                    width: 460.w,
                     child: QrImage(
                       padding: EdgeInsets.zero,
                       data: '智慧社区开门码',
-                      size: Screenutil.length(460),
+                      size: 460.w,
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: Screenutil.length(29),
-                      vertical: Screenutil.length(33),
+                      horizontal: 29.w,
+                      vertical: 33.w,
                     ),
                     decoration: BoxDecoration(
                       color: Color(0xfffffbf6),
                       borderRadius: BorderRadius.all(
-                          Radius.circular(Screenutil.length(8))),
+                          Radius.circular(8.w)),
                     ),
-                    width: Screenutil.length(646),
-                    height: Screenutil.length(146),
+                    width: 646.w,
+                    height: 146.w,
                     child: Text(
                       '扫一扫，你的专属二维码，人人文明出行，路路畅通安宁，智慧社区祝您一路顺风',
                       maxLines: 2,
                       style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff666666),
                       ),
                     ),
@@ -91,13 +91,13 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                   Icon(
                     AntDesign.checkcircleo,
                     color: Color(0xffffc40c),
-                    size: Screenutil.size(32),
+                    size: 32.sp,
                   ),
-                  SizedBox(width: Screenutil.length(19)),
+                  SizedBox(width: 19.w),
                   Text(
                     '已刷新',
                     style: TextStyle(
-                      fontSize: Screenutil.size(32),
+                      fontSize: 32.sp,
                       color: Color(0xff999999),
                     ),
                   ),

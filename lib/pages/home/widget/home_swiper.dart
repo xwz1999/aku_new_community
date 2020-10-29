@@ -23,7 +23,7 @@ class _HomeSwiperState extends State<HomeSwiper> {
       overflow: Overflow.visible,
       children: [
         Container(
-          height: Screenutil.length(181),
+          height: 181.w,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
@@ -33,10 +33,10 @@ class _HomeSwiperState extends State<HomeSwiper> {
           ),
         ),
         Positioned(
-          top: Screenutil.length(17),
+          top: 17.w,
           left: 0,
           right: 0,
-          bottom: -Screenutil.length(76),
+          bottom: -76.w,
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return Container(
@@ -51,8 +51,8 @@ class _HomeSwiperState extends State<HomeSwiper> {
                 ),
                 child: CachedImageWrapper(
                   url: imageList[index],
-                  height: Screenutil.length(240),
-                  width: Screenutil.length(686),
+                  height: 240.w,
+                  width: 686.w,
                 ),
               );
             },
@@ -74,9 +74,9 @@ class _HomeSwiperState extends State<HomeSwiper> {
               builder: DotSwiperPaginationBuilder(
                 activeColor: Color(0xffFEC200),
                 color: Colors.white,
-                size: Screenutil.length(15),
-                activeSize: Screenutil.length(20),
-                space: Screenutil.length(10),
+                size: 15.w,
+                activeSize: 20.w,
+                space: 10.w,
               ),
             ),
             autoplayDelay: 5000,

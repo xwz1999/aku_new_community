@@ -19,17 +19,17 @@ class _CommonRadioState extends State<CommonRadio> {
         fun(index);
       },
       child: Container(
-        margin: EdgeInsets.only(left: Screenutil.length(20)),
+        margin: EdgeInsets.only(left: 20.w),
         child: Row(
           children: [
             Icon(
               isCheck
                   ? Icons.radio_button_checked
                   : Icons.radio_button_unchecked,
-              size: Screenutil.length(32),
+              size: 32.w,
               color: isCheck ? BaseStyle.colorffc40c : BaseStyle.color979797,
             ),
-            SizedBox(width: Screenutil.length(10)),
+            SizedBox(width: 10.w),
             Text(
               title,
               style: TextStyle(

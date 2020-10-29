@@ -33,18 +33,18 @@ class _LifePayPageState extends State<LifePayPage> {
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.only(bottom: Screenutil.length(130)),
+            padding: EdgeInsets.only(bottom: 130.w),
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  top: Screenutil.length(32),
-                  left: Screenutil.length(32),
-                  right: Screenutil.length(32),
+                  top: 32.w,
+                  left: 32.w,
+                  right: 32.w,
                 ),
                 child: RichText(
                   text: TextSpan(
                       style: TextStyle(
-                          fontSize: Screenutil.size(28),
+                          fontSize: 28.sp,
                           color: Color(0xff666666)),
                       children: <InlineSpan>[
                         TextSpan(

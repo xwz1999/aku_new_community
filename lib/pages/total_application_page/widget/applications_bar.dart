@@ -18,7 +18,7 @@ class ApplicationsBar extends StatelessWidget {
           onTap: () => Navigator.pop(context),
           child: Icon(
             AntDesign.left,
-            size: Screenutil.size(45),
+            size: 45.sp,
             color: Color(0xff333333),
           ),
         ),
@@ -28,11 +28,11 @@ class ApplicationsBar extends StatelessWidget {
             showSearch(context: context, delegate: searchBarDelegate());
           },
           child: Container(
-            margin: EdgeInsets.only(right: Screenutil.length(32)),
+            margin: EdgeInsets.only(right: 32.w),
             padding: EdgeInsets.only(
-                left: Screenutil.length(40),
-                top: Screenutil.length(15),
-                bottom: Screenutil.length(15)),
+                left: 40.w,
+                top: 15.w,
+                bottom: 15.w),
             decoration: BoxDecoration(
               color: Color(0xfff3f3f3),
               borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -40,14 +40,14 @@ class ApplicationsBar extends StatelessWidget {
             child: Row(children: [
               Icon(
                 AntDesign.search1,
-                size: Screenutil.size(28),
+                size: 28.sp,
                 color: Color(0xff999999),
               ),
               SizedBox(width: 5),
               Text(
                 '搜索商品、活动、帖子、应用',
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff999999),
                 ),
               )

@@ -33,7 +33,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
       elevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+        icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -64,8 +64,8 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
       children: _listRadio
           .map((item) => Container(
                 padding: EdgeInsets.only(
-                  bottom: Screenutil.length(16),
-                  top: Screenutil.length(40),
+                  bottom: 16.w,
+                  top: 40.w,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
@@ -91,7 +91,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                               Icons.radio_button_unchecked,
                               color: BaseStyle.color999999,
                             ),
-                      SizedBox(width: Screenutil.length(17)),
+                      SizedBox(width: 17.w),
                       Text(
                         item['title'],
                         style: TextStyle(
@@ -126,8 +126,8 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: hintText,
           border: InputBorder.none, //去掉输入框的下滑线
@@ -159,8 +159,8 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
       return _listWidget
           .map((item) => Container(
                 padding: EdgeInsets.only(
-                  top: Screenutil.length(23),
-                  bottom: Screenutil.length(24),
+                  top: 23.w,
+                  bottom: 24.w,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
@@ -176,7 +176,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                           fontSize: BaseStyle.fontSize28,
                           color: BaseStyle.color333333),
                     ),
-                    SizedBox(height: Screenutil.length(25)),
+                    SizedBox(height: 25.w),
                     item['widget'],
                   ],
                 ),
@@ -196,9 +196,9 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
             },
             child: Container(
               padding: EdgeInsets.only(
-                left: Screenutil.length(32),
-                right: Screenutil.length(32),
-                top: Screenutil.length(32),
+                left: 32.w,
+                right: 32.w,
+                top: 32.w,
               ),
               color: Colors.white,
               child: Column(
@@ -211,12 +211,12 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                         fontSize: BaseStyle.fontSize38,
                         color: BaseStyle.color333333),
                   ),
-                  SizedBox(height: Screenutil.length(8)),
+                  SizedBox(height: 8.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _textTag('身份选择'),
-                      SizedBox(height: Screenutil.length(167)),
+                      SizedBox(height: 167.w),
                       _columnRadio(),
                       Column(
                         children: _listView(),

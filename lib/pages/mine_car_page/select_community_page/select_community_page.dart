@@ -29,10 +29,10 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
-            margin: EdgeInsets.only(top: Screenutil.length(32)),
+            margin: EdgeInsets.only(top: 32.w),
             padding: EdgeInsets.symmetric(
-                vertical: Screenutil.length(28),
-                horizontal: Screenutil.length(32)),
+                vertical: 28.w,
+                horizontal: 32.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -41,13 +41,13 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
                     Icon(
                       EvilIcons.location,
                       color: Color(0xff333333),
-                      size: Screenutil.size(40),
+                      size: 40.sp,
                     ),
-                    SizedBox(width: Screenutil.length(18)),
+                    SizedBox(width: 18.w),
                     Text(
                       '深圳市',
                       style: TextStyle(
-                        fontSize: Screenutil.size(28),
+                        fontSize: 28.sp,
                         color: Color(0xff333333),
                       ),
                     )
@@ -57,18 +57,18 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
                   child: Icon(
                     MaterialIcons.refresh,
                     color: Color(0xff333333),
-                    size: Screenutil.size(40),
+                    size: 40.sp,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.all(Screenutil.length(32)),
+            margin: EdgeInsets.all(32.w),
             child: Text(
               '所有社区',
               style: TextStyle(
-                fontSize: Screenutil.size(28),
+                fontSize: 28.sp,
                 color: Color(0xff333333),
               ),
             ),
@@ -87,12 +87,12 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
                   padding: EdgeInsets.symmetric(
-                      vertical: Screenutil.length(28),
-                      horizontal: Screenutil.length(32)),
+                      vertical: 28.w,
+                      horizontal: 32.w),
                   child: Text(
                     _communityList[index],
                     style: TextStyle(
-                      fontSize: Screenutil.size(28),
+                      fontSize: 28.sp,
                       color: Color(0xff333333),
                     ),
                   ),

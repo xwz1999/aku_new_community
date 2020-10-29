@@ -42,7 +42,7 @@ class _ThingsListState extends State<ThingsList>
       onLoading: _onLoading,
       enablePullUp: true,
       child: ListView.builder(
-        padding: EdgeInsets.only(bottom: Screenutil.length(98)),
+        padding: EdgeInsets.only(bottom: 98.w),
         itemBuilder: (context, index) => ThingsCard(
           time: widget.listCard[index]['time'],
           tag: widget.listCard[index]['tag'],

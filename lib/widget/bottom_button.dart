@@ -17,7 +17,7 @@ class _BottomButtonState extends State<BottomButton> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: Screenutil.length(98),
+      height: 98.w,
       width: MediaQuery.of(context).size.width,
       child: InkWell(
         onTap: widget.fun,
@@ -27,7 +27,7 @@ class _BottomButtonState extends State<BottomButton> {
               ? BaseStyle.color999999
               : BaseStyle.colorffc40c,
           padding: EdgeInsets.symmetric(
-            vertical: Screenutil.length(26.5),
+            vertical: 26.5.w,
           ),
           child: Text(
             widget.title,

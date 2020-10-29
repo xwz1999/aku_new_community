@@ -16,9 +16,9 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
   Widget _input() {
     return Container(
       padding: EdgeInsets.only(
-          top: Screenutil.length(32),
-          left: Screenutil.length(22),
-          right: Screenutil.length(35)),
+          top: 32.w,
+          left: 22.w,
+          right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -26,7 +26,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
       child: TextFormField(
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
-          fontSize: Screenutil.size(28),
+          fontSize: 28.sp,
           fontWeight: FontWeight.w600,
         ),
         controller: _thingsContent,
@@ -35,8 +35,8 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(
-            top: Screenutil.length(0),
-            bottom: Screenutil.length(0),
+            top: 0.w,
+            bottom: 0.w,
           ),
           hintText: '',
           border: InputBorder.none, //去掉输入框的下滑线
@@ -44,7 +44,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
           filled: true,
           hintStyle: TextStyle(
             color: Color(0xff999999),
-            fontSize: Screenutil.size(28),
+            fontSize: 28.sp,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -56,21 +56,21 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
     return InkWell(
       child: Container(
         alignment: Alignment.center,
-        height: Screenutil.length(96),
-        width: Screenutil.length(686),
+        height: 96.w,
+        width: 686.w,
         padding: EdgeInsets.symmetric(
-          vertical: Screenutil.length(26),
+          vertical: 26.w,
         ),
-        margin: EdgeInsets.only(top: Screenutil.length(40)),
+        margin: EdgeInsets.only(top: 40.w),
         decoration: BoxDecoration(
             color: Color(0xffffc40c),
             borderRadius:
-                BorderRadius.all(Radius.circular(Screenutil.length(48)))),
+                BorderRadius.all(Radius.circular(48.w))),
         child: Text(
           '确认提交',
           style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: Screenutil.size(32),
+              fontSize: 32.sp,
               color: Color(0xff333333)),
         ),
       ),
@@ -89,7 +89,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
       body: Container(
         color: Colors.white,
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
           children: [
             SingleChildScrollView(
               child: GestureDetector(
@@ -102,12 +102,12 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
                   children: [
                     Container(
                       margin: EdgeInsets.symmetric(
-                        vertical: Screenutil.length(48),
+                        vertical: 48.w,
                       ),
                       child: Text(
                         '您对园区的规约、管理、环境、活动等各方面有何宝贵建议，请写在下方为园区建设贡献一份力量。',
                         style: TextStyle(
-                          fontSize: Screenutil.size(28),
+                          fontSize: 28.sp,
                           color: Color(0xff333333),
                         ),
                       ),

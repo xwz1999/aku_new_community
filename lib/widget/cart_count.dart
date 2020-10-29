@@ -17,8 +17,8 @@ class CartCount extends StatelessWidget {
             }
           : null,
       child: Container(
-        width: Screenutil.length(52),
-        height: Screenutil.length(52),
+        width: 52.w,
+        height: 52.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: cartItem.count > 1 ? Color(0xffffffff) : Colors.black12,
@@ -27,7 +27,7 @@ class CartCount extends StatelessWidget {
         child: Icon(
           Icons.remove,
           color: Color(0xff979797),
-          size: Screenutil.size(38),
+          size: 38.sp,
         ),
       ),
     );
@@ -40,8 +40,8 @@ class CartCount extends StatelessWidget {
         model.addOrReduceAction(cartItem, 'add');
       },
       child: Container(
-        width: Screenutil.length(52),
-        height: Screenutil.length(52),
+        width: 52.w,
+        height: 52.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: Color(0xffffffff),
@@ -50,7 +50,7 @@ class CartCount extends StatelessWidget {
         child: Icon(
           Icons.add,
           color: Color(0xff979797),
-          size: Screenutil.size(38),
+          size: 38.sp,
         ),
       ),
     );
@@ -59,14 +59,14 @@ class CartCount extends StatelessWidget {
   //中间数量显示区域
   Widget _countArea() {
     return Container(
-      width: Screenutil.length(52),
-      height: Screenutil.length(52),
+      width: 52.w,
+      height: 52.w,
       alignment: Alignment.center,
       color: Colors.white,
       child: Text(
         '${cartItem.count}',
         style: TextStyle(
-          fontSize: Screenutil.size(24),
+          fontSize: 24.sp,
           color: Color(0xff333333),
         ),
       ),
@@ -76,7 +76,7 @@ class CartCount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Screenutil.length(160),
+      width: 160.w,
       decoration: BoxDecoration(
           border:
               Border.all(width: 0.5, color: Colors.black12) //设置所有的边框宽度为1 颜色为浅灰

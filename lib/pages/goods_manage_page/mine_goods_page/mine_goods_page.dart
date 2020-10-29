@@ -88,17 +88,17 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: Screenutil.length(120),
-        height: Screenutil.length(44),
+        width: 120.w,
+        height: 44.w,
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(7)),
+        padding: EdgeInsets.symmetric(vertical: 7.w),
         decoration: BoxDecoration(
           color: Color(0xff2a2a2a),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Text(
           '报损',
-          style: TextStyle(fontSize: Screenutil.size(22), color: Colors.white),
+          style: TextStyle(fontSize: 22.sp, color: Colors.white),
         ),
       ),
     );
@@ -108,14 +108,14 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
       String title, borrowTime, timeLength, status, int goodsNum) {
     return Container(
       margin: EdgeInsets.only(
-        top: Screenutil.length(20),
-        left: Screenutil.length(32),
-        right: Screenutil.length(32),
+        top: 20.w,
+        left: 32.w,
+        right: 32.w,
       ),
       padding: EdgeInsets.only(
-        top: Screenutil.length(30),
-        left: Screenutil.length(38),
-        right: Screenutil.length(34),
+        top: 30.w,
+        left: 38.w,
+        right: 34.w,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -133,49 +133,49 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Text(
                   '物品名称：${title}',
                   style: TextStyle(
-                    fontSize: Screenutil.size(28),
+                    fontSize: 28.sp,
                     color: Color(0xff4a4b51),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: Screenutil.length(16)),
+                  margin: EdgeInsets.only(top: 16.w),
                   child: Text(
                     '借还数量：${goodsNum}个',
                     style: TextStyle(
-                      fontSize: Screenutil.size(24),
+                      fontSize: 24.sp,
                       color: Color(0xff333333),
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: Screenutil.length(16)),
+                  margin: EdgeInsets.only(top: 16.w),
                   child: Text(
                     '借用时间: ${borrowTime}',
                     style: TextStyle(
-                      fontSize: Screenutil.size(24),
+                      fontSize: 24.sp,
                       color: Color(0xff999999),
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: Screenutil.length(16)),
+                  margin: EdgeInsets.only(top: 16.w),
                   child: Text(
                     '借用时长: ${timeLength}日',
                     style: TextStyle(
-                      fontSize: Screenutil.size(24),
+                      fontSize: 24.sp,
                       color: Color(0xff999999),
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: Screenutil.length(16)),
+                  margin: EdgeInsets.only(top: 16.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         '借用状态: ${status}',
                         style: TextStyle(
-                          fontSize: Screenutil.size(24),
+                          fontSize: 24.sp,
                           color: Color(0xff999999),
                         ),
                       ),
@@ -183,15 +183,15 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: Screenutil.length(12)),
+                SizedBox(height: 12.w),
                 Divider(color: Color(0xfff9f9f9)),
                 status == '未还'
                     ? Container(
-                        margin: EdgeInsets.only(bottom: Screenutil.length(9)),
+                        margin: EdgeInsets.only(bottom: 9.w),
                         child: Text(
                           '温馨提示：您的物品已借用${timeLength}天，如果用完，请及时归还',
                           style: TextStyle(
-                            fontSize: Screenutil.size(22),
+                            fontSize: 22.sp,
                             color: Color(0xff999999),
                           ),
                         ),

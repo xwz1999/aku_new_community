@@ -32,7 +32,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
         children: <Widget>[
           _body(),
           SlidingUpPanel(
-            margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+            margin: EdgeInsets.symmetric(horizontal: 32.w),
             maxHeight: _panelHeightOpen,
             minHeight: _panelHeightClosed,
             parallaxEnabled: true,
@@ -45,10 +45,10 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
             ),
           ),
           Positioned(
-            top: Screenutil.length(32) + _statusHeight,
+            top: 32.w + _statusHeight,
             child: Container(
-              width: Screenutil.length(686),
-              padding: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+              width: 686.w,
+              padding: EdgeInsets.symmetric(horizontal: 32.w),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
@@ -64,7 +64,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                         child: IconButton(
                           padding: EdgeInsets.all(0),
                           alignment: Alignment.centerLeft,
-                          icon: Icon(AntDesign.left, size: Screenutil.size(40)),
+                          icon: Icon(AntDesign.left, size: 40.sp),
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -76,13 +76,13 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                           child: CachedImageWrapper(
                             url:
                                 'https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00412-2241.jpg',
-                            width: Screenutil.length(72),
-                            height: Screenutil.length(72),
+                            width: 72.w,
+                            height: 72.w,
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: Screenutil.length(20)),
+                        margin: EdgeInsets.only(left: 20.w),
                         child: Text(
                           '已签收',
                           style: TextStyle(
@@ -96,8 +96,8 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: Screenutil.length(1),
-                        height: Screenutil.length(50),
+                        width: 1.w,
+                        height: 50.w,
                         child: DecoratedBox(
                           decoration:
                               BoxDecoration(color: BaseStyle.color999999),
@@ -106,7 +106,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                       InkWell(
                         onTap: () {},
                         child: Container(
-                          margin: EdgeInsets.only(left: Screenutil.length(20)),
+                          margin: EdgeInsets.only(left: 20.w),
                           child: Column(
                             children: [
                               Icon(
@@ -116,7 +116,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                               ),
                               Container(
                                 margin:
-                                    EdgeInsets.only(top: Screenutil.length(8)),
+                                    EdgeInsets.only(top: 8.w),
                                 child: Text(
                                   '物流投诉',
                                   style: TextStyle(
@@ -147,7 +147,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
           controller: sc,
           children: <Widget>[
             Container(
-              height: Screenutil.length(40),
+              height: 40.w,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 color: Color(0xfff0f0f0),

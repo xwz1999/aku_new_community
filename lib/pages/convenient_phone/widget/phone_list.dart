@@ -50,7 +50,7 @@ class _PhoneListState extends State<PhoneList> {
           title: Text(
             url,
             style: TextStyle(
-              fontSize: Screenutil.size(34),
+              fontSize: 34.sp,
               color: Color(0xff030303),
             ),
           ),
@@ -59,7 +59,7 @@ class _PhoneListState extends State<PhoneList> {
               child: Text(
                 '取消',
                 style: TextStyle(
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xff333333),
                 ),
               ),
@@ -72,7 +72,7 @@ class _PhoneListState extends State<PhoneList> {
                 '呼叫',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: Screenutil.size(34),
+                  fontSize: 34.sp,
                   color: Color(0xffff8200),
                 ),
               ),
@@ -89,10 +89,10 @@ class _PhoneListState extends State<PhoneList> {
 
   Widget _phoneCard(String name, String phone) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: Screenutil.length(32)),
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
       padding: EdgeInsets.only(
-        top: Screenutil.length(23),
-        bottom: Screenutil.length(20),
+        top: 23.w,
+        bottom: 20.w,
       ),
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -108,15 +108,15 @@ class _PhoneListState extends State<PhoneList> {
               Text(
                 name,
                 style: TextStyle(
-                  fontSize: Screenutil.size(32),
+                  fontSize: 32.sp,
                   color: Color(0xff333333),
                 ),
               ),
-              SizedBox(height: Screenutil.length(12)),
+              SizedBox(height: 12.w),
               Text(
                 phone,
                 style: TextStyle(
-                  fontSize: Screenutil.size(28),
+                  fontSize: 28.sp,
                   color: Color(0xff999999),
                 ),
               ),
@@ -128,8 +128,8 @@ class _PhoneListState extends State<PhoneList> {
             },
             child: Image.asset(
               AssetsImage.PHONE,
-              height: Screenutil.length(60),
-              width: Screenutil.length(60),
+              height: 60.w,
+              width: 60.w,
             ),
           ),
         ],
