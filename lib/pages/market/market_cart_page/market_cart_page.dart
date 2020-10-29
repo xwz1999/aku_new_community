@@ -12,7 +12,7 @@ import 'widget/market_cart_app_bar.dart';
 
 class MarketCartPage extends StatefulWidget {
   final AkuShopModel cartItem;
-  
+
   MarketCartPage({Key key, this.cartItem}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class MarketCartPage extends StatefulWidget {
 
 class _MarketCartPageState extends State<MarketCartPage> {
   Widget _cardRadio(
-      BuildContext context, AkuShopModel cartItem, CartProvidde model,index) {
+      BuildContext context, AkuShopModel cartItem, CartProvidde model, index) {
     return InkWell(
       onTap: () {
         setState(() {
@@ -199,14 +199,15 @@ class _MarketCartPageState extends State<MarketCartPage> {
     return true;
   }
 
-  double get _allprice{
-    double _price=0;
-    for(var element in shopList){
-      _price+=double.parse(element.itemprice)*element.count;
+  double get _allprice {
+    double _price = 0;
+    for (var element in shopList) {
+      _price += double.parse(element.itemprice) * element.count;
     }
     return _price;
   }
-  int get _goodsCount=>shopList.length;
+
+  int get _goodsCount => shopList.length;
 
   List<AkuShopModel> _cartList;
 
@@ -215,11 +216,13 @@ class _MarketCartPageState extends State<MarketCartPage> {
     return 'end';
   }
 
-  Widget _selectAll(CartProvidde model,) {
+  Widget _selectAll(
+    CartProvidde model,
+  ) {
     return InkWell(
       onTap: () {
-        for(var element in _cartList){
-          element.isCheck=!element.isCheck;
+        for (var element in _cartList) {
+          element.isCheck = !_selectALl;
         }
         model.changeALlCheckState(true);
         setState(() {
@@ -301,7 +304,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
     );
   }
 
-  Widget _marketCartCard(AkuShopModel cartItem,index) {
+  Widget _marketCartCard(AkuShopModel cartItem, index) {
     return Consumer<CartProvidde>(builder: (context, model, child) {
       return Container(
         margin: EdgeInsets.only(
@@ -366,7 +369,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
               children: [
                 Row(
                   children: [
-                    _cardRadio(context, cartItem, model,index),
+                    _cardRadio(context, cartItem, model, index),
                     _image(cartItem.itempic),
                     _content(cartItem.itemtitle, '默认', cartItem.itemprice),
                   ],
@@ -425,7 +428,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                 return ListView.builder(
                     itemCount: cartList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return _marketCartCard(cartList[index],index);
+                      return _marketCartCard(cartList[index], index);
                     });
               },
             ),
