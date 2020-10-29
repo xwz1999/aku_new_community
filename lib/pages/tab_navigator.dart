@@ -11,9 +11,7 @@ import 'personal/personal_page.dart';
 
 
 class TabNavigator extends StatefulWidget {
-  final bool isSign;
-
-  const TabNavigator({Key key, this.isSign=false}) : super(key: key);
+  const TabNavigator({Key key, }) : super(key: key);
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
 }
@@ -37,7 +35,6 @@ _pages=[
   PropertyIndex(),
   CommunityIndex(),
   PersonalIndex(
-    isSign: widget.isSign,
   )
 ];
   }

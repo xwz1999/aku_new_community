@@ -1,10 +1,12 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:provider/provider.dart';
 
 class UserAuthenticationPage extends StatefulWidget {
   final BuildContext context;
@@ -26,6 +28,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
   ];
 
   AppBar _appBar() {
+    final userProvider=Provider.of<UserProvider>(context);
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
@@ -39,8 +42,9 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
         MaterialButton(
           child: Text('跳过'),
           onPressed: () {
+            userProvider.setisSigned(true);
             ARoute.pop(context,root: true);
-            ARoute.pushReplace(context, TabNavigator(isSign: true,));
+            ARoute.pushReplace(context, TabNavigator());
           },
         ),
       ],

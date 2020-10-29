@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool isSign;
@@ -33,6 +35,7 @@ class _PersonalIndexState extends State<PersonalIndex>
   }
 
   SliverAppBar _sliverAppBar(double height) {
+    final userProvider=Provider.of<UserProvider>(context);
     return SliverAppBar(
       pinned: true,
       elevation: 0,
@@ -71,18 +74,18 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1851283359,3457678391&fm=26&gp=0.jpg',
                                 width: Screenutil.length(106),
                                 height: Screenutil.length(106),
-                                isSigned: _isSigned,
+                                isSigned: userProvider.isSigned,
                               ),
                             ),
                           ),
                           InkWell(
                             onTap: (){
-                              _isSigned? null:ARoute.push(context, SignInPage());
+                              userProvider.isSigned? null:ARoute.push(context, SignInPage());
                             },
                             child: Container(
                                 margin: EdgeInsets.only(
                                     left: Screenutil.length(16)),
-                                child: _isSigned
+                                child: userProvider.isSigned
                                     ? Text(
                                         'Cheailune',
                                         style: TextStyle(

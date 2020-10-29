@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvidde()),
+        ChangeNotifierProvider(create: (context)=>UserProvider()),
       ],
       child: OKToast(
         textStyle: TextStyle(fontSize: 19.0, color: Colors.white),
