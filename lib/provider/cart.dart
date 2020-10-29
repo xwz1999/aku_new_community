@@ -141,7 +141,8 @@ class CartProvidde with ChangeNotifier {
     });
     cartString = json.encode(newList).toString();
     prefs.setString("cartInfo", cartString);
-    await getCartInfo();
+    // await getCartInfo();
+    notifyListeners();
   }
 
   ///商品数量加减
