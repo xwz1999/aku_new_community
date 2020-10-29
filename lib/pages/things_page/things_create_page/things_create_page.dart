@@ -178,7 +178,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
           alignment: Alignment.center,
           height: 98.w,
           width: 750.w,
-          padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
+          padding: EdgeInsets.symmetric(vertical:26.5.w),
           color: Color(0xffffc40c),
           child: Text(
             '确认提交',

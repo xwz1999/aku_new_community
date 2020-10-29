@@ -84,7 +84,7 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
           alignment: Alignment.center,
           height: 98.w,
           width: 750.w,
-          padding: EdgeInsets.symmetric(vertical: Screenutil.length(26.5)),
+          padding: EdgeInsets.symmetric(vertical: 26.5.w),
           color: Color(0xffffc40c),
           child: Text(
             widget.bundle.getMap('things')['isRepair'] ? '确认完成' : '继续提问',

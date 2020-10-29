@@ -110,21 +110,22 @@ class CartProvidde with ChangeNotifier {
 
   ///单选商品
   changeCheckState(AkuShopModel cartItem) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    cartString = prefs.getString("cartInfo");
-    List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
-    int tempIndex = 0;
-    int changeIndex = 0;
-    tempList.forEach((item) {
-      if (item["itemid"] == cartItem.itemid) {
-        changeIndex = tempIndex;
-      }
-      tempIndex++;
-    });
-    tempList[changeIndex] = cartItem.toJson();
-    cartString = json.encode(tempList).toString();
-    prefs.setString("cartInfo", cartString);
-    await getCartInfo();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // cartString = prefs.getString("cartInfo");
+    // List<Map> tempList = (json.decode(cartString.toString()) as List).cast();
+    // int tempIndex = 0;
+    // int changeIndex = 0;
+    // tempList.forEach((item) {
+    //   if (item["itemid"] == cartItem.itemid) {
+    //     changeIndex = tempIndex;
+    //   }
+    //   tempIndex++;
+    // });
+    // tempList[changeIndex] = cartItem.toJson();
+    // cartString = json.encode(tempList).toString();
+    // prefs.setString("cartInfo", cartString);
+    // await getCartInfo();
+    notifyListeners();
   }
 
   ///全选商品
@@ -140,7 +141,8 @@ class CartProvidde with ChangeNotifier {
     });
     cartString = json.encode(newList).toString();
     prefs.setString("cartInfo", cartString);
-    await getCartInfo();
+    // await getCartInfo();
+    notifyListeners();
   }
 
   ///商品数量加减

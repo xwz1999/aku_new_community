@@ -118,7 +118,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
         alignment: Alignment.center,
         height: 96.w,
         margin: EdgeInsets.symmetric(horizontal: 32.w),
-        padding: EdgeInsets.symmetric(vertical: Screenutil.length(25.5)),
+        padding: EdgeInsets.symmetric(vertical: 25.5.w),
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
           borderRadius: BorderRadius.all(Radius.circular(48)),

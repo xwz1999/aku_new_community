@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,8 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/custom_action_sheet.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'agreement_page/privacy_page.dart';
 
@@ -50,7 +53,7 @@ class _SettingPageState extends State<SettingPage> {
       'isSwitch': false,
     },
     {
-      'title':'隐私政策',
+      'title': '隐私政策',
       'isSwitch': false,
     }
   ];
@@ -176,10 +179,10 @@ class _SettingPageState extends State<SettingPage> {
             );
             break;
           case '用户协议':
-          ARoute.push(context, AgreementPage());
+            ARoute.push(context, AgreementPage());
             break;
-            case '隐私政策':
-            ARoute.push(context,PrivacyPage());
+          case '隐私政策':
+            ARoute.push(context, PrivacyPage());
             break;
           default:
         }
@@ -233,8 +236,10 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   Widget _containerQuit() {
+    final userProvider = Provider.of<UserProvider>(context);
     return InkWell(
       onTap: () {
+        userProvider.isSigned?
         showCupertinoModalPopup(
           context: context,
           builder: (context) {
@@ -249,14 +254,16 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.popUntil(context, (route) {
-                      return !Navigator.canPop(context);
-                    });
-                    Navigator.pushReplacement(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => SignInPage(),
-                        ));
+                    userProvider.setisSigned(false);
+                    ARoute.pop(context);
+                    // Navigator.popUntil(context, (route) {
+                    //   return !Navigator.canPop(context);
+                    // });
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     CupertinoPageRoute(
+                    //       builder: (context) => SignInPage(),
+                    //     ));
                   },
                 ),
               ],
@@ -268,25 +275,46 @@ class _SettingPageState extends State<SettingPage> {
               ),
             );
           },
-        );
+        ):ARoute.push(context, SignInPage());
       },
-      child: Container(
-        color: Colors.white,
-        height: 96.w,
-        padding: EdgeInsets.only(
-          top: 26.w,
-          bottom: 25.w,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          '退出当前帐号',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: BaseStyle.fontSize32,
-            color: BaseStyle.color333333,
-          ),
-        ),
-      ),
+      child: userProvider.isSigned
+          ? Container(
+              color: Colors.white,
+              height: 96.w,
+              padding: EdgeInsets.only(
+                top: 26.w,
+                bottom: 25.w,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                '退出当前帐号',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: BaseStyle.fontSize32,
+                  color: BaseStyle.color333333,
+                ),
+              ),
+            )
+          : Container(
+              alignment: Alignment.center,
+              height: 89.w,
+              width: 586.w,
+              padding: EdgeInsets.only(
+                  top: 25.w, bottom: 24.w),
+              margin: EdgeInsets.symmetric(horizontal: 82.w),
+              decoration: BoxDecoration(
+                color: Color(0xffffc40c),
+                borderRadius: BorderRadius.all(Radius.circular(36)),
+              ),
+              child: Text(
+                '登录',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: BaseStyle.fontSize28,
+                  color: BaseStyle.color333333,
+                ),
+              ),
+            ),
     );
   }
 

@@ -97,7 +97,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(
-                        vertical: Screenutil.length(26.5),
+                        vertical: 26.5.w,
                       ),
                       decoration: BoxDecoration(
                         border: Border(

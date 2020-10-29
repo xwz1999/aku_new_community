@@ -220,24 +220,24 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
             Container(
               padding: EdgeInsets.only(
                 left: 32.w,
-                right: Screenutil.length(32),
-                bottom: Screenutil.length(155),
+                right: 32.w,
+                bottom: 155.w,
               ),
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(24)),
+                    margin: EdgeInsets.only(top: 24.w),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderRadius: BorderRadius.all(Radius.circular(4.w)),
                       child: CachedImageWrapper(
                         url: widget.bundle.getMap('details')['imagePath'],
-                        width: Screenutil.length(686),
-                        height: Screenutil.length(228),
+                        width: 686.w,
+                        height: 228.w,
                       ),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(40)),
+                    margin: EdgeInsets.only(top: 40.w),
                     alignment: Alignment.center,
                     child: Text(
                       widget.bundle.getMap('details')['title'],
@@ -249,13 +249,13 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(35)),
+                    margin: EdgeInsets.only(top: 35.w),
                     alignment: Alignment.center,
-                    width: Screenutil.length(672),
+                    width: 672.w,
                     child: Html(data: htmlData),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Screenutil.length(129)),
+                    margin: EdgeInsets.only(top: 129.w),
                     child: Column(
                       children: _listQuestion
                           .map((item) => _questionCard(
@@ -267,8 +267,8 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        top: Screenutil.length(80),
-                        bottom: Screenutil.length(24)),
+                        top: 80.w,
+                        bottom: 24.w),
                     child: Text(
                       '您的觉得我们需要改进的地方',
                       style: TextStyle(

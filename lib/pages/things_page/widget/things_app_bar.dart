@@ -48,7 +48,7 @@ class ThingsAppBar extends StatelessWidget {
             fontSize: 28.sp,
           ),
           labelPadding:
-              EdgeInsets.symmetric(horizontal: Screenutil.length(131.5)),
+              EdgeInsets.symmetric(horizontal: 131.5.w),
           indicatorColor: Color(0xffffc40c),
           indicatorSize: TabBarIndicatorSize.label,
           indicatorPadding:

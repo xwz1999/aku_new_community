@@ -150,7 +150,7 @@ class ProductContent extends StatelessWidget {
   Positioned _positionedRecommend() {
     return Positioned(
       right: ScreenUtil().setWidth(453),
-      top: ScreenUtil().setWidth(252),
+      bottom: 100.w,
       child: Row(
         children: [
           Icon(
