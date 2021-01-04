@@ -28,13 +28,6 @@ dependencies:
   
   # 瀑布流
   waterfall_flow: 2.0.2
-  #
-  extended_tabs: 0.2.3
-  #
-  flutter_anywhere_menus:
-    git:
-      url: https://github.com/haysuperman/flutter_anywhere_menus.git
-      ref: eb91b16210fdac9907eaab9604c017d436e423ca
   # 权限组件
   permission_handler: ^5.0.1+1
   # 版本信息
@@ -59,8 +52,6 @@ dependencies:
   flutter_icons: 1.1.0
   extended_image: 0.9.0
   extended_text: 4.0.0
-  # loading界面
-  flutter_spinkit: ^3.1.0
   #轮播图
   flutter_swiper: ^1.1.6
   #路由
@@ -73,7 +64,6 @@ dependencies:
   photo_view: ^0.10.2
   #图片缓存
   cached_network_image: ^2.3.1
-  flutter_luban: ^0.1.11
   #评价
   smooth_star_rating: ^1.1.1
   #头像层叠

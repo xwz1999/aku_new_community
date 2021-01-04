@@ -7,7 +7,7 @@ import 'package:akuCommunity/utils/screenutil.dart';
 class PropertyCard extends StatelessWidget {
   PropertyCard({Key key}) : super(key: key);
 
-  List<Map<String, dynamic>> _listCard = [
+  final List<Map<String, dynamic>> _listCard = [
     {
       'title': '语音管家',
       'subtitle': '随时随地帮你下单',
@@ -67,7 +67,7 @@ class PropertyCard extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                _phoneCall('tel:${url}');
+                _phoneCall('tel:$url');
                 Navigator.pop(context);
               },
             ),

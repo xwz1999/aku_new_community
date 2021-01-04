@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +7,6 @@ import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class GoodsManagePage extends StatefulWidget {
   GoodsManagePage({Key key}) : super(key: key);
@@ -93,7 +91,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                '物品名称：${title}',
+                '物品名称：$title',
                 style: TextStyle(
                   fontSize: 28.sp,
                   color: Color(0xff4a4b51),
@@ -101,7 +99,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
               ),
               SizedBox(height: 20.w),
               Text(
-                '数量剩余：${goodsNum}个',
+                '数量剩余：$goodsNum个',
                 style: TextStyle(
                   fontSize: 24.sp,
                   color: Color(0xff999999),
@@ -155,7 +153,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
   final _cancelController = TextEditingController(text: "关闭");
 
   var _aspectTolerance = 0.00;
-  var _numberOfCameras = 0;
+  var numberOfCameras = 0;
   var _selectedCamera = -1;
   var _useAutoFocus = true;
   var _autoEnableFlash = false;
@@ -169,7 +167,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
     super.initState();
 
     Future.delayed(Duration.zero, () async {
-      _numberOfCameras = await BarcodeScanner.numberOfCameras;
+      numberOfCameras = await BarcodeScanner.numberOfCameras;
       setState(() {});
     });
   }

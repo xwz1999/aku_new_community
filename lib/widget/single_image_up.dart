@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 
 class SingleImageUp extends StatefulWidget {
   final String title, imagePath;
@@ -56,8 +54,6 @@ class _SingleImageUpState extends State<SingleImageUp> {
     //一张张上传照片
     for (int i = 0; i < images.length; i++) {
       //获取byteData
-      ByteData byteData = await images[i].getByteData();
-      List<int> imageData = byteData.buffer.asUint8List();
 
       //MultipartFile multipartFile = MultipartFile.fromBytes(
       //imageData,

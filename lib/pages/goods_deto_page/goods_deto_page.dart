@@ -1,7 +1,6 @@
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
@@ -57,10 +56,6 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
     }
   ];
 
-  List<Map<String, dynamic>> _listButton = [
-    {'title': '查看二维码', 'icon': MaterialCommunityIcons.qrcode},
-    {'title': '搬家公司', 'icon': SimpleLineIcons.phone}
-  ];
 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);

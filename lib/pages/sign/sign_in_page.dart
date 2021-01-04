@@ -5,7 +5,6 @@ import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.da
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:ani_route/ani_route.dart';
-import 'package:extended_text/extended_text.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -196,7 +195,6 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    double _statusHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),

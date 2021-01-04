@@ -8,7 +8,7 @@ import 'package:akuCommunity/routers/page_routers.dart';
 class GoodsInfoCardButton extends StatelessWidget {
   GoodsInfoCardButton({Key key}) : super(key: key);
 
-  List<Map<String, dynamic>> _listButton = [
+  final List<Map<String, dynamic>> _listButton = [
     {'title': '查看二维码', 'icon': MaterialCommunityIcons.qrcode},
     {'title': '搬家公司', 'icon': SimpleLineIcons.phone}
   ];
@@ -55,7 +55,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                _phoneCall('tel:${url}');
+                _phoneCall('tel:$url');
                 Navigator.pop(context);
               },
             ),

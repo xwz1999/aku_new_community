@@ -246,7 +246,6 @@ class _InvoicePageState extends State<InvoicePage> {
                 _containerHeader(),
                 Form(
                   key: _formKey,
-                  autovalidate: true,
                   child: Column(
                     children: [InvoiceInput(isEnterprise: isEnterprise)],
                   ),

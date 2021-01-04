@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 

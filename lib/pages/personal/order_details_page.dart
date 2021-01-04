@@ -224,7 +224,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   Container(
                     margin: EdgeInsets.only(right: 25.w),
                     child: Text(
-                      '实付款￥${payPrice}',
+                      '实付款￥$payPrice',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: BaseStyle.fontSize28,
@@ -244,7 +244,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '￥${price}',
+                  '￥$price',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: BaseStyle.fontSize28,
@@ -252,7 +252,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   ),
                 ),
                 Text(
-                  'x${shopNum}',
+                  'x$shopNum',
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize28,
                     color: BaseStyle.color999999,

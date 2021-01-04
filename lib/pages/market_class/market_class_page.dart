@@ -6,8 +6,6 @@ import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/service/net_util.dart';
 import 'package:akuCommunity/model/aku_shop_class_model.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'widget/market_class_bar.dart';
@@ -39,10 +37,6 @@ class _MarketClassPageState extends State<MarketClassPage> {
     '母婴亲子',
     '运动旅游',
     '滋补保健',
-  ];
-  List<Map<String, dynamic>> _rightContent = [
-    {'title': '新品推荐', 'imagePath': ''},
-    {'title': '新品推荐', 'imagePath': ''}
   ];
 
   ScrollController _controller = ScrollController();

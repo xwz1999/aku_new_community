@@ -8,7 +8,7 @@ class RecordCard extends StatelessWidget {
   final Function fun;
   RecordCard({Key key, this.fun}) : super(key: key);
 
-  List<Map<String, dynamic>> _listBill = [
+  final List<Map<String, dynamic>> _listBill = [
     {
       'title': '物业管理费',
       'value': '深蓝公寓 1幢1单元306',

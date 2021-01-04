@@ -81,7 +81,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
               ),
             ),
             Text(
-              '￥${payPrice}',
+              '￥$payPrice',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: BaseStyle.fontSize32,

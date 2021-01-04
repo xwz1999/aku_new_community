@@ -5,9 +5,9 @@ import 'package:akuCommunity/utils/screenutil.dart';
 import 'things_card.dart';
 
 class ThingsList extends StatefulWidget {
-  final List<Map<String, dynamic>> listCard ;
+  final List<Map<String, dynamic>> listCard;
   final bool isRepair;
-  ThingsList({Key key,this.listCard,this.isRepair}) : super(key: key);
+  ThingsList({Key key, this.listCard, this.isRepair}) : super(key: key);
 
   @override
   _ThingsListState createState() => _ThingsListState();
@@ -34,6 +34,7 @@ class _ThingsListState extends State<ThingsList>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SmartRefresher(
       controller: _refreshController,
       header: WaterDropHeader(),

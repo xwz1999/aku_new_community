@@ -133,17 +133,17 @@ class _StaffListState extends State<StaffList> {
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    '住址：${address}',
+                    '住址：$address',
                     style: _subStyle(),
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    '任职期限：${tenure}',
+                    '任职期限：$tenure',
                     style: _subStyle(),
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    '从事岗位：${post}',
+                    '从事岗位：$post',
                     style: _subStyle(),
                   ),
                 ],

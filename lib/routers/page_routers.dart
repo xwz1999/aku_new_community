@@ -178,7 +178,7 @@ class Bundle {
 
   _getValue(String k) {
     if (!_map.containsKey(k)) {
-      throw Exception("你使用的${k}在payload不存在,请检查你的key名字是否正确,或者确定key是否存在payload");
+      throw Exception("你使用的$k\在payload不存在,请检查你的key名字是否正确,或者确定key是否存在payload");
     }
     return _map[k];
   }

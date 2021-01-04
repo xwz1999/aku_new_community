@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/search_bar_delegate.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class MarketClassBar extends StatelessWidget {
   Widget _inkWellSearch(BuildContext context) {

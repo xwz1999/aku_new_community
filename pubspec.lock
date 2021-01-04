@@ -267,13 +267,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
-  extended_tabs:
-    dependency: "direct main"
-    description:
-      name: extended_tabs
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.3"
   extended_text:
     dependency: "direct main"
     description:
@@ -363,15 +356,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_anywhere_menus:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: eb91b16210fdac9907eaab9604c017d436e423ca
-      resolved-ref: eb91b16210fdac9907eaab9604c017d436e423ca
-      url: "https://github.com/haysuperman/flutter_anywhere_menus.git"
-    source: git
-    version: "0.1.2"
   flutter_beautiful_popup:
     dependency: "direct main"
     description:
@@ -426,13 +410,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_luban:
-    dependency: "direct main"
-    description:
-      name: flutter_luban
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.11"
   flutter_map:
     dependency: "direct main"
     description:
@@ -475,13 +452,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.5.7"
-  flutter_spinkit:
-    dependency: "direct main"
-    description:
-      name: flutter_spinkit
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.1.0"
   flutter_svg:
     dependency: transitive
     description:

@@ -102,11 +102,6 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  void _selectAction(String title, subtitle) async {
-    int index1 = await showPayActionSheets(
-        context: context, title: title, subtitle: subtitle);
-    print(index1);
-  }
 
   /// 具体使用方式
   Future<int> showPayActionSheets(

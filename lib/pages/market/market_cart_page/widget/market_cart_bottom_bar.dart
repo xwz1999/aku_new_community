@@ -1,7 +1,3 @@
-
-import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';

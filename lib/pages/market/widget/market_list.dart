@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/widget/sliver_goods_card.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/goods_card_skeleton.dart';
-import 'package:akuCommunity/service/net_util.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'sliver_goods_group_card.dart';
@@ -27,7 +25,6 @@ class _MarketListState extends State<MarketList>
   bool get wantKeepAlive => true;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-  ScrollController _controller;
 
   List<AkuShopModel> _shopList = [];
 
@@ -206,6 +203,7 @@ class _MarketListState extends State<MarketList>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return RefreshConfiguration(
       hideFooterWhenNotFull: true,
       child: SmartRefresher(

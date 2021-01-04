@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/sliver_app_bar_delegate.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'widget/goods_app_bar.dart';
 import 'widget/goods_comments_card.dart';
 

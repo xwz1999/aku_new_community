@@ -159,6 +159,7 @@ class _OrderListState extends State<OrderList>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return RefreshConfiguration(
       hideFooterWhenNotFull: true,
       child: SmartRefresher(

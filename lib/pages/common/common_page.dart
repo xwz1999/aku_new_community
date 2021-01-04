@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_beautiful_popup/main.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/base/base_style.dart';
@@ -310,7 +309,6 @@ class _CommonPageState extends State<CommonPage> {
 
   @override
   Widget build(BuildContext context) {
-    double _statusHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       appBar: PreferredSize(
         child: _commentAppBar(),

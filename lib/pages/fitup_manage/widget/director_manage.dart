@@ -15,10 +15,7 @@ class DirectorManage extends StatefulWidget {
   _DirectorManageState createState() => _DirectorManageState();
 }
 
-class _DirectorManageState extends State<DirectorManage>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
+class _DirectorManageState extends State<DirectorManage> {
 
   TextEditingController _companyName = new TextEditingController();
 
@@ -88,8 +85,7 @@ class _DirectorManageState extends State<DirectorManage>
         children: [
           Text(
             title,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           widget
@@ -113,8 +109,7 @@ class _DirectorManageState extends State<DirectorManage>
         children: [
           Text(
             '上传凭证',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           Row(

@@ -14,31 +14,6 @@ class SliverGoodsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Row _rowTag() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 8.w,
-              ),
-              color: Color(0xff000000).withOpacity(0.6),
-              child: Text(
-                '剩余时间:09天13时46分',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Color(0xffffffff), fontSize: 20.sp),
-              ),
-            ),
-          ),
-        ],
-      );
-    }
-
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
@@ -137,8 +112,8 @@ class SliverGoodsCard extends StatelessWidget {
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0xffffc40c),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(20.w)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20.w)),
                                   ),
                                   child: Text(
                                     '立即购买',

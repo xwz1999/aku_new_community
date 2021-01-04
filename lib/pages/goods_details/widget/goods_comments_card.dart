@@ -109,7 +109,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '浏览${viewNum}次',
+            '浏览$viewNum次',
             style: TextStyle(
               fontSize: BaseStyle.fontSize22,
               color: BaseStyle.color999999,

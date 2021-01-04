@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/cart_count.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/widget/goods_specs_sheet.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
@@ -13,22 +11,6 @@ import 'package:akuCommunity/provider/cart.dart';
 class MarketCartCard extends StatelessWidget {
   final AkuShopModel cartItem;
   MarketCartCard({Key key, this.cartItem}) : super(key: key);
-
-  void _showGoodsSpecsSheet() {
-    // showModalBottomSheet(
-    //   isScrollControlled: true,
-    //   context: context,
-    //   backgroundColor: Colors.white,
-    //   builder: (context) {
-    //     return GoodsSpecsSheet(
-    //       goodsNum: widget.goodsNum,
-    //       index: widget.index,
-    //       reduce: widget.reduce,
-    //       add: widget.add,
-    //     );
-    //   },
-    // );
-  }
 
   Widget _cardRadio(
       BuildContext context, AkuShopModel cartItem, CartProvidde model) {
@@ -121,7 +103,7 @@ class MarketCartCard extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 40.w),
             child: Text(
-              '￥${price}',
+              '￥$price',
               style: TextStyle(
                 fontSize: 28.sp,
                 color: Color(0xffe60e0e),

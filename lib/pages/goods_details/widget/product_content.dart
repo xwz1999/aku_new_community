@@ -18,7 +18,7 @@ class ProductContent extends StatelessWidget {
     return Row(
       children: [
         Text(
-          '￥${price}',
+          '￥$price',
           style: TextStyle(
             fontSize: ScreenUtil().setSp(42),
             color: Color(0xff333333),

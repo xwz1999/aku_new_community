@@ -4,7 +4,6 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/common_image_picker.dart';
 import 'package:oktoast/oktoast.dart';
@@ -55,21 +54,6 @@ class _FeedBackPageState extends State<FeedBackPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _containerAddImage() {
-    return Container(
-      width: 218.w,
-      height: 218.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
-        image: DecorationImage(
-            image: AssetImage(AssetsImage.IMAGEADD), fit: BoxFit.fill),
-      ),
-      // child: ,
     );
   }
 

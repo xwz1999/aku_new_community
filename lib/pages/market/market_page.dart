@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/app_bar_action.dart';
@@ -66,7 +65,8 @@ class _MarketPageState extends State<MarketPage>
 
   @override
   Widget build(BuildContext context) {
-    double _appBarHeight = ScreenUtil().setHeight(506);
+    // double _appBarHeight = ScreenUtil().setHeight(506);
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

@@ -16,9 +16,6 @@ class SystemMessagePage extends StatefulWidget {
 class _SystemMessagePageState extends State<SystemMessagePage> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-
-  ScrollController _controller;
-
   List<Map<String, dynamic>> _listNotice = [
     {'status': '已读', 'type': '业主信息审核：未通过', 'content': '您的信息有错误，请您重新填写'},
     {
@@ -141,7 +138,7 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
                 ),
                 SizedBox(height: 8.w),
                 Text(
-                  '驳回理由：${content}',
+                  '驳回理由：$content',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

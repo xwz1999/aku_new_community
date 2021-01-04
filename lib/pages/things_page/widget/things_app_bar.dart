@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class ThingsAppBar extends StatelessWidget {
   final String title, subtitle;

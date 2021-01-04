@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
@@ -15,7 +14,6 @@ class AddressEditPage extends StatefulWidget {
 }
 
 class _AddressEditPageState extends State<AddressEditPage> {
-  var _scaffoldKey = new GlobalKey<ScaffoldState>();
   GlobalKey _formKey = new GlobalKey<FormState>();
   bool isDefault = false;
 
@@ -102,7 +100,6 @@ class _AddressEditPageState extends State<AddressEditPage> {
               children: [
                 Form(
                   key: _formKey,
-                  autovalidate: true,
                   child: Column(
                     children: [
                       AddressEditItem(addressInfo: {

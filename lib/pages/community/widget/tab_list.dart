@@ -86,8 +86,8 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
         'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=107966910,699677438&fm=26&gp=0.jpg',
         'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3011269428,2056805718&fm=26&gp=0.jpg'
       ],
-      'isLike':false,
-      'avatar':Image.asset('assets/example/touxiang1.png'),
+      'isLike': false,
+      'avatar': Image.asset('assets/example/touxiang1.png'),
     },
     {
       'name': '马泽鹏',
@@ -96,8 +96,8 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
         'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3445658157,2379681095&fm=26&gp=0.jpg',
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3539674557,3804837870&fm=26&gp=0.jpg',
       ],
-      'isLike':true,
-      'avatar':Image.asset('assets/example/touxiang2.png')
+      'isLike': true,
+      'avatar': Image.asset('assets/example/touxiang2.png')
     },
     {
       'name': '王管事',
@@ -106,8 +106,8 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2446247351,2922660058&fm=26&gp=0.jpg',
         'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601274815221&di=3a50314a4d2c7188f6003f67d24177c2&imgtype=0&src=http%3A%2F%2Fimg1.cache.netease.com%2Fcatchpic%2F6%2F62%2F620DAF59053DF902F1D991EDBF14FD26.gif',
       ],
-      'isLike':false,
-      'avatar':Image.asset('assets/example/touxiang3.jpeg')
+      'isLike': false,
+      'avatar': Image.asset('assets/example/touxiang3.jpeg')
     },
   ];
 
@@ -140,6 +140,7 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SmartRefresher(
       controller: _refreshController,
       header: WaterDropHeader(),
@@ -158,8 +159,7 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
                   content: _newsList[index]['content'],
                   imageUrl: _newsList[index]['imageUrl'],
                   isLike: _newsList[index]['isLike'],
-                  avatar:_newsList[index]['avatar']
-                )
+                  avatar: _newsList[index]['avatar'])
               : widget.index == 1
                   ? TopicCard(
                       title: _topicList[index]['title'],
@@ -176,7 +176,9 @@ class _TabListState extends State<TabList> with AutomaticKeepAliveClientMixin {
                     ),
           itemCount: widget.index == 0
               ? _newsList.length
-              : widget.index == 1 ? _topicList.length : _circleList.length,
+              : widget.index == 1
+                  ? _topicList.length
+                  : _circleList.length,
         ),
       ),
     );

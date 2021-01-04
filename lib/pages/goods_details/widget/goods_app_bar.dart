@@ -9,8 +9,7 @@ import 'package:fluwx/fluwx.dart';
 class GoodsAppBar extends StatefulWidget {
   final String shareImg;
   final String title;
-  GoodsAppBar({Key key, @required this.shareImg, @required this.title})
-      : super(key: key);
+  GoodsAppBar({Key key, this.shareImg, this.title}) : super(key: key);
 
   @override
   _GoodsAppBarState createState() => _GoodsAppBarState();

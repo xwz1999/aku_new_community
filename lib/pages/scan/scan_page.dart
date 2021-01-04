@@ -98,7 +98,6 @@ class _ScanPageState extends State<ScanPage> {
       ListTile(
         title: TextField(
           decoration: InputDecoration(
-            hasFloatingPlaceholder: true,
             labelText: "Flash On",
           ),
           controller: _flashOnController,
@@ -107,7 +106,6 @@ class _ScanPageState extends State<ScanPage> {
       ListTile(
         title: TextField(
           decoration: InputDecoration(
-            hasFloatingPlaceholder: true,
             labelText: "Flash Off",
           ),
           controller: _flashOffController,
@@ -116,7 +114,6 @@ class _ScanPageState extends State<ScanPage> {
       ListTile(
         title: TextField(
           decoration: InputDecoration(
-            hasFloatingPlaceholder: true,
             labelText: "Cancel",
           ),
           controller: _cancelController,
@@ -186,7 +183,9 @@ class _ScanPageState extends State<ScanPage> {
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           value: selectedFormats.length == _possibleFormats.length
               ? true
-              : selectedFormats.length == 0 ? false : null,
+              : selectedFormats.length == 0
+                  ? false
+                  : null,
           onChanged: (checked) {
             setState(() {
               selectedFormats = [

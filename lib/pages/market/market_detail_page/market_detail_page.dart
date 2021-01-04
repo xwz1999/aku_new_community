@@ -41,6 +41,7 @@ class _MarketDetailPageState extends State<MarketDetailPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight), //319

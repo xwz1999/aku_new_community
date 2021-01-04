@@ -77,7 +77,7 @@ class _PhoneListState extends State<PhoneList> {
                 ),
               ),
               onPressed: () {
-                _phoneCall('tel:${url}');
+                _phoneCall('tel:$url');
                 Navigator.pop(context);
               },
             ),

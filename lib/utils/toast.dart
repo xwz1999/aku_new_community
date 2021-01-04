@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Toast {
-  static Future<ToastFuture> globalToast(String text) {
-    showToast(
+  static ToastFuture globalToast(String text) {
+    return showToast(
       text,
       duration: Duration(milliseconds: 2000),
       // position: ToastPosition.top,

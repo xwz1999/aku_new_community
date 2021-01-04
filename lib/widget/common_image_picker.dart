@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,8 +54,8 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
     //一张张上传照片
     for (int i = 0; i < images.length; i++) {
       //获取byteData
-      ByteData byteData = await images[i].getByteData();
-      List<int> imageData = byteData.buffer.asUint8List();
+      // ByteData byteData = await images[i].getByteData();
+      // List<int> imageData = byteData.buffer.asUint8List();
 
       //MultipartFile multipartFile = MultipartFile.fromBytes(
       //imageData,

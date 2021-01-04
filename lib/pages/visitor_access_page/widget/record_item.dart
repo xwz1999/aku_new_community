@@ -30,10 +30,8 @@ class _RecordItemState extends State<RecordItem>
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Color(0xffffffff),
-              borderRadius:
-                  BorderRadius.all(Radius.circular(36.w)),
-              border: Border.all(
-                  color: Color(0xffffc500), width: 3.w)),
+              borderRadius: BorderRadius.all(Radius.circular(36.w)),
+              border: Border.all(color: Color(0xffffc500), width: 3.w)),
           padding: EdgeInsets.symmetric(
             vertical: 11.w,
             horizontal: 32.w,
@@ -75,6 +73,7 @@ class _RecordItemState extends State<RecordItem>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return InkWell(
       onTap: recordPass,
       child: Container(

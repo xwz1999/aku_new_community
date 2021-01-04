@@ -44,7 +44,6 @@ class _CommunityIndexState extends State<CommunityIndex>
     );
   }
 
-  
   List<Widget> _listActions() {
     return actionsList
         .map((item) => AppBarAction(
@@ -104,6 +103,7 @@ class _CommunityIndexState extends State<CommunityIndex>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),

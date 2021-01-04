@@ -9,9 +9,10 @@ import 'property/property_index.dart';
 import 'community/community_index.dart';
 import 'personal/personal_page.dart';
 
-
 class TabNavigator extends StatefulWidget {
-  const TabNavigator({Key key, }) : super(key: key);
+  const TabNavigator({
+    Key key,
+  }) : super(key: key);
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
 }
@@ -22,26 +23,24 @@ class _TabNavigatorState extends State<TabNavigator> {
   DateTime _lastPressed;
 
   //页面列表
-List<Widget> _pages = <Widget>[
-];
+  List<Widget> _pages = <Widget>[];
 
   @override
   void initState() {
     super.initState();
-_pages=[
-  
-  HomePage(),
-  MarketPage(),
-  PropertyIndex(),
-  CommunityIndex(),
-  PersonalIndex(
-  )
-];
+    _pages = [
+      HomePage(),
+      MarketPage(),
+      PropertyIndex(),
+      CommunityIndex(),
+      PersonalIndex()
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
+    ScreenUtil.init(context,
+        designSize: Size(750, 1334), allowFontScaling: true);
     double iconSize = ScreenUtil().setWidth(44);
     //底部导航来
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[

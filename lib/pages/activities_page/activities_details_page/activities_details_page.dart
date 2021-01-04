@@ -91,7 +91,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(
-            '是否确定投${url}一票',
+            '是否确定投$url\一票',
             style: TextStyle(
               fontSize: 34.sp,
               color: Color(0xff030303),
@@ -144,8 +144,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
             },
       child: Container(
         margin: EdgeInsets.only(top: 39.w),
-        padding: EdgeInsets.only(
-            left: 41.w, bottom: 40.w),
+        padding: EdgeInsets.only(left: 41.w, bottom: 40.w),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(color: BaseStyle.colord8d8d8, width: 0.5),
@@ -276,14 +275,12 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
             color: Colors.white,
             child: ListView(
               padding: EdgeInsets.only(
-                  bottom: ( widget.bundle.getMap('details')['isVote'] ? 0 : 170).w),
+                  bottom:
+                      (widget.bundle.getMap('details')['isVote'] ? 0 : 170).w),
               children: [
                 Container(
                   padding: EdgeInsets.only(
-                      top: 26.w,
-                      left: 32.w,
-                      right: 32.w,
-                      bottom: 60.w),
+                      top: 26.w, left: 32.w, right: 32.w, bottom: 60.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -324,17 +321,12 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                       ),
                 Container(
                   padding: EdgeInsets.only(
-                      top: 26.w,
-                      left: 32.w,
-                      right: 32.w,
-                      bottom: 60.w),
+                      top: 26.w, left: 32.w, right: 32.w, bottom: 60.w),
                   child: widget.bundle.getMap('details')['isVote']
                       ? Container(
                           margin: EdgeInsets.only(top: 44.w),
                           padding: EdgeInsets.only(
-                              top: 50.w,
-                              left: 32.w,
-                              right: 25.w),
+                              top: 50.w, left: 32.w, right: 25.w),
                           width: 686.w,
                           decoration: BoxDecoration(
                             color: BaseStyle.colorf3f3f3,
@@ -352,8 +344,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                                     color: BaseStyle.color999999),
                               ),
                               Container(
-                                padding:
-                                    EdgeInsets.only(left: 3.w),
+                                padding: EdgeInsets.only(left: 3.w),
                                 child: Column(
                                   children: _listView
                                       .asMap()

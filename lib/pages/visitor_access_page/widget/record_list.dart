@@ -29,6 +29,7 @@ class _RecordListState extends State<RecordList>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       color: Colors.white,
       child: SmartRefresher(

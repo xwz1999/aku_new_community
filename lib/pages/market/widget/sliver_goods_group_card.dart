@@ -78,7 +78,7 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '¥${price}',
+              '¥$price',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 24.sp,
@@ -151,7 +151,7 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
                   color: isOverTime ? Color(0xff333333) : Color(0xffff7f00),
                 ),
                 Text(
-                  '剩余时间:${remainingTime}',
+                  '剩余时间:$remainingTime',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -172,14 +172,14 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '原产地:${address}',
+                      '原产地:$address',
                       style: TextStyle(
                           color: Color(0xff999999),
                           fontSize: 20.sp),
                     ),
                     SizedBox(height: 10.w),
                     Text(
-                      '预计到货:${arrivalTime}',
+                      '预计到货:$arrivalTime',
                       style: TextStyle(
                           color: Color(0xff999999),
                           fontSize: 20.sp),

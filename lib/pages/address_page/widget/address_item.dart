@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:extended_text/extended_text.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class AddressItem extends StatelessWidget {

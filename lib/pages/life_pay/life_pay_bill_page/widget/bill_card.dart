@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class BillCard extends StatelessWidget {
   BillCard({Key key}) : super(key: key);
 
-  List<Map<String, dynamic>> _listBill = [
+  final List<Map<String, dynamic>> _listBill = [
     {'title': '账单月份', 'value': '2020年1月'},
     {'title': '账单金额', 'value': '¥19.40'},
     {'title': '已缴金额', 'value': '¥0.00'},

@@ -18,9 +18,6 @@ class _MineCarPageState extends State<MineCarPage> {
     {'title': '深圳华茂悦峰', 'subtitle': '1幢-1单元-702室'},
   ];
 
-  List<Map<String, dynamic>> _listCart = [
-    {'title': '浙BZ3183', 'isDelete': true},
-  ];
 
   Widget _containerHouseCard(String title, subtitle) {
     return Container(
@@ -141,7 +138,7 @@ class _MineCarPageState extends State<MineCarPage> {
           ),
           SizedBox(height: 8.w),
           Text(
-            '尊敬的业主/租客，您还没有添加您的${tag}',
+            '尊敬的业主/租客，您还没有添加您的$tag',
             style: TextStyle(
               fontSize: 24.sp,
               color: Color(0xff999999),
@@ -150,79 +147,6 @@ class _MineCarPageState extends State<MineCarPage> {
           SizedBox(height: 39.w),
           _inkWellCheck(widget.bundle.getMap('carType')['type']),
         ],
-      ),
-    );
-  }
-
-  Widget _containerInfoCard(String title, bool isDelete) {
-    return Container(
-      margin: EdgeInsets.only(
-        left: 32.w,
-        top: 26.w,
-        right: 32.w,
-      ),
-      child: Container(
-        padding: EdgeInsets.only(
-          left: 40.w,
-          right: 26.w,
-          top: 26.w,
-          bottom: 25.w,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          border: Border.all(color: Color(0xffeeeeee), width: 0.5),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 32.sp,
-                color: Color(0xff333333),
-              ),
-            ),
-            isDelete
-                ? InkWell(
-                    child: Text(
-                      '移除',
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff999999),
-                      ),
-                    ),
-                  )
-                : SizedBox(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _positionedBottomBar(String buttonName) {
-    return Positioned(
-      bottom: 0,
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          padding: EdgeInsets.only(
-            top: 23.w,
-            bottom: 22.w,
-          ),
-          color: Color(0xffffd000),
-          alignment: Alignment.center,
-          height: 85.w,
-          width: MediaQuery.of(context).size.width,
-          child: Text(
-            buttonName,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 28.sp,
-              color: Color(0xff333333),
-            ),
-          ),
-        ),
       ),
     );
   }

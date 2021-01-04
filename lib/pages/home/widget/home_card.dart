@@ -5,7 +5,6 @@ import 'package:image_stack/image_stack.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/model/aku_shop_model.dart';
 
 class HomeCard extends StatefulWidget {
   final String title;
@@ -33,43 +32,6 @@ class _HomeCardState extends State<HomeCard> {
     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3604827221,1047385274&fm=26&gp=0.jpg",
   ];
 
-  Widget _countDown() {
-    return Container(
-      width: 638.w,
-      color: Color(0xff333333).withOpacity(0.8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-              left: 24.w,
-              top: 11.w,
-              bottom: 12.w,
-            ),
-            child: Text(
-              '剩余时间:09天13时46分',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xffffffff),
-                  fontSize: 24.sp),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(
-              right: 24.w,
-              top: 7.w,
-              bottom: 7.w,
-            ),
-            child: Text(
-              '¥99.9',
-              style: TextStyle(
-                  color: Color(0xffff8200), fontSize: 36.sp),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _button(String buttonName) {
     return InkWell(

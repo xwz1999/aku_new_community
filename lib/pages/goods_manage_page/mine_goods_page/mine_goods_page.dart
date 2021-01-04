@@ -131,7 +131,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  '物品名称：${title}',
+                  '物品名称：$title',
                   style: TextStyle(
                     fontSize: 28.sp,
                     color: Color(0xff4a4b51),
@@ -140,7 +140,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借还数量：${goodsNum}个',
+                    '借还数量：$goodsNum个',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff333333),
@@ -150,7 +150,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借用时间: ${borrowTime}',
+                    '借用时间: $borrowTime',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff999999),
@@ -160,7 +160,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借用时长: ${timeLength}日',
+                    '借用时长: $timeLength日',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff999999),
@@ -173,7 +173,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '借用状态: ${status}',
+                        '借用状态: $status',
                         style: TextStyle(
                           fontSize: 24.sp,
                           color: Color(0xff999999),
@@ -189,7 +189,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     ? Container(
                         margin: EdgeInsets.only(bottom: 9.w),
                         child: Text(
-                          '温馨提示：您的物品已借用${timeLength}天，如果用完，请及时归还',
+                          '温馨提示：您的物品已借用$timeLength天，如果用完，请及时归还',
                           style: TextStyle(
                             fontSize: 22.sp,
                             color: Color(0xff999999),

@@ -61,8 +61,6 @@ class _PropertyIndexState extends State<PropertyIndex>
     },
   ];
 
-  
-
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   ScrollController _controller;
@@ -118,6 +116,7 @@ class _PropertyIndexState extends State<PropertyIndex>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -27,15 +27,13 @@ class _PersonalIndexState extends State<PersonalIndex>
   @override
   bool get wantKeepAlive => true;
 
-  bool _isSigned=false;
   @override
-  void initState() { 
+  void initState() {
     super.initState();
-    _isSigned=widget.isSign;
   }
 
   SliverAppBar _sliverAppBar(double height) {
-    final userProvider=Provider.of<UserProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return SliverAppBar(
       pinned: true,
       elevation: 0,
@@ -62,9 +60,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                   children: [
                     Spacer(),
                     Container(
-                      margin: EdgeInsets.only(
-                          top: 175.w,
-                          left: 32.w),
+                      margin: EdgeInsets.only(top: 175.w, left: 32.w),
                       child: Row(
                         children: [
                           Container(
@@ -79,12 +75,12 @@ class _PersonalIndexState extends State<PersonalIndex>
                             ),
                           ),
                           InkWell(
-                            onTap: (){
-                              userProvider.isSigned? null:ARoute.push(context, SignInPage());
+                            onTap: () {
+                              if (!userProvider.isSigned)
+                                ARoute.push(context, SignInPage());
                             },
                             child: Container(
-                                margin: EdgeInsets.only(
-                                    left: 16.w),
+                                margin: EdgeInsets.only(left: 16.w),
                                 child: userProvider.isSigned
                                     ? Text(
                                         'Cheailune',
@@ -175,6 +171,7 @@ class _PersonalIndexState extends State<PersonalIndex>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     double _statusHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       body: CustomScrollView(
@@ -196,10 +193,7 @@ class _PersonalIndexState extends State<PersonalIndex>
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(
-                  top: 32.w,
-                  left: 32.w,
-                  right: 32.w),
+              margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
               child: Divider(
                 color: Color(0xffd8d8d8),
               ),

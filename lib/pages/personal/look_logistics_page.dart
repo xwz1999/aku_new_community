@@ -7,7 +7,6 @@ import 'package:latlong/latlong.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 
@@ -19,7 +18,6 @@ class LookLogisticsPage extends StatefulWidget {
 }
 
 class _LookLogisticsPageState extends State<LookLogisticsPage> {
-  final double _initFabHeight = 120.0;
   double _panelHeightOpen;
   double _panelHeightClosed = 95.0;
   @override

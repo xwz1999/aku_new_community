@@ -7,7 +7,7 @@ import 'package:akuCommunity/utils/fade_route.dart';
 import 'package:akuCommunity/widget/gallery_photo_view_wrapper.dart';
 
 class ProductSwiper extends StatelessWidget {
-  List<String> imageUrl;
+  final List<String> imageUrl;
   ProductSwiper({Key key, this.imageUrl}) : super(key: key);
 
   final Random _random = new Random();

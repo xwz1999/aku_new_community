@@ -11,14 +11,13 @@ class PayOrderPage extends StatelessWidget {
   final Bundle bundle;
   PayOrderPage({Key key, this.bundle}) : super(key: key);
 
-  var alertStyle = AlertStyle(
+  final alertStyle = AlertStyle(
     isCloseButton: false,
     isOverlayTapDismiss: false,
-    titleStyle:
-        TextStyle(fontSize: 38.sp, color: Color(0xff333333)),
+    titleStyle: TextStyle(fontSize: 38.sp, color: Color(0xff333333)),
   );
 
-  List<Map<String, dynamic>> _listPay = [
+  final List<Map<String, dynamic>> _listPay = [
     {
       'title': '支付宝支付',
       'widget': Icon(
@@ -40,7 +39,7 @@ class PayOrderPage extends StatelessWidget {
       'isCheck': false
     }
   ];
-  Widget FadeAlertAnimation(BuildContext context, Animation<double> animation,
+  Widget fadeAlertAnimation(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
     return Align(
       child: FadeTransition(
@@ -67,8 +66,7 @@ class PayOrderPage extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [Color(0xffffe16b), Color(0xffffc40d)],
               ),
-              borderRadius:
-                  BorderRadius.all(Radius.circular(200.w)),
+              borderRadius: BorderRadius.all(Radius.circular(200.w)),
             ),
             child: Icon(
               Icons.check,
@@ -77,7 +75,7 @@ class PayOrderPage extends StatelessWidget {
             ),
           ),
           style: alertStyle,
-          alertAnimation: FadeAlertAnimation,
+          alertAnimation: fadeAlertAnimation,
           buttons: [
             DialogButton(
               child: Text(
@@ -110,8 +108,7 @@ class PayOrderPage extends StatelessWidget {
                 SizedBox(width: 24.w),
                 Text(
                   title,
-                  style: TextStyle(
-                      fontSize: 28.sp, color: Color(0xff333333)),
+                  style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                 ),
               ],
             ),

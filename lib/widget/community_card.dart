@@ -123,7 +123,7 @@ class _CommunityCardState extends State<CommunityCard> {
                   ),
                 ),
                 Text(
-                  '${peopleNum}人已参加',
+                  '$peopleNum人已参加',
                   style: TextStyle(
                       fontSize: BaseStyle.fontSize22,
                       color: BaseStyle.color333333),

@@ -79,7 +79,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
           Container(
             margin: EdgeInsets.only(top: 40.w),
             child: Text(
-              '￥${price}',
+              '￥$price',
               style: TextStyle(
                 fontSize: 28.sp,
                 color: Color(0xffe60e0e),
@@ -210,11 +210,6 @@ class _MarketCartPageState extends State<MarketCartPage> {
 
   List<AkuShopModel> _cartList;
 
-  Future<String> _getCartInfo(BuildContext context) async {
-    await Provider.of<CartProvidde>(context, listen: true).getCartInfo();
-    return 'end';
-  }
-
   Widget _selectAll(
     CartProvidde model,
   ) {
@@ -290,7 +285,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
             margin: EdgeInsets.symmetric(vertical: 16.w),
             padding: EdgeInsets.symmetric(vertical: 12.w),
             child: Text(
-              '结算(${_goodsCount})',
+              '结算($_goodsCount)',
               style: TextStyle(
                 fontSize: 30.sp,
                 color:

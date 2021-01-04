@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +15,6 @@ import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/widget/sliver_goods_card.dart';
-import 'package:akuCommunity/service/net_util.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/widget/goods_card_skeleton.dart';
@@ -77,6 +75,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
     return Scaffold(

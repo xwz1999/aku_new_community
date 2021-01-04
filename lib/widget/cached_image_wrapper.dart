@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_luban/flutter_luban.dart';
 
 enum ImageType {
   normal,
@@ -17,7 +15,7 @@ class CachedImageWrapper extends StatelessWidget {
   final double height;
   final BoxFit fit;
   final ImageType imageType;
-  bool isSigned;
+  final bool isSigned;
 
   CachedImageWrapper(
       {@required this.url,

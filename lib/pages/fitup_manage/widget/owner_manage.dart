@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
@@ -81,8 +80,7 @@ class _OwnerManageState extends State<OwnerManage>
                 top: 23.w,
                 bottom: 24.w,
               ),
-              margin: EdgeInsets.only(
-                  bottom:(index == 2 ? 117 : 0).w),
+              margin: EdgeInsets.only(bottom: (index == 2 ? 117 : 0).w),
               decoration: BoxDecoration(
                 border: Border(
                     bottom:
@@ -107,6 +105,7 @@ class _OwnerManageState extends State<OwnerManage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       color: Colors.white,
       child: Stack(

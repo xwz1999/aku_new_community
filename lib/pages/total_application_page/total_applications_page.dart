@@ -343,6 +343,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                             return _myAppGrid(AssetsImage.shopGridList, 3);
                             break;
                           default:
+                            return SizedBox();
                         }
                       }),
                     ],

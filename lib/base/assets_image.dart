@@ -1,83 +1,83 @@
 class AssetsImage {
-  static final TAB_HOME_UNSELECT = 'assets/icons/tabbar_home_no.png';
+  static const  TAB_HOME_UNSELECT = 'assets/icons/tabbar_home_no.png';
 
-  static final TAB_HOME_SELECT = 'assets/icons/tabbar_home.png';
+  static const TAB_HOME_SELECT = 'assets/icons/tabbar_home.png';
 
-  static final TAB_MARKET_UNSELECT = 'assets/icons/tabbar_market_no.png';
+  static const TAB_MARKET_UNSELECT = 'assets/icons/tabbar_market_no.png';
 
-  static final TAB_MARKET_SELECT = 'assets/icons/tabbar_market.png';
+  static const TAB_MARKET_SELECT = 'assets/icons/tabbar_market.png';
 
-  static final TAB_HOUSE_UNSELECT = 'assets/icons/tabbar_house_no.png';
+  static const TAB_HOUSE_UNSELECT = 'assets/icons/tabbar_house_no.png';
 
-  static final TAB_HOUSE_SELECT = 'assets/icons/tabbar_house.png';
+  static const TAB_HOUSE_SELECT = 'assets/icons/tabbar_house.png';
 
-  static final TAB_MESSAGE_UNSELECT = 'assets/icons/tabbar_message_no.png';
+  static const TAB_MESSAGE_UNSELECT = 'assets/icons/tabbar_message_no.png';
 
-  static final TAB_MESSAGE_SELECT = 'assets/icons/tabbar_message.png';
+  static const TAB_MESSAGE_SELECT = 'assets/icons/tabbar_message.png';
 
-  static final TAB_USER_UNSELECT = 'assets/icons/tabbar_user_no.png';
+  static const TAB_USER_UNSELECT = 'assets/icons/tabbar_user_no.png';
 
-  static final TAB_USER_SELECT = 'assets/icons/tabbar_user.png';
+  static const TAB_USER_SELECT = 'assets/icons/tabbar_user.png';
 
-  static final NOTIFICATION = 'assets/icons/icon_notification.png';
+  static const NOTIFICATION = 'assets/icons/icon_notification.png';
 
-  static final LOCATION = 'assets/icons/location.png';
+  static const LOCATION = 'assets/icons/location.png';
 
-  static final HOUSE = 'assets/icons/house.png';
+  static const HOUSE = 'assets/icons/house.png';
 
-  static final PHONE = 'assets/icons/phone.png';
+  static const PHONE = 'assets/icons/phone.png';
 
-  static final IMAGEADD = 'assets/icons/img_add.png';
+  static const IMAGEADD = 'assets/icons/img_add.png';
 
-  static final PROPERTY = 'assets/icons/property.png';
+  static const PROPERTY = 'assets/icons/property.png';
 
-  static final SYSTEMNOTICE = 'assets/icons/system_notice.png';
+  static const SYSTEMNOTICE = 'assets/icons/system_notice.png';
 
-  static final COMMENTNOTICE = 'assets/icons/comment_notice.png';
+  static const COMMENTNOTICE = 'assets/icons/comment_notice.png';
 
-  static final SHOPNOTICE = 'assets/icons/shop_notice.png';
+  static const SHOPNOTICE = 'assets/icons/shop_notice.png';
 
-  static final MINEBG = 'assets/images/mine_bg.png';
+  static const MINEBG = 'assets/images/mine_bg.png';
 
-  static final MEMBERBG = 'assets/images/member_bg.png';
+  static const MEMBERBG = 'assets/images/member_bg.png';
 
-  static final HOUSEHEADER = 'assets/images/house_header.png';
+  static const HOUSEHEADER = 'assets/images/house_header.png';
 
-  static final HOUSEATTESTATION = 'assets/images/house_attestation.png';
+  static const HOUSEATTESTATION = 'assets/images/house_attestation.png';
 
-  static final CARHEADER = 'assets/images/car_header.png';
+  static const CARHEADER = 'assets/images/car_header.png';
 
-  static final LOGO = 'assets/images/logo.png';
+  static const LOGO = 'assets/images/logo.png';
 
-  static final PHONELOGO = 'assets/images/phone_logo.png';
+  static const PHONELOGO = 'assets/images/phone_logo.png';
 
-  static final CODELOGO = 'assets/images/code_logo.png';
+  static const CODELOGO = 'assets/images/code_logo.png';
 
-  static final LICENSE = 'assets/images/license.png';
+  static const LICENSE = 'assets/images/license.png';
 
-  static final LICENSEBACK = 'assets/images/license_back.png';
+  static const LICENSEBACK = 'assets/images/license_back.png';
 
-  static final DRAWINGS = 'assets/images/drawings.png';
+  static const DRAWINGS = 'assets/images/drawings.png';
 
-  static final APPLICATION = 'assets/images/application.png';
+  static const APPLICATION = 'assets/images/application.png';
 
-  static final COMMITMENT = 'assets/images/commitment.png';
+  static const COMMITMENT = 'assets/images/commitment.png';
 
-  static final WXPAY = 'assets/images/wxpay.png';
+  static const WXPAY = 'assets/images/wxpay.png';
 
-  static final APPADD = 'assets/icons/app_add.png';
+  static const APPADD = 'assets/icons/app_add.png';
 
-  static final APPREDUCE = 'assets/icons/app_reduce.png';
+  static const APPREDUCE = 'assets/icons/app_reduce.png';
 
-  static final COMPLAINT = 'assets/icons/complaint.png';
+  static const COMPLAINT = 'assets/icons/complaint.png';
 
-  static final CONSULT = 'assets/icons/consult.png';
+  static const CONSULT = 'assets/icons/consult.png';
 
-  static final LIKE = 'assets/icons/like.png';
+  static const LIKE = 'assets/icons/like.png';
 
-  static final PROPOSAL = 'assets/icons/proposal.png';
+  static const PROPOSAL = 'assets/icons/proposal.png';
 
-  static final List<Map<String, dynamic>> mineAppList = [
+  static const List<Map<String, dynamic>> mineAppList = [
     {
       'title': '一键开门',
       'imagePath': 'assets/icons/tool_yjkm.png',
@@ -94,7 +94,7 @@ class AssetsImage {
     }
   ];
 
-  static final List<Map<String, dynamic>> homeGridList = [
+  static const List<Map<String, dynamic>> homeGridList = [
     {
       'title': '一键开门',
       'imagePath': 'assets/icons/tool_yjkm.png',
@@ -153,7 +153,7 @@ class AssetsImage {
     },
   ];
 
-  static final List<Map<String, dynamic>> recommendGridList = [
+  static const List<Map<String, dynamic>> recommendGridList = [
     {
       'title': '一键开门',
       'imagePath': 'assets/icons/tool_yjkm.png',
@@ -191,7 +191,7 @@ class AssetsImage {
     },
   ];
 
-  static final List<Map<String, dynamic>> propertyGridList = [
+  static const List<Map<String, dynamic>> propertyGridList = [
     {
       'title': '一键开门',
       'imagePath': 'assets/icons/tool_yjkm.png',
@@ -292,7 +292,7 @@ class AssetsImage {
     },
   ];
 
-  static final List<Map<String, dynamic>> shopGridList = [
+  static const List<Map<String, dynamic>> shopGridList = [
     {'title': '居家生活', 'imagePath': 'assets/icons/tool_jjsh.png'},
     {'title': '数码家电', 'imagePath': 'assets/icons/tool_smjd.png'},
     {'title': '休闲副食', 'imagePath': 'assets/icons/tool_xxfs.png'},
@@ -303,7 +303,7 @@ class AssetsImage {
     {'title': '饮料酒水', 'imagePath': 'assets/icons/tool_yljs.png'},
   ];
 
-  static final List<Map<String, dynamic>> orderGridList = [
+  static const List<Map<String, dynamic>> orderGridList = [
     {'title': '待付款', 'imagePath': 'assets/icons/user_icon_dfk.png'},
     {'title': '待发货', 'imagePath': 'assets/icons/user_icon_dfh.png'},
     {'title': '待收货', 'imagePath': 'assets/icons/user_icon_dsh.png'},
@@ -311,7 +311,7 @@ class AssetsImage {
     {'title': '售后', 'imagePath': 'assets/icons/user_icon_sh.png'},
   ];
 
-  static final List<Map<String, dynamic>> mineGridList = [
+  static const List<Map<String, dynamic>> mineGridList = [
     {
       'title': '我的房屋',
       'imagePath': 'assets/icons/user_icon_wdfw.png',

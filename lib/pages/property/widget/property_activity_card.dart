@@ -8,13 +8,13 @@ class PropertyActivityCard extends StatelessWidget {
   final Function fun;
   PropertyActivityCard({Key key, this.fun}) : super(key: key);
 
-  List<String> images = [
+  final List<String> images = [
     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1151143562,4115642159&fm=26&gp=0.jpg",
     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2551412680,857245643&fm=26&gp=0.jpg",
     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3604827221,1047385274&fm=26&gp=0.jpg",
   ];
 
-  List<Map<String, dynamic>> _listView = [
+  final List<Map<String, dynamic>> _listView = [
     {
       'imagePath':
           'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3786472598,2225627644&fm=26&gp=0.jpg',
@@ -140,7 +140,7 @@ class PropertyActivityCard extends StatelessWidget {
                   ),
                   SizedBox(width: 26.w),
                   Text(
-                    '${peopleNum}人已参加',
+                    '$peopleNum人已参加',
                     style: _textStyleSubtitle(),
                   ),
                 ],

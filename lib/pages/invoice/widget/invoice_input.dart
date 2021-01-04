@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:flutter/services.dart';
 
 class InvoiceInput extends StatefulWidget {
   final bool isEnterprise;
@@ -15,7 +14,6 @@ class _InvoiceInputState extends State<InvoiceInput> {
   TextEditingController _userName = new TextEditingController();
   TextEditingController _userPhone = new TextEditingController();
   TextEditingController _userAddress = new TextEditingController();
-  TextEditingController _userAddressDetail = new TextEditingController();
 
   @override
   void initState() {

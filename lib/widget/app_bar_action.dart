@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +23,7 @@ class _AppBarActionState extends State<AppBarAction> {
   final _cancelController = TextEditingController(text: "关闭");
 
   var _aspectTolerance = 0.00;
-  var _numberOfCameras = 0;
+  var numberOfCameras = 0;
   var _selectedCamera = -1;
   var _useAutoFocus = true;
   var _autoEnableFlash = false;
@@ -38,7 +37,7 @@ class _AppBarActionState extends State<AppBarAction> {
     super.initState();
 
     Future.delayed(Duration.zero, () async {
-      _numberOfCameras = await BarcodeScanner.numberOfCameras;
+      numberOfCameras = await BarcodeScanner.numberOfCameras;
       setState(() {});
     });
   }

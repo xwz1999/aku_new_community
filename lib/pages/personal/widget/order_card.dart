@@ -94,7 +94,7 @@ class _OrderCardState extends State<OrderCard> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '￥${price}',
+                  '￥$price',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: BaseStyle.fontSize28,
@@ -102,7 +102,7 @@ class _OrderCardState extends State<OrderCard> {
                   ),
                 ),
                 Text(
-                  'x${shopNum}',
+                  'x$shopNum',
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize28,
                     color: BaseStyle.color999999,
@@ -139,7 +139,7 @@ class _OrderCardState extends State<OrderCard> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            '总价￥${totalPrice}',
+            '总价￥$totalPrice',
             style: TextStyle(
               fontSize: BaseStyle.fontSize28,
               color: BaseStyle.color999999,
@@ -147,7 +147,7 @@ class _OrderCardState extends State<OrderCard> {
           ),
           SizedBox(width: 16.w),
           Text(
-            '实付款￥${payPrice}',
+            '实付款￥$payPrice',
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize28,

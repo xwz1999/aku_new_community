@@ -16,9 +16,6 @@ class ShopMessagePage extends StatefulWidget {
 class _ShopMessagePageState extends State<ShopMessagePage> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-
-  ScrollController _controller;
-
   List<Map<String, dynamic>> _listNotice = [
     {
       'status': '已读',

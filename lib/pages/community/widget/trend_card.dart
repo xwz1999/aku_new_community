@@ -34,7 +34,7 @@ class _TrendCardState extends State<TrendCard> {
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(
-            '是否${url}?',
+            '是否$url\?',
             style: TextStyle(
               fontSize: 34.sp,
               color: Color(0xff030303),
@@ -194,114 +194,7 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
-  TextStyle _textStylePopup() {
-    return TextStyle(
-      fontSize: 28.sp,
-      color: Color(0xff333333),
-    );
-  }
 
-  Positioned _positionedPopupMenuButton() {
-    return Positioned(
-      right: 0,
-      bottom: 0,
-      child: PopupMenuButton(
-        color: Colors.transparent,
-        padding: EdgeInsets.all(0),
-        elevation: 0,
-        offset: Offset(0, -53),
-        child: Container(
-          width: 54.w,
-          decoration: BoxDecoration(
-            color: Color(0xffd8d8d8),
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-          ),
-          child: Icon(
-            Feather.more_horizontal,
-            color: Colors.white,
-            size: 36.sp,
-          ),
-        ),
-        onSelected: (String value) {
-          setState(() {});
-        },
-        itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-          PopupMenuItem(
-            value: "选项一的内容",
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xffd8d8d8),
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      print('赞');
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      height: 68.w,
-                      width: 181.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            AntDesign.hearto,
-                            size: 30.sp,
-                            color: Color(0xff000000),
-                          ),
-                          SizedBox(width: 11.w),
-                          Text(
-                            '赞',
-                            style: _textStylePopup(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 1,
-                    height: 48.w,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(color: Color(0xff979797)),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print('评论');
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      height: 68.w,
-                      width: 181.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Feather.message_square,
-                            size: 30.sp,
-                            color: Color(0xff000000),
-                          ),
-                          SizedBox(width: 11.w),
-                          Text(
-                            '评论',
-                            style: _textStylePopup(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _columnCard(String name, String content,Image avatar) {
     return Stack(
