@@ -166,7 +166,7 @@ class _TabNavigatorState extends State<TabNavigator> {
           itemBuilder: (context, index) => _pages[index],
           itemCount: _pages.length,
           controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
+          // physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() {
               _currentIndex = index;
