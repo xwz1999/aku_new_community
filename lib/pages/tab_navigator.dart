@@ -37,6 +37,27 @@ class _TabNavigatorState extends State<TabNavigator> {
     ];
   }
 
+  _buildBottomBar(
+    String title,
+    String unselected,
+    String selected,
+  ) {
+    return BottomNavigationBarItem(
+      icon: Image.asset(
+        unselected,
+        height: 44.w,
+        width: 44.w,
+        color: Colors.black38,
+      ),
+      activeIcon: Image.asset(
+        selected,
+        height: 44.w,
+        width: 44.w,
+      ),
+      label: title,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
@@ -44,111 +65,16 @@ class _TabNavigatorState extends State<TabNavigator> {
     double iconSize = ScreenUtil().setWidth(44);
     //底部导航来
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Image.asset(
-          AssetsImage.TAB_HOME_UNSELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        activeIcon: Image.asset(
-          AssetsImage.TAB_HOME_SELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        title: Text(
-          '首页',
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(20),
-            color: _currentIndex == 0 ? Color(0xff000000) : Color(0xffcccccc),
-            fontWeight:
-                _currentIndex == 0 ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-      ),
-      BottomNavigationBarItem(
-        icon: Image.asset(
-          AssetsImage.TAB_MARKET_UNSELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        activeIcon: Image.asset(
-          AssetsImage.TAB_MARKET_SELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        title: Text(
-          '商城',
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(20),
-            color: _currentIndex == 1 ? Color(0xff000000) : Color(0xffcccccc),
-            fontWeight:
-                _currentIndex == 1 ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-      ),
-      BottomNavigationBarItem(
-        icon: Image.asset(
-          AssetsImage.TAB_HOUSE_UNSELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        activeIcon: Image.asset(
-          AssetsImage.TAB_HOUSE_SELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        title: Text(
-          '物业',
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(20),
-            color: _currentIndex == 2 ? Color(0xff000000) : Color(0xffcccccc),
-            fontWeight:
-                _currentIndex == 2 ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-      ),
-      BottomNavigationBarItem(
-        icon: Image.asset(
-          AssetsImage.TAB_MESSAGE_UNSELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        activeIcon: Image.asset(
-          AssetsImage.TAB_MESSAGE_SELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        title: Text(
-          '社区',
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(20),
-            color: _currentIndex == 3 ? Color(0xff000000) : Color(0xffcccccc),
-            fontWeight:
-                _currentIndex == 3 ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-      ),
-      BottomNavigationBarItem(
-        icon: Image.asset(
-          AssetsImage.TAB_USER_UNSELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        activeIcon: Image.asset(
-          AssetsImage.TAB_USER_SELECT,
-          height: iconSize,
-          width: iconSize,
-        ),
-        title: Text(
-          '我的',
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(20),
-            color: _currentIndex == 4 ? Color(0xff000000) : Color(0xffcccccc),
-            fontWeight:
-                _currentIndex == 4 ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-      )
+      _buildBottomBar(
+          '首页', AssetsImage.TAB_HOME_UNSELECT, AssetsImage.TAB_HOME_SELECT),
+      _buildBottomBar(
+          '商城', AssetsImage.TAB_MARKET_UNSELECT, AssetsImage.TAB_MARKET_SELECT),
+      _buildBottomBar(
+          '物业', AssetsImage.TAB_HOUSE_UNSELECT, AssetsImage.TAB_HOUSE_SELECT),
+      _buildBottomBar('社区', AssetsImage.TAB_MESSAGE_UNSELECT,
+          AssetsImage.TAB_MESSAGE_SELECT),
+      _buildBottomBar(
+          '我的', AssetsImage.TAB_USER_UNSELECT, AssetsImage.TAB_USER_SELECT),
     ];
     return Scaffold(
       body: WillPopScope(
@@ -178,6 +104,11 @@ class _TabNavigatorState extends State<TabNavigator> {
         type: BottomNavigationBarType.fixed,
         items: _bottomNav,
         currentIndex: _currentIndex,
+        selectedFontSize: 20.sp,
+        unselectedFontSize: 16.sp,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black38,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         onTap: (index) {
           _pageController.jumpToPage(index);
         },
