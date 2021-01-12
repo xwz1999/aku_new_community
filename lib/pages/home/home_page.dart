@@ -138,50 +138,50 @@ class _HomePageState extends State<HomePage>
                       ],
                     ),
                     SizedBox(height: 24.w),
-                    Column(
-                      children: [
-                        HomeTagBar(
-                          title: '社区团购',
-                          tag: '团购',
-                          isShowImage: false,
-                        ),
-                        HomeCard(
-                          isActivity: false,
-                          title: '新疆库尔阿勒4.5斤,仙人蕉 香甜可口',
-                          subtitleOne: '中国新疆',
-                          subtitleTwo: '2020年07月03日',
-                          imagePath:
-                              'http://news.eastday.com/d/file/tga/2013-02-17/c2e7bd7fca1ed2ecf5d50dc9fb30275d.jpg',
-                        ),
-                        HomeCard(
-                          isActivity: false,
-                          title: '刚果柠檬大果4盒 鲜果新鲜采摘15斤',
-                          subtitleOne: '非洲刚果',
-                          subtitleTwo: '2020年08月09日',
-                          imagePath:
-                              'http://5b0988e595225.cdn.sohucs.com/images/20180203/328e145f84c54dd08d1b11b890109862.jpeg',
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30.w),
-                    HomeTagBar(
-                      title: '社区商城',
-                      tag: '团购',
-                      isShowImage: false,
-                      isShowTitle: true,
-                    ),
+                    // Column(
+                    //   children: [
+                    //     HomeTagBar(
+                    //       title: '社区团购',
+                    //       tag: '团购',
+                    //       isShowImage: false,
+                    //     ),
+                    //     HomeCard(
+                    //       isActivity: false,
+                    //       title: '新疆库尔阿勒4.5斤,仙人蕉 香甜可口',
+                    //       subtitleOne: '中国新疆',
+                    //       subtitleTwo: '2020年07月03日',
+                    //       imagePath:
+                    //           'http://news.eastday.com/d/file/tga/2013-02-17/c2e7bd7fca1ed2ecf5d50dc9fb30275d.jpg',
+                    //     ),
+                    //     HomeCard(
+                    //       isActivity: false,
+                    //       title: '刚果柠檬大果4盒 鲜果新鲜采摘15斤',
+                    //       subtitleOne: '非洲刚果',
+                    //       subtitleTwo: '2020年08月09日',
+                    //       imagePath:
+                    //           'http://5b0988e595225.cdn.sohucs.com/images/20180203/328e145f84c54dd08d1b11b890109862.jpeg',
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 30.w),
+                    // HomeTagBar(
+                    //   title: '社区商城',
+                    //   tag: '团购',
+                    //   isShowImage: false,
+                    //   isShowTitle: true,
+                    // ),
                   ],
                 ),
               ),
-              SliverPadding(
-                  padding: EdgeInsets.only(
-                    top: 30.w,
-                    left: 32.w,
-                    right: 32.w,
-                  ),
-                  sliver: _shopList.length == 0
-                      ? SliverToBoxAdapter(child: GoodsCardSkeleton())
-                      : SliverGoodsCard(shoplist: _shopList)),
+              // SliverPadding(
+              //     padding: EdgeInsets.only(
+              //       top: 30.w,
+              //       left: 32.w,
+              //       right: 32.w,
+              //     ),
+              //     sliver: _shopList.length == 0
+              //         ? SliverToBoxAdapter(child: GoodsCardSkeleton())
+              //         : SliverGoodsCard(shoplist: _shopList)),
             ],
           ),
         ),
