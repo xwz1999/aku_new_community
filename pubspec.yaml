@@ -111,6 +111,7 @@ dependencies:
   ani_route: ^0.0.2
 
   fluwx: ^2.3.0
+  get: 
 
 dev_dependencies:
   flutter_test:

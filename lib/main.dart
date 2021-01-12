@@ -5,6 +5,7 @@ import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluwx/fluwx.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvidde()),
-        ChangeNotifierProvider(create: (context)=>UserProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: OKToast(
         textStyle: TextStyle(fontSize: 19.0, color: Colors.white),
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         animationBuilder: Miui10AnimBuilder(),
         animationDuration: Duration(milliseconds: 200),
         duration: Duration(seconds: 3),
-        child: MaterialApp(
+        child: GetMaterialApp(
           title: '智慧社区',
           // builder: BotToastInit(),
           // navigatorObservers: [BotToastNavigatorObserver()],
