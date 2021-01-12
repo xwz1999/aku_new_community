@@ -1,8 +1,8 @@
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
 
 class HomeSearch extends StatefulWidget {
   HomeSearch({Key key}) : super(key: key);
@@ -30,7 +30,7 @@ class _HomeSearchState extends State<HomeSearch> {
       ),
       child: InkWell(
         onTap: () {
-          showSearch(context: context, delegate: searchBarDelegate());
+          showSearch(context: context, delegate: SearchBarDelegate());
         },
         child: Container(
           width: 686.w,

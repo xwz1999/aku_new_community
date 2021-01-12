@@ -4,7 +4,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/utils/toast.dart';
-import 'package:akuCommunity/widget/cart_count.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'cached_image_wrapper.dart';
@@ -100,7 +99,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
       alignment: Alignment.center,
       color: Colors.white,
       child: Text(
-        '${count}',
+        '$count',
         style: TextStyle(
           fontSize: 24.sp,
           color: Color(0xff333333),
@@ -134,7 +133,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '价格：￥${price}',
+                    '价格：￥$price',
                     style: TextStyle(
                       color: Color(0xffe60e0e),
                       fontSize: 28.sp,

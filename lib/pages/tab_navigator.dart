@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 
 import 'home/home_page.dart';
-import 'market/market_page.dart';
 import 'property/property_index.dart';
 import 'community/community_index.dart';
 import 'personal/personal_page.dart';

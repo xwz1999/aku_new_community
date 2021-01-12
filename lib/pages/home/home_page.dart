@@ -14,10 +14,8 @@ import 'widget/home_tag_bar.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/grid_button.dart';
-import 'package:akuCommunity/widget/sliver_goods_card.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
-import 'package:akuCommunity/widget/goods_card_skeleton.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class HomePage extends StatefulWidget {

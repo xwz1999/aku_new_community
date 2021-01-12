@@ -1,6 +1,5 @@
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/service/net.dart';
 import 'package:akuCommunity/utils/net_util.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';

@@ -8,7 +8,7 @@ class MarketClassBar extends StatelessWidget {
   Widget _inkWellSearch(BuildContext context) {
     return InkWell(
       onTap: () {
-        showSearch(context: context, delegate: searchBarDelegate());
+        showSearch(context: context, delegate: SearchBarDelegate());
       },
       child: Container(
         margin: EdgeInsets.only(right: 32.w),
