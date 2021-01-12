@@ -1,5 +1,6 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -18,6 +19,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   ARoute.init(true);
   AmapLocation.instance.init(iosKey: 'ios key');
+  DeveloperUtil.setDev(true);
   runApp(MyApp());
 }
 
