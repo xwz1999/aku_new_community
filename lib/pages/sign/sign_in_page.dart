@@ -5,13 +5,13 @@ import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.da
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:ani_route/ani_route.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPage extends StatefulWidget {
@@ -131,9 +131,9 @@ class _SignInPageState extends State<SignInPage> {
     return InkWell(
       onTap: () {
         if (TextUtil.isEmpty(_phone.text))
-          showToast('手机号不能为空');
+          BotToast.showText(text: '手机号不能为空');
         else if (TextUtil.isEmpty(_code.text))
-          showToast('验证码不能为空');
+          BotToast.showText(text: '验证码不能为空');
         else {
           showCupertinoDialog(
             context: context,
@@ -153,7 +153,7 @@ class _SignInPageState extends State<SignInPage> {
                           (_phone.text == '18067170899') &&
                                   (_code.text == '123456')
                               ? ARoute.push(context, UserAuthenticationPage())
-                              : showToast('账号或密码错误！');
+                              : BotToast.showText(text: '账号或密码错误！');
                         },
                       );
                     },
@@ -174,8 +174,7 @@ class _SignInPageState extends State<SignInPage> {
         alignment: Alignment.center,
         height: 89.w,
         width: 586.w,
-        padding: EdgeInsets.only(
-            top: 25.w, bottom: 24.w),
+        padding: EdgeInsets.only(top: 25.w, bottom: 24.w),
         margin: EdgeInsets.symmetric(horizontal: 82.w),
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
@@ -237,7 +236,7 @@ class _SignInPageState extends State<SignInPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FlatButton(
-                          padding: EdgeInsets.zero,
+                            padding: EdgeInsets.zero,
                             onPressed: () {
                               ARoute.push(context, AgreementPage());
                             },
@@ -249,7 +248,7 @@ class _SignInPageState extends State<SignInPage> {
                             )),
                         SizedBox(width: 15.w),
                         FlatButton(
-                          padding: EdgeInsets.zero,
+                            padding: EdgeInsets.zero,
                             onPressed: () {
                               ARoute.push(context, PrivacyPage());
                             },

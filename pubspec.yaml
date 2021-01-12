@@ -32,8 +32,6 @@ dependencies:
   permission_handler: ^5.0.1+1
   # 版本信息
   package_info: 0.4.1
-  # toast提示
-  oktoast: ^2.1.6
   #上拉加载
   pull_to_refresh: ^1.6.2
   # 状态管理
@@ -69,7 +67,7 @@ dependencies:
   #头像层叠
   image_stack: ^1.1.0
   #弹窗
-  bot_toast: ^3.0.4
+  bot_toast: ^3.0.5
   #加载html
   flutter_html: ^1.0.2
   #图片多选
