@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -8,7 +9,6 @@ import 'package:akuCommunity/widget/app_bar_action.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'widget/market_sticky_bar.dart';
 import 'widget/market_list.dart';
 
@@ -88,7 +88,7 @@ class _MarketPageState extends State<MarketPage>
           ),
           child: InkWell(
             onTap: () {
-              showSearch(context: context, delegate: searchBarDelegate());
+              showSearch(context: context, delegate: SearchBarDelegate());
             },
             child: Container(
               child: Row(children: [

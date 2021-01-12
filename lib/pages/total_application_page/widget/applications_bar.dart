@@ -1,8 +1,8 @@
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
 
 class ApplicationsBar extends StatelessWidget {
   const ApplicationsBar({Key key}) : super(key: key);
@@ -25,7 +25,7 @@ class ApplicationsBar extends StatelessWidget {
         centerTitle: true,
         title: InkWell(
           onTap: () {
-            showSearch(context: context, delegate: searchBarDelegate());
+            showSearch(context: context, delegate: SearchBarDelegate());
           },
           child: Container(
             margin: EdgeInsets.only(right: 32.w),

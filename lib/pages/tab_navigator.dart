@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 
 import 'home/home_page.dart';
-import 'market/market_page.dart';
 import 'property/property_index.dart';
 import 'community/community_index.dart';
 import 'personal/personal_page.dart';
@@ -30,7 +29,7 @@ class _TabNavigatorState extends State<TabNavigator> {
     super.initState();
     _pages = [
       HomePage(),
-      MarketPage(),
+      // MarketPage(),
       PropertyIndex(),
       CommunityIndex(),
       PersonalIndex()
@@ -62,13 +61,12 @@ class _TabNavigatorState extends State<TabNavigator> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
-    double iconSize = ScreenUtil().setWidth(44);
     //底部导航来
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
       _buildBottomBar(
           '首页', AssetsImage.TAB_HOME_UNSELECT, AssetsImage.TAB_HOME_SELECT),
-      _buildBottomBar(
-          '商城', AssetsImage.TAB_MARKET_UNSELECT, AssetsImage.TAB_MARKET_SELECT),
+      // _buildBottomBar(
+      //     '商城', AssetsImage.TAB_MARKET_UNSELECT, AssetsImage.TAB_MARKET_SELECT),
       _buildBottomBar(
           '物业', AssetsImage.TAB_HOUSE_UNSELECT, AssetsImage.TAB_HOUSE_SELECT),
       _buildBottomBar('社区', AssetsImage.TAB_MESSAGE_UNSELECT,

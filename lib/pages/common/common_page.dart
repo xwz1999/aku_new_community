@@ -1,10 +1,10 @@
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
 
 // import 'visitor_invitation/visitor_invitation.dart';
 // import 'visitor_invitation/visitor_record.dart';
@@ -141,14 +141,11 @@ class _CommonPageState extends State<CommonPage> {
   InkWell _inkWellSearch() {
     return InkWell(
       onTap: () {
-        showSearch(context: context, delegate: searchBarDelegate());
+        showSearch(context: context, delegate: SearchBarDelegate());
       },
       child: Container(
         margin: EdgeInsets.only(right: 32.w),
-        padding: EdgeInsets.only(
-            left: 40.w,
-            top: 15.w,
-            bottom: 15.w),
+        padding: EdgeInsets.only(left: 40.w, top: 15.w, bottom: 15.w),
         decoration: BoxDecoration(
           color: BaseStyle.colorf3f3f3,
           borderRadius: BorderRadius.all(Radius.circular(36)),
@@ -324,9 +321,9 @@ class _CommonPageState extends State<CommonPage> {
           // case '访客通行证':
           //   return VisitorPass();
           case '便民电话':
-            // return ComplaintCall();
+          // return ComplaintCall();
           case '业委会':
-            // return IndustryCommittee();
+          // return IndustryCommittee();
           case '建议咨询':
           case '报事报修':
           // case '我的报修':
@@ -396,21 +393,21 @@ class _CommonPageState extends State<CommonPage> {
           // case '意见反馈':
           //   return FeedBack(statusHeight: _statusHeight);
           case '活动投票':
-            // return ActivityMain(isVote: true);
+          // return ActivityMain(isVote: true);
           case '更多活动':
           case '社区活动':
-            // return ActivityMain(isVote: false);
+          // return ActivityMain(isVote: false);
           case '活动详情':
-            // return ActivityDetails(
-            //   title: widget.bundle.getMap('commentMap')['name'],
-            //   imagePath: widget.bundle.getMap('commentMap')['imagePath'],
-            //   isVote: widget.bundle.getMap('commentMap')['isVote'],
-            //   isOver: widget.bundle.getMap('commentMap')['isOver'],
-            //   isVoteOver: widget.bundle.getMap('commentMap')['isVoteOver'],
-            //   memberList: widget.bundle.getMap('commentMap')['memberList'],
-            // );
+          // return ActivityDetails(
+          //   title: widget.bundle.getMap('commentMap')['name'],
+          //   imagePath: widget.bundle.getMap('commentMap')['imagePath'],
+          //   isVote: widget.bundle.getMap('commentMap')['isVote'],
+          //   isOver: widget.bundle.getMap('commentMap')['isOver'],
+          //   isVoteOver: widget.bundle.getMap('commentMap')['isVoteOver'],
+          //   memberList: widget.bundle.getMap('commentMap')['memberList'],
+          // );
           case '参与人员':
-            // return ActivityMemberList();
+          // return ActivityMemberList();
           // case '问卷调查':
           //   return widget.bundle.getMap('commentMap')['imagePath'] != null
           //       ? QuestionnaireDetails(
@@ -453,15 +450,15 @@ class _CommonPageState extends State<CommonPage> {
           // case '付款方式':
           //   return PayOrder();
           case '全部应用':
-            // return TotalApplicationsMain();
+          // return TotalApplicationsMain();
           case '分类':
-            // return ShopClassMain(statusHeight: _statusHeight);
+          // return ShopClassMain(statusHeight: _statusHeight);
           case '一键报警':
-            // return OneAlarmMain();
+          // return OneAlarmMain();
           // case '一键开门':
           //   return OpenDoorMain();
           case '实名认证':
-            // return CertificationMain();
+          // return CertificationMain();
           // case '功能说明':
           //   return Explain();
           default:

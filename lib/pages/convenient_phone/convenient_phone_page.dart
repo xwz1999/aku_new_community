@@ -20,7 +20,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
       color: Colors.white,
       child: InkWell(
         onTap: () {
-           showSearch(context: context, delegate: searchBarDelegate());
+           showSearch(context: context, delegate: SearchBarDelegate());
         },
         child: Container(
           margin: EdgeInsets.only(
