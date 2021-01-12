@@ -36,6 +36,7 @@ class Net {
         (client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) {
+            //TODO
         return true;
       };
     };

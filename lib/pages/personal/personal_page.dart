@@ -1,5 +1,7 @@
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/service/net.dart';
+import 'package:akuCommunity/utils/net_util.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,13 +25,11 @@ class PersonalIndex extends StatefulWidget {
 }
 
 class _PersonalIndexState extends State<PersonalIndex>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    NetUtil().get('test');
   }
 
   SliverAppBar _sliverAppBar(double height) {
@@ -171,7 +171,6 @@ class _PersonalIndexState extends State<PersonalIndex>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     double _statusHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       body: CustomScrollView(
