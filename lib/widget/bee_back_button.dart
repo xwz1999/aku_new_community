@@ -8,7 +8,7 @@ class BeeBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Navigator.canPop(context)
         ? IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
             icon: Icon(
               CupertinoIcons.chevron_back,
             ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:loading_animations/loading_animations.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/model/aku_shop_class_model.dart';
 import 'package:akuCommunity/service/base_model.dart';
@@ -18,7 +17,6 @@ class MarketClassPage extends StatefulWidget {
 }
 
 class _MarketClassPageState extends State<MarketClassPage> {
-
   // Future.microtask(() => null)1
 // void testSX(){
 //   new Future(() => print('s_1'));
@@ -235,10 +233,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
               ),
             )
           : Container(
-              child: LoadingBumpingLine.circle(
-                size: 30,
-                backgroundColor: Colors.white,
-              ),
+              child: CircularProgressIndicator(),
             ),
     );
   }
