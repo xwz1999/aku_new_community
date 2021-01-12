@@ -1,10 +1,12 @@
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
+import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 import 'widget/applications_bar.dart';
 
 class TotalApplicationsPage extends StatefulWidget {
@@ -113,8 +115,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                               ..putString('title', gridList[index]['title']));
                         break;
                       case '一键开门':
-                        Navigator.pushNamed(
-                            context, PageName.open_door_page.toString());
+                        Get.to(OpenDoorPage());
                         break;
                       case '开门码':
                         Navigator.pushNamed(

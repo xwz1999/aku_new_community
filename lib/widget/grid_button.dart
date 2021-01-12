@@ -1,7 +1,9 @@
+import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 
 class GridButton extends StatelessWidget {
   final List<Map<String, dynamic>> gridList;
@@ -124,7 +126,7 @@ class GridButton extends StatelessWidget {
                 Navigator.pushNamed(context, PageName.address_page.toString());
                 break;
               case '设置':
-                Navigator.pushNamed(context, PageName.setting_page.toString());
+                Get.to(SettingsPage());
                 break;
               case '居家生活':
               case '数码家电':

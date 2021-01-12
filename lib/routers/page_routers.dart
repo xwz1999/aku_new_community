@@ -80,12 +80,9 @@ import 'package:akuCommunity/pages/market_class/market_class_page.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 
-
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 
 import 'package:akuCommunity/pages/invoice/invoice_page.dart';
-
-import 'package:akuCommunity/pages/setting_page/setting_page.dart';
 import 'package:akuCommunity/pages/setting_page/about_page/about_page.dart';
 import 'package:akuCommunity/pages/setting_page/feedback_page/feedback_page.dart';
 import 'package:akuCommunity/pages/setting_page/invite_page/invite_page.dart';
@@ -230,16 +227,14 @@ class PageBuilder {
 final Map<PageName, PageBuilder> pageRoutes = {
   PageName.market_detail_page:
       PageBuilder(builder: (bundle) => MarketDetailPage(bundle: bundle)),
-  PageName.market_cart_page:
-      PageBuilder(builder: (bundle) => MarketCartPage()),
+  PageName.market_cart_page: PageBuilder(builder: (bundle) => MarketCartPage()),
   PageName.goods_details_page:
       PageBuilder(builder: (bundle) => GoodsDetailsPage(bundle: bundle)),
   PageName.view_comments_page:
       PageBuilder(builder: (bundle) => ViewCommentsPage()),
   PageName.invoice_page:
       PageBuilder(builder: (bundle) => InvoicePage(bundle: bundle)),
-  PageName.note_create_page:
-      PageBuilder(builder: (bundle) => NoteCreatePage()),
+  PageName.note_create_page: PageBuilder(builder: (bundle) => NoteCreatePage()),
   PageName.topice_detail_page:
       PageBuilder(builder: (bundle) => TopiceDetailPage(bundle: bundle)),
   PageName.order_page:
@@ -254,21 +249,17 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => EvaluateGoodPage(bundle: bundle)),
   PageName.look_logistics_page:
       PageBuilder(builder: (bundle) => LookLogisticsPage()),
-   PageName.sign_in_page:
-      PageBuilder(builder: (bundle) => SignInPage()),
+  PageName.sign_in_page: PageBuilder(builder: (bundle) => SignInPage()),
   PageName.user_authentication_page:
       PageBuilder(builder: (bundle) => UserAuthenticationPage()),
   PageName.common_page:
       PageBuilder(builder: (bundle) => CommonPage(bundle: bundle)),
-  PageName.privacy_page:
-  PageBuilder(builder:(bundle)=>PrivacyPage()),
-
+  PageName.privacy_page: PageBuilder(builder: (bundle) => PrivacyPage()),
   PageName.confirm_order_page:
       PageBuilder(builder: (bundle) => ConfirmOrderPage(bundle: bundle)),
   PageName.pay_order_page:
       PageBuilder(builder: (bundle) => PayOrderPage(bundle: bundle)),
-  PageName.scan_page:
-      PageBuilder(builder: (bundle) => ScanPage()),
+  PageName.scan_page: PageBuilder(builder: (bundle) => ScanPage()),
   PageName.message_center_page:
       PageBuilder(builder: (bundle) => MessageCenterPage()),
   PageName.system_message_page:
@@ -279,8 +270,6 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => ShopMessagePage()),
   PageName.system_details_page:
       PageBuilder(builder: (bundle) => SystemDetailsPage(bundle: bundle)),
-  PageName.open_door_page:
-      PageBuilder(builder: (bundle) => OpenDoorPage()),
   PageName.certification_page:
       PageBuilder(builder: (bundle) => CertificationPage()),
   PageName.visitor_access_page:
@@ -289,8 +278,7 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => VisitorRecordPage()),
   PageName.visitor_pass_page:
       PageBuilder(builder: (bundle) => VisitorPassPage()),
-  PageName.life_pay_page:
-      PageBuilder(builder: (bundle) => LifePayPage()),
+  PageName.life_pay_page: PageBuilder(builder: (bundle) => LifePayPage()),
   PageName.life_pay_record_page:
       PageBuilder(builder: (bundle) => LifePayRecordPage()),
   PageName.life_pay_bill_page:
@@ -307,58 +295,44 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => TotalApplicationsPage()),
   PageName.questionnaire_page:
       PageBuilder(builder: (bundle) => QuestionnairePage()),
-  PageName.questionnaire_details_page:
-      PageBuilder(builder: (bundle) => QuestionnaireDetailsPage(bundle: bundle)),
+  PageName.questionnaire_details_page: PageBuilder(
+      builder: (bundle) => QuestionnaireDetailsPage(bundle: bundle)),
   PageName.goods_manage_page:
       PageBuilder(builder: (bundle) => GoodsManagePage()),
-  PageName.mine_goods_page:
-      PageBuilder(builder: (bundle) => MineGoodsPage()),
+  PageName.mine_goods_page: PageBuilder(builder: (bundle) => MineGoodsPage()),
   PageName.opening_code_page:
       PageBuilder(builder: (bundle) => OpeningCodePage()),
-  PageName.goods_deto_page:
-      PageBuilder(builder: (bundle) => GoodsDetoPage()),
-  PageName.deto_code_page:
-      PageBuilder(builder: (bundle) => DetoCodePage()),
-  PageName.deto_create_page:
-      PageBuilder(builder: (bundle) => DetoCreatePage()),
+  PageName.goods_deto_page: PageBuilder(builder: (bundle) => GoodsDetoPage()),
+  PageName.deto_code_page: PageBuilder(builder: (bundle) => DetoCodePage()),
+  PageName.deto_create_page: PageBuilder(builder: (bundle) => DetoCreatePage()),
   PageName.activities_page:
       PageBuilder(builder: (bundle) => ActivitiesPage(bundle: bundle)),
   PageName.activities_details_page:
       PageBuilder(builder: (bundle) => ActivitiesDetailsPage(bundle: bundle)),
-  PageName.member_list_page:
-      PageBuilder(builder: (bundle) => MemberListPage()),
+  PageName.member_list_page: PageBuilder(builder: (bundle) => MemberListPage()),
   PageName.notice_page:
       PageBuilder(builder: (bundle) => NoticePage(bundle: bundle)),
-  PageName.mine_house_page:
-      PageBuilder(builder: (bundle) => MineHousePage()),
+  PageName.mine_house_page: PageBuilder(builder: (bundle) => MineHousePage()),
   PageName.house_authenticate_page:
       PageBuilder(builder: (bundle) => HouseAuthenticatePage()),
   PageName.mine_car_page:
       PageBuilder(builder: (bundle) => MineCarPage(bundle: bundle)),
-  PageName.car_add_page:
-      PageBuilder(builder: (bundle) => CarAddPage()),
+  PageName.car_add_page: PageBuilder(builder: (bundle) => CarAddPage()),
   PageName.select_community_page:
       PageBuilder(builder: (bundle) => SelectCommunityPage()),
   PageName.select_parking_page:
       PageBuilder(builder: (bundle) => SelectParkingPage(bundle: bundle)),
   PageName.market_class_page:
       PageBuilder(builder: (bundle) => MarketClassPage()),
-  PageName.address_page:
-      PageBuilder(builder: (bundle) => AddressPage()),
+  PageName.address_page: PageBuilder(builder: (bundle) => AddressPage()),
   PageName.address_edit_page:
       PageBuilder(builder: (bundle) => AddressEditPage(bundle: bundle)),
   PageName.fitup_manage_page:
       PageBuilder(builder: (bundle) => FitupManagePage()),
-  PageName.setting_page:
-      PageBuilder(builder: (bundle) => SettingPage()),
-  PageName.about_page:
-      PageBuilder(builder: (bundle) => AboutPage()),
-  PageName.invite_page:
-      PageBuilder(builder: (bundle) => InvitePage()),
-  PageName.feedback_page:
-      PageBuilder(builder: (bundle) => FeedBackPage()),
-  PageName.agreement_page:
-      PageBuilder(builder: (bundle) => AgreementPage()),
+  PageName.about_page: PageBuilder(builder: (bundle) => AboutPage()),
+  PageName.invite_page: PageBuilder(builder: (bundle) => InvitePage()),
+  PageName.feedback_page: PageBuilder(builder: (bundle) => FeedBackPage()),
+  PageName.agreement_page: PageBuilder(builder: (bundle) => AgreementPage()),
   PageName.things_page:
       PageBuilder(builder: (bundle) => ThingsPage(bundle: bundle)),
   PageName.things_detail_page:
@@ -367,6 +341,7 @@ final Map<PageName, PageBuilder> pageRoutes = {
       PageBuilder(builder: (bundle) => ThingsCreatePage(bundle: bundle)),
   PageName.things_evaluate_page:
       PageBuilder(builder: (bundle) => ThingsEvaluatePage(bundle: bundle)),
-  PageName.alarm_page:
-      PageBuilder(builder: (bundle)=>AlarmPage(bundle:bundle),)
+  PageName.alarm_page: PageBuilder(
+    builder: (bundle) => AlarmPage(bundle: bundle),
+  )
 };
