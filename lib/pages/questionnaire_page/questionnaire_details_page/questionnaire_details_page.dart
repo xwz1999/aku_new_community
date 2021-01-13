@@ -195,7 +195,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: BaseStyle.fontSize32,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
             ),
           ),
@@ -273,7 +273,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                       '您的觉得我们需要改进的地方',
                       style: TextStyle(
                           fontSize: BaseStyle.fontSize28,
-                          color: BaseStyle.color333333),
+                          color: ktextPrimary),
                     ),
                   ),
                   _containerTextField(),

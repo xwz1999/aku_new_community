@@ -53,7 +53,7 @@ class _DirectorManageState extends State<DirectorManage> {
             text: '2',
             style: TextStyle(
               fontSize: BaseStyle.fontSize36,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -61,7 +61,7 @@ class _DirectorManageState extends State<DirectorManage> {
             text: '张',
             style: TextStyle(
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -173,7 +173,7 @@ class _DirectorManageState extends State<DirectorManage> {
             '确认提交',
             style: TextStyle(
               fontSize: BaseStyle.fontSize32,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -224,7 +224,7 @@ class _DirectorManageState extends State<DirectorManage> {
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: BaseStyle.fontSize32,
-                          color: BaseStyle.color333333),
+                          color: ktextPrimary),
                     ),
                     Column(
                       children:

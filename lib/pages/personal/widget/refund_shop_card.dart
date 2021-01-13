@@ -39,7 +39,7 @@ class RefundShopCard extends StatelessWidget {
                   maxLines: 2,
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize28,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
               ),

@@ -66,7 +66,7 @@ class ExplainTemplate extends BeautifulPopupTemplate {
 //             '一键报警',
 //             style: TextStyle(
 //               fontSize: BaseStyle.fontSize32,
-//               color: BaseStyle.color333333,
+//               color: ktextPrimary,
 //               fontWeight: FontWeight.bold,
 //             ),
 //           ),
@@ -76,7 +76,7 @@ class ExplainTemplate extends BeautifulPopupTemplate {
 //               '点击“呼叫110”后，您可以直接拨打本地110。页面中提供了您当前所在位置，以便您与警方沟通。（GPS信号弱时，位置可能存在偏移）',
 //               style: TextStyle(
 //                 fontSize: BaseStyle.fontSize28,
-//                 color: BaseStyle.color666666,
+//                 color: ktextSubColor,
 //               ),
 //             ),
 //           ),

@@ -20,7 +20,7 @@ class _CommonInputState extends State<CommonInput> {
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
           fontWeight: FontWeight.w600,
-          color: BaseStyle.color333333,
+          color: ktextPrimary,
           fontSize: BaseStyle.fontSize36,
         ),
         controller: widget.inputController,

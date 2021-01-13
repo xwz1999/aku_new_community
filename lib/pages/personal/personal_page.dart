@@ -132,7 +132,7 @@ class _PersonalIndexState extends State<PersonalIndex>
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize34,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           title == '我的物业'
@@ -150,7 +150,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         '查看全部',
                         style: TextStyle(
                           fontSize: BaseStyle.fontSize22,
-                          color: BaseStyle.color333333,
+                          color: ktextPrimary,
                         ),
                       ),
                       SizedBox(width: 8.w),

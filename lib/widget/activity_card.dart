@@ -98,7 +98,7 @@ class ActivityCard extends StatelessWidget {
                           text: subtitleFirst,
                           style: TextStyle(
                               fontSize: BaseStyle.fontSize24,
-                              color: BaseStyle.color333333),
+                              color: ktextPrimary),
                         ),
                       ]),
                     ),
@@ -118,7 +118,7 @@ class ActivityCard extends StatelessWidget {
                     text: subtitleSecond,
                     style: TextStyle(
                         fontSize: BaseStyle.fontSize24,
-                        color: BaseStyle.color333333),
+                        color: ktextPrimary),
                   ),
                 ]),
               ),

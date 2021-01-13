@@ -40,7 +40,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: BaseStyle.fontSize32,
-          color: BaseStyle.color333333,
+          color: ktextPrimary,
         ),
       ),
     );
@@ -73,7 +73,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
           Text(
             '描述相符',
             style: TextStyle(
-                fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
+                fontSize: BaseStyle.fontSize28, color: ktextPrimary),
           ),
           SizedBox(width: 34.w),
           Row(
@@ -178,7 +178,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
           Text(
             '添加图片信息(0/9)',
             style: TextStyle(
-                fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
+                fontSize: BaseStyle.fontSize28, color: ktextPrimary),
           ),
           SizedBox(height: 24.w),
           InkWell(
@@ -218,7 +218,7 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
           style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize32,
-              color: BaseStyle.color333333),
+              color: ktextPrimary),
         ),
       ),
     );

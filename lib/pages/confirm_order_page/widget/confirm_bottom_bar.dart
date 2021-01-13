@@ -50,7 +50,7 @@ class ConfirmBottomBar extends StatelessWidget {
           '提交订单',
           style: TextStyle(
             fontSize: BaseStyle.fontSize30,
-            color: BaseStyle.color333333,
+            color: ktextPrimary,
           ),
         ),
       ),

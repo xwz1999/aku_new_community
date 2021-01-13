@@ -34,7 +34,7 @@ class _BottomButtonState extends State<BottomButton> {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize32,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ),

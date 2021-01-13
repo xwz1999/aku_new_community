@@ -85,7 +85,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                           '已签收',
                           style: TextStyle(
                               fontSize: BaseStyle.fontSize28,
-                              color: BaseStyle.color333333),
+                              color: ktextPrimary),
                         ),
                       ),
                     ],
@@ -109,7 +109,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                             children: [
                               Icon(
                                 Feather.alert_circle,
-                                color: BaseStyle.color333333,
+                                color: ktextPrimary,
                                 size: BaseStyle.fontSize28,
                               ),
                               Container(
@@ -119,7 +119,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                                   '物流投诉',
                                   style: TextStyle(
                                       fontSize: BaseStyle.fontSize22,
-                                      color: BaseStyle.color333333),
+                                      color: ktextPrimary),
                                 ),
                               )
                             ],
@@ -158,7 +158,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                 '中通快递 3072035702394120',
                 style: TextStyle(
                     fontSize: BaseStyle.fontSize22,
-                    color: BaseStyle.color333333),
+                    color: ktextPrimary),
               ),
             ),
             SizedBox(

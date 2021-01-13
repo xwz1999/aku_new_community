@@ -36,7 +36,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: BaseStyle.fontSize32,
-          color: BaseStyle.color333333,
+          color: ktextPrimary,
         ),
       ),
     );
@@ -77,7 +77,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
               '退款金额',
               style: TextStyle(
                 fontSize: BaseStyle.fontSize34,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
             ),
             Text(
@@ -115,7 +115,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
               '退款说明',
               style: TextStyle(
                 fontSize: BaseStyle.fontSize34,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
             ),
             SizedBox(height: 23.w),
@@ -163,7 +163,7 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
           '提交',
           style: TextStyle(
             fontSize: BaseStyle.fontSize32,
-            color: BaseStyle.color333333,
+            color: ktextPrimary,
           ),
         ),
       ),

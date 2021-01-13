@@ -93,7 +93,7 @@ class _OwnerManageState extends State<OwnerManage>
                     _listWidget[index]['title'],
                     style: TextStyle(
                         fontSize: BaseStyle.fontSize28,
-                        color: BaseStyle.color333333),
+                        color: ktextPrimary),
                   ),
                   SizedBox(height: 25.w),
                   _listWidget[index]['widget'],

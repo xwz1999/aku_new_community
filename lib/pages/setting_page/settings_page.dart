@@ -101,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: BaseStyle.fontSize32,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
               ),
             )
@@ -120,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: BaseStyle.fontSize28,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
               ),
             ),

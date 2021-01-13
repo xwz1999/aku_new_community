@@ -27,7 +27,7 @@ class _OrderCardState extends State<OrderCard> {
             '去年（2019年）',
             style: TextStyle(
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color666666,
+              color: ktextSubColor,
             ),
           ),
           Container(
@@ -38,7 +38,7 @@ class _OrderCardState extends State<OrderCard> {
                   '待缴：4项',
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize28,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
                 SizedBox(width: 40.w),
@@ -46,7 +46,7 @@ class _OrderCardState extends State<OrderCard> {
                   '已选：4项',
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize28,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
               ],
@@ -60,7 +60,7 @@ class _OrderCardState extends State<OrderCard> {
                 children: <InlineSpan>[
                   TextSpan(
                     text: '合计：',
-                    style: TextStyle(color: BaseStyle.color333333),
+                    style: TextStyle(color: ktextPrimary),
                   ),
                   TextSpan(
                     text: '¥${747.98}',

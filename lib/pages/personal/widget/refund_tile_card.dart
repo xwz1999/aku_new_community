@@ -28,7 +28,7 @@ class _RefundTileCardState extends State<RefundTileCard> {
             title,
             style: TextStyle(
               fontSize: BaseStyle.fontSize34,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           SizedBox(height: 24.w),

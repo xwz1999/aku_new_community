@@ -75,7 +75,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
                 fontSize: BaseStyle.fontSize28,
                 color: _currentIndex == index
                     ? BaseStyle.colorffc40c
-                    : BaseStyle.color333333,
+                    : ktextPrimary,
               ),
             ),
           ),
@@ -128,7 +128,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
                         infoList[index].sonName,
                         style: TextStyle(
                           fontSize: BaseStyle.fontSize24,
-                          color: BaseStyle.color333333,
+                          color: ktextPrimary,
                         ),
                       ),
                     ),
@@ -164,7 +164,7 @@ class _MarketClassPageState extends State<MarketClassPage> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: BaseStyle.fontSize26,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
             ),
           ),

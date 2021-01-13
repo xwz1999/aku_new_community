@@ -57,7 +57,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
                 name,
                 style: TextStyle(
                   fontSize: BaseStyle.fontSize24,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
               ),
               SizedBox(height: 4.w),
@@ -92,7 +92,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
               maxLines: 3,
               style: TextStyle(
                 fontSize: BaseStyle.fontSize24,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
               expand: false,
             ),
@@ -122,14 +122,14 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
                 Icon(
                   Feather.triangle,
                   size: BaseStyle.fontSize22,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
                 SizedBox(width: 10.w),
                 Text(
                   '有用',
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize22,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
               ],

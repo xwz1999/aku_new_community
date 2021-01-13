@@ -108,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: BaseStyle.fontSize28,
-            color: BaseStyle.color333333,
+            color: ktextPrimary,
           ),
         ),
       ),
@@ -205,7 +205,7 @@ class _SignInPageState extends State<SignInPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: BaseStyle.fontSize38,
-                            color: BaseStyle.color333333),
+                            color: ktextPrimary),
                       ),
                     ),
                     SizedBox(height: 89.w),

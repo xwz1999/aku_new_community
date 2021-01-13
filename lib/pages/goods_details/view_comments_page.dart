@@ -160,7 +160,7 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: BaseStyle.fontSize24,
-                              color: BaseStyle.color333333,
+                              color: ktextPrimary,
                             ),
                           ),
                         ),

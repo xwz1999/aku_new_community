@@ -15,7 +15,7 @@ class RecordCard extends StatelessWidget {
       'titleStyle': TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: BaseStyle.fontSize30,
-        color: BaseStyle.color333333,
+        color: ktextPrimary,
       ),
       'valueStyle': TextStyle(
         fontSize: BaseStyle.fontSize24,
@@ -29,7 +29,7 @@ class RecordCard extends StatelessWidget {
       'value': '- ¥1000.00',
       'titleStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color666666,
+        color: ktextSubColor,
       ),
       'valueStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
@@ -43,11 +43,11 @@ class RecordCard extends StatelessWidget {
       'value': '2020/08/01 10:00',
       'titleStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color666666,
+        color: ktextSubColor,
       ),
       'valueStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color333333,
+        color: ktextPrimary,
       ),
       'top': 30,
       'isShow': false,
@@ -57,11 +57,11 @@ class RecordCard extends StatelessWidget {
       'value': '支付宝',
       'titleStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color666666,
+        color: ktextSubColor,
       ),
       'valueStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color333333,
+        color: ktextPrimary,
       ),
       'top': 30,
       'isShow': false,
@@ -71,11 +71,11 @@ class RecordCard extends StatelessWidget {
       'value': '2020080100030001433244',
       'titleStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color666666,
+        color: ktextSubColor,
       ),
       'valueStyle': TextStyle(
         fontSize: BaseStyle.fontSize28,
-        color: BaseStyle.color333333,
+        color: ktextPrimary,
       ),
       'top': 30,
       'isShow': false,
