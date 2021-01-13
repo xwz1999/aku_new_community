@@ -6,6 +6,7 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/const/resource.dart';
@@ -44,7 +45,16 @@ class _HomeGridButtonState extends State<HomeGridButton> {
       Get.to(IndustryCommitteePage());
     }),
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
-      Get.to(ThingsPage());
+      Get.to(ThingsPage(
+        bundle: Bundle()
+          ..putMap('things', {
+            'title': '建议咨询',
+            'treeList': <Map<String, dynamic>>[
+              {'name': '您的建议'},
+              {'name': '您的咨询'},
+            ]
+          }),
+      ));
     }),
     GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
       Get.to(ConvenientPhonePage());

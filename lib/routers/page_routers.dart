@@ -30,7 +30,6 @@ import 'package:akuCommunity/pages/message_center_page/comment_message_page/comm
 import 'package:akuCommunity/pages/message_center_page/shop_message_page/shop_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message_page/system_details_page/system_details_page.dart';
 
-import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/certification_page/certification_page.dart';
 
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
