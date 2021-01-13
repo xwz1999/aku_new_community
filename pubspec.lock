@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "1.15.0-nullsafety.3"
   common_utils:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: common_utils
       url: "https://pub.flutter-io.cn"
@@ -602,6 +602,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.6"
+  logger:
+    dependency: "direct main"
+    description:
+      name: logger
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.9.4"
   logging:
     dependency: transitive
     description:

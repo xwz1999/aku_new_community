@@ -1,17 +1,25 @@
 import 'dart:convert';
 
+import 'package:akuCommunity/utils/logger_data.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:logger/logger.dart';
 
 class NetUtil {
   Dio _dio;
+  Logger _logger;
   static final NetUtil _netUtil = NetUtil._internal();
 
   factory NetUtil() => _netUtil;
 
   NetUtil._internal() {
+    _logger = Logger(
+        printer: PrettyPrinter(
+      methodCount: 2,
+      errorMethodCount: 4,
+    ));
     BaseOptions options = BaseOptions(
       baseUrl: API.host,
       connectTimeout: API.networkTimeOut,
@@ -22,12 +30,25 @@ class NetUtil {
     if (_dio == null) _dio = Dio(options);
   }
 
+  ///call auth after login
+  auth(String token) {
+    _logger.d('setToken@$token');
+    _dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
+  }
+
   Future<BaseModel> get(
     String path, {
     Map<String, dynamic> params,
   }) async {
     try {
       Response res = await _dio.get(path, queryParameters: params);
+      _logger.v({
+        'path': res.request.path,
+        'header': res.request.headers,
+        'params': res.request.queryParameters,
+        'data': res.data,
+      });
+      LoggerData.addData(res);
       return BaseModel.fromJson(res.data);
     } on DioError catch (e) {
       _parseErr(e);
@@ -36,8 +57,13 @@ class NetUtil {
   }
 
   _parseErr(DioError err) {
+    _logger.v({
+      'type': err.type.toString(),
+      'message': err.message,
+    });
+    LoggerData.addData(err);
     _makeToast(String message) {
-      BotToast.showText(text: '$message\_${err.response.statusCode}');
+      BotToast.showText(text: '$message\_${err?.response?.statusCode ?? ''}');
     }
 
     switch (err.type) {

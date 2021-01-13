@@ -1,11 +1,15 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
+import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +17,7 @@ import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -24,96 +29,14 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController();
   TextEditingController _code = new TextEditingController();
-  String _verifyStr = '获取验证码';
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.white,
-      // leading: IconButton(
-      //   icon: Icon(AntDesign.left, size: 40.sp),
-      //   onPressed: () {
-      //     Navigator.pop(context);
-      //   },
-      // ),
-    );
-  }
+  AppBar get _appBar => AppBar(elevation: 0, backgroundColor: Colors.white);
 
-  Container _containerTextField(String imagePath,
-      TextEditingController controller, String hintText, bool isCode) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 29.w),
-      margin: EdgeInsets.symmetric(horizontal: 82.w),
-      decoration: BoxDecoration(
-        color: Color(0xfffff4d7),
-        borderRadius: BorderRadius.all(Radius.circular(36)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(
-            imagePath,
-            height: 50.w,
-            width: 50.w,
-          ),
-          SizedBox(width: 24.w),
-          Expanded(
-            child: TextFormField(
-              obscureText: false,
-              obscuringCharacter: '*',
-              cursorColor: Color(0xffffc40c),
-              style: TextStyle(
-                fontSize: BaseStyle.fontSize28,
-                fontWeight: FontWeight.w600,
-              ),
-              controller: controller,
-              onChanged: (String value) {},
-              maxLines: 1,
-              decoration: InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 25.w,
-                ),
-                hintText: hintText,
-                border: InputBorder.none, //去掉输入框的下滑线
-                fillColor: Color(0xfffff4d7),
-                filled: true,
-                hintStyle: TextStyle(
-                  color: BaseStyle.color999999,
-                  fontSize: BaseStyle.fontSize28,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-          ),
-          isCode
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 2,
-                      height: 29.w,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(color: Color(0xffd8d8d8)),
-                      ),
-                    ),
-                    SizedBox(width: 16.w),
-                    InkWell(
-                      child: Text(
-                        _verifyStr,
-                        style: TextStyle(
-                          color: BaseStyle.color999999,
-                          fontSize: BaseStyle.fontSize28,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      onTap: null,
-                    ),
-                  ],
-                )
-              : SizedBox(),
-        ],
-      ),
-    );
+  Timer _timer;
+  bool get validPhone => RegexUtil.isMobileSimple(_phone.text);
+
+  bool get _canGetCode {
+    bool timerActive = _timer?.isActive ?? false;
+    return (!timerActive) && validPhone;
   }
 
   Container _containerImage() {
@@ -192,11 +115,72 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  startTick() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (timer.tick >= 60) {
+        _timer.cancel();
+        _timer = null;
+      }
+      setState(() {});
+    });
+  }
+
+  _buildTextField({
+    String hint,
+    Widget prefix,
+    Widget suffix,
+    TextEditingController controller,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 82.w),
+      decoration: BoxDecoration(
+        color: Color(0xFFFFF4D7),
+        borderRadius: BorderRadius.circular(42.w),
+      ),
+      child: Row(
+        children: [
+          36.wb,
+          82.hb,
+          prefix ?? SizedBox(),
+          20.wb,
+          TextField(
+            controller: controller,
+            onChanged: (_) => setState(() {}),
+            decoration: InputDecoration(
+              isDense: true,
+              hintText: hint,
+              contentPadding: EdgeInsets.zero,
+              border: InputBorder.none,
+              hintStyle: TextStyle(
+                color: Color(0xFF999999),
+                fontSize: 28.sp,
+              ),
+            ),
+          ).expand(),
+          suffix != null
+              ? Container(
+                  height: 29.w,
+                  width: 2.w,
+                  color: Color(0xFFD8D8D8),
+                )
+              : SizedBox(),
+          suffix ?? SizedBox(),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _appBar(),
+      appBar: _appBar,
       body: SingleChildScrollView(
         child: Container(
           child: GestureDetector(
@@ -225,11 +209,45 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(height: 89.w),
-                    _containerTextField(
-                        AssetsImage.PHONELOGO, _phone, '请输入手机号码', false),
-                    SizedBox(height: 27.w),
-                    _containerTextField(
-                        AssetsImage.CODELOGO, _code, '请输入验证码', true),
+                    _buildTextField(
+                      hint: '请输入手机号',
+                      controller: _phone,
+                      prefix: Image.asset(
+                        R.ASSETS_IMAGES_PHONE_LOGO_PNG,
+                        height: 50.w,
+                        width: 50.w,
+                      ),
+                    ),
+                    26.hb,
+                    _buildTextField(
+                      prefix: Image.asset(
+                        R.ASSETS_IMAGES_CODE_LOGO_PNG,
+                        height: 50.w,
+                        width: 50.w,
+                      ),
+                      hint: '请输入验证码',
+                      controller: _code,
+                      suffix: MaterialButton(
+                        height: 82.w,
+                        shape: StadiumBorder(),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        child: Text(
+                          _timer?.isActive ?? false
+                              ? '${60 - _timer.tick}'
+                              : '获取验证码',
+                          style: TextStyle(
+                            color: BaseStyle.color999999,
+                            fontSize: BaseStyle.fontSize28,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        onPressed: _canGetCode
+                            ? () {
+                                startTick();
+                              }
+                            : null,
+                      ),
+                    ),
                     SizedBox(height: 59.w),
                     _inkWellLogin(),
                     Row(
