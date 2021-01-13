@@ -2,6 +2,7 @@ import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
+import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
@@ -34,7 +35,7 @@ class _HomeGridButtonState extends State<HomeGridButton> {
       Get.to(VisitorAccessPage());
     }),
     GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      Get.to(ThingsPage());
+      Get.to(FixedSubmitPage());
     }),
     GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
       Get.to(LifePayPage());

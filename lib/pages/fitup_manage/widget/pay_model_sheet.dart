@@ -86,7 +86,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                         '选择付款方式',
                         style: TextStyle(
                           fontSize: BaseStyle.fontSize32,
-                          color: BaseStyle.color333333,
+                          color: ktextPrimary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -148,7 +148,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                       title,
                       style: TextStyle(
                           fontSize: BaseStyle.fontSize28,
-                          color: BaseStyle.color333333),
+                          color: ktextPrimary),
                     ),
                     _listPay[index]['isCheck']
                         ? Icon(
@@ -190,7 +190,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                   _listPay[_currentindex]['title'],
                   style: TextStyle(
                       fontSize: BaseStyle.fontSize28,
-                      color: BaseStyle.color333333),
+                      color: ktextPrimary),
                 ),
               ],
             ),
@@ -230,7 +230,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                     '付款详情',
                     style: TextStyle(
                       fontSize: BaseStyle.fontSize32,
-                      color: BaseStyle.color333333,
+                      color: ktextPrimary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

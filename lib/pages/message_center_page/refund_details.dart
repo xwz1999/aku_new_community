@@ -24,7 +24,7 @@ class RefundDetails extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize32,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           SizedBox(height: 10.w),
@@ -32,7 +32,7 @@ class RefundDetails extends StatelessWidget {
             '2020年7月8日 13:28',
             style: TextStyle(
               fontSize: BaseStyle.fontSize24,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],
@@ -56,7 +56,7 @@ class RefundDetails extends StatelessWidget {
             '退款总金额',
             style: TextStyle(
               fontSize: BaseStyle.fontSize24,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           Text(
@@ -64,7 +64,7 @@ class RefundDetails extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],
@@ -89,7 +89,7 @@ class RefundDetails extends StatelessWidget {
               '退款信息',
               style: TextStyle(
                 fontSize: BaseStyle.fontSize24,
-                color: BaseStyle.color333333,
+                color: ktextPrimary,
               ),
             ),
           ),

@@ -28,7 +28,7 @@ class _SubmitBarState extends State<SubmitBar> {
             Text(
               '全选',
               style: TextStyle(
-                  fontSize: BaseStyle.fontSize24, color: BaseStyle.color666666),
+                  fontSize: BaseStyle.fontSize24, color: ktextSubColor),
             ),
           ],
         ),
@@ -52,7 +52,7 @@ class _SubmitBarState extends State<SubmitBar> {
                       text: '合计：',
                       style: TextStyle(
                           fontSize: BaseStyle.fontSize26,
-                          color: BaseStyle.color333333),
+                          color: ktextPrimary),
                     ),
                     TextSpan(
                       text: '¥${3009.84}',
@@ -89,7 +89,7 @@ class _SubmitBarState extends State<SubmitBar> {
                 title,
                 style: TextStyle(
                   fontSize: BaseStyle.fontSize32,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),

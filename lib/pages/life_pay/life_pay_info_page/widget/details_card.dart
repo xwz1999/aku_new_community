@@ -28,14 +28,14 @@ class _DetailsCardState extends State<DetailsCard> {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize30,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           Text(
             '宁波华茂悦峰  1幢-1单元-702室',
             style: TextStyle(
               fontSize: BaseStyle.fontSize30,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],
@@ -63,7 +63,7 @@ class _DetailsCardState extends State<DetailsCard> {
                 '2019上半年',
                 style: TextStyle(
                   fontSize: BaseStyle.fontSize28,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
               ),
             ],

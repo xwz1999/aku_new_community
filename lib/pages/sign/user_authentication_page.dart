@@ -100,7 +100,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                                 : FontWeight.normal,
                             fontSize: BaseStyle.fontSize28,
                             color: item['isCheck']
-                                ? BaseStyle.color333333
+                                ? ktextPrimary
                                 : BaseStyle.color999999),
                       ),
                     ],
@@ -174,7 +174,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                       item['title'],
                       style: TextStyle(
                           fontSize: BaseStyle.fontSize28,
-                          color: BaseStyle.color333333),
+                          color: ktextPrimary),
                     ),
                     SizedBox(height: 25.w),
                     item['widget'],
@@ -209,7 +209,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: BaseStyle.fontSize38,
-                        color: BaseStyle.color333333),
+                        color: ktextPrimary),
                   ),
                   SizedBox(height: 8.w),
                   Column(

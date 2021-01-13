@@ -193,7 +193,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                   post,
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize32,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
                 SizedBox(height: 10.w),
@@ -201,7 +201,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                   name,
                   style: TextStyle(
                     fontSize: BaseStyle.fontSize32,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
               ],
@@ -244,7 +244,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                     '已有${320}人参加',
                     style: TextStyle(
                         fontSize: BaseStyle.fontSize28,
-                        color: BaseStyle.color333333),
+                        color: ktextPrimary),
                   ),
                 ),
                 Icon(
@@ -288,7 +288,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                         widget.bundle.getMap('details')['title'],
                         style: TextStyle(
                             fontSize: BaseStyle.fontSize32,
-                            color: BaseStyle.color333333,
+                            color: ktextPrimary,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(

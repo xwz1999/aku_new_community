@@ -26,7 +26,7 @@ class BillCard extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color666666,
+              color: ktextSubColor,
             ),
           ),
           Text(
@@ -34,7 +34,7 @@ class BillCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],

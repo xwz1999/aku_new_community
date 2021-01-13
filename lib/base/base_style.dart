@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 
+const ktextPrimary = Color(0xff333333);
+const ktextSubColor = Color(0xff666666);
+const kForeGroundColor = Color(0xFFFFFFFF);
+const kPrimaryColor=Color(0xFFFFC40C);
+const kDarkPrimaryColor=Color(0xFFFF8200);
+
 class BaseStyle {
   ///字体类
   static final double fontSize18 = 18.sp;
-  
+
   static final double fontSize22 = 22.sp;
 
   static final double fontSize24 = 24.sp;
 
   static final double fontSize26 = 26.sp;
-  
+
   static final double fontSize28 = 28.sp;
 
   static final double fontSize30 = 30.sp;
@@ -25,8 +31,8 @@ class BaseStyle {
   static final double fontSize38 = 38.sp;
 
   static final double fontSize52 = 52.sp;
+
   ///颜色
-  static final Color color333333 = Color(0xff333333);
 
   static final Color color666666 = Color(0xff666666);
 
@@ -40,9 +46,9 @@ class BaseStyle {
 
   static final Color color474747 = Color(0xff474747);
 
-  static final Color colord8d8d8= Color(0xffd8d8d8);
+  static final Color colord8d8d8 = Color(0xffd8d8d8);
 
-  static final Color coloreeeeee= Color(0xffeeeeee);
+  static final Color coloreeeeee = Color(0xffeeeeee);
 
   static final Color colorff8500 = Color(0xffff8500);
 
@@ -56,5 +62,5 @@ class BaseStyle {
 
   static final Color colorffc40c = Color(0xffffc40c);
 
-  static final Color color979797= Color(0xff979797);
+  static final Color color979797 = Color(0xff979797);
 }

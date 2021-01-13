@@ -36,7 +36,7 @@ class _OrderCardState extends State<OrderCard> {
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: BaseStyle.fontSize28,
-          color: BaseStyle.color333333,
+          color: ktextPrimary,
         ),
       ),
     );
@@ -70,7 +70,7 @@ class _OrderCardState extends State<OrderCard> {
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: BaseStyle.fontSize28,
-                        color: BaseStyle.color333333,
+                        color: ktextPrimary,
                       ),
                     ),
                   ),
@@ -98,7 +98,7 @@ class _OrderCardState extends State<OrderCard> {
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: BaseStyle.fontSize28,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
                 Text(
@@ -151,7 +151,7 @@ class _OrderCardState extends State<OrderCard> {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],

@@ -44,7 +44,7 @@ class _OrderPageState extends State<OrderPage>
           isScrollable: true,
           indicator: BoxDecoration(),
           labelColor: BaseStyle.colorff8500,
-          unselectedLabelColor: BaseStyle.color333333,
+          unselectedLabelColor: ktextPrimary,
           labelStyle: TextStyle(
             fontSize: 28.sp,
             fontWeight: FontWeight.w600,

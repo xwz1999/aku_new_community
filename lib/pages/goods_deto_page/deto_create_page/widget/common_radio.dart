@@ -33,7 +33,7 @@ class _CommonRadioState extends State<CommonRadio> {
             Text(
               title,
               style: TextStyle(
-                  fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
+                  fontSize: BaseStyle.fontSize28, color: ktextPrimary),
             ),
           ],
         ),

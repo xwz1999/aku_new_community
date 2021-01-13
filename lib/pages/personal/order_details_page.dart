@@ -32,7 +32,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: BaseStyle.fontSize32,
-          color: BaseStyle.color333333,
+          color: ktextPrimary,
         ),
       ),
     );
@@ -55,7 +55,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: BaseStyle.fontSize32,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
           SizedBox(height: 10.w),
@@ -63,7 +63,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             '还剩9小时33分自动确认',
             style: TextStyle(
               fontSize: BaseStyle.fontSize24,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],
@@ -98,7 +98,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     '马泽鹏',
                     style: TextStyle(
                       fontSize: BaseStyle.fontSize28,
-                      color: BaseStyle.color333333,
+                      color: ktextPrimary,
                     ),
                   ),
                   SizedBox(width: 16.w),
@@ -159,7 +159,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         child: Text(
           '退款',
           style: TextStyle(
-              fontSize: BaseStyle.fontSize28, color: BaseStyle.color333333),
+              fontSize: BaseStyle.fontSize28, color: ktextPrimary),
         ),
       ),
     );
@@ -201,7 +201,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: BaseStyle.fontSize28,
-                            color: BaseStyle.color333333,
+                            color: ktextPrimary,
                           ),
                         ),
                       ),
@@ -248,7 +248,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: BaseStyle.fontSize28,
-                    color: BaseStyle.color333333,
+                    color: ktextPrimary,
                   ),
                 ),
                 Text(
@@ -316,7 +316,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: BaseStyle.fontSize28,
-                color: BaseStyle.color333333),
+                color: ktextPrimary),
           ),
           Column(
             children: listOrderDetail

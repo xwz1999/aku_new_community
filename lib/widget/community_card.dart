@@ -126,7 +126,7 @@ class _CommunityCardState extends State<CommunityCard> {
                   '$peopleNum人已参加',
                   style: TextStyle(
                       fontSize: BaseStyle.fontSize22,
-                      color: BaseStyle.color333333),
+                      color: ktextPrimary),
                 ),
               ],
             ),

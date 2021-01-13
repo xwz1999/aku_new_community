@@ -130,7 +130,7 @@ class _MemberListPageState extends State<MemberListPage> {
                 name,
                 style: TextStyle(
                   fontSize: BaseStyle.fontSize28,
-                  color: BaseStyle.color333333,
+                  color: ktextPrimary,
                 ),
               ),
             ],
@@ -140,7 +140,7 @@ class _MemberListPageState extends State<MemberListPage> {
                 (Match m) => "${m[1]}****${m[2]}"),
             style: TextStyle(
               fontSize: BaseStyle.fontSize28,
-              color: BaseStyle.color333333,
+              color: ktextPrimary,
             ),
           ),
         ],
