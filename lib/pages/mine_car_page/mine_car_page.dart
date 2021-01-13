@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -17,7 +18,6 @@ class _MineCarPageState extends State<MineCarPage> {
   List<Map<String, dynamic>> _listHouse = [
     {'title': '深圳华茂悦峰', 'subtitle': '1幢-1单元-702室'},
   ];
-
 
   Widget _containerHouseCard(String title, subtitle) {
     return Container(
@@ -153,13 +153,8 @@ class _MineCarPageState extends State<MineCarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '我的${widget.bundle.getMap('carType')['type']}',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '我的${widget.bundle.getMap('carType')['type']}',
       body: Container(
         color: Colors.white,
         child: Stack(

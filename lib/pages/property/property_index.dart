@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -117,19 +118,8 @@ class _PropertyIndexState extends State<PropertyIndex>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          '物业',
-          style: TextStyle(
-            fontSize: 36.sp,
-            color: Color(0xff333333),
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+    return BeeScaffold(
+      title: '物业',
       body: SmartRefresher(
         controller: _refreshController,
         header: WaterDropHeader(),

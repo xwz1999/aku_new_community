@@ -1,10 +1,26 @@
 import 'package:akuCommunity/widget/bee_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeeScaffold extends StatefulWidget {
   final String title;
   final Widget body;
-  BeeScaffold({Key key, @required this.title, this.body}) : super(key: key);
+
+  /// appbar background color
+  ///
+  /// default Colors.white
+  final Color bgColor;
+  final List<Widget> actions;
+  final Widget leading;
+  BeeScaffold(
+      {Key key,
+      @required this.title,
+      this.body,
+      this.actions,
+      this.leading,
+      this.bgColor})
+      : super(key: key);
 
   @override
   _BeeScaffoldState createState() => _BeeScaffoldState();
@@ -16,11 +32,13 @@ class _BeeScaffoldState extends State<BeeScaffold> {
     return Scaffold(
       backgroundColor: Color(0xFFF9F9F9),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: widget.bgColor ?? Colors.white,
         elevation: 0,
-        title: Text(widget.title),
+        title:
+            widget.title.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
         centerTitle: true,
-        leading: BeeBackButton(),
+        leading: widget.leading ?? BeeBackButton(),
+        actions: widget.actions,
       ),
       body: widget.body,
     );

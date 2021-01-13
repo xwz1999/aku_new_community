@@ -77,8 +77,8 @@ dependencies:
   animate_do: ^1.7.3
   #动画alert
   rflutter_alert: ^1.1.0
-  #扫码
-  barcode_scan: ^3.0.1
+
+  qr_code_scanner: ^0.3.0
   #时间选择
   flutter_datetime_picker: ^1.4.0
   #随机二维码

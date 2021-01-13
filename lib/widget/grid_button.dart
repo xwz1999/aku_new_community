@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,8 +23,7 @@ class GridButton extends StatelessWidget {
           onTap: () {
             switch (gridList[index]['title']) {
               case '一键开门':
-                Navigator.pushNamed(
-                    context, PageName.open_door_page.toString());
+                Get.to(OpenDoorPage());
                 break;
               case '开门码':
                 Navigator.pushNamed(

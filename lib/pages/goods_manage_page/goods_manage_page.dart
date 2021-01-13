@@ -1,8 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
@@ -137,77 +134,11 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             bottom: 0,
             child: BottomButton(
               title: '扫一扫出借',
-              fun: () {
-                scan();
-              },
+              fun: () {},
             ),
           ),
         ],
       ),
     );
-  }
-  ScanResult scanResult;
-
-  final _flashOnController = TextEditingController(text: "打开闪光灯");
-  final _flashOffController = TextEditingController(text: "关闭闪光灯");
-  final _cancelController = TextEditingController(text: "关闭");
-
-  var _aspectTolerance = 0.00;
-  var numberOfCameras = 0;
-  var _selectedCamera = -1;
-  var _useAutoFocus = true;
-  var _autoEnableFlash = false;
-
-  static final _possibleFormats = BarcodeFormat.values.toList()
-    ..removeWhere((e) => e == BarcodeFormat.unknown);
-
-  List<BarcodeFormat> selectedFormats = [..._possibleFormats];
-
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration.zero, () async {
-      numberOfCameras = await BarcodeScanner.numberOfCameras;
-      setState(() {});
-    });
-  }
-
-  Future scan() async {
-    try {
-      var options = ScanOptions(
-        strings: {
-          "cancel": _cancelController.text,
-          "flash_on": _flashOnController.text,
-          "flash_off": _flashOffController.text,
-        },
-        restrictFormat: selectedFormats,
-        useCamera: _selectedCamera,
-        autoEnableFlash: _autoEnableFlash,
-        android: AndroidOptions(
-          aspectTolerance: _aspectTolerance,
-          useAutoFocus: _useAutoFocus,
-        ),
-      );
-
-      var result = await BarcodeScanner.scan(options: options);
-
-      setState(() => scanResult = result);
-    } on PlatformException catch (e) {
-      var result = ScanResult(
-        type: ResultType.Error,
-        format: BarcodeFormat.unknown,
-      );
-
-      if (e.code == BarcodeScanner.cameraAccessDenied) {
-        setState(() {
-          result.rawContent = 'The user did not grant the camera permission!';
-        });
-      } else {
-        result.rawContent = 'Unknown error: $e';
-      }
-      setState(() {
-        scanResult = result;
-      });
-    }
   }
 }

@@ -1,12 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
+import 'package:akuCommunity/pages/scan/scan_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
-import 'widget/home_app_bar.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
 import 'widget/home_card.dart';
@@ -17,6 +23,8 @@ import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -71,16 +79,67 @@ class _HomePageState extends State<HomePage>
     _refreshController.loadComplete();
   }
 
+  _buildColButton({IconData icon, String title, VoidCallback onTap}) {
+    return MaterialButton(
+      onPressed: onTap,
+      minWidth: 0,
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 48.w, color: Colors.black),
+          4.hb,
+          title.text.size(20.sp).black.make(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
-    return Scaffold(
-      appBar: PreferredSize(
-        child: HomeAppBar(),
-        preferredSize: Size.fromHeight(kToolbarHeight),
+    return BeeScaffold(
+      title: 'TEST',
+      bgColor: BaseStyle.colorffd000,
+      leading: Container(
+        margin: EdgeInsets.only(left: 32.w),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '深圳',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24.sp,
+                  color: Color(0xff333333),
+                ),
+              ),
+              Text(
+                '阴 27℃',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: Color(0xff333333),
+                ),
+              )
+            ]),
       ),
+      actions: [
+        _buildColButton(
+          icon: AntDesign.scan1,
+          title: '扫一扫',
+          onTap: () => Get.to(ScanPage()),
+        ),
+        _buildColButton(
+          icon: AntDesign.bells,
+          title: '消息',
+          onTap: () => Get.to(MessageCenterPage()),
+        ),
+        16.wb,
+      ],
       body: RefreshConfiguration(
         child: SmartRefresher(
           controller: _refreshController,

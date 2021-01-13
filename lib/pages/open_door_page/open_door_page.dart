@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
@@ -67,13 +68,8 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '一键开门',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '一键开门',
       body: Container(
         color: Colors.white,
         alignment: Alignment.center,
@@ -100,7 +96,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                         ),
                         Positioned(
                           top: 120.w,
-                          left:137.5.w,
+                          left: 137.5.w,
                           child: Image.asset(
                             'assets/images/lock.png',
                             width: 125.w,
