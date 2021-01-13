@@ -1,6 +1,16 @@
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/activities_page/activities_page.dart';
+import 'package:akuCommunity/pages/address_page/address_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/mine_car_page/mine_car_page.dart';
+import 'package:akuCommunity/pages/mine_house_page/mine_house_page.dart';
+import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
+import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/net_util.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,11 +18,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class PersonalIndex extends StatefulWidget {
@@ -25,6 +35,55 @@ class PersonalIndex extends StatefulWidget {
 
 class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin {
+  List<GridButton> _manageGridList = [
+    GridButton('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () {
+      Get.to(MineHousePage());
+    }),
+    GridButton('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () {
+      Get.to(MineCarPage(
+        bundle: Bundle()..putMap('carType', {'type': '车位'}),
+      ));
+    }),
+    GridButton('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () {
+      Get.to(MineCarPage(
+        bundle: Bundle()..putMap('carType', {'type': '车'}),
+      ));
+    }),
+    GridButton('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () {
+      Get.to(ActivitiesPage(
+        bundle: Bundle()..putBool('isVote', false),
+      ));
+    }),
+    GridButton('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () {
+      Get.to(LifePayPage());
+    }),
+    GridButton('我的保修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () {
+      Get.to(FixedSubmitPage());
+    }),
+    GridButton('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () {
+      Get.to(AddressPage());
+    }),
+    GridButton('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () {}),
+    GridButton('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () {
+      Get.to(VisitorAccessPage());
+    }),
+    GridButton('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () {
+      Get.to(SettingsPage());
+    }),
+  ];
+
+  List<GridButton> _orderList = [
+    GridButton('待付款', R.ASSETS_ICONS_USER_ICON_DFK_PNG, () {}),
+    GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
+    GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
+    GridButton('待评价', R.ASSETS_ICONS_USER_ICON_DPJ_PNG, () {}),
+    GridButton('售后', R.ASSETS_ICONS_USER_ICON_SH_PNG, () {}),
+  ];
+
+  List<GridButton> _groupOrderList = [
+    GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
+    GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
+  ];
   @override
   void initState() {
     super.initState();
@@ -182,9 +241,9 @@ class _PersonalIndexState extends State<PersonalIndex>
             child: Container(
               margin: EdgeInsets.only(top: 10.w),
               color: BaseStyle.colorf9f9f9,
-              child: GridButton(
-                gridList: AssetsImage.orderGridList,
-                count: 5,
+              child: GridButtons(
+                gridList: _orderList,
+                crossCount: 5,
               ),
             ),
           ),
@@ -204,9 +263,9 @@ class _PersonalIndexState extends State<PersonalIndex>
               color: BaseStyle.colorf9f9f9,
               margin: EdgeInsets.only(top: 10.w),
               alignment: Alignment.center,
-              child: GridButton(
-                gridList: AssetsImage.orderGridList.take(3).skip(1).toList(),
-                count: 5,
+              child: GridButtons(
+                gridList: _groupOrderList,
+                crossCount: 5,
               ),
             ),
           ),
@@ -233,9 +292,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _containerBar('我的物业'),
-                  GridButton(
-                    gridList: AssetsImage.mineGridList,
-                    count: 4,
+                  GridButtons(
+                    gridList: _manageGridList,
+                    crossCount: 4,
                   ),
                 ],
               ),
