@@ -1,18 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
+import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/scan/scan_page.dart';
+import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
+import 'package:akuCommunity/pages/things_page/things_page.dart';
+import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
+import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/widget/home_gride_button.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/screenutil.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
@@ -20,7 +28,6 @@ import 'widget/home_card.dart';
 import 'widget/home_tag_bar.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
@@ -46,6 +53,42 @@ class _HomePageState extends State<HomePage>
       RefreshController(initialRefresh: false);
 
   int page = 1;
+
+   List<GridButton> _gridList = [
+    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
+      Get.to(OpenDoorPage());
+    }),
+    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
+      Get.to(VisitorAccessPage());
+    }),
+    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
+      Get.to(FixedSubmitPage());
+    }),
+    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
+      Get.to(LifePayPage());
+    }),
+    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
+      Get.to(IndustryCommitteePage());
+    }),
+    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
+      Get.to(ThingsPage(
+        bundle: Bundle()
+          ..putMap('things', {
+            'title': '建议咨询',
+            'treeList': <Map<String, dynamic>>[
+              {'name': '您的建议'},
+              {'name': '您的咨询'},
+            ]
+          }),
+      ));
+    }),
+    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
+      Get.to(ConvenientPhonePage());
+    }),
+    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
+      Get.to(TotalApplicationsPage());
+    }),
+  ];
 
   @override
   void initState() {
@@ -160,7 +203,8 @@ class _HomePageState extends State<HomePage>
                     SizedBox(height: 100.w),
                     ContainerComment(
                       radius: 8,
-                      customWidget: HomeGridButton(
+                      customWidget: GridButtons(
+                        gridList: _gridList,
                         crossCount: 4,
                       ),
                     ),
