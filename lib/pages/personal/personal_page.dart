@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/personal/personal_grid_button.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/net_util.dart';
@@ -233,10 +234,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _containerBar('我的物业'),
-                  GridButton(
-                    gridList: AssetsImage.mineGridList,
-                    count: 4,
-                  ),
+                  PersonalGridButton(
+                crossCount: 4,
+              ),
                 ],
               ),
             ),
