@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/message_center_page/message_center_page.dart'
 import 'package:akuCommunity/pages/scan/scan_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/widget/home_gride_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -159,9 +160,8 @@ class _HomePageState extends State<HomePage>
                     SizedBox(height: 100.w),
                     ContainerComment(
                       radius: 8,
-                      customWidget: GridButton(
-                        gridList: AssetsImage.homeGridList,
-                        count: 4,
+                      customWidget: HomeGridButton(
+                        crossCount: 4,
                       ),
                     ),
                     SingleAdSpace(
