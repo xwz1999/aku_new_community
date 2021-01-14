@@ -1,12 +1,25 @@
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/activities_page/activities_page.dart';
+import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
+import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
+import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
+import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
+import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
+import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
+import 'package:akuCommunity/pages/things_page/things_page.dart';
+import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
+import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/widget/grid_button.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/circle_trend.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'widget/property_card.dart';
@@ -22,6 +35,70 @@ class PropertyIndex extends StatefulWidget {
 
 class _PropertyIndexState extends State<PropertyIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  List<GridButton> _gridList = [
+    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
+      Get.to(OpenDoorPage());
+    }),
+    GridButton('开门码', R.ASSETS_ICONS_TOOL_KMM_PNG, () {
+      Get.to(OpeningCodePage());
+    }),
+    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
+      Get.to(VisitorAccessPage());
+    }),
+    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
+      Get.to(FixedSubmitPage());
+    }),
+    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
+      Get.to(LifePayPage());
+    }),
+    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
+      Get.to(IndustryCommitteePage());
+    }),
+    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
+      Get.to(ThingsPage(
+        bundle: Bundle()
+          ..putMap('things', {
+            'title': '建议咨询',
+            'treeList': <Map<String, dynamic>>[
+              {'name': '您的建议'},
+              {'name': '您的咨询'},
+            ]
+          }),
+      ));
+    }),
+    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
+      Get.to(ConvenientPhonePage());
+    }),
+    GridButton('活动投票', R.ASSETS_ICONS_TOOL_HDTP_PNG, () {
+      Get.to(ActivitiesPage(
+        bundle: Bundle()..putBool('isVote', true),
+      ));
+    }),
+    GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
+      Get.to(GoodsDetoPage());
+    }),
+    GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG, () {
+      Get.to(ThingsPage(
+        bundle: Bundle()
+          ..putMap('things', {
+            'title': '投诉表扬',
+            'treeList': <Map<String, dynamic>>[
+              {'name': '您的表扬'},
+              {'name': '您的投诉'},
+            ]
+          }),
+      ));
+    }),
+    GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
+      Get.to(QuestionnairePage());
+    }),
+    GridButton('装修管理', R.ASSETS_ICONS_TOOL_ZXGL_PNG, () {
+      Get.to(FitupManagePage());
+    }),
+    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
+      Get.to(TotalApplicationsPage());
+    }),
+  ];
   @override
   bool get wantKeepAlive => true;
   List<Map<String, dynamic>> _listView = [
@@ -139,9 +216,9 @@ class _PropertyIndexState extends State<PropertyIndex>
             SliverToBoxAdapter(
               child: ContainerComment(
                 radius: 8,
-                customWidget: GridButton(
-                  gridList: AssetsImage.propertyGridList,
-                  count: 4,
+                customWidget: GridButtons(
+                  gridList: _gridList,
+                  crossCount: 4,
                 ),
               ),
             ),
