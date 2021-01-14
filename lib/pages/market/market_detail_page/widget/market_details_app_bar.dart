@@ -89,8 +89,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
                         crossAxisCount: 3,
                         mainAxisSpacing: 20.w,
                         crossAxisSpacing: 30.w,
-                        childAspectRatio:
-                            192.w / 58.w),
+                        childAspectRatio: 192.w / 58.w),
                   ),
                 ),
               ),
@@ -143,8 +142,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
             children: [
               Text(
                 widget.title,
-                style: TextStyle(
-                    fontSize: 32.sp, color: Color(0xff333333)),
+                style: TextStyle(fontSize: 32.sp, color: Color(0xff333333)),
               ),
               SizedBox(width: 10.w),
               Container(
@@ -171,7 +169,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
         ],
         // bottom: TabBar(
         //   controller: _controller,
-        //   labelPadding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(15)),
+        //   labelPadding: EdgeInsets.symmetric(horizontal: 15.w),
         //   indicator: BoxDecoration(),
         //   isScrollable: true,
         //   unselectedLabelStyle: TextStyle(
@@ -186,16 +184,16 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
         //   tabs: List.generate(
         //     treeList.length,
         //     (index) => Container(
-        //       padding: EdgeInsets.symmetric(vertical:ScreenUtil().setWidth(32)),
+        //       padding: EdgeInsets.symmetric(vertical:32.w),
         //       child: Column(
         //         children: <Widget>[
         //           Image.asset(
         //             treeList[index]['imagePath'],
-        //             height: ScreenUtil().setWidth(110),
-        //             width: ScreenUtil().setWidth(110),
+        //             height: 110.w,
+        //             width: 110.w,
         //             fit: BoxFit.fill,
         //           ),
-        //           SizedBox(height: ScreenUtil().setWidth(14)),
+        //           SizedBox(height: 14.w),
         //           Text(treeList[index]['name'])
         //         ],
         //       ),

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/widget/goods_specs_sheet.dart';
+
 class ProductSpecs extends StatefulWidget {
   ProductSpecs({Key key}) : super(key: key);
 
@@ -28,11 +29,11 @@ class _ProductSpecsState extends State<ProductSpecs> {
       onTap: _showModelBotoomSheet,
       child: Container(
         color: Color(0xffffffff),
-        margin: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
+        margin: EdgeInsets.only(top: 30.w),
         padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(60),
-          top: ScreenUtil().setWidth(20),
-          bottom: ScreenUtil().setWidth(20),
+          left: 60.w,
+          top: 20.w,
+          bottom: 20.w,
         ),
         child: Stack(
           children: [
@@ -45,7 +46,7 @@ class _ProductSpecsState extends State<ProductSpecs> {
                     color: Color(0xff999999),
                   ),
                 ),
-                SizedBox(width: ScreenUtil().setWidth(59)),
+                SizedBox(width: 59.w),
                 Text(
                   '请选择规格',
                   style: TextStyle(
@@ -56,7 +57,7 @@ class _ProductSpecsState extends State<ProductSpecs> {
               ],
             ),
             Positioned(
-              right: ScreenUtil().setWidth(32),
+              right: 32.w,
               child: Icon(
                 AntDesign.right,
                 size: ScreenUtil().setSp(34),

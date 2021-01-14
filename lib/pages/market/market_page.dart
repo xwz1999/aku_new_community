@@ -64,7 +64,7 @@ class _MarketPageState extends State<MarketPage>
 
   @override
   Widget build(BuildContext context) {
-    // double _appBarHeight = ScreenUtil().setHeight(506);
+    // double _appBarHeight = 506.w;
     super.build(context);
     return Scaffold(
       appBar: AppBar(
@@ -72,8 +72,8 @@ class _MarketPageState extends State<MarketPage>
         backgroundColor: Color(0xfff9f9f9),
         title: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: ScreenUtil().setWidth(24),
-            vertical: ScreenUtil().setHeight(12),
+            horizontal: 24.w,
+            vertical: 12.w,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
