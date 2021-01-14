@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:akuCommunity/pages/goods_details/view_comments_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 import 'widget/goods_app_bar.dart';
 import 'widget/product_swiper.dart';
 import 'widget/product_content.dart';
@@ -55,10 +57,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
               // ProductSpecs(),
               ProductEvaluate(
                 fun: () {
-                  Navigator.pushNamed(
-                    context,
-                    PageName.view_comments_page.toString(),
-                  );
+                  Get.to(ViewCommentsPage());
                 },
               ),
               ProductDetail(

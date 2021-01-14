@@ -1,7 +1,8 @@
+import 'package:akuCommunity/pages/mine_car_page/select_parking_page/select_parking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 
@@ -30,9 +31,7 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
             margin: EdgeInsets.only(top: 32.w),
-            padding: EdgeInsets.symmetric(
-                vertical: 28.w,
-                horizontal: 32.w),
+            padding: EdgeInsets.symmetric(vertical: 28.w, horizontal: 32.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -78,17 +77,15 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
               _communityList.length,
               (index) => InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                      context, PageName.select_parking_page.toString(),
-                      arguments: Bundle()
-                        ..putString('title', _communityList[index]));
+                  SelectParkingPage(
+                    bundle: Bundle()..putString('title', _communityList[index]),
+                  ).to;
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
-                  padding: EdgeInsets.symmetric(
-                      vertical: 28.w,
-                      horizontal: 32.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 28.w, horizontal: 32.w),
                   child: Text(
                     _communityList[index],
                     style: TextStyle(

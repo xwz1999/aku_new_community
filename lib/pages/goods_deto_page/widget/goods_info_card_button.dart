@@ -1,10 +1,11 @@
+import 'package:akuCommunity/pages/goods_deto_page/deto_code_page/deto_code_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-
+import 'package:akuCommunity/extensions/page_router.dart';
 class GoodsInfoCardButton extends StatelessWidget {
   GoodsInfoCardButton({Key key}) : super(key: key);
 
@@ -42,7 +43,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -56,7 +57,7 @@ class GoodsInfoCardButton extends StatelessWidget {
               ),
               onPressed: () {
                 _phoneCall('tel:$url');
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],
@@ -85,8 +86,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                     onTap: () {
                       switch (_listButton[index]['title']) {
                         case '查看二维码':
-                          Navigator.pushNamed(
-                              context, PageName.deto_code_page.toString());
+                          DetoCodePage().to;
                           break;
                         case '搬家公司':
                           _showDialog(context, '0574-88467897');

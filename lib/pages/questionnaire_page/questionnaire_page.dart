@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/questionnaire_page/questionnaire_details_page/questionnaire_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/community_card.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class QuestionnairePage extends StatefulWidget {
   QuestionnairePage({Key key}) : super(key: key);
@@ -72,12 +74,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   }
 
   void detailsRouter(String imagePath, title) {
-    Navigator.pushNamed(context, PageName.questionnaire_details_page.toString(),
-        arguments: Bundle()
+   QuestionnaireDetailsPage(bundle: Bundle()
           ..putMap('details', {
             'title': title,
             'imagePath': imagePath,
-          }));
+          }),).to;
   }
 
   @override

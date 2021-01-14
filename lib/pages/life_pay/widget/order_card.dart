@@ -1,6 +1,7 @@
+import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
@@ -76,9 +77,8 @@ class _OrderCardState extends State<OrderCard> {
   InkWell _checkInfo(Function fun) {
     return InkWell(
       onTap: (){
-         Navigator.pushNamed(context, PageName.life_pay_info_page.toString(),
-        arguments: Bundle()
-          ..putMap('detailMap', {'title': '去年（2019年）'}));
+        LifePayInfoPage(bundle: Bundle()
+          ..putMap('detailMap', {'title': '去年（2019年）'}),).to;
       },
       child: Container(
         margin: EdgeInsets.only(top: 20.w),

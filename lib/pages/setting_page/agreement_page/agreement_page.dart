@@ -1,4 +1,4 @@
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 
 class AgreementPage extends StatefulWidget {

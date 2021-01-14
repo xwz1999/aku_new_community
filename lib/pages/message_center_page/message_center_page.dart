@@ -1,6 +1,9 @@
+import 'package:akuCommunity/pages/message_center_page/comment_message_page/comment_message_page.dart';
+import 'package:akuCommunity/pages/message_center_page/shop_message_page/shop_message_page.dart';
+import 'package:akuCommunity/pages/message_center_page/system_message_page/system_message_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
@@ -65,13 +68,13 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                     onTap: () {
                       switch (_messageList[index]['title']) {
                         case '系统通知':
-                          Navigator.pushNamed(context, PageName.system_message_page.toString());
+                          SystemMessagePage().to;
                           break;
                         case '评论通知':
-                          Navigator.pushNamed(context, PageName.comment_message_page.toString());
+                          CommentMessagePage().to;
                           break;
                         case '商城通知':
-                          Navigator.pushNamed(context, PageName.shop_message_page.toString());
+                          ShopMessagePage().to;
                           break;
                         default:
                       }
@@ -81,8 +84,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                         top: 36.w,
                         bottom: 19.w,
                       ),
-                      margin: EdgeInsets.symmetric(
-                          horizontal: 32.w),
+                      margin: EdgeInsets.symmetric(horizontal: 32.w),
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: Divider.createBorderSide(context,

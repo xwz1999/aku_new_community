@@ -1,6 +1,9 @@
+import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart';
+import 'package:akuCommunity/pages/market_class/market_class_page.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class AppBarAction extends StatefulWidget {
@@ -40,16 +43,13 @@ class _AppBarActionState extends State<AppBarAction> {
               case '扫一扫':
                 break;
               case '消息':
-                Navigator.pushNamed(
-                    context, PageName.message_center_page.toString());
+                MessageCenterPage().to;
                 break;
               case '购物车':
-                Navigator.pushNamed(
-                    context, PageName.market_cart_page.toString());
+                MarketCartPage().to;
                 break;
               case '分类':
-                Navigator.pushNamed(
-                    context, PageName.market_class_page.toString());
+                MarketClassPage().to;
                 break;
               default:
             }

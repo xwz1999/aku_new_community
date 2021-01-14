@@ -1,7 +1,9 @@
+import 'package:akuCommunity/pages/mine_car_page/car_add_page/car_add_page.dart';
+import 'package:akuCommunity/pages/mine_car_page/select_community_page/select_community_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
@@ -76,11 +78,10 @@ class _MineCarPageState extends State<MineCarPage> {
       onTap: () {
         switch (type) {
           case '车':
-            Navigator.pushNamed(context, PageName.car_add_page.toString());
+            CarAddPage().to;
             break;
           case '车位':
-            Navigator.pushNamed(
-                context, PageName.select_community_page.toString());
+            SelectCommunityPage().to;
             break;
           default:
         }

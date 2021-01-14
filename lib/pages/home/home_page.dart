@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
@@ -21,7 +22,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
 import 'widget/home_card.dart';
@@ -33,6 +34,7 @@ import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 import 'package:velocity_x/velocity_x.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -223,9 +225,7 @@ class _HomePageState extends State<HomePage>
                           tag: '活动',
                           isShowImage: false,
                           fun: () {
-                            Navigator.pushNamed(
-                                context, PageName.activities_page.toString(),
-                                arguments: Bundle()..putBool('isVote', false));
+                            ActivitiesPage(bundle: Bundle()..putBool('isVote', false),).to;
                           },
                         ),
                         HomeCard(

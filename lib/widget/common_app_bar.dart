@@ -1,10 +1,16 @@
+import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/mine_goods_page/mine_goods_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_record_page/life_pay_record_page.dart';
+import 'package:akuCommunity/pages/things_page/things_evaluate_page/things_evaluate_page.dart';
+import 'package:akuCommunity/pages/visitor_access_page/visitor_record_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_beautiful_popup/main.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/explain_template.dart';
+import 'package:get/get.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String title, subtitle;
@@ -62,7 +68,7 @@ class CommonAppBar extends StatelessWidget {
             ? Color(0xff333333)
             : Colors.white,
         leading: InkWell(
-          onTap: () => Navigator.pop(context),
+          onTap: () => Get.back(),
           child: Icon(
             AntDesign.left,
             size: 45.sp,
@@ -88,32 +94,30 @@ class CommonAppBar extends StatelessWidget {
                   onTap: () {
                     switch (subtitle) {
                       case '访客记录':
-                        Navigator.pushNamed(
-                            context, PageName.visitor_record_page.toString());
+                        VisitorRecordPage().to;
                         break;
                       case '缴费记录':
-                        Navigator.pushNamed(
-                            context, PageName.life_pay_record_page.toString());
+                        LifePayRecordPage().to;
                         break;
                       case '我的借还物品':
-                        Navigator.pushNamed(
-                            context, PageName.mine_goods_page.toString());
+                        MineGoodsPage().to;
                         break;
                       case '添加新地址':
-                        Navigator.pushNamed(
-                            context, PageName.address_edit_page.toString(),
-                            arguments: Bundle()
-                              ..putMap('details',
-                                  {'title': '添加新地址', 'isDelete': false}));
+                        AddressEditPage(
+                          bundle: Bundle()
+                            ..putMap('details',
+                                {'title': '添加新地址', 'isDelete': false}),
+                        ).to;
                         break;
                       case '功能说明':
                         showExplain(context);
                         break;
                       case '评价':
-                        Navigator.pushNamed(
-                            context, PageName.things_evaluate_page.toString(),
-                            arguments: Bundle()
-                              ..putMap('details', {'title': '评价','isShow':true}));
+                        ThingsEvaluatePage(
+                          bundle: Bundle()
+                            ..putMap(
+                                'details', {'title': '评价', 'isShow': true}),
+                        ).to;
                         break;
                       default:
                     }
@@ -142,12 +146,10 @@ class CommonAppBar extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 28.sp,
                 ),
-                labelPadding:
-                    EdgeInsets.symmetric(horizontal: 131.5.w),
+                labelPadding: EdgeInsets.symmetric(horizontal: 131.5.w),
                 indicatorColor: Color(0xffffc40c),
                 indicatorSize: TabBarIndicatorSize.label,
-                indicatorPadding:
-                    EdgeInsets.symmetric(horizontal: 21.w),
+                indicatorPadding: EdgeInsets.symmetric(horizontal: 21.w),
                 isScrollable: true,
                 controller: tabController,
                 tabs: List.generate(

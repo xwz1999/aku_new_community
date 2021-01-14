@@ -1,10 +1,12 @@
+import 'package:akuCommunity/pages/invoice/invoice_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 // import 'package:akuCommunity/widget/cart_count.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
+import 'package:get/get.dart';
 
 class ConfirmContent extends StatelessWidget {
   final Map cartMap;
@@ -160,15 +162,13 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '配送方式',
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff333333)),
+                                fontSize: 28.sp, color: Color(0xff333333)),
                           ),
                           SizedBox(width: 26.w),
                           Text(
                             '普通配送',
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff999999)),
+                                fontSize: 28.sp, color: Color(0xff999999)),
                           ),
                         ],
                       ),
@@ -183,15 +183,14 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '开具发票',
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff333333)),
+                                fontSize: 28.sp, color: Color(0xff333333)),
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context, PageName.invoice_page.toString(),
-                                  arguments: Bundle()
-                                    ..putString('title', '1123123123123'));
+                              Get.to(InvoicePage(
+                                bundle: Bundle()
+                                  ..putString('title', '1123123123123'),
+                              ));
                             },
                             child: Row(
                               children: [
@@ -230,15 +229,13 @@ class ConfirmContent extends StatelessWidget {
                           Text(
                             '订单备注',
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff333333)),
+                                fontSize: 28.sp, color: Color(0xff333333)),
                           ),
                           SizedBox(width: 14.w),
                           Text(
                             '选填',
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff999999)),
+                                fontSize: 28.sp, color: Color(0xff999999)),
                           ),
                         ],
                       ),

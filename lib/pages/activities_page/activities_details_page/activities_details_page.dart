@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/activities_page/member_list_page/member_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
@@ -107,7 +109,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -120,7 +122,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],
@@ -215,7 +217,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
   Widget _inkWellEnterMember(List<String> memberList) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageName.member_list_page.toString());
+        Get.to(MemberListPage());
       },
       child: Container(
         padding: EdgeInsets.only(bottom: 24.w),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 // import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -87,7 +88,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                 },
               ),
             ),
@@ -113,7 +114,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
     return PhotoViewGalleryPageOptions(
       onTapUp: (BuildContext context, TapUpDetails details,
           PhotoViewControllerValue controllerValue) {
-        Navigator.of(context).pop();
+        Get.back();
       },
       imageProvider: NetworkImage(item.resource),
 //      initialScale: PhotoViewComputedScale.contained,

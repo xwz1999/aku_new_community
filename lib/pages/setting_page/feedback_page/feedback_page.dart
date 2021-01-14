@@ -4,9 +4,10 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/common_image_picker.dart';
+import 'package:get/get.dart';
 
 class FeedBackPage extends StatefulWidget {
   FeedBackPage({Key key}) : super(key: key);
@@ -72,8 +73,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
           Future.delayed(Duration(milliseconds: 1000 + Random().nextInt(1000)),
               () {
             BotToast.showText(text:'提交成功');
-            Navigator.pop(context);
-            Navigator.pop(context);
+            Get.back();
+            Get.back();
           });
         }
       },

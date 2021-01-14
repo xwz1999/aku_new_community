@@ -1,14 +1,13 @@
+import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/app_bar_action.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/widget/grid_button.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'widget/market_sticky_bar.dart';
 import 'widget/market_list.dart';
 
@@ -131,9 +130,9 @@ class _MarketPageState extends State<MarketPage>
                         ),
                         ContainerComment(
                           radius: 8,
-                          customWidget: GridButton(
-                            gridList: AssetsImage.shopGridList,
-                            count: 4,
+                          customWidget: GridButtons(
+                            gridList: [],
+                            crossCount: 4,
                           ),
                         ),
                       ],

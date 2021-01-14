@@ -79,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     cancelButton: CupertinoButton(
                       child: Text('取消'),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                     ),
                   );
@@ -198,7 +198,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       cancelButton: CupertinoButton(
                         child: Text('取消'),
                         onPressed: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                       ),
                     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class ThingsAppBar extends StatelessWidget {
   final String title, subtitle;
@@ -22,7 +23,7 @@ class ThingsAppBar extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: () => Navigator.pop(context),
+          onTap: () => Get.back(),
           child: Icon(
             AntDesign.left,
             size: 45.sp,

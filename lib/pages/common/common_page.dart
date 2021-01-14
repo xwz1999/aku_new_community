@@ -2,9 +2,10 @@ import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:get/get.dart';
 
 // import 'visitor_invitation/visitor_invitation.dart';
 // import 'visitor_invitation/visitor_record.dart';
@@ -122,20 +123,23 @@ class _CommonPageState extends State<CommonPage> {
   // }
 
   void recordRouter() {
-    Navigator.pushNamed(context, PageName.common_page.toString(),
-        arguments: Bundle()
-          ..putMap('commentMap', {'title': '访客记录', 'isActions': false}));
+    Get.to(
+      CommonPage(
+          bundle: Bundle()
+            ..putMap('commentMap', {'title': '访客记录', 'isActions': false})),
+    );
   }
 
   void evaluateRouter(bool isAlone, bool isPropose) {
-    Navigator.pushNamed(context, PageName.common_page.toString(),
-        arguments: Bundle()
-          ..putMap('commentMap', {
-            'title': '评价',
-            'isActions': false,
-            'isAlone': isAlone,
-            'isPropose': isPropose
-          }));
+    Get.to(CommonPage(
+      bundle: Bundle()
+        ..putMap('commentMap', {
+          'title': '评价',
+          'isActions': false,
+          'isAlone': isAlone,
+          'isPropose': isPropose
+        }),
+    ));
   }
 
   InkWell _inkWellSearch() {
@@ -174,7 +178,7 @@ class _CommonPageState extends State<CommonPage> {
       elevation: 0,
       backgroundColor: Color(0xffffffff),
       leading: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: () => Get.back(),
         child: Icon(AntDesign.left, size: 40.sp),
       ),
       centerTitle: true,
@@ -214,28 +218,24 @@ class _CommonPageState extends State<CommonPage> {
                       );
                       break;
                     case '生活缴费':
-                      Navigator.pushNamed(
-                          context, PageName.common_page.toString(),
-                          arguments: Bundle()
-                            ..putMap('commentMap',
-                                {'title': '缴费记录', 'isActions': false}));
+                      Get.to(CommonPage(
+                        bundle: Bundle()
+                          ..putMap('commentMap',
+                              {'title': '缴费记录', 'isActions': false}),
+                      ));
                       break;
                     case '借还管理':
-                      Navigator.pushNamed(
-                          context, PageName.common_page.toString(),
-                          arguments: Bundle()
+                     Get.to(CommonPage(bundle: Bundle()
                             ..putMap('commentMap',
-                                {'title': '我的借还物品', 'isActions': false}));
+                                {'title': '我的借还物品', 'isActions': false}),));
                       break;
                     case '我的地址':
-                      Navigator.pushNamed(
-                          context, PageName.common_page.toString(),
-                          arguments: Bundle()
+                      Get.to(CommonPage(bundle: Bundle()
                             ..putMap('commentMap', {
                               'title': '添加新地址',
                               'isActions': true,
                               'isNew': true
-                            }));
+                            }),));
                       break;
                     case '一键报警':
                       // showExplain();

@@ -13,10 +13,11 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
@@ -72,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                       Future.delayed(
                         Duration(milliseconds: 1000 + Random().nextInt(500)),
                         () {
-                          Navigator.pop(context);
+                          Get.back();
                           (_phone.text == '18067170899') &&
                                   (_code.text == '123456')
                               ? ARoute.push(context, UserAuthenticationPage())
@@ -84,7 +85,7 @@ class _SignInPageState extends State<SignInPage> {
                   CupertinoDialogAction(
                     child: Text('拒绝'),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.back();
                     },
                   ),
                 ],

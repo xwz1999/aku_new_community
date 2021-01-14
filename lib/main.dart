@@ -20,7 +20,6 @@ import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:akuCommunity/routers/router_init.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +43,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    RouterInit.setupRouter();
     registerWxApi(appId: 'wxd7bdef0d4849ddb8');
   }
 
@@ -57,16 +55,11 @@ class _MyAppState extends State<MyApp> {
       ],
       child: GetMaterialApp(
         title: '智慧社区',
-        // builder: BotToastInit(),
-        // navigatorObservers: [BotToastNavigatorObserver()],
-        navigatorKey: RouterInit.navigatorKey,
-        onGenerateRoute: RouterInit.router.generator,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.yellow,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // home: TabNavigator(),
         home: TabNavigator(),
         //国际化支持
         localizationsDelegates: [

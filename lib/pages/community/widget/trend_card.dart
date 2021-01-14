@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/widget/image_grid.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class TrendCard extends StatefulWidget {
   final String name;
@@ -50,7 +51,7 @@ class _TrendCardState extends State<TrendCard> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -63,7 +64,7 @@ class _TrendCardState extends State<TrendCard> {
                 ),
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],
@@ -94,7 +95,7 @@ class _TrendCardState extends State<TrendCard> {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    Get.back();
                     _showDialog(nameItems[index]['title']);
                   },
                   child: Container(
@@ -136,7 +137,7 @@ class _TrendCardState extends State<TrendCard> {
             bottom: 0,
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

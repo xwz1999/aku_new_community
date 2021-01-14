@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/round_check_box.dart';
+import 'package:get/get.dart';
 import 'widget/invoice_input.dart';
 
 class InvoicePage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _InvoicePageState extends State<InvoicePage> {
       leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
       ),
       centerTitle: true,

@@ -1,10 +1,12 @@
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/notice_page/notice_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
@@ -26,6 +28,7 @@ import 'package:akuCommunity/routers/page_routers.dart';
 import 'widget/property_card.dart';
 import 'widget/property_bar.dart';
 import 'widget/property_activity_card.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class PropertyIndex extends StatefulWidget {
   PropertyIndex({Key key}) : super(key: key);
@@ -163,28 +166,31 @@ class _PropertyIndexState extends State<PropertyIndex>
   }
 
   void activityRouter() {
-    Navigator.pushNamed(context, PageName.activities_page.toString(),
-        arguments: Bundle()..putBool('isVote', false));
+    ActivitiesPage(
+      bundle: Bundle()..putBool('isVote', false),
+    ).to;
   }
 
   void activityDetailsRouter(String imagePath, title, bool isOver, isVote,
       isVoteOver, List<String> memberList) {
-    Navigator.pushNamed(context, PageName.activities_details_page.toString(),
-        arguments: Bundle()
-          ..putMap('details', {
-            'title': title,
-            'imagePath': imagePath,
-            'isOver': isOver,
-            'isVote': isVote,
-            'isVoteOver': isVoteOver,
-            'memberList': memberList
-          }));
+    ActivitiesDetailsPage(
+      bundle: Bundle()
+        ..putMap('details', {
+          'title': title,
+          'imagePath': imagePath,
+          'isOver': isOver,
+          'isVote': isVote,
+          'isVoteOver': isVoteOver,
+          'memberList': memberList
+        }),
+    ).to;
   }
 
   void noticeRouter(String theme, imagePath) {
-    Navigator.pushNamed(context, PageName.notice_page.toString(),
-        arguments: Bundle()
-          ..putMap('details', {'title': theme, 'imagePath': imagePath}));
+    NoticePage(
+      bundle: Bundle()
+        ..putMap('details', {'title': theme, 'imagePath': imagePath}),
+    ).to;
   }
 
   @override

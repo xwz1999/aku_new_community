@@ -4,6 +4,7 @@ import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/mine_car_page/mine_car_page.dart';
 import 'package:akuCommunity/pages/mine_house_page/mine_house_page.dart';
+import 'package:akuCommunity/pages/personal/order_page.dart';
 import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
@@ -15,7 +16,7 @@ import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
@@ -198,8 +199,7 @@ class _PersonalIndexState extends State<PersonalIndex>
               ? SizedBox()
               : InkWell(
                   onTap: () {
-                    Navigator.pushNamed(
-                        context, PageName.order_page.toString());
+                    OrderPage().to;
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

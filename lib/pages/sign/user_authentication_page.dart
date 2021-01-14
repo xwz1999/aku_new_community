@@ -4,8 +4,9 @@ import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class UserAuthenticationPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _UserAuthenticationPageState extends State<UserAuthenticationPage> {
       leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
       ),
       actions: [

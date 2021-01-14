@@ -1,6 +1,8 @@
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
@@ -56,7 +58,6 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
     }
   ];
 
-
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -78,9 +79,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
     _refreshController.loadComplete();
   }
 
-  void createRouter() {
-    Navigator.pushNamed(context, PageName.deto_create_page.toString());
-  }
+  
 
   @override
   void dispose() {
@@ -131,7 +130,9 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
             bottom: 0,
             child: BottomButton(
               title: '新增',
-              fun: createRouter,
+              fun: () {
+                Get.to(DetoCreatePage());
+              },
             ),
           ),
         ],

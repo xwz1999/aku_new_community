@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class MarketDetailsAppBar extends StatefulWidget {
   final String title;
@@ -59,7 +60,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -131,7 +132,7 @@ class _MarketDetailsAppBarState extends State<MarketDetailsAppBar> {
             padding: EdgeInsets.all(0),
             icon: Icon(AntDesign.left, size: 37.sp),
             onPressed: () {
-              Navigator.pop(context);
+              Get.back();
             }),
         title: InkWell(
           onTap: _showModelTopSheet,

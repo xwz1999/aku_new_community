@@ -1,9 +1,21 @@
+import 'package:akuCommunity/pages/activities_page/activities_page.dart';
+import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
+import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
+import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/market/market_detail_page/market_detail_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
+import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
+import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
+import 'package:akuCommunity/pages/things_page/things_page.dart';
+import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:get/get.dart';
@@ -109,96 +121,87 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                       case '服饰箱包':
                       case '母婴玩具':
                       case '饮料酒水':
-                        Navigator.pushNamed(
-                            context, PageName.market_detail_page.toString(),
-                            arguments: Bundle()
-                              ..putString('title', gridList[index]['title']));
+                        MarketDetailPage(
+                          bundle: Bundle()
+                            ..putString('title', gridList[index]['title']),
+                        ).to;
                         break;
                       case '一键开门':
                         Get.to(OpenDoorPage());
                         break;
                       case '开门码':
-                        Navigator.pushNamed(
-                            context, PageName.opening_code_page.toString());
+                        OpeningCodePage().to;
                         break;
                       case '访客通行':
                       case '我的访客':
-                        Navigator.pushNamed(
-                            context, PageName.visitor_access_page.toString());
+                        VisitorAccessPage().to;
                         break;
                       case '报事报修':
-                        Navigator.pushNamed(
-                            context, PageName.things_page.toString(),
-                            arguments: Bundle()
-                              ..putMap('things', {
-                                'title': '报事报修',
-                              }));
+                        ThingsPage(
+                          bundle: Bundle()
+                            ..putMap('things', {
+                              'title': '报事报修',
+                            }),
+                        ).to;
                         break;
                       case '生活缴费':
                       case '我的缴费':
-                        Navigator.pushNamed(
-                            context, PageName.life_pay_page.toString());
+                        LifePayPage().to;
                         break;
                       case '业委会':
-                        Navigator.pushNamed(context,
-                            PageName.industry_committee_page.toString());
+                        IndustryCommitteePage().to;
                         break;
                       case '建议咨询':
-                        Navigator.pushNamed(
-                            context, PageName.things_page.toString(),
-                            arguments: Bundle()
-                              ..putMap('things', {
-                                'title': '建议咨询',
-                                'treeList': <Map<String, dynamic>>[
-                                  {'name': '您的建议'},
-                                  {'name': '您的咨询'},
-                                ]
-                              }));
+                        ThingsPage(
+                          bundle: Bundle()
+                            ..putMap('things', {
+                              'title': '建议咨询',
+                              'treeList': <Map<String, dynamic>>[
+                                {'name': '您的建议'},
+                                {'name': '您的咨询'},
+                              ]
+                            }),
+                        ).to;
                         break;
                       case '便民电话':
-                        Navigator.pushNamed(
-                            context, PageName.convenient_phone_page.toString());
+                        ConvenientPhonePage().to;
                         break;
                       case '活动投票':
-                        Navigator.pushNamed(
-                            context, PageName.activities_page.toString(),
-                            arguments: Bundle()..putBool('isVote', true));
+                        ActivitiesPage(
+                          bundle: Bundle()..putBool('isVote', true),
+                        ).to;
                         break;
                       case '社区活动':
-                        Navigator.pushNamed(
-                            context, PageName.activities_page.toString(),
-                            arguments: Bundle()..putBool('isVote', false));
+                        ActivitiesPage(
+                          bundle: Bundle()..putBool('isVote', false),
+                        ).to;
                         break;
                       case '物品出户':
-                        Navigator.pushNamed(
-                            context, PageName.goods_deto_page.toString());
+                        GoodsDetoPage().to;
                         break;
                       case '投诉表扬':
-                        Navigator.pushNamed(
-                            context, PageName.things_page.toString(),
-                            arguments: Bundle()
-                              ..putMap('things', {
-                                'title': '投诉表扬',
-                                'treeList': <Map<String, dynamic>>[
-                                  {'name': '您的表扬'},
-                                  {'name': '您的投诉'},
-                                ]
-                              }));
+                        ThingsPage(
+                          bundle: Bundle()
+                            ..putMap('things', {
+                              'title': '投诉表扬',
+                              'treeList': <Map<String, dynamic>>[
+                                {'name': '您的表扬'},
+                                {'name': '您的投诉'},
+                              ]
+                            }),
+                        ).to;
                         break;
                       case '问卷调查':
-                        Navigator.pushNamed(
-                            context, PageName.questionnaire_page.toString());
+                        QuestionnairePage().to;
                         break;
                       case '装修管理':
-                        Navigator.pushNamed(
-                            context, PageName.fitup_manage_page.toString());
+                        FitupManagePage().to;
                         break;
                       case '借还管理':
-                        Navigator.pushNamed(
-                            context, PageName.goods_manage_page.toString());
+                        GoodsManagePage().to;
                         break;
                       case '一键报警':
-                        ARoute.push(context, AlarmPage());
+                        AlarmPage().to;
                         break;
                       default:
                         break;
