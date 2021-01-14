@@ -1,10 +1,12 @@
+import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:fluwx/fluwx.dart';
+import 'package:get/get.dart';
 
 class GoodsAppBar extends StatefulWidget {
   final String shareImg;
@@ -25,7 +27,7 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
       leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
       ),
       title: Container(
@@ -84,7 +86,7 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
             color: Color(0xff666666),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, PageName.market_cart_page.toString());
+            Get.to(MarketCartPage());
           },
         ),
       ],

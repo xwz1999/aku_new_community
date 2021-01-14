@@ -1,6 +1,7 @@
+import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/order_card.dart';
@@ -14,12 +15,6 @@ class LifePayPage extends StatefulWidget {
 }
 
 class _LifePayPageState extends State<LifePayPage> {
-  void detailsRouter() {
-    Navigator.pushNamed(context, PageName.life_pay_info_page.toString(),
-        arguments: Bundle()
-          ..putMap('commentMap', {'title': '明细', 'isActions': false}));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +38,8 @@ class _LifePayPageState extends State<LifePayPage> {
                 ),
                 child: RichText(
                   text: TextSpan(
-                      style: TextStyle(
-                          fontSize: 28.sp,
-                          color: Color(0xff666666)),
+                      style:
+                          TextStyle(fontSize: 28.sp, color: Color(0xff666666)),
                       children: <InlineSpan>[
                         TextSpan(
                           text: '深圳华茂悦峰',
@@ -57,7 +51,11 @@ class _LifePayPageState extends State<LifePayPage> {
                       ]),
                 ),
               ),
-              OrderCard(fun: detailsRouter),
+              OrderCard(
+                  fun: LifePayInfoPage(
+                bundle: Bundle()
+                  ..putMap('commentMap', {'title': '明细', 'isActions': false}),
+              ).to),
             ],
           ),
           Positioned(

@@ -1,9 +1,10 @@
+import 'package:akuCommunity/pages/industry_committee/committee_mailbox/committee_mailbox_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'widget/staff_list.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
@@ -56,7 +57,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -70,7 +71,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
               ),
               onPressed: () {
                 _phoneCall('tel:${'0574-88478909'}');
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],
@@ -87,8 +88,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
             _showDialog();
             break;
           case '业委会信箱':
-            Navigator.pushNamed(
-                context, PageName.committee_mailbox_page.toString());
+            CommitteeMailboxPage().to;
             break;
           default:
         }

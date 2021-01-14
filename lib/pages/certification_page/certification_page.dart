@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/single_image_up.dart';

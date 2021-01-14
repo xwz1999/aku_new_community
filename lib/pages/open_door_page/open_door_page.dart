@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/certification_page/certification_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:get/get.dart';
 
 class OpenDoorPage extends StatefulWidget {
   OpenDoorPage({Key key}) : super(key: key);
@@ -42,7 +44,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -55,9 +57,8 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushNamed(
-                    context, PageName.certification_page.toString());
+                Get.back();
+                CertificationPage().to;
               },
             ),
           ],

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
+import 'package:get/get.dart';
 
 class PayModelSheet extends StatefulWidget {
   PayModelSheet({Key key}) : super(key: key);
@@ -77,7 +78,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                         color: BaseStyle.color999999,
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                     ),
                     Container(
@@ -118,7 +119,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
           });
           _listPay[index]['isCheck'] = true;
           _currentindex = index;
-          Navigator.pop(context);
+          Get.back();
         });
       },
       child: Container(

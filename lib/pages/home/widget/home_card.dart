@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
+import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_stack/image_stack.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
@@ -32,29 +34,28 @@ class _HomeCardState extends State<HomeCard> {
     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3604827221,1047385274&fm=26&gp=0.jpg",
   ];
 
-
   Widget _button(String buttonName) {
     return InkWell(
       onTap: () {
         switch (widget.isActivity) {
           case true:
-            Navigator.pushNamed(
-                context, PageName.activities_details_page.toString(),
-                arguments: Bundle()
-                  ..putMap('details', {
-                    'title': widget.title,
-                    'imagePath': widget.imagePath,
-                    'isOver': false,
-                    'isVoteOver': false,
-                    'isVote': false,
-                    'memberList': images
-                  }));
+            ActivitiesDetailsPage(
+              bundle: Bundle()
+                ..putMap('details', {
+                  'title': widget.title,
+                  'imagePath': widget.imagePath,
+                  'isOver': false,
+                  'isVoteOver': false,
+                  'isVote': false,
+                  'memberList': images
+                }),
+            ).to;
             break;
           case false:
             var shopInfo;
             shopInfo = {
               'itemid': '1',
-              'itemtitle':widget.title,
+              'itemtitle': widget.title,
               'taobao_image': "${widget.imagePath},${widget.imagePath}",
               'itemprice': '69.9',
               'itemshorttitle': widget.title,
@@ -62,10 +63,10 @@ class _HomeCardState extends State<HomeCard> {
               'itemdesc': widget.title,
               'itempic': widget.imagePath
             };
-            Navigator.pushNamed(context, PageName.goods_details_page.toString(),
-                arguments: Bundle()
-                  ..putString(
-                      'shoplist', json.encode(shopInfo).toString()));
+            GoodsDetailsPage(
+              bundle: Bundle()
+                ..putString('shoplist', json.encode(shopInfo).toString()),
+            ).to;
             break;
           default:
         }
@@ -76,8 +77,7 @@ class _HomeCardState extends State<HomeCard> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Color(0xffffc40c),
-          borderRadius:
-              BorderRadius.all(Radius.circular(22.w)),
+          borderRadius: BorderRadius.all(Radius.circular(22.w)),
         ),
         padding: EdgeInsets.symmetric(vertical: 8.w),
         child: Text(
@@ -107,8 +107,7 @@ class _HomeCardState extends State<HomeCard> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(8.w)),
-          border:
-              Border.all(color: Color(0xffe8e8e8), width: 2.w),
+          border: Border.all(color: Color(0xffe8e8e8), width: 2.w),
         ),
         padding: EdgeInsets.only(bottom: 24.w),
         child: Column(

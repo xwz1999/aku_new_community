@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class PropertyCard extends StatelessWidget {
   PropertyCard({Key key}) : super(key: key);
@@ -54,7 +55,7 @@ class PropertyCard extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -68,7 +69,7 @@ class PropertyCard extends StatelessWidget {
               ),
               onPressed: () {
                 _phoneCall('tel:$url');
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],

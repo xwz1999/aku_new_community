@@ -1,11 +1,13 @@
+import 'package:akuCommunity/pages/personal/refund_select_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:extended_text/extended_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final Bundle bundle;
@@ -23,7 +25,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
       ),
       centerTitle: true,
@@ -141,12 +143,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       List<Map<String, dynamic>> listContent, double payPrice) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageName.refund_select_page.toString(),
-            arguments: Bundle()
-              ..putMap('details', {
-                'listContent': listContent,
-                'payPrice': payPrice,
-              }));
+        RefundSelectPage(
+          bundle: Bundle()
+            ..putMap('details', {
+              'listContent': listContent,
+              'payPrice': payPrice,
+            }),
+        ).to;
       },
       child: Container(
         alignment: Alignment.center,
@@ -158,8 +161,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         ),
         child: Text(
           '退款',
-          style: TextStyle(
-              fontSize: BaseStyle.fontSize28, color: ktextPrimary),
+          style: TextStyle(fontSize: BaseStyle.fontSize28, color: ktextPrimary),
         ),
       ),
     );
@@ -264,7 +266,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
           Positioned(
             top: 103.w,
             right: 0,
-            child: _inkWellRefund(listContent,payPrice),
+            child: _inkWellRefund(listContent, payPrice),
           ),
         ],
       ),
@@ -285,14 +287,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       child: Column(
         children: listContent
             .map((item) => _containerContent(
-                  item['imagePath'],
-                  item['content'],
-                  item['specs'],
-                  item['price'],
-                  payPrice,
-                  item['shopNum'],
-                  listContent
-                ))
+                item['imagePath'],
+                item['content'],
+                item['specs'],
+                item['price'],
+                payPrice,
+                item['shopNum'],
+                listContent))
             .toList(),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:akuCommunity/model/aku_shop_model.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/cart_count.dart';
 import 'package:flutter/material.dart';

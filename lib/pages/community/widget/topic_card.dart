@@ -1,8 +1,10 @@
+import 'package:akuCommunity/pages/community/topice_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 
 class TopicCard extends StatefulWidget {
   final String title, subtitle, imagePath, hotNum;
@@ -27,9 +29,7 @@ class _TopicCardState extends State<TopicCard> {
   }
 
   void topiceDetailRouter(String subtitle, String imagePath) {
-    Navigator.pushNamed(context, PageName.topice_detail_page.toString(),
-        arguments: Bundle()
-          ..putMap('topicMap', {'subtitle': subtitle, 'imagePath': imagePath}));
+    Get.to(TopiceDetailPage());
   }
 
   Row _rowTopic(String title, String subtitle, String imagePath) {

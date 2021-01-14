@@ -1,8 +1,10 @@
+import 'package:akuCommunity/pages/community/note_create_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'widget/trend_card.dart';
 
@@ -22,13 +24,6 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
   @override
   void initState() {
     super.initState();
-  }
-  
-  void noteCreateRouter() {
-    Navigator.pushNamed(
-      context,
-      PageName.note_create_page.toString(),
-    );
   }
 
   void _onRefresh() async {
@@ -60,7 +55,7 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
       leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
-          Navigator.pop(context);
+          Get.back();
         },
       ),
       flexibleSpace: FlexibleSpaceBar(
@@ -73,19 +68,20 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
     );
   }
 
-  Positioned _positionedFloatActionButton(){
+  Positioned _positionedFloatActionButton() {
     return Positioned(
-      bottom: 124.w,
-      right: 32.w,
-      child: FloatingActionButton(
-      backgroundColor: Color(0xffffd000),
-      child: Icon(
-        Icons.add,
-        color: Colors.white,
-        size: 40.sp,
-      ),
-      onPressed: noteCreateRouter,
-    ));
+        bottom: 124.w,
+        right: 32.w,
+        child: FloatingActionButton(
+            backgroundColor: Color(0xffffd000),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 40.sp,
+            ),
+            onPressed: () {
+              Get.to(NoteCreatePage());
+            }));
   }
 
   @override

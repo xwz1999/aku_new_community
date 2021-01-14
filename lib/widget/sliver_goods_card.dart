@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
@@ -19,11 +20,11 @@ class SliverGoodsCard extends StatelessWidget {
         (BuildContext context, int index) {
           return InkWell(
             onTap: () {
-              Navigator.pushNamed(
-                  context, PageName.goods_details_page.toString(),
-                  arguments: Bundle()
-                    ..putString(
-                        'shoplist', json.encode(shoplist[index]).toString()));
+              GoodsDetailsPage(
+                bundle: Bundle()
+                  ..putString(
+                      'shoplist', json.encode(shoplist[index]).toString()),
+              ).to;
             },
             child: Container(
               color: Colors.white,
@@ -94,14 +95,14 @@ class SliverGoodsCard extends StatelessWidget {
                               )
                             : InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context,
-                                      PageName.goods_details_page.toString(),
-                                      arguments: Bundle()
-                                        ..putString(
-                                            'shoplist',
-                                            json
-                                                .encode(shoplist[index])
-                                                .toString()));
+                                  GoodsDetailsPage(
+                                    bundle: Bundle()
+                                      ..putString(
+                                          'shoplist',
+                                          json
+                                              .encode(shoplist[index])
+                                              .toString()),
+                                  ).to;
                                 },
                                 child: Container(
                                   width: 134.w,

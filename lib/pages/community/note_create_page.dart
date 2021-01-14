@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 
 class NoteCreatePage extends StatefulWidget {
   NoteCreatePage({Key key}) : super(key: key);
@@ -39,7 +40,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
         ),
       ),
       leading: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: () => Get.back(),
         child: Container(
           padding: EdgeInsets.only(left: 32.w),
           alignment: Alignment.center,

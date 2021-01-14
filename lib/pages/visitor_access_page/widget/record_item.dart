@@ -1,7 +1,8 @@
+import 'package:akuCommunity/pages/visitor_access_page/visitor_pass_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class RecordItem extends StatefulWidget {
@@ -17,7 +18,7 @@ class _RecordItemState extends State<RecordItem>
   @override
   bool get wantKeepAlive => true;
   void recordPass() {
-    Navigator.pushNamed(context, PageName.visitor_pass_page.toString());
+    VisitorPassPage().to;
   }
 
   Positioned _positionedAgain() {

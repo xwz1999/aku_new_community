@@ -1,7 +1,9 @@
+import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -110,8 +112,7 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                 ],
               ),
               onTap: () {
-                Navigator.pushNamed(
-                    context, PageName.market_cart_page.toString());
+                Get.to(MarketCartPage());
               },
             ),
             SizedBox(width: ScreenUtil().setWidth(53)),

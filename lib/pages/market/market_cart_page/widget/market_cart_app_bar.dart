@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class MarketCartAppBar extends StatelessWidget {
   const MarketCartAppBar({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class MarketCartAppBar extends StatelessWidget {
           padding: EdgeInsets.all(0),
           icon: Icon(AntDesign.left, size: 40.sp),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
         centerTitle: false,

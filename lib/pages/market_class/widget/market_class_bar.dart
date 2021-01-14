@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/search_bar_delegate.dart';
+import 'package:get/get.dart';
 
 class MarketClassBar extends StatelessWidget {
   Widget _inkWellSearch(BuildContext context) {
@@ -47,7 +48,7 @@ class MarketClassBar extends StatelessWidget {
         titleSpacing: 0,
         backgroundColor: Color(0xffffffff),
         leading: InkWell(
-          onTap: () => Navigator.pop(context),
+          onTap: () => Get.back(),
           child: Icon(AntDesign.left, size: 40.sp),
         ),
         centerTitle: true,

@@ -1,8 +1,10 @@
+import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/toast.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/provider/cart.dart';
@@ -119,8 +121,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
               Container(
                 margin: EdgeInsets.only(right: 20.w),
                 child: ClipRRect(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(4.w)),
+                  borderRadius: BorderRadius.all(Radius.circular(4.w)),
                   child: CachedImageWrapper(
                     url: image,
                     height: 180.w,
@@ -173,7 +174,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
               size: 38.sp,
               color: Color(0xff999999),
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Get.back(),
           ),
         ),
       ],
@@ -275,7 +276,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
   Widget _inkwellSubmit(String type, CartProvidde model) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pop();
+        Get.back();
         switch (type) {
           case '加入购物车':
             Toast.globalToast('已添加入购物车');
@@ -283,15 +284,16 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
                 widget.itempic);
             break;
           case '立即购买':
-            Navigator.pushNamed(context, PageName.confirm_order_page.toString(),
-                arguments: Bundle()
-                  ..putMap('cartMap', {
-                    'itemid': widget.itemid,
-                    'itemtitle': widget.itemtitle,
-                    'itemprice': widget.itemprice,
-                    'itempic': widget.itempic,
-                    'count': count
-                  }));
+            ConfirmOrderPage(
+              bundle: Bundle()
+                ..putMap('cartMap', {
+                  'itemid': widget.itemid,
+                  'itemtitle': widget.itemtitle,
+                  'itemprice': widget.itemprice,
+                  'itempic': widget.itempic,
+                  'count': count
+                }),
+            ).to;
             break;
           case '请选择规格':
             Toast.globalToast('已添加入购物车');
@@ -299,9 +301,6 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
           default:
         }
 
-        // Navigator.pushNamed(context, PageName.common_page.toString(),
-        //     arguments: Bundle()
-        //       ..putMap('commentMap', {'title': '确认订单', 'isActions': false}));
       },
       child: Container(
         decoration: BoxDecoration(

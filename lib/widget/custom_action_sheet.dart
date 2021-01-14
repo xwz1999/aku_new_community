@@ -21,8 +21,8 @@ Future<int> showCustomBottomSheet({
     elevation: 0, // 透明度
     builder: (BuildContext context) {
       return GestureDetector(
-        onTap: () {
-          Navigator.pop(context, -1);
+        onTap: () {  
+          Navigator.pop(context, -1); 
         },
         child: Container(
             color: Color(0x00ffffff), // 设置颜色后点击事件才有效

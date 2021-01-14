@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/activity_card.dart';
@@ -104,16 +105,17 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
 
   void detailsRouter(String imagePath, title, bool isOver, isVote, isVoteOver,
       List<String> memberList) {
-    Navigator.pushNamed(context, PageName.activities_details_page.toString(),
-        arguments: Bundle()
-          ..putMap('details', {
-            'title': title,
-            'imagePath': imagePath,
-            'isOver': isOver,
-            'isVote': isVote,
-            'isVoteOver': isVoteOver,
-            'memberList': memberList
-          }));
+    Get.to(ActivitiesPage(
+      bundle: Bundle()
+        ..putMap('details', {
+          'title': title,
+          'imagePath': imagePath,
+          'isOver': isOver,
+          'isVote': isVote,
+          'isVoteOver': isVoteOver,
+          'memberList': memberList
+        }),
+    ));
   }
 
   @override

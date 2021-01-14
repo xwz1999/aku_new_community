@@ -1,6 +1,7 @@
+import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/details_card.dart';
@@ -15,9 +16,6 @@ class LifePayInfoPage extends StatefulWidget {
 }
 
 class _LifePayInfoPageState extends State<LifePayInfoPage> {
-  void billRouter() {
-    Navigator.pushNamed(context, PageName.life_pay_bill_page.toString());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class _LifePayInfoPageState extends State<LifePayInfoPage> {
           ListView(
             padding: EdgeInsets.only(bottom: 130.w),
             children: [
-              DetailsCard(fun: billRouter),
+              DetailsCard(fun: LifePayBillPage().to),
             ],
           ),
           Positioned(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class SliverGoodsGroupCard extends StatefulWidget {
   SliverGoodsGroupCard({Key key}) : super(key: key);

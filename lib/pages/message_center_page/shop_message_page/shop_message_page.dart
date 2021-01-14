@@ -1,8 +1,9 @@
+import 'package:akuCommunity/pages/common/common_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 
@@ -45,13 +46,6 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
     super.initState();
   }
 
-  void noteCreateRouter() {
-    // Navigator.pushNamed(
-    //   context,
-    //   PageName.note_create_page.toString(),
-    // );
-  }
-
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1500));
 
@@ -66,12 +60,13 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
   }
 
   void refundRouter() {
-    Navigator.pushNamed(context, PageName.common_page.toString(),
-        arguments: Bundle()
-          ..putMap('commentMap', {
-            'title': '退款详情',
-            'isActions': false,
-          }));
+    CommonPage(
+      bundle: Bundle()
+        ..putMap('commentMap', {
+          'title': '退款详情',
+          'isActions': false,
+        }),
+    ).to;
   }
 
   void expressRouter() {}
@@ -92,8 +87,7 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
         children: [
           Text(
             lookType,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           Icon(AntDesign.right, size: 40.sp),
         ],
@@ -108,11 +102,8 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
         left: 32.w,
         right: 32.w,
       ),
-      padding: EdgeInsets.only(
-          top: 21.w,
-          bottom: 14.w,
-          left: 30.w,
-          right: 20.w),
+      padding:
+          EdgeInsets.only(top: 21.w, bottom: 14.w, left: 30.w, right: 20.w),
       decoration: BoxDecoration(
         color: Color(0xffffffff),
         borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -143,17 +134,15 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
                     ),
                     Text(
                       status,
-                      style: TextStyle(
-                          fontSize: 32.sp,
-                          color: Color(0xff999999)),
+                      style:
+                          TextStyle(fontSize: 32.sp, color: Color(0xff999999)),
                     ),
                   ],
                 ),
                 SizedBox(height: 5.w),
                 Text(type,
-                    style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff333333))),
+                    style:
+                        TextStyle(fontSize: 28.sp, color: Color(0xff333333))),
                 SizedBox(height: 8.w),
                 Row(
                   children: [
@@ -170,8 +159,7 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontSize: 28.sp,
-                            color: Color(0xff999999)),
+                            fontSize: 28.sp, color: Color(0xff999999)),
                       ),
                     ),
                   ],

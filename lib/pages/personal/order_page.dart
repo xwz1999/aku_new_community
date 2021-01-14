@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 import 'widget/order_list.dart';
 
 class OrderPage extends StatefulWidget {
@@ -108,7 +109,7 @@ class _OrderPageState extends State<OrderPage>
       titleSpacing: 0,
       backgroundColor: Color(0xffffffff),
       leading: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: () => Get.back(),
         child: Icon(AntDesign.left, size: 40.sp),
       ),
       centerTitle: false,

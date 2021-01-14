@@ -1,6 +1,7 @@
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:akuCommunity/base/assets_image.dart';
@@ -64,7 +65,7 @@ class _PhoneListState extends State<PhoneList> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.back();
               },
             ),
             CupertinoDialogAction(
@@ -78,7 +79,7 @@ class _PhoneListState extends State<PhoneList> {
               ),
               onPressed: () {
                 _phoneCall('tel:$url');
-                Navigator.pop(context);
+                Get.back();
               },
             ),
           ],

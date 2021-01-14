@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/community/note_create_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/app_bar_action.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 import 'widget/tab_list.dart';
 
 class CommunityIndex extends StatefulWidget {
@@ -38,10 +40,7 @@ class _CommunityIndexState extends State<CommunityIndex>
   }
 
   void noteCreateRouter() {
-    Navigator.pushNamed(
-      context,
-      PageName.note_create_page.toString(),
-    );
+    Get.to(NoteCreatePage());
   }
 
   List<Widget> _listActions() {

@@ -1,7 +1,8 @@
+import 'package:akuCommunity/pages/things_page/things_create_page/things_create_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/things_app_bar.dart';
 import 'widget/things_list.dart';
@@ -130,12 +131,13 @@ class _ThingsPageState extends State<ThingsPage> with TickerProviderStateMixin {
               break;
             default:
           }
-          Navigator.pushNamed(context, PageName.things_create_page.toString(),
-              arguments: Bundle()
-                ..putMap('create', {
-                  'title': widget.bundle.getMap('things')['title'],
-                  'isIdea': isIdea
-                }));
+          ThingsCreatePage(
+            bundle: Bundle()
+              ..putMap('create', {
+                'title': widget.bundle.getMap('things')['title'],
+                'isIdea': isIdea
+              }),
+          ).to;
         },
         child: Container(
           alignment: Alignment.center,

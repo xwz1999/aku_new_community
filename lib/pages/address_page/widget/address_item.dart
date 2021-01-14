@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:extended_text/extended_text.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 
 class AddressItem extends StatelessWidget {
   final String name, phone, address;
@@ -67,8 +69,7 @@ class AddressItem extends StatelessWidget {
                   isDefualt
                       ? ExtendedWidgetSpan(
                           child: Container(
-                            margin:
-                                EdgeInsets.only(right: 16.w),
+                            margin: EdgeInsets.only(right: 16.w),
                             decoration: BoxDecoration(
                                 color: Color(0xfffff7d2),
                                 border: Border.all(
@@ -92,9 +93,7 @@ class AddressItem extends StatelessWidget {
                   TextSpan(
                     text: address,
                     style: TextStyle(
-                        fontSize: 24.sp,
-                        color: Color(0xff999999),
-                        height: 1.5),
+                        fontSize: 24.sp, color: Color(0xff999999), height: 1.5),
                   )
                 ],
               ),
@@ -113,15 +112,18 @@ class AddressItem extends StatelessWidget {
       top: 55.w,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, PageName.address_edit_page.toString(),
-              arguments: Bundle()
+          Get.to(
+            AddressEditPage(
+              bundle: Bundle()
                 ..putMap('details', {
                   'title': '编辑地址',
                   'name': name,
                   'phone': phone,
                   'address': address,
                   'isDelete': true
-                }));
+                }),
+            ),
+          );
         },
         child: Row(
           children: [

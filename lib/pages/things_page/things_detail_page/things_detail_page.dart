@@ -1,6 +1,7 @@
+import 'package:akuCommunity/pages/things_page/things_evaluate_page/things_evaluate_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
@@ -17,9 +18,9 @@ class ThingsDetailPage extends StatefulWidget {
 
 class _ThingsDetailPageState extends State<ThingsDetailPage> {
   void againRouter() {
-    Navigator.pushNamed(context, PageName.things_evaluate_page.toString(),
-        arguments: Bundle()
-          ..putMap('details', {'title': '继续提问', 'isShow': false}));
+    ThingsEvaluatePage(
+      bundle: Bundle()..putMap('details', {'title': '继续提问', 'isShow': false}),
+    ).to;
   }
 
   Widget _containerCard(
@@ -69,13 +70,12 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
     return Positioned(
       bottom: 0,
       child: InkWell(
-        onTap: (){
-          switch (widget.bundle.getMap('things')['isRepair'] ) {
+        onTap: () {
+          switch (widget.bundle.getMap('things')['isRepair']) {
             case true:
-              
               break;
             case false:
-               againRouter();
+              againRouter();
               break;
             default:
           }

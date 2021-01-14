@@ -1,9 +1,11 @@
+import 'package:akuCommunity/pages/common/common_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:get/get.dart';
 
 class ConfirmAddress extends StatefulWidget {
   ConfirmAddress({Key key}) : super(key: key);
@@ -79,9 +81,10 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageName.common_page.toString(),
-            arguments: Bundle()
-              ..putMap('commentMap', {'title': '我的地址', 'isActions': true}));
+        Get.to(CommonPage(
+          bundle: Bundle()
+            ..putMap('commentMap', {'title': '我的地址', 'isActions': true}),
+        ));
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 32.w),

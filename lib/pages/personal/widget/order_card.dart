@@ -1,6 +1,9 @@
+import 'package:akuCommunity/pages/personal/evaluate_good_page.dart';
+import 'package:akuCommunity/pages/personal/look_logistics_page.dart';
+import 'package:akuCommunity/pages/personal/order_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
@@ -174,15 +177,15 @@ class _OrderCardState extends State<OrderCard> {
       onTap: () {
         switch (buttonName) {
           case '评价':
-            Navigator.pushNamed(context, PageName.evaluate_good_page.toString(),
-                arguments: Bundle()
-                  ..putMap('details', {
-                    'listContent': widget.listContent,
-                  }));
+            EvaluateGoodPage(
+              bundle: Bundle()
+                ..putMap('details', {
+                  'listContent': widget.listContent,
+                }),
+            ).to;
             break;
           case '查看物流':
-            Navigator.pushNamed(
-                context, PageName.look_logistics_page.toString());
+            LookLogisticsPage().to;
             break;
           default:
         }
@@ -226,16 +229,17 @@ class _OrderCardState extends State<OrderCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, PageName.order_details_page.toString(),
-            arguments: Bundle()
-              ..putMap('details', {
-                'status': widget.status,
-                'listContent': widget.listContent,
-                'totalPrice': widget.totalPrice,
-                'payPrice': widget.payPrice,
-                'listButton': widget.listButton,
-                'listOrderDetail': widget.listOrderDetail,
-              }));
+        OrderDetailsPage(
+          bundle: Bundle()
+            ..putMap('details', {
+              'status': widget.status,
+              'listContent': widget.listContent,
+              'totalPrice': widget.totalPrice,
+              'payPrice': widget.payPrice,
+              'listButton': widget.listButton,
+              'listOrderDetail': widget.listOrderDetail,
+            }),
+        ).to;
       },
       child: Container(
         decoration: BoxDecoration(

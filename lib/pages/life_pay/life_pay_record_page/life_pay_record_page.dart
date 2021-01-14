@@ -1,7 +1,8 @@
+import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/record_card.dart';
@@ -35,9 +36,6 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
     _refreshController.loadComplete();
   }
 
-  void billRouter() {
-    Navigator.pushNamed(context, PageName.life_pay_bill_page.toString());
-  }
 
   @override
   void dispose() {
@@ -85,10 +83,10 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                       ]),
                 ),
               ),
-              RecordCard(fun: billRouter),
-              RecordCard(fun: billRouter),
-              RecordCard(fun: billRouter),
-              RecordCard(fun: billRouter),
+              RecordCard(fun: LifePayBillPage().to),
+              RecordCard(fun: LifePayBillPage().to),
+              RecordCard(fun: LifePayBillPage().to),
+              RecordCard(fun: LifePayBillPage().to),
             ],
           ),
         ),

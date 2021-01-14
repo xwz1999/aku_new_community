@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:akuCommunity/utils/screenutil.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
@@ -82,13 +83,12 @@ class PayOrderPage extends StatelessWidget {
                 "确认",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Get.back(),
               color: Color(0xffffc40d),
               radius: BorderRadius.circular(8.w),
             ),
           ],
         ).show();
-        // Navigator.pushNamed(context, PageName.pay_success_page.toString());
       },
       child: Container(
         padding: EdgeInsets.only(
