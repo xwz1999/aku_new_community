@@ -25,7 +25,7 @@ class ProductContent extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(width: ScreenUtil().setWidth(10)),
+        SizedBox(width: 10.w),
         Text(
           '元',
           style: TextStyle(
@@ -41,9 +41,9 @@ class ProductContent extends StatelessWidget {
   Container _containerTitle(String title) {
     return Container(
       margin: EdgeInsets.only(
-        top: ScreenUtil().setWidth(28),
-        bottom: ScreenUtil().setWidth(18),
-        right: ScreenUtil().setWidth(106),
+        top: 28.w,
+        bottom: 18.w,
+        right: 106.w,
       ),
       child: Text(
         title,
@@ -57,7 +57,7 @@ class ProductContent extends StatelessWidget {
 
   Container _containerSubtitle(String shortTitle) {
     return Container(
-      margin: EdgeInsets.only(right: ScreenUtil().setWidth(286)),
+      margin: EdgeInsets.only(right: 286.w),
       child: Text(
         shortTitle,
         maxLines: 1,
@@ -78,13 +78,13 @@ class ProductContent extends StatelessWidget {
         ],
       ),
       margin: EdgeInsets.only(
-        left: ScreenUtil().setWidth(72),
-        right: ScreenUtil().setWidth(72),
-        top: ScreenUtil().setWidth(58),
+        left: 72.w,
+        right: 72.w,
+        top: 58.w,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: ScreenUtil().setWidth(33),
-        vertical: ScreenUtil().setWidth(11),
+        horizontal: 33.w,
+        vertical: 11.w,
       ),
       child: Text(
         desc,
@@ -101,15 +101,14 @@ class ProductContent extends StatelessWidget {
   Positioned _positionedShare() {
     return Positioned(
       right: 0,
-      top: ScreenUtil().setWidth(169),
+      top: 169.w,
       child: InkWell(
         onTap: () {
           shareToWeChat(WeChatShareWebPageModel(
-              'https://mobile.baidu.com/item?docid=27505288',
-              
-              title:itemtitle,
-              description: '前往小蜜蜂智慧社区查看吧',
-            ));
+            'https://mobile.baidu.com/item?docid=27505288',
+            title: itemtitle,
+            description: '前往小蜜蜂智慧社区查看吧',
+          ));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -123,8 +122,8 @@ class ProductContent extends StatelessWidget {
             ],
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: ScreenUtil().setWidth(14),
-            vertical: ScreenUtil().setWidth(9),
+            horizontal: 14.w,
+            vertical: 9.w,
           ),
           child: Row(
             children: [
@@ -132,7 +131,7 @@ class ProductContent extends StatelessWidget {
                 SimpleLineIcons.share,
                 size: ScreenUtil().setSp(20),
               ),
-              SizedBox(width: ScreenUtil().setWidth(12)),
+              SizedBox(width: 12.w),
               Text(
                 '分享',
                 style: TextStyle(
@@ -149,7 +148,7 @@ class ProductContent extends StatelessWidget {
 
   Positioned _positionedRecommend() {
     return Positioned(
-      right: ScreenUtil().setWidth(453),
+      right: 453.w,
       bottom: 100.w,
       child: Row(
         children: [
@@ -158,7 +157,7 @@ class ProductContent extends StatelessWidget {
             color: Color(0xff999999),
             size: ScreenUtil().setSp(24),
           ),
-          SizedBox(width: ScreenUtil().setWidth(12)),
+          SizedBox(width: 12.w),
           Text(
             '推荐理由',
             style: TextStyle(
@@ -177,9 +176,9 @@ class ProductContent extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(
-              left: ScreenUtil().setWidth(32),
-              top: ScreenUtil().setWidth(25),
-              bottom: ScreenUtil().setWidth(20),
+              left: 32.w,
+              top: 25.w,
+              bottom: 20.w,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

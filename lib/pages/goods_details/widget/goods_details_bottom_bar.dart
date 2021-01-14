@@ -51,10 +51,10 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
           ],
         ),
         padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(35),
-          right: ScreenUtil().setWidth(35),
-          top: ScreenUtil().setWidth(13),
-          bottom: ScreenUtil().setWidth(47),
+          left: 35.w,
+          right: 35.w,
+          top: 13.w,
+          bottom: 47.w,
         ),
         child: Row(
           children: [
@@ -89,7 +89,7 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                 });
               },
             ),
-            SizedBox(width: ScreenUtil().setWidth(46)),
+            SizedBox(width: 46.w),
             InkWell(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +114,7 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                     context, PageName.market_cart_page.toString());
               },
             ),
-            SizedBox(width: ScreenUtil().setWidth(53)),
+            SizedBox(width: 53.w),
             InkWell(
                 child: Container(
                   decoration: BoxDecoration(
@@ -128,8 +128,8 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                     ],
                   ),
                   padding: EdgeInsets.symmetric(
-                    horizontal: ScreenUtil().setWidth(40),
-                    vertical: ScreenUtil().setWidth(12),
+                    horizontal: 40.w,
+                    vertical: 12.w,
                   ),
                   child: Text(
                     '加入购物车',
@@ -149,7 +149,7 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                 //   //     widget.itemprice, widget.itempic);
                 // } //_showModelBotoomSheet,
                 ),
-            SizedBox(width: ScreenUtil().setWidth(24)),
+            SizedBox(width: 24.w),
             InkWell(
                 child: Container(
                   decoration: BoxDecoration(
@@ -163,8 +163,8 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                     ],
                   ),
                   padding: EdgeInsets.symmetric(
-                    horizontal: ScreenUtil().setWidth(55),
-                    vertical: ScreenUtil().setWidth(12),
+                    horizontal: 55.w,
+                    vertical: 12.w,
                   ),
                   child: Text(
                     '立即购买',

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductEvaluate extends StatelessWidget {
   final Function fun;
-  ProductEvaluate({Key key,this.fun}) : super(key: key);
+  ProductEvaluate({Key key, this.fun}) : super(key: key);
 
   Stack _stackEvaluateHeader() {
     return Stack(
@@ -22,7 +22,7 @@ class ProductEvaluate extends StatelessWidget {
           ],
         ),
         Positioned(
-          right: ScreenUtil().setWidth(32),
+          right: 32.w,
           child: InkWell(
             onTap: () {
               fun();
@@ -36,7 +36,7 @@ class ProductEvaluate extends StatelessWidget {
                     color: Color(0xff999999),
                   ),
                 ),
-                SizedBox(width: ScreenUtil().setWidth(20)),
+                SizedBox(width: 20.w),
                 Icon(
                   AntDesign.right,
                   size: ScreenUtil().setSp(34),
@@ -59,12 +59,12 @@ class ProductEvaluate extends StatelessWidget {
             ClipOval(
               child: Image.asset(
                 'assets/example/touxiang1.png',
-                height: ScreenUtil().setWidth(50),
-                width: ScreenUtil().setWidth(50),
+                height: 50.w,
+                width: 50.w,
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(width: ScreenUtil().setWidth(10)),
+            SizedBox(width: 10.w),
             Text(
               '就是安安啊',
               style: TextStyle(
@@ -74,7 +74,7 @@ class ProductEvaluate extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: ScreenUtil().setWidth(12)),
+        SizedBox(height: 12.w),
         Text(
           '面料和版型都不错，会回购',
           maxLines: 2,
@@ -92,16 +92,16 @@ class ProductEvaluate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xffffffff),
-      margin: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(top: 30.w),
       padding: EdgeInsets.only(
-        top: ScreenUtil().setWidth(20),
-        left: ScreenUtil().setWidth(32),
-        bottom: ScreenUtil().setWidth(32),
+        top: 20.w,
+        left: 32.w,
+        bottom: 32.w,
       ),
       child: Column(
         children: [
           _stackEvaluateHeader(),
-          SizedBox(height: ScreenUtil().setWidth(32)),
+          SizedBox(height: 32.w),
           _columnEvaluateContent(),
         ],
       ),

@@ -5,18 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ContainerComment extends StatelessWidget {
   final Widget customWidget;
   final double radius;
-  ContainerComment({Key key, this.customWidget,this.radius = 0}) : super(key: key);
+  ContainerComment({Key key, this.customWidget, this.radius = 0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: ScreenUtil().setWidth(32),
-        vertical: ScreenUtil().setHeight(17),
+        horizontal: 32.w,
+        vertical: 17.w,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: ScreenUtil().setWidth(24),
-        vertical: ScreenUtil().setHeight(16),
+        horizontal: 24.w,
+        vertical: 16.w,
       ),
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -24,9 +25,10 @@ class ContainerComment extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(radius)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              offset: Offset(1.1, 1.1),
-              blurRadius: 10.0),
+            color: Colors.grey.withOpacity(0.2),
+            offset: Offset(1.1, 1.1),
+            blurRadius: 10.0,
+          ),
         ],
       ),
       child: customWidget,

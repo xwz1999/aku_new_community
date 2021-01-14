@@ -27,7 +27,7 @@ class ProductSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenUtil().setWidth(500),
+      height: 500.w,
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
           return AspectRatio(
@@ -63,9 +63,9 @@ class ProductSwiper extends StatelessWidget {
           builder: DotSwiperPaginationBuilder(
             activeColor: Color(0xffFEC200),
             color: Colors.white,
-            size: ScreenUtil().setWidth(15),
-            activeSize: ScreenUtil().setWidth(25),
-            space: ScreenUtil().setWidth(10),
+            size: 15.w,
+            activeSize: 25.w,
+            space: 10.w,
           ),
         ),
         autoplayDelay: 5000,

@@ -16,7 +16,7 @@ class ProductService extends StatelessWidget {
             color: Color(0xff999999),
           ),
         ),
-        SizedBox(width: ScreenUtil().setWidth(59)),
+        SizedBox(width: 59.w),
         Row(
           children: [
             Icon(
@@ -25,7 +25,7 @@ class ProductService extends StatelessWidget {
               color: Color(0xff666666),
             ),
             SizedBox(
-              width: ScreenUtil().setWidth(9),
+              width: 9.w,
             ),
             Text(
               '浙江杭州',
@@ -36,7 +36,7 @@ class ProductService extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(width: ScreenUtil().setWidth(38)),
+        SizedBox(width: 38.w),
         Row(
           children: [
             Text(
@@ -47,7 +47,7 @@ class ProductService extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: ScreenUtil().setWidth(9),
+              width: 9.w,
             ),
             Text(
               '全国包邮',
@@ -72,7 +72,7 @@ class ProductService extends StatelessWidget {
             color: Color(0xff999999),
           ),
         ),
-        SizedBox(width: ScreenUtil().setWidth(59)),
+        SizedBox(width: 59.w),
         Text(
           '品质保证',
           style: TextStyle(
@@ -80,15 +80,15 @@ class ProductService extends StatelessWidget {
             color: Color(0xff333333),
           ),
         ),
-        SizedBox(width: ScreenUtil().setWidth(16)),
+        SizedBox(width: 16.w),
         SizedBox(
           width: 1,
-          height: ScreenUtil().setWidth(24),
+          height: 24.w,
           child: DecoratedBox(
             decoration: BoxDecoration(color: Color(0xffd8d8d8)),
           ),
         ),
-        SizedBox(width: ScreenUtil().setWidth(16)),
+        SizedBox(width: 16.w),
         Text(
           '售后无忧',
           style: TextStyle(
@@ -104,15 +104,15 @@ class ProductService extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xffffffff),
-      margin: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(top: 30.w),
       padding: EdgeInsets.symmetric(
-        vertical: ScreenUtil().setWidth(20),
-        horizontal: ScreenUtil().setWidth(60),
+        vertical: 20.w,
+        horizontal: 60.w,
       ),
       child: Column(
         children: [
           _rowDelivergoods(),
-          SizedBox(height: ScreenUtil().setWidth(39)),
+          SizedBox(height: 39.w),
           _rowService(),
         ],
       ),
