@@ -40,22 +40,22 @@ class _PropertyIndexState extends State<PropertyIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   List<GridButton> _gridList = [
     GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
-      Get.to(OpenDoorPage());
+      OpenDoorPage().to();
     }),
     GridButton('开门码', R.ASSETS_ICONS_TOOL_KMM_PNG, () {
-      Get.to(OpeningCodePage());
+      OpeningCodePage().to();
     }),
     GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
-      Get.to(VisitorAccessPage());
+      VisitorAccessPage().to();
     }),
     GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      Get.to(FixedSubmitPage());
+      FixedSubmitPage().to();
     }),
     GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
-      Get.to(LifePayPage());
+      LifePayPage().to();
     }),
     GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
-      Get.to(IndustryCommitteePage());
+      IndustryCommitteePage().to();
     }),
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
       Get.to(ThingsPage(
@@ -70,7 +70,7 @@ class _PropertyIndexState extends State<PropertyIndex>
       ));
     }),
     GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
-      Get.to(ConvenientPhonePage());
+      ConvenientPhonePage().to();
     }),
     GridButton('活动投票', R.ASSETS_ICONS_TOOL_HDTP_PNG, () {
       Get.to(ActivitiesPage(
@@ -78,7 +78,7 @@ class _PropertyIndexState extends State<PropertyIndex>
       ));
     }),
     GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
-      Get.to(GoodsDetoPage());
+      GoodsDetoPage().to();
     }),
     GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG, () {
       Get.to(ThingsPage(
@@ -93,13 +93,13 @@ class _PropertyIndexState extends State<PropertyIndex>
       ));
     }),
     GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
-      Get.to(QuestionnairePage());
+      QuestionnairePage().to();
     }),
     GridButton('装修管理', R.ASSETS_ICONS_TOOL_ZXGL_PNG, () {
-      Get.to(FitupManagePage());
+      FitupManagePage().to();
     }),
     GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
-      Get.to(TotalApplicationsPage());
+      TotalApplicationsPage().to();
     }),
   ];
   @override

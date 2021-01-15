@@ -29,7 +29,7 @@ class _TopicCardState extends State<TopicCard> {
   }
 
   void topiceDetailRouter(String subtitle, String imagePath) {
-    Get.to(TopiceDetailPage());
+    TopiceDetailPage().to();
   }
 
   Row _rowTopic(String title, String subtitle, String imagePath) {

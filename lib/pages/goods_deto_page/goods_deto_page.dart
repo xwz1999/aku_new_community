@@ -79,8 +79,6 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
     _refreshController.loadComplete();
   }
 
-  
-
   @override
   void dispose() {
     super.dispose();
@@ -131,7 +129,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
             child: BottomButton(
               title: '新增',
               fun: () {
-                Get.to(DetoCreatePage());
+                DetoCreatePage().to();
               },
             ),
           ),

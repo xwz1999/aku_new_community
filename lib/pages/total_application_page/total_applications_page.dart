@@ -127,7 +127,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         ).to;
                         break;
                       case '一键开门':
-                        Get.to(OpenDoorPage());
+                        OpenDoorPage().to();
                         break;
                       case '开门码':
                         OpeningCodePage().to;

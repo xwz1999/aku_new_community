@@ -85,7 +85,7 @@ class _GoodsAppBarState extends State<GoodsAppBar> {
             color: Color(0xff666666),
           ),
           onPressed: () {
-            Get.to(MarketCartPage());
+            MarketCartPage().to();
           },
         ),
       ],

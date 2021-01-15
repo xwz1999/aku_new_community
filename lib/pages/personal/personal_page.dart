@@ -38,7 +38,7 @@ class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin {
   List<GridButton> _manageGridList = [
     GridButton('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () {
-      Get.to(MineHousePage());
+      MineHousePage().to();
     }),
     GridButton('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () {
       Get.to(MineCarPage(
@@ -56,20 +56,20 @@ class _PersonalIndexState extends State<PersonalIndex>
       ));
     }),
     GridButton('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () {
-      Get.to(LifePayPage());
+      LifePayPage().to();
     }),
     GridButton('我的保修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () {
-      Get.to(FixedSubmitPage());
+      FixedSubmitPage().to();
     }),
     GridButton('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () {
-      Get.to(AddressPage());
+      AddressPage().to();
     }),
     GridButton('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () {}),
     GridButton('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () {
-      Get.to(VisitorAccessPage());
+      VisitorAccessPage().to();
     }),
     GridButton('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () {
-      Get.to(SettingsPage());
+      SettingsPage().to();
     }),
   ];
 
