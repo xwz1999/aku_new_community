@@ -300,7 +300,15 @@ class _TrendCardState extends State<TrendCard> {
         Positioned(
           top: 0,
           right: 0,
-          child: PopupMenuButton(
+          child: PopupMenuButton<int>(
+            onSelected: (value) {
+              switch (value) {
+                case 0:
+                  BotToast.showText(text: '举报成功');
+                  break;
+                default:
+              }
+            },
             padding: EdgeInsets.zero,
             icon: Icon(
               CupertinoIcons.chevron_down,
@@ -309,6 +317,7 @@ class _TrendCardState extends State<TrendCard> {
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
+                  value: 0,
                   child: Container(
                     width: 150.w,
                     height: 50.w,
