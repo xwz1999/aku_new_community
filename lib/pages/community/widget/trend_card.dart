@@ -104,6 +104,35 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
+  void _showDeletDialog() {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: '你确定删除吗?'.text.black.size(34.sp).isIntrinsic.make(),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: '取消'.text.black.size(34.sp).isIntrinsic.make(),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+              CupertinoDialogAction(
+                child: '确定'
+                    .text
+                    .color(Color(0xFFFF8200))
+                    .size(34.sp)
+                    .isIntrinsic
+                    .make(),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   Widget _columnCard(String name, String content, Image avatar) {
     return Stack(
       children: [
@@ -159,6 +188,12 @@ class _TrendCardState extends State<TrendCard> {
                             '1分钟前',
                             style: _textStyleTag(),
                           ),
+                          40.wb,
+                          InkWell(
+                              onTap: () {
+                                _showDeletDialog();
+                              },
+                              child: '删除'.text.black.size(28.sp).make()),
                         ],
                       ),
                     ],
@@ -265,7 +300,15 @@ class _TrendCardState extends State<TrendCard> {
         Positioned(
           top: 0,
           right: 0,
-          child: PopupMenuButton(
+          child: PopupMenuButton<int>(
+            onSelected: (value) {
+              switch (value) {
+                case 0:
+                  BotToast.showText(text: '举报成功');
+                  break;
+                default:
+              }
+            },
             padding: EdgeInsets.zero,
             icon: Icon(
               CupertinoIcons.chevron_down,
@@ -274,6 +317,7 @@ class _TrendCardState extends State<TrendCard> {
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
+                  value: 0,
                   child: Container(
                     width: 150.w,
                     height: 50.w,
