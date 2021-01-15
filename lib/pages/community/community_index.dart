@@ -107,17 +107,54 @@ class _CommunityIndexState extends State<CommunityIndex>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _appBar(),
-      floatingActionButton: _floatingActionButton(),
-      body: TabBarView(
+    return BeeScaffold(
+      title: '社区',
+      actions: _listActions(),
+      body: Column(
+        children: [
+          Material(
+            color: kForeGroundColor,
+            child: PreferredSize(
+              preferredSize: Size.fromHeight(kToolbarHeight),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  indicatorPadding: EdgeInsets.zero,
+                  controller: _tabController,
+                  isScrollable: true,
+                  indicatorColor: Color(0xffFFd000),
+                  indicatorWeight: 2.w,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  unselectedLabelStyle: TextStyle(
+                    color: Color(0xFF333333),
+                    fontSize: 28.sp,
+                  ),
+                  labelStyle: TextStyle(
+                    fontSize: 28.sp,
+                    color: Color(0xff333333),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  tabs: List.generate(
+                    tabs.length,
+                    (index) => Tab(
+                      text: tabs[index]['name'],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
               controller: _tabController,
               children: List.generate(
                 tabs.length,
                 (index) => TabList(index: index),
               ),
             ),
+          ),
+        ],
+      ),
     );
   }
 }
