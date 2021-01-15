@@ -1,5 +1,6 @@
-
 import 'dart:ui';
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -8,6 +9,8 @@ import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/widget/image_grid.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:akuCommunity/extensions/num_ext.dart';
 
 class TrendCard extends StatefulWidget {
   final String name;
@@ -15,7 +18,13 @@ class TrendCard extends StatefulWidget {
   final List<String> imageUrl;
   final bool isLike;
   final Image avatar;
-  TrendCard({Key key, this.name, this.content, this.imageUrl, this.isLike, this.avatar})
+  TrendCard(
+      {Key key,
+      this.name,
+      this.content,
+      this.imageUrl,
+      this.isLike,
+      this.avatar})
       : super(key: key);
 
   @override
@@ -25,10 +34,11 @@ class TrendCard extends StatefulWidget {
 class _TrendCardState extends State<TrendCard> {
   bool _isLike;
   @override
-  void initState() { 
+  void initState() {
     super.initState();
-    _isLike=widget.isLike??false;
+    _isLike = widget.isLike ?? false;
   }
+
   void _showDialog(String url) {
     showCupertinoDialog(
       context: context,
@@ -73,107 +83,6 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
-  void showPub() {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return _shareWidget();
-        });
-  }
-
-  Widget _shareWidget() {
-    return Container(
-      color: Colors.white,
-      height:
-          300.w + MediaQuery.of(context).viewPadding.bottom,
-      child: Stack(
-        children: [
-          Container(
-            height: 160.w,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    Get.back();
-                    _showDialog(nameItems[index]['title']);
-                  },
-                  child: Container(
-                    height: 160.w,
-                    width: 160.w,
-                    margin: EdgeInsets.only(
-                      left: 10.w,
-                      right: 10.w,
-                      top: 40.w,
-                    ),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          nameItems[index]['image'],
-                          width: 65.w,
-                          height: 65.w,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 10.w),
-                          child: Text(
-                            nameItems[index]['title'],
-                            style: TextStyle(
-                              fontSize: 26.sp,
-                              color: Color(0xff333333),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-              itemCount: nameItems.length,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 98.w,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(1, 1),
-                      blurRadius: 2.0,
-                    )
-                  ],
-                ),
-                child: Text(
-                  '取消',
-                  style: TextStyle(
-                    fontSize: 38.sp,
-                    color: Color(0xff333333),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<Map<String, dynamic>> nameItems = [
-    {'image': 'assets/icons/report.png', 'title': '举报'},
-    {'image': 'assets/icons/shield_content.png', 'title': '屏蔽此条动态'},
-    {'image': 'assets/icons/shield_user.png', 'title': '屏蔽他的动态'},
-  ];
-
   TextStyle _textStyleName() {
     return TextStyle(
       fontSize: 36.sp,
@@ -195,9 +104,7 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
-
-
-  Widget _columnCard(String name, String content,Image avatar) {
+  Widget _columnCard(String name, String content, Image avatar) {
     return Stack(
       children: [
         Column(
@@ -254,37 +161,6 @@ class _TrendCardState extends State<TrendCard> {
                           ),
                         ],
                       ),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isLike = !_isLike;
-                            });
-                            
-                          },
-                          child: Icon(
-                            _isLike ? AntDesign.heart : AntDesign.hearto,
-                            color:
-                                _isLike ? Color(0xffff6666) : Color(0xffd8d8d8),
-                            size: 36.sp,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 35,
-                        bottom: 0,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            AntDesign.message1,
-                            color: Color(0xffd8d8d8),
-                            size: 36.sp,
-                          ),
-                        ),
-                      ),
-                      // _positionedPopupMenuButton(),
                     ],
                   ),
                 ],
@@ -294,13 +170,128 @@ class _TrendCardState extends State<TrendCard> {
         ),
         Positioned(
           right: 0,
+          bottom: 0,
+          child: Builder(
+            builder: (context) {
+              return InkWell(
+                onTap: () => BotToast.showAttachedWidget(
+                  attachedBuilder: (CancelFunc cancelFunc) {
+                    return Material(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFD8D8D8),
+                          borderRadius: BorderRadius.circular(8.w),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 15.w, horizontal: 30.w),
+                        width: 363.w,
+                        height: 78.w,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  _isLike = !_isLike;
+                                  cancelFunc();
+                                  setState(() {});
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      _isLike
+                                          ? AntDesign.heart
+                                          : AntDesign.hearto,
+                                      color: _isLike
+                                          ? Color(0xffff6666)
+                                          : Colors.black,
+                                      size: 32.w,
+                                    ),
+                                    10.wb,
+                                    '赞'
+                                        .text
+                                        .color(ktextPrimary)
+                                        .size(28.sp)
+                                        .make(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: VerticalDivider(
+                                width: 0,
+                                thickness: 1.w,
+                                color: Color(0xFF979797),
+                              ),
+                            ),
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.ellipses_bubble,
+                                      color: Colors.black,
+                                      size: 32.w,
+                                    ),
+                                    10.wb,
+                                    '评论'
+                                        .text
+                                        .color(ktextPrimary)
+                                        .size(28.sp)
+                                        .make(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  preferDirection: PreferDirection.rightCenter,
+                  targetContext: context,
+                ),
+                child: Icon(
+                  MaterialIcons.more,
+                  color: Color(0xffd8d8d8),
+                ),
+              );
+            },
+          ),
+        ),
+        Positioned(
           top: 0,
-          child: InkWell(
-            onTap: showPub,
-            child: Icon(
-              MaterialIcons.more,
-              color: Color(0xffd8d8d8),
+          right: 0,
+          child: PopupMenuButton(
+            padding: EdgeInsets.zero,
+            icon: Icon(
+              CupertinoIcons.chevron_down,
+              size: 25.w,
             ),
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: Container(
+                    width: 150.w,
+                    height: 50.w,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          CupertinoIcons.exclamationmark_triangle,
+                          size: 50.w,
+                        ),
+                        10.wb,
+                        '举报'.text.black.size(30.sp).make()
+                      ],
+                    ),
+                  ),
+                )
+              ];
+            },
           ),
         ),
       ],
@@ -310,22 +301,21 @@ class _TrendCardState extends State<TrendCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            width: 0.5, //宽度
-            color: Color(0xffe5e5e5), //边框颜色
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(
+              width: 0.5, //宽度
+              color: Color(0xffe5e5e5), //边框颜色
+            ),
           ),
         ),
-      ),
-      padding: EdgeInsets.only(
-        top: 46.w,
-        left: 32.w,
-        bottom: 22.w,
-        right: 32.w,
-      ),
-      child: _columnCard(widget.name, widget.content,widget.avatar)
-    );
+        padding: EdgeInsets.only(
+          top: 46.w,
+          left: 32.w,
+          bottom: 22.w,
+          right: 32.w,
+        ),
+        child: _columnCard(widget.name, widget.content, widget.avatar));
   }
 }
