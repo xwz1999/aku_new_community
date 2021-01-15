@@ -9,6 +9,7 @@ import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/net_util.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
@@ -118,7 +119,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                   children: [
                     Spacer(),
                     Container(
-                      margin: EdgeInsets.only(top: 175.w, left: 32.w),
+                      margin: EdgeInsets.only(left: 32.w),
                       child: Row(
                         children: [
                           Container(
@@ -158,17 +159,34 @@ class _PersonalIndexState extends State<PersonalIndex>
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 38.w,
-                        left: 36.w,
-                        right: 36.w,
-                      ),
-                      child: Image.asset(
-                        'assets/images/member_bg.png',
-                        width: 678.w,
-                        height: 129.w,
-                      ),
+                    Stack(
+                      children: [
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: 41.w,
+                            width: double.infinity,
+                            child: CustomPaint(
+                              painter: UserBottomBarPainter(),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: 38.w,
+                            left: 36.w,
+                            right: 36.w,
+                            bottom: 18.w,
+                          ),
+                          child: Image.asset(
+                            R.ASSETS_IMAGES_MEMBER_BG_PNG,
+                            width: 678.w,
+                            height: 129.w,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
