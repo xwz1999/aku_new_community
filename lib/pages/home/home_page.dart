@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage>
     }),
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
       Get.to(ThingsPage(
-        bundle: Bundle()
+        bundle: Bundle()  
           ..putMap('things', {
             'title': '建议咨询',
             'treeList': <Map<String, dynamic>>[
