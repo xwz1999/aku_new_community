@@ -128,6 +128,12 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Get.to(12 as Widget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '设置',

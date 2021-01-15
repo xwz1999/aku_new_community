@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
@@ -5,6 +8,9 @@ import 'package:akuCommunity/utils/logger_view.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluwx/fluwx.dart';
@@ -15,11 +21,14 @@ import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   ARoute.init(true);
   AmapLocation.instance.init(iosKey: 'ios key');
   DeveloperUtil.setDev(true);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runApp(MyApp());
 }
 
