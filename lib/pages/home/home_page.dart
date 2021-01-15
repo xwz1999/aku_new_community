@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage>
 
   int page = 1;
 
-   List<GridButton> _gridList = [
+  List<GridButton> _gridList = [
     GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
       Get.to(OpenDoorPage());
     }),
@@ -147,45 +147,50 @@ class _HomePageState extends State<HomePage>
     super.build(context);
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
-    return BeeScaffold(
-      title: 'TEST',
-      bgColor: BaseStyle.colorffd000,
-      leading: Container(
-        margin: EdgeInsets.only(left: 32.w),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '深圳',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.sp,
-                  color: Color(0xff333333),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: 'TEST'.text.make(),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        leading: Container(
+          margin: EdgeInsets.only(left: 32.w),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '深圳',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24.sp,
+                    color: Color(0xff333333),
+                  ),
                 ),
-              ),
-              Text(
-                '阴 27℃',
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  color: Color(0xff333333),
-                ),
-              )
-            ]),
+                Text(
+                  '阴 27℃',
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    color: Color(0xff333333),
+                  ),
+                )
+              ]),
+        ),
+        actions: [
+          _buildColButton(
+            icon: AntDesign.scan1,
+            title: '扫一扫',
+            onTap: () => Get.to(ScanPage()),
+          ),
+          _buildColButton(
+            icon: AntDesign.bells,
+            title: '消息',
+            onTap: () => Get.to(MessageCenterPage()),
+          ),
+          16.wb,
+        ],
       ),
-      actions: [
-        _buildColButton(
-          icon: AntDesign.scan1,
-          title: '扫一扫',
-          onTap: () => Get.to(ScanPage()),
-        ),
-        _buildColButton(
-          icon: AntDesign.bells,
-          title: '消息',
-          onTap: () => Get.to(MessageCenterPage()),
-        ),
-        16.wb,
-      ],
       body: RefreshConfiguration(
         child: SmartRefresher(
           controller: _refreshController,
@@ -211,7 +216,7 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                     SingleAdSpace(
-                      imagePath: 'assets/example/guanggao2.png',
+                      imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
                     ),
                     HomeTagBar(
                       title: '物业收费标准请查收~',
@@ -225,7 +230,9 @@ class _HomePageState extends State<HomePage>
                           tag: '活动',
                           isShowImage: false,
                           fun: () {
-                            ActivitiesPage(bundle: Bundle()..putBool('isVote', false),).to;
+                            ActivitiesPage(
+                              bundle: Bundle()..putBool('isVote', false),
+                            ).to;
                           },
                         ),
                         HomeCard(
