@@ -95,6 +95,8 @@ class _PersonalIndexState extends State<PersonalIndex>
   SliverAppBar _sliverAppBar(double height) {
     final userProvider = Provider.of<UserProvider>(context);
     return SliverAppBar(
+      pinned: true,
+      toolbarHeight: 0,
       elevation: 0,
       stretch: true,
       floating: true,
