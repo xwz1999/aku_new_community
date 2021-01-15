@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:akuCommunity/utils/logger_data.dart';
+import 'package:akuCommunity/utils/logger/logger_data.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 
