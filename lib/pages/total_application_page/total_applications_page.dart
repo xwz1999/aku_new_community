@@ -130,11 +130,11 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         OpenDoorPage().to();
                         break;
                       case '开门码':
-                        OpeningCodePage().to;
+                        OpeningCodePage().to();
                         break;
                       case '访客通行':
                       case '我的访客':
-                        VisitorAccessPage().to;
+                        VisitorAccessPage().to();
                         break;
                       case '报事报修':
                         ThingsPage(
@@ -146,10 +146,10 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         break;
                       case '生活缴费':
                       case '我的缴费':
-                        LifePayPage().to;
+                        LifePayPage().to();
                         break;
                       case '业委会':
-                        IndustryCommitteePage().to;
+                        IndustryCommitteePage().to();
                         break;
                       case '建议咨询':
                         ThingsPage(
@@ -161,10 +161,10 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                                 {'name': '您的咨询'},
                               ]
                             }),
-                        ).to;
+                        ).to();
                         break;
                       case '便民电话':
-                        ConvenientPhonePage().to;
+                        ConvenientPhonePage().to();
                         break;
                       case '活动投票':
                         ActivitiesPage(
@@ -177,7 +177,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         ).to;
                         break;
                       case '物品出户':
-                        GoodsDetoPage().to;
+                        GoodsDetoPage().to();
                         break;
                       case '投诉表扬':
                         ThingsPage(
@@ -192,16 +192,16 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         ).to;
                         break;
                       case '问卷调查':
-                        QuestionnairePage().to;
+                        QuestionnairePage().to();
                         break;
                       case '装修管理':
-                        FitupManagePage().to;
+                        FitupManagePage().to();
                         break;
                       case '借还管理':
-                        GoodsManagePage().to;
+                        GoodsManagePage().to();
                         break;
                       case '一键报警':
-                        AlarmPage().to;
+                        AlarmPage().to();
                         break;
                       default:
                         break;
