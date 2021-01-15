@@ -100,8 +100,6 @@ dependencies:
   hive:
   hive_flutter:
   logger: ^0.9.4
-  firebase_core:
-  firebase_crashlytics:
 
 dev_dependencies:
   flutter_test:
