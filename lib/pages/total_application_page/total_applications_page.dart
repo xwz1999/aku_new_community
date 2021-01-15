@@ -12,7 +12,6 @@ import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
 import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';

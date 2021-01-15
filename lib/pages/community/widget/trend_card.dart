@@ -104,6 +104,35 @@ class _TrendCardState extends State<TrendCard> {
     );
   }
 
+  void _showDeletDialog() {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: '你确定删除吗?'.text.black.size(34.sp).isIntrinsic.make(),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: '取消'.text.black.size(34.sp).isIntrinsic.make(),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+              CupertinoDialogAction(
+                child: '确定'
+                    .text
+                    .color(Color(0xFFFF8200))
+                    .size(34.sp)
+                    .isIntrinsic
+                    .make(),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   Widget _columnCard(String name, String content, Image avatar) {
     return Stack(
       children: [
@@ -159,6 +188,12 @@ class _TrendCardState extends State<TrendCard> {
                             '1分钟前',
                             style: _textStyleTag(),
                           ),
+                          40.wb,
+                          InkWell(
+                              onTap: () {
+                                _showDeletDialog();
+                              },
+                              child: '删除'.text.black.size(28.sp).make()),
                         ],
                       ),
                     ],
