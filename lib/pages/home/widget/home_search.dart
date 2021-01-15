@@ -23,7 +23,7 @@ class _HomeSearchState extends State<HomeSearch> {
         ),
       ),
       padding: EdgeInsets.only(
-        top: 9.w,
+        top: 127.w + ScreenUtil().statusBarHeight,
         left: 32.w,
         right: 32.w,
         bottom: 17.w,
@@ -42,8 +42,7 @@ class _HomeSearchState extends State<HomeSearch> {
           ),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius:
-                BorderRadius.all(Radius.circular(36.w)),
+            borderRadius: BorderRadius.all(Radius.circular(36.w)),
           ),
           child: Row(children: [
             Icon(

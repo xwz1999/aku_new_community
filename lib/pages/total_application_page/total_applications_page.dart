@@ -31,7 +31,7 @@ class TotalApplicationsPage extends StatefulWidget {
 class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
   int _currentIndex = 0;
   bool isEdit = false;
-  List<String> _leftNav = ['为您推荐', '智慧管家', '商城购物'];
+  List<String> _leftNav = ['为您推荐', '智慧管家'];
 
   Widget _myApp() {
     return Container(
@@ -324,7 +324,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                   width: 172.w,
                   child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: 3,
+                      itemCount: _leftNav.length,
                       itemBuilder: (BuildContext context, int index) {
                         return _leftInkWellNav(index);
                       }),
