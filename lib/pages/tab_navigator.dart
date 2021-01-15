@@ -1,4 +1,4 @@
-import 'package:akuCommunity/utils/logger_view.dart';
+import 'package:akuCommunity/utils/logger/logger_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
