@@ -57,7 +57,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
               // ProductSpecs(),
               ProductEvaluate(
                 fun: () {
-                  Get.to(ViewCommentsPage());
+                  ViewCommentsPage().to();
                 },
               ),
               ProductDetail(

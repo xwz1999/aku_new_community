@@ -1,7 +1,8 @@
 import 'package:akuCommunity/utils/logger_card.dart';
 import 'package:akuCommunity/utils/logger_data.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LoggerFAB extends StatefulWidget {
   static openLogger(BuildContext context) {
@@ -52,7 +53,7 @@ class _LoggerFABState extends State<LoggerFAB> {
               setState(() {});
             },
             onTap: () {
-              Get.to(LoggerView());
+              LoggerView().to();
             },
             child: Container(
               decoration: BoxDecoration(

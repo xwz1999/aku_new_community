@@ -6,6 +6,8 @@ import 'package:akuCommunity/pages/setting_page/invite_page/invite_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
+
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/cupertino.dart';
@@ -85,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   );
                 },
               )
-            : Get.to(SignInPage());
+            : SignInPage().to();
       },
       child: userProvider.isSigned
           ? Container(
@@ -144,11 +146,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             _buildTile(
               title: '关于小蜜蜂智慧社区',
-              onTap: () => Get.to(AboutPage()),
+              onTap: () => AboutPage().to(),
             ),
             _buildTile(
               title: '邀请注册',
-              onTap: () => Get.to(InvitePage()),
+              onTap: () => InvitePage().to(),
             ),
           ].sepWidget(
               separate: Divider(
@@ -166,7 +168,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             _buildTile(
               title: '意见反馈',
-              onTap: () => Get.to(FeedBackPage()),
+              onTap: () => FeedBackPage().to(),
             ),
             _buildTile(
               title: '账号管理',

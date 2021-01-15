@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/widget/goods_specs_sheet.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
 
 class GoodsDetailsBottomBar extends StatefulWidget {
   final String itemid, itemtitle, itemprice, itempic;
@@ -112,7 +113,7 @@ class _GoodsDetailsBottomBarState extends State<GoodsDetailsBottomBar> {
                 ],
               ),
               onTap: () {
-                Get.to(MarketCartPage());
+                MarketCartPage().to();
               },
             ),
             SizedBox(width: 53.w),

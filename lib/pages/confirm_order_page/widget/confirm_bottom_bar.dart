@@ -36,7 +36,7 @@ class ConfirmBottomBar extends StatelessWidget {
   Widget _submit(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(PayOrderPage());
+        PayOrderPage().to();
       },
       child: Container(
         decoration: BoxDecoration(

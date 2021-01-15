@@ -40,7 +40,7 @@ class _CommunityIndexState extends State<CommunityIndex>
   }
 
   void noteCreateRouter() {
-    Get.to(NoteCreatePage());
+    NoteCreatePage().to();
   }
 
   List<Widget> _listActions() {

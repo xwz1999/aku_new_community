@@ -62,19 +62,19 @@ class _HomePageState extends State<HomePage>
 
   List<GridButton> _gridList = [
     GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
-      Get.to(OpenDoorPage());
+      OpenDoorPage().to();
     }),
     GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
-      Get.to(VisitorAccessPage());
+      VisitorAccessPage().to();
     }),
     GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      Get.to(FixedSubmitPage());
+      FixedSubmitPage().to();
     }),
     GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
-      Get.to(LifePayPage());
+      LifePayPage().to();
     }),
     GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
-      Get.to(IndustryCommitteePage());
+      IndustryCommitteePage().to();
     }),
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
       Get.to(ThingsPage(
@@ -89,10 +89,10 @@ class _HomePageState extends State<HomePage>
       ));
     }),
     GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
-      Get.to(ConvenientPhonePage());
+      ConvenientPhonePage().to();
     }),
     GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
-      Get.to(TotalApplicationsPage());
+      TotalApplicationsPage().to();
     }),
   ];
 

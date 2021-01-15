@@ -217,7 +217,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
   Widget _inkWellEnterMember(List<String> memberList) {
     return InkWell(
       onTap: () {
-        Get.to(MemberListPage());
+        MemberListPage().to();
       },
       child: Container(
         padding: EdgeInsets.only(bottom: 24.w),
@@ -245,8 +245,7 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
                   child: Text(
                     '已有${320}人参加',
                     style: TextStyle(
-                        fontSize: BaseStyle.fontSize28,
-                        color: ktextPrimary),
+                        fontSize: BaseStyle.fontSize28, color: ktextPrimary),
                   ),
                 ),
                 Icon(

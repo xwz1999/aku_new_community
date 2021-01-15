@@ -9,6 +9,7 @@ import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/net_util.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
@@ -38,7 +39,7 @@ class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin {
   List<GridButton> _manageGridList = [
     GridButton('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () {
-      Get.to(MineHousePage());
+      MineHousePage().to();
     }),
     GridButton('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () {
       Get.to(MineCarPage(
@@ -56,20 +57,20 @@ class _PersonalIndexState extends State<PersonalIndex>
       ));
     }),
     GridButton('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () {
-      Get.to(LifePayPage());
+      LifePayPage().to();
     }),
     GridButton('我的保修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () {
-      Get.to(FixedSubmitPage());
+      FixedSubmitPage().to();
     }),
     GridButton('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () {
-      Get.to(AddressPage());
+      AddressPage().to();
     }),
     GridButton('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () {}),
     GridButton('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () {
-      Get.to(VisitorAccessPage());
+      VisitorAccessPage().to();
     }),
     GridButton('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () {
-      Get.to(SettingsPage());
+      SettingsPage().to();
     }),
   ];
 
@@ -120,7 +121,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                   children: [
                     Spacer(),
                     Container(
-                      margin: EdgeInsets.only(top: 175.w, left: 32.w),
+                      margin: EdgeInsets.only(left: 32.w),
                       child: Row(
                         children: [
                           Container(
@@ -160,17 +161,34 @@ class _PersonalIndexState extends State<PersonalIndex>
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 38.w,
-                        left: 36.w,
-                        right: 36.w,
-                      ),
-                      child: Image.asset(
-                        'assets/images/member_bg.png',
-                        width: 678.w,
-                        height: 129.w,
-                      ),
+                    Stack(
+                      children: [
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: 41.w,
+                            width: double.infinity,
+                            child: CustomPaint(
+                              painter: UserBottomBarPainter(),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: 38.w,
+                            left: 36.w,
+                            right: 36.w,
+                            bottom: 18.w,
+                          ),
+                          child: Image.asset(
+                            R.ASSETS_IMAGES_MEMBER_BG_PNG,
+                            width: 678.w,
+                            height: 129.w,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

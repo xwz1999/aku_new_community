@@ -17,7 +17,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:get/get.dart';
 import 'widget/applications_bar.dart';
 
 class TotalApplicationsPage extends StatefulWidget {
@@ -126,7 +125,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         ).to;
                         break;
                       case '一键开门':
-                        Get.to(OpenDoorPage());
+                        OpenDoorPage().to();
                         break;
                       case '开门码':
                         OpeningCodePage().to();

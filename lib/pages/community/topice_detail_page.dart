@@ -80,7 +80,7 @@ class _TopiceDetailPageState extends State<TopiceDetailPage> {
               size: 40.sp,
             ),
             onPressed: () {
-              Get.to(NoteCreatePage());
+              NoteCreatePage().to();
             }));
   }
 
