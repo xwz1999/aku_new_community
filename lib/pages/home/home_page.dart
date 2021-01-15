@@ -4,6 +4,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
@@ -47,6 +48,9 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   @override
   bool get wantKeepAlive => true;
+
+  ScrollController _scrollController;
+  Color _bgColor;
 
   List<AkuShopModel> _shopList = [];
   List<dynamic> data;
@@ -102,6 +106,8 @@ class _HomePageState extends State<HomePage>
       akuShop(value);
     });
     // akuShop(page);
+    _scrollController = ScrollController();
+   
   }
 
   Future<void> akuShop(String response) async {
@@ -142,6 +148,8 @@ class _HomePageState extends State<HomePage>
     );
   }
 
+ 
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -149,47 +157,21 @@ class _HomePageState extends State<HomePage>
         designSize: Size(750, 1334), allowFontScaling: true);
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: 'TEST'.text.make(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        leading: Container(
-          margin: EdgeInsets.only(left: 32.w),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '深圳',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 24.sp,
-                    color: Color(0xff333333),
-                  ),
-                ),
-                Text(
-                  '阴 27℃',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    color: Color(0xff333333),
-                  ),
-                )
-              ]),
+      appBar: AnimateAppBar(
+        scrollController: _scrollController,
+        actions:[
+        _buildColButton(
+          icon: AntDesign.scan1,
+          title: '扫一扫',
+          onTap: () => Get.to(ScanPage()),
         ),
-        actions: [
-          _buildColButton(
-            icon: AntDesign.scan1,
-            title: '扫一扫',
-            onTap: () => Get.to(ScanPage()),
-          ),
-          _buildColButton(
-            icon: AntDesign.bells,
-            title: '消息',
-            onTap: () => Get.to(MessageCenterPage()),
-          ),
-          16.wb,
-        ],
+        _buildColButton(
+          icon: AntDesign.bells,
+          title: '消息',
+          onTap: () => Get.to(MessageCenterPage()),
+        ),
+        16.wb,
+      ],
       ),
       body: RefreshConfiguration(
         child: SmartRefresher(
@@ -200,6 +182,7 @@ class _HomePageState extends State<HomePage>
           enablePullUp: true,
           enablePullDown: false,
           child: CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverToBoxAdapter(
                 child: Column(
