@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/activities_page/member_list_page/member_list_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -263,13 +264,8 @@ class _ActivitiesDetailsPageState extends State<ActivitiesDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '活动详情',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '活动详情',
       body: Stack(
         children: [
           Container(

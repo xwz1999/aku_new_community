@@ -1,7 +1,9 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'widget/address_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddressPage extends StatefulWidget {
   AddressPage({Key key}) : super(key: key);
@@ -34,14 +36,14 @@ class _AddressPageState extends State<AddressPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '我的收货地址',
-          subtitle: '添加新地址',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '我的收货地址',
+      actions: [
+        InkWell(
+          onTap: () {},
+          child: '添加新地址'.text.black.size(24.sp).make(),
+        )
+      ],
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) => AddressItem(
           name: _addressInfoList[index]['name'],
