@@ -13,7 +13,6 @@ import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -141,7 +140,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                             },
                             child: Container(
                                 margin: EdgeInsets.only(left: 16.w),
-                                child: userProvider.isSigned
+                                child: userProvider.isLogin
                                     ? Text(
                                         'Cheailune',
                                         style: TextStyle(
