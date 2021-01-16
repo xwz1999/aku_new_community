@@ -1,22 +1,27 @@
-import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/pages/splash/splash_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
-import 'package:amap_map_fluttify/amap_map_fluttify.dart';
+import 'package:akuCommunity/utils/hive_store.dart';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ARoute.init(true);
+  await Hive.initFlutter();
+  await HiveStore.init();
   AmapLocation.instance.init(iosKey: 'ios key');
   DeveloperUtil.setDev(true);
   runApp(MyApp());
@@ -50,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.yellow,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: TabNavigator(),
+        home: SplashPage(),
         //国际化支持
         localizationsDelegates: [
           PickerLocalizationsDelegate.delegate,

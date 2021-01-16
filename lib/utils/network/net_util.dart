@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:akuCommunity/utils/logger/logger_data.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 
@@ -14,6 +13,8 @@ class NetUtil {
 
   factory NetUtil() => _netUtil;
 
+  Dio get dio => _dio;
+
   NetUtil._internal() {
     _logger = Logger(
         printer: PrettyPrinter(
@@ -21,7 +22,7 @@ class NetUtil {
       errorMethodCount: 4,
     ));
     BaseOptions options = BaseOptions(
-      baseUrl: API.host,
+      baseUrl: '${API.host}/app',
       connectTimeout: API.networkTimeOut,
       receiveTimeout: API.networkTimeOut,
       sendTimeout: API.networkTimeOut,
@@ -39,6 +40,7 @@ class NetUtil {
   Future<BaseModel> get(
     String path, {
     Map<String, dynamic> params,
+    bool showMessage = false,
   }) async {
     try {
       Response res = await _dio.get(path, queryParameters: params);
@@ -49,7 +51,33 @@ class NetUtil {
         'data': res.data,
       });
       LoggerData.addData(res);
-      return BaseModel.fromJson(res.data);
+      BaseModel baseModel = BaseModel.fromJson(res.data);
+      _parseRequestError(baseModel, showMessage: showMessage);
+      return baseModel;
+    } on DioError catch (e) {
+      _parseErr(e);
+    }
+    return BaseModel.err();
+  }
+
+  Future<BaseModel> post(
+    String path, {
+    Map<String, dynamic> params,
+    bool showMessage = false,
+  }) async {
+    try {
+      Response res = await _dio.post(path, data: params);
+      _logger.v({
+        'path': res.request.path,
+        'header': res.request.headers,
+        'params': res.request.queryParameters,
+        'data': res.data,
+      });
+      LoggerData.addData(res);
+      BaseModel baseModel = BaseModel.fromJson(res.data);
+      _parseRequestError(baseModel, showMessage: showMessage);
+
+      return baseModel;
     } on DioError catch (e) {
       _parseErr(e);
     }
@@ -82,29 +110,10 @@ class NetUtil {
         break;
     }
   }
-}
 
-class BaseModel {
-  int code;
-  String message;
-  dynamic data;
-  BaseModel({
-    this.code,
-    this.message,
-    this.data,
-  });
-
-  BaseModel.err({this.message = '未知错误', this.code = 0});
-
-  factory BaseModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-    return BaseModel(
-      code: map['code'] ?? 0,
-      message: map['message'] ?? '',
-      data: map['data'],
-    );
+  _parseRequestError(BaseModel model, {bool showMessage = false}) {
+    if (!model.status || showMessage) {
+      BotToast.showText(text: model.message);
+    }
   }
-
-  factory BaseModel.fromJson(String source) =>
-      BaseModel.fromMap(json.decode(source));
 }

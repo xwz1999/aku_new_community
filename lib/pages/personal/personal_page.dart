@@ -11,7 +11,7 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/net_util.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:flutter/material.dart';
@@ -137,8 +137,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                           ),
                           InkWell(
                             onTap: () {
-                              if (!userProvider.isSigned)
-                                ARoute.push(context, SignInPage());
+                              if (!userProvider.isSigned) SignInPage().to();
                             },
                             child: Container(
                                 margin: EdgeInsets.only(left: 16.w),
