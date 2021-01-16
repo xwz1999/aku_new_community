@@ -1,12 +1,11 @@
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/community/note_create_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/app_bar_action.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:get/get.dart';
 import 'widget/tab_list.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CommunityIndex extends StatefulWidget {
   CommunityIndex({Key key}) : super(key: key);
@@ -28,10 +27,6 @@ class _CommunityIndexState extends State<CommunityIndex>
     {'name': '我的', 'id': 'new'},
   ];
 
-  List<Map<String, dynamic>> actionsList = [
-    {'title': '消息', 'icon': AntDesign.bells, 'funtion': null}
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -44,12 +39,21 @@ class _CommunityIndexState extends State<CommunityIndex>
   }
 
   List<Widget> _listActions() {
-    return actionsList
-        .map((item) => AppBarAction(
-              title: item['title'],
-              icon: item['icon'],
-            ))
-        .toList();
+    return [
+      FlatButton(
+          minWidth: 48.w + 27.w * 2,
+          onPressed: () {},
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Icon(
+                CupertinoIcons.bell,
+                size: 48.w,
+              ),
+              '消息'.text.black.size(20.sp).make(),
+            ],
+          ))
+    ];
   }
 
   AppBar _appBar() {
@@ -103,16 +107,53 @@ class _CommunityIndexState extends State<CommunityIndex>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _appBar(),
-      floatingActionButton: _floatingActionButton(),
-      body: TabBarView(
-        controller: _tabController,
-        children: List.generate(
-          tabs.length,
-          (index) => TabList(index: index),
-        ),
+    return BeeScaffold(
+      title: '社区',
+      actions: _listActions(),
+      body: Column(
+        children: [
+          Material(
+            color: kForeGroundColor,
+            child: PreferredSize(
+              preferredSize: Size.fromHeight(kToolbarHeight),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  indicatorPadding: EdgeInsets.zero,
+                  controller: _tabController,
+                  isScrollable: true,
+                  indicatorColor: Color(0xffFFd000),
+                  indicatorWeight: 2.w,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  unselectedLabelStyle: TextStyle(
+                    color: Color(0xFF333333),
+                    fontSize: 28.sp,
+                  ),
+                  labelStyle: TextStyle(
+                    fontSize: 28.sp,
+                    color: Color(0xff333333),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  tabs: List.generate(
+                    tabs.length,
+                    (index) => Tab(
+                      text: tabs[index]['name'],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: List.generate(
+                tabs.length,
+                (index) => TabList(index: index),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
