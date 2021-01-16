@@ -10,5 +10,5 @@ class _Login {
   String get sendSMSCode => '/login/sendMMSLogin';
 
   /// 通过验证码短信登陆
-  String get loginBySMS => 'login/loginSMSUser';
+  String get loginBySMS => '/login/loginSMSUser';
 }

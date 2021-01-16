@@ -1,16 +1,15 @@
 import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +17,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
@@ -52,67 +51,62 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  InkWell _inkWellLogin() {
-    return InkWell(
-      onTap: () {
-        if (TextUtil.isEmpty(_phone.text))
-          BotToast.showText(text: '手机号不能为空');
-        else if (TextUtil.isEmpty(_code.text))
-          BotToast.showText(text: '验证码不能为空');
-        else {
-          showCupertinoDialog(
-            context: context,
-            builder: (context) {
-              return CupertinoAlertDialog(
-                title: Text('点击登录即表示您已阅读并同意'),
-                content: Text(
-                    '''点击登录即表示您已阅读并同意《小蜜蜂用户协议》《小蜜蜂隐私政策》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
-                actions: [
-                  CupertinoDialogAction(
-                    child: Text('同意'),
-                    onPressed: () {
-                      Future.delayed(
-                        Duration(milliseconds: 1000 + Random().nextInt(500)),
-                        () {
-                          Get.back();
-                          (_phone.text == '18067170899') &&
-                                  (_code.text == '123456')
-                              ? ARoute.push(context, UserAuthenticationPage())
-                              : BotToast.showText(text: '账号或密码错误！');
-                        },
-                      );
-                    },
-                  ),
-                  CupertinoDialogAction(
-                    child: Text('拒绝'),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-        }
+  Future<bool> _showLoginVerify() async {
+    return await showCupertinoDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text('点击登录即表示您已阅读并同意'),
+          content: Text(
+              '''点击登录即表示您已阅读并同意《小蜜蜂用户协议》《小蜜蜂隐私政策》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
+          actions: [
+            CupertinoDialogAction(
+              child: Text('同意'),
+              onPressed: () => Get.back(result: true),
+            ),
+            CupertinoDialogAction(
+              child: Text('拒绝'),
+              onPressed: () => Get.back(result: false),
+            ),
+          ],
+        );
       },
-      child: Container(
-        alignment: Alignment.center,
+    );
+  }
+
+  _parseLogin(bool result) async {
+    if (!result) return;
+    BotToast.showLoading();
+    Response response = await SignFunc.login(_phone.text, _code.text);
+
+    BotToast.cleanAll();
+    if (response.data['status']) {
+    } else {
+      BotToast.showText(text: response.data['message']);
+    }
+  }
+
+  Widget _inkWellLogin() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 80.w),
+      child: MaterialButton(
+        onPressed: () async {
+          if (TextUtil.isEmpty(_phone.text))
+            BotToast.showText(text: '手机号不能为空');
+          else if (TextUtil.isEmpty(_code.text))
+            BotToast.showText(text: '验证码不能为空');
+          else {
+            bool result = await _showLoginVerify();
+            _parseLogin(result);
+          }
+        },
         height: 89.w,
-        width: 586.w,
-        padding: EdgeInsets.only(top: 25.w, bottom: 24.w),
-        margin: EdgeInsets.symmetric(horizontal: 82.w),
-        decoration: BoxDecoration(
-          color: Color(0xffffc40c),
-          borderRadius: BorderRadius.all(Radius.circular(36)),
-        ),
-        child: Text(
-          '登录',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: BaseStyle.fontSize28,
-            color: ktextPrimary,
-          ),
-        ),
+        shape: StadiumBorder(),
+        elevation: 0,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        child: '登陆'.text.bold.size(28.sp).color(ktextPrimary).make(),
+        color: kPrimaryColor,
       ),
     );
   }
