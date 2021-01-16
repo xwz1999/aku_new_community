@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/splash/splash_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.yellow,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: TabNavigator(),
+        home: SplashPage(),
         //国际化支持
         localizationsDelegates: [
           PickerLocalizationsDelegate.delegate,

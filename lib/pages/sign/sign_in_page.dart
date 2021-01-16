@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
+import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/pages/sign/user_authentication_page.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/const/resource.dart';
@@ -182,107 +183,101 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar,
-      body: SingleChildScrollView(
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
         child: Container(
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Container(
-                color: Colors.white,
-                child: ListView(
-                  shrinkWrap: true,
+            color: Colors.white,
+            child: ListView(
+              children: [
+                153.hb,
+                _containerImage(),
+                16.hb,
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '欢迎登录小蜜蜂',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: BaseStyle.fontSize38,
+                        color: ktextPrimary),
+                  ),
+                ),
+                89.hb,
+                _buildTextField(
+                  hint: '请输入手机号',
+                  controller: _phone,
+                  prefix: Image.asset(
+                    R.ASSETS_IMAGES_PHONE_LOGO_PNG,
+                    height: 50.w,
+                    width: 50.w,
+                  ),
+                ),
+                26.hb,
+                _buildTextField(
+                  prefix: Image.asset(
+                    R.ASSETS_IMAGES_CODE_LOGO_PNG,
+                    height: 50.w,
+                    width: 50.w,
+                  ),
+                  hint: '请输入验证码',
+                  controller: _code,
+                  suffix: MaterialButton(
+                    height: 82.w,
+                    shape: StadiumBorder(),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    child: Text(
+                      _timer?.isActive ?? false
+                          ? '${60 - _timer.tick}'
+                          : '获取验证码',
+                      style: TextStyle(
+                        color: BaseStyle.color999999,
+                        fontSize: BaseStyle.fontSize28,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    onPressed: _canGetCode
+                        ? () {
+                            SignFunc.sendMessageCode(_phone.text);
+                            startTick();
+                          }
+                        : null,
+                  ),
+                ),
+                SizedBox(height: 59.w),
+                _inkWellLogin(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 153.w,
-                    ),
-                    _containerImage(),
-                    SizedBox(height: 16.w),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '欢迎登录小蜜蜂',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: BaseStyle.fontSize38,
-                            color: ktextPrimary),
-                      ),
-                    ),
-                    SizedBox(height: 89.w),
-                    _buildTextField(
-                      hint: '请输入手机号',
-                      controller: _phone,
-                      prefix: Image.asset(
-                        R.ASSETS_IMAGES_PHONE_LOGO_PNG,
-                        height: 50.w,
-                        width: 50.w,
-                      ),
-                    ),
-                    26.hb,
-                    _buildTextField(
-                      prefix: Image.asset(
-                        R.ASSETS_IMAGES_CODE_LOGO_PNG,
-                        height: 50.w,
-                        width: 50.w,
-                      ),
-                      hint: '请输入验证码',
-                      controller: _code,
-                      suffix: MaterialButton(
-                        height: 82.w,
-                        shape: StadiumBorder(),
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    FlatButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          ARoute.push(context, AgreementPage());
+                        },
                         child: Text(
-                          _timer?.isActive ?? false
-                              ? '${60 - _timer.tick}'
-                              : '获取验证码',
+                          '《小蜜蜂用户协议》',
                           style: TextStyle(
-                            color: BaseStyle.color999999,
-                            fontSize: BaseStyle.fontSize28,
-                            fontWeight: FontWeight.w500,
+                            color: Colors.lightBlue,
                           ),
-                        ),
-                        onPressed: _canGetCode
-                            ? () {
-                                startTick();
-                              }
-                            : null,
-                      ),
-                    ),
-                    SizedBox(height: 59.w),
-                    _inkWellLogin(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlatButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              ARoute.push(context, AgreementPage());
-                            },
-                            child: Text(
-                              '《小蜜蜂用户协议》',
-                              style: TextStyle(
-                                color: Colors.lightBlue,
-                              ),
-                            )),
-                        SizedBox(width: 15.w),
-                        FlatButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              ARoute.push(context, PrivacyPage());
-                            },
-                            child: Text(
-                              '《小蜜蜂隐私政策》',
-                              style: TextStyle(
-                                color: Colors.lightBlue,
-                              ),
-                            ))
-                      ],
-                    ),
+                        )),
+                    SizedBox(width: 15.w),
+                    FlatButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          ARoute.push(context, PrivacyPage());
+                        },
+                        child: Text(
+                          '《小蜜蜂隐私政策》',
+                          style: TextStyle(
+                            color: Colors.lightBlue,
+                          ),
+                        ))
                   ],
-                )),
-          ),
-        ),
+                ),
+              ],
+            )),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -15,6 +16,7 @@ class LoggerDioErr extends StatelessWidget {
       color: Colors.red[100],
       onPressed: () {},
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -31,6 +33,7 @@ class LoggerDioErr extends StatelessWidget {
               ),
             ],
           ),
+          error.response.headers['date'].first.toString().text.make(),
           error.message.text.sm.light.make(),
         ],
       ),
