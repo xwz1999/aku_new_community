@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -27,59 +28,7 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
     {'title': "#运动会", 'isSelect': false},
   ];
 
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Color(0xffffffff),
-      centerTitle: true,
-      title: Text(
-        '社区',
-        style: TextStyle(
-          fontSize: 36.sp,
-          color: Color(0xff333333),
-        ),
-      ),
-      leading: InkWell(
-        onTap: () => Get.back(),
-        child: Container(
-          padding: EdgeInsets.only(left: 32.w),
-          alignment: Alignment.center,
-          child: Text(
-            '取消',
-            style: TextStyle(
-              fontSize: 34.sp,
-              color: Color(0xff030303),
-            ),
-          ),
-        ),
-      ),
-      actions: [
-        Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(right: 32.w),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              height: 64.w,
-              width: 116.w,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Color(0xffffd000),
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
-              child: Text(
-                '发表',
-                style: TextStyle(
-                  fontSize: 34.sp,
-                  color: Color(0xff030303),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+ 
 
   Container _containerTextField() {
     return Container(
@@ -185,17 +134,17 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
             .keys
             .map((index) => index == 0
                 ? Container(
-                  padding: EdgeInsets.only(top: 10.w),
-                  width: 156.w,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    _themeList[index]['title'],
-                    style: TextStyle(
-                      fontSize: 34.sp,
-                      color: Color(0xff333333),
+                    padding: EdgeInsets.only(top: 10.w),
+                    width: 156.w,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      _themeList[index]['title'],
+                      style: TextStyle(
+                        fontSize: 34.sp,
+                        color: Color(0xff333333),
+                      ),
                     ),
-                  ),
-                )
+                  )
                 : InkWell(
                     onTap: () {
                       _themeList.forEach((item) {
@@ -237,8 +186,47 @@ class _NoteCreatePageState extends State<NoteCreatePage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
-    return Scaffold(
-      appBar: _appBar(),
+    return BeeScaffold(
+      title: '社区',
+      leading: InkWell(
+        onTap: () => Get.back(),
+        child: Container(
+          padding: EdgeInsets.only(left: 32.w),
+          alignment: Alignment.center,
+          child: Text(
+            '取消',
+            style: TextStyle(
+              fontSize: 34.sp,
+              color: Color(0xff030303),
+            ),
+          ),
+        ),
+      ),
+      actions: [
+        Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(right: 32.w),
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              height: 64.w,
+              width: 116.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Color(0xffffd000),
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+              ),
+              child: Text(
+                '发表',
+                style: TextStyle(
+                  fontSize: 34.sp,
+                  color: Color(0xff030303),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height -

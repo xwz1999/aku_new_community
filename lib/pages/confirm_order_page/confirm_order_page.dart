@@ -1,8 +1,8 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/confirm_address.dart';
 import 'widget/confirm_content.dart';
 import 'widget/confirm_bottom_bar.dart';
@@ -13,11 +13,8 @@ class ConfirmOrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(title: '确认订单'),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '确认订单',
       body: Stack(
         children: [
           ListView(

@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -16,16 +17,10 @@ class LifePayInfoPage extends StatefulWidget {
 }
 
 class _LifePayInfoPageState extends State<LifePayInfoPage> {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title:' ${widget.bundle.getMap('detailMap')['title']}明细',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: ' ${widget.bundle.getMap('detailMap')['title']}明细',
       body: Stack(
         children: [
           ListView(

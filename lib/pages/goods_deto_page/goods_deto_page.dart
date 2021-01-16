@@ -1,5 +1,6 @@
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -87,13 +88,8 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '物品出户',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '物品出户',
       body: Stack(
         children: [
           Padding(

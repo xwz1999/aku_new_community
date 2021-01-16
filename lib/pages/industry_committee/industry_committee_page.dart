@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/industry_committee/committee_mailbox/committee_mailbox_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -114,8 +115,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
     return Positioned(
       bottom: 0,
       child: Container(
-        height:
-            98.w + MediaQuery.of(context).viewPadding.bottom,
+        height: 98.w + MediaQuery.of(context).viewPadding.bottom,
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: _listBottom
@@ -133,13 +133,8 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '业委会',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '业委会',
       body: Stack(
         children: [
           StaffList(),

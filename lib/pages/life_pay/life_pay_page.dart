@@ -1,11 +1,13 @@
 import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_record_page/life_pay_record_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/order_card.dart';
 import 'widget/submit_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key key}) : super(key: key);
@@ -17,14 +19,20 @@ class LifePayPage extends StatefulWidget {
 class _LifePayPageState extends State<LifePayPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '生活缴费',
-          subtitle: '缴费记录',
+    return BeeScaffold(
+      title: '生活缴费',
+      actions: [
+        InkWell(
+          onTap: () {
+            LifePayRecordPage().to();
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            alignment: Alignment.center,
+            child: '缴费记录'.text.black.size(28.sp).make(),
+          ),
         ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+      ],
       body: Stack(
         children: [
           ListView(

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -52,12 +53,10 @@ class _FitupManagePageState extends State<FitupManagePage>
                 fontWeight: FontWeight.w600,
                 fontSize: BaseStyle.fontSize28,
               ),
-              labelPadding:
-                  EdgeInsets.symmetric(horizontal: (131.5).w),
+              labelPadding: EdgeInsets.symmetric(horizontal: (131.5).w),
               indicatorColor: Color(0xffffc40c),
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorPadding:
-                  EdgeInsets.symmetric(horizontal: 21.w),
+              indicatorPadding: EdgeInsets.symmetric(horizontal: 21.w),
               isScrollable: true,
               controller: _controller,
               tabs: List.generate(
@@ -73,13 +72,8 @@ class _FitupManagePageState extends State<FitupManagePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '装修管理',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '装修管理',
       body: NestedScrollView(
         headerSliverBuilder: _silverBuilder,
         body: TabBarView(
