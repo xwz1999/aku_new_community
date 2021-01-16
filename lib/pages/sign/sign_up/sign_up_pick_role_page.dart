@@ -1,8 +1,10 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -26,6 +28,8 @@ class _SignUpPickRolePageState extends State<SignUpPickRolePage> {
 
   @override
   Widget build(BuildContext context) {
+    final signUpProvider = Provider.of<SignUpProvider>(context);
+
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -51,7 +55,7 @@ class _SignUpPickRolePageState extends State<SignUpPickRolePage> {
         shape: StadiumBorder(),
         disabledColor: kPrimaryColor.withOpacity(0.3),
         child: '提交'.text.make(),
-        onPressed: () {},
+        onPressed: () => Get.to(SignUpSetNicknamePage()),
         elevation: 0,
       ).pLTRB(82.w, 0, 82.w, 155.w),
     );
