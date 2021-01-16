@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/base/assets_image.dart';
@@ -49,8 +50,7 @@ class _CertificationPageState extends State<CertificationPage> {
         children: [
           Text(
             '证件类型',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           Container(
@@ -81,8 +81,7 @@ class _CertificationPageState extends State<CertificationPage> {
         children: [
           Text(
             '上传证件照片',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           Row(
@@ -116,8 +115,7 @@ class _CertificationPageState extends State<CertificationPage> {
         children: [
           Text(
             title,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           CommonInput(inputController: controller, hintText: hintText)
@@ -151,13 +149,8 @@ class _CertificationPageState extends State<CertificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '实名认证',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '实名认证',
       body: Container(
         padding: EdgeInsets.only(
           top: 32.w,

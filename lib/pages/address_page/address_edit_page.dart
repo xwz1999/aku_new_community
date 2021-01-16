@@ -1,9 +1,11 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:get/get.dart';
 import 'widget/address_edit_item.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class AddressEditPage extends StatefulWidget {
   final Bundle bundle;
@@ -80,14 +82,20 @@ class _AddressEditPageState extends State<AddressEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '${widget.bundle.getMap('details')['title']}',
-          subtitle: '保存',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '${widget.bundle.getMap('details')['title']}',
+      actions: [
+        InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+              height: 98.w,
+              width: 48.w + 32.w * 2,
+              alignment: Alignment.center,
+              child: '保存'.text.color(Color(0xFFFFC40C)).size(24.sp).make()),
+        )
+      ],
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Container(

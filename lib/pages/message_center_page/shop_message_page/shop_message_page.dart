@@ -1,10 +1,9 @@
-import 'package:akuCommunity/pages/common/common_page.dart';
+// import 'package:akuCommunity/pages/common/common_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class ShopMessagePage extends StatefulWidget {
@@ -59,15 +58,15 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
     _refreshController.loadComplete();
   }
 
-  void refundRouter() {
-    CommonPage(
-      bundle: Bundle()
-        ..putMap('commentMap', {
-          'title': '退款详情',
-          'isActions': false,
-        }),
-    ).to;
-  }
+  // void refundRouter() {
+  //   CommonPage(
+  //     bundle: Bundle()
+  //       ..putMap('commentMap', {
+  //         'title': '退款详情',
+  //         'isActions': false,
+  //       }),
+  //   ).to;
+  // }
 
   void expressRouter() {}
 
@@ -80,7 +79,7 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
   InkWell _inkWellLook(String type, content, lookType) {
     return InkWell(
       onTap: () {
-        lookType == '查看详情' ? refundRouter() : expressRouter();
+        // lookType == '查看详情' ? refundRouter() : expressRouter();
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
