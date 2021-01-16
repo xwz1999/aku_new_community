@@ -1,4 +1,3 @@
-import 'package:akuCommunity/utils/logger/logger_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,9 +27,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 300), () {
-      if (mounted) LoggerFAB.openLogger(context);
-    });
+
     _pages = [
       HomePage(),
       // MarketPage(),

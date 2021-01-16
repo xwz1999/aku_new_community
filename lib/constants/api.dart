@@ -11,4 +11,10 @@ class _Login {
 
   /// 通过验证码短信登陆
   String get loginBySMS => '/login/loginSMSUser';
+
+  /// 查询楼栋ID
+  String get buildingInfo => '/login/findAllBuildingIAN';
+
+  ///查询单元ID
+  String get unitInfo => '/login/findEstateIANByBuilding';
 }

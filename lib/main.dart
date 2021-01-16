@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/splash/splash_page.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => CartProvidde()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => SignUpProvider()),
       ],
       child: GetMaterialApp(
         title: '智慧社区',

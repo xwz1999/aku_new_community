@@ -1,4 +1,5 @@
 import 'package:akuCommunity/utils/hive_store.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -12,8 +13,9 @@ class UserProvider extends ChangeNotifier {
 
   bool _isLogin = false;
   bool get isLogin => _isLogin;
-  setLogin(bool state, String token) {
-    _isLogin = state;
+  setLogin(String token) {
+    _isLogin = true;
+    NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
     HiveStore.appBox.put('token', token);
     notifyListeners();
   }
@@ -21,8 +23,13 @@ class UserProvider extends ChangeNotifier {
   logout() {
     _isLogin = false;
     _token = null;
+    NetUtil().dio.options.headers.remove('App-Admin-Token');
     HiveStore.appBox.delete('token');
     notifyListeners();
+  }
+
+  updateProfile() async {
+    // await
   }
 
   String _token;

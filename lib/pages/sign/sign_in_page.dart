@@ -6,6 +6,10 @@ import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart
 import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
+import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
@@ -18,6 +22,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
@@ -76,14 +81,27 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   _parseLogin(bool result) async {
+    final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
+    final signUpProvider =
+        Provider.of<SignUpProvider>(Get.context, listen: false);
     if (!result) return;
-    BotToast.showLoading();
+    CancelFunc cancel = BotToast.showLoading();
     Response response = await SignFunc.login(_phone.text, _code.text);
 
-    BotToast.cleanAll();
     if (response.data['status']) {
+      if (response.data['choose'] == 1) {
+        userProvider.setLogin(response.data['token'] as String);
+
+        Get.offAll(TabNavigator());
+      } else {
+        cancel();
+        signUpProvider.setTel(_phone.text);
+        await Get.to(SignUpPickPlotPage());
+        signUpProvider.clearAll();
+      }
     } else {
       BotToast.showText(text: response.data['message']);
+      cancel();
     }
   }
 
@@ -92,6 +110,7 @@ class _SignInPageState extends State<SignInPage> {
       padding: EdgeInsets.symmetric(horizontal: 80.w),
       child: MaterialButton(
         onPressed: () async {
+          FocusScope.of(context).unfocus();
           if (TextUtil.isEmpty(_phone.text))
             BotToast.showText(text: '手机号不能为空');
           else if (TextUtil.isEmpty(_code.text))
