@@ -1,7 +1,12 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_verify_page.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
@@ -12,6 +17,14 @@ class SignUpSetNicknamePage extends StatefulWidget {
 }
 
 class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
+  GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  TextEditingController _textEditingController = TextEditingController();
+  @override
+  void dispose() {
+    _textEditingController?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +35,22 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
           signUpTitle('设置昵称'),
           190.hb,
           '请输入您的昵称'.text.size(32.sp).color(ktextPrimary).make(),
-          TextField(
-            decoration: InputDecoration(
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD8D8D8)),
+          Form(
+            key: _globalKey,
+            child: TextFormField(
+              controller: _textEditingController,
+              validator: (value) {
+                if (TextUtil.isEmpty(value))
+                  return '昵称不能为空';
+                else
+                  return null;
+              },
+              decoration: InputDecoration(
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFFD8D8D8)),
+                ),
+                hintText: '为保护个人隐私，在与邻居交流时将显示昵称',
               ),
-              hintText: '为保护个人隐私，在与邻居交流时将显示昵称',
             ),
           ),
         ],
@@ -42,7 +65,14 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
             height: 89.w,
             child: '保存'.text.make(),
             shape: StadiumBorder(),
-            onPressed: () {},
+            onPressed: () {
+              if (_globalKey.currentState.validate()) {
+                final signUpProvider =
+                    Provider.of<SignUpProvider>(context, listen: false);
+                signUpProvider.setNickName(_textEditingController.text);
+                Get.to(SignUpVerifyPage());
+              }
+            },
           ),
           MaterialButton(
             elevation: 0,

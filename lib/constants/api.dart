@@ -3,6 +3,7 @@ class API {
   static String get resource => '$host/static';
   static const int networkTimeOut = 10000;
   static _Login login = _Login();
+  static _User user = _User();
 }
 
 class _Login {
@@ -17,4 +18,12 @@ class _Login {
 
   ///查询单元ID
   String get unitInfo => '/login/findEstateIANByBuilding';
+
+  /// app用户注册
+  String get signUp => '/login/register';
+}
+
+class _User {
+  ///用户资料
+  String get userProfile => '/user/personalData/findPersonalData';
 }

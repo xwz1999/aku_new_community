@@ -54,12 +54,16 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _containerQuit() {
+  Widget _quitButton() {
     final userProvider = Provider.of<UserProvider>(context);
-    return InkWell(
-      onTap: () {
-        userProvider.isSigned
-            ? showCupertinoModalPopup(
+    return userProvider.isLogin
+        ? MaterialButton(
+            elevation: 0,
+            color: Colors.white,
+            height: 96.w,
+            child: '退出当前账号'.text.color(ktextPrimary).size(32.sp).bold.make(),
+            onPressed: () {
+              showCupertinoModalPopup(
                 context: context,
                 builder: (context) {
                   return CupertinoActionSheet(
@@ -73,8 +77,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                         ),
                         onPressed: () {
-                          userProvider.setisSigned(false);
-                          Get.back();
+                          userProvider.logout();
+                          Get.offAll(SignInPage());
                         },
                       ),
                     ],
@@ -86,47 +90,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   );
                 },
-              )
-            : SignInPage().to();
-      },
-      child: userProvider.isSigned
-          ? Container(
-              color: Colors.white,
-              height: 96.w,
-              padding: EdgeInsets.only(
-                top: 26.w,
-                bottom: 25.w,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                '退出当前帐号',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: BaseStyle.fontSize32,
-                  color: ktextPrimary,
-                ),
-              ),
-            )
-          : Container(
-              alignment: Alignment.center,
-              height: 89.w,
-              width: 586.w,
-              padding: EdgeInsets.only(top: 25.w, bottom: 24.w),
-              margin: EdgeInsets.symmetric(horizontal: 82.w),
-              decoration: BoxDecoration(
-                color: Color(0xffffc40c),
-                borderRadius: BorderRadius.all(Radius.circular(36)),
-              ),
-              child: Text(
-                '登录',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: BaseStyle.fontSize28,
-                  color: ktextPrimary,
-                ),
-              ),
-            ),
-    );
+              );
+            },
+          )
+        : SizedBox();
   }
 
   @override
@@ -210,8 +177,8 @@ class _SettingsPageState extends State<SettingsPage> {
             thickness: 1.w,
             height: 1.w,
           )),
-          50.hb,
-          _containerQuit(),
+          53.hb,
+          _quitButton(),
         ],
       ),
     );

@@ -35,7 +35,6 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController();
   TextEditingController _code = new TextEditingController();
-  AppBar get _appBar => AppBar(elevation: 0, backgroundColor: Colors.white);
 
   Timer _timer;
   bool get validPhone => RegexUtil.isMobileSimple(_phone.text);
@@ -90,8 +89,7 @@ class _SignInPageState extends State<SignInPage> {
 
     if (response.data['status']) {
       if (response.data['choose'] == 1) {
-        userProvider.setLogin(response.data['token'] as String);
-
+        userProvider.setLogin(response.data['token']);
         Get.offAll(TabNavigator());
       } else {
         cancel();
@@ -195,7 +193,6 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _appBar,
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {

@@ -28,8 +28,6 @@ class _SignUpPickRolePageState extends State<SignUpPickRolePage> {
 
   @override
   Widget build(BuildContext context) {
-    final signUpProvider = Provider.of<SignUpProvider>(context);
-
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 32.w),

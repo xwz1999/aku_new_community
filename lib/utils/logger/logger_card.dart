@@ -1,4 +1,5 @@
 import 'package:akuCommunity/utils/logger/logger_dio_err.dart';
+import 'package:akuCommunity/utils/logger/logger_dio_success.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,7 @@ class LoggerCard extends StatelessWidget {
 
   Widget _buildResponse() {
     Response response = data;
-    return Card(
-      child: Column(
-        children: [
-          Text(response.statusCode.toString()),
-        ],
-      ),
-    );
+    return LoggerDioSuccess(response: response);
   }
 
   Widget _getLoggerView() {
