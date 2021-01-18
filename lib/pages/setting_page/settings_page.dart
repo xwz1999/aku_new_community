@@ -1,6 +1,7 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/pages/setting_page/about_page/about_page.dart';
+import 'package:akuCommunity/pages/setting_page/account_manager_page.dart';
 import 'package:akuCommunity/pages/setting_page/feedback_page/feedback_page.dart';
 import 'package:akuCommunity/pages/setting_page/invite_page/invite_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
@@ -135,39 +136,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             _buildTile(
               title: '意见反馈',
-              onTap: () => FeedBackPage().to(),
+              onTap: FeedBackPage().to,
             ),
             _buildTile(
               title: '账号管理',
-              onTap: () {
-                showCupertinoModalPopup(
-                  context: context,
-                  builder: (context) {
-                    return CupertinoActionSheet(
-                      message: Text('退出注销当前账号'),
-                      actions: [
-                        CupertinoButton(
-                          child: Text(
-                            '确定',
-                            style: TextStyle(
-                              color: Colors.red.withOpacity(0.7),
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.offAll(SignInPage());
-                          },
-                        ),
-                      ],
-                      cancelButton: CupertinoButton(
-                        child: Text('取消'),
-                        onPressed: () {
-                          Get.back();
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
+              onTap: AccountManagerPage().to,
             ),
           ].sepWidget(
               separate: Divider(

@@ -85,11 +85,6 @@ class _PersonalIndexState extends State<PersonalIndex>
     GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
     GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
   ];
-  @override
-  void initState() {
-    super.initState();
-    NetUtil().get('test');
-  }
 
   SliverAppBar _sliverAppBar(double height) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -252,41 +247,41 @@ class _PersonalIndexState extends State<PersonalIndex>
         physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         slivers: <Widget>[
           _sliverAppBar(_statusHeight),
-          SliverToBoxAdapter(
-            child: _containerBar('我的订单'),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.only(top: 10.w),
-              color: BaseStyle.colorf9f9f9,
-              child: GridButtons(
-                gridList: _orderList,
-                crossCount: 5,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
-              child: Divider(
-                color: Color(0xffd8d8d8),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: _containerBar('我的团购'),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: BaseStyle.colorf9f9f9,
-              margin: EdgeInsets.only(top: 10.w),
-              alignment: Alignment.center,
-              child: GridButtons(
-                gridList: _groupOrderList,
-                crossCount: 5,
-              ),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: _containerBar('我的订单'),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: Container(
+          //     margin: EdgeInsets.only(top: 10.w),
+          //     color: BaseStyle.colorf9f9f9,
+          //     child: GridButtons(
+          //       gridList: _orderList,
+          //       crossCount: 5,
+          //     ),
+          //   ),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: Container(
+          //     margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
+          //     child: Divider(
+          //       color: Color(0xffd8d8d8),
+          //     ),
+          //   ),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: _containerBar('我的团购'),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: Container(
+          //     color: BaseStyle.colorf9f9f9,
+          //     margin: EdgeInsets.only(top: 10.w),
+          //     alignment: Alignment.center,
+          //     child: GridButtons(
+          //       gridList: _groupOrderList,
+          //       crossCount: 5,
+          //     ),
+          //   ),
+          // ),
           SliverToBoxAdapter(
             child: SingleAdSpace(
               imagePath: 'assets/example/guanggao7.png',

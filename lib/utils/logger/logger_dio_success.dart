@@ -22,7 +22,7 @@ class LoggerDioSuccess extends StatelessWidget {
               5.wb,
               response.request.path.text.bold.make().expand(),
               Chip(
-                backgroundColor: Colors.redAccent,
+                backgroundColor: Colors.green,
                 label: Text(response?.statusCode?.toString() ?? 'UNKNOW'),
               ),
               5.wb,

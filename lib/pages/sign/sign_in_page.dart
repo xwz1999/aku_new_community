@@ -90,6 +90,7 @@ class _SignInPageState extends State<SignInPage> {
     if (response.data['status']) {
       if (response.data['choose'] == 1) {
         userProvider.setLogin(response.data['token']);
+        cancel();
         Get.offAll(TabNavigator());
       } else {
         cancel();
