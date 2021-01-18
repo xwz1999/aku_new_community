@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+//TODO Please remove those sh*t code.
 class ExpandableText extends StatefulWidget {
   final String text;
   final int maxLines;

@@ -98,7 +98,8 @@ class _LoggerViewState extends State<LoggerView> {
       actions: [
         IconButton(icon: Icon(Icons.list), onPressed: () {}),
       ],
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(height: 1, thickness: 1),
         itemBuilder: (context, index) =>
             LoggerCard(data: LoggerData.data[index]),
         itemCount: LoggerData.data.length,

@@ -4,7 +4,6 @@ import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -30,6 +29,7 @@ class UserProvider extends ChangeNotifier {
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
+    NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio.options.headers.remove('App-Admin-Token');
     HiveStore.appBox.delete('token');
     notifyListeners();

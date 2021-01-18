@@ -12,7 +12,6 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -74,18 +73,18 @@ class _PersonalIndexState extends State<PersonalIndex>
     }),
   ];
 
-  List<GridButton> _orderList = [
-    GridButton('待付款', R.ASSETS_ICONS_USER_ICON_DFK_PNG, () {}),
-    GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
-    GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
-    GridButton('待评价', R.ASSETS_ICONS_USER_ICON_DPJ_PNG, () {}),
-    GridButton('售后', R.ASSETS_ICONS_USER_ICON_SH_PNG, () {}),
-  ];
+  // List<GridButton> _orderList = [
+  //   GridButton('待付款', R.ASSETS_ICONS_USER_ICON_DFK_PNG, () {}),
+  //   GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
+  //   GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
+  //   GridButton('待评价', R.ASSETS_ICONS_USER_ICON_DPJ_PNG, () {}),
+  //   GridButton('售后', R.ASSETS_ICONS_USER_ICON_SH_PNG, () {}),
+  // ];
 
-  List<GridButton> _groupOrderList = [
-    GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
-    GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
-  ];
+  // List<GridButton> _groupOrderList = [
+  //   GridButton('待发货', R.ASSETS_ICONS_USER_ICON_DFH_PNG, () {}),
+  //   GridButton('待收货', R.ASSETS_ICONS_USER_ICON_DSH_PNG, () {}),
+  // ];
 
   SliverAppBar _sliverAppBar(double height) {
     final userProvider = Provider.of<UserProvider>(context);

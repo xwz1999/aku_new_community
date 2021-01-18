@@ -12,7 +12,6 @@ class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
   _AnimateAppBarState createState() => _AnimateAppBarState();
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(56);
 }
 

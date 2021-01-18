@@ -10,7 +10,7 @@ import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:ani_route/ani_route.dart';
+import 'package:akuCommunity/utils/logger/logger_data.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
@@ -86,6 +86,7 @@ class _SignInPageState extends State<SignInPage> {
     if (!result) return;
     CancelFunc cancel = BotToast.showLoading();
     Response response = await SignFunc.login(_phone.text, _code.text);
+    LoggerData.addData(response);
 
     if (response.data['status']) {
       if (response.data['choose'] == 1) {

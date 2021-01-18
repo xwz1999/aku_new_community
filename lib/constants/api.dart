@@ -32,4 +32,7 @@ class _User {
 
   ///设置用户生日
   String get setBirthday => '/user/personalData/updateBirthday';
+
+  ///用户退出登陆
+  String get logout => '/user/signOut';
 }

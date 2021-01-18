@@ -102,9 +102,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   Future<bool> requestPermission() async {
     var status = await Permission.photos.status;
     if (status.isUndetermined) {
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.photos,
-      ].request();
+      await [Permission.photos].request();
     }
     return status.isGranted;
   }
@@ -127,6 +125,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
 }
 
 //Hero 动画组件
+// ignore: must_be_immutable
 class GalleryExampleItemThumbnail extends StatelessWidget {
   GalleryExampleItemThumbnail({Key key, this.galleryExampleItem, this.onTap})
       : super(key: key);

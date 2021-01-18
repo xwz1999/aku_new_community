@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage>
   bool get wantKeepAlive => true;
 
   ScrollController _scrollController;
-  Color _bgColor;
 
   List<AkuShopModel> _shopList = [];
   List<dynamic> data;
