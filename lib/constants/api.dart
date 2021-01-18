@@ -38,4 +38,7 @@ class _User {
 
   ///修改用户昵称
   String get updateNickName =>'/user/personalData/updateNickName';
+
+  ///修改用户手机号
+  String get updateTel =>'/user/personalData/updateTel';
 }

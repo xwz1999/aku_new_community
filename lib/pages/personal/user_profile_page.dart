@@ -1,5 +1,6 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/personal/change_nick_name_page.dart';
+import 'package:akuCommunity/pages/personal/update_tel_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -78,7 +79,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           _buildTile(
             '手机号',
             TextUtil.hideNumber(userProvider.userInfoModel.tel).text.make(),
-            onPressed: () {},
+            onPressed: () {
+              UpdateTelPage().to();
+            },
           ),
           _buildTile(
             '性别',

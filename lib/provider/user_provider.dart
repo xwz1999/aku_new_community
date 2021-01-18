@@ -86,4 +86,17 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  //修改手机号
+  Future updateTel(String oldTel, String newTel, String code) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.user.updateTel,
+      params: {'oldTel': oldTel, 'newTel': newTel, 'code': code},
+      showMessage: true,
+    );
+    if (baseModel.status) {
+      _userInfoModel.tel = newTel;
+      notifyListeners();
+    }
+  }
 }

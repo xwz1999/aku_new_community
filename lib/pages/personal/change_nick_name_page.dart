@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:random_character/random_character.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ChangeNickName extends StatefulWidget {
@@ -49,6 +48,10 @@ class _ChangeNickNameState extends State<ChangeNickName> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
                   hintText: '${userProvider.userInfoModel.nickName}',
+                   hintStyle: TextStyle(
+                    color: Color(0xFF999999),
+                    fontSize: 34.sp
+                  ),
                   border: UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: Color(0xFFEEEEEE),
