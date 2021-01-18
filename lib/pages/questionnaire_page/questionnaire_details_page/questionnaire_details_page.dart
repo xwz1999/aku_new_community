@@ -1,10 +1,10 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class QuestionnaireDetailsPage extends StatefulWidget {
@@ -71,7 +71,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
 
   Widget _questionCard(String title, List<Map<String, dynamic>> optionList) {
     return Container(
-      margin: EdgeInsets.only(top:64.w),
+      margin: EdgeInsets.only(top: 64.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -95,7 +95,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left:15.w),
+                          margin: EdgeInsets.only(left: 15.w),
                           width: MediaQuery.of(context).size.width / 2.35,
                           child: Row(
                             children: [
@@ -109,8 +109,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                                 size: 32.w,
                               ),
                               Container(
-                                margin: EdgeInsets.only(
-                                    left: 16.w),
+                                margin: EdgeInsets.only(left: 16.w),
                                 width: MediaQuery.of(context).size.width / 3.2,
                                 child: Text(
                                   item['title'],
@@ -138,10 +137,7 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
 
   Widget _containerTextField() {
     return Container(
-      padding: EdgeInsets.only(
-          top: 24.w,
-          left: 24.w,
-          right: 32.w),
+      padding: EdgeInsets.only(top: 24.w, left: 24.w, right: 32.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(6)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -206,13 +202,8 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '问卷调查',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '问卷调查',
       body: Container(
         color: Colors.white,
         child: Stack(
@@ -266,14 +257,11 @@ class _QuestionnaireDetailsPageState extends State<QuestionnaireDetailsPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(
-                        top: 80.w,
-                        bottom: 24.w),
+                    margin: EdgeInsets.only(top: 80.w, bottom: 24.w),
                     child: Text(
                       '您的觉得我们需要改进的地方',
                       style: TextStyle(
-                          fontSize: BaseStyle.fontSize28,
-                          color: ktextPrimary),
+                          fontSize: BaseStyle.fontSize28, color: ktextPrimary),
                     ),
                   ),
                   _containerTextField(),

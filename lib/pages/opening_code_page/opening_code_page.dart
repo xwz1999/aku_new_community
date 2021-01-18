@@ -1,9 +1,9 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class OpeningCodePage extends StatefulWidget {
   OpeningCodePage({Key key}) : super(key: key);
@@ -15,13 +15,8 @@ class OpeningCodePage extends StatefulWidget {
 class _OpeningCodePageState extends State<OpeningCodePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '开门码',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '开门码',
       body: Container(
         color: Color(0xfff9f9f9),
         child: ListView(

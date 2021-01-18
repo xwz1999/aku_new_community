@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/personal/refund_apply_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -18,27 +19,7 @@ class RefundSelectPage extends StatefulWidget {
 }
 
 class _RefundSelectPageState extends State<RefundSelectPage> {
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: BaseStyle.colorffd000,
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: 40.sp),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      centerTitle: true,
-      title: Text(
-        '选择服务类型',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: BaseStyle.fontSize32,
-          color: ktextPrimary,
-        ),
-      ),
-    );
-  }
+  
 
   Container _containerContentList(List<Map<String, dynamic>> listContent) {
     return Container(
@@ -88,8 +69,14 @@ class _RefundSelectPageState extends State<RefundSelectPage> {
         'isRight': true
       }
     ];
-    return Scaffold(
-      appBar: _appBar(),
+    return BeeScaffold(
+      leading: IconButton(
+        icon: Icon(AntDesign.left, size: 40.sp),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+      title: '选择服务类型',
       body: ListView(
         children: [
           SizedBox(height: 24.w),

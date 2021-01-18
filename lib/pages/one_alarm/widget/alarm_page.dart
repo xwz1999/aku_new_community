@@ -1,12 +1,15 @@
+import 'package:akuCommunity/pages/one_alarm/widget/explain_template.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
+import 'package:flutter_beautiful_popup/main.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class PermissionUtil {
   static Future<bool> getLocationPermission() async {
@@ -26,12 +29,48 @@ class _AlarmPageState extends State<AlarmPage> {
     show: true,
     myLocationType: MyLocationType.Locate,
   );
-  Future<void> _makephonenum(String url)async{
-    (await canLaunch(url))?await launch(url):throw 'Could not launch $url';
+  Future<void> _makephonenum(String url) async {
+    (await canLaunch(url)) ? await launch(url) : throw 'Could not launch $url';
   }
 
   AmapController _amapController;
   Location _location;
+
+  void showExplain(BuildContext context) {
+    final popup = BeautifulPopup.customize(
+      context: context,
+      build: (options) => ExplainTemplate(options),
+    );
+    popup.show(
+        title: Text(
+          '功能说明',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 32.sp,
+            color: Color(0xff15c0ec),
+          ),
+        ),
+        content: Text(
+          '点击“呼叫110”后,您可以直接拨打本地110。页面中提供了您当前所在位置,以便您与警方沟通。(GPS信号弱时，位置可能存在偏移)',
+          style: TextStyle(
+            fontSize: 28.sp,
+            color: Color(0xff666666),
+          ),
+        ),
+        actions: [
+          MaterialButton(
+            color: Color(0xff15c0ec),
+            textColor: Colors.white,
+            shape: RoundedRectangleBorder(
+                side: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(50))),
+            child: Text('关闭'),
+            onPressed: Navigator.of(context).pop,
+          )
+        ],
+        close: SizedBox());
+  }
+
   @override
   void initState() {
     super.initState();
@@ -49,14 +88,20 @@ class _AlarmPageState extends State<AlarmPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '一键报警',
-          subtitle: '功能说明',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '一键报警',
+      actions: [
+        InkWell(
+          onTap: () {
+            showExplain(context);
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            child: '全部已读'.text.black.size(28.sp).make(),
+            alignment: Alignment.center,
+          ),
+        )
+      ],
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -90,9 +135,7 @@ class _AlarmPageState extends State<AlarmPage> {
                     children: [
                       SizedBox(height: 24.w),
                       Container(
-                        margin: EdgeInsets.only(
-                            top: 24.w,
-                            left: 32.w),
+                        margin: EdgeInsets.only(top: 24.w, left: 32.w),
                         child: Text(
                           '当前位置(仅供参考)',
                           style: TextStyle(
@@ -102,9 +145,7 @@ class _AlarmPageState extends State<AlarmPage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(
-                            top: 20.w,
-                            left: 32.w),
+                        margin: EdgeInsets.only(top: 20.w, left: 32.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -114,8 +155,7 @@ class _AlarmPageState extends State<AlarmPage> {
                               size: 29.sp,
                             ),
                             Container(
-                              margin:
-                                  EdgeInsets.only(left: 5.w),
+                              margin: EdgeInsets.only(left: 5.w),
                               child: Text(
                                 (_location == null)
                                     ? '加载中……'
@@ -140,8 +180,7 @@ class _AlarmPageState extends State<AlarmPage> {
                     width: 66.w,
                     height: 66.w,
                     decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(66.w),
+                        borderRadius: BorderRadius.circular(66.w),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Color(0x1F000000),
@@ -153,12 +192,10 @@ class _AlarmPageState extends State<AlarmPage> {
                     child: FlatButton(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(66.w)),
+                          borderRadius: BorderRadius.circular(66.w)),
                       color: Color(0xFFFFFFFF),
                       onPressed: () {
-                        _amapController?.setCenterCoordinate(
-                            _location.latLng);
+                        _amapController?.setCenterCoordinate(_location.latLng);
                         Future.delayed(Duration(milliseconds: 500), () {
                           if (mounted) _amapController.setZoomLevel(16);
                         });
@@ -193,8 +230,8 @@ class _AlarmPageState extends State<AlarmPage> {
                         width: 196.w,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(196.w)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(196.w)),
                         ),
                         child: Container(
                           height: 172.w,
@@ -205,8 +242,8 @@ class _AlarmPageState extends State<AlarmPage> {
                               end: Alignment.topLeft,
                               colors: [Color(0xffef0909), Color(0xffff8880)],
                             ),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(172.w)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(172.w)),
                             boxShadow: <BoxShadow>[
                               BoxShadow(
                                 color: Color(0xfffd7770).withOpacity(0.33),
@@ -218,8 +255,7 @@ class _AlarmPageState extends State<AlarmPage> {
                           ),
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    172.w)),
+                                borderRadius: BorderRadius.circular(172.w)),
                             onPressed: () {
                               setState(() {
                                 _makephonenum('tel:110');

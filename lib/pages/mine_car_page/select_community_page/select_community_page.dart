@@ -1,10 +1,10 @@
 import 'package:akuCommunity/pages/mine_car_page/select_parking_page/select_parking_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class SelectCommunityPage extends StatefulWidget {
   SelectCommunityPage({Key key}) : super(key: key);
@@ -18,13 +18,8 @@ class _SelectCommunityPageState extends State<SelectCommunityPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '选择小区',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '选择小区',
       body: ListView(
         children: [
           Container(

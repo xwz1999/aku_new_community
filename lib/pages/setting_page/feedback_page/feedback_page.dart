@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
@@ -101,13 +102,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '意见反馈',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '意见反馈',
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -137,13 +138,8 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '${widget.bundle.getMap('details')['title']}',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '${widget.bundle.getMap('details')['title']}',
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,

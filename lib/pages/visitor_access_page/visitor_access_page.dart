@@ -1,11 +1,13 @@
+import 'package:akuCommunity/pages/visitor_access_page/visitor_record_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/common_input.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key key}) : super(key: key);
@@ -35,8 +37,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         children: [
           Text(
             '来访房屋',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 32.w),
           Container(
@@ -120,8 +121,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         children: [
           Text(
             title,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           CommonInput(inputController: controller, hintText: hintText)
@@ -184,8 +184,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         children: [
           Text(
             '访客性别',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 32.w),
           Container(
@@ -229,8 +228,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           children: [
             Text(
               '到访时间',
-              style: TextStyle(
-                  fontSize: 28.sp, color: Color(0xff333333)),
+              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
             ),
             SizedBox(height: 32.w),
             Container(
@@ -291,22 +289,27 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         ),
         child: Text(
           '通行证只在到访当天单次有效,逾期或超次需要重新生成',
-          style: TextStyle(
-              fontSize: 20.sp, color: Color(0xff999999)),
+          style: TextStyle(fontSize: 20.sp, color: Color(0xff999999)),
         ),
       ),
     );
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '访客通行',
-          subtitle: '访客记录',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '访客通行',
+      actions: [
+        InkWell(
+          onTap: () {
+            VisitorRecordPage().to;
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            child: '访客记录'.text.black.size(28.sp).make(),
+            alignment: Alignment.center,
+          ),
+        )
+      ],
       body: Container(
         color: Colors.white,
         child: ListView(

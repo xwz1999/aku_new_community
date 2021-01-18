@@ -1,12 +1,12 @@
 import 'package:akuCommunity/pages/message_center_page/comment_message_page/comment_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/shop_message_page/shop_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message_page/system_message_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key key}) : super(key: key);
@@ -51,14 +51,18 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '消息中心',
-          subtitle: '全部已读',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '消息中心',
+      actions: [
+        InkWell(
+          onTap: () {},
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            child: '全部已读'.text.black.size(28.sp).make(),
+            alignment: Alignment.center,
+          ),
+        )
+      ],
       body: Container(
         color: Colors.white,
         child: ListView(

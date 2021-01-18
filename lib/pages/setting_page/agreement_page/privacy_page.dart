@@ -1,4 +1,5 @@
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyPage extends StatefulWidget {
@@ -10,17 +11,15 @@ class PrivacyPage extends StatefulWidget {
 class _PrivacyPageState extends State<PrivacyPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('隐私政策'),
-      ),
+    return BeeScaffold(
+      title: '隐私政策',
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.sp),
         child: Column(
-          children: [Text(
+          children: [
+            Text(
               '小蜜蜂智慧社区隐私政策',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: 35.w),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 35.w),
             ),
             Text(
               '''
