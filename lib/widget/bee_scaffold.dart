@@ -13,13 +13,15 @@ class BeeScaffold extends StatefulWidget {
   final Color bgColor;
   final List<Widget> actions;
   final Widget leading;
+  final Widget bottomNavi;
   BeeScaffold(
       {Key key,
       @required this.title,
       this.body,
       this.actions,
       this.leading,
-      this.bgColor})
+      this.bgColor,
+      this.bottomNavi})
       : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class _BeeScaffoldState extends State<BeeScaffold> {
         actions: widget.actions,
       ),
       body: widget.body,
+      bottomNavigationBar: widget.bottomNavi,
     );
   }
 }

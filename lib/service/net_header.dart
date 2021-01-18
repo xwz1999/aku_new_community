@@ -1,6 +1,3 @@
-import 'package:akuCommunity/utils/sp_key.dart';
-import 'package:akuCommunity/utils/sp_util.dart';
-
 class NetHeader {
   /// 自定义Header
   static String appID = 'MOBILE-APP-ZNY';
@@ -9,8 +6,4 @@ class NetHeader {
     'AppID': appID,
     'AppSecret': appSecret,
   };
-  static Future<Map<String, dynamic>> getZnToken() async {
-    String znToken = await SpUtil.getString(SpKey.zntoken);
-    return {'Authorization': znToken ?? ''};
-  }
 }
