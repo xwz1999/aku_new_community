@@ -4,6 +4,7 @@ class API {
   static const int networkTimeOut = 10000;
   static _Login login = _Login();
   static _User user = _User();
+  static _Manager manager = _Manager();
 }
 
 class _Login {
@@ -35,4 +36,8 @@ class _User {
 
   ///用户退出登陆
   String get logout => '/user/signOut';
+}
+
+class _Manager {
+  String get commiteeStaff => '/ownersCommittee/findAll';
 }
