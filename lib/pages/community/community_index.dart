@@ -56,41 +56,41 @@ class _CommunityIndexState extends State<CommunityIndex>
     ];
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      title: Text("社区"),
-      centerTitle: true,
-      actions: _listActions(),
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            indicatorColor: Color(0xffFFd000),
-            labelColor: Color(0xff000000),
-            unselectedLabelColor: Color(0xFF3A5160).withOpacity(0.5),
-            indicatorWeight: 2.0,
-            indicatorSize: TabBarIndicatorSize.label,
-            labelStyle: TextStyle(
-              fontSize: 28.sp,
-              color: Color(0xff333333),
-              fontWeight: FontWeight.w600,
-            ),
-            tabs: List.generate(
-              tabs.length,
-              (index) => Tab(
-                text: tabs[index]['name'],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // AppBar _appBar() {
+  //   return AppBar(
+  //     backgroundColor: Colors.white,
+  //     elevation: 0,
+  //     title: Text("社区"),
+  //     centerTitle: true,
+  //     actions: _listActions(),
+  //     bottom: PreferredSize(
+  //       preferredSize: Size.fromHeight(kToolbarHeight),
+  //       child: Align(
+  //         alignment: Alignment.centerLeft,
+  //         child: TabBar(
+  //           controller: _tabController,
+  //           isScrollable: true,
+  //           indicatorColor: Color(0xffFFd000),
+  //           labelColor: Color(0xff000000),
+  //           unselectedLabelColor: Color(0xFF3A5160).withOpacity(0.5),
+  //           indicatorWeight: 2.0,
+  //           indicatorSize: TabBarIndicatorSize.label,
+  //           labelStyle: TextStyle(
+  //             fontSize: 28.sp,
+  //             color: Color(0xff333333),
+  //             fontWeight: FontWeight.w600,
+  //           ),
+  //           tabs: List.generate(
+  //             tabs.length,
+  //             (index) => Tab(
+  //               text: tabs[index]['name'],
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   FloatingActionButton _floatingActionButton() {
     return FloatingActionButton(

@@ -5,7 +5,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
   GoodsInfoCardButton({Key key}) : super(key: key);

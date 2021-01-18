@@ -5,7 +5,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class DetoCodePage extends StatelessWidget {
   const DetoCodePage({Key key}) : super(key: key);

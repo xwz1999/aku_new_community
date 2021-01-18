@@ -4,7 +4,6 @@ import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class LoggerFAB extends StatefulWidget {
   static openLogger(BuildContext context) {

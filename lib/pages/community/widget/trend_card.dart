@@ -39,49 +39,49 @@ class _TrendCardState extends State<TrendCard> {
     _isLike = widget.isLike ?? false;
   }
 
-  void _showDialog(String url) {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text(
-            '是否$url\?',
-            style: TextStyle(
-              fontSize: 34.sp,
-              color: Color(0xff030303),
-            ),
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: Text(
-                '取消',
-                style: TextStyle(
-                  fontSize: 34.sp,
-                  color: Color(0xff333333),
-                ),
-              ),
-              onPressed: () {
-                Get.back();
-              },
-            ),
-            CupertinoDialogAction(
-              child: Text(
-                '确定',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 34.sp,
-                  color: Color(0xffff8200),
-                ),
-              ),
-              onPressed: () {
-                Get.back();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showDialog(String url) {
+  //   showCupertinoDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return CupertinoAlertDialog(
+  //         title: Text(
+  //           '是否$url\?',
+  //           style: TextStyle(
+  //             fontSize: 34.sp,
+  //             color: Color(0xff030303),
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           CupertinoDialogAction(
+  //             child: Text(
+  //               '取消',
+  //               style: TextStyle(
+  //                 fontSize: 34.sp,
+  //                 color: Color(0xff333333),
+  //               ),
+  //             ),
+  //             onPressed: () {
+  //               Get.back();
+  //             },
+  //           ),
+  //           CupertinoDialogAction(
+  //             child: Text(
+  //               '确定',
+  //               style: TextStyle(
+  //                 fontWeight: FontWeight.w600,
+  //                 fontSize: 34.sp,
+  //                 color: Color(0xffff8200),
+  //               ),
+  //             ),
+  //             onPressed: () {
+  //               Get.back();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   TextStyle _textStyleName() {
     return TextStyle(

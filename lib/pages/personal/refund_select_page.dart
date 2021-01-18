@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:get/get.dart';
 import 'widget/refund_shop_card.dart';

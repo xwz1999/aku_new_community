@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class RecordItem extends StatefulWidget {
   final bool isQRCode;

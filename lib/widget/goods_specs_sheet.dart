@@ -181,63 +181,63 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
     );
   }
 
-  Widget _paddingSelect(String title, List<Map<String, dynamic>> selectList) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 52.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: Color(0xff333333),
-              fontSize: 28.sp,
-            ),
-          ),
-          SizedBox(height: 20.w),
-          Wrap(
-            spacing: 30.w,
-            runSpacing: 20.w,
-            children: selectList
-                .map((item) => InkWell(
-                      onTap: () {
-                        selectList.forEach((item) {
-                          item['isSelect'] = false;
-                        });
-                        setState(() {
-                          item['isSelect'] = true;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: item['isSelect']
-                                ? Color(0xfffff8e4)
-                                : Color(0xffffffff),
-                            border: Border.all(
-                                color: item['isSelect']
-                                    ? Color(0xffffc40c)
-                                    : Color(0xff979797),
-                                width: 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(4))),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 32.w,
-                          vertical: 15.w,
-                        ),
-                        child: Text(
-                          item['title'],
-                          style: TextStyle(
-                            fontSize: 28.sp,
-                            color: Color(0xff333333),
-                          ),
-                        ),
-                      ),
-                    ))
-                .toList(),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _paddingSelect(String title, List<Map<String, dynamic>> selectList) {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(horizontal: 52.w),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           title,
+  //           style: TextStyle(
+  //             color: Color(0xff333333),
+  //             fontSize: 28.sp,
+  //           ),
+  //         ),
+  //         SizedBox(height: 20.w),
+  //         Wrap(
+  //           spacing: 30.w,
+  //           runSpacing: 20.w,
+  //           children: selectList
+  //               .map((item) => InkWell(
+  //                     onTap: () {
+  //                       selectList.forEach((item) {
+  //                         item['isSelect'] = false;
+  //                       });
+  //                       setState(() {
+  //                         item['isSelect'] = true;
+  //                       });
+  //                     },
+  //                     child: Container(
+  //                       decoration: BoxDecoration(
+  //                           color: item['isSelect']
+  //                               ? Color(0xfffff8e4)
+  //                               : Color(0xffffffff),
+  //                           border: Border.all(
+  //                               color: item['isSelect']
+  //                                   ? Color(0xffffc40c)
+  //                                   : Color(0xff979797),
+  //                               width: 0.5),
+  //                           borderRadius: BorderRadius.all(Radius.circular(4))),
+  //                       padding: EdgeInsets.symmetric(
+  //                         horizontal: 32.w,
+  //                         vertical: 15.w,
+  //                       ),
+  //                       child: Text(
+  //                         item['title'],
+  //                         style: TextStyle(
+  //                           fontSize: 28.sp,
+  //                           color: Color(0xff333333),
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ))
+  //               .toList(),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _paddingNum() {
     return Padding(

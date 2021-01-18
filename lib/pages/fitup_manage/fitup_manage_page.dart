@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/sliver_app_bar_delegate.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/owner_manage.dart';
 import 'widget/director_manage.dart';
 

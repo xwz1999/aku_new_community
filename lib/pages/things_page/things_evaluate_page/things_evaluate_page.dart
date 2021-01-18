@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class ThingsEvaluatePage extends StatefulWidget {

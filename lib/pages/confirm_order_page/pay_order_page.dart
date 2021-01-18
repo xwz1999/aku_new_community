@@ -7,7 +7,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class PayOrderPage extends StatelessWidget {
   final Bundle bundle;

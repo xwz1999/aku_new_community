@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/activity_card.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class ActivitiesPage extends StatefulWidget {
   final Bundle bundle;

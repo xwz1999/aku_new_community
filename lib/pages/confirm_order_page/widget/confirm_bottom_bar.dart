@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:get/get.dart';
 
 class ConfirmBottomBar extends StatelessWidget {
   final Map cartMap;

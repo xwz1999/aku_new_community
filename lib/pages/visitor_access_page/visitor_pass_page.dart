@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class VisitorPassPage extends StatefulWidget {
   VisitorPassPage({Key key}) : super(key: key);

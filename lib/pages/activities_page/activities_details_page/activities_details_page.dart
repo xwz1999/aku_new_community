@@ -11,7 +11,6 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class ActivitiesDetailsPage extends StatefulWidget {
   final Bundle bundle;

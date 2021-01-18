@@ -5,7 +5,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/widget/common_image_picker.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/common_radio.dart';
 import 'widget/common_picker.dart';
 

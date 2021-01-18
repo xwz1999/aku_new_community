@@ -3,11 +3,8 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/goods_info_card.dart';
 
 class GoodsDetoPage extends StatefulWidget {

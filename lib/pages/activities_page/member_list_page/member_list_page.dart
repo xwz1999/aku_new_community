@@ -5,7 +5,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class MemberListPage extends StatefulWidget {
   MemberListPage({Key key}) : super(key: key);
