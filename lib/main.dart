@@ -4,7 +4,6 @@ import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
-import 'package:ani_route/ani_route.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +19,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ARoute.init(true);
   await Hive.initFlutter();
   await HiveStore.init();
   AmapLocation.instance.init(iosKey: 'ios key');

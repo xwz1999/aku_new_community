@@ -46,6 +46,7 @@ class UserProvider extends ChangeNotifier {
   UserInfoModel _userInfoModel;
   UserInfoModel get userInfoModel => _userInfoModel;
 
+  ///设置性别
   Future setSex(int sex) async {
     BaseModel baseModel = await NetUtil().post(
       API.user.setSex,
@@ -58,6 +59,7 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  ///设置生日
   Future setBirthday(DateTime date) async {
     BaseModel baseModel = await NetUtil().post(
       API.user.setBirthday,
@@ -68,5 +70,10 @@ class UserProvider extends ChangeNotifier {
       _userInfoModel.birthday = date.toIso8601String();
       notifyListeners();
     }
+  }
+
+  //修改昵称
+  Future setName(String name) async {
+    //TODO set name
   }
 }

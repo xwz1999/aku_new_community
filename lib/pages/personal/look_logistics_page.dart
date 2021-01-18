@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -114,8 +112,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
                                 size: BaseStyle.fontSize28,
                               ),
                               Container(
-                                margin:
-                                    EdgeInsets.only(top: 8.w),
+                                margin: EdgeInsets.only(top: 8.w),
                                 child: Text(
                                   '物流投诉',
                                   style: TextStyle(
@@ -158,8 +155,7 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
               child: Text(
                 '中通快递 3072035702394120',
                 style: TextStyle(
-                    fontSize: BaseStyle.fontSize22,
-                    color: ktextPrimary),
+                    fontSize: BaseStyle.fontSize22, color: ktextPrimary),
               ),
             ),
             SizedBox(
@@ -282,26 +278,27 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
   }
 
   Widget _body() {
-    return FlutterMap(
-      options: MapOptions(
-        center: LatLng(22.3817, 114.05),
-        zoom: 13,
-        maxZoom: 15,
-      ),
-      layers: [
-        TileLayerOptions(
-            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png"),
-        MarkerLayerOptions(markers: [
-          Marker(
-              point: LatLng(22.3817, 114.05),
-              builder: (ctx) => Icon(
-                    Icons.location_on,
-                    color: Colors.blue,
-                    size: 48.0,
-                  ),
-              height: 60),
-        ]),
-      ],
-    );
+    return SizedBox();
+    // return FlutterMap(
+    //   options: MapOptions(
+    //     center: LatLng(22.3817, 114.05),
+    //     zoom: 13,
+    //     maxZoom: 15,
+    //   ),
+    //   layers: [
+    //     TileLayerOptions(
+    //         urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png"),
+    //     MarkerLayerOptions(markers: [
+    //       Marker(
+    //           point: LatLng(22.3817, 114.05),
+    //           builder: (ctx) => Icon(
+    //                 Icons.location_on,
+    //                 color: Colors.blue,
+    //                 size: 48.0,
+    //               ),
+    //           height: 60),
+    //     ]),
+    //   ],
+    // );
   }
 }
