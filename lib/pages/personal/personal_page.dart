@@ -136,13 +136,13 @@ class _PersonalIndexState extends State<PersonalIndex>
                           ),
                           InkWell(
                             onTap: () {
-                              if (!userProvider.isSigned) SignInPage().to();
+                              if (!userProvider.isLogin) SignInPage().to();
                             },
                             child: Container(
                                 margin: EdgeInsets.only(left: 16.w),
                                 child: userProvider.isLogin
                                     ? Text(
-                                        'Cheailune',
+                                        userProvider.userInfoModel.nickName,
                                         style: TextStyle(
                                           fontSize: 32.sp,
                                           color: Color(0xffad8940),

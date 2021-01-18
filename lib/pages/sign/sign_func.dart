@@ -1,8 +1,14 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/pick_building_model.dart';
+import 'package:akuCommunity/model/user/user_info_model.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:provider/provider.dart';
 
 class SignFunc {
   static Future sendMessageCode(String phone) async {
@@ -37,5 +43,27 @@ class SignFunc {
     return (model.data as List)
         .map((e) => PickBuildingModel.fromJson(e))
         .toList();
+  }
+
+  ///注册
+  static Future<bool> signUp() async {
+    final signUpProvider =
+        Provider.of<SignUpProvider>(Get.context, listen: false);
+    final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
+    Response response = await NetUtil().dio.post(
+          API.login.signUp,
+          data: signUpProvider.toMap,
+        );
+    BotToast.showText(text: response.data['message']);
+    if (response.data['status']) {
+      userProvider.setLogin(response.data['token']);
+      return true;
+    } else
+      return false;
+  }
+
+  static Future<UserInfoModel> getUserInfo() async {
+    BaseModel baseModel = await NetUtil().get(API.user.userProfile);
+    return UserInfoModel.fromJson(baseModel.data);
   }
 }
