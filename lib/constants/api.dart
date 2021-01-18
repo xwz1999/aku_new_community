@@ -26,4 +26,10 @@ class _Login {
 class _User {
   ///用户资料
   String get userProfile => '/user/personalData/findPersonalData';
+
+  ///设置用户性别
+  String get setSex => '/user/personalData/updateSex';
+
+  ///设置用户生日
+  String get setBirthday => '/user/personalData/updateBirthday';
 }

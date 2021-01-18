@@ -70,7 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   return CupertinoActionSheet(
                     message: Text('退出当前账号'),
                     actions: [
-                      CupertinoButton(
+                      CupertinoDialogAction(
                         child: Text(
                           '确定',
                           style: TextStyle(
@@ -83,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         },
                       ),
                     ],
-                    cancelButton: CupertinoButton(
+                    cancelButton: CupertinoDialogAction(
                       child: Text('取消'),
                       onPressed: () {
                         Get.back();

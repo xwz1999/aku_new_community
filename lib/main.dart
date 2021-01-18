@@ -53,10 +53,7 @@ class _MyAppState extends State<MyApp> {
       child: GetMaterialApp(
         title: '智慧社区',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.yellow,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        theme: ThemeData(primarySwatch: Colors.yellow),
         home: SplashPage(),
         //国际化支持
         localizationsDelegates: [

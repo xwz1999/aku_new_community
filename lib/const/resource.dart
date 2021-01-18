@@ -1,8 +1,8 @@
 /// Generate by [resource_generator](https://github.com/CaiJingLong/flutter_resource_generator) library.
 /// PLEASE DO NOT EDIT MANUALLY.
 class R {
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/agreement.pdf)
-  static const String ASSETS_AGREEMENT_PDF = 'assets/agreement.pdf';
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/.DS_Store)
+  static const String ASSETS__DS_STORE = 'assets/.DS_Store';
 
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/example/QR_code.png)
   static const String ASSETS_EXAMPLE_QR_CODE_PNG = 'assets/example/QR_code.png';

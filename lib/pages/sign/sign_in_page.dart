@@ -264,9 +264,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     FlatButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {
-                          ARoute.push(context, AgreementPage());
-                        },
+                        onPressed: AgreementPage().to,
                         child: Text(
                           '《小蜜蜂用户协议》',
                           style: TextStyle(
@@ -276,9 +274,7 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(width: 15.w),
                     FlatButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {
-                          ARoute.push(context, PrivacyPage());
-                        },
+                        onPressed: PrivacyPage().to,
                         child: Text(
                           '《小蜜蜂隐私政策》',
                           style: TextStyle(

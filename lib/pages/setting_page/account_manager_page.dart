@@ -28,7 +28,7 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
                   return CupertinoActionSheet(
                     message: Text('注销当前账号'),
                     actions: [
-                      CupertinoButton(
+                      CupertinoDialogAction(
                         child: Text(
                           '确定',
                           style: TextStyle(
@@ -40,11 +40,9 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
                         },
                       ),
                     ],
-                    cancelButton: CupertinoButton(
+                    cancelButton: CupertinoDialogAction(
                       child: Text('取消'),
-                      onPressed: () {
-                        Get.back();
-                      },
+                      onPressed: Get.back,
                     ),
                   );
                 },
