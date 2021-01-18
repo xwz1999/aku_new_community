@@ -4,6 +4,7 @@ class API {
   static const int networkTimeOut = 10000;
   static _Login login = _Login();
   static _User user = _User();
+  static _Manager manager = _Manager();
 }
 
 class _Login {
@@ -41,4 +42,8 @@ class _User {
 
   ///修改用户手机号
   String get updateTel =>'/user/personalData/updateTel';
+}
+
+class _Manager {
+  String get commiteeStaff => '/ownersCommittee/findAll';
 }

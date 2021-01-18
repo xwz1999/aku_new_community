@@ -1,4 +1,5 @@
 import 'package:akuCommunity/utils/logger/logger_data.dart';
+import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
@@ -37,6 +38,9 @@ class NetUtil {
     _dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
   }
 
+  /// ## alias of Dio().get
+  ///
+  /// GET method
   Future<BaseModel> get(
     String path, {
     Map<String, dynamic> params,
@@ -60,6 +64,11 @@ class NetUtil {
     return BaseModel.err();
   }
 
+  /// ## alias of Dio().post
+  ///
+  /// POST method
+  ///
+  /// only work with JSON.
   Future<BaseModel> post(
     String path, {
     Map<String, dynamic> params,
@@ -82,6 +91,27 @@ class NetUtil {
       _parseErr(e);
     }
     return BaseModel.err();
+  }
+
+  Future<BaseListModel> getList(
+    String path, {
+    Map<String, dynamic> params,
+  }) async {
+    try {
+      Response res = await _dio.get(path, queryParameters: params);
+      _logger.v({
+        'path': res.request.path,
+        'header': res.request.headers,
+        'params': res.request.queryParameters,
+        'data': res.data,
+      });
+      LoggerData.addData(res);
+      BaseListModel baseListModel = BaseListModel.fromJson(res.data);
+      return baseListModel;
+    } on DioError catch (e) {
+      _parseErr(e);
+    }
+    return BaseListModel.err();
   }
 
   _parseErr(DioError err) {
