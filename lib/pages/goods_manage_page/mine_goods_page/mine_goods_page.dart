@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -207,13 +208,8 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '我的借还物品',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '我的借还物品',
       body: RefreshConfiguration(
         child: SmartRefresher(
           controller: _refreshController,

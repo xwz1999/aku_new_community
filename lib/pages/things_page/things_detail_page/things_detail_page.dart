@@ -1,12 +1,13 @@
 import 'package:akuCommunity/pages/things_page/things_evaluate_page/things_evaluate_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import '../widget/image_grid.dart';
 import 'widget/goods_info_card.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ThingsDetailPage extends StatefulWidget {
   final Bundle bundle;
@@ -101,14 +102,20 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '查看详情',
-          subtitle: widget.bundle.getMap('things')['isRepair'] ? '' : '评价',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '查看详情',
+      actions: [
+        widget.bundle.getMap('things')['isRepair']
+            ? SizedBox()
+            : InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+                  child: '评价'.text.black.size(28.sp).make(),
+                  alignment: Alignment.center,
+                ),
+              )
+      ],
       body: Container(
         color: Colors.white,
         child: Stack(

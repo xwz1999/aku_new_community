@@ -1,10 +1,11 @@
 // import 'package:akuCommunity/pages/common/common_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ShopMessagePage extends StatefulWidget {
   ShopMessagePage({Key key}) : super(key: key);
@@ -176,14 +177,18 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '商城通知',
-          subtitle: '清空',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '商城通知',
+      actions: [
+        InkWell(
+          onTap: () {},
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            child: '清空'.text.black.size(28.sp).make(),
+            alignment: Alignment.center,
+          ),
+        )
+      ],
       body: RefreshConfiguration(
         hideFooterWhenNotFull: true,
         child: SmartRefresher(

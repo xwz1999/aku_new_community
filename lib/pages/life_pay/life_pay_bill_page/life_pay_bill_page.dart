@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -37,20 +38,12 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '账单详情',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '账单详情',
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.only(
-                top: 32.w,
-                left: 32.w,
-                right: 32.w),
+            margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(6)),

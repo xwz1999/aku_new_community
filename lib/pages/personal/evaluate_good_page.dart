@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -25,28 +26,6 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
     {'radioName': '差评', 'isCheck': false}
   ];
 
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.white,
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: 40.sp),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      centerTitle: true,
-      title: Text(
-        '发表评价',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: BaseStyle.fontSize32,
-          color: ktextPrimary,
-        ),
-      ),
-    );
-  }
-
   Container _containerContentList(List<Map<String, dynamic>> listContent) {
     return Container(
       child: Column(
@@ -73,8 +52,8 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
         children: [
           Text(
             '描述相符',
-            style: TextStyle(
-                fontSize: BaseStyle.fontSize28, color: ktextPrimary),
+            style:
+                TextStyle(fontSize: BaseStyle.fontSize28, color: ktextPrimary),
           ),
           SizedBox(width: 34.w),
           Row(
@@ -168,18 +147,15 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
 
   Container _containerAddImage() {
     return Container(
-      padding: EdgeInsets.only(
-          left: 36.w,
-          right: 36.w,
-          top: 32.w,
-          bottom: 24.w),
+      padding:
+          EdgeInsets.only(left: 36.w, right: 36.w, top: 32.w, bottom: 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             '添加图片信息(0/9)',
-            style: TextStyle(
-                fontSize: BaseStyle.fontSize28, color: ktextPrimary),
+            style:
+                TextStyle(fontSize: BaseStyle.fontSize28, color: ktextPrimary),
           ),
           SizedBox(height: 24.w),
           InkWell(
@@ -228,8 +204,14 @@ class _EvaluateGoodPageState extends State<EvaluateGoodPage> {
   @override
   Widget build(BuildContext context) {
     double _statusHeight = MediaQuery.of(context).padding.top;
-    return Scaffold(
-      appBar: _appBar(),
+    return BeeScaffold(
+      leading: IconButton(
+        icon: Icon(AntDesign.left, size: 40.sp),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+      title: '发表评价',
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height -

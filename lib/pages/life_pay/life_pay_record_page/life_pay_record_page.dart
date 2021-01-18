@@ -1,10 +1,9 @@
 import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/record_card.dart';
 
 class LifePayRecordPage extends StatefulWidget {
@@ -36,7 +35,6 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
     _refreshController.loadComplete();
   }
 
-
   @override
   void dispose() {
     super.dispose();
@@ -45,13 +43,8 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '缴费记录',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '缴费记录',
       body: RefreshConfiguration(
         hideFooterWhenNotFull: true,
         child: SmartRefresher(

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -33,27 +34,6 @@ class _InvoicePageState extends State<InvoicePage> {
     });
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Color(0xffffffff),
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: 40.sp),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      centerTitle: true,
-      title: Text(
-        '开具发票',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 32.sp,
-          color: Color(0xff333333),
-        ),
-      ),
-    );
-  }
 
   Container _containerInvoiceDetailCheck() {
     return Container(
@@ -231,9 +211,15 @@ class _InvoicePageState extends State<InvoicePage> {
       );
     }
 
-    return Scaffold(
+    return BeeScaffold(
       key: _scaffoldKey,
-      appBar: _appBar(),
+      title: '开具发票',
+      leading:IconButton(
+        icon: Icon(AntDesign.left, size: 40.sp),
+        onPressed: () {
+          Get.back();
+        },
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: 1334.w,

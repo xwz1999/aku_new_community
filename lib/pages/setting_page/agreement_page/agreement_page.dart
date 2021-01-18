@@ -1,4 +1,5 @@
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class AgreementPage extends StatefulWidget {
@@ -9,18 +10,15 @@ class AgreementPage extends StatefulWidget {
 class _AgreementPageState extends State<AgreementPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('用户协议'),
-      ),
+    return BeeScaffold(
+      title: '用户协议',
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.w),
         child: Column(
           children: [
             Text(
               '《用户协议》',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: 35.w),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 35.w),
             ),
             Text(
               '''

@@ -1,6 +1,7 @@
 import 'package:akuCommunity/utils/logger/logger_card.dart';
 import 'package:akuCommunity/utils/logger/logger_data.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -88,13 +89,11 @@ class _LoggerViewState extends State<LoggerView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: 'Logger'.text.make(),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: () {}),
-        ],
-      ),
+    return BeeScaffold(
+      title: 'Logger',
+      actions: [
+        IconButton(icon: Icon(Icons.list), onPressed: () {}),
+      ],
       body: ListView.builder(
         itemBuilder: (context, index) =>
             LoggerCard(data: LoggerData.data[index]),

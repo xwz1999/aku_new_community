@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -20,28 +21,6 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
   TextEditingController _refundContent = new TextEditingController();
 
   String hintText = '选填';
-
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: BaseStyle.colorffd000,
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: 40.sp),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      centerTitle: true,
-      title: Text(
-        '申请退款',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: BaseStyle.fontSize32,
-          color: ktextPrimary,
-        ),
-      ),
-    );
-  }
 
   Container _containerContentList(List<Map<String, dynamic>> listContent) {
     return Container(
@@ -178,8 +157,14 @@ class _RefundApplyPageState extends State<RefundApplyPage> {
       {'title': '退款原因', 'subtitle': '请选择', 'fun': null, 'isRight': true},
       {'title': '退款方式', 'subtitle': '物业上门取件', 'fun': null, 'isRight': false}
     ];
-    return Scaffold(
-      appBar: _appBar(),
+    return BeeScaffold(
+      title: '申请退款',
+      leading: IconButton(
+        icon: Icon(AntDesign.left, size: 40.sp),
+        onPressed: () {
+          Get.back();
+        },
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height -

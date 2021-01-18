@@ -1,7 +1,7 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/widget/common_input.dart';
 
 class HouseAuthenticatePage extends StatefulWidget {
@@ -61,13 +61,8 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '房屋认证',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '房屋认证',
       body: Container(
         color: Colors.white,
         child: SingleChildScrollView(

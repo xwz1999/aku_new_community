@@ -1,7 +1,7 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 
 class SystemDetailsPage extends StatelessWidget {
@@ -10,13 +10,8 @@ class SystemDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '查看详情',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '查看详情',
       body: Container(
         color: Colors.white,
         child: ListView(

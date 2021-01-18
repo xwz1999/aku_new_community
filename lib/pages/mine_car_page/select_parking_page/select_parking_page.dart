@@ -1,8 +1,8 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
 
 class SelectParkingPage extends StatefulWidget {
   final Bundle bundle;
@@ -15,13 +15,8 @@ class SelectParkingPage extends StatefulWidget {
 class _SelectParkingPageState extends State<SelectParkingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '车位列表',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '车位列表',
       body: ListView(
         children: [
           Container(

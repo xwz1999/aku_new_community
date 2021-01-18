@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/personal/refund_select_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:extended_text/extended_text.dart';
@@ -18,28 +19,6 @@ class OrderDetailsPage extends StatefulWidget {
 }
 
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: BaseStyle.colorffd000,
-      leading: IconButton(
-        icon: Icon(AntDesign.left, size: 40.sp),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-      centerTitle: true,
-      title: Text(
-        '订单详情',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: BaseStyle.fontSize32,
-          color: ktextPrimary,
-        ),
-      ),
-    );
-  }
-
   Container _containerHeader(String status) {
     return Container(
       width: double.infinity,
@@ -459,8 +438,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   @override
   Widget build(BuildContext context) {
     double statusHeight = MediaQuery.of(context).padding.top;
-    return Scaffold(
-      appBar: _appBar(),
+    return BeeScaffold(
+      leading: IconButton(
+        icon: Icon(AntDesign.left, size: 40.sp),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+      title: '订单详情',
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height -

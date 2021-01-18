@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_details_page/questionnaire_details_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -83,13 +84,8 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '问卷调查',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '问卷调查',
       body: RefreshConfiguration(
         hideFooterWhenNotFull: true,
         child: SmartRefresher(

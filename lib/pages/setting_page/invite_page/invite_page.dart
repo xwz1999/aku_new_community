@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -20,13 +21,8 @@ class InvitePage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '邀请注册',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '邀请注册',
       body: Container(
         color: Colors.white,
         padding: EdgeInsets.only(top: 146.w),

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -268,13 +269,8 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
     //       .toList();
     // }
 
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '${widget.bundle.getMap('create')['title']}',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '${widget.bundle.getMap('create')['title']}',
       body: Container(
         color: Colors.white,
         child: Stack(

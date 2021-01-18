@@ -1,9 +1,10 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/widget/common_app_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class GoodsManagePage extends StatefulWidget {
   GoodsManagePage({Key key}) : super(key: key);
@@ -111,14 +112,16 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '借还管理',
-          subtitle: '我的借还物品',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '借还管理',
+      actions: [
+        InkWell(
+            onTap: () {},
+            child: Container(
+                padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+                alignment: Alignment.center,
+                child: '我的借还物品'.text.black.size(28.sp).make()))
+      ],
       body: Stack(
         children: [
           Column(

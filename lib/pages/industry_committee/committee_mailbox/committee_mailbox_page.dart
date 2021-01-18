@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -14,10 +15,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
   TextEditingController _thingsContent = new TextEditingController();
   Widget _input() {
     return Container(
-      padding: EdgeInsets.only(
-          top: 32.w,
-          left: 22.w,
-          right: 35.w),
+      padding: EdgeInsets.only(top: 32.w, left: 22.w, right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -63,8 +61,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
         margin: EdgeInsets.only(top: 40.w),
         decoration: BoxDecoration(
             color: Color(0xffffc40c),
-            borderRadius:
-                BorderRadius.all(Radius.circular(48.w))),
+            borderRadius: BorderRadius.all(Radius.circular(48.w))),
         child: Text(
           '确认提交',
           style: TextStyle(
@@ -78,13 +75,8 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '业委会信箱',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '业委会信箱',
       body: Container(
         color: Colors.white,
         child: ListView(

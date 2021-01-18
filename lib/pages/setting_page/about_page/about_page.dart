@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -16,13 +17,8 @@ class AboutPage extends StatelessWidget {
       color: Color(0xff575757),
     );
 
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '关于小蜜蜂智慧社区',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '关于小蜜蜂智慧社区',
       body: Container(
       color: Colors.white,
       padding: EdgeInsets.only(

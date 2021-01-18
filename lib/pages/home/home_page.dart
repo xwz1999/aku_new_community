@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
@@ -14,7 +13,6 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';

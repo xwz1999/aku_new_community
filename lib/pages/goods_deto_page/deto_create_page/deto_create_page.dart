@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -136,8 +137,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             margin: EdgeInsets.only(right: 30.w),
             child: Text(
               title,
-              style: TextStyle(
-                  fontSize: 28.sp, color: Color(0xff333333)),
+              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
             ),
           ),
           CommonRadio(
@@ -158,13 +158,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '物品出户',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '物品出户',
       body: Container(
         color: Colors.white,
         child: Stack(
@@ -184,9 +179,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   _checkCard('搬运方式', _listMode),
                   _inkWellCheckbox(),
                   Container(
-                    margin: EdgeInsets.only(
-                        top: 54.w,
-                        bottom: 24.w),
+                    margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
                     child: Text(
                       '添加图片信息(0/9)',
                       style: TextStyle(

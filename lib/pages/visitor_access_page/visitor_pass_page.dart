@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -21,14 +22,12 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
         children: [
           Text(
             '宁波华茂悦峰',
-            style: TextStyle(
-                fontSize: 40.sp, color: Color(0xffffffff)),
+            style: TextStyle(fontSize: 40.sp, color: Color(0xffffffff)),
           ),
           SizedBox(height: 10.w),
           Text(
             '1幢-1单元-702室',
-            style: TextStyle(
-                fontSize: 26.sp, color: Color(0xffffffff)),
+            style: TextStyle(fontSize: 26.sp, color: Color(0xffffffff)),
           ),
         ],
       ),
@@ -77,7 +76,7 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w600,
                         fontSize: 36.sp,
                         color: Color(0xff333333)),
                   ),
@@ -183,13 +182,8 @@ class _VisitorPassPageState extends State<VisitorPassPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: CommonAppBar(
-          title: '访客通行证',
-        ),
-        preferredSize: Size.fromHeight(kToolbarHeight),
-      ),
+    return BeeScaffold(
+      title: '访客通行证',
       body: Container(
         color: Color(0xff333333),
         child: Stack(
