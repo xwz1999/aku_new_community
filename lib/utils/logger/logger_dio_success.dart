@@ -1,6 +1,7 @@
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:velocity_x/velocity_x.dart';
 
 class LoggerDioSuccess extends StatelessWidget {
@@ -10,10 +11,9 @@ class LoggerDioSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      elevation: 10,
-      highlightElevation: 1,
+      elevation: 0,
       color: Colors.white,
-      onPressed: () {},
+      onPressed: () => Get.to(_LoggerSuccessDetail(response: response)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,6 +33,53 @@ class LoggerDioSuccess extends StatelessWidget {
             ],
           ),
           response.headers['date'].first.toString().text.make(),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoggerSuccessDetail extends StatefulWidget {
+  final Response response;
+  _LoggerSuccessDetail({Key key, this.response}) : super(key: key);
+
+  @override
+  __LoggerSuccessDetailState createState() => __LoggerSuccessDetailState();
+}
+
+class __LoggerSuccessDetailState extends State<_LoggerSuccessDetail> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: widget.response.request.path.text.make(),
+      ),
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        children: [
+          ListTile(
+            title: 'Request'.text.bold.size(22).make(),
+            trailing: [
+              Chip(
+                label: widget.response.request.method.text.make(),
+                backgroundColor: Colors.lightGreen,
+              ),
+            ].row(),
+          ),
+          ListTile(title: 'headers'.text.make()),
+          widget.response.request?.headers.toString().text.make(),
+          ListTile(title: 'queryParameters'.text.make()),
+          (widget.response.request?.queryParameters ?? '')
+              .toString()
+              .text
+              .make(),
+          ListTile(title: 'data'.text.make()),
+          (widget.response.request?.data ?? '').toString().text.make(),
+          ListTile(title: 'Response'.text.bold.size(22).make()),
+          ListTile(title: 'headers'.text.make()),
+          widget.response?.headers.toString().text.make(),
+          ListTile(title: 'data'.text.make()),
+          (widget.response?.data ?? '').toString().text.make(),
         ],
       ),
     );

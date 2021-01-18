@@ -32,6 +32,7 @@ class _LoggerFABState extends State<LoggerFAB> {
     return Stack(
       children: [
         AnimatedPositioned(
+          curve: Curves.easeInOutCubic,
           duration: _moving ? Duration.zero : Duration(milliseconds: 300),
           left: _x - 25,
           top: _y - 25,
@@ -46,10 +47,14 @@ class _LoggerFABState extends State<LoggerFAB> {
               });
             },
             onPanEnd: (detail) {
-              if (_x < 100) _x = 50;
-              if (_y < 100) _y = 75;
-              if (_x > screenWidth - 50) _x = screenWidth - 50;
-              if (_y > screenHeight - 50) _y = screenHeight - 50;
+              if ((_x < screenWidth / 2)) {
+                _x = 50;
+              } else
+                _x = screenWidth - 50;
+              if ((_y < screenHeight / 2)) {
+                _y = 70;
+              } else
+                _y = screenHeight - 50;
               _moving = false;
               setState(() {});
             },
