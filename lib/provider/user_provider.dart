@@ -21,6 +21,7 @@ class UserProvider extends ChangeNotifier {
     _isLogin = true;
     NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
     HiveStore.appBox.put('token', token);
+    HiveStore.appBox.put('login', true);
     await updateProfile();
     notifyListeners();
   }
@@ -32,6 +33,7 @@ class UserProvider extends ChangeNotifier {
     NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio.options.headers.remove('App-Admin-Token');
     HiveStore.appBox.delete('token');
+    HiveStore.appBox.delete('login');
     notifyListeners();
   }
 

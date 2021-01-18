@@ -12,7 +12,6 @@ class Bundle {
     return _map[k];
   }
 
-  putInt(String k, int v) => _map[k] = v;
 
   putString(String k, String v) => _setValue(k, v);
 
@@ -27,8 +26,6 @@ class Bundle {
   String getString(String k) => _getValue(k) as String;
 
   bool getBool(String k) => _getValue(k) as bool;
-
-  List getList(String k) => _getValue(k) as List;
 
   Map getMap(String k) => _getValue(k) as Map;
 

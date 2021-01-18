@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage>
     }),
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
       Get.to(ThingsPage(
-        bundle: Bundle()  
+        bundle: Bundle()
           ..putMap('things', {
             'title': '建议咨询',
             'treeList': <Map<String, dynamic>>[
@@ -104,7 +104,6 @@ class _HomePageState extends State<HomePage>
     });
     // akuShop(page);
     _scrollController = ScrollController();
-   
   }
 
   Future<void> akuShop(String response) async {
@@ -145,8 +144,6 @@ class _HomePageState extends State<HomePage>
     );
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -156,19 +153,19 @@ class _HomePageState extends State<HomePage>
       extendBodyBehindAppBar: true,
       appBar: AnimateAppBar(
         scrollController: _scrollController,
-        actions:[
-        _buildColButton(
-          icon: AntDesign.scan1,
-          title: '扫一扫',
-          onTap: () => Get.to(ScanPage()),
-        ),
-        _buildColButton(
-          icon: AntDesign.bells,
-          title: '消息',
-          onTap: () => Get.to(MessageCenterPage()),
-        ),
-        16.wb,
-      ],
+        actions: [
+          _buildColButton(
+            icon: AntDesign.scan1,
+            title: '扫一扫',
+            onTap: () => Get.to(ScanPage()),
+          ),
+          _buildColButton(
+            icon: AntDesign.bells,
+            title: '消息',
+            onTap: () => Get.to(MessageCenterPage()),
+          ),
+          16.wb,
+        ],
       ),
       body: RefreshConfiguration(
         child: SmartRefresher(

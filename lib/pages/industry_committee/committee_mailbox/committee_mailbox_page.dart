@@ -35,7 +35,7 @@ class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
             bottom: 0.w,
           ),
           hintText: '',
-          border: InputBorder.none, //去掉输入框的下滑线
+          border: InputBorder.none,
           fillColor: Colors.white,
           filled: true,
           hintStyle: TextStyle(

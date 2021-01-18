@@ -1,8 +1,10 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/logger/logger_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 //TODO splashPage
@@ -15,8 +17,11 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   Future _initOp() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     await Future.delayed(Duration(seconds: 2));
-    print(HiveStore.appBox.get('token'));
+    if (HiveStore.appBox.get('login') ?? false) {
+      await userProvider.setLogin(HiveStore.appBox.get('token'));
+    }
   }
 
   @override
