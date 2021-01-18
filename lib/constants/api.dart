@@ -35,4 +35,7 @@ class _User {
 
   ///用户退出登陆
   String get logout => '/user/signOut';
+
+  ///修改用户昵称
+  String get updateNickName =>'/user/personalData/updateNickName';
 }

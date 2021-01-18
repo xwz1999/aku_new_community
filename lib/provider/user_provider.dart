@@ -74,6 +74,14 @@ class UserProvider extends ChangeNotifier {
 
   //修改昵称
   Future setName(String name) async {
-    //TODO set name
+    BaseModel baseModel = await NetUtil().post(
+      API.user.updateNickName,
+      params: {'nickName': name},
+      showMessage: true,
+    );
+    if (baseModel.status) {
+      _userInfoModel.nickName = name;
+      notifyListeners();
+    }
   }
 }
