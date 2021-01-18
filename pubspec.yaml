@@ -101,6 +101,9 @@ dependencies:
   hive_flutter:
   logger: ^0.9.4
   flutter_easyrefresh: ^2.1.8
+  random_character: 
+    git: 
+      url: http://192.168.2.201:8099/zhangmeng/random_character.git
 
 dev_dependencies:
   flutter_test:
