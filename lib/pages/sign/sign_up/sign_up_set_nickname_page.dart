@@ -7,6 +7,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:random_character/chinese_character/random_chinese_charater.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
@@ -83,7 +84,10 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
               '换一换'.text.make(),
             ].row(),
             shape: StadiumBorder(),
-            onPressed: () {},
+            onPressed: () {
+              _textEditingController.text =
+                  RandomCharacter.getChinese(length: 3);
+            },
           ),
         ],
       ).pLTRB(82.w, 0, 82.w, 60.w),
