@@ -22,6 +22,9 @@ class _Login {
 
   /// app用户注册
   String get signUp => '/login/register';
+
+  ///通过新手机号发送修改验证码
+  String get sendNewMSCode => '/user/personalData/sendTelUpdateCode';
 }
 
 class _User {
@@ -38,15 +41,16 @@ class _User {
   String get logout => '/user/signOut';
 
   ///修改用户昵称
-  String get updateNickName =>'/user/personalData/updateNickName';
+  String get updateNickName => '/user/personalData/updateNickName';
 
   ///修改用户手机号
-  String get updateTel =>'/user/personalData/updateTel';
+  String get updateTel => '/user/personalData/updateTel';
 }
 
 class _Manager {
   ///获取业委会列表
   String get commiteeStaff => '/ownersCommittee/findAll';
+
   ///获取便民电话联系人列表
   String get convenientPhone => '/convenientTelephone/list';
 }

@@ -7,6 +7,7 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -71,6 +72,9 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               55.heightBox,
               '旧号码'.text.black.size(28.sp).make(),
               TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]*'))
+                ],
                 controller: _oldTelController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
@@ -87,14 +91,20 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               24.heightBox,
               '新号码'.text.black.size(28.sp).make(),
               TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]*')),
+                ],
                 controller: _newTelController,
+                onChanged: (value) {
+                  setState(() {});
+                },
                 decoration: InputDecoration(
                   suffixIconConstraints:
                       BoxConstraints(minHeight: 0.w, minWidth: 0.w),
                   suffixIcon: MaterialButton(
                     onPressed: _canGetCode
                         ? () {
-                            SignFunc.sendMessageCode(_newTelController.text);
+                            SignFunc.sendNewMessageCode(_newTelController.text);
                             startTick();
                           }
                         : () {},
@@ -134,6 +144,9 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               24.heightBox,
               '验证码'.text.black.size(28.sp).make(),
               TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]*'))
+                ],
                 controller: _codeController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,

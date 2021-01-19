@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/const/resource.dart';
 
