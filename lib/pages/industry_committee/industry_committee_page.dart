@@ -2,6 +2,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/committee_item_model.dart';
 import 'package:akuCommunity/pages/industry_committee/committee_mailbox/committee_mailbox_page.dart';
+import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -158,20 +159,39 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '业委会',
-      body: EasyRefresh(
-        firstRefresh: true,
-        header: MaterialHeader(),
+      body: BeeListView(
+        path: API.manager.commiteeStaff,
+        convert: (model) {
+          return model.tableList
+              .map((e) => CommitteeItemModel.fromJson(e))
+              .toList();
+        },
         controller: _refreshController,
-        onRefresh: refresh,
-        child: ListView.separated(
-          padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
-          itemBuilder: (context, index) {
-            return _buildCard(_committeeModels[index]);
-          },
-          separatorBuilder: (context, index) => 20.hb,
-          itemCount: _committeeModels.length,
-        ),
+        builder: (items) {
+          return ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
+            itemBuilder: (context, index) {
+              return _buildCard(items[index]);
+            },
+            separatorBuilder: (context, index) => 20.hb,
+            itemCount: items.length,
+          );
+        },
       ),
+      // body: EasyRefresh(
+      //   firstRefresh: true,
+      //   header: MaterialHeader(),
+      //   controller: _refreshController,
+      //   onRefresh: refresh,
+      //   child: ListView.separated(
+      //     padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
+      //     itemBuilder: (context, index) {
+      //       return _buildCard(_committeeModels[index]);
+      //     },
+      //     separatorBuilder: (context, index) => 20.hb,
+      //     itemCount: _committeeModels.length,
+      //   ),
+      // ),
       bottomNavi: _buildBottomNavi(),
     );
   }
