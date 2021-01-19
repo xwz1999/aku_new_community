@@ -45,5 +45,8 @@ class _User {
 }
 
 class _Manager {
+  ///获取业委会列表
   String get commiteeStaff => '/ownersCommittee/findAll';
+  ///获取便民电话联系人列表
+  String get convenientPhone => '/convenientTelephone/list';
 }

@@ -3,8 +3,6 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/committee_item_model.dart';
 import 'package:akuCommunity/pages/industry_committee/committee_mailbox/committee_mailbox_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/utils/network/base_list_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,36 +21,6 @@ class IndustryCommitteePage extends StatefulWidget {
 
 class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
   EasyRefreshController _refreshController = EasyRefreshController();
-  BaseListModel _listModel = BaseListModel.zero();
-  List<CommitteeItemModel> _committeeModels = [];
-  int _page = 0;
-
-  Future<List<CommitteeItemModel>> _getCommitteeList() async {
-    _listModel = await NetUtil().getList(API.manager.commiteeStaff, params: {
-      'pageNum': _page,
-      'size': 10,
-    });
-    return _listModel.tableList
-        .map((e) => CommitteeItemModel.fromJson(e))
-        .toList();
-  }
-
-  Future<void> refresh() async {
-    _page = 0;
-    _listModel = BaseListModel.zero();
-    _committeeModels.clear();
-    _committeeModels = await _getCommitteeList();
-    setState(() {});
-  }
-
-  Future addPage() async {
-    _page++;
-    if (_page >= _listModel.pageCount)
-      _refreshController.finishLoad(noMore: true);
-    else
-      _committeeModels.addAll(await _getCommitteeList());
-    setState(() {});
-  }
 
   Widget _buildBottomNavi() {
     return [
@@ -82,7 +50,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
       )
           .box
           .color(Color(0xFF2A2A2A))
-          .margin(EdgeInsets.only(
+          .padding(EdgeInsets.only(
             bottom: MediaQuery.of(context).viewPadding.bottom,
           ))
           .make()
@@ -95,7 +63,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
       )
           .box
           .color(kPrimaryColor)
-          .margin(EdgeInsets.only(
+          .padding(EdgeInsets.only(
             bottom: MediaQuery.of(context).viewPadding.bottom,
           ))
           .make()
@@ -178,20 +146,6 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
           );
         },
       ),
-      // body: EasyRefresh(
-      //   firstRefresh: true,
-      //   header: MaterialHeader(),
-      //   controller: _refreshController,
-      //   onRefresh: refresh,
-      //   child: ListView.separated(
-      //     padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
-      //     itemBuilder: (context, index) {
-      //       return _buildCard(_committeeModels[index]);
-      //     },
-      //     separatorBuilder: (context, index) => 20.hb,
-      //     itemCount: _committeeModels.length,
-      //   ),
-      // ),
       bottomNavi: _buildBottomNavi(),
     );
   }

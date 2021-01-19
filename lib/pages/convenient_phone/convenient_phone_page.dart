@@ -1,11 +1,14 @@
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/user/convenient_phone_model.dart';
+import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/sliver_app_bar_delegate.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
-import 'widget/phone_list.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:akuCommunity/const/resource.dart';
 
 class ConvenientPhonePage extends StatefulWidget {
   ConvenientPhonePage({Key key}) : super(key: key);
@@ -15,91 +18,132 @@ class ConvenientPhonePage extends StatefulWidget {
 }
 
 class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
-  Container _containerSearch() {
-    return Container(
-      color: Colors.white,
-      child: InkWell(
-        onTap: () {
-           showSearch(context: context, delegate: SearchBarDelegate());
-        },
-        child: Container(
-          margin: EdgeInsets.only(
-            left: 32.w,
-            right: 32.w,
-            top: 12.w,
-            bottom: 20.w,
+  EasyRefreshController _easyRefreshController;
+  TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _easyRefreshController = EasyRefreshController();
+    _textEditingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _easyRefreshController?.dispose();
+    _textEditingController?.dispose();
+    super.dispose();
+  }
+
+  Widget _buildTile(ConvenientPhoneModel model) {
+    return Material(
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  model.name.text.black.size(32.sp).make(),
+                  12.heightBox,
+                  model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
+                ],
+              ).expand(),
+              IconButton(
+                  icon: Image.asset(
+                    R.ASSETS_ICONS_PHONE_PNG,
+                    width: 40.w,
+                    height: 40.w,
+                  ),
+                  onPressed: () {})
+            ],
           ),
-          padding: EdgeInsets.symmetric(
-            horizontal: 32.w,
-            vertical: 16.w,
-          ),
-          decoration: BoxDecoration(
-            color: Color(0xfff9f9f9),
-            borderRadius: BorderRadius.all(Radius.circular(36)),
-          ),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              child: Row(children: [
-                Icon(AntDesign.search1),
-                SizedBox(width: 5),
-                Text('搜索机构')
-              ]),
-            ),
-          ),
-        ),
+        ],
       ),
     );
   }
 
-  List<Widget> _silverBuilder(BuildContext context, bool innerBoxIsScrolled) {
-    double statusBarHeight = MediaQuery.of(context).padding.top;
-    double _swiperHeight = 122.w;
-    double _spikeHeight = 25;
-    double _appBarHeight = _swiperHeight - _spikeHeight - statusBarHeight;
-    return <Widget>[
-      SliverAppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        bottom: PreferredSize(
-            child: Container(),
-            preferredSize: Size.fromHeight((_appBarHeight).h)),
-        flexibleSpace: Column(
-          children: <Widget>[
-            _containerSearch(),
-          ],
-        ),
-      ),
-      SliverPersistentHeader(
-        pinned: true,
-        delegate: SliverAppBarDelegate(
-            minHeight: 45, //收起的高度
-            maxHeight: 45,
-            child: Container(
-              color: Colors.white,
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 32.w),
-              child: Text(
-                '小区服务电话',
-                style: TextStyle(
-                  fontSize: 32.sp,
-                ),
-              ),
-            )),
-      ),
-    ];
-  }
+  // Widget _buildCard(String title, List tableList) {
+  //   return Material(
+  //     child: Padding(
+  //       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 40.w),
+  //       child: Column(
+  //         children: [
+  //           title.text.black.size(32.sp).make(),
+  //           45.heightBox,
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-        title: '便民电话',
-      body: Container(
-        color: Colors.white,
-        child: NestedScrollView(
-          headerSliverBuilder: _silverBuilder,
-          body: PhoneList(),
-        ),
+      title: '便民电话',
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            constraints: BoxConstraints(minHeight: 72.w + 16.w),
+            color: Colors.white,
+            alignment: Alignment.center,
+            child: Container(
+              width: 686.w,
+              height: 72.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(36.w),
+                color: Color(0xFFF9F9F9),
+              ),
+              child: TextField(
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(
+                    CupertinoIcons.search,
+                    size: 42.w,
+                  ),
+                  contentPadding: EdgeInsets.only(top: 14.w),
+                  // isDense: true,
+                  hintText: '搜索机构',
+                  hintStyle:
+                      TextStyle(color: Color(0xFF999999), fontSize: 28.sp),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: BeeListView(
+              controller: _easyRefreshController,
+              path: API.manager.convenientPhone,
+              convert: (model) {
+                return model.tableList
+                    .map((e) => ConvenientPhoneModel.fromJson(e))
+                    .toList();
+              },
+              builder: (items) {
+                return ListView.separated(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+                    itemBuilder: (context, index) {
+                      return _buildTile(items[index]);
+                    },
+                    separatorBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.w),
+                        child: Divider(
+                          thickness: 1.w,
+                          height: 0,
+                          color: Color(0xFFD8D8D8),
+                        ),
+                      );
+                    },
+                    itemCount: items.length);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
