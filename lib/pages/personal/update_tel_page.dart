@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +23,13 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
   TextEditingController _oldTelController;
   TextEditingController _newTelController;
   TextEditingController _codeController;
+  Timer _timer;
+  bool get validPhone => RegexUtil.isMobileSimple(_newTelController.text);
+  bool get _canGetCode {
+    bool timeActive = _timer?.isActive ?? false;
+    return (!timeActive) && validPhone;
+  }
+
   @override
   void initState() {
     // final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -33,6 +45,16 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
     _oldTelController?.dispose();
     _newTelController?.dispose();
     super.dispose();
+  }
+
+  startTick() {
+    _timer = Timer.periodic(Duration(seconds: 1), (_timer) {
+      if (_timer.tick >= 60) {
+        _timer.cancel();
+        _timer = null;
+      }
+      setState(() {});
+    });
   }
 
   @override
@@ -70,8 +92,19 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                   suffixIconConstraints:
                       BoxConstraints(minHeight: 0.w, minWidth: 0.w),
                   suffixIcon: MaterialButton(
-                    onPressed: () {},
-                    child: '获取验证码'.text.color(kPrimaryColor).size(28.sp).make(),
+                    onPressed: _canGetCode
+                        ? () {
+                            SignFunc.sendMessageCode(_newTelController.text);
+                            startTick();
+                          }
+                        : () {},
+                    child: _timer?.isActive ?? false
+                        ? '${60 - _timer.tick}'
+                            .text
+                            .color(kPrimaryColor)
+                            .size(28.sp)
+                            .make()
+                        : '获取验证码'.text.color(kPrimaryColor).size(28.sp).make(),
                     padding: EdgeInsets.zero,
                     minWidth: 177.w,
                     height: 62.w,
@@ -117,9 +150,17 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               64.heightBox,
               MaterialButton(
                 onPressed: () {
-                  userProvider.updateTel(_oldTelController.text,
-                      _newTelController.text, _codeController.text);
-                  Get.back();
+                  if (TextUtil.isEmpty(_oldTelController.text)) {
+                    BotToast.showText(text: '旧手机号不能为空');
+                  } else if (TextUtil.isEmpty(_newTelController.text)) {
+                    BotToast.showText(text: '新手机号不能为空');
+                  } else if (TextUtil.isEmpty(_codeController.text)) {
+                    BotToast.showText(text: '验证码不能为空');
+                  } else {
+                    userProvider.updateTel(_oldTelController.text,
+                        _newTelController.text, _codeController.text);
+                    Get.back();
+                  }
                 },
                 child: '保存'.text.black.size(32.sp).make(),
                 color: Color(0xFFFFC40C),
