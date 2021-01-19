@@ -98,6 +98,10 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               ),
               child: TextField(
                 controller: _textEditingController,
+                onSubmitted: (value) {
+                  _easyRefreshController.callRefresh();
+                  setState(() {});
+                },
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   prefixIcon: Icon(
@@ -115,6 +119,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
           ),
           Expanded(
             child: BeeListView(
+              extraParams: {'name': _textEditingController.text},
               controller: _easyRefreshController,
               path: API.manager.convenientPhone,
               convert: (model) {
