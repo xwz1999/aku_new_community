@@ -31,6 +31,9 @@ class _User {
   ///用户资料
   String get userProfile => '/user/personalData/findPersonalData';
 
+  ///用户详细资料
+  String get userDetail => '/user/personalData/getUserDetail';
+
   ///设置用户性别
   String get setSex => '/user/personalData/updateSex';
 
@@ -57,4 +60,6 @@ class _Manager {
   ///查询当前用户的报事报修信息
   String get fixedSubmit => '/user/reportRepair/list';
 
+  ///添加填写的访客信息
+  String get insertVisitorInfo => 'user/visitorAccess/insertVisitorInfo';
 }

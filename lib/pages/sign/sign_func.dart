@@ -1,5 +1,6 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/pick_building_model.dart';
+import 'package:akuCommunity/model/user/user_detail_model.dart';
 import 'package:akuCommunity/model/user/user_info_model.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -19,14 +20,16 @@ class SignFunc {
     );
     return baseModel;
   }
-  static Future sendNewMessageCode(String newTel) async{
-    BaseModel baseModel =await NetUtil().post(
+
+  static Future sendNewMessageCode(String newTel) async {
+    BaseModel baseModel = await NetUtil().post(
       API.login.sendNewMSCode,
-      params: {'newTel':newTel},
+      params: {'newTel': newTel},
       showMessage: true,
     );
     return baseModel;
   }
+
   static Future<Response> login(String phone, String code) async {
     Response response = await NetUtil().dio.post(
       API.login.loginBySMS,
@@ -72,5 +75,12 @@ class SignFunc {
   static Future<UserInfoModel> getUserInfo() async {
     BaseModel baseModel = await NetUtil().get(API.user.userProfile);
     return UserInfoModel.fromJson(baseModel.data);
+  }
+
+  static Future<UserDetailModel> getUserDetail() async {
+    BaseModel baseModel = await NetUtil().get(
+      API.user.userDetail,
+    );
+    return UserDetailModel.fromJson(baseModel.data);
   }
 }

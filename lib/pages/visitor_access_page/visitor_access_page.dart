@@ -1,4 +1,6 @@
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_record_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +9,7 @@ import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class VisitorAccessPage extends StatefulWidget {
@@ -19,12 +22,8 @@ class VisitorAccessPage extends StatefulWidget {
 class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userName = new TextEditingController();
   TextEditingController _userCarNum = new TextEditingController();
-  String dateTime = '请选择到访时间';
-  List<Map<String, dynamic>> _sexList = [
-    {'sex': '先生', 'sexIcon': AntDesign.man, 'isCheck': true},
-    {'sex': '女士', 'sexIcon': AntDesign.woman, 'isCheck': false},
-  ];
-
+  DateTime dateTime;
+  int _selectSex;
   Widget _house() {
     return Container(
       padding: EdgeInsets.only(
@@ -130,14 +129,16 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     );
   }
 
-  Widget _sexButton(String sex, IconData sexIcon, bool isCheck, int index) {
+  Widget _sexButton(
+    String sex,
+    IconData sexIcon,
+    int value,
+  ) {
     return InkWell(
       onTap: () {
-        _sexList.forEach((item) {
-          item['isCheck'] = false;
+        setState(() {
+          _selectSex = value;
         });
-        _sexList[index]['isCheck'] = true;
-        setState(() {});
       },
       child: Container(
         height: 72.w,
@@ -149,7 +150,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
             color: Color(0xffffffff),
             borderRadius: BorderRadius.all(Radius.circular(36)),
             border: Border.all(
-                color: isCheck ? Color(0xffffc40c) : Color(0xff979797),
+                color:
+                    value == _selectSex ? Color(0xffffc40c) : Color(0xff979797),
                 width: 1)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +159,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
             Icon(
               sexIcon,
               size: 32.sp,
-              color: isCheck ? Color(0xff333333) : Color(0xff979797),
+              color:
+                  value == _selectSex ? Color(0xff333333) : Color(0xff979797),
             ),
             SizedBox(width: 9.w),
             Text(
@@ -165,7 +168,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 30.sp,
-                  color: isCheck ? Color(0xff333333) : Color(0xff979797)),
+                  color: value == _selectSex
+                      ? Color(0xff333333)
+                      : Color(0xff979797)),
             ),
           ],
         ),
@@ -190,11 +195,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           Container(
             child: Row(
               children: [
-                _sexButton(_sexList[0]['sex'], _sexList[0]['sexIcon'],
-                    _sexList[0]['isCheck'], 0),
+                _sexButton('先生', AntDesign.man, 1),
                 SizedBox(width: 80.w),
-                _sexButton(_sexList[1]['sex'], _sexList[1]['sexIcon'],
-                    _sexList[1]['isCheck'], 1),
+                _sexButton('女士', AntDesign.woman, 2),
               ],
             ),
           ),
@@ -214,7 +217,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           print('change $date in time zone ' +
               date.timeZoneOffset.inHours.toString());
         }, onConfirm: (date) {
-          dateTime = date.toString().substring(0, 11);
+          dateTime = date;
           setState(() {});
         }, currentTime: DateTime.now(), locale: LocaleType.zh);
       },
@@ -236,7 +239,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '$dateTime',
+                    dateTime == null
+                        ? '请选择到访时间'
+                        : '${dateTime.toString().substring(0, 11)}',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 34.sp,
@@ -258,8 +263,16 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     );
   }
 
-  Widget _create() {
+  Widget _create(
+    int id,
+    int type,
+    String tel,
+  ) {
     return InkWell(
+      onTap: () {
+        ManagerFunc.insertVisitorInfo(id, type, _userName.text, _selectSex, tel,
+            _userCarNum.text, dateTime);
+      },
       child: Container(
         alignment: Alignment.center,
         height: 96.w,
@@ -296,6 +309,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   }
 
   Widget build(BuildContext context) {
+    UserProvider userProvider=Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '访客通行',
       actions: [
@@ -328,7 +342,11 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _input('是否驾车', '请输入,例如浙A88888(没有驾车可不填)', _userCarNum),
                     _selectTime(),
                     SizedBox(height: 64.w),
-                    _create(),
+                    _create(
+                      userProvider.userDetailModel.id,
+                      userProvider.userDetailModel.type,
+                      userProvider.userDetailModel.tel
+                    ),
                     _tips(),
                   ],
                 ),

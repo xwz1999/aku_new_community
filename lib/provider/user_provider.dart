@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/user/user_detail_model.dart';
 import 'package:akuCommunity/model/user/user_info_model.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
@@ -23,6 +24,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox.put('token', token);
     HiveStore.appBox.put('login', true);
     await updateProfile();
+    await updateUserDetail();
     notifyListeners();
   }
 
@@ -30,6 +32,7 @@ class UserProvider extends ChangeNotifier {
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
+    _userDetailModel=null;
     NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio.options.headers.remove('App-Admin-Token');
     HiveStore.appBox.delete('token');
@@ -42,11 +45,18 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future updateUserDetail()async{
+    _userDetailModel=await SignFunc.getUserDetail();
+  }
+
   String _token;
   String get token => _token ?? '';
 
   UserInfoModel _userInfoModel;
   UserInfoModel get userInfoModel => _userInfoModel;
+
+  UserDetailModel _userDetailModel;
+  UserDetailModel get userDetailModel => _userDetailModel;
 
   ///设置性别
   Future setSex(int sex) async {
