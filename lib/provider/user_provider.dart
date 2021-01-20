@@ -32,7 +32,7 @@ class UserProvider extends ChangeNotifier {
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
-    _userDetailModel=null;
+    _userDetailModel = null;
     NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio.options.headers.remove('App-Admin-Token');
     HiveStore.appBox.delete('token');
@@ -45,8 +45,9 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future updateUserDetail()async{
-    _userDetailModel=await SignFunc.getUserDetail();
+  Future updateUserDetail() async {
+    _userDetailModel = await SignFunc.getUserDetail();
+    notifyListeners();
   }
 
   String _token;

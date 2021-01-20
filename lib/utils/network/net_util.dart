@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/utils/logger/logger_data.dart';
 import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
@@ -5,6 +6,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:logger/logger.dart';
 
 class NetUtil {
@@ -142,6 +144,9 @@ class NetUtil {
   }
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
+    if (!model.status&&model.message=='登录失效，请登录'){
+      Get.offAll(SignInPage());
+    }
     if (!model.status || showMessage) {
       BotToast.showText(text: model.message);
     }
