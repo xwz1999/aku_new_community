@@ -53,4 +53,8 @@ class _Manager {
 
   ///获取便民电话联系人列表
   String get convenientPhone => '/convenientTelephone/list';
+
+  ///查询当前用户的报事报修信息
+  String get fixedSubmit => '/user/reportRepair/list';
+
 }
