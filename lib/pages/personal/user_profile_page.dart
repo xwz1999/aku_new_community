@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/personal/change_nick_name_page.dart';
 import 'package:akuCommunity/pages/personal/update_tel_page.dart';
@@ -8,6 +10,7 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -52,6 +55,32 @@ class _UserProfilePageState extends State<UserProfilePage> {
     );
   }
 
+  _pickAvatar() async {
+    PickedFile file = await Get.bottomSheet(CupertinoActionSheet(
+      title: '选择头像'.text.isIntrinsic.make(),
+      actions: [
+        CupertinoDialogAction(
+          onPressed: () async => Get.back(
+            result: await ImagePicker().getImage(source: ImageSource.gallery),
+          ),
+          child: '相册'.text.isIntrinsic.make(),
+        ),
+        CupertinoDialogAction(
+          onPressed: () async => Get.back(
+            result: await ImagePicker().getImage(source: ImageSource.camera),
+          ),
+          child: '相机'.text.isIntrinsic.make(),
+        ),
+      ],
+      cancelButton: CupertinoDialogAction(
+        onPressed: Get.back,
+        child: '取消'.text.isIntrinsic.make(),
+      ),
+    ));
+    if (file == null) return;
+    //TODO upload avatar.
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -59,11 +88,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       title: '个人资料',
       body: ListView(
         children: [
-          _buildTile(
-            '头像',
-            CircleAvatar(),
-            onPressed: () {},
-          ),
+          _buildTile('头像', CircleAvatar(), onPressed: _pickAvatar),
           _buildTile(
             '姓名',
             userProvider.userInfoModel.name.text.make(),
