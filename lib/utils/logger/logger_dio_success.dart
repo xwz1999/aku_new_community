@@ -48,6 +48,32 @@ class _LoggerSuccessDetail extends StatefulWidget {
 }
 
 class __LoggerSuccessDetailState extends State<_LoggerSuccessDetail> {
+  _buildTable(Map<String, dynamic> tableData) {
+    return Table(
+      border: TableBorder(
+        horizontalInside: BorderSide(color: Colors.black12),
+        verticalInside: BorderSide(color: Colors.black12),
+      ),
+      children: [
+        TableRow(
+          decoration: BoxDecoration(color: Colors.black12),
+          children: [
+            'Key'.text.make().p2(),
+            'Value'.text.make().p2(),
+          ],
+        ),
+        ...tableData.entries.map((e) {
+          return TableRow(
+            children: [
+              e.key.text.make().p2(),
+              e.value.toString().text.make().p2(),
+            ],
+          );
+        }).toList(),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +93,7 @@ class __LoggerSuccessDetailState extends State<_LoggerSuccessDetail> {
             ].row(),
           ),
           ListTile(title: 'headers'.text.make()),
-          widget.response.request?.headers.toString().text.make(),
+          _buildTable(widget.response.request.headers),
           ListTile(title: 'queryParameters'.text.make()),
           (widget.response.request?.queryParameters ?? '')
               .toString()
@@ -77,7 +103,7 @@ class __LoggerSuccessDetailState extends State<_LoggerSuccessDetail> {
           (widget.response.request?.data ?? '').toString().text.make(),
           ListTile(title: 'Response'.text.bold.size(22).make()),
           ListTile(title: 'headers'.text.make()),
-          widget.response?.headers.toString().text.make(),
+          _buildTable(widget.response.headers.map),
           ListTile(title: 'data'.text.make()),
           (widget.response?.data ?? '').toString().text.make(),
         ],

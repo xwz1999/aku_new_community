@@ -74,6 +74,7 @@ class SignFunc {
 
   static Future<UserInfoModel> getUserInfo() async {
     BaseModel baseModel = await NetUtil().get(API.user.userProfile);
+    if (baseModel.data == null) return null;
     return UserInfoModel.fromJson(baseModel.data);
   }
 
