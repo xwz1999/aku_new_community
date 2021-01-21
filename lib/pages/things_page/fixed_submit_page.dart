@@ -5,12 +5,12 @@ import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/pages/things_page/widget/image_grid.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/extensions/widget_list_ext.dart';
 
 class FixedSubmitPage extends StatefulWidget {
   FixedSubmitPage({Key key}) : super(key: key);
@@ -45,7 +45,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
       case 7:
         return ktextSubColor;
       default:
-        return kPrimaryColor;
+        return kDangerColor;
     }
   }
 
@@ -88,7 +88,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               .make(),
           16.hb,
           model.imgUrls.length != 0
-              ? ImageGrid(List.generate(
+              ? HorizontalImageView(List.generate(
                   model.imgUrls.length, (index) => model.imgUrls[index].url))
               : SizedBox(),
         ],
@@ -100,34 +100,6 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '报事报修',
-      // body: Column(
-      //   children: [
-      //     Expanded(
-      //       child: ListView(
-      //         padding: EdgeInsets.all(32.w),
-      //         children: [
-      //           ..._model
-      //               .map((e) => _buildCard(e.tag, e.state, e.text, e.images))
-      //               .toList()
-      //         ].sepWidget(separate: 24.hb),
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding:
-      //           EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
-      //       child: MaterialButton(
-      //         color: kPrimaryColor,
-      //         onPressed: () {},
-      //         child: '新增'.text.bold.color(ktextPrimary).size(32.sp).make(),
-      //         minWidth: double.infinity,
-      //         height: 98.w,
-      //         elevation: 0,
-      //         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      //         padding: EdgeInsets.zero,
-      //       ),
-      //     )
-      //   ],
-      // ),
       body: Column(
         children: [
           BeeListView(
