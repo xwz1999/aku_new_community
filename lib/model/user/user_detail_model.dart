@@ -48,6 +48,9 @@ class UserDetailModel {
     roomStatus = json['roomStatus'];
     nickName = json['nickName'];
     estateNames = json['estateNames'].cast<String>();
+    if (json['estateNames']==null) {
+      estateNames=[];
+    }
   }
 
   Map<String, dynamic> toJson() {

@@ -69,7 +69,7 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
           padding: EdgeInsets.symmetric(horizontal: 32.w),
           child: ListView(
             children: [
-              55.heightBox,
+              55.w.heightBox,
               '旧号码'.text.black.size(28.sp).make(),
               TextFormField(
                 inputFormatters: [
@@ -88,7 +88,7 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                   )),
                 ),
               ),
-              24.heightBox,
+              24.w.heightBox,
               '新号码'.text.black.size(28.sp).make(),
               TextFormField(
                 inputFormatters: [
@@ -141,7 +141,7 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                   ),
                 ),
               ),
-              24.heightBox,
+              24.w.heightBox,
               '验证码'.text.black.size(28.sp).make(),
               TextFormField(
                 inputFormatters: [
@@ -160,7 +160,7 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                   )),
                 ),
               ),
-              64.heightBox,
+              64.w.heightBox,
               MaterialButton(
                 onPressed: () {
                   if (TextUtil.isEmpty(_oldTelController.text)) {
@@ -181,7 +181,7 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                 minWidth: 686.w,
                 height: 85.w,
               ),
-              24.heightBox,
+              24.w.heightBox,
               '注：新手机号将作为您的登录凭证'
                   .text
                   .color(Color(0xFF999999))

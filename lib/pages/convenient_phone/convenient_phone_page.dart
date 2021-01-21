@@ -45,7 +45,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   model.name.text.black.size(32.sp).make(),
-                  12.heightBox,
+                  12.w.heightBox,
                   model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
                 ],
               ).expand(),
@@ -70,7 +70,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
   //       child: Column(
   //         children: [
   //           title.text.black.size(32.sp).make(),
-  //           45.heightBox,
+  //           45.w.heightBox,
   //         ],
   //       ),
   //     ),

@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
-import 'package:akuCommunity/widget/image_grid.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -177,7 +177,7 @@ class _TrendCardState extends State<TrendCard> {
               padding: EdgeInsets.only(left: 95.w),
               child: Column(
                 children: [
-                  ImageGrid(widget.imageUrl),
+                  HorizontalImageView(widget.imageUrl),
                   SizedBox(height: 20.w),
                   Stack(
                     children: [

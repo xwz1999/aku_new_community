@@ -41,7 +41,7 @@ class _ChangeNickNameState extends State<ChangeNickName> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              55.heightBox,
+              55.w.heightBox,
               '昵称'.text.black.size(28.sp).make(),
               TextFormField(
                 controller: _textEditingController,
@@ -59,7 +59,7 @@ class _ChangeNickNameState extends State<ChangeNickName> {
                   )),
                 ),
               ),
-              150.heightBox,
+              150.w.heightBox,
               MaterialButton(
                 onPressed: () {
                   userProvider.setName(_textEditingController.text);
@@ -71,7 +71,7 @@ class _ChangeNickNameState extends State<ChangeNickName> {
                 minWidth: 686.w,
                 height: 85.w,
               ),
-              24.heightBox,
+              24.w.heightBox,
               '为保护个人隐私，在与邻里交往时显示昵称，默认为真实姓名，您可自行修改'
                   .text
                   .color(Color(0xFF999999))

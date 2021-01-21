@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -76,11 +77,11 @@ class UserProvider extends ChangeNotifier {
   Future setBirthday(DateTime date) async {
     BaseModel baseModel = await NetUtil().post(
       API.user.setBirthday,
-      params: {'birthday': date.toIso8601String()},
+      params: {'birthday': DateUtil.formatDate(date,format: "yyyy-MM-dd HH:mm:ss")},
       showMessage: true,
     );
     if (baseModel.status) {
-      _userInfoModel.birthday = date.toIso8601String();
+      _userInfoModel.birthday = DateUtil.formatDate(date,format: "yyyy-MM-dd HH:mm:ss");
       notifyListeners();
     }
   }

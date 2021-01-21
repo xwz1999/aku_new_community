@@ -61,5 +61,5 @@ class _Manager {
   String get fixedSubmit => '/user/reportRepair/list';
 
   ///添加填写的访客信息
-  String get insertVisitorInfo => 'user/visitorAccess/insertVisitorInfo';
+  String get insertVisitorInfo => '/user/visitorAccess/insertVisitorInfo';
 }

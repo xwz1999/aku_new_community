@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -5,7 +6,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
-import 'package:akuCommunity/widget/image_grid.dart';
 
 class GoodsCommentsCard extends StatefulWidget {
   final String imagePath,
@@ -97,7 +97,7 @@ class _GoodsCommentsCardState extends State<GoodsCommentsCard> {
               expand: false,
             ),
           ),
-          ImageGrid(contentImageList),
+          HorizontalImageView(contentImageList),
         ],
       ),
     );

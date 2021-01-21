@@ -9,6 +9,7 @@ import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -272,6 +273,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
       onTap: () {
         ManagerFunc.insertVisitorInfo(id, type, _userName.text, _selectSex, tel,
             _userCarNum.text, dateTime);
+        Get.back();
       },
       child: Container(
         alignment: Alignment.center,
@@ -309,13 +311,13 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   }
 
   Widget build(BuildContext context) {
-    UserProvider userProvider=Provider.of<UserProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '访客通行',
       actions: [
         InkWell(
           onTap: () {
-            VisitorRecordPage().to;
+            VisitorRecordPage().to();
           },
           child: Container(
             padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
@@ -343,10 +345,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
-                      userProvider.userDetailModel.id,
-                      userProvider.userDetailModel.type,
-                      userProvider.userDetailModel.tel
-                    ),
+                        userProvider.userDetailModel.id,
+                        userProvider.userDetailModel.type,
+                        userProvider.userDetailModel.tel),
                     _tips(),
                   ],
                 ),

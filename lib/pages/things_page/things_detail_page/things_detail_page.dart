@@ -1,11 +1,11 @@
 import 'package:akuCommunity/pages/things_page/things_evaluate_page/things_evaluate_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import '../widget/image_grid.dart';
 import 'widget/goods_info_card.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -53,7 +53,7 @@ class _ThingsDetailPageState extends State<ThingsDetailPage> {
             expand: false,
           ),
           SizedBox(height: 29.w),
-          imageList.length != 0 ? ImageGrid(imageList) : SizedBox(),
+          imageList.length != 0 ? HorizontalImageView(imageList) : SizedBox(),
           SizedBox(height: 24.w),
           Text(
             time,

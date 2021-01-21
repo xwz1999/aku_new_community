@@ -1,10 +1,10 @@
 import 'package:akuCommunity/pages/things_page/things_detail_page/things_detail_page.dart';
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/expandable_text.dart';
-import 'image_grid.dart';
 
 class ThingsCard extends StatefulWidget {
   final String time, tag, content;
@@ -76,7 +76,7 @@ class _ThingsCardState extends State<ThingsCard> {
               expand: false,
             ),
             SizedBox(height: 29.w),
-            imageList.length != 0 ? ImageGrid(imageList) : SizedBox()
+            imageList.length != 0 ? HorizontalImageView(imageList) : SizedBox()
           ],
         ),
       ),

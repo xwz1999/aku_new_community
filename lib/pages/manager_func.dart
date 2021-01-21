@@ -1,6 +1,7 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:flustars/flustars.dart';
 
 class ManagerFunc {
   static insertVisitorInfo(int id, int type, String name, int sex, String tel,
@@ -13,7 +14,7 @@ class ManagerFunc {
           'sex': sex,
           'tel': tel,
           'carNum': carNum,
-          'expectedVisitDate': expectedVisitDate.toIso8601String(),
+          'expectedVisitDate': DateUtil.formatDate(expectedVisitDate,format: "yyyy-MM-dd HH:mm:ss")
         },
         showMessage: true);
     return baseModel;
