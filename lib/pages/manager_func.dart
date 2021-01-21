@@ -14,9 +14,24 @@ class ManagerFunc {
           'sex': sex,
           'tel': tel,
           'carNum': carNum,
-          'expectedVisitDate': DateUtil.formatDate(expectedVisitDate,format: "yyyy-MM-dd HH:mm:ss")
+          'expectedVisitDate': DateUtil.formatDate(expectedVisitDate,
+              format: "yyyy-MM-dd HH:mm:ss")
         },
         showMessage: true);
+    return baseModel;
+  }
+
+  static reportRepairInsert(
+      int type, String reportDetail, List<String> fileUrls) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.reportRepairInsert,
+      params: {
+        'type': type,
+        'reportDetail': reportDetail,
+        'fileUrls': fileUrls,
+      },
+      showMessage: true,
+    );
     return baseModel;
   }
 }

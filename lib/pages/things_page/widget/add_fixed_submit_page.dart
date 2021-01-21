@@ -1,9 +1,11 @@
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -18,8 +20,22 @@ class AddFixedSubmitPage extends StatefulWidget {
 }
 
 class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
+  TextEditingController _textEditingController;
+  String reportText;
   List<String> _buttons = ['公区保修', '家庭维修'];
-  int _groupValue;
+  int _selectType;
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController?.dispose();
+    super.dispose();
+  }
+
   Widget _buildHouseCard(
     String title,
     String detail,
@@ -74,23 +90,23 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
       height: 72.w,
       onPressed: () {
         setState(() {
-          _groupValue = value;
+          _selectType = value;
         });
       },
       child: title.text
-          .color(_groupValue == value ? ktextPrimary : ktextSubColor)
+          .color(_selectType == value ? ktextPrimary : ktextSubColor)
           .size(32.sp)
           .make(),
       padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 14.w),
       shape: RoundedRectangleBorder(
           side: BorderSide(
-              color: _groupValue == value ? kPrimaryColor : ktextSubColor,
+              color: _selectType == value ? kPrimaryColor : ktextSubColor,
               width: 3.w),
           borderRadius: BorderRadius.circular(36.w)),
     );
   }
 
-  Widget _selectType() {
+  Widget _getType() {
     return Padding(
       padding: EdgeInsets.all(32.w),
       child: Column(
@@ -128,6 +144,8 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
             ),
             width: 686.w,
             child: TextField(
+              controller: _textEditingController,
+              onEditingComplete: () {},
               maxLines: 10,
               minLines: 5,
               decoration: InputDecoration(
@@ -187,7 +205,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   userProvider.userDetailModel.estateNames.isEmpty
                       ? ''
                       : userProvider.userDetailModel.estateNames[0]),
-              _selectType(),
+              _getType(),
               _buildReportCard(),
               _addImages(),
             ],
@@ -195,7 +213,11 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           MaterialButton(
             minWidth: double.infinity,
             height: 98.w,
-            onPressed: () {},
+            onPressed: () {
+              ManagerFunc.reportRepairInsert(
+                  _selectType + 1, _textEditingController.text, []);
+              Get.back();
+            },
             child: '确认提交'.text.black.bold.size(32.sp).make(),
             color: kPrimaryColor,
             elevation: 0,

@@ -60,9 +60,12 @@ class _Manager {
   ///查询当前用户的报事报修信息
   String get fixedSubmit => '/user/reportRepair/list';
 
-  ///添加填写的访客信息
+  ///访客通行：添加填写的访客信息
   String get insertVisitorInfo => '/user/visitorAccess/insertVisitorInfo';
 
   ///物品出户：查询当前用户所有的物品出户信息
   String get articleOut => '/user/articleOut/list';
+
+  ///报事报修：app提交报事报修信息
+  String get reportRepairInsert => '/user/reportRepair/insert';
 }
