@@ -21,10 +21,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   Widget _containerTextField() {
     return Container(
-      padding: EdgeInsets.only(
-          top: 24.w,
-          left: 24.w,
-          right: 32.w),
+      padding: EdgeInsets.only(top: 24.w, left: 24.w, right: 32.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(6)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -62,18 +59,13 @@ class _FeedBackPageState extends State<FeedBackPage> {
     return InkWell(
       onTap: () {
         if (TextUtil.isEmpty(_ideaContent.text))
-          BotToast.showText(text:'意见不能为空');
+          BotToast.showText(text: '意见不能为空');
         else {
-          showDialog(
-            context: context,
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          );
+          var cancelAction = BotToast.showLoading();
           Future.delayed(Duration(milliseconds: 1000 + Random().nextInt(1000)),
               () {
-            BotToast.showText(text:'提交成功');
-            Get.back();
+            BotToast.showText(text: '提交成功');
+            cancelAction();
             Get.back();
           });
         }
@@ -122,18 +114,14 @@ class _FeedBackPageState extends State<FeedBackPage> {
                   SizedBox(height: 76.w),
                   Text(
                     '意见反馈',
-                    style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff333333)),
+                    style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                   ),
                   SizedBox(height: 24.w),
                   _containerTextField(),
                   SizedBox(height: 24.w),
                   Text(
                     '添加图片信息(0/9)',
-                    style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff333333)),
+                    style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                   ),
                   SizedBox(height: 24.w),
                   CommonImagePicker(),

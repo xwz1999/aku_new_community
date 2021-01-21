@@ -62,4 +62,7 @@ class _Manager {
 
   ///添加填写的访客信息
   String get insertVisitorInfo => 'user/visitorAccess/insertVisitorInfo';
+
+  ///物品出户：查询当前用户所有的物品出户信息
+  String get articleOut => '/user/articleOut/list';
 }

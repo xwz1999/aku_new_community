@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -30,24 +31,24 @@ class _CommonPickerState extends State<CommonPicker> {
             margin: EdgeInsets.only(right: 30.w),
             child: Text(
               widget.title,
-              style: TextStyle(
-                  fontSize: 28.sp, color: Color(0xff333333)),
+              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
             ),
           ),
           InkWell(
             onTap: () {
               switch (widget.title) {
                 case '出户时间':
-                  DatePicker.showDatePicker(context,
-                      showTitleActions: true,
-                      minTime: DateTime(2020, 1, 1),
-                      maxTime: DateTime(2020, 12, 31), onChanged: (date) {
-                    print('change $date in time zone ' +
-                        date.timeZoneOffset.inHours.toString());
-                  }, onConfirm: (date) {
-                    pickerData = date.toString().substring(0, 11);
-                    setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.zh);
+                  BeeDatePicker.pick(DateTime.now());
+                  // DatePicker.showDatePicker(context,
+                  //     showTitleActions: true,
+                  //     minTime: DateTime(2020, 1, 1),
+                  //     maxTime: DateTime(2020, 12, 31), onChanged: (date) {
+                  //   print('change $date in time zone ' +
+                  //       date.timeZoneOffset.inHours.toString());
+                  // }, onConfirm: (date) {
+                  //   pickerData = date.toString().substring(0, 11);
+                  //   setState(() {});
+                  // }, currentTime: DateTime.now(), locale: LocaleType.zh);
                   break;
                 case '物品名称':
                   Picker(
@@ -92,9 +93,7 @@ class _CommonPickerState extends State<CommonPicker> {
                 children: [
                   Text(
                     pickerData,
-                    style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff999999)),
+                    style: TextStyle(fontSize: 28.sp, color: Color(0xff999999)),
                   ),
                   Icon(
                     AntDesign.right,
