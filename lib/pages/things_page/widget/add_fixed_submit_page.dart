@@ -1,16 +1,17 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/pages/things_page/widget/finish_fixed_submit_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {
   AddFixedSubmitPage({Key key}) : super(key: key);
@@ -94,7 +95,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
         });
       },
       child: title.text
-          .color(_selectType == value ? ktextPrimary : ktextSubColor)
+          .color(_selectType == value ? ktextPrimary : Color(0xFF979797))
           .size(32.sp)
           .make(),
       padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 14.w),
@@ -174,15 +175,18 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  alignment: Alignment.center,
-                  width: 218.w,
-                  height: 218.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.w),
-                    border: Border.all(color: Color(0xFF979797), width: 1.w),
-                  ),
-                  child: '+'.text.black.size(100).bold.make(),
-                ),
+                    alignment: Alignment.center,
+                    width: 218.w,
+                    height: 218.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.w),
+                      border: Border.all(color: Color(0xFF979797), width: 1.w),
+                    ),
+                    child: Icon(
+                      CupertinoIcons.plus,
+                      size: 80.w,
+                      color:Color(0xFFD8D8D8) ,
+                    )),
               ),
             ],
           ),
@@ -216,7 +220,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
             onPressed: () {
               ManagerFunc.reportRepairInsert(
                   _selectType + 1, _textEditingController.text, []);
-              Get.back();
+              FinishFixedSubmitPage().to();
             },
             child: '确认提交'.text.black.bold.size(32.sp).make(),
             color: kPrimaryColor,
