@@ -94,11 +94,14 @@ dependencies:
   hive_flutter:
   logger: ^0.9.4
   flutter_easyrefresh: ^2.1.8
-  random_character: 
-    git: 
+  random_character:
+    git:
       url: http://192.168.2.201:8099/zhangmeng/random_character.git
 
   image_picker: ^0.6.7+21
+  power_logger:
+    git:
+      url: http://192.168.2.201:8099/aku_fe/power_logger.git
 
 dev_dependencies:
   flutter_test:

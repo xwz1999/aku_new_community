@@ -1,13 +1,13 @@
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
-import 'package:akuCommunity/utils/logger/logger_view.dart';
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -45,7 +45,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 300), () {
-      if (mounted) LoggerFAB.openLogger(context);
+      if (mounted) PowerLogger.init(context);
     });
     _initOp().then((value) => Get.offAll(TabNavigator()));
   }
