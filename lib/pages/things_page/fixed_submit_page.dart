@@ -10,9 +10,11 @@ import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
@@ -143,6 +145,29 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
         ));
   }
 
+  Widget _showDeletDialog() {
+    return CupertinoAlertDialog(
+      title: '删除订单'.text.black.size(34.sp).make(),
+      content: '您确定要删除订单吗?'.text.black.size(28.sp).make(),
+      actions: [
+        CupertinoDialogAction(
+          child: '先等等'.text.black.size(34.sp).make(),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        CupertinoDialogAction(
+          child: '删除订单'.text.color(Color(0xFFFF8200)).size(34.sp).bold.make(),
+          onPressed: () {
+            ManagerFunc.reportRepairDelete(_selected);
+            Get.back();
+            _easyRefreshController.callRefresh();
+          },
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
@@ -188,8 +213,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
           MaterialButton(
             onPressed: _isEdit
                 ? () {
-                    ManagerFunc.reportRepairDelete(_selected);
-                    _easyRefreshController.callRefresh();
+                    Get.dialog(_showDeletDialog());
                   }
                 : () {
                     userProvider.isLogin
