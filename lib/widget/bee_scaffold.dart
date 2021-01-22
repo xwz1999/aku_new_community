@@ -11,6 +11,8 @@ class BeeScaffold extends StatefulWidget {
   ///
   /// default Colors.white
   final Color bgColor;
+
+  final Color bodyColor;
   final List<Widget> actions;
   final Widget leading;
   final Widget bottomNavi;
@@ -21,10 +23,23 @@ class BeeScaffold extends StatefulWidget {
       this.body,
       this.actions,
       this.leading,
-      this.bgColor,
+      this.bgColor = Colors.white,
+      this.bodyColor = const Color(0xFFF9F9F9),
       this.bottomNavi,
       this.appBarBottom})
       : super(key: key);
+
+  BeeScaffold.white(
+      {Key key,
+      @required this.title,
+      this.body,
+      this.actions,
+      this.leading,
+      this.bgColor = Colors.white,
+      this.bottomNavi,
+      this.appBarBottom})
+      : this.bodyColor = Colors.white,
+        super(key: key);
 
   @override
   _BeeScaffoldState createState() => _BeeScaffoldState();
@@ -34,9 +49,9 @@ class _BeeScaffoldState extends State<BeeScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF9F9F9),
+      backgroundColor: widget.bodyColor,
       appBar: AppBar(
-        backgroundColor: widget.bgColor ?? Colors.white,
+        backgroundColor: widget.bgColor,
         elevation: 0,
         title:
             widget.title.text.size(32.sp).color(Color(0xFF333333)).bold.make(),

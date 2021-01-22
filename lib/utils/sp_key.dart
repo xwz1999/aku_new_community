@@ -1,4 +1,6 @@
 /// 所有Sp存储的键值对
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t sp_key need to be cleaned.")
 class SpKey {
   // 智能token
   static final String zntoken = "Authorization";

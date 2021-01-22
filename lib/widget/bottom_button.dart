@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/base_style.dart';
 
+//TODO CLEAN BOTTOM CODES.
+//THIS IS SHIT BUTTON
+@Deprecated("sh*t bottom_button need to be cleaned.")
 class BottomButton extends StatefulWidget {
   final String title;
   final Function fun;

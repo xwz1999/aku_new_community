@@ -1,8 +1,10 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/ui/manager/advice/new_advice_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -10,13 +12,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 enum AdviceType {
   SUGGESTION,
   COMPLAIN,
-}
-
-enum _adviceInnerType {
-  SUGGESTION,
-  QUESTION,
-  COMPLAIN,
-  PRAISE,
 }
 
 class AdvicePage extends StatefulWidget {
@@ -64,6 +59,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         return index == 0 ? 4 : 3;
         break;
     }
+    return 0;
   }
 
   @override
@@ -107,6 +103,10 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
             },
           );
         }).toList(),
+      ),
+      bottomNavi: BottomButton(
+        onPressed: NewAdvicePage(type: widget.type).to,
+        child: Text('新增'),
       ),
     );
   }
