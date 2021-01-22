@@ -12,6 +12,8 @@ import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/explain_template.dart';
 import 'package:get/get.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t common_app_bar need to be cleaned.")
 class CommonAppBar extends StatelessWidget {
   final String title, subtitle;
   final List<Map<String, dynamic>> treeList;

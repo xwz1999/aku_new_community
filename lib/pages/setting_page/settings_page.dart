@@ -105,13 +105,13 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: EdgeInsets.zero,
         children: [
           ...[
-            _buildTile(
-              title: '是否接受信息通知',
-              suffix: CupertinoSwitch(
-                value: false,
-                onChanged: (state) {},
-              ),
-            ),
+            // _buildTile(
+            //   title: '是否接受信息通知',
+            //   suffix: CupertinoSwitch(
+            //     value: false,
+            //     onChanged: (state) {},
+            //   ),
+            // ),
             _buildTile(
               title: '关于小蜜蜂智慧社区',
               onTap: () => AboutPage().to(),

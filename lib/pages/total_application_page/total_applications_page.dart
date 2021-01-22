@@ -10,8 +10,9 @@ import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
-import 'package:akuCommunity/pages/things_page/things_page.dart';
+import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -135,12 +136,7 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         VisitorAccessPage().to();
                         break;
                       case '报事报修':
-                        ThingsPage(
-                          bundle: Bundle()
-                            ..putMap('things', {
-                              'title': '报事报修',
-                            }),
-                        ).to;
+                        FixedSubmitPage().to();
                         break;
                       case '生活缴费':
                       case '我的缴费':
@@ -150,44 +146,22 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         IndustryCommitteePage().to();
                         break;
                       case '建议咨询':
-                        ThingsPage(
-                          bundle: Bundle()
-                            ..putMap('things', {
-                              'title': '建议咨询',
-                              'treeList': <Map<String, dynamic>>[
-                                {'name': '您的建议'},
-                                {'name': '您的咨询'},
-                              ]
-                            }),
-                        ).to();
+                        AdvicePage(type: AdviceType.SUGGESTION).to();
                         break;
                       case '便民电话':
                         ConvenientPhonePage().to();
                         break;
                       case '活动投票':
-                        ActivitiesPage(
-                          bundle: Bundle()..putBool('isVote', true),
-                        ).to;
+                        ActivitiesPage().to();
                         break;
                       case '社区活动':
-                        ActivitiesPage(
-                          bundle: Bundle()..putBool('isVote', false),
-                        ).to;
+                        ActivitiesPage().to();
                         break;
                       case '物品出户':
                         GoodsDetoPage().to();
                         break;
                       case '投诉表扬':
-                        ThingsPage(
-                          bundle: Bundle()
-                            ..putMap('things', {
-                              'title': '投诉表扬',
-                              'treeList': <Map<String, dynamic>>[
-                                {'name': '您的表扬'},
-                                {'name': '您的投诉'},
-                              ]
-                            }),
-                        ).to;
+                        AdvicePage(type: AdviceType.COMPLAIN).to();
                         break;
                       case '问卷调查':
                         QuestionnairePage().to();

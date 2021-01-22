@@ -14,6 +14,7 @@ class BeeScaffold extends StatefulWidget {
   final List<Widget> actions;
   final Widget leading;
   final Widget bottomNavi;
+  final PreferredSizeWidget appBarBottom;
   BeeScaffold(
       {Key key,
       @required this.title,
@@ -21,7 +22,8 @@ class BeeScaffold extends StatefulWidget {
       this.actions,
       this.leading,
       this.bgColor,
-      this.bottomNavi})
+      this.bottomNavi,
+      this.appBarBottom})
       : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class _BeeScaffoldState extends State<BeeScaffold> {
         centerTitle: true,
         leading: widget.leading ?? BeeBackButton(),
         actions: widget.actions,
+        bottom: widget.appBarBottom,
       ),
       body: widget.body,
       bottomNavigationBar: widget.bottomNavi,

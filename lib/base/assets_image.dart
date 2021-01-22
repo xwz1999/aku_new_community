@@ -1,3 +1,5 @@
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t assets_image need to be cleaned.")
 class AssetsImage {
   static const  TAB_HOME_UNSELECT = 'assets/icons/tabbar_home_no.png';
 

@@ -7,7 +7,6 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'widget/goods_info_card.dart';
 

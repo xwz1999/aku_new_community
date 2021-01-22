@@ -10,16 +10,15 @@ import 'package:akuCommunity/pages/message_center_page/message_center_page.dart'
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/scan/scan_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'widget/home_search.dart';
@@ -30,8 +29,6 @@ import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 
@@ -58,39 +55,16 @@ class _HomePageState extends State<HomePage>
   int page = 1;
 
   List<GridButton> _gridList = [
-    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
-      OpenDoorPage().to();
-    }),
-    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
-      VisitorAccessPage().to();
-    }),
-    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      FixedSubmitPage().to();
-    }),
-    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
-      LifePayPage().to();
-    }),
-    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
-      IndustryCommitteePage().to();
-    }),
-    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
-      Get.to(ThingsPage(
-        bundle: Bundle()
-          ..putMap('things', {
-            'title': '建议咨询',
-            'treeList': <Map<String, dynamic>>[
-              {'name': '您的建议'},
-              {'name': '您的咨询'},
-            ]
-          }),
-      ));
-    }),
-    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
-      ConvenientPhonePage().to();
-    }),
-    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
-      TotalApplicationsPage().to();
-    }),
+    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, OpenDoorPage().to),
+    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, VisitorAccessPage().to),
+    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, FixedSubmitPage().to),
+    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, LifePayPage().to),
+    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, IndustryCommitteePage().to),
+    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
+        AdvicePage(type: AdviceType.SUGGESTION).to),
+    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, ConvenientPhonePage().to),
+    GridButton(
+        '全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, TotalApplicationsPage().to),
   ];
 
   @override
@@ -157,12 +131,12 @@ class _HomePageState extends State<HomePage>
           _buildColButton(
             icon: AntDesign.scan1,
             title: '扫一扫',
-            onTap: () => Get.to(ScanPage()),
+            onTap: ScanPage().to,
           ),
           _buildColButton(
             icon: AntDesign.bells,
             title: '消息',
-            onTap: () => Get.to(MessageCenterPage()),
+            onTap: MessageCenterPage().to,
           ),
           16.wb,
         ],
@@ -207,9 +181,7 @@ class _HomePageState extends State<HomePage>
                           tag: '活动',
                           isShowImage: false,
                           fun: () {
-                            ActivitiesPage(
-                              bundle: Bundle()..putBool('isVote', false),
-                            ).to;
+                            ActivitiesPage().to;
                           },
                         ),
                         HomeCard(

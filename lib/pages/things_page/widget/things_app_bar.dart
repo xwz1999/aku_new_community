@@ -4,6 +4,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:get/get.dart';
 
+//TODO CLEAN BOTTOM CODES. 
+@Deprecated("sh*t app bar need to be cleaned.")
 class ThingsAppBar extends StatelessWidget {
   final String title, subtitle;
   final List<Map<String, dynamic>> treeList;

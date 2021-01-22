@@ -48,7 +48,7 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
                 },
               );
             },
-          ),
+          ).material(color: Colors.white),
         ],
       ),
     );

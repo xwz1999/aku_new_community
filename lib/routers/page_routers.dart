@@ -1,5 +1,5 @@
-
-
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t page_routers need to be cleaned.")
 class Bundle {
   Map<String, dynamic> _map = {};
 
@@ -11,7 +11,6 @@ class Bundle {
     }
     return _map[k];
   }
-
 
   putString(String k, String v) => _setValue(k, v);
 
@@ -34,4 +33,3 @@ class Bundle {
     return _map.toString();
   }
 }
-

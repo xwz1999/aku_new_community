@@ -10,6 +10,7 @@ import 'package:akuCommunity/utils/network/base_file_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/picker/bee_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,35 +63,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   _pickAvatar() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    PickedFile file = await Get.bottomSheet(CupertinoActionSheet(
-      title: '选择头像'.text.isIntrinsic.make(),
-      actions: [
-        CupertinoDialogAction(
-          onPressed: () async => Get.back(
-            result: await ImagePicker().getImage(source: ImageSource.gallery),
-          ),
-          child: '相册'.text.isIntrinsic.make(),
-        ),
-        CupertinoDialogAction(
-          onPressed: () async => Get.back(
-            result: await ImagePicker().getImage(source: ImageSource.camera),
-          ),
-          child: '相机'.text.isIntrinsic.make(),
-        ),
-      ],
-      cancelButton: CupertinoDialogAction(
-        onPressed: Get.back,
-        child: '取消'.text.isIntrinsic.make(),
-      ),
-    ));
+    File file = await BeeImagePicker.pick(title: '选择头像');
     if (file == null)
       return;
     else {
       //Upload Avatar
       Function cancel = BotToast.showLoading();
-      File rawFile = File(file.path);
       BaseFileModel model =
-          await NetUtil().upload(API.upload.uploadAvatar, rawFile);
+          await NetUtil().upload(API.upload.uploadAvatar, file);
       if (model.status)
         userProvider.updateAvatar(model.url);
       else

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/const/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,16 +63,16 @@ class _TabNavigatorState extends State<TabNavigator> {
   Widget build(BuildContext context) {
     //底部导航来
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
-      _buildBottomBar(
-          '首页', AssetsImage.TAB_HOME_UNSELECT, AssetsImage.TAB_HOME_SELECT),
+      _buildBottomBar('首页', R.ASSETS_ICONS_TABBAR_HOME_NO_PNG,
+          R.ASSETS_ICONS_TABBAR_HOME_PNG),
       // _buildBottomBar(
       //     '商城', AssetsImage.TAB_MARKET_UNSELECT, AssetsImage.TAB_MARKET_SELECT),
-      _buildBottomBar(
-          '物业', AssetsImage.TAB_HOUSE_UNSELECT, AssetsImage.TAB_HOUSE_SELECT),
-      _buildBottomBar('社区', AssetsImage.TAB_MESSAGE_UNSELECT,
-          AssetsImage.TAB_MESSAGE_SELECT),
-      _buildBottomBar(
-          '我的', AssetsImage.TAB_USER_UNSELECT, AssetsImage.TAB_USER_SELECT),
+      _buildBottomBar('物业', R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
+          R.ASSETS_ICONS_TABBAR_HOUSE_PNG),
+      _buildBottomBar('社区', R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,
+          R.ASSETS_ICONS_TABBAR_MESSAGE_PNG),
+      _buildBottomBar('我的', R.ASSETS_ICONS_TABBAR_USER_NO_PNG,
+          R.ASSETS_ICONS_TABBAR_USER_PNG),
     ];
     return Scaffold(
       body: WillPopScope(

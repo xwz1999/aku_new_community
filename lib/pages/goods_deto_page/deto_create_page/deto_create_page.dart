@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/widget/common_image_picker.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'widget/common_radio.dart';
 import 'widget/common_picker.dart';
@@ -188,7 +187,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                       ),
                     ),
                   ),
-                  GridImagePicker(),
+                  GridImagePicker(onChange: (files) {}),
                 ],
               ),
             ),
