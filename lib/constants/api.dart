@@ -81,6 +81,9 @@ class _Manager {
 
   ///报事报修：app提交报事报修信息
   String get reportRepairInsert => '/user/reportRepair/insert';
+
+  ///报事报修：批量删除报事报修信息（业主端）
+  String get reportRepairDelete => '/user/reportRepair/falseDelete';
 }
 
 class _Upload {

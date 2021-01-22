@@ -34,4 +34,13 @@ class ManagerFunc {
     );
     return baseModel;
   }
+
+  static reportRepairDelete(List<int> ids) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.reportRepairDelete,
+      params: {'ids': ids},
+      showMessage: true,
+    );
+    return baseModel;
+  }
 }
