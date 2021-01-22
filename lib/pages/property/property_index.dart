@@ -11,9 +11,9 @@ import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/things_page/things_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:flutter/material.dart';
@@ -57,18 +57,8 @@ class _PropertyIndexState extends State<PropertyIndex>
     GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
       IndustryCommitteePage().to();
     }),
-    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG, () {
-      Get.to(ThingsPage(
-        bundle: Bundle()
-          ..putMap('things', {
-            'title': '建议咨询',
-            'treeList': <Map<String, dynamic>>[
-              {'name': '您的建议'},
-              {'name': '您的咨询'},
-            ]
-          }),
-      ));
-    }),
+    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
+        AdvicePage(type: AdviceType.SUGGESTION).to),
     GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
       ConvenientPhonePage().to();
     }),
@@ -78,18 +68,8 @@ class _PropertyIndexState extends State<PropertyIndex>
     GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
       GoodsDetoPage().to();
     }),
-    GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG, () {
-      Get.to(ThingsPage(
-        bundle: Bundle()
-          ..putMap('things', {
-            'title': '投诉表扬',
-            'treeList': <Map<String, dynamic>>[
-              {'name': '您的表扬'},
-              {'name': '您的投诉'},
-            ]
-          }),
-      ));
-    }),
+    GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG,
+        AdvicePage(type: AdviceType.SUGGESTION).to),
     GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
       QuestionnairePage().to();
     }),

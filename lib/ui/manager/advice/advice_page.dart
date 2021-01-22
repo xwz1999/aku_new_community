@@ -12,6 +12,13 @@ enum AdviceType {
   COMPLAIN,
 }
 
+enum _adviceInnerType {
+  SUGGESTION,
+  QUESTION,
+  COMPLAIN,
+  PRAISE,
+}
+
 class AdvicePage extends StatefulWidget {
   final AdviceType type;
   AdvicePage({Key key, @required this.type}) : super(key: key);
@@ -23,6 +30,42 @@ class AdvicePage extends StatefulWidget {
 class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
   TabController _tabController;
+
+  String get title {
+    switch (widget.type) {
+      case AdviceType.SUGGESTION:
+        return '建议咨询';
+        break;
+      case AdviceType.COMPLAIN:
+        return '投诉表扬';
+        break;
+    }
+    return '';
+  }
+
+  List<String> get tabs {
+    switch (widget.type) {
+      case AdviceType.SUGGESTION:
+        return ['您的建议', '您的咨询'];
+        break;
+      case AdviceType.COMPLAIN:
+        return ['您的投诉', '您的表扬'];
+        break;
+    }
+    return [];
+  }
+
+  int adviceValue(int index) {
+    switch (widget.type) {
+      case AdviceType.SUGGESTION:
+        return index == 0 ? 2 : 1;
+        break;
+      case AdviceType.COMPLAIN:
+        return index == 0 ? 4 : 3;
+        break;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -38,17 +81,17 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '建议咨询',
+      title: title,
       appBarBottom: BeeTabBar(
         controller: _tabController,
-        tabs: ['您的建议', '您的咨询'],
+        tabs: tabs,
       ),
       body: TabBarView(
         controller: _tabController,
         children: List.generate(2, (index) {
           return BeeListView(
             path: API.manager.advice,
-            extraParams: {'adviceType': index == 0 ? 2 : 1},
+            extraParams: {'adviceType': adviceValue(index)},
             controller: _refreshController,
             convert: (model) => model.tableList
                 .map((e) => SuggestionOrComplainModel.fromJson(e))
