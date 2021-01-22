@@ -1,4 +1,5 @@
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -187,7 +188,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                       ),
                     ),
                   ),
-                  CommonImagePicker(),
+                  GridImagePicker(),
                 ],
               ),
             ),
