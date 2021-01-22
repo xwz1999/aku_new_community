@@ -77,11 +77,14 @@ class UserProvider extends ChangeNotifier {
   Future setBirthday(DateTime date) async {
     BaseModel baseModel = await NetUtil().post(
       API.user.setBirthday,
-      params: {'birthday': DateUtil.formatDate(date,format: "yyyy-MM-dd HH:mm:ss")},
+      params: {
+        'birthday': DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss")
+      },
       showMessage: true,
     );
     if (baseModel.status) {
-      _userInfoModel.birthday = DateUtil.formatDate(date,format: "yyyy-MM-dd HH:mm:ss");
+      _userInfoModel.birthday =
+          DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss");
       notifyListeners();
     }
   }
@@ -108,6 +111,21 @@ class UserProvider extends ChangeNotifier {
     );
     if (baseModel.status) {
       _userInfoModel.tel = newTel;
+      notifyListeners();
+    }
+  }
+
+  ///修改头像
+  Future updateAvatar(String path) async {
+    BaseModel model = await NetUtil().post(
+      API.user.udpdateAvatar,
+      params: {
+        'fileUrls': [path]
+      },
+      showMessage: true,
+    );
+    if (model.status) {
+      _userInfoModel.imgUrls = [path];
       notifyListeners();
     }
   }
