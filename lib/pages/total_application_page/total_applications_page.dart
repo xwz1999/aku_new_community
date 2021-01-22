@@ -165,14 +165,10 @@ class _TotalApplicationsPageState extends State<TotalApplicationsPage> {
                         ConvenientPhonePage().to();
                         break;
                       case '活动投票':
-                        ActivitiesPage(
-                          bundle: Bundle()..putBool('isVote', true),
-                        ).to;
+                        ActivitiesPage().to;
                         break;
                       case '社区活动':
-                        ActivitiesPage(
-                          bundle: Bundle()..putBool('isVote', false),
-                        ).to;
+                        ActivitiesPage().to;
                         break;
                       case '物品出户':
                         GoodsDetoPage().to();

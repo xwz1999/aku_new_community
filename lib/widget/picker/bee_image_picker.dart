@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,13 +16,21 @@ class BeeImagePicker {
           onPressed: () async => Get.back(
             result: await ImagePicker().getImage(source: ImageSource.gallery),
           ),
-          child: '相册'.text.isIntrinsic.make(),
+          child: [
+            Icon(CupertinoIcons.photo),
+            30.wb,
+            '相册'.text.isIntrinsic.make(),
+          ].row(),
         ),
         CupertinoDialogAction(
           onPressed: () async => Get.back(
             result: await ImagePicker().getImage(source: ImageSource.camera),
           ),
-          child: '相机'.text.isIntrinsic.make(),
+          child: [
+            Icon(CupertinoIcons.camera),
+            30.wb,
+            '相机'.text.isIntrinsic.make(),
+          ].row(),
         ),
       ],
       cancelButton: CupertinoDialogAction(

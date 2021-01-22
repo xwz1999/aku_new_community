@@ -73,9 +73,7 @@ class _PropertyIndexState extends State<PropertyIndex>
       ConvenientPhonePage().to();
     }),
     GridButton('活动投票', R.ASSETS_ICONS_TOOL_HDTP_PNG, () {
-      Get.to(ActivitiesPage(
-        bundle: Bundle()..putBool('isVote', true),
-      ));
+      Get.to(ActivitiesPage());
     }),
     GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
       GoodsDetoPage().to();
@@ -165,9 +163,7 @@ class _PropertyIndexState extends State<PropertyIndex>
   }
 
   void activityRouter() {
-    ActivitiesPage(
-      bundle: Bundle()..putBool('isVote', false),
-    ).to;
+    ActivitiesPage().to;
   }
 
   void activityDetailsRouter(String imagePath, title, bool isOver, isVote,

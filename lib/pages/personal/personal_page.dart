@@ -52,9 +52,7 @@ class _PersonalIndexState extends State<PersonalIndex>
       ));
     }),
     GridButton('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () {
-      Get.to(ActivitiesPage(
-        bundle: Bundle()..putBool('isVote', false),
-      ));
+      Get.to(ActivitiesPage());
     }),
     GridButton('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () {
       LifePayPage().to();

@@ -7,6 +7,8 @@ import 'package:akuCommunity/widget/common_app_bar.dart';
 import 'widget/things_app_bar.dart';
 import 'widget/things_list.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t page need to be cleaned.")
 class ThingsPage extends StatefulWidget {
   final Bundle bundle;
   ThingsPage({Key key, this.bundle}) : super(key: key);
