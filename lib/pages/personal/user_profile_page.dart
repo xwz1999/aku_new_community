@@ -1,11 +1,16 @@
 import 'dart:io';
 
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/personal/change_nick_name_page.dart';
 import 'package:akuCommunity/pages/personal/update_tel_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/network/base_file_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +61,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   _pickAvatar() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     PickedFile file = await Get.bottomSheet(CupertinoActionSheet(
       title: '选择头像'.text.isIntrinsic.make(),
       actions: [
@@ -77,8 +83,20 @@ class _UserProfilePageState extends State<UserProfilePage> {
         child: '取消'.text.isIntrinsic.make(),
       ),
     ));
-    if (file == null) return;
-    //TODO upload avatar.
+    if (file == null)
+      return;
+    else {
+      //Upload Avatar
+      Function cancel = BotToast.showLoading();
+      File rawFile = File(file.path);
+      BaseFileModel model =
+          await NetUtil().upload(API.upload.uploadAvatar, rawFile);
+      if (model.status)
+        userProvider.updateAvatar(model.url);
+      else
+        BotToast.showText(text: model.message);
+      cancel();
+    }
   }
 
   @override
@@ -88,7 +106,21 @@ class _UserProfilePageState extends State<UserProfilePage> {
       title: '个人资料',
       body: ListView(
         children: [
-          _buildTile('头像', CircleAvatar(), onPressed: _pickAvatar),
+          _buildTile(
+            '头像',
+            Hero(
+              tag: 'AVATAR',
+              child: ClipOval(
+                child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                  image: API.image(userProvider.userInfoModel.imgUrl),
+                  height: 56.w,
+                  width: 56.w,
+                ),
+              ),
+            ),
+            onPressed: _pickAvatar,
+          ),
           _buildTile(
             '姓名',
             userProvider.userInfoModel.name.text.make(),

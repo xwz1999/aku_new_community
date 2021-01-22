@@ -82,6 +82,7 @@ class SignFunc {
     BaseModel baseModel = await NetUtil().get(
       API.user.userDetail,
     );
+    if (baseModel.data == null) return null;
     return UserDetailModel.fromJson(baseModel.data);
   }
 }

@@ -1,12 +1,15 @@
+import 'dart:io';
+
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/network/base_file_model.dart';
 import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 
 import 'package:akuCommunity/constants/api.dart';
-import 'package:get/get.dart' hide Response;
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:logger/logger.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +30,7 @@ class NetUtil {
       errorMethodCount: 4,
     ));
     BaseOptions options = BaseOptions(
-      baseUrl: '${API.host}/app',
+      baseUrl: API.baseURL,
       connectTimeout: API.networkTimeOut,
       receiveTimeout: API.networkTimeOut,
       sendTimeout: API.networkTimeOut,
@@ -118,6 +121,27 @@ class NetUtil {
     return BaseListModel.err();
   }
 
+  Future<BaseFileModel> upload(String path, File file) async {
+    try {
+      Response res = await _dio.post(path,
+          data: FormData.fromMap({
+            'file': await MultipartFile.fromFile(file.path),
+          }));
+      _logger.v({
+        'path': res.request.path,
+        'header': res.request.headers,
+        'params': res.request.queryParameters,
+        'data': res.data,
+      });
+      LoggerData.addData(res);
+      BaseFileModel baseListModel = BaseFileModel.fromJson(res.data);
+      return baseListModel;
+    } on DioError catch (e) {
+      _parseErr(e);
+    }
+    return BaseFileModel.err();
+  }
+
   _parseErr(DioError err) {
     _logger.v({
       'type': err.type.toString(),
@@ -148,8 +172,8 @@ class NetUtil {
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
     if (!model.status && model.message == '登录失效，请登录') {
-      Get.offAll(SignInPage());
       userProvider.logout();
+      Get.offAll(SignInPage());
     }
     if (!model.status || showMessage) {
       BotToast.showText(text: model.message);

@@ -1,10 +1,20 @@
 class API {
-  static const String host = 'http://192.168.2.201:8804/IntelligentCommunity';
+  ///HOST
+  static const String host = 'http://192.168.2.201:8804';
+
+  ///接口基础地址
+  static const String baseURL = '$host/IntelligentCommunity/app';
+
+  ///静态资源路径
   static String get resource => '$host/static';
+
+  static String image(String path) => '$resource$path';
+
   static const int networkTimeOut = 10000;
   static _Login login = _Login();
   static _User user = _User();
   static _Manager manager = _Manager();
+  static _Upload upload = _Upload();
 }
 
 class _Login {
@@ -48,6 +58,9 @@ class _User {
 
   ///修改用户手机号
   String get updateTel => '/user/personalData/updateTel';
+
+  ///修改头像
+  String get udpdateAvatar => '/user/personalData/updateHeadPortrait';
 }
 
 class _Manager {
@@ -71,4 +84,12 @@ class _Manager {
 
   ///报事报修：批量删除报事报修信息（业主端）
   String get reportRepairDelete => '/user/reportRepair/falseDelete';
+}
+
+class _Upload {
+  ///上传咨询建议照片
+  String get uploadArticle => '/user/upload/uploadArticle';
+
+  ///上传头像
+  String get uploadAvatar => '/user/upload/appHeadSculpture';
 }
