@@ -1,4 +1,5 @@
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
@@ -118,14 +119,16 @@ class _PersonalIndexState extends State<PersonalIndex>
                       margin: EdgeInsets.only(left: 32.w),
                       child: Row(
                         children: [
-                          Container(
+                          Hero(
+                            tag: 'AVATAR',
                             child: ClipOval(
-                              child: CachedImageWrapper(
-                                url:
-                                    'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1851283359,3457678391&fm=26&gp=0.jpg',
-                                width: 106.w,
+                              child: FadeInImage.assetNetwork(
+                                //TODO PLACEHOLDER
+                                placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                                image: API
+                                    .image(userProvider.userInfoModel.imgUrl),
                                 height: 106.w,
-                                isSigned: userProvider.isSigned,
+                                width: 106.w,
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/personal/change_nick_name_page.dart';
 import 'package:akuCommunity/pages/personal/update_tel_page.dart';
@@ -105,7 +106,21 @@ class _UserProfilePageState extends State<UserProfilePage> {
       title: '个人资料',
       body: ListView(
         children: [
-          _buildTile('头像', CircleAvatar(), onPressed: _pickAvatar),
+          _buildTile(
+            '头像',
+            Hero(
+              tag: 'AVATAR',
+              child: ClipOval(
+                child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                  image: API.image(userProvider.userInfoModel.imgUrl),
+                  height: 56.w,
+                  width: 56.w,
+                ),
+              ),
+            ),
+            onPressed: _pickAvatar,
+          ),
           _buildTile(
             '姓名',
             userProvider.userInfoModel.name.text.make(),

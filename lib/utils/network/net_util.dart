@@ -30,7 +30,7 @@ class NetUtil {
       errorMethodCount: 4,
     ));
     BaseOptions options = BaseOptions(
-      baseUrl: '${API.host}/app',
+      baseUrl: API.baseURL,
       connectTimeout: API.networkTimeOut,
       receiveTimeout: API.networkTimeOut,
       sendTimeout: API.networkTimeOut,
@@ -172,8 +172,8 @@ class NetUtil {
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
     if (!model.status && model.message == '登录失效，请登录') {
-      Get.offAll(SignInPage());
       userProvider.logout();
+      Get.offAll(SignInPage());
     }
     if (!model.status || showMessage) {
       BotToast.showText(text: model.message);

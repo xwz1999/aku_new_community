@@ -125,8 +125,7 @@ class UserProvider extends ChangeNotifier {
       showMessage: true,
     );
     if (model.status) {
-      _userInfoModel.imgUrls = [path];
-      notifyListeners();
+      await updateProfile();
     }
   }
 }
