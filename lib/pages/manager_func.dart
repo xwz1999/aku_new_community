@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';

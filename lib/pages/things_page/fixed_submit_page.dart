@@ -78,7 +78,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   Widget _buildCard(FixedSubmitModel model) {
     return AnimatedPositioned(
       top: 0,
-      left: (_canSkew(4) && _isEdit) ? 55.w : 0,
+      left: (_canSkew(model.status) && _isEdit) ? 55.w : 0,
       bottom: 0,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,
@@ -86,44 +86,59 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
         width: 686.w,
         decoration: BoxDecoration(
             color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                BeeMap()
-                    .fixTag[model.type]
-                    .text
-                    .color(ktextPrimary)
-                    .bold
-                    .size(32.sp)
-                    .make(),
-                Spacer(),
-                BeeMap()
-                    .fixState[model.status]
-                    .text
-                    .color(_getColor(model.status))
-                    .size(24.sp)
-                    .make(),
-              ],
+            Padding(
+              padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
+              child: Row(
+                children: [
+                  BeeMap()
+                      .fixTag[model.type]
+                      .text
+                      .color(ktextPrimary)
+                      .bold
+                      .size(32.sp)
+                      .make(),
+                  Spacer(),
+                  BeeMap()
+                      .fixState[model.status]
+                      .text
+                      .color(_getColor(model.status))
+                      .size(24.sp)
+                      .make(),
+                ],
+              ),
             ),
             24.hb,
-            Divider(
-              thickness: 1.w,
-              height: 0,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: Divider(
+                thickness: 1.w,
+                height: 0,
+              ),
             ),
             24.hb,
-            model.reportDetail.text
-                .color(ktextSubColor)
-                .size(28.sp)
-                .ellipsis
-                .make(),
-            16.hb,
-            model.imgUrls.length != 0
-                ? HorizontalImageView(List.generate(
-                    model.imgUrls.length, (index) => model.imgUrls[index].url))
-                : SizedBox(),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: model.reportDetail.text
+                  .color(ktextSubColor)
+                  .size(28.sp)
+                  .ellipsis
+                  .make(),
+            ),
+            // 16.hb,
+            Padding(
+              padding: EdgeInsets.only(left: 8.w),
+              child: model.imgUrls.length != 0
+                  ? HorizontalImageView(List.generate(model.imgUrls.length,
+                      (index) => model.imgUrls[index].url))
+                  : SizedBox(),
+            ),
           ],
         ),
       ),
@@ -157,10 +172,17 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
           },
         ),
         CupertinoDialogAction(
-          child: '删除订单'.text.color(Color(0xFFFF8200)).size(34.sp).bold.isIntrinsic.make(),
+          child: '删除订单'
+              .text
+              .color(Color(0xFFFF8200))
+              .size(34.sp)
+              .bold
+              .isIntrinsic
+              .make(),
           onPressed: () {
             ManagerFunc.reportRepairDelete(_selected);
             Get.back();
+            _selected.clear();
             _easyRefreshController.callRefresh();
           },
         )
