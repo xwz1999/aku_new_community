@@ -147,17 +147,17 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
 
   Widget _showDeletDialog() {
     return CupertinoAlertDialog(
-      title: '删除订单'.text.black.size(34.sp).make(),
-      content: '您确定要删除订单吗?'.text.black.size(28.sp).make(),
+      title: '删除订单'.text.black.size(34.sp).isIntrinsic.make(),
+      content: '您确定要删除订单吗?'.text.black.size(28.sp).isIntrinsic.make(),
       actions: [
         CupertinoDialogAction(
-          child: '先等等'.text.black.size(34.sp).make(),
+          child: '先等等'.text.black.size(34.sp).isIntrinsic.make(),
           onPressed: () {
             Get.back();
           },
         ),
         CupertinoDialogAction(
-          child: '删除订单'.text.color(Color(0xFFFF8200)).size(34.sp).bold.make(),
+          child: '删除订单'.text.color(Color(0xFFFF8200)).size(34.sp).bold.isIntrinsic.make(),
           onPressed: () {
             ManagerFunc.reportRepairDelete(_selected);
             Get.back();
