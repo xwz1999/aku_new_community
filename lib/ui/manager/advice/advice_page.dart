@@ -3,7 +3,6 @@ import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_card.dart';
 import 'package:akuCommunity/ui/manager/advice/new_advice_page.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/animated/animated_transition.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -168,9 +167,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
               showMessage: true,
             );
             _refreshController.callRefresh();
-            setState(() {
-              _selectedMode = false;
-            });
+            setState(() => _selectedMode = false);
           },
           child: '删除订单'.text.make(),
         ),
