@@ -102,6 +102,9 @@ class _Manager {
 
   ///建议评价
   String get adviceEvaluate => '/user/advice/evaluate';
+
+  ///删除建议
+  String get deleteAdvice => '/user/advice/falseDelete';
 }
 
 class _Upload {

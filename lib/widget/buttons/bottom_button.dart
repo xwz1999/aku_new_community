@@ -30,6 +30,7 @@ class BottomButton extends StatelessWidget {
         onPressed: onPressed,
         color: kPrimaryColor,
         height: 98.w,
+        minWidth: double.infinity,
       ),
     );
   }

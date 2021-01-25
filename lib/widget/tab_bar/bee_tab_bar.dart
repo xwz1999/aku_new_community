@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
   final TabController controller;
   final List<String> tabs;
-  BeeTabBar({Key key, @required this.controller, @required this.tabs})
+  final Function(int index) onTap;
+  BeeTabBar(
+      {Key key, @required this.controller, @required this.tabs, this.onTap})
       : super(key: key);
 
   @override
@@ -16,6 +18,22 @@ class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
 }
 
 class _BeeTabBarState extends State<BeeTabBar> {
+  update() {
+    if (widget.onTap != null) widget.onTap(widget.controller.index);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(update);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(update);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TabBar(
@@ -30,6 +48,7 @@ class _BeeTabBarState extends State<BeeTabBar> {
       indicatorColor: Color(0xffffc40c),
       indicatorSize: TabBarIndicatorSize.label,
       tabs: widget.tabs.map((e) => Tab(text: e)).toList(),
+      onTap: widget.onTap,
     );
   }
 }
