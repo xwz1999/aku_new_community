@@ -7,8 +7,11 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 enum AdviceType {
   SUGGESTION,
@@ -107,7 +110,19 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         }).toList(),
       ),
       bottomNavi: BottomButton(
-        onPressed: NewAdvicePage(type: widget.type).to,
+        onPressed: () async {
+          bool needRefresh = await Get.to(NewAdvicePage(type: widget.type));
+          if (needRefresh == true) _refreshController.callRefresh();
+          Get.dialog(CupertinoAlertDialog(
+            title: '您的信息已提交，我们会尽快回复您，祝您生活愉快'.text.isIntrinsic.make(),
+            actions: [
+              CupertinoDialogAction(
+                child: '确定'.text.color(Color(0xFFFF8200)).isIntrinsic.make(),
+                onPressed: Get.back,
+              ),
+            ],
+          ));
+        },
         child: Text('新增'),
       ),
     );
