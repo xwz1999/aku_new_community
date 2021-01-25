@@ -10,7 +10,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/const/resource.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;
@@ -26,7 +25,8 @@ class FixedDetailPage extends StatefulWidget {
 class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController;
-  FixedDetailModel _model;
+  FixedDetailModel _model=FixedDetailModel();
+  bool get showRepairCard => _model?.appDispatchListVo!=null;
   Color _getColor(int state) {
     switch (state) {
       case 1:
@@ -112,26 +112,68 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     return Container();
   }
 
-Widget _reparCard(){
-  return Container(
-    padding: EdgeInsets.symmetric(
-      horizontal: 28.w,
-      vertical: 24.w
-    ),
-    decoration: BoxDecoration(
-      color: kForeGroundColor,
-      borderRadius: BorderRadius.circular(8.w)
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        '维修信息'.text.black.size(32.sp).bold.make(),
-        24.w.heightBox,
-        BeeDivider.horizontal()
-      ],
-    ),
-  );
-}
+  Widget _reparCard(FixedDetailModel model) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
+      decoration: BoxDecoration(
+          color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '维修信息'.text.black.size(32.sp).bold.make(),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
+          24.w.heightBox,
+          Column(
+            children: [
+              Row(
+                children: [
+                  '订单编号'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.code.text.black.size(28.sp).make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '下单时间'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.orderDate.text.black
+                      .size(28.sp)
+                      .make()
+                ],
+              ),
+              Row(
+                children: [
+                  '派单类型'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.type.text.black.size(28.sp).make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '维修人员'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.operatorName.text.black
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '分配人'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.distributorName.text.black
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+            ].sepWidget(separate: 8.w.heightBox),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -142,6 +184,7 @@ Widget _reparCard(){
         onRefresh: () async {
           _model = await ManagerFunc.reportRepairFindBYLD(widget.id);
           _onLoading = false;
+          setState(() {});
         },
         header: MaterialHeader(),
         child: _onLoading
@@ -150,17 +193,22 @@ Widget _reparCard(){
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 36.w),
                 children: [
                   _buildHead(_model),
+                  showRepairCard?_reparCard(_model):null,
+                  
                 ].sepWidget(separate: 16.w.heightBox),
               ),
       ),
       bottomNavi: Padding(
         padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).padding.bottom + 39.w),
+            bottom: MediaQuery.of(context).padding.bottom + 39.w,
+            left: 32.w,
+            right: 32.w),
         child: MaterialButton(
+          minWidth: 686.w,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(48.w)),
           color: kPrimaryColor,
-          padding: EdgeInsets.symmetric(horizontal: 278.w, vertical: 26.w),
+          padding: EdgeInsets.symmetric(vertical: 26.w),
           elevation: 0,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           onPressed: () {},
