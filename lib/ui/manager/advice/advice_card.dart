@@ -1,5 +1,6 @@
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/horizontal_image_view.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -23,7 +24,7 @@ class _AdviceCardState extends State<AdviceCard> {
   Widget build(BuildContext context) {
     return MaterialButton(
       elevation: 0,
-      padding: EdgeInsets.all(24.w),
+      padding: EdgeInsets.zero,
       color: Colors.white,
       onPressed: () {},
       shape: RoundedRectangleBorder(
@@ -32,6 +33,7 @@ class _AdviceCardState extends State<AdviceCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          20.hb,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -41,13 +43,16 @@ class _AdviceCardState extends State<AdviceCard> {
               ).text.size(32.sp).black.bold.make(),
               statusValue.text.size(24.sp).color(Color(0xFFFF8200)).make(),
             ],
-          ),
+          ).pSymmetric(h: 28.w),
           Divider(
+            indent: 28.w,
+            endIndent: 28.w,
             height: 50.w,
             thickness: 1.w,
             color: Color(0xFFE8E8E8),
           ),
-          widget.model.content.text.size(28.w).black.make(),
+          widget.model.content.text.size(28.w).black.make().pSymmetric(h: 28.w),
+          HorizontalImageView(widget.model.imgUrls.map((e) => e.url).toList()),
         ],
       ),
     );
