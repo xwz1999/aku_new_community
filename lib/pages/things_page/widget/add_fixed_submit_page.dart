@@ -32,7 +32,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   String reportText;
   List<String> _buttons = ['公区保修', '家庭维修'];
   int _selectType;
-  List<File> _files;
+  List<File> _files=[];
   @override
   void initState() {
     super.initState();

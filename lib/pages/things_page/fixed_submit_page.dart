@@ -78,7 +78,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   Widget _buildCard(FixedSubmitModel model) {
     return AnimatedPositioned(
       top: 0,
-      left: (_canSkew(model.status) && _isEdit) ? 55.w : 0,
+      left: (_canSkew(4) && _isEdit) ? 55.w : 0,
       bottom: 0,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,
@@ -179,8 +179,8 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               .bold
               .isIntrinsic
               .make(),
-          onPressed: () {
-            ManagerFunc.reportRepairDelete(_selected);
+          onPressed: () async{
+           await ManagerFunc.reportRepairDelete(_selected);
             Get.back();
             _selected.clear();
             _easyRefreshController.callRefresh();
