@@ -2,6 +2,7 @@ import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -210,17 +211,10 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
 
   Widget _selectTime() {
     return InkWell(
-      onTap: () {
-        DatePicker.showDatePicker(context,
-            showTitleActions: true,
-            minTime: DateTime(2020, 1, 1),
-            maxTime: DateTime(2020, 12, 31), onChanged: (date) {
-          print('change $date in time zone ' +
-              date.timeZoneOffset.inHours.toString());
-        }, onConfirm: (date) {
-          dateTime = date;
-          setState(() {});
-        }, currentTime: DateTime.now(), locale: LocaleType.zh);
+      onTap: () async {
+        DateTime date = await BeeDatePicker.pick(DateTime.now());
+        if (date != null) dateTime = date;
+        setState(() {});
       },
       child: Container(
         padding: EdgeInsets.only(
