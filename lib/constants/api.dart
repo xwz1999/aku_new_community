@@ -90,6 +90,8 @@ class _Manager {
 
   ///报事报修：app根据用户id和报事报修主键id查询报事报修详情（报修信息详情）
   String get reportRepairFindBYLD => '/user/reportRepair/findById';
+  /// 咨询建议/投诉表扬：添加建议咨询/投诉表扬 信息
+  String get addAdvice => '/user/advice/insert';
 }
 
 class _Upload {

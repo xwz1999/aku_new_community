@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class HorizontalImageView extends StatefulWidget {
 class _HorizontalImageViewState extends State<HorizontalImageView> {
   @override
   Widget build(BuildContext context) {
+    if (widget.urls.isEmpty) return 15.hb;
     return Container(
       height: 184.w + 24.w,
       child: ListView.builder(
