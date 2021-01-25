@@ -37,6 +37,23 @@ class NetUtil {
       headers: {},
     );
     if (_dio == null) _dio = Dio(options);
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (RequestOptions options) async => options,
+      onResponse: (Response response) async {
+        _logger.v({
+          'path': response.request.path,
+          'header': response.request.headers,
+          'params': response.request.queryParameters,
+          'data': response.data,
+        });
+        LoggerData.addData(response);
+        return response;
+      },
+      onError: (DioError error) async {
+        _parseErr(error);
+        return error;
+      },
+    ));
   }
 
   ///call auth after login
@@ -55,13 +72,6 @@ class NetUtil {
   }) async {
     try {
       Response res = await _dio.get(path, queryParameters: params);
-      _logger.v({
-        'path': res.request.path,
-        'header': res.request.headers,
-        'params': res.request.queryParameters,
-        'data': res.data,
-      });
-      LoggerData.addData(res);
       BaseModel baseModel = BaseModel.fromJson(res.data);
       _parseRequestError(baseModel, showMessage: showMessage);
       return baseModel;
@@ -83,13 +93,7 @@ class NetUtil {
   }) async {
     try {
       Response res = await _dio.post(path, data: params);
-      _logger.v({
-        'path': res.request.path,
-        'header': res.request.headers,
-        'params': res.request.queryParameters,
-        'data': res.data,
-      });
-      LoggerData.addData(res);
+
       BaseModel baseModel = BaseModel.fromJson(res.data);
       _parseRequestError(baseModel, showMessage: showMessage);
 
@@ -127,17 +131,10 @@ class NetUtil {
           data: FormData.fromMap({
             'file': await MultipartFile.fromFile(file.path),
           }));
-      _logger.v({
-        'path': res.request.path,
-        'header': res.request.headers,
-        'params': res.request.queryParameters,
-        'data': res.data,
-      });
-      LoggerData.addData(res);
       BaseFileModel baseListModel = BaseFileModel.fromJson(res.data);
       return baseListModel;
     } on DioError catch (e) {
-      _parseErr(e);
+      print(e);
     }
     return BaseFileModel.err();
   }

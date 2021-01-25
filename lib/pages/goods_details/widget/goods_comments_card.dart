@@ -1,4 +1,4 @@
-import 'package:akuCommunity/widget/horizontal_image_view.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';

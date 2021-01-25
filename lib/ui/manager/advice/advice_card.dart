@@ -1,6 +1,7 @@
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_detail_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/horizontal_image_view.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -26,7 +27,7 @@ class _AdviceCardState extends State<AdviceCard> {
       elevation: 0,
       padding: EdgeInsets.zero,
       color: Colors.white,
-      onPressed: () {},
+      onPressed: AdviceDetailPage(model: widget.model).to,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.w),
       ),

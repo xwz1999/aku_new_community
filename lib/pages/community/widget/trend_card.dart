@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/horizontal_image_view.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
