@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/add_fixed_submit_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/pages/things_page/widget/fixed_check_box.dart';
+import 'package:akuCommunity/pages/things_page/widget/fixed_detail_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -82,64 +83,70 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
       bottom: 0,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,
-      child: Container(
-        width: 686.w,
-        decoration: BoxDecoration(
-            color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
-              child: Row(
-                children: [
-                  BeeMap()
-                      .fixTag[model.type]
-                      .text
-                      .color(ktextPrimary)
-                      .bold
-                      .size(32.sp)
-                      .make(),
-                  Spacer(),
-                  BeeMap()
-                      .fixState[model.status]
-                      .text
-                      .color(_getColor(model.status))
-                      .size(24.sp)
-                      .make(),
-                ],
+      child: GestureDetector(
+        onTap: () {
+          FixedDetailPage(model.id).to();
+        },
+        child: Container(
+          width: 686.w,
+          decoration: BoxDecoration(
+              color: kForeGroundColor,
+              borderRadius: BorderRadius.circular(8.w)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
+                child: Row(
+                  children: [
+                    BeeMap()
+                        .fixTag[model.type]
+                        .text
+                        .color(ktextPrimary)
+                        .bold
+                        .size(32.sp)
+                        .make(),
+                    Spacer(),
+                    BeeMap()
+                        .fixState[model.status]
+                        .text
+                        .color(_getColor(model.status))
+                        .size(24.sp)
+                        .make(),
+                  ],
+                ),
               ),
-            ),
-            24.hb,
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24.w,
+              24.hb,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: Divider(
+                  thickness: 1.w,
+                  height: 0,
+                ),
               ),
-              child: Divider(
-                thickness: 1.w,
-                height: 0,
+              24.hb,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: model.reportDetail.text
+                    .color(ktextSubColor)
+                    .size(28.sp)
+                    .ellipsis
+                    .make(),
               ),
-            ),
-            24.hb,
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24.w,
+              // 16.hb,
+              Padding(
+                padding: EdgeInsets.only(left: 8.w),
+                child: model.imgUrls.length != 0
+                    ? HorizontalImageView(List.generate(model.imgUrls.length,
+                        (index) => model.imgUrls[index].url))
+                    : SizedBox(),
               ),
-              child: model.reportDetail.text
-                  .color(ktextSubColor)
-                  .size(28.sp)
-                  .ellipsis
-                  .make(),
-            ),
-            // 16.hb,
-            Padding(
-              padding: EdgeInsets.only(left: 8.w),
-              child: model.imgUrls.length != 0
-                  ? HorizontalImageView(List.generate(model.imgUrls.length,
-                      (index) => model.imgUrls[index].url))
-                  : SizedBox(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -179,8 +186,8 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               .bold
               .isIntrinsic
               .make(),
-          onPressed: () async{
-           await ManagerFunc.reportRepairDelete(_selected);
+          onPressed: () async {
+            await ManagerFunc.reportRepairDelete(_selected);
             Get.back();
             _selected.clear();
             _easyRefreshController.callRefresh();
