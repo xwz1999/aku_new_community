@@ -1,9 +1,16 @@
+import 'dart:io';
+
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/finish_fixed_submit_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +32,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   String reportText;
   List<String> _buttons = ['公区保修', '家庭维修'];
   int _selectType;
+  List<File> _files;
   @override
   void initState() {
     super.initState();
@@ -170,26 +178,9 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
         children: [
           '添加图片信息(${0}/9)'.text.black.size(28.sp).make(),
           24.w.heightBox,
-          Row(
-            children: [
-              InkWell(
-                onTap: () {},
-                child: Container(
-                    alignment: Alignment.center,
-                    width: 218.w,
-                    height: 218.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.w),
-                      border: Border.all(color: Color(0xFF979797), width: 1.w),
-                    ),
-                    child: Icon(
-                      CupertinoIcons.plus,
-                      size: 80.w,
-                      color:Color(0xFFD8D8D8) ,
-                    )),
-              ),
-            ],
-          ),
+          GridImagePicker(onChange: (files) {
+            _files = files;
+          })
         ],
       ),
     );
@@ -217,10 +208,15 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           MaterialButton(
             minWidth: double.infinity,
             height: 98.w,
-            onPressed: () {
-              ManagerFunc.reportRepairInsert(
-                  _selectType + 1, _textEditingController.text, []);
-              FinishFixedSubmitPage().to();
+            onPressed: () async {
+              List<String> urls =
+                  await NetUtil().uploadFiles(_files, API.upload.uploadRepair);
+              BaseModel baseModel = await ManagerFunc.reportRepairInsert(
+                  _selectType + 1, _textEditingController.text, urls);
+              if (baseModel.status) {
+                FinishFixedSubmitPage().to();
+              } else
+                BotToast.showText(text: baseModel.message);
             },
             child: '确认提交'.text.black.bold.size(32.sp).make(),
             color: kPrimaryColor,

@@ -142,6 +142,19 @@ class NetUtil {
     return BaseFileModel.err();
   }
 
+  Future<List<String>> uploadFiles(List<File> files, String api) async {
+    List<String> urls = [];
+    if (urls.isEmpty) {
+      for (var item in files) {
+        BaseFileModel model = await NetUtil().upload(api, item);
+        urls.add(model.url);
+      }
+    } else
+      return [];
+
+    return urls;
+  }
+
   _parseErr(DioError err) {
     _logger.v({
       'type': err.type.toString(),

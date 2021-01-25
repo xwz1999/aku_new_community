@@ -113,7 +113,12 @@ class _GridImagePickerState extends State<GridImagePicker> {
         mainAxisSpacing: 16.w,
       ),
       itemBuilder: (context, index) {
-        if (index == 0) return _buildSelect();
+        if (index == 0) {
+          if (_files.length >= 9) {
+            return _buildItem(_files[8]);
+          } else
+            return _buildSelect();
+        }
         return _buildItem(_files[index - 1]);
       },
       itemCount: displayLength,

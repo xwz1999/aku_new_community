@@ -95,4 +95,7 @@ class _Upload {
 
   ///上传头像
   String get uploadAvatar => '/user/upload/appHeadSculpture';
+
+  ///上传报事报修信息 报事报修照片
+  String get uploadRepair => '/user/upload/uploadRepair';
 }

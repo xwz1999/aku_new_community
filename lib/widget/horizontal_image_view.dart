@@ -25,15 +25,16 @@ class _HorizontalImageViewState extends State<HorizontalImageView> {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all(16.w),
-            // child: ClipRRect(
-            //   borderRadius: BorderRadius.circular(8.w),
-            //   child: FadeInImage.assetNetwork(
-            //     placeholder: R.ASSETS_IMAGES_DRAWINGS_PNG,
-            //     image: API.resource + widget.urls[index],
-            //   ),
-            // ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.w),
+              child: FadeInImage.assetNetwork(
+                placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                image: API.image(widget.urls[index]),
+              ),
+            ),
           );
         },
+        itemCount: widget.urls.length,
       ),
     );
   }
