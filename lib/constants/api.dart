@@ -96,6 +96,9 @@ class _Manager {
 
   ///建议详情
   String get adviceDetail => '/user/advice/findAdviceDetailByAdviceId';
+
+  ///建议继续提问
+  String get adviceQuestion => '/user/advice/reQuestion';
 }
 
 class _Upload {
