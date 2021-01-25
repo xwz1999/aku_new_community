@@ -1,5 +1,6 @@
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:flustars/flustars.dart';
@@ -43,5 +44,16 @@ class ManagerFunc {
       showMessage: true,
     );
     return baseModel;
+  }
+
+  static Future<FixedDetailModel> reportRepairFindBYLD(int id) async{
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.reportRepairFindBYLD,
+      params: {
+        'repairId':id,
+      },
+      showMessage: false,
+    );
+    return FixedDetailModel.fromJson(baseModel.data);
   }
 }
