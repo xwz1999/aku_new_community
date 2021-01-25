@@ -166,9 +166,9 @@ class _HomePageState extends State<HomePage>
                         crossCount: 4,
                       ),
                     ),
-                    SingleAdSpace(
-                      imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
-                    ),
+                    // SingleAdSpace(
+                    //   imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
+                    // ),
                     HomeTagBar(
                       title: '物业收费标准请查收~',
                       tag: '公告',
