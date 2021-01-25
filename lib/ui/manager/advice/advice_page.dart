@@ -112,16 +112,18 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
       bottomNavi: BottomButton(
         onPressed: () async {
           bool needRefresh = await Get.to(NewAdvicePage(type: widget.type));
-          if (needRefresh == true) _refreshController.callRefresh();
-          Get.dialog(CupertinoAlertDialog(
-            title: '您的信息已提交，我们会尽快回复您，祝您生活愉快'.text.isIntrinsic.make(),
-            actions: [
-              CupertinoDialogAction(
-                child: '确定'.text.color(Color(0xFFFF8200)).isIntrinsic.make(),
-                onPressed: Get.back,
-              ),
-            ],
-          ));
+          if (needRefresh == true) {
+            _refreshController.callRefresh();
+            Get.dialog(CupertinoAlertDialog(
+              title: '您的信息已提交，我们会尽快回复您，祝您生活愉快'.text.isIntrinsic.make(),
+              actions: [
+                CupertinoDialogAction(
+                  child: '确定'.text.color(Color(0xFFFF8200)).isIntrinsic.make(),
+                  onPressed: Get.back,
+                ),
+              ],
+            ));
+          }
         },
         child: Text('新增'),
       ),

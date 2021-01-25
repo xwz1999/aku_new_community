@@ -1,6 +1,6 @@
 import 'package:akuCommunity/pages/things_page/things_evaluate_page/things_evaluate_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/horizontal_image_view.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';

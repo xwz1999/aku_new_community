@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
@@ -43,10 +44,13 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
       onTap: Get.back,
       child: Scaffold(
         backgroundColor: Colors.black54,
-        body: Center(
-          child: InteractiveViewer(
-            minScale: 0.2,
-            child: image,
+        body: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Center(
+            child: InteractiveViewer(
+              minScale: 0.2,
+              child: image,
+            ),
           ),
         ),
       ),
