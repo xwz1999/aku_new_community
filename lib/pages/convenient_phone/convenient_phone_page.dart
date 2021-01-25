@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/const/resource.dart';
 
@@ -50,32 +52,34 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
                 ],
               ).expand(),
               IconButton(
-                  icon: Image.asset(
-                    R.ASSETS_ICONS_PHONE_PNG,
-                    width: 40.w,
-                    height: 40.w,
-                  ),
-                  onPressed: () {})
+                icon: Image.asset(
+                  R.ASSETS_ICONS_PHONE_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                onPressed: () async {
+                  bool result = await Get.dialog(CupertinoAlertDialog(
+                    title: model.tel.text.isIntrinsic.make(),
+                    actions: [
+                      CupertinoDialogAction(
+                        child: '取消'.text.isIntrinsic.make(),
+                        onPressed: () => Get.back(),
+                      ),
+                      CupertinoDialogAction(
+                        child: '确定'.text.isIntrinsic.make(),
+                        onPressed: () => Get.back(result: true),
+                      ),
+                    ],
+                  ));
+                  if (result == true) launch('tel:${model.tel}');
+                },
+              )
             ],
           ),
         ],
       ),
     );
   }
-
-  // Widget _buildCard(String title, List tableList) {
-  //   return Material(
-  //     child: Padding(
-  //       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 40.w),
-  //       child: Column(
-  //         children: [
-  //           title.text.black.size(32.sp).make(),
-  //           45.w.heightBox,
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +142,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
                         padding: EdgeInsets.symmetric(vertical: 20.w),
                         child: Divider(
                           thickness: 1.w,
-                          height: 0,
+                          height: 1.w,
                           color: Color(0xFFD8D8D8),
                         ),
                       );

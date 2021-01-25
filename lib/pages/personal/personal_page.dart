@@ -286,11 +286,11 @@ class _PersonalIndexState extends State<PersonalIndex>
           //     ),
           //   ),
           // ),
-          SliverToBoxAdapter(
-            child: SingleAdSpace(
-              imagePath: 'assets/example/guanggao7.png',
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: SingleAdSpace(
+          //     imagePath: 'assets/example/guanggao7.png',
+          //   ),
+          // ),
           SliverToBoxAdapter(
             child: Container(
               decoration: BoxDecoration(

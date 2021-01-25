@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 //TODO one day we need to remove those.😕
-// ignore: must_be_immutable
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t round_check_box need to be cleaned.")
 class RoundCheckBox extends StatefulWidget {
   var value = false;
 

@@ -1,5 +1,5 @@
 import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/pages/visitor_access_page/visitor_record_page.dart';
+import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
