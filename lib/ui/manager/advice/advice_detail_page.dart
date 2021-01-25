@@ -3,6 +3,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/advice_detail_model.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_add_comment_page.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_evaluate_page.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -160,7 +161,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       title: '查看详情',
       actions: [
         FlatButton(
-          onPressed: () {},
+          onPressed: AdviceEvaluatePage(id: widget.model.id).to,
           child: '评价'.text.make(),
         ),
       ],

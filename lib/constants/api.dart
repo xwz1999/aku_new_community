@@ -99,6 +99,9 @@ class _Manager {
 
   ///建议继续提问
   String get adviceQuestion => '/user/advice/reQuestion';
+
+  ///建议评价
+  String get adviceEvaluate => '/user/advice/evaluate';
 }
 
 class _Upload {
