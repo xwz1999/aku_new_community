@@ -144,14 +144,11 @@ class NetUtil {
 
   Future<List<String>> uploadFiles(List<File> files, String api) async {
     List<String> urls = [];
-    if (urls.isEmpty) {
-      for (var item in files) {
+    for (var item in files) {
         BaseFileModel model = await NetUtil().upload(api, item);
         urls.add(model.url);
       }
-    } else
-      return [];
-
+    if (urls.isEmpty) return [];
     return urls;
   }
 

@@ -1,6 +1,7 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_card.dart';
 import 'package:akuCommunity/ui/manager/advice/new_advice_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -94,8 +95,9 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
                 .toList(),
             builder: (items) {
               return ListView.separated(
+                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
                 itemBuilder: (context, index) {
-                  return SizedBox();
+                  return AdviceCard(model: items[index]);
                 },
                 separatorBuilder: (_, __) => 20.hb,
                 itemCount: items.length,

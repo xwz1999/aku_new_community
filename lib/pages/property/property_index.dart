@@ -69,7 +69,7 @@ class _PropertyIndexState extends State<PropertyIndex>
       GoodsDetoPage().to();
     }),
     GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG,
-        AdvicePage(type: AdviceType.SUGGESTION).to),
+        AdvicePage(type: AdviceType.COMPLAIN).to),
     GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
       QuestionnairePage().to();
     }),

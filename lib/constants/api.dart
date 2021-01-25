@@ -87,6 +87,9 @@ class _Manager {
 
   ///咨询建议/投诉表扬：查询所有的app建议咨询/投诉表扬 信息（包含条件搜索 type 【类型(1.咨询，2.建议，3.投诉，4.表扬)】）
   String get advice => '/user/advice/list';
+
+  /// 咨询建议/投诉表扬：添加建议咨询/投诉表扬 信息
+  String get addAdvice => '/user/advice/insert';
 }
 
 class _Upload {
