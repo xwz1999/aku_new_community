@@ -16,6 +16,7 @@ class BeeGridImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (urls.isEmpty) return SizedBox();
     return GridView.builder(
       padding: padding,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
