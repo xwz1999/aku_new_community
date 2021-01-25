@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/widget/activity_card.dart';
 
 class ActivitiesPage extends StatefulWidget {

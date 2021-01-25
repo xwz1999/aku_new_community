@@ -1,9 +1,11 @@
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_detail_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AdviceCard extends StatefulWidget {
@@ -21,6 +23,28 @@ class _AdviceCardState extends State<AdviceCard> {
         2: '反馈中',
         3: '已反馈',
       }[widget.model.status];
+
+  Widget _buildRating() {
+    if (widget.model.score == null)
+      return SizedBox();
+    else
+      return [
+        120.hb,
+        24.wb,
+        '评测得分'.text.size(32.sp).color(ktextSubColor).make(),
+        Spacer(),
+        RatingBarIndicator(
+          itemBuilder: (context, index) => Icon(
+            Icons.star_rounded,
+            color: kPrimaryColor,
+          ),
+          rating: widget.model.score / 2,
+          itemSize: 40.w,
+        ),
+        24.wb,
+      ].row();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -54,6 +78,13 @@ class _AdviceCardState extends State<AdviceCard> {
           ),
           widget.model.content.text.size(28.w).black.make().pSymmetric(h: 28.w),
           HorizontalImageView(widget.model.imgUrls.map((e) => e.url).toList()),
+          widget.model.score == null
+              ? SizedBox()
+              : Divider(
+                  indent: 32.w,
+                  endIndent: 32.w,
+                ),
+          _buildRating(),
         ],
       ),
     );

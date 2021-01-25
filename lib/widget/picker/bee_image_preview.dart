@@ -46,11 +46,11 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
         backgroundColor: Colors.black54,
         body: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Center(
-            child: InteractiveViewer(
-              minScale: 0.2,
-              child: image,
-            ),
+          child: InteractiveViewer(
+            boundaryMargin: EdgeInsets.all(48),
+            minScale: 0.2,
+            maxScale: 10,
+            child: Center(child: image),
           ),
         ),
       ),
