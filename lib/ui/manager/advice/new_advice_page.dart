@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -16,6 +20,7 @@ class NewAdvicePage extends StatefulWidget {
 
 class _NewAdvicePageState extends State<NewAdvicePage> {
   int _type = 0;
+  List<File> _files = [];
   String get title {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
@@ -106,11 +111,35 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
           24.hb,
           TextField(
             // controller: ,
+            minLines: 6,
+            maxLines: 99,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 22.w,
+                vertical: 32.w,
+              ),
+              hintText: '您对我们的工作有什么建议吗？欢迎您提给我们宝贵的建议，谢谢',
+              hintStyle: TextStyle(
+                fontSize: 28.sp,
+                color: Color(0xFF999999),
+              ),
             ),
           ),
+          32.hb,
+          '添加图片信息(${_files.length}/9)'.text.size(28.sp).make(),
+          24.hb,
+          GridImagePicker(
+            onChange: (files) {
+              _files = files;
+            },
+          ),
         ],
+      ),
+      bottomNavi: BottomButton(
+        onPressed: () {},
+        child: '确认提交'.text.make(),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -41,23 +42,34 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => SignUpProvider()),
       ],
-      child: GetMaterialApp(
-        title: '智慧社区',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.yellow),
-        home: SplashPage(),
-        //国际化支持
-        localizationsDelegates: [
-          PickerLocalizationsDelegate.delegate,
-          RefreshLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [const Locale('zh', 'CH')],
-        locale: Locale('zh'),
-        builder: BotToastInit(),
-        navigatorObservers: [BotToastNavigatorObserver()],
+      child: GestureDetector(
+        onTap: () {
+          //点击输入框外部隐藏键盘⌨️
+          //只能响应点击非手势识别的组件
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            FocusManager.instance.primaryFocus.unfocus();
+          }
+        },
+        child: GetMaterialApp(
+          title: '智慧社区',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(primarySwatch: Colors.yellow),
+          home: SplashPage(),
+          //国际化支持
+          localizationsDelegates: [
+            PickerLocalizationsDelegate.delegate,
+            RefreshLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [const Locale('zh', 'CH')],
+          locale: Locale('zh'),
+          builder: BotToastInit(),
+          navigatorObservers: [BotToastNavigatorObserver()],
+        ),
       ),
     );
   }
