@@ -58,4 +58,12 @@ class ManagerFunc {
     );
     return FixedDetailModel.fromJson(response.data);
   }
+
+  static Future reportRepairCancel(int id) async {
+    BaseModel baseModel = await NetUtil().get(API.manager.reportRepairCancel,
+        params: {
+          'repairId': id,
+        },
+        showMessage: true);
+  }
 }
