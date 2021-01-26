@@ -109,9 +109,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   import_sorter: ^4.4.1
-
-  # 路由管理
-  ff_annotation_route: 3.3.2
+  flutter_asset_generator: ^0.6.1
 
 flutter:
   uses-material-design: true
