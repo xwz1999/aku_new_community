@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
@@ -26,6 +29,12 @@ class FixedDetailPage extends StatefulWidget {
 
   @override
   _FixedDetailPageState createState() => _FixedDetailPageState();
+}
+
+class CancelModel {
+  bool cancel;
+  String message;
+  CancelModel(this.cancel, this.message);
 }
 
 class _FixedDetailPageState extends State<FixedDetailPage> {
@@ -226,9 +235,40 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
       child: Row(
         children: [
           MaterialButton(
+            height: double.infinity,
             padding: EdgeInsets.zero,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            onPressed: () {},
+            onPressed: () async {
+              CancelModel _cancel =
+                  _allowCancel(_model.appReportRepairVo.status);
+              if (_cancel.cancel) {
+                BotToast.showLoading();
+                await ManagerFunc.reportRepairCancel(
+                    _model.appReportRepairVo.id);
+                BotToast.closeAllLoading();
+                Get.back();
+              } else {
+                Get.dialog(
+                  CupertinoAlertDialog(
+                    title: _cancel.message.text.black
+                        .size(30.sp)
+                        .isIntrinsic
+                        .make(),
+                    actions: [
+                      CupertinoDialogAction(
+                        child: '我知道了'
+                            .text
+                            .color(kDarkPrimaryColor)
+                            .size(36.sp)
+                            .isIntrinsic
+                            .make(),
+                        onPressed: () => Get.back(),
+                      )
+                    ],
+                  ),
+                );
+              }
+            },
             textColor: ktextPrimary,
             disabledColor: kDarkSubColor.withOpacity(0.1),
             disabledTextColor: ktextSubColor.withOpacity(0.3),
@@ -250,7 +290,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             hoverElevation: 0,
             disabledElevation: 0,
           ).expand(),
+          BeeDivider.vertical(),
           MaterialButton(
+            height: double.infinity,
             padding: EdgeInsets.zero,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             onPressed: showProcessCard ? () {} : null,
@@ -264,7 +306,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                   R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
                   width: 40.w,
                   height: 40.w,
-                  color: showProcessCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                  color: showProcessCard
+                      ? Colors.black
+                      : kDarkSubColor.withOpacity(0.5),
                 ),
                 16.w.widthBox,
                 '致电管家'.text.size(28.sp).bold.make()
@@ -276,6 +320,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             hoverElevation: 0,
             disabledElevation: 0,
           ).expand(),
+          BeeDivider.vertical(),
           MaterialButton(
             height: 96.w,
             padding: EdgeInsets.zero,
@@ -291,7 +336,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                   R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
                   width: 40.w,
                   height: 40.w,
-                  color: showRepairCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                  color: showRepairCard
+                      ? Colors.black
+                      : kDarkSubColor.withOpacity(0.5),
                 ),
                 16.w.widthBox,
                 '致电师傅'.text.size(28.sp).bold.make()
@@ -306,6 +353,25 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
         ],
       ),
     );
+  }
+
+  CancelModel _allowCancel(int state) {
+    switch (state) {
+      case 1:
+      case 2:
+        return CancelModel(true, '');
+      case 3:
+        return CancelModel(false, '订单处理中，当前无法取消订单');
+      case 4:
+      case 5:
+        return CancelModel(false, '处理已完成，当前无法取消订单');
+      case 6:
+        return CancelModel(false, '处理已关闭，当前无法取消订单');
+      case 7:
+        return CancelModel(false, '处理已作废，当前无法取消订单');
+      default:
+        return CancelModel(false, '未知错误');
+    }
   }
 
   @override
