@@ -168,6 +168,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
             } else {
               _selected.remove(model.id);
             }
+            setState(() {});
           },
         ));
   }
@@ -245,18 +246,23 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
             },
           ).expand(),
           MaterialButton(
+            disabledColor: kDarkSubColor,
+            disabledTextColor: ktextSubColor,
+            textColor: ktextPrimary,
             onPressed: _isEdit
-                ? () {
-                    Get.dialog(_showDeletDialog());
-                  }
+                ? _selected.isEmpty
+                    ? null
+                    : () {
+                        Get.dialog(_showDeletDialog());
+                      }
                 : () {
                     userProvider.isLogin
                         ? AddFixedSubmitPage().to()
                         : BotToast.showText(text: '请先登录！');
                   },
             child: _isEdit
-                ? '删除订单'.text.bold.color(ktextPrimary).size(32.sp).make()
-                : '新增'.text.bold.color(ktextPrimary).size(32.sp).make(),
+                ? '删除订单'.text.bold.size(32.sp).make()
+                : '新增'.text.bold.size(32.sp).make(),
             minWidth: double.infinity,
             height: 98.w,
             elevation: 0,
