@@ -1,16 +1,21 @@
+// Dart imports:
 import 'dart:convert';
-import 'package:akuCommunity/pages/goods_details/view_comments_page.dart';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/goods_details/view_comments_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'widget/goods_app_bar.dart';
-import 'widget/product_swiper.dart';
-import 'widget/product_content.dart';
-import 'widget/product_service.dart';
-import 'widget/product_evaluate.dart';
-import 'widget/product_detail.dart';
 import 'widget/goods_details_bottom_bar.dart';
+import 'widget/product_content.dart';
+import 'widget/product_detail.dart';
+import 'widget/product_evaluate.dart';
+import 'widget/product_service.dart';
+import 'widget/product_swiper.dart';
 
 class GoodsDetailsPage extends StatefulWidget {
   final Bundle bundle;

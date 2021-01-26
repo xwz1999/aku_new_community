@@ -1,15 +1,20 @@
-import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/app_bar_action.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
-import 'widget/market_sticky_bar.dart';
+import 'package:akuCommunity/widget/app_bar_action.dart';
+import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
+import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'widget/market_list.dart';
+import 'widget/market_sticky_bar.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key key}) : super(key: key);

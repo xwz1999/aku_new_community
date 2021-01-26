@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:akuCommunity/model/aku_shop_model.dart';
+import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/cart_count.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:provider/provider.dart';
-import 'package:akuCommunity/provider/cart.dart';
 import 'widget/market_cart_app_bar.dart';
 
 class MarketCartPage extends StatefulWidget {

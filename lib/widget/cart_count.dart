@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/model/aku_shop_model.dart';
 
 class CartCount extends StatelessWidget {
   final AkuShopModel cartItem;

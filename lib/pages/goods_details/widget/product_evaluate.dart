@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

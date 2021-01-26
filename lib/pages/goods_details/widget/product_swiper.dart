@@ -1,8 +1,15 @@
+// Dart imports:
 import 'dart:math';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/fade_route.dart';
 import 'package:akuCommunity/widget/gallery_photo_view_wrapper.dart';
 

@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 //TODO Please remove those sh*t code.
 class ExpandableText extends StatefulWidget {
   final String text;

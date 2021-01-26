@@ -1,7 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 /// ## BeeListView
 ///```dart

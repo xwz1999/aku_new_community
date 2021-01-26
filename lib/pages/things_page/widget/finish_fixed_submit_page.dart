@@ -1,9 +1,14 @@
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class FinishFixedSubmitPage extends StatelessWidget {
   const FinishFixedSubmitPage({Key key}) : super(key: key);

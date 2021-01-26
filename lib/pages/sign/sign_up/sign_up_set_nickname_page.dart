@@ -1,14 +1,19 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:random_character/chinese_character/random_chinese_charater.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_verify_page.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:random_character/chinese_character/random_chinese_charater.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
   SignUpSetNicknamePage({Key key}) : super(key: key);

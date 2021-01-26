@@ -1,3 +1,16 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
@@ -13,19 +26,11 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/base/assets_image.dart';
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/cached_image_wrapper.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
+import 'package:akuCommunity/widget/single_ad_space.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool isSign;

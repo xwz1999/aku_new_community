@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:akuCommunity/utils/headers.dart';
 
 class AddressEditItem extends StatefulWidget {
   final Map addressInfo;

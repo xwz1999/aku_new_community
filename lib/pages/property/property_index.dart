@@ -1,3 +1,12 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
@@ -13,21 +22,17 @@ import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/circle_trend.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'widget/property_card.dart';
-import 'widget/property_bar.dart';
-import 'widget/property_activity_card.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/circle_trend.dart';
+import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
+import 'package:akuCommunity/widget/single_ad_space.dart';
+import 'widget/property_activity_card.dart';
+import 'widget/property_bar.dart';
+import 'widget/property_card.dart';
 
 class PropertyIndex extends StatefulWidget {
   PropertyIndex({Key key}) : super(key: key);

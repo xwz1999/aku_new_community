@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class HouseInfo extends StatefulWidget {
   final String title,subtitle;

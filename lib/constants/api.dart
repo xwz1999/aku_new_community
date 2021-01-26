@@ -76,6 +76,9 @@ class _Manager {
   ///访客通行：添加填写的访客信息
   String get insertVisitorInfo => '/user/visitorAccess/insertVisitorInfo';
 
+  ///访客通行：查询访客记录信息（包含条件搜索）
+  String get visitorAccessList => '/user/visitorAccess/list';
+
   ///物品出户：查询当前用户所有的物品出户信息
   String get articleOut => '/user/articleOut/list';
 

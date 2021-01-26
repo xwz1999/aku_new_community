@@ -1,13 +1,18 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AdviceEvaluatePage extends StatefulWidget {
   final int id;

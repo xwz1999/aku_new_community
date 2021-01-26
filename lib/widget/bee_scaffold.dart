@@ -1,7 +1,12 @@
-import 'package:akuCommunity/widget/bee_back_button.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatefulWidget {
   final String title;

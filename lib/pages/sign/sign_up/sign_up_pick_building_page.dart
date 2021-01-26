@@ -1,11 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/model/user/pick_building_model.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_unit_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignUpPickBuildingPage extends StatefulWidget {
   SignUpPickBuildingPage({Key key}) : super(key: key);

@@ -1,6 +1,11 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+// Project imports:
 import 'order_card.dart';
 
 class OrderList extends StatefulWidget {

@@ -1,17 +1,23 @@
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_input.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/common_input.dart';
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key key}) : super(key: key);
@@ -210,17 +216,10 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
 
   Widget _selectTime() {
     return InkWell(
-      onTap: () {
-        DatePicker.showDatePicker(context,
-            showTitleActions: true,
-            minTime: DateTime(2020, 1, 1),
-            maxTime: DateTime(2020, 12, 31), onChanged: (date) {
-          print('change $date in time zone ' +
-              date.timeZoneOffset.inHours.toString());
-        }, onConfirm: (date) {
-          dateTime = date;
-          setState(() {});
-        }, currentTime: DateTime.now(), locale: LocaleType.zh);
+      onTap: () async {
+        DateTime date = await BeeDatePicker.pick(DateTime.now());
+        if (date != null) dateTime = date;
+        setState(() {});
       },
       child: Container(
         padding: EdgeInsets.only(

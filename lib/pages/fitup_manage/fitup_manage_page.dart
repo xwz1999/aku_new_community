@@ -1,11 +1,14 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/sliver_app_bar_delegate.dart';
-import 'widget/owner_manage.dart';
 import 'widget/director_manage.dart';
+import 'widget/owner_manage.dart';
 
 class FitupManagePage extends StatefulWidget {
   FitupManagePage({Key key}) : super(key: key);

@@ -1,8 +1,13 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/utils/headers.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'widget/goods_app_bar.dart';
 import 'widget/goods_comments_card.dart';
 

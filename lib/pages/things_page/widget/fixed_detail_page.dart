@@ -1,16 +1,21 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/const/resource.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;

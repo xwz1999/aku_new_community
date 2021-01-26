@@ -1,8 +1,11 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:akuCommunity/ui/manager/visitor/visitor_record_view.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import '../../../pages/visitor_access_page/widget/record_list.dart';
 
 class VisitorRecordPage extends StatefulWidget {
   VisitorRecordPage({Key key}) : super(key: key);
@@ -38,10 +41,10 @@ class _VisitorRecordPageState extends State<VisitorRecordPage>
       ),
       body: TabBarView(
         controller: _controller,
-        children: List.generate(
-          _tabs.length,
-          (index) => RecordList(),
-        ),
+        children: [
+          VisitorRecordView(type: 1),
+          VisitorRecordView(type: 2),
+        ],
       ),
     );
   }

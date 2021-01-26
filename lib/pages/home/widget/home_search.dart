@@ -1,8 +1,13 @@
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/search_bar_delegate.dart';
 
 class HomeSearch extends StatefulWidget {
   HomeSearch({Key key}) : super(key: key);

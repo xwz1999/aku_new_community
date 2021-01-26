@@ -1,12 +1,17 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/model/aku_shop_class_model.dart';
 import 'package:akuCommunity/service/base_model.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'widget/market_class_bar.dart';
 
 class MarketClassPage extends StatefulWidget {

@@ -1,17 +1,22 @@
-import 'package:akuCommunity/pages/splash/splash_page.dart';
-import 'package:akuCommunity/provider/sign_up_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/developer_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:akuCommunity/provider/cart.dart';
-import 'package:flutter_picker/flutter_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/splash/splash_page.dart';
+import 'package:akuCommunity/provider/cart.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/developer_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

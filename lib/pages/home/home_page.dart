@@ -1,6 +1,22 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
+
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/extensions/page_router.dart';
+import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
@@ -12,25 +28,16 @@ import 'package:akuCommunity/pages/scan/scan_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/grid_buttons.dart';
+import 'package:akuCommunity/widget/single_ad_space.dart';
+import 'widget/home_card.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
-import 'widget/home_card.dart';
 import 'widget/home_tag_bar.dart';
-import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'package:akuCommunity/service/base_model.dart';
-import 'package:akuCommunity/model/aku_shop_model.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:akuCommunity/extensions/page_router.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);

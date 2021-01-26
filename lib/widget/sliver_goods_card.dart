@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:convert';
-import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/model/aku_shop_model.dart';
+import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 
 class SliverGoodsCard extends StatelessWidget {

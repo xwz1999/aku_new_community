@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignUpPickRolePage extends StatefulWidget {
   SignUpPickRolePage({Key key}) : super(key: key);

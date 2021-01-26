@@ -1,8 +1,8 @@
-import 'package:akuCommunity/pages/tab_navigator.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/hive_store.dart';
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -10,6 +10,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/hive_store.dart';
 
 //TODO splashPage
 class SplashPage extends StatefulWidget {

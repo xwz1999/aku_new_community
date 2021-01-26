@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_detail_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AdviceCard extends StatefulWidget {
   final SuggestionOrComplainModel model;

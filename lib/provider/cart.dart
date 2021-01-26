@@ -1,7 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// Dart imports:
 import 'dart:convert';
+
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:akuCommunity/model/aku_shop_model.dart';
 
 class CartProvidde with ChangeNotifier {

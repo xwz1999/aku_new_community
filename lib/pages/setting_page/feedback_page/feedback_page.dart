@@ -1,13 +1,19 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/common_image_picker.dart';
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/common_image_picker.dart';
 
 class FeedBackPage extends StatefulWidget {
   FeedBackPage({Key key}) : super(key: key);

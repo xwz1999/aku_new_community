@@ -1,13 +1,17 @@
-import 'package:akuCommunity/const/resource.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:akuCommunity/base/assets_image.dart';
+import 'package:flutter/material.dart';
 
-import 'home/home_page.dart';
-import 'property/property_index.dart';
+// Package imports:
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'community/community_index.dart';
+import 'home/home_page.dart';
 import 'personal/personal_page.dart';
+import 'property/property_index.dart';
 
 class TabNavigator extends StatefulWidget {
   const TabNavigator({

@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
-import 'image_horizontal_list.dart';
 import 'goods_info_card_button.dart';
+import 'image_horizontal_list.dart';
 
 class GoodsInfoCard extends StatelessWidget {
   final List<String> listImage;
