@@ -2,7 +2,7 @@ class FixedDetailModel {
   AppReportRepairVo appReportRepairVo;
   List<AppProcessRecordVo> appProcessRecordVo;
   Null appMaintenanceResultVo;
-  List<AppDispatchListVo> appDispatchListVo;
+  AppDispatchListVo appDispatchListVo;
 
   FixedDetailModel(
       {this.appReportRepairVo,
@@ -21,12 +21,9 @@ class FixedDetailModel {
       });
     }
     appMaintenanceResultVo = json['appMaintenanceResultVo'];
-    if (json['appDispatchListVo'] != null) {
-      appDispatchListVo = new List<AppDispatchListVo>();
-      json['appDispatchListVo'].forEach((v) {
-        appDispatchListVo.add(new AppDispatchListVo.fromJson(v));
-      });
-    }
+    appDispatchListVo = json['appDispatchListVo'] != null
+        ? new AppDispatchListVo.fromJson(json['appDispatchListVo'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -40,8 +37,7 @@ class FixedDetailModel {
     }
     data['appMaintenanceResultVo'] = this.appMaintenanceResultVo;
     if (this.appDispatchListVo != null) {
-      data['appDispatchListVo'] =
-          this.appDispatchListVo.map((v) => v.toJson()).toList();
+      data['appDispatchListVo'] = this.appDispatchListVo.toJson();
     }
     return data;
   }
@@ -131,7 +127,7 @@ class AppProcessRecordVo {
 }
 
 class AppDispatchListVo {
-  int code;
+  String code;
   String orderDate;
   int type;
   String operatorName;

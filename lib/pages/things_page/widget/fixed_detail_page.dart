@@ -31,7 +31,9 @@ class FixedDetailPage extends StatefulWidget {
 class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController;
-  FixedDetailModel _model;
+  FixedDetailModel _model = FixedDetailModel();
+  bool get showRepairCard => _model?.appDispatchListVo != null;
+  bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
   Color _getColor(int state) {
     switch (state) {
       case 1:
@@ -117,26 +119,195 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     return Container();
   }
 
-Widget _reparCard(){
-  return Container(
-    padding: EdgeInsets.symmetric(
-      horizontal: 28.w,
-      vertical: 24.w
-    ),
-    decoration: BoxDecoration(
-      color: kForeGroundColor,
-      borderRadius: BorderRadius.circular(8.w)
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        '维修信息'.text.black.size(32.sp).bold.make(),
-        24.w.heightBox,
-        BeeDivider.horizontal()
-      ],
-    ),
-  );
-}
+  Widget _reparCard(FixedDetailModel model) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
+      decoration: BoxDecoration(
+          color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '维修信息'.text.black.size(32.sp).bold.make(),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
+          24.w.heightBox,
+          Column(
+            children: [
+              Row(
+                children: [
+                  '订单编号'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.code.text.black.size(28.sp).make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '下单时间'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.orderDate.text.black
+                      .size(28.sp)
+                      .make()
+                ],
+              ),
+              Row(
+                children: [
+                  '派单类型'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.type.text.black.size(28.sp).make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '维修人员'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.operatorName.text.black
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '分配人'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appDispatchListVo.distributorName.text.black
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+            ].sepWidget(separate: 8.w.heightBox),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProcessCard(FixedDetailModel model) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
+      decoration: BoxDecoration(
+        color: kForeGroundColor,
+        borderRadius: BorderRadius.circular(8.w),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '进程处理'.text.black.size(32.sp).bold.make(),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
+          24.w.heightBox,
+          ...model.appProcessRecordVo
+              .map((e) => Row(
+                    children: [
+                      BeeMap()
+                          .processClass[e.operationType]
+                          .text
+                          .color(ktextSubColor)
+                          .size(28.sp)
+                          .make(),
+                      Spacer(),
+                      e.operationDate.text.black.size(28.sp).make(),
+                    ],
+                  ))
+              .toList()
+              .sepWidget(separate: 8.w.heightBox)
+        ],
+      ),
+    );
+  }
+
+  Widget _buttons(FixedDetailModel model) {
+    return Container(
+      width: 228.w * 3,
+      height: 96.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.w),
+        color: kForeGroundColor,
+      ),
+      child: Row(
+        children: [
+          MaterialButton(
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: () {},
+            textColor: ktextPrimary,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_ORDER_CANCEL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                16.w.widthBox,
+                '取消订单'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand(),
+          MaterialButton(
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: showProcessCard ? () {} : null,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            textColor: ktextPrimary,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                  color: showProcessCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                ),
+                16.w.widthBox,
+                '致电管家'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand(),
+          MaterialButton(
+            height: 96.w,
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: showRepairCard ? () {} : null,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            textColor: ktextPrimary,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                  color: showRepairCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                ),
+                16.w.widthBox,
+                '致电师傅'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand()
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -147,25 +318,32 @@ Widget _reparCard(){
         onRefresh: () async {
           _model = await ManagerFunc.reportRepairFindBYLD(widget.id);
           _onLoading = false;
+          setState(() {});
         },
         header: MaterialHeader(),
         child: _onLoading
             ? _buildEmpty()
             : ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 36.w),
-                children: [
+                children: <Widget>[
                   _buildHead(_model),
+                  ...showRepairCard ? [_reparCard(_model)] : [],
+                  ...showProcessCard ? [_buildProcessCard(_model)] : [],
+                  _buttons(_model),
                 ].sepWidget(separate: 16.w.heightBox),
               ),
       ),
       bottomNavi: Padding(
         padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).padding.bottom + 39.w),
+            bottom: MediaQuery.of(context).padding.bottom + 39.w,
+            left: 32.w,
+            right: 32.w),
         child: MaterialButton(
+          minWidth: 686.w,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(48.w)),
           color: kPrimaryColor,
-          padding: EdgeInsets.symmetric(horizontal: 278.w, vertical: 26.w),
+          padding: EdgeInsets.symmetric(vertical: 26.w),
           elevation: 0,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           onPressed: () {},
