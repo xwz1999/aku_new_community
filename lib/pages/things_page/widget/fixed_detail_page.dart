@@ -374,6 +374,111 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     }
   }
 
+  Widget _showBottomSheet(FixedDetailModel model) {
+    return BottomSheet(
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.fromLTRB(
+              0, 36.w, 0.w, MediaQuery.of(context).padding.bottom),
+          decoration: BoxDecoration(
+            color: kForeGroundColor,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20.w)),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.w),
+                child: Column(
+                  children: [
+                    '维修结果'.text.black.size(32.sp).bold.isIntrinsic.make(),
+                    20.w.heightBox,
+                    BeeDivider.horizontal(),
+                    Padding(
+                      padding: EdgeInsets.all(20.w),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: R.ASSETS_EXAMPLE_BG1_PNG,
+                        image: 'null',
+                        width: 646.w,
+                        height: 323.w,
+                      ),
+                    ),
+                    4.w.heightBox,
+                    Row(
+                      children: [
+                        '维修费用总计'.text.black.size(28.sp).isIntrinsic.make(),
+                        Spacer(),
+                        '¥300'
+                            .text
+                            .color(kDangerColor)
+                            .size(42.sp)
+                            .bold
+                            .isIntrinsic
+                            .make(),
+                      ],
+                    ),
+                    36.w.heightBox,
+                    Row(
+                      children: [
+                        '维修人工费'.text.black.size(28.sp).isIntrinsic.make(),
+                        Spacer(),
+                        '¥300'
+                            .text
+                            .color(ktextPrimary)
+                            .size(32.sp)
+                            .bold
+                            .isIntrinsic
+                            .make(),
+                      ],
+                    ),
+                    20.w.heightBox,
+                    Row(
+                      children: [
+                        '维修材料费'.text.black.size(28.sp).isIntrinsic.make(),
+                        Spacer(),
+                        '¥0'
+                            .text
+                            .color(ktextPrimary)
+                            .size(32.sp)
+                            .bold
+                            .isIntrinsic
+                            .make(),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  MaterialButton(
+                    minWidth: 375.w,
+                    onPressed: () {},
+                    child: '完成维修'.text.black.size(32.sp).bold.make(),
+                    padding: EdgeInsets.symmetric(vertical: 26.w),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    elevation: 0,
+                    color: kPrimaryColor,
+                  ).expand(),
+                  MaterialButton(
+                    minWidth: 375.w,
+                    onPressed: () {},
+                    child: '立即评价'.text.white.size(32.sp).bold.make(),
+                    padding: EdgeInsets.symmetric(vertical: 26.w),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    elevation: 0,
+                    color: Colors.black,
+                  ).expand(),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+      onClosing: () {},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -412,7 +517,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           padding: EdgeInsets.symmetric(vertical: 26.w),
           elevation: 0,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          onPressed: () {},
+          onPressed: () {
+            Get.bottomSheet(_showBottomSheet(_model));
+          },
           child: '确认完成'.text.black.size(32.sp).bold.make(),
         ),
       ),
