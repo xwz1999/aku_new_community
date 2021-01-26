@@ -81,4 +81,15 @@ class ManagerFunc {
     );
     return baseModel;
   }
+
+  static Future<BaseModel> reportRepairComplete(int id) async {
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.reportRepairComplete,
+      params: {
+        'repairId': id,
+      },
+      showMessage: true,
+    );
+    return baseModel;
+  }
 }

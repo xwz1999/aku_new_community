@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:akuCommunity/pages/things_page/widget/fixed_evaluate_page.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,23 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
   FixedDetailModel _model = FixedDetailModel();
   bool get showRepairCard => _model?.appDispatchListVo != null;
   bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
+
+  bool _canComplete(int state) {
+    switch (state) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return true;
+      case 5:
+      case 6:
+      case 7:
+        return false;
+      default:
+        return false;
+    }
+  }
+
   Color _getColor(int state) {
     switch (state) {
       case 1:
@@ -453,9 +471,22 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   MaterialButton(
+                    textColor: ktextPrimary,
+                    disabledColor: kDarkSubColor,
+                    disabledTextColor: ktextPrimary.withOpacity(0.8),
                     minWidth: 375.w,
-                    onPressed: () {},
-                    child: '完成维修'.text.black.size(32.sp).bold.make(),
+                    onPressed: _canComplete(_model.appReportRepairVo.status)
+                        ? () async {
+                            BaseModel baseModel =
+                                await ManagerFunc.reportRepairComplete(
+                                    _model.appReportRepairVo.id);
+                            if (baseModel.status) {
+                              Get.back();
+                              Get.back();
+                            }
+                          }
+                        : null,
+                    child: '完成维修'.text.size(32.sp).bold.make(),
                     padding: EdgeInsets.symmetric(vertical: 26.w),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     elevation: 0,
