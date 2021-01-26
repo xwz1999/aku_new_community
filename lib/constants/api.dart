@@ -110,7 +110,10 @@ class _Manager {
   String get deleteAdvice => '/user/advice/falseDelete';
 
   ///报事报修：取消订单
-  String get reportRepairCancel => 'user/reportRepair/cancel';
+  String get reportRepairCancel => '/user/reportRepair/cancel';
+
+  /// 报事报修：确认完成订单
+  String get reportRepairComplete => '/user/reportRepair/completeOrder';
 }
 
 class _Upload {

@@ -50,8 +50,6 @@ dependencies:
   photo_view: ^0.10.2
   #图片缓存
   cached_network_image: ^2.3.1
-  #评价
-  smooth_star_rating: ^1.1.1
   #头像层叠
   image_stack: ^1.1.0
   #弹窗

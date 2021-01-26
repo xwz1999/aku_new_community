@@ -1,10 +1,11 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 // Project imports:
 import 'package:akuCommunity/routers/page_routers.dart';
@@ -41,8 +42,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
         children: [
           Text(
             '请您对本次服务进行评价',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff999999)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff999999)),
           ),
           SizedBox(height: 50.w),
           Row(
@@ -50,23 +50,31 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
             children: [
               Text(
                 '综合评价',
-                style: TextStyle(
-                    fontSize: 28.sp, color: Color(0xff999999)),
+                style: TextStyle(fontSize: 28.sp, color: Color(0xff999999)),
               ),
               SizedBox(width: 47.w),
-              SmoothStarRating(
-                rating: rating,
-                isReadOnly: false,
-                size: 46.sp,
-                filledIconData: AntDesign.star,
-                // halfFilledIconData: Icons.star_half,
-                defaultIconData: AntDesign.staro,
-                color: Color(0xffffc40c),
-                borderColor: Color(0xffffc40c),
-                starCount: 5,
+              RatingBar(
+                ignoreGestures: false,
+                itemSize: 46.w,
+                // filledIconData: AntDesign.star,
+                // // halfFilledIconData: Icons.star_half,
+                // defaultIconData: AntDesign.staro,
+                // color: Color(0xffffc40c),
+                // borderColor: Color(0xffffc40c),
+                ratingWidget: RatingWidget(
+                    full: Icon(
+                      AntDesign.star,
+                      color: kPrimaryColor,
+                    ),
+                    empty: Icon(
+                      AntDesign.staro,
+                      color: kDarkPrimaryColor,
+                    ),
+                    half: Icon(Icons.star_half)),
+                itemCount: 5,
                 allowHalfRating: false,
-                spacing: 20.w,
-                onRated: (value) {
+                itemPadding: EdgeInsets.symmetric(horizontal: 10.w),
+                onRatingUpdate: (value) {
                   print("rating value -> $value");
                   // print("rating value dd -> ${value.truncate()}");
                 },
@@ -80,10 +88,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
 
   Container _containerTextField(String hintText) {
     return Container(
-      padding: EdgeInsets.only(
-          top: 32.w,
-          left: 22.w,
-          right: 35.w),
+      padding: EdgeInsets.only(top: 32.w, left: 22.w, right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -171,8 +176,7 @@ class _ThingsEvaluatePageState extends State<ThingsEvaluatePage> {
                             Text(
                               '请输入内容',
                               style: TextStyle(
-                                  fontSize: 28.sp,
-                                  color: Color(0xff333333)),
+                                  fontSize: 28.sp, color: Color(0xff333333)),
                             ),
                             SizedBox(height: 24.w),
                             _containerTextField(hintText),
