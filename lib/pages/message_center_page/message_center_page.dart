@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/pages/message_center_page/comment_message_page/comment_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/shop_message_page/shop_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message_page/system_message_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/base/assets_image.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key key}) : super(key: key);

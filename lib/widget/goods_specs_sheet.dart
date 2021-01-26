@@ -1,13 +1,18 @@
-import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
+import 'package:akuCommunity/provider/cart.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/toast.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/provider/cart.dart';
 import 'cached_image_wrapper.dart';
 
 class GoodsSpecsSheet extends StatefulWidget {

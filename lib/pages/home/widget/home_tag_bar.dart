@@ -1,8 +1,13 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class HomeTagBar extends StatefulWidget {
   final String title;

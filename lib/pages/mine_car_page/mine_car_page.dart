@@ -1,11 +1,14 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/pages/mine_car_page/car_add_page/car_add_page.dart';
 import 'package:akuCommunity/pages/mine_car_page/select_community_page/select_community_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class MineCarPage extends StatefulWidget {
   final Bundle bundle;

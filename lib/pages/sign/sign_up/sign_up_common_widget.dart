@@ -1,8 +1,13 @@
-import 'package:akuCommunity/base/base_style.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:akuCommunity/utils/headers.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 signUpTitle(String subTitle) {
   return Column(

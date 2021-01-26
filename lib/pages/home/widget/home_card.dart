@@ -1,12 +1,19 @@
+// Dart imports:
 import 'dart:convert';
+
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:image_stack/image_stack.dart';
+
+// Project imports:
 import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
 import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:image_stack/image_stack.dart';
+import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 
 class HomeCard extends StatefulWidget {
   final String title;

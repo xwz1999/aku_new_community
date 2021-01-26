@@ -1,16 +1,23 @@
+// Dart imports:
 import 'dart:ui';
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/expandable_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/expandable_text.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 
 class TrendCard extends StatefulWidget {
   final String name;

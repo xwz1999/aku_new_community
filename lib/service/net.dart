@@ -1,9 +1,14 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
+
+// Package imports:
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
+// Project imports:
 import 'base_model.dart';
+
 // import 'net_header.dart';
 // import 'package:light_wave/utils/global_toast.dart';
 // import 'package:light_wave/pages/login/login_page.dart';

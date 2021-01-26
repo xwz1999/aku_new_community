@@ -1,8 +1,13 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:qr_flutter/qr_flutter.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class InvitePage extends StatelessWidget {
   const InvitePage({Key key}) : super(key: key);

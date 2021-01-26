@@ -1,11 +1,14 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'widget/confirm_address.dart';
-import 'widget/confirm_content.dart';
 import 'widget/confirm_bottom_bar.dart';
+import 'widget/confirm_content.dart';
 
 class ConfirmOrderPage extends StatelessWidget {
   final Bundle bundle;

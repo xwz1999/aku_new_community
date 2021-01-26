@@ -1,3 +1,10 @@
+// Package imports:
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/pick_building_model.dart';
 import 'package:akuCommunity/model/user/user_detail_model.dart';
@@ -6,10 +13,6 @@ import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:provider/provider.dart';
 
 class SignFunc {
   static Future sendMessageCode(String phone) async {

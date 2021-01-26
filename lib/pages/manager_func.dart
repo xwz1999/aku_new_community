@@ -1,9 +1,12 @@
+// Package imports:
+import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart';
 
 class ManagerFunc {
   static insertVisitorInfo(int id, int type, String name, int sex, String tel,

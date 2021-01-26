@@ -1,21 +1,27 @@
+// Dart imports:
 import 'dart:io';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;

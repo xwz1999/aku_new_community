@@ -1,10 +1,15 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:akuCommunity/utils/headers.dart';
+
+// Project imports:
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class ThingsEvaluatePage extends StatefulWidget {
   final Bundle bundle;

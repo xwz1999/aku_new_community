@@ -1,13 +1,20 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:akuCommunity/widget/sliver_goods_card.dart';
+
+// Project imports:
+import 'package:akuCommunity/model/aku_shop_model.dart';
+import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/goods_card_skeleton.dart';
-import 'package:akuCommunity/service/base_model.dart';
-import 'package:akuCommunity/model/aku_shop_model.dart';
+import 'package:akuCommunity/widget/sliver_goods_card.dart';
 import 'sliver_goods_group_card.dart';
 
 class MarketList extends StatefulWidget {

@@ -1,12 +1,18 @@
-import 'package:akuCommunity/pages/invoice/invoice_page.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/invoice/invoice_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-// import 'package:akuCommunity/widget/cart_count.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
-import 'package:get/get.dart';
+
+// import 'package:akuCommunity/widget/cart_count.dart';
 
 class ConfirmContent extends StatelessWidget {
   final Map cartMap;

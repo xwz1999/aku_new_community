@@ -1,9 +1,12 @@
-import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class OrderCard extends StatefulWidget {
   final Function fun;

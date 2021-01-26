@@ -1,10 +1,15 @@
-import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_picker/flutter_picker.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
+// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 
 class CommonPicker extends StatefulWidget {
   final String title;

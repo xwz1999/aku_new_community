@@ -1,29 +1,35 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
-import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
-import 'package:akuCommunity/pages/tab_navigator.dart';
-import 'package:akuCommunity/provider/sign_up_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/extensions/num_ext.dart';
+import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
+import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
+import 'package:akuCommunity/pages/sign/sign_func.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
+import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:akuCommunity/provider/sign_up_provider.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);

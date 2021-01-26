@@ -1,11 +1,16 @@
-import 'package:akuCommunity/pages/community/note_create_page.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:akuCommunity/utils/headers.dart';
+
+// Project imports:
+import 'package:akuCommunity/pages/community/note_create_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'widget/trend_card.dart';
 
 class TopiceDetailPage extends StatefulWidget {

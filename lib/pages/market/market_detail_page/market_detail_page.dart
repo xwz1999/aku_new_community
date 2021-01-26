@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+// Project imports:
 import 'package:akuCommunity/routers/page_routers.dart';
 import '../widget/market_list.dart';
 import 'widget/market_details_app_bar.dart';

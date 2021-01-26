@@ -1,10 +1,15 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:common_utils/common_utils.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/model/manager/visitor_list_item_model.dart';
 import 'package:akuCommunity/ui/manager/visitor/visitor_passport_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;

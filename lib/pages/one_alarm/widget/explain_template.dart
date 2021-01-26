@@ -1,10 +1,16 @@
+// Dart imports:
 import 'dart:ui';
-import 'package:flutter/material.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_beautiful_popup/main.dart';
-import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Project imports:
+import 'package:akuCommunity/utils/headers.dart';
 
 class ExplainTemplate extends BeautifulPopupTemplate {
   final BeautifulPopup options;

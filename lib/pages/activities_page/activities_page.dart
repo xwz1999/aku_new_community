@@ -1,9 +1,14 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/widget/activity_card.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class ActivitiesPage extends StatefulWidget {
   ActivitiesPage({Key key}) : super(key: key);
