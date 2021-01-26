@@ -24,7 +24,6 @@ import 'package:akuCommunity/pages/industry_committee/industry_committee_page.da
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
-import 'package:akuCommunity/pages/scan/scan_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
@@ -33,7 +32,6 @@ import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'widget/home_card.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
@@ -135,11 +133,6 @@ class _HomePageState extends State<HomePage>
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-          _buildColButton(
-            icon: AntDesign.scan1,
-            title: '扫一扫',
-            onTap: ScanPage().to,
-          ),
           _buildColButton(
             icon: AntDesign.bells,
             title: '消息',

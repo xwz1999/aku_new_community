@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:get/get.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 // Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
@@ -17,11 +15,6 @@ class PayOrderPage extends StatelessWidget {
   final Bundle bundle;
   PayOrderPage({Key key, this.bundle}) : super(key: key);
 
-  final alertStyle = AlertStyle(
-    isCloseButton: false,
-    isOverlayTapDismiss: false,
-    titleStyle: TextStyle(fontSize: 38.sp, color: Color(0xff333333)),
-  );
 
   final List<Map<String, dynamic>> _listPay = [
     {
@@ -58,42 +51,42 @@ class PayOrderPage extends StatelessWidget {
   InkWell _payMode(BuildContext context, Widget widget, String title) {
     return InkWell(
       onTap: () {
-        Alert(
-          context: context,
-          title: "支付成功!~",
-          image: Container(
-            margin: EdgeInsets.only(top: 40.w),
-            height: 200.w,
-            width: 200.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xffffe16b), Color(0xffffc40d)],
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(200.w)),
-            ),
-            child: Icon(
-              Icons.check,
-              color: Colors.white,
-              size: 150.w,
-            ),
-          ),
-          style: alertStyle,
-          alertAnimation: fadeAlertAnimation,
-          buttons: [
-            DialogButton(
-              child: Text(
-                "确认",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Get.back(),
-              color: Color(0xffffc40d),
-              radius: BorderRadius.circular(8.w),
-            ),
-          ],
-        ).show();
+        // Alert(
+        //   context: context,
+        //   title: "支付成功!~",
+        //   image: Container(
+        //     margin: EdgeInsets.only(top: 40.w),
+        //     height: 200.w,
+        //     width: 200.w,
+        //     alignment: Alignment.center,
+        //     decoration: BoxDecoration(
+        //       gradient: LinearGradient(
+        //         begin: Alignment.topCenter,
+        //         end: Alignment.bottomCenter,
+        //         colors: [Color(0xffffe16b), Color(0xffffc40d)],
+        //       ),
+        //       borderRadius: BorderRadius.all(Radius.circular(200.w)),
+        //     ),
+        //     child: Icon(
+        //       Icons.check,
+        //       color: Colors.white,
+        //       size: 150.w,
+        //     ),
+        //   ),
+        //   style: alertStyle,
+        //   alertAnimation: fadeAlertAnimation,
+        //   buttons: [
+        //     DialogButton(
+        //       child: Text(
+        //         "确认",
+        //         style: TextStyle(color: Colors.white, fontSize: 20),
+        //       ),
+        //       onPressed: () => Get.back(),
+        //       color: Color(0xffffc40d),
+        //       radius: BorderRadius.circular(8.w),
+        //     ),
+        //   ],
+        // ).show();
       },
       child: Container(
         padding: EdgeInsets.only(

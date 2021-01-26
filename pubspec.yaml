@@ -70,10 +70,6 @@ dependencies:
   dio: ^3.0.10
   #骨架
   shimmer: ^1.1.2
-  #动画alert
-  rflutter_alert: ^1.1.0
-
-  qr_code_scanner: ^0.3.0
   #时间选择
   flutter_datetime_picker: ^1.4.0
   #随机二维码
@@ -103,7 +99,6 @@ dependencies:
     git:
       url: http://192.168.2.201:8099/aku_fe/power_logger.git
   flutter_rating_bar: ^3.2.0+1
-
 
 dev_dependencies:
   flutter_test:

@@ -37,6 +37,7 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
     return Scaffold(
       backgroundColor: Color(0xFF333333),
       appBar: AppBar(
+        brightness: Brightness.dark,
         leading: BeeBackButton(color: Colors.white),
         backgroundColor: Color(0xFF333333),
         elevation: 0,
