@@ -11,6 +11,7 @@ class VisitorListItemModel {
   String effectiveTime;
 
   DateTime get date => DateUtil.getDateTime(effectiveTime);
+  bool get drive => isDrive == 1;
 
   VisitorListItemModel(
       {this.id,

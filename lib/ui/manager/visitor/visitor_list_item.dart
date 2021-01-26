@@ -61,7 +61,7 @@ class _VisitorListItemState extends State<VisitorListItem> {
     return MaterialButton(
       onPressed: () {
         if (!outDate) {
-          VisitorPassportPage().to();
+          VisitorPassportPage(model: widget.model).to();
         }
       },
       color: Colors.white,
