@@ -10,6 +10,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/const/resource.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;
@@ -25,8 +26,9 @@ class FixedDetailPage extends StatefulWidget {
 class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController;
-  FixedDetailModel _model=FixedDetailModel();
-  bool get showRepairCard => _model?.appDispatchListVo!=null;
+  FixedDetailModel _model = FixedDetailModel();
+  bool get showRepairCard => _model?.appDispatchListVo != null;
+  bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
   Color _getColor(int state) {
     switch (state) {
       case 1:
@@ -174,6 +176,133 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     );
   }
 
+  Widget _buildProcessCard(FixedDetailModel model) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
+      decoration: BoxDecoration(
+        color: kForeGroundColor,
+        borderRadius: BorderRadius.circular(8.w),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '进程处理'.text.black.size(32.sp).bold.make(),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
+          24.w.heightBox,
+          ...model.appProcessRecordVo
+              .map((e) => Row(
+                    children: [
+                      BeeMap()
+                          .processClass[e.operationType]
+                          .text
+                          .color(ktextSubColor)
+                          .size(28.sp)
+                          .make(),
+                      Spacer(),
+                      e.operationDate.text.black.size(28.sp).make(),
+                    ],
+                  ))
+              .toList()
+              .sepWidget(separate: 8.w.heightBox)
+        ],
+      ),
+    );
+  }
+
+  Widget _buttons(FixedDetailModel model) {
+    return Container(
+      width: 228.w * 3,
+      height: 96.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.w),
+        color: kForeGroundColor,
+      ),
+      child: Row(
+        children: [
+          MaterialButton(
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: () {},
+            textColor: ktextPrimary,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_ORDER_CANCEL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                16.w.widthBox,
+                '取消订单'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand(),
+          MaterialButton(
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: showProcessCard ? () {} : null,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            textColor: ktextPrimary,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                  color: showProcessCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                ),
+                16.w.widthBox,
+                '致电管家'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand(),
+          MaterialButton(
+            height: 96.w,
+            padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: showRepairCard ? () {} : null,
+            disabledColor: kDarkSubColor.withOpacity(0.1),
+            disabledTextColor: ktextSubColor.withOpacity(0.3),
+            textColor: ktextPrimary,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_MANAGER_PHONE_CALL_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                  color: showRepairCard?Colors.black:kDarkSubColor.withOpacity(0.5),
+                ),
+                16.w.widthBox,
+                '致电师傅'.text.size(28.sp).bold.make()
+              ],
+            ),
+            elevation: 0,
+            focusElevation: 0,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            disabledElevation: 0,
+          ).expand()
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -191,10 +320,11 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             ? _buildEmpty()
             : ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 36.w),
-                children: [
+                children: <Widget>[
                   _buildHead(_model),
-                  showRepairCard?_reparCard(_model):null,
-                  
+                  ...showRepairCard ? [_reparCard(_model)] : [],
+                  ...showProcessCard ? [_buildProcessCard(_model)] : [],
+                  _buttons(_model),
                 ].sepWidget(separate: 16.w.heightBox),
               ),
       ),
