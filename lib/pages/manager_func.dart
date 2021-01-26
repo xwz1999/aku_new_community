@@ -59,11 +59,26 @@ class ManagerFunc {
     return FixedDetailModel.fromJson(response.data);
   }
 
-  static Future reportRepairCancel(int id) async {
+  static Future<BaseModel> reportRepairCancel(int id) async {
     BaseModel baseModel = await NetUtil().get(API.manager.reportRepairCancel,
         params: {
           'repairId': id,
         },
         showMessage: true);
+    return baseModel;
+  }
+
+  static Future<BaseModel> reportRepairEvaluate(
+      int id, int rate, String text) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.reportRepairEvaluate,
+      params: {
+        'repairId': id,
+        'evaluationLevel': rate,
+        'evaluationContent': text,
+      },
+      showMessage: true,
+    );
+    return baseModel;
   }
 }

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/things_page/widget/fixed_evaluate_page.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -462,7 +463,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                   ).expand(),
                   MaterialButton(
                     minWidth: 375.w,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.off(FixedEvaluatePage(_model));
+                    },
                     child: '立即评价'.text.white.size(32.sp).bold.make(),
                     padding: EdgeInsets.symmetric(vertical: 26.w),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
