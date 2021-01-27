@@ -101,8 +101,8 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     int value,
   ) {
     return FlatButton(
-      minWidth: 200.w,
-      height: 72.w,
+      // minWidth: 200.w,
+      // height: 72.w,
       onPressed: () {
         setState(() {
           _selectType = value;

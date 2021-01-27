@@ -4,9 +4,13 @@ import 'dart:io';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/buttons/radio_button.dart';
+import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'widget/common_picker.dart';
 import 'widget/common_radio.dart';
@@ -35,6 +40,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         : userProvider.userDetailModel.estateNames[0];
   }
 
+  String _itemName;
+  DateTime _date;
   int _selectWeight;
   List<String> _listWeight = [
     '< 50kg',
@@ -45,6 +52,13 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   List<String> _listMode = [
     '自己搬运',
     '搬家公司',
+  ];
+
+  List<String> _itemClass = [
+    '全部',
+    '家纺',
+    '家具',
+    '电器',
   ];
 
   bool needMoveCompany = false;
@@ -119,12 +133,12 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-           BeeCheckBox(
-             onChange: (value) {
-               needMoveCompany=value;
-             },
-           ),
-           10.w.widthBox,
+            BeeCheckBox(
+              onChange: (value) {
+                needMoveCompany = value;
+              },
+            ),
+            10.w.widthBox,
             Container(
               child: Text(
                 '是否需要物业提供搬家公司联系方式',
@@ -222,10 +236,94 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  Widget _itemPicker(){
-    return Container(
-
+  Widget _itemPicker(String title, String select, VoidCallback onTap) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 28.w),
+          child: InkWell(
+            onTap: onTap,
+            child: Row(
+              children: [
+                title.text.color(ktextPrimary).size(28.sp).make(),
+                36.w.widthBox,
+                (select.isEmptyOrNull ? '请选择' : select)
+                    .text
+                    .color(select.isEmptyOrNull ? ktextSubColor : ktextPrimary)
+                    .size(28.sp)
+                    .make(),
+                Spacer(),
+                Icon(
+                  CupertinoIcons.chevron_right,
+                  size: 30.w,
+                ),
+              ],
+            ),
+          ),
+        ),
+        BeeDivider.horizontal(),
+      ],
     );
+  }
+
+  _showItmePicker() async {
+    _itemName = await Get.bottomSheet(
+      SizedBox(
+        child: Material(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20.w),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ..._itemClass
+                  .map((e) => Material(
+                        child: InkWell(
+                          onTap: () {
+                            Get.back(result: e);
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              height: 112.w,
+                              width: double.infinity,
+                              child: e.text
+                                  .color(ktextPrimary)
+                                  .isIntrinsic
+                                  .size(28.sp)
+                                  .make()),
+                        ),
+                      ))
+                  .toList(),
+              Container(
+                height: 16.w,
+                color: Color(0xFFF7F7F7),
+              ),
+              Material(
+                child: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                      alignment: Alignment.center,
+                      height: 112.w,
+                      width: double.infinity,
+                      child: '取消'
+                          .text
+                          .color(ktextPrimary)
+                          .isIntrinsic
+                          .size(28.sp)
+                          .make()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    setState(() {});
   }
 
   @override
@@ -237,10 +335,17 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         children: [
           _houseAddress(kEstateName, firstEstateName),
           _getWeight(),
-          CommonPicker(title: '出户时间'),
-          CommonPicker(title: '物品名称'),
+          _itemPicker(
+              '出户时间', DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss"),
+              () async {
+            _date = await BeeDatePicker.timePicker(DateTime.now());
+            setState(() {});
+          }),
+          _itemPicker('物品名称', _itemName, () {
+            _showItmePicker();
+          }),
           _getApproach(),
-          _selectApproach==0?SizedBox(): _inkWellCheckbox(),
+          _selectApproach == 0 ? SizedBox() : _inkWellCheckbox(),
           Container(
             margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
             child: Text(
