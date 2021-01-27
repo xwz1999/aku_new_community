@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -115,17 +116,15 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       child: Container(
         padding: EdgeInsets.only(bottom: 24.w),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Checkbox(
-              value: needMoveCompany,
-              activeColor: Color(0xffffc40c),
-              onChanged: (bool val) {
-                this.setState(() {
-                  needMoveCompany=!needMoveCompany;
-                });
-              },
-            ),
+           BeeCheckBox(
+             onChange: (value) {
+               needMoveCompany=value;
+             },
+           ),
+           10.w.widthBox,
             Container(
               child: Text(
                 '是否需要物业提供搬家公司联系方式',
@@ -220,6 +219,12 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   )),
         ],
       ),
+    );
+  }
+
+  Widget _itemPicker(){
+    return Container(
+
     );
   }
 
