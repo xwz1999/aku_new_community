@@ -1,28 +1,33 @@
 // Flutter imports:
 
+// Dart imports:
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
+import 'package:akuCommunity/widget/buttons/bee_check_button.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'widget/common_picker.dart';
 import 'widget/common_radio.dart';
-import 'package:akuCommunity/const/resource.dart';
 
 class DetoCreatePage extends StatefulWidget {
   DetoCreatePage({Key key}) : super(key: key);
@@ -156,40 +161,58 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   Widget _getWeight() {
     return Container(
-      height: 96.w,
-      padding: EdgeInsets.symmetric(vertical: 28.w),
-      decoration: BoxDecoration(
-        border:
-            Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
-      ),
-      child: Row(
+      // margin: EdgeInsets.fromLTRB(0, 40.w, 0, 40.w),
+      // child: Row(
+      //   children: [
+      //     Container(
+      //       margin: EdgeInsets.only(right: 30.w),
+      //       child: Text(
+      //         '物品重量',
+      //         style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
+      //       ),
+      //     ),
+      //     ...List.generate(
+      //         _listWeight.length,
+      //         (index) => GestureDetector(
+      //               onTap: () {
+      //                 setState(() {
+      //                   _selectWeight = index;
+      //                 });
+      //               },
+      //               child: CommonRadio(
+      //                 size: 30.w,
+      //                 text: _listWeight[index]
+      //                     .text
+      //                     .color(ktextPrimary)
+      //                     .size(28.sp)
+      //                     .make(),
+      //                 value: index,
+      //                 groupValue: _selectWeight,
+      //               ),
+      //             )),
+      //   ],
+      // ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(right: 30.w),
-            child: Text(
-              '物品重量',
-              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
-            ),
+          '物品重量'.text.color(ktextPrimary).size(28.sp).make(),
+          24.w.heightBox,
+          Wrap(
+            spacing: 40.w,
+            children: [
+              ..._listWeight
+                  .map((e) => BeeCheckButton(
+                        title: e,
+                        value: _listWeight.indexOf(e),
+                        groupValue: _selectWeight,
+                        onChange: (value) {
+                          _selectWeight = value;
+                          setState(() {});
+                        },
+                      ))
+                  .toList()
+            ],
           ),
-          ...List.generate(
-              _listWeight.length,
-              (index) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectWeight = index;
-                      });
-                    },
-                    child: CommonRadio(
-                      size: 30.w,
-                      text: _listWeight[index]
-                          .text
-                          .color(ktextPrimary)
-                          .size(28.sp)
-                          .make(),
-                      value: index,
-                      groupValue: _selectWeight,
-                    ),
-                  )),
         ],
       ),
     );
@@ -197,40 +220,27 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   Widget _getApproach() {
     return Container(
-      height: 96.w,
-      padding: EdgeInsets.symmetric(vertical: 28.w),
-      decoration: BoxDecoration(
-        border:
-            Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
-      ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(right: 30.w),
-            child: Text(
-              '搬运方式',
-              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
-            ),
+          '搬运方式'.text.color(ktextPrimary).size(28.sp).make(),
+          24.w.heightBox,
+          Wrap(
+            spacing: 40.w,
+            children: [
+              ..._listMode
+                  .map((e) => BeeCheckButton(
+                        title: e,
+                        value: _listMode.indexOf(e),
+                        groupValue: _selectApproach,
+                        onChange: (value) {
+                          _selectApproach = value;
+                          setState(() {});
+                        },
+                      ))
+                  .toList()
+            ],
           ),
-          ...List.generate(
-              _listMode.length,
-              (index) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectApproach = index;
-                      });
-                    },
-                    child: CommonRadio(
-                      size: 30.w,
-                      text: _listMode[index]
-                          .text
-                          .color(ktextPrimary)
-                          .size(28.sp)
-                          .make(),
-                      value: index,
-                      groupValue: _selectApproach,
-                    ),
-                  )),
         ],
       ),
     );
@@ -241,18 +251,22 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
+        40.w.heightBox,
+        title.text.color(ktextPrimary).size(28.sp).make(),
+        16.w.widthBox,
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 28.w),
+          padding: EdgeInsets.symmetric(vertical: 30.w),
           child: InkWell(
             onTap: onTap,
             child: Row(
               children: [
-                title.text.color(ktextPrimary).size(28.sp).make(),
-                36.w.widthBox,
                 (select.isEmptyOrNull ? '请选择' : select)
                     .text
                     .color(select.isEmptyOrNull ? ktextSubColor : ktextPrimary)
-                    .size(28.sp)
+                    .size(36.sp)
+                    .fontWeight(select.isEmptyOrNull
+                        ? FontWeight.normal
+                        : FontWeight.bold)
                     .make(),
                 Spacer(),
                 Icon(
