@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,8 @@ import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/deto_create_
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/bottom_button.dart';
 import 'widget/goods_info_card.dart';
-
+import 'package:velocity_x/velocity_x.dart';
 class GoodsDetoPage extends StatefulWidget {
   GoodsDetoPage({Key key}) : super(key: key);
 
@@ -48,12 +48,14 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
           },
         ),
       ),
-      bottomNavi: BottomButton(
-        title: '新增',
-        fun: () {
-          DetoCreatePage().to();
-        },
-      ),
+      bottomNavi: MaterialButton(
+        color: kPrimaryColor,
+        
+        padding: EdgeInsets.only(top:26.w ,bottom: MediaQuery.of(context).padding.bottom+26.w),
+        child: '新增'.text.black.size(32.sp).bold.make(),
+        onPressed: () {
+         DetoCreatePage().to();
+      },),
     );
   }
 }
