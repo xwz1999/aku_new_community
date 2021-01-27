@@ -10,7 +10,7 @@ import 'package:flutter_picker/flutter_picker.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
-
+@Deprecated('s**t code should be remove')
 class CommonPicker extends StatefulWidget {
   final String title;
   CommonPicker({Key key, this.title}) : super(key: key);

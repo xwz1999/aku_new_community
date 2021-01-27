@@ -1,15 +1,22 @@
 // Flutter imports:
+
+import 'dart:io';
+
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
+import 'package:provider/provider.dart';
 import 'widget/common_picker.dart';
 import 'widget/common_radio.dart';
+import 'package:akuCommunity/const/resource.dart';
 
 class DetoCreatePage extends StatefulWidget {
   DetoCreatePage({Key key}) : super(key: key);
@@ -19,18 +26,27 @@ class DetoCreatePage extends StatefulWidget {
 }
 
 class _DetoCreatePageState extends State<DetoCreatePage> {
-  List<Map<String, dynamic>> _listWeight = [
-    {'title': '< 50kg', 'isCheck': true},
-    {'title': '50kg-100kg', 'isCheck': false},
-    {'title': '> 100kg', 'isCheck': false}
+  List<File> _files = [];
+  UserProvider get userProvider => Provider.of<UserProvider>(context);
+  String get firstEstateName {
+    return userProvider.userDetailModel.estateNames.isEmpty
+        ? ''
+        : userProvider.userDetailModel.estateNames[0];
+  }
+
+  int _selectWeight;
+  List<String> _listWeight = [
+    '< 50kg',
+    '50kg-100kg',
+    '> 100kg',
+  ];
+  int _selectApproach;
+  List<String> _listMode = [
+    '自己搬运',
+    '搬家公司',
   ];
 
-  List<Map<String, dynamic>> _listMode = [
-    {'title': '自己搬运', 'isCheck': true},
-    {'title': '搬家公司', 'isCheck': false},
-  ];
-
-  bool isCheck = false;
+  bool needMoveCompany = false;
 
   Widget _houseAddress(String title, subtitle) {
     return Container(
@@ -60,7 +76,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
               Container(
                 margin: EdgeInsets.only(right: 42.w),
                 child: Image.asset(
-                  AssetsImage.HOUSEATTESTATION,
+                  R.ASSETS_IMAGES_HOUSE_ATTESTATION_PNG,
                   height: 59.w,
                   width: 59.w,
                 ),
@@ -102,11 +118,11 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Checkbox(
-              value: this.isCheck,
+              value: needMoveCompany,
               activeColor: Color(0xffffc40c),
               onChanged: (bool val) {
                 this.setState(() {
-                  this.isCheck = !this.isCheck;
+                  needMoveCompany=!needMoveCompany;
                 });
               },
             ),
@@ -125,7 +141,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  Widget _checkCard(String title, List<Map<String, dynamic>> list) {
+  Widget _getWeight() {
     return Container(
       height: 96.w,
       padding: EdgeInsets.symmetric(vertical: 28.w),
@@ -138,21 +154,70 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           Container(
             margin: EdgeInsets.only(right: 30.w),
             child: Text(
-              title,
+              '物品重量',
               style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
             ),
           ),
-          CommonRadio(
-            commonlist: list,
-            fun: (int index) {
-              setState(() {
-                list.forEach((item) {
-                  item['isCheck'] = false;
-                });
-                list[index]['isCheck'] = true;
-              });
-            },
-          )
+          ...List.generate(
+              _listWeight.length,
+              (index) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectWeight = index;
+                      });
+                    },
+                    child: CommonRadio(
+                      size: 30.w,
+                      text: _listWeight[index]
+                          .text
+                          .color(ktextPrimary)
+                          .size(28.sp)
+                          .make(),
+                      value: index,
+                      groupValue: _selectWeight,
+                    ),
+                  )),
+        ],
+      ),
+    );
+  }
+
+  Widget _getApproach() {
+    return Container(
+      height: 96.w,
+      padding: EdgeInsets.symmetric(vertical: 28.w),
+      decoration: BoxDecoration(
+        border:
+            Border(bottom: BorderSide(color: Color(0xffeeeeee), width: 0.5)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.only(right: 30.w),
+            child: Text(
+              '搬运方式',
+              style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
+            ),
+          ),
+          ...List.generate(
+              _listMode.length,
+              (index) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectApproach = index;
+                      });
+                    },
+                    child: CommonRadio(
+                      size: 30.w,
+                      text: _listMode[index]
+                          .text
+                          .color(ktextPrimary)
+                          .size(28.sp)
+                          .make(),
+                      value: index,
+                      groupValue: _selectApproach,
+                    ),
+                  )),
         ],
       ),
     );
@@ -162,45 +227,41 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '物品出户',
-      body: Container(
-        color: Colors.white,
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                left: 32.w,
-                right: 32.w,
-                top: 32.w,
-              ),
-              child: ListView(
-                children: [
-                  _houseAddress('宁波华茂悦峰', '1幢-1单元-702室'),
-                  _checkCard('物品重量', _listWeight),
-                  CommonPicker(title: '出户时间'),
-                  CommonPicker(title: '物品名称'),
-                  _checkCard('搬运方式', _listMode),
-                  _inkWellCheckbox(),
-                  Container(
-                    margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
-                    child: Text(
-                      '添加图片信息(0/9)',
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff333333),
-                      ),
-                    ),
-                  ),
-                  GridImagePicker(onChange: (files) {}),
-                ],
+      body: ListView(
+        padding: EdgeInsets.all(32.w),
+        children: [
+          _houseAddress(kEstateName, firstEstateName),
+          _getWeight(),
+          CommonPicker(title: '出户时间'),
+          CommonPicker(title: '物品名称'),
+          _getApproach(),
+          _selectApproach==0?SizedBox(): _inkWellCheckbox(),
+          Container(
+            margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
+            child: Text(
+              '添加图片信息(${_files.length}/9)',
+              style: TextStyle(
+                fontSize: 28.sp,
+                color: Color(0xff333333),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: BottomButton(title: '确认提交'),
-            )
-          ],
-        ),
+          ),
+          GridImagePicker(onChange: (files) {
+            _files = files;
+            setState(() {});
+          }),
+        ],
+      ),
+      bottomNavi: BottomButton(
+        child: '确认提交'.text.color(ktextPrimary).bold.make(),
+        onPressed: () {},
       ),
     );
+    //     Positioned(
+    //       bottom: 0,
+    //       child: BottomButton(title: '确认提交'),
+    //     )
+    //   ],
+    // ),
   }
 }

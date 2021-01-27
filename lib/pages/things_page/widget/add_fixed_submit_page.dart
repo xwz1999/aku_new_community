@@ -38,7 +38,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   String reportText;
   List<String> _buttons = ['公区保修', '家庭维修'];
   int _selectType;
-  List<File> _files=[];
+  List<File> _files = [];
   @override
   void initState() {
     super.initState();
@@ -182,14 +182,25 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          '添加图片信息(${0}/9)'.text.black.size(28.sp).make(),
+          '添加图片信息(${_files.length}/9)'.text.black.size(28.sp).make(),
           24.w.heightBox,
           GridImagePicker(onChange: (files) {
             _files = files;
+            setState(() {});
           })
         ],
       ),
     );
+  }
+
+  bool _canSubmit(int seletType, String text) {
+    if (seletType.isNull) {
+      return false;
+    } else if (text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -214,16 +225,20 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           MaterialButton(
             minWidth: double.infinity,
             height: 98.w,
-            onPressed: () async {
-              List<String> urls =
-                  await NetUtil().uploadFiles(_files, API.upload.uploadRepair);
-              BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                  _selectType + 1, _textEditingController.text, urls);
-              if (baseModel.status) {
-                FinishFixedSubmitPage().to();
-              } else
-                BotToast.showText(text: baseModel.message);
-            },
+            onPressed: _canSubmit(_selectType, _textEditingController.text)
+                ? () async {
+                    List<String> urls = await NetUtil()
+                        .uploadFiles(_files, API.upload.uploadRepair);
+                    BaseModel baseModel = await ManagerFunc.reportRepairInsert(
+                        _selectType + 1, _textEditingController.text, urls);
+                    if (baseModel.status) {
+                      FinishFixedSubmitPage().to();
+                    } else
+                      BotToast.showText(text: baseModel.message);
+                  }
+                : () {
+                    BotToast.showText(text: '请填写完整报修信息！');
+                  },
             child: '确认提交'.text.black.bold.size(32.sp).make(),
             color: kPrimaryColor,
             elevation: 0,
