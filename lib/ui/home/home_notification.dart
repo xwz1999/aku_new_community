@@ -1,4 +1,9 @@
 // Flutter imports:
+import 'dart:async';
+import 'dart:math';
+
+import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/community/notice/notice_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +15,35 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class HomeNotification extends StatefulWidget {
-  HomeNotification({Key key}) : super(key: key);
+  final List<BoardItemModel> items;
+  HomeNotification({Key key, @required this.items}) : super(key: key);
 
   @override
   _HomeNotificationState createState() => _HomeNotificationState();
 }
 
 class _HomeNotificationState extends State<HomeNotification> {
+  String get randomItem {
+    if (widget.items.isEmpty) return '';
+    int index = Random().nextInt(widget.items.length - 1);
+    return widget.items[index].title ?? '';
+  }
+
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(
+        Duration(milliseconds: 5000), (timer) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,12 +56,25 @@ class _HomeNotificationState extends State<HomeNotification> {
           width: 40.w,
         ),
         24.wb,
-        'TTTTTTTTT'.text.size(28.sp).make(),
-        Spacer(),
+        widget.items.isEmpty
+            ? Spacer()
+            : GestureDetector(
+                onTap: () {},
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 1000),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    key: ValueKey(randomItem),
+                    child: Text(randomItem),
+                  ),
+                ),
+              ).expand(),
         MaterialButton(
           shape: StadiumBorder(),
           padding: EdgeInsets.symmetric(horizontal: 12.w),
-          onPressed: () {},
+          onPressed: () {
+            NoticePage().to();
+          },
           child: Row(
             children: [
               '更多公告'.text.size(20.sp).color(Color(0xFF999999)).make(),

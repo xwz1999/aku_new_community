@@ -129,6 +129,12 @@ class _Community {
 
   ///社区活动：查看参与人数
   String get activityPeopleList => '/user/activity/participantsList';
+
+  ///社区公告：查询所有的社区公告
+  String get boardList => '/user/announcement/list';
+
+  ///社区公告：根据社区公告主键id查询社区公告信息
+  String get boardDetail => '/user/announcement/findById';
 }
 
 class _Upload {

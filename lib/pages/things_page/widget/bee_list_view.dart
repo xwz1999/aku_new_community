@@ -62,10 +62,10 @@ class BeeListView<T> extends StatefulWidget {
   final Map<String, dynamic> extraParams;
   BeeListView({
     Key key,
-    this.path,
+    @required this.path,
     @required this.controller,
-    this.convert,
-    this.builder,
+    @required this.convert,
+    @required this.builder,
     this.size = 10,
     this.extraParams,
   }) : super(key: key);

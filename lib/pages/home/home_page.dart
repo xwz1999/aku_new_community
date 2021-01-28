@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,8 +29,8 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/service/base_model.dart';
-import 'package:akuCommunity/ui/community/activity_card.dart';
-import 'package:akuCommunity/ui/community/activity_list_page.dart';
+import 'package:akuCommunity/ui/community/activity/activity_card.dart';
+import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/community/community_func.dart';
 import 'package:akuCommunity/ui/home/home_notification.dart';
 import 'package:akuCommunity/ui/home/home_title.dart';
@@ -61,7 +62,8 @@ class _HomePageState extends State<HomePage>
 
   int page = 1;
 
-  ActivityItemModel model;
+  ActivityItemModel _activityItemModel;
+  List<BoardItemModel> _boardItemModels = [];
 
   List<GridButton> _gridList = [
     GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, OpenDoorPage().to),
@@ -142,7 +144,8 @@ class _HomePageState extends State<HomePage>
         header: MaterialHeader(),
         firstRefresh: true,
         onRefresh: () async {
-          model = await CommunityFunc.activity();
+          _activityItemModel = await CommunityFunc.activity();
+          _boardItemModels = await CommunityFunc.board();
           setState(() {});
         },
         child: CustomScrollView(
@@ -204,15 +207,16 @@ class _HomePageState extends State<HomePage>
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  HomeNotification(),
+                  HomeNotification(items: _boardItemModels),
                   HomeTitle(
                     title: '社区活动',
                     suffixTitle: '更多活动',
                     onTap: ActivityListPage().to,
                   ),
-                  model == null
+                  _activityItemModel == null
                       ? SizedBox()
-                      : ActivityCard(model: model).pSymmetric(h: 24.w, v: 24.w),
+                      : ActivityCard(model: _activityItemModel)
+                          .pSymmetric(h: 24.w, v: 24.w),
                 ],
               )
                   .box

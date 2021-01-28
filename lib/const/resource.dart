@@ -122,6 +122,9 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/consult.png)
   static const String ASSETS_ICONS_CONSULT_PNG = 'assets/icons/consult.png';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/file.png)
+  static const String ASSETS_ICONS_FILE_PNG = 'assets/icons/file.png';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/groupbuy_tab_selected.png)
   static const String ASSETS_ICONS_GROUPBUY_TAB_SELECTED_PNG =
       'assets/icons/groupbuy_tab_selected.png';

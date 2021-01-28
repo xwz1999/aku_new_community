@@ -8,7 +8,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/community/activity_card.dart';
+import 'package:akuCommunity/ui/community/activity/activity_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 

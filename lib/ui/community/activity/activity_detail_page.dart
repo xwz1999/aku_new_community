@@ -12,7 +12,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/activity_detail_model.dart';
-import 'package:akuCommunity/ui/community/activity_people_list_page.dart';
+import 'package:akuCommunity/ui/community/activity/activity_people_list_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';

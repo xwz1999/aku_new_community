@@ -10,7 +10,7 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
-import 'package:akuCommunity/ui/community/activity_detail_page.dart';
+import 'package:akuCommunity/ui/community/activity/activity_detail_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
 

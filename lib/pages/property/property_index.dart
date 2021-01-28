@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/community/notice/notice_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,6 @@ import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
-import 'package:akuCommunity/pages/notice_page/notice_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
@@ -30,10 +30,10 @@ import 'package:akuCommunity/widget/circle_trend.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
-import 'widget/property_activity_card.dart';
-import 'widget/property_bar.dart';
 import 'widget/property_card.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t property_index need to be cleaned.")
 class PropertyIndex extends StatefulWidget {
   PropertyIndex({Key key}) : super(key: key);
 
@@ -41,6 +41,8 @@ class PropertyIndex extends StatefulWidget {
   _PropertyIndexState createState() => _PropertyIndexState();
 }
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t property_index need to be cleaned.")
 class _PropertyIndexState extends State<PropertyIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   List<GridButton> _gridList = [
@@ -167,10 +169,7 @@ class _PropertyIndexState extends State<PropertyIndex>
   }
 
   void noticeRouter(String theme, imagePath) {
-    NoticePage(
-      bundle: Bundle()
-        ..putMap('details', {'title': theme, 'imagePath': imagePath}),
-    ).to;
+    NoticePage().to;
   }
 
   @override
@@ -212,19 +211,19 @@ class _PropertyIndexState extends State<PropertyIndex>
             SliverToBoxAdapter(
               child: PropertyCard(),
             ),
-            PropertyBar(
-              title: '社区活动',
-              subtitle: '精彩往期',
-              more: '更多活动',
-              fun: activityRouter,
-            ),
-            SliverToBoxAdapter(
-              child: PropertyActivityCard(fun: activityDetailsRouter),
-            ),
-            PropertyBar(
-              title: '社区公告',
-              subtitle: '看看小区最近发生什么?',
-            ),
+            // PropertyBar(
+            //   title: '社区活动',
+            //   subtitle: '精彩往期',
+            //   more: '更多活动',
+            //   fun: activityRouter,
+            // ),
+            // SliverToBoxAdapter(
+            //   child: PropertyActivityCard(fun: activityDetailsRouter),
+            // ),
+            // PropertyBar(
+            //   title: '社区公告',
+            //   subtitle: '看看小区最近发生什么?',
+            // ),
             SliverToBoxAdapter(
               child: ListView.builder(
                 shrinkWrap: true,
