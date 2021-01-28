@@ -9,12 +9,20 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t home_tag_bar need to be cleaned.")
 class HomeTagBar extends StatefulWidget {
   final String title;
   final String tag;
-  final bool isShowImage,isShowTitle;
+  final bool isShowImage, isShowTitle;
   final Function fun;
-  HomeTagBar({Key key, this.title, this.tag, this.isShowImage,this.isShowTitle = false,this.fun})
+  HomeTagBar(
+      {Key key,
+      this.title,
+      this.tag,
+      this.isShowImage,
+      this.isShowTitle = false,
+      this.fun})
       : super(key: key);
 
   @override
@@ -50,9 +58,7 @@ class _HomeTagBarState extends State<HomeTagBar> {
                   Text(
                     widget.title,
                     style: TextStyle(
-                        fontSize: widget.isShowImage
-                            ? 28.sp
-                            : 32.sp,
+                        fontSize: widget.isShowImage ? 28.sp : 32.sp,
                         fontWeight: widget.isShowImage
                             ? FontWeight.normal
                             : FontWeight.w600,
@@ -60,25 +66,26 @@ class _HomeTagBarState extends State<HomeTagBar> {
                   ),
                 ],
               ),
-               widget.isShowTitle ? SizedBox() : InkWell(
-                onTap: () {
-                  widget.fun();
-                },
-                child: Row(children: [
-                  Text(
-                    '更多${widget.tag}',
-                    style: TextStyle(
-                        color: Color(0xff999999),
-                        fontSize: 20.sp),
-                  ),
-                  SizedBox(width: 8.w),
-                  Icon(
-                    AntDesign.right,
-                    color: Color(0xff999999),
-                    size: 20.sp,
-                  ),
-                ]),
-              ),
+              widget.isShowTitle
+                  ? SizedBox()
+                  : InkWell(
+                      onTap: () {
+                        widget.fun();
+                      },
+                      child: Row(children: [
+                        Text(
+                          '更多${widget.tag}',
+                          style: TextStyle(
+                              color: Color(0xff999999), fontSize: 20.sp),
+                        ),
+                        SizedBox(width: 8.w),
+                        Icon(
+                          AntDesign.right,
+                          color: Color(0xff999999),
+                          size: 20.sp,
+                        ),
+                      ]),
+                    ),
             ],
           ),
           widget.isShowImage

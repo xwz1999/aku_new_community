@@ -3,13 +3,19 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:akuCommunity/model/community/activity_item_model.dart';
+import 'package:akuCommunity/ui/community/activity_card.dart';
+import 'package:akuCommunity/ui/community/activity_list_page.dart';
+import 'package:akuCommunity/ui/community/community_func.dart';
+import 'package:akuCommunity/ui/home/home_notification.dart';
+import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 // Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
@@ -17,7 +23,6 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
-import 'package:akuCommunity/pages/activities_page/activities_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
@@ -54,10 +59,11 @@ class _HomePageState extends State<HomePage>
   List<AkuShopModel> _shopList = [];
   List<dynamic> data;
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  EasyRefreshController _refreshController = EasyRefreshController();
 
   int page = 1;
+
+  ActivityItemModel model;
 
   List<GridButton> _gridList = [
     GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, OpenDoorPage().to),
@@ -98,14 +104,6 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  void _onLoading() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-    page++;
-    // akuShop(page);
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
-  }
-
   _buildColButton({IconData icon, String title, VoidCallback onTap}) {
     return MaterialButton(
       onPressed: onTap,
@@ -141,106 +139,101 @@ class _HomePageState extends State<HomePage>
           16.wb,
         ],
       ),
-      body: RefreshConfiguration(
-        child: SmartRefresher(
-          controller: _refreshController,
-          header: WaterDropHeader(),
-          footer: ClassicFooter(),
-          onLoading: _onLoading,
-          enablePullUp: true,
-          enablePullDown: false,
-          child: CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    HomeSearch(),
-                    HomeSwiper(),
-                    SizedBox(height: 100.w),
-                    ContainerComment(
-                      radius: 8,
-                      customWidget: GridButtons(
-                        gridList: _gridList,
-                        crossCount: 4,
-                      ),
+      body: EasyRefresh(
+        controller: _refreshController,
+        header: MaterialHeader(),
+        firstRefresh: true,
+        onRefresh: () async {
+          model = await CommunityFunc.activity();
+          setState(() {});
+        },
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HomeSearch(),
+                  HomeSwiper(),
+                  SizedBox(height: 100.w),
+                  ContainerComment(
+                    radius: 8,
+                    customWidget: GridButtons(
+                      gridList: _gridList,
+                      crossCount: 4,
                     ),
-                    // SingleAdSpace(
-                    //   imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
-                    // ),
-                    HomeTagBar(
-                      title: '物业收费标准请查收~',
-                      tag: '公告',
-                      isShowImage: true,
-                    ),
-                    Column(
-                      children: [
-                        HomeTagBar(
-                          title: '社区活动',
-                          tag: '活动',
-                          isShowImage: false,
-                          fun: () {
-                            ActivitiesPage().to;
-                          },
-                        ),
-                        HomeCard(
-                          isActivity: true,
-                          title: '22日上午10点,阳光小镇在二期乒乓球场地举行了小区乒乓比赛',
-                          subtitleOne: '活动时二楼',
-                          subtitleTwo: '06月17日 12:00至06月17日 18:30',
-                          imagePath:
-                              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601275745883&di=e7b2a1afdb8812f8a9acd9742ea7e1a7&imgtype=0&src=http%3A%2F%2Fy3.ifengimg.com%2Fcmpp%2F2013%2F12%2F27%2F03%2F459f46cb-c07f-4083-9a65-27b90cb4562f.jpg',
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24.w),
-                    // Column(
-                    //   children: [
-                    //     HomeTagBar(
-                    //       title: '社区团购',
-                    //       tag: '团购',
-                    //       isShowImage: false,
-                    //     ),
-                    //     HomeCard(
-                    //       isActivity: false,
-                    //       title: '新疆库尔阿勒4.5斤,仙人蕉 香甜可口',
-                    //       subtitleOne: '中国新疆',
-                    //       subtitleTwo: '2020年07月03日',
-                    //       imagePath:
-                    //           'http://news.eastday.com/d/file/tga/2013-02-17/c2e7bd7fca1ed2ecf5d50dc9fb30275d.jpg',
-                    //     ),
-                    //     HomeCard(
-                    //       isActivity: false,
-                    //       title: '刚果柠檬大果4盒 鲜果新鲜采摘15斤',
-                    //       subtitleOne: '非洲刚果',
-                    //       subtitleTwo: '2020年08月09日',
-                    //       imagePath:
-                    //           'http://5b0988e595225.cdn.sohucs.com/images/20180203/328e145f84c54dd08d1b11b890109862.jpeg',
-                    //     ),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 30.w),
-                    // HomeTagBar(
-                    //   title: '社区商城',
-                    //   tag: '团购',
-                    //   isShowImage: false,
-                    //   isShowTitle: true,
-                    // ),
-                  ],
-                ),
+                  ),
+                  // SingleAdSpace(
+                  //   imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
+                  // ),
+                  // Column(
+                  //   children: [
+                  //     HomeTagBar(
+                  //       title: '社区团购',
+                  //       tag: '团购',
+                  //       isShowImage: false,
+                  //     ),
+                  //     HomeCard(
+                  //       isActivity: false,
+                  //       title: '新疆库尔阿勒4.5斤,仙人蕉 香甜可口',
+                  //       subtitleOne: '中国新疆',
+                  //       subtitleTwo: '2020年07月03日',
+                  //       imagePath:
+                  //           'http://news.eastday.com/d/file/tga/2013-02-17/c2e7bd7fca1ed2ecf5d50dc9fb30275d.jpg',
+                  //     ),
+                  //     HomeCard(
+                  //       isActivity: false,
+                  //       title: '刚果柠檬大果4盒 鲜果新鲜采摘15斤',
+                  //       subtitleOne: '非洲刚果',
+                  //       subtitleTwo: '2020年08月09日',
+                  //       imagePath:
+                  //           'http://5b0988e595225.cdn.sohucs.com/images/20180203/328e145f84c54dd08d1b11b890109862.jpeg',
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(height: 30.w),
+                  // HomeTagBar(
+                  //   title: '社区商城',
+                  //   tag: '团购',
+                  //   isShowImage: false,
+                  //   isShowTitle: true,
+                  // ),
+                ],
               ),
-              // SliverPadding(
-              //     padding: EdgeInsets.only(
-              //       top: 30.w,
-              //       left: 32.w,
-              //       right: 32.w,
-              //     ),
-              //     sliver: _shopList.length == 0
-              //         ? SliverToBoxAdapter(child: GoodsCardSkeleton())
-              //         : SliverGoodsCard(shoplist: _shopList)),
-            ],
-          ),
+            ),
+
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  HomeNotification(),
+                  HomeTitle(
+                    title: '社区活动',
+                    suffixTitle: '更多活动',
+                    onTap: ActivityListPage().to,
+                  ),
+                  model == null
+                      ? SizedBox()
+                      : ActivityCard(model: model).pSymmetric(h: 24.w, v: 24.w),
+                ],
+              )
+                  .box
+                  .white
+                  .withRounded(value: 8.w)
+                  .clip(Clip.antiAlias)
+                  .margin(EdgeInsets.symmetric(horizontal: 32.w))
+                  .make(),
+            ),
+            // SliverPadding(
+            //     padding: EdgeInsets.only(
+            //       top: 30.w,
+            //       left: 32.w,
+            //       right: 32.w,
+            //     ),
+            //     sliver: _shopList.length == 0
+            //         ? SliverToBoxAdapter(child: GoodsCardSkeleton())
+            //         : SliverGoodsCard(shoplist: _shopList)),
+          ],
         ),
       ),
     );

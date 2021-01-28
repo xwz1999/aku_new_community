@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
 
 class SuggestionOrComplainModel {
@@ -8,7 +9,7 @@ class SuggestionOrComplainModel {
   String content;
   int score;
   DateTime createDate;
-  List<ImgUrls> imgUrls;
+  List<ImgModel> imgUrls;
 
   SuggestionOrComplainModel(
       {this.id,
@@ -27,9 +28,9 @@ class SuggestionOrComplainModel {
     score = json['score'];
     createDate = DateUtil.getDateTime(json['createDate']);
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgUrls>();
+      imgUrls = new List<ImgModel>();
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgUrls.fromJson(v));
+        imgUrls.add(new ImgModel.fromJson(v));
       });
     }
   }

@@ -15,6 +15,9 @@ import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 
+
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t home_card need to be cleaned.")
 class HomeCard extends StatefulWidget {
   final String title;
   final String subtitleOne;

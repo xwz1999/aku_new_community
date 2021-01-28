@@ -15,6 +15,7 @@ class API {
   static _User user = _User();
   static _Manager manager = _Manager();
   static _Upload upload = _Upload();
+  static _Community community = _Community();
 }
 
 class _Login {
@@ -114,8 +115,20 @@ class _Manager {
 
   /// 报事报修：确认完成订单
   String get reportRepairComplete => '/user/reportRepair/completeOrder';
+
   ///报事报修：用户评价
   String get reportRepairEvaluate => '/user/reportRepair/evaluate';
+}
+
+class _Community {
+  ///社区活动：查询所有的活动信息
+  String get activityList => '/user/activity/list';
+
+  ///社区活动：根据社区活动主键id查询社区活动详情
+  String get activityDetail => '/user/activity/findById';
+
+  ///社区活动：查看参与人数
+  String get activityPeopleList => '/user/activity/participantsList';
 }
 
 class _Upload {
