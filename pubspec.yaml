@@ -76,7 +76,7 @@ dependencies:
   flutter_picker: ^1.1.5
   #高德地图
   amap_map_fluttify:
-  amap_location_fluttify:
+  amap_location_fluttify: 0.18.0
 
   #用户存储路径
   path_provider: ^1.6.18
