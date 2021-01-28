@@ -4,10 +4,13 @@ import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/commo
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 
 class SelectMoveCompanyPage extends StatefulWidget {
   SelectMoveCompanyPage({Key key}) : super(key: key);
@@ -21,6 +24,14 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
   MovingCompanyModel _companyModel;
   EasyRefreshController _controller;
   bool _onloading = true;
+  String get result {
+    if (_selected == _companyModel.appMovingCompanyVoList.length) {
+      return null;
+    } else {
+      return _companyModel.appMovingCompanyVoList[_selected].tel;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,17 +45,17 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
   }
 
   Widget _buildCard(int index, String name, String tel) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 28.w),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              _selected = index;
-              setState(() {});
-            },
-            child: Padding(
+    return GestureDetector(
+      onTap: () {
+        _selected = index;
+        setState(() {});
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 28.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
               child: CommonRadio(
                 size: 32.w,
@@ -52,47 +63,47 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
                 groupValue: _selected,
               ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              name.text.color(ktextPrimary).size(28.sp).bold.make(),
-              20.w.heightBox,
-              Row(
-                children: [
-                  Icon(
-                    CupertinoIcons.phone_arrow_up_right,
-                    size: 40.w,
-                    color: kDarkSubColor,
-                  ),
-                  8.w.widthBox,
-                  '电话：$tel'
-                      .text
-                      .color(Color(0xFF999999))
-                      .size(24.sp)
-                      .bold
-                      .make(),
-                ],
-              ),
-            ],
-          ).expand(),
-        ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                name.text.color(ktextPrimary).size(28.sp).bold.make(),
+                20.w.heightBox,
+                Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.phone_arrow_up_right,
+                      size: 40.w,
+                      color: kDarkSubColor,
+                    ),
+                    8.w.widthBox,
+                    '电话：$tel'
+                        .text
+                        .color(Color(0xFF999999))
+                        .size(24.sp)
+                        .bold
+                        .make(),
+                  ],
+                ),
+              ],
+            ).expand(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildForself(int index) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 28.w),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              _selected = index;
-              setState(() {});
-            },
-            child: Padding(
+    return GestureDetector(
+      onTap: () {
+        _selected = index;
+        setState(() {});
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 28.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
               child: CommonRadio(
                 size: 32.w,
@@ -100,9 +111,9 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
                 groupValue: _selected,
               ),
             ),
-          ),
-          '自己联系'.text.color(ktextPrimary).size(28.sp).bold.make()
-        ],
+            '自己联系'.text.color(ktextPrimary).size(28.sp).bold.make()
+          ],
+        ),
       ),
     );
   }
@@ -138,6 +149,16 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
                   _buildForself(_companyModel.appMovingCompanyVoList.length)
                 ].sepWidget(separate: BeeDivider.horizontal()),
               ),
+      ),
+      bottomNavi: BottomButton(
+        child: '确定'.text.color(ktextPrimary).size(32.sp).bold.make(),
+        onPressed: () {
+          if (_selected == null) {
+            BotToast.showText(text: '请选择搬家公司！');
+          } else {
+            Get.back(result: result);
+          }
+        },
       ),
     );
   }

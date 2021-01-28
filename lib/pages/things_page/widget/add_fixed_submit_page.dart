@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -206,15 +207,6 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     }
   }
 
-  int _getBuildUnitEstateNameId(String estateName) {
-    int a = int.parse(estateName.split('|')[0]);
-    return a;
-  }
-
-  String _getEstateName(String estateNmae) {
-    return estateNmae.split('|')[1];
-  }
-
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
@@ -228,7 +220,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   kEstateName,
                   userProvider.userDetailModel.estateNames.isEmpty
                       ? ''
-                      : _getEstateName(
+                      : BeeParse.getEstateName(
                           userProvider.userDetailModel.estateNames[0])),
               _getType(),
               _buildReportCard(),
@@ -243,7 +235,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                 List<String> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                    _getBuildUnitEstateNameId(
+                    BeeParse.getEstateNameId(
                         userProvider.userDetailModel.estateNames[0]),
                     _selectType + 1,
                     _textEditingController.text,

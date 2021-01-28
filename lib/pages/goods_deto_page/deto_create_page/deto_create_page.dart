@@ -4,7 +4,13 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +26,10 @@ import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_button.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/buttons/radio_button.dart';
-import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
-import 'widget/common_picker.dart';
-import 'widget/common_radio.dart';
 
 class DetoCreatePage extends StatefulWidget {
   DetoCreatePage({Key key}) : super(key: key);
@@ -40,15 +41,12 @@ class DetoCreatePage extends StatefulWidget {
 class _DetoCreatePageState extends State<DetoCreatePage> {
   List<File> _files = [];
   UserProvider get userProvider => Provider.of<UserProvider>(context);
-  String get firstEstateName {
-    return userProvider.userDetailModel.estateNames.isEmpty
-        ? ''
-        : userProvider.userDetailModel.estateNames[0];
-  }
 
   String _itemName;
   DateTime _date;
+  String get datetime=>DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
   int _selectWeight;
+  String _selectTel;
   List<String> _listWeight = [
     '< 50kg',
     '50kg-100kg',
@@ -350,8 +348,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           '搬家公司信息'.text.color(ktextPrimary).size(28.sp).make(),
           16.w.heightBox,
           InkWell(
-            onTap: () {
-              SelectMoveCompanyPage().to();
+            onTap: () async {
+              _selectTel = await SelectMoveCompanyPage().to();
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 30.w),
@@ -375,17 +373,37 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
+  bool _canSubmit(int weight, int approach, DateTime dateTime, String item) {
+    if (weight == null) {
+      return false;
+    } else if (approach == null) {
+      return false;
+    } else if (dateTime == null) {
+      return false;
+    } else if (item.isEmptyOrNull) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '物品出户',
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(kEstateName, firstEstateName),
+          _houseAddress(
+              kEstateName,
+              userProvider.userDetailModel.estateNames.isEmpty
+                  ? ''
+                  : BeeParse.getEstateName(
+                      userProvider.userDetailModel.estateNames[0])),
           _getWeight(),
           _itemPicker(
-              '出户时间', DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss"),
+              '出户时间', datetime,
               () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());
             setState(() {});
@@ -413,7 +431,28 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       ),
       bottomNavi: BottomButton(
         child: '确认提交'.text.color(ktextPrimary).bold.make(),
-        onPressed: () {},
+        onPressed: _canSubmit(_selectWeight, _selectApproach, _date, _itemName)
+            ? () async {
+                List<String> urls = await NetUtil()
+                    .uploadFiles(_files, API.upload.uploadRepair);
+                BaseModel baseModel = await ManagerFunc.articleOutSubmit(
+                  id: BeeParse.getEstateNameId(
+                      userProvider.userDetailModel.estateNames[0]),
+                  name: _itemName,
+                  weight: _selectWeight + 1,
+                  approach: _selectApproach + 1,
+                  tel: _selectTel,
+                  time: datetime,
+                  urls: urls,
+                );
+                if (baseModel.status) {
+                  Get.back();
+                } else
+                  BotToast.showText(text: baseModel.message);
+              }
+            : () {
+                BotToast.showText(text: '请填写完整物品出户信息！');
+              },
       ),
     );
     //

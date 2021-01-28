@@ -96,9 +96,34 @@ class ManagerFunc {
   }
 
   static Future<MovingCompanyModel> getMovingCompanyTel() async {
-    Response response= await NetUtil().dio.get(
-      API.manager.getMovingCompanyTel,
-    );
+    Response response = await NetUtil().dio.get(
+          API.manager.getMovingCompanyTel,
+        );
     return MovingCompanyModel.fromJson(response.data);
+  }
+
+  static Future<BaseModel> articleOutSubmit({
+    int id,
+    String name,
+    int weight,
+    int approach,
+    String tel,
+    String time,
+    List<String> urls,
+  }) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.articleOutSubmit,
+      params: {
+        'buildingUnitEstateId': id,
+        'name': name,
+        'weight': weight,
+        'approach': approach,
+        'movingCompanyTel': tel,
+        'expectedTime': DateUtil.formatDateStr(time,format: "yyyy-MM-dd HH:mm:ss"),
+        'imgUrls': urls,
+      },
+      showMessage: true,
+    );
+    return baseModel;
   }
 }
