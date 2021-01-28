@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:akuCommunity/model/manager/moving_company_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
@@ -27,10 +28,11 @@ class ManagerFunc {
   }
 
   static reportRepairInsert(
-      int type, String reportDetail, List<String> fileUrls) async {
+      int id, int type, String reportDetail, List<String> fileUrls) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairInsert,
       params: {
+        'buildingUnitEstateld': id,
         'type': type,
         'reportDetail': reportDetail,
         'fileUrls': fileUrls,
@@ -91,5 +93,13 @@ class ManagerFunc {
       showMessage: true,
     );
     return baseModel;
+  }
+
+  static Future<MovingCompanyModel> getMovingCompanyTel() async {
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.getMovingCompanyTel,
+      showMessage: false,
+    );
+    return MovingCompanyModel.fromJson(baseModel.data);
   }
 }

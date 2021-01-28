@@ -4,6 +4,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -130,34 +131,34 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  Widget _inkWellCheckbox() {
-    return InkWell(
-      child: Container(
-        padding: EdgeInsets.only(bottom: 24.w),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            BeeCheckBox(
-              onChange: (value) {
-                needMoveCompany = value;
-              },
-            ),
-            10.w.widthBox,
-            Container(
-              child: Text(
-                '是否需要物业提供搬家公司联系方式',
-                style: TextStyle(
-                  fontSize: 28.sp,
-                  color: Color(0xff333333),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _inkWellCheckbox() {
+  //   return InkWell(
+  //     child: Container(
+  //       padding: EdgeInsets.only(bottom: 24.w),
+  //       child: Row(
+  //         mainAxisSize: MainAxisSize.min,
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         children: [
+  //           BeeCheckBox(
+  //             onChange: (value) {
+  //               needMoveCompany = value;
+  //             },
+  //           ),
+  //           10.w.widthBox,
+  //           Container(
+  //             child: Text(
+  //               '是否需要物业提供搬家公司联系方式',
+  //               style: TextStyle(
+  //                 fontSize: 28.sp,
+  //                 color: Color(0xff333333),
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _getWeight() {
     return Container(
@@ -241,6 +242,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   .toList()
             ],
           ),
+          20.w.heightBox,
         ],
       ),
     );
@@ -340,6 +342,39 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     setState(() {});
   }
 
+  Widget _getMovingCompany(String movingCompany) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '搬家公司信息'.text.color(ktextPrimary).size(28.sp).make(),
+          16.w.heightBox,
+          InkWell(
+            onTap: () {
+              SelectMoveCompanyPage().to();
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.w),
+              child: Row(
+                children: [
+                  (movingCompany.isEmptyOrNull ? '请选择搬家公司' : movingCompany)
+                      .text
+                      .color(ktextSubColor)
+                      .size(36.sp)
+                      .bold
+                      .make(),
+                  Spacer(),
+                  Icon(CupertinoIcons.chevron_right, size: 30.w),
+                ],
+              ),
+            ),
+          ),
+          BeeDivider.horizontal(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -359,7 +394,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             _showItmePicker();
           }),
           _getApproach(),
-          _selectApproach == 0 ? SizedBox() : _inkWellCheckbox(),
+          _selectApproach == 0 ? SizedBox() : _getMovingCompany(''),
           Container(
             margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
             child: Text(
@@ -381,11 +416,6 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         onPressed: () {},
       ),
     );
-    //     Positioned(
-    //       bottom: 0,
-    //       child: BottomButton(title: '确认提交'),
-    //     )
-    //   ],
-    // ),
+    //
   }
 }

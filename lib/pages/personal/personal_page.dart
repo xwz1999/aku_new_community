@@ -129,7 +129,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 //TODO PLACEHOLDER
                                 placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
                                 image: API
-                                    .image(userProvider.userInfoModel.imgUrl),
+                                    .image(userProvider?.userInfoModel?.imgUrl),
                                 height: 106.w,
                                 width: 106.w,
                               ),

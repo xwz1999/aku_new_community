@@ -229,7 +229,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                 ? () async {
                     List<String> urls = await NetUtil()
                         .uploadFiles(_files, API.upload.uploadRepair);
-                    BaseModel baseModel = await ManagerFunc.reportRepairInsert(
+                    BaseModel baseModel = await ManagerFunc.reportRepairInsert(userProvider.userDetailModel.id,
                         _selectType + 1, _textEditingController.text, urls);
                     if (baseModel.status) {
                       FinishFixedSubmitPage().to();

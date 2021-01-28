@@ -114,8 +114,12 @@ class _Manager {
 
   /// 报事报修：确认完成订单
   String get reportRepairComplete => '/user/reportRepair/completeOrder';
+
   ///报事报修：用户评价
   String get reportRepairEvaluate => '/user/reportRepair/evaluate';
+
+  ///物品出户：获取搬家公司手机号
+  String get getMovingCompanyTel => '/user/articleOut/getMovingCompanyTel';
 }
 
 class _Upload {
