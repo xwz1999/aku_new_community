@@ -2,7 +2,7 @@ name: akuCommunity
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.8+9
+version: 1.0.9-dev+10
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -103,6 +103,7 @@ dev_dependencies:
     sdk: flutter
   import_sorter: ^4.4.1
   flutter_asset_generator: ^0.6.1
+  grinder:
 
 flutter:
   uses-material-design: true
