@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -222,32 +223,24 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
               _addImages(),
             ],
           ).expand(),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 98.w,
-            onPressed: _canSubmit(_selectType, _textEditingController.text)
-                ? () async {
-                    List<String> urls = await NetUtil()
-                        .uploadFiles(_files, API.upload.uploadRepair);
-                    BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                        _selectType + 1, _textEditingController.text, urls);
-                    if (baseModel.status) {
-                      FinishFixedSubmitPage().to();
-                    } else
-                      BotToast.showText(text: baseModel.message);
-                  }
-                : () {
-                    BotToast.showText(text: '请填写完整报修信息！');
-                  },
-            child: '确认提交'.text.black.bold.size(32.sp).make(),
-            color: kPrimaryColor,
-            elevation: 0,
-          )
-              .box
-              .padding(EdgeInsets.only(
-                  bottom: MediaQuery.of(context).padding.bottom))
-              .make()
         ],
+      ),
+      bottomNavi: BottomButton(
+        onPressed: _canSubmit(_selectType, _textEditingController.text)
+            ? () async {
+                List<String> urls = await NetUtil()
+                    .uploadFiles(_files, API.upload.uploadRepair);
+                BaseModel baseModel = await ManagerFunc.reportRepairInsert(
+                    _selectType + 1, _textEditingController.text, urls);
+                if (baseModel.status) {
+                  FinishFixedSubmitPage().to();
+                } else
+                  BotToast.showText(text: baseModel.message);
+              }
+            : () {
+                BotToast.showText(text: '请填写完整报修信息！');
+              },
+        child: '确认提交'.text.black.bold.size(32.sp).make(),
       ),
     );
   }
