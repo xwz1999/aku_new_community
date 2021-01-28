@@ -161,7 +161,9 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
             width: 686.w,
             child: TextField(
               controller: _textEditingController,
-              onEditingComplete: () {},
+              onChanged: (value) {
+                setState(() {});
+              },
               maxLines: 10,
               minLines: 5,
               decoration: InputDecoration(
@@ -204,6 +206,15 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     }
   }
 
+  int _getBuildUnitEstateNameId(String estateName) {
+    int a = int.parse(estateName.split('|')[0]);
+    return a;
+  }
+
+  String _getEstateName(String estateNmae) {
+    return estateNmae.split('|')[1];
+  }
+
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
@@ -217,37 +228,13 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   kEstateName,
                   userProvider.userDetailModel.estateNames.isEmpty
                       ? ''
-                      : userProvider.userDetailModel.estateNames[0]),
+                      : _getEstateName(
+                          userProvider.userDetailModel.estateNames[0])),
               _getType(),
               _buildReportCard(),
               _addImages(),
             ],
           ).expand(),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 98.w,
-            onPressed: _canSubmit(_selectType, _textEditingController.text)
-                ? () async {
-                    List<String> urls = await NetUtil()
-                        .uploadFiles(_files, API.upload.uploadRepair);
-                    BaseModel baseModel = await ManagerFunc.reportRepairInsert(userProvider.userDetailModel.id,
-                        _selectType + 1, _textEditingController.text, urls);
-                    if (baseModel.status) {
-                      FinishFixedSubmitPage().to();
-                    } else
-                      BotToast.showText(text: baseModel.message);
-                  }
-                : () {
-                    BotToast.showText(text: '请填写完整报修信息！');
-                  },
-            child: '确认提交'.text.black.bold.size(32.sp).make(),
-            color: kPrimaryColor,
-            elevation: 0,
-          )
-              .box
-              .padding(EdgeInsets.only(
-                  bottom: MediaQuery.of(context).padding.bottom))
-              .make()
         ],
       ),
       bottomNavi: BottomButton(
@@ -256,7 +243,11 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                 List<String> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                    _selectType + 1, _textEditingController.text, urls);
+                    _getBuildUnitEstateNameId(
+                        userProvider.userDetailModel.estateNames[0]),
+                    _selectType + 1,
+                    _textEditingController.text,
+                    urls);
                 if (baseModel.status) {
                   FinishFixedSubmitPage().to();
                 } else

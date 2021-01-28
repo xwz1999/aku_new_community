@@ -32,7 +32,7 @@ class ManagerFunc {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairInsert,
       params: {
-        'buildingUnitEstateld': id,
+        'buildingUnitEstateId': id,
         'type': type,
         'reportDetail': reportDetail,
         'fileUrls': fileUrls,
