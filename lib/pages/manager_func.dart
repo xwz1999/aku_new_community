@@ -96,10 +96,9 @@ class ManagerFunc {
   }
 
   static Future<MovingCompanyModel> getMovingCompanyTel() async {
-    BaseModel baseModel = await NetUtil().get(
+    Response response= await NetUtil().dio.get(
       API.manager.getMovingCompanyTel,
-      showMessage: false,
     );
-    return MovingCompanyModel.fromJson(baseModel.data);
+    return MovingCompanyModel.fromJson(response.data);
   }
 }
