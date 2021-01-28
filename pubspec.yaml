@@ -2,7 +2,7 @@ name: akuCommunity
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.8+9
+version: 1.0.9-dev+10
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -76,7 +76,7 @@ dependencies:
   flutter_picker: ^1.1.5
   #高德地图
   amap_map_fluttify:
-  amap_location_fluttify:
+  amap_location_fluttify: 0.18.0
 
   #用户存储路径
   path_provider: ^1.6.18
@@ -103,6 +103,7 @@ dev_dependencies:
     sdk: flutter
   import_sorter: ^4.4.1
   flutter_asset_generator: ^0.6.1
+  grinder:
 
 flutter:
   uses-material-design: true

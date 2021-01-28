@@ -113,13 +113,6 @@ class NetUtil {
   }) async {
     try {
       Response res = await _dio.get(path, queryParameters: params);
-      _logger.v({
-        'path': res.request.path,
-        'header': res.request.headers,
-        'params': res.request.queryParameters,
-        'data': res.data,
-      });
-      LoggerData.addData(res);
       BaseListModel baseListModel = BaseListModel.fromJson(res.data);
       return baseListModel;
     } on DioError catch (e) {

@@ -1,3 +1,6 @@
+// Project imports:
+import 'package:akuCommunity/model/common/img_model.dart';
+
 class FixedDetailModel {
   AppReportRepairVo appReportRepairVo;
   List<AppProcessRecordVo> appProcessRecordVo;
@@ -48,7 +51,7 @@ class AppReportRepairVo {
   int type;
   int status;
   String reportDetail;
-  List<ImgUrls> imgUrls;
+  List<ImgModel> imgUrls;
 
   AppReportRepairVo(
       {this.id, this.type, this.status, this.reportDetail, this.imgUrls});
@@ -59,9 +62,9 @@ class AppReportRepairVo {
     status = json['status'];
     reportDetail = json['reportDetail'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgUrls>();
+      imgUrls = new List<ImgModel>();
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgUrls.fromJson(v));
+        imgUrls.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -75,34 +78,6 @@ class AppReportRepairVo {
     if (this.imgUrls != null) {
       data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class ImgUrls {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
-
-  ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
-
-  ImgUrls.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    size = json['size'];
-    longs = json['longs'];
-    paragraph = json['paragraph'];
-    sort = json['sort'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['size'] = this.size;
-    data['longs'] = this.longs;
-    data['paragraph'] = this.paragraph;
-    data['sort'] = this.sort;
     return data;
   }
 }

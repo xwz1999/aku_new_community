@@ -28,9 +28,7 @@ import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool isSign;
@@ -128,8 +126,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                               child: FadeInImage.assetNetwork(
                                 //TODO PLACEHOLDER
                                 placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
-                                image: API
-                                    .image(userProvider?.userInfoModel?.imgUrl),
+                                image: API.image(
+                                    userProvider?.userInfoModel?.imgUrl ?? ''),
                                 height: 106.w,
                                 width: 106.w,
                               ),
