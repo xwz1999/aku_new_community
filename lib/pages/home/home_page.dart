@@ -37,10 +37,8 @@ import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
 import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'widget/home_card.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
-import 'widget/home_tag_bar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
