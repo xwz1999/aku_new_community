@@ -118,6 +118,12 @@ class _Manager {
 
   ///报事报修：用户评价
   String get reportRepairEvaluate => '/user/reportRepair/evaluate';
+
+  ///物品出户：获取搬家公司手机号
+  String get getMovingCompanyTel => '/user/articleOut/getMovingCompanyTel';
+
+  ///物品出户：提交物品出户信息
+  String get articleOutSubmit => '/user/articleOut/submit';
 }
 
 class _Community {

@@ -36,7 +36,7 @@ class _CommonRadioState extends State<CommonRadio> {
               color: _selected ? kPrimaryColor : Color(0xFF979797),
               width: 3.w,
             ),
-            borderRadius: BorderRadius.circular(20.w),
+            borderRadius: BorderRadius.circular(widget.size??20.w),
           ),
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOutCubic,
@@ -58,9 +58,13 @@ class _CommonRadioState extends State<CommonRadio> {
             ),
           ),
         ),
-        10.w.widthBox,
-        widget.text,
-        10.w.widthBox,
+        ...widget.text == null
+            ? [SizedBox()]
+            : [
+                10.w.widthBox,
+                widget.text,
+                10.w.widthBox,
+              ]
       ],
     );
   }

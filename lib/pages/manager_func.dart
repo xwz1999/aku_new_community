@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:akuCommunity/model/manager/moving_company_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
@@ -27,10 +28,11 @@ class ManagerFunc {
   }
 
   static reportRepairInsert(
-      int type, String reportDetail, List<String> fileUrls) async {
+      int id, int type, String reportDetail, List<String> fileUrls) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairInsert,
       params: {
+        'buildingUnitEstateId': id,
         'type': type,
         'reportDetail': reportDetail,
         'fileUrls': fileUrls,
@@ -87,6 +89,38 @@ class ManagerFunc {
       API.manager.reportRepairComplete,
       params: {
         'repairId': id,
+      },
+      showMessage: true,
+    );
+    return baseModel;
+  }
+
+  static Future<MovingCompanyModel> getMovingCompanyTel() async {
+    Response response = await NetUtil().dio.get(
+          API.manager.getMovingCompanyTel,
+        );
+    return MovingCompanyModel.fromJson(response.data);
+  }
+
+  static Future<BaseModel> articleOutSubmit({
+    int id,
+    String name,
+    int weight,
+    int approach,
+    String tel,
+    String time,
+    List<String> urls,
+  }) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.articleOutSubmit,
+      params: {
+        'buildingUnitEstateId': id,
+        'name': name,
+        'weight': weight,
+        'approach': approach,
+        'movingCompanyTel': tel,
+        'expectedTime': DateUtil.formatDateStr(time,format: "yyyy-MM-dd HH:mm:ss"),
+        'imgUrls': urls,
       },
       showMessage: true,
     );

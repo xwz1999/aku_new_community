@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -161,7 +162,9 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
             width: 686.w,
             child: TextField(
               controller: _textEditingController,
-              onEditingComplete: () {},
+              onChanged: (value) {
+                setState(() {});
+              },
               maxLines: 10,
               minLines: 5,
               decoration: InputDecoration(
@@ -217,7 +220,8 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   kEstateName,
                   userProvider.userDetailModel.estateNames.isEmpty
                       ? ''
-                      : userProvider.userDetailModel.estateNames[0]),
+                      : BeeParse.getEstateName(
+                          userProvider.userDetailModel.estateNames[0])),
               _getType(),
               _buildReportCard(),
               _addImages(),
@@ -231,7 +235,11 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                 List<String> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                    _selectType + 1, _textEditingController.text, urls);
+                    BeeParse.getEstateNameId(
+                        userProvider.userDetailModel.estateNames[0]),
+                    _selectType + 1,
+                    _textEditingController.text,
+                    urls);
                 if (baseModel.status) {
                   FinishFixedSubmitPage().to();
                 } else

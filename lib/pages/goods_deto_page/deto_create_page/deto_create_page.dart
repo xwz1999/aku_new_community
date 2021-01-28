@@ -4,6 +4,13 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,15 +26,10 @@ import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_button.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/buttons/radio_button.dart';
-import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
-import 'widget/common_picker.dart';
-import 'widget/common_radio.dart';
 
 class DetoCreatePage extends StatefulWidget {
   DetoCreatePage({Key key}) : super(key: key);
@@ -39,15 +41,12 @@ class DetoCreatePage extends StatefulWidget {
 class _DetoCreatePageState extends State<DetoCreatePage> {
   List<File> _files = [];
   UserProvider get userProvider => Provider.of<UserProvider>(context);
-  String get firstEstateName {
-    return userProvider.userDetailModel.estateNames.isEmpty
-        ? ''
-        : userProvider.userDetailModel.estateNames[0];
-  }
 
   String _itemName;
   DateTime _date;
+  String get datetime=>DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
   int _selectWeight;
+  String _selectTel;
   List<String> _listWeight = [
     '< 50kg',
     '50kg-100kg',
@@ -130,34 +129,34 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  Widget _inkWellCheckbox() {
-    return InkWell(
-      child: Container(
-        padding: EdgeInsets.only(bottom: 24.w),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            BeeCheckBox(
-              onChange: (value) {
-                needMoveCompany = value;
-              },
-            ),
-            10.w.widthBox,
-            Container(
-              child: Text(
-                '是否需要物业提供搬家公司联系方式',
-                style: TextStyle(
-                  fontSize: 28.sp,
-                  color: Color(0xff333333),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _inkWellCheckbox() {
+  //   return InkWell(
+  //     child: Container(
+  //       padding: EdgeInsets.only(bottom: 24.w),
+  //       child: Row(
+  //         mainAxisSize: MainAxisSize.min,
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         children: [
+  //           BeeCheckBox(
+  //             onChange: (value) {
+  //               needMoveCompany = value;
+  //             },
+  //           ),
+  //           10.w.widthBox,
+  //           Container(
+  //             child: Text(
+  //               '是否需要物业提供搬家公司联系方式',
+  //               style: TextStyle(
+  //                 fontSize: 28.sp,
+  //                 color: Color(0xff333333),
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _getWeight() {
     return Container(
@@ -241,6 +240,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   .toList()
             ],
           ),
+          20.w.heightBox,
         ],
       ),
     );
@@ -340,17 +340,70 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     setState(() {});
   }
 
+  Widget _getMovingCompany(String movingCompany) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '搬家公司信息'.text.color(ktextPrimary).size(28.sp).make(),
+          16.w.heightBox,
+          InkWell(
+            onTap: () async {
+              _selectTel = await SelectMoveCompanyPage().to();
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.w),
+              child: Row(
+                children: [
+                  (movingCompany.isEmptyOrNull ? '请选择搬家公司' : movingCompany)
+                      .text
+                      .color(ktextSubColor)
+                      .size(36.sp)
+                      .bold
+                      .make(),
+                  Spacer(),
+                  Icon(CupertinoIcons.chevron_right, size: 30.w),
+                ],
+              ),
+            ),
+          ),
+          BeeDivider.horizontal(),
+        ],
+      ),
+    );
+  }
+
+  bool _canSubmit(int weight, int approach, DateTime dateTime, String item) {
+    if (weight == null) {
+      return false;
+    } else if (approach == null) {
+      return false;
+    } else if (dateTime == null) {
+      return false;
+    } else if (item.isEmptyOrNull) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '物品出户',
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(kEstateName, firstEstateName),
+          _houseAddress(
+              kEstateName,
+              userProvider.userDetailModel.estateNames.isEmpty
+                  ? ''
+                  : BeeParse.getEstateName(
+                      userProvider.userDetailModel.estateNames[0])),
           _getWeight(),
           _itemPicker(
-              '出户时间', DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss"),
+              '出户时间', datetime,
               () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());
             setState(() {});
@@ -359,7 +412,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             _showItmePicker();
           }),
           _getApproach(),
-          _selectApproach == 0 ? SizedBox() : _inkWellCheckbox(),
+          _selectApproach == 0 ? SizedBox() : _getMovingCompany(''),
           Container(
             margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
             child: Text(
@@ -378,14 +431,30 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       ),
       bottomNavi: BottomButton(
         child: '确认提交'.text.color(ktextPrimary).bold.make(),
-        onPressed: () {},
+        onPressed: _canSubmit(_selectWeight, _selectApproach, _date, _itemName)
+            ? () async {
+                List<String> urls = await NetUtil()
+                    .uploadFiles(_files, API.upload.uploadRepair);
+                BaseModel baseModel = await ManagerFunc.articleOutSubmit(
+                  id: BeeParse.getEstateNameId(
+                      userProvider.userDetailModel.estateNames[0]),
+                  name: _itemName,
+                  weight: _selectWeight + 1,
+                  approach: _selectApproach + 1,
+                  tel: _selectTel,
+                  time: datetime,
+                  urls: urls,
+                );
+                if (baseModel.status) {
+                  Get.back();
+                } else
+                  BotToast.showText(text: baseModel.message);
+              }
+            : () {
+                BotToast.showText(text: '请填写完整物品出户信息！');
+              },
       ),
     );
-    //     Positioned(
-    //       bottom: 0,
-    //       child: BottomButton(title: '确认提交'),
-    //     )
-    //   ],
-    // ),
+    //
   }
 }
