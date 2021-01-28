@@ -1,8 +1,13 @@
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/utils/headers.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class HomeTitle extends StatelessWidget {
   final String title;

@@ -3,17 +3,11 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:akuCommunity/model/community/activity_item_model.dart';
-import 'package:akuCommunity/ui/community/activity_card.dart';
-import 'package:akuCommunity/ui/community/activity_list_page.dart';
-import 'package:akuCommunity/ui/community/community_func.dart';
-import 'package:akuCommunity/ui/home/home_notification.dart';
-import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 // Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -23,6 +17,7 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
+import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
@@ -33,6 +28,11 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/service/base_model.dart';
+import 'package:akuCommunity/ui/community/activity_card.dart';
+import 'package:akuCommunity/ui/community/activity_list_page.dart';
+import 'package:akuCommunity/ui/community/community_func.dart';
+import 'package:akuCommunity/ui/home/home_notification.dart';
+import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/container_comment.dart';

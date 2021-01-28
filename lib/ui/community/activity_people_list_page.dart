@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/activity_people_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ActivityPeopleListPage extends StatefulWidget {
   final int id;

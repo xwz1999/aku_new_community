@@ -1,13 +1,18 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:common_utils/common_utils.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/ui/community/activity_detail_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ActivityCard extends StatelessWidget {
   final ActivityItemModel model;
