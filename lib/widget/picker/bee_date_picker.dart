@@ -10,11 +10,31 @@ class BeeDatePicker {
   static Future<DateTime> pick(DateTime initDate) async {
     return await Get.bottomSheet(_BeeDatePicker(date: initDate));
   }
+
+  static Future<DateTime> timePicker(DateTime initDate) async {
+    return await Get.bottomSheet(_BeeDatePicker(
+      date: initDate,
+      min: initDate,
+      max: initDate.add(Duration(days: 7)),
+      mode: CupertinoDatePickerMode.dateAndTime,
+    ));
+  }
 }
 
 class _BeeDatePicker extends StatefulWidget {
   final DateTime date;
-  _BeeDatePicker({Key key, @required this.date}) : super(key: key);
+  final bool use24H;
+  final DateTime max;
+  final DateTime min;
+  final CupertinoDatePickerMode mode;
+  _BeeDatePicker(
+      {Key key,
+      @required this.date,
+      this.use24H = false,
+      this.max,
+      this.min,
+      this.mode})
+      : super(key: key);
 
   @override
   __BeeDatePickerState createState() => __BeeDatePickerState();
@@ -49,9 +69,12 @@ class __BeeDatePickerState extends State<_BeeDatePicker> {
               ),
             ),
             CupertinoDatePicker(
+              use24hFormat: widget.use24H,
+              maximumDate: widget.max,
+              minimumDate: widget.min,
               initialDateTime: _date,
               onDateTimeChanged: (date) => _date = date,
-              mode: CupertinoDatePickerMode.date,
+              mode:widget.mode?? CupertinoDatePickerMode.date,
             ).expand(),
           ],
         ),

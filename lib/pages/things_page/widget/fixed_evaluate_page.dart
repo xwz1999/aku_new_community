@@ -1,15 +1,20 @@
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class FixedEvaluatePage extends StatefulWidget {
   final FixedDetailModel model;

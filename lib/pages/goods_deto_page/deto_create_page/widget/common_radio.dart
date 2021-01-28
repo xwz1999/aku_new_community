@@ -1,64 +1,67 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/animated/animated_scale.dart';
 
-class CommonRadio extends StatefulWidget {
-  final List<Map<String, dynamic>> commonlist;
-  final Function fun;
-  CommonRadio({Key key, this.commonlist, this.fun}) : super(key: key);
+class CommonRadio<T> extends StatefulWidget {
+  final T value;
+  final T groupValue;
+  final Widget text;
+  final double size;
+  CommonRadio({Key key, this.value, this.groupValue, this.text, this.size})
+      : super(key: key);
 
   @override
   _CommonRadioState createState() => _CommonRadioState();
 }
 
 class _CommonRadioState extends State<CommonRadio> {
-  InkWell _inkWellRadio(String title, bool isCheck,int index, Function fun) {
-    return InkWell(
-      onTap: () {
-        fun(index);
-      },
-      child: Container(
-        margin: EdgeInsets.only(left: 20.w),
-        child: Row(
-          children: [
-            Icon(
-              isCheck
-                  ? Icons.radio_button_checked
-                  : Icons.radio_button_unchecked,
-              size: 32.w,
-              color: isCheck ? BaseStyle.colorffc40c : BaseStyle.color979797,
-            ),
-            SizedBox(width: 10.w),
-            Text(
-              title,
-              style: TextStyle(
-                  fontSize: BaseStyle.fontSize28, color: ktextPrimary),
-            ),
-          ],
-        ),
-      ),
-    );
+  bool get _selected => widget.value == widget.groupValue;
+  double get smallSize {
+    return widget.size.isNull ? 24.w : (widget.size * 24 / 40);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: widget.commonlist
-            .asMap()
-            .keys
-            .map((index) => _inkWellRadio(
-                  widget.commonlist[index]['title'],
-                  widget.commonlist[index]['isCheck'],
-                  index,
-                  widget.fun
-                ))
-            .toList(),
-      ),
+    return Row(
+      children: [
+        AnimatedContainer(
+          height: widget.size ?? 40.w,
+          width: widget.size ?? 40.w,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: _selected ? kPrimaryColor : Color(0xFF979797),
+              width: 3.w,
+            ),
+            borderRadius: BorderRadius.circular(20.w),
+          ),
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic,
+          alignment: Alignment.center,
+          child: AnimatedOpacity(
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOutCubic,
+            opacity: _selected ? 1 : 0,
+            child: AnimatedScale(
+              scale: _selected ? 1 : 0,
+              child: Container(
+                height: smallSize,
+                width: smallSize,
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(12.w),
+                ),
+              ),
+            ),
+          ),
+        ),
+        10.w.widthBox,
+        widget.text,
+        10.w.widthBox,
+      ],
     );
   }
 }
