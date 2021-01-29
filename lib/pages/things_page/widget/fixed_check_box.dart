@@ -17,6 +17,8 @@ class FixedCheckBox extends StatefulWidget {
 
 class _FixedCheckBoxState extends State<FixedCheckBox> {
   bool _isSelected = false;
+
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,6 +30,7 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOutCubic,
         alignment: Alignment.center,
         width: 40.w,
         height: 40.w,
@@ -39,11 +42,12 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
         ),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic,
           width: 24.w,
           height: 24.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24.w),
-            color: _isSelected ? kPrimaryColor : Colors.transparent,
+            color: kPrimaryColor.withOpacity(_isSelected?1:0)
           ),
         ),
       ),

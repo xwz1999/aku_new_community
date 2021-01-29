@@ -1,12 +1,15 @@
 // Flutter imports:
 import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/buttons/radio_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
@@ -62,6 +65,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '物品出户',
       actions: [
@@ -124,7 +128,9 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
                     _refreshController.callRefresh();
                   }
             : () {
-                DetoCreatePage().to();
+                userProvider.isLogin
+                    ? DetoCreatePage().to()
+                    : BotToast.showText(text: '请先登录！');
               },
         child: _isEdit
             ? '删除'.text.size(32.sp).bold.make()
