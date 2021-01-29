@@ -26,7 +26,8 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
         });
         widget.onChanged(_isSelected);
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
         alignment: Alignment.center,
         width: 40.w,
         height: 40.w,
@@ -36,7 +37,8 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
               width: 3.w, color: _isSelected ? kPrimaryColor : kDarkSubColor),
           color: Colors.transparent,
         ),
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
           width: 24.w,
           height: 24.w,
           decoration: BoxDecoration(

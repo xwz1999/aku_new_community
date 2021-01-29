@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +17,9 @@ import 'package:akuCommunity/pages/goods_deto_page/deto_code_page/deto_code_page
 import 'package:akuCommunity/utils/headers.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
-  GoodsInfoCardButton({Key key}) : super(key: key);
+  final String tel;
+  final int id;
+  GoodsInfoCardButton({Key key, this.tel, this.id}) : super(key: key);
 
   final List<Map<String, dynamic>> _listButton = [
     {'title': '查看二维码', 'icon': MaterialCommunityIcons.qrcode},
@@ -75,6 +81,7 @@ class GoodsInfoCardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.6),
         borderRadius: BorderRadius.only(
@@ -89,13 +96,24 @@ class GoodsInfoCardButton extends StatelessWidget {
             .keys
             .map((index) => Expanded(
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       switch (_listButton[index]['title']) {
                         case '查看二维码':
-                          DetoCodePage().to;
+                          ArticleQRModel _model = await ManagerFunc.getQRcode(id);
+                          if (_model.status) {
+                            DetoCodePage(
+                              id: id,
+                              model: _model
+                            ).to();
+                          } else {
+                            BotToast.showText(text: _model.message);
+                          }
                           break;
                         case '搬家公司':
-                          _showDialog(context, '0574-88467897');
+                          if (tel.isEmptyOrNull) {
+                            return null;
+                          } else
+                            _showDialog(context, tel);
                           break;
                         default:
                       }
@@ -122,8 +140,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                             color: Color(0xff333333),
                           ),
                           Container(
-                            margin:
-                                EdgeInsets.only(left: 14.w),
+                            margin: EdgeInsets.only(left: 14.w),
                             child: Text(
                               _listButton[index]['title'],
                               style: TextStyle(

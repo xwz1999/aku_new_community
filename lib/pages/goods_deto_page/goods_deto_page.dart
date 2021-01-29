@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,10 +28,51 @@ class GoodsDetoPage extends StatefulWidget {
 
 class _GoodsDetoPageState extends State<GoodsDetoPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+  List<int> _select = [];
+  bool _isEdit = false;
+  bool _canSkew(int state) {
+    switch (state) {
+      case 1:
+      case 2:
+      case 3:
+        return false;
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        return true;
+      default:
+        return true;
+    }
+  }
+
+  Widget _buildPositioned(GoodsOutModel model) {
+    return AnimatedPositioned(
+      bottom: 0,
+      top: 0,
+      left: (_canSkew(4) && _isEdit) ? 80.w : 0.w,
+      duration: Duration(milliseconds: 300),
+      width: 750.w,
+      child: GoodsInfoCard(
+        model: model,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '物品出户',
+      actions: [
+        IconButton(
+            icon: _isEdit
+                ? '完成'.text.black.size(28.sp).make()
+                : '编辑'.text.black.size(28.sp).make(),
+            onPressed: () {
+              _isEdit = !_isEdit;
+              setState(() {});
+            })
+      ],
       body: Padding(
         padding: EdgeInsets.only(bottom: 98.w),
         child: BeeListView(
@@ -42,21 +86,49 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
           builder: (items) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return GoodsInfoCard();
+                return Stack(children: [
+                  GestureDetector(
+                    onTap: () {
+                      if (_select.contains(items[index].id)) {
+                        _select.remove(items[index].id);
+                      } else
+                        _select.add(items[index].id);
+                      setState(() {});
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 50.w, horizontal: 32.w),
+                      alignment: Alignment.topLeft,
+                      constraints: BoxConstraints(
+                          minHeight: 631.w + 96.w, minWidth: 686.w),
+                      child: BeeRadio(
+                          value: items[index].id, groupValues: _select),
+                    ),
+                  ),
+                  _buildPositioned(items[index]),
+                ]);
               },
               itemCount: items.length,
             );
           },
         ),
       ),
-      bottomNavi: MaterialButton(
-        color: kPrimaryColor,
-        
-        padding: EdgeInsets.only(top:26.w ,bottom: MediaQuery.of(context).padding.bottom+26.w),
-        child: '新增'.text.black.size(32.sp).bold.make(),
-        onPressed: () {
-         DetoCreatePage().to();
-      },),
+      bottomNavi: BottomButton(
+        onPressed: _isEdit
+            ? _select.isEmpty
+                ? null
+                : () async {
+                    await ManagerFunc.articleOutDelete(_select);
+                    _select.clear();
+                    _refreshController.callRefresh();
+                  }
+            : () {
+                DetoCreatePage().to();
+              },
+        child: _isEdit
+            ? '删除'.text.size(32.sp).bold.make()
+            : '新增'.text.size(32.sp).bold.make(),
+      ),
     );
   }
 }

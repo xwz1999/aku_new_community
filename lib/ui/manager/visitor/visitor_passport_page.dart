@@ -130,7 +130,6 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
                       .make(),
                 ],
               ),
-              //TODO 二维码显示
             ).centered(),
           ],
         ).box.color(Color(0xFF333333)).make(),

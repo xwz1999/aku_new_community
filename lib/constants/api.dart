@@ -124,6 +124,12 @@ class _Manager {
 
   ///物品出户：提交物品出户信息
   String get articleOutSubmit => '/user/articleOut/submit';
+
+  ///物品出户：查询二维码信息
+  String get getQRcode => '/user/articleOut/getQRCode';
+
+  ///物品出户：app批量删除物品出户信息
+  String get articleOutDelete => '/user/articleOut/falseDelete';
 }
 
 class _Community {

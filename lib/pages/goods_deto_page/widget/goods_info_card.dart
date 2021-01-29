@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/goods_out_model.dart';
+import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +11,46 @@ import 'goods_info_card_button.dart';
 import 'image_horizontal_list.dart';
 
 class GoodsInfoCard extends StatelessWidget {
-  final List<String> listImage;
-  final String status;
-  final List<Map<String, dynamic>> detoInfoList;
-  GoodsInfoCard({Key key,this.listImage,this.status,this.detoInfoList}) : super(key: key);
+  final GoodsOutModel model;
+  GoodsInfoCard({
+    Key key,
+    this.model,
+  }) : super(key: key);
 
+  Widget _builTile(String title, String text) {
+    return Container(
+      // padding: EdgeInsets.only(top: 8.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff999999)),
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
+          ),
+        ],
+      ),
+    );
+  }
+
+Color _getColor(int state) {
+    switch (state) {
+      case 1:
+      case 2:
+      case 3:
+        return kDarkPrimaryColor;
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        return ktextSubColor;
+      default:
+        return kDangerColor;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,18 +79,15 @@ class GoodsInfoCard extends StatelessWidget {
                     blurRadius: 10.0),
               ],
             ),
-            padding: EdgeInsets.only(
-                top: 25.w,
-                left: 24.w,
-                right: 24.w),
+            padding: EdgeInsets.only(top: 25.w, left: 24.w, right: 24.w),
             child: Column(
               children: [
                 Container(
                   padding: EdgeInsets.only(bottom: 24.w),
                   decoration: BoxDecoration(
                     border: Border(
-                        bottom: BorderSide(
-                            color: Color(0xffeeeeee), width: 0.5)),
+                        bottom:
+                            BorderSide(color: Color(0xffeeeeee), width: 0.5)),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,13 +99,11 @@ class GoodsInfoCard extends StatelessWidget {
                             fontSize: 32.sp,
                             color: Color(0xff333333)),
                       ),
-                      Text(
-                        status,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 28.sp,
-                            color: Color(0xff333333))
-                      ),
+                      Text(BeeMap().fixState[model.status],
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 28.sp,
+                              color: _getColor(model.status))),
                     ],
                   ),
                 ),
@@ -81,35 +114,16 @@ class GoodsInfoCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border(
-                        bottom: BorderSide(
-                            color: Color(0xffeeeeee), width: 0.5)),
+                        bottom:
+                            BorderSide(color: Color(0xffeeeeee), width: 0.5)),
                   ),
-                  child: Column(
-                    children: detoInfoList
-                        .map(
-                          (item) => Container(
-                            padding: EdgeInsets.only(top: 8.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  item['title'],
-                                  style: TextStyle(
-                                      fontSize: 28.sp,
-                                      color: Color(0xff999999)),
-                                ),
-                                Text(
-                                  item['content'],
-                                  style: TextStyle(
-                                      fontSize: 28.sp,
-                                      color: Color(0xff333333)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
+                  child: Column(children: [
+                    _builTile('物品重量', BeeMap().goodsOutweight[model.weight]),
+                    _builTile('出户时间', model.expectedTime),
+                    _builTile('物品名称', model.name),
+                    _builTile(
+                        '搬运方式', BeeMap().goodsOutApproach[model.approach]),
+                  ]),
                 ),
                 Container(
                   margin: EdgeInsets.only(
@@ -120,22 +134,25 @@ class GoodsInfoCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        alignment: Alignment.centerLeft,
                         margin: EdgeInsets.only(bottom: 25.w),
                         child: Text(
                           '图片信息',
                           style: TextStyle(
-                              fontSize: 28.sp,
-                              color: Color(0xff333333)),
+                              fontSize: 28.sp, color: Color(0xff333333)),
                         ),
                       ),
-                      ImageHorizontalList(imageUrl: listImage),
+                      ImageHorizontalList(imageUrl: []),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          GoodsInfoCardButton()
+          GoodsInfoCardButton(
+            id:model.id,
+            tel: model.movingCompanyTel,
+          )
         ],
       ),
     );

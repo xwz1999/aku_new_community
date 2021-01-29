@@ -1,9 +1,14 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 // Project imports:
@@ -12,21 +17,23 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';
 
 class DetoCodePage extends StatelessWidget {
-  const DetoCodePage({Key key}) : super(key: key);
+  final int id;
+  final ArticleQRModel model;
+  const DetoCodePage({Key key, this.id, this.model}) : super(key: key);
 
-  Widget _header() {
+  Widget _header(String estateName) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            '宁波华茂悦峰',
+            kEstateName,
             style: TextStyle(fontSize: 40.sp, color: Color(0xffffffff)),
           ),
           SizedBox(height: 10.w),
           Text(
-            '1幢-1单元-702室',
+            estateName,
             style: TextStyle(fontSize: 26.sp, color: Color(0xffffffff)),
           ),
         ],
@@ -34,7 +41,7 @@ class DetoCodePage extends StatelessWidget {
     );
   }
 
-  Widget _card() {
+  Widget _card(String name, String effectiveTime) {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -72,7 +79,7 @@ class DetoCodePage extends StatelessWidget {
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    '马成泽先生',
+                    '$name先生',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -86,7 +93,7 @@ class DetoCodePage extends StatelessWidget {
           ),
           SizedBox(height: 13.w),
           Text(
-            '有限时间：2020年6月30日',
+            '有效时间：$effectiveTime',
             style: TextStyle(
               fontSize: 26.sp,
               color: Color(0xff999999),
@@ -103,18 +110,18 @@ class DetoCodePage extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               children: [
-                Text(
-                  '020-598-230',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 36.sp,
-                    color: Color(0xff333333),
-                  ),
-                ),
-                SizedBox(height: 11.w),
+                // Text(
+                //   '020-598-230',
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.w600,
+                //     fontSize: 36.sp,
+                //     color: Color(0xff333333),
+                //   ),
+                // ),
+                // SizedBox(height: 11.w),
                 QrImage(
                   padding: EdgeInsets.zero,
-                  data: '智慧社区开门码',
+                  data: model.appArticleOutQRCodeVo.id.toString(),
                   size: 260.w,
                 ),
               ],
@@ -139,6 +146,7 @@ class DetoCodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '出户二维码',
       body: Container(
@@ -148,9 +156,11 @@ class DetoCodePage extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 192.w - kToolbarHeight),
-                _header(),
+                _header(BeeParse.getEstateName(
+                    userProvider.userDetailModel.estateNames[0])),
                 SizedBox(height: 32.w),
-                _card(),
+                _card(model.appArticleOutQRCodeVo.residentName,
+                    model.appArticleOutQRCodeVo.effectiveTime),
               ],
             ),
           ],
