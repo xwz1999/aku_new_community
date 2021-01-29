@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/moving_company_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -119,11 +120,22 @@ class ManagerFunc {
         'weight': weight,
         'approach': approach,
         'movingCompanyTel': tel,
-        'expectedTime': DateUtil.formatDateStr(time,format: "yyyy-MM-dd HH:mm:ss"),
+        'expectedTime':
+            DateUtil.formatDateStr(time, format: "yyyy-MM-dd HH:mm:ss"),
         'imgUrls': urls,
       },
       showMessage: true,
     );
     return baseModel;
+  }
+
+  static Future<ArticleQRModel> getQRcode(int id) async {
+    Response response = await NetUtil().dio.get(
+      API.manager.getQRcode,
+      queryParameters: {
+        'articleOutId': id,
+      },
+    );
+    return ArticleQRModel.fromJson(response.data);
   }
 }

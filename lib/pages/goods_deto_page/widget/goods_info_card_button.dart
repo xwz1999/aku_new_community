@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -91,12 +95,18 @@ class GoodsInfoCardButton extends StatelessWidget {
             .keys
             .map((index) => Expanded(
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       switch (_listButton[index]['title']) {
                         case '查看二维码':
-                          DetoCodePage(
-                            id: id,
-                          ).to();
+                          ArticleQRModel _model = await ManagerFunc.getQRcode(id);
+                          if (_model.status) {
+                            DetoCodePage(
+                              id: id,
+                              model: _model
+                            ).to();
+                          } else {
+                            BotToast.showText(text: _model.message);
+                          }
                           break;
                         case '搬家公司':
                           if (tel.isEmptyOrNull) {
