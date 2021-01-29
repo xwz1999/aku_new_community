@@ -340,7 +340,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     setState(() {});
   }
 
-  Widget _getMovingCompany(String movingCompany) {
+  Widget _getMovingCompany() {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -350,12 +350,15 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           InkWell(
             onTap: () async {
               _selectTel = await SelectMoveCompanyPage().to();
+              setState(() {
+                
+              });
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 30.w),
               child: Row(
                 children: [
-                  (movingCompany.isEmptyOrNull ? '请选择搬家公司' : movingCompany)
+                  (_selectTel.isEmptyOrNull ? '请选择搬家公司' : _selectTel)
                       .text
                       .color(ktextSubColor)
                       .size(36.sp)
@@ -412,7 +415,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             _showItmePicker();
           }),
           _getApproach(),
-          _selectApproach == 0 ? SizedBox() : _getMovingCompany(''),
+          _selectApproach == 0 ? SizedBox() : _getMovingCompany(),
           Container(
             margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
             child: Text(
