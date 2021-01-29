@@ -50,8 +50,9 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
     return AnimatedPositioned(
       bottom: 0,
       top: 0,
-      left: (_canSkew(4) && _isEdit) ? 80.w : 0.w,
+      left: (_canSkew(model.status) && _isEdit) ? 80.w : 0.w,
       duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOutCubic,
       width: 750.w,
       child: GoodsInfoCard(
         model: model,

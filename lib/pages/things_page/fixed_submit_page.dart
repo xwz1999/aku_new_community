@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -84,7 +85,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   Widget _buildCard(FixedSubmitModel model) {
     return AnimatedPositioned(
       top: 0,
-      left: (_canSkew(model.status) && _isEdit) ? 55.w : 0,
+      left: (_canSkew(4) && _isEdit) ? 55.w : 0,
       bottom: 0,
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,
@@ -158,19 +159,31 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   }
 
   Widget _buildCheckBox(FixedSubmitModel model) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        if (_selected.contains(model.id)) {
+          _selected.remove(model.id);
+        } else {
+          _selected.add(model.id);
+        }
+        setState(() {});
+      },
+      child: Container(
         alignment: Alignment.centerLeft,
         constraints: BoxConstraints(minHeight: 384.w, minWidth: 686.w),
-        child: FixedCheckBox(
-          onChanged: (isSelect) {
-            if (isSelect) {
-              _selected.add(model.id);
-            } else {
-              _selected.remove(model.id);
-            }
-            setState(() {});
-          },
-        ));
+        // child: FixedCheckBox(
+        //   onChanged: (isSelect) {
+        //     if (isSelect) {
+        //       _selected.add(model.id);
+        //     } else {
+        //       _selected.remove(model.id);
+        //     }
+        //     setState(() {});
+        //   },
+        // ),
+        child: BeeRadio(value: model.id, groupValues: _selected),
+      ),
+    );
   }
 
   Widget _showDeletDialog() {
