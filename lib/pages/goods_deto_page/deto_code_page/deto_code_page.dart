@@ -12,7 +12,8 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';
 
 class DetoCodePage extends StatelessWidget {
-  const DetoCodePage({Key key}) : super(key: key);
+  final int id;
+  const DetoCodePage({Key key, this.id}) : super(key: key);
 
   Widget _header() {
     return Container(

@@ -26,4 +26,14 @@ class BeeMap {
     8: '作废',
     9: '取消'
   };
+
+  Map<int, String> goodsOutweight = {
+    1: '< 50kg',
+    2: '50kg-100kg',
+    3: '> 100kg',
+  };
+  Map<int,String> goodsOutApproach={
+    1:'自己搬运',
+    2:'搬家公司',
+  };
 }

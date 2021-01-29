@@ -42,7 +42,9 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
           builder: (items) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return GoodsInfoCard();
+                return GoodsInfoCard(
+                  model: items[index],
+                );
               },
               itemCount: items.length,
             );

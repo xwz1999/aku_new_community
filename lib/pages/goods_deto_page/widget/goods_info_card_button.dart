@@ -13,7 +13,9 @@ import 'package:akuCommunity/pages/goods_deto_page/deto_code_page/deto_code_page
 import 'package:akuCommunity/utils/headers.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
-  GoodsInfoCardButton({Key key}) : super(key: key);
+  final String tel;
+  final int id;
+  GoodsInfoCardButton({Key key, this.tel, this.id}) : super(key: key);
 
   final List<Map<String, dynamic>> _listButton = [
     {'title': '查看二维码', 'icon': MaterialCommunityIcons.qrcode},
@@ -92,10 +94,15 @@ class GoodsInfoCardButton extends StatelessWidget {
                     onTap: () {
                       switch (_listButton[index]['title']) {
                         case '查看二维码':
-                          DetoCodePage().to;
+                          DetoCodePage(
+                            id: id,
+                          ).to();
                           break;
                         case '搬家公司':
-                          _showDialog(context, '0574-88467897');
+                          if (tel.isEmptyOrNull) {
+                            return null;
+                          } else
+                            _showDialog(context, tel);
                           break;
                         default:
                       }
@@ -122,8 +129,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                             color: Color(0xff333333),
                           ),
                           Container(
-                            margin:
-                                EdgeInsets.only(left: 14.w),
+                            margin: EdgeInsets.only(left: 14.w),
                             child: Text(
                               _listButton[index]['title'],
                               style: TextStyle(
