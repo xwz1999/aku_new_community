@@ -24,14 +24,10 @@ class BottomButton extends StatelessWidget {
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        child: DefaultTextStyle(
-          child: child,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 32.sp,
-          ),
-        ),
+        disabledColor: Colors.white.withOpacity(0.5),
+        disabledTextColor: ktextSubColor.withOpacity(0.8),
+        textColor: ktextPrimary,
+        child: child,
         onPressed: onPressed,
         color: kPrimaryColor,
         height: 98.w,

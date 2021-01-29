@@ -138,4 +138,13 @@ class ManagerFunc {
     );
     return ArticleQRModel.fromJson(response.data);
   }
+
+  static Future<BaseModel> articleOutDelete(List<int> ids) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.articleOutDelete,
+      params: {'ids': ids},
+      showMessage: true,
+    );
+    return baseModel;
+  }
 }

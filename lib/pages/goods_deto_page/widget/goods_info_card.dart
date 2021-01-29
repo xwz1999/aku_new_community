@@ -19,7 +19,7 @@ class GoodsInfoCard extends StatelessWidget {
 
   Widget _builTile(String title, String text) {
     return Container(
-      padding: EdgeInsets.only(top: 8.w),
+      // padding: EdgeInsets.only(top: 8.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
