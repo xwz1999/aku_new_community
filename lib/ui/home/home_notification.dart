@@ -3,9 +3,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
 import 'package:akuCommunity/ui/community/notice/notice_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Package imports:
 import 'package:velocity_x/velocity_x.dart';
@@ -23,10 +25,10 @@ class HomeNotification extends StatefulWidget {
 }
 
 class _HomeNotificationState extends State<HomeNotification> {
-  String get randomItem {
-    if (widget.items.isEmpty) return '';
+  BoardItemModel get randomItem {
+    if (widget.items.isEmpty) return null;
     int index = Random().nextInt(widget.items.length - 1);
-    return widget.items[index].title ?? '';
+    return widget.items[index];
   }
 
   Timer _timer;
@@ -59,13 +61,16 @@ class _HomeNotificationState extends State<HomeNotification> {
         widget.items.isEmpty
             ? Spacer()
             : GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  if (randomItem != null)
+                    Get.to(NoticeDetailPage(id: randomItem.id));
+                },
                 child: AnimatedSwitcher(
                   duration: Duration(milliseconds: 1000),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    key: ValueKey(randomItem),
-                    child: Text(randomItem),
+                    key: ValueKey(randomItem?.id ?? 0),
+                    child: Text(randomItem?.title ?? ''),
                   ),
                 ),
               ).expand(),

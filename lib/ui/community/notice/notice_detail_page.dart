@@ -28,6 +28,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
       );
 
   Widget docView(String title, String path) {
+    if (title?.isEmpty??true) return SizedBox();
     return Container(
       margin: EdgeInsets.only(right: 113.w),
       alignment: Alignment.centerLeft,
