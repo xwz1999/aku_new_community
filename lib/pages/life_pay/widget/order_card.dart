@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_info_page/life_pay_info_page.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class OrderCard extends StatefulWidget {
-  final Function fun;
-  OrderCard({Key key,this.fun}) : super(key: key);
+  OrderCard({Key key,}) : super(key: key);
 
   @override
   _OrderCardState createState() => _OrderCardState();
 }
 
 class _OrderCardState extends State<OrderCard> {
-  Container _orderInfo() {
+  Widget _orderInfo() {
     return Container(
       margin: EdgeInsets.only(
         top: 20.w,
@@ -77,11 +74,11 @@ class _OrderCardState extends State<OrderCard> {
     );
   }
 
-  InkWell _checkInfo(Function fun) {
+  Widget _checkInfo() {
     return InkWell(
       onTap: (){
-        LifePayInfoPage(bundle: Bundle()
-          ..putMap('detailMap', {'title': '去年（2019年）'}),).to;
+        // LifePayInfoPage(bundle: Bundle()
+        //   ..putMap('detailMap', {'title': '去年（2019年）'}),).to;
       },
       child: Container(
         margin: EdgeInsets.only(top: 20.w),
@@ -115,7 +112,7 @@ class _OrderCardState extends State<OrderCard> {
       padding: EdgeInsets.symmetric(horizontal: 32.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(6)),
+        borderRadius: BorderRadius.all(Radius.circular(8.w)),
       ),
       child: InkWell(
         onTap: () {},
@@ -132,8 +129,8 @@ class _OrderCardState extends State<OrderCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _orderInfo(),
-                  _checkInfo(widget.fun),
+                  // _orderInfo(),
+                  // _checkInfo(),
                 ],
               ),
             )

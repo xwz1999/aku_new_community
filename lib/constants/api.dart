@@ -139,6 +139,9 @@ class _Manager {
 
   ///借还管理：报损
   String get fromLoss => '/user/articleBorrow/frmLoss';
+
+  ///生活缴费：查询生活缴费信息list
+  String get dailyPaymentList => '/user/dailyPayment/list';
 }
 
 class _Community {
