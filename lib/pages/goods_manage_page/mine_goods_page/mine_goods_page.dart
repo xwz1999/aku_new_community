@@ -194,9 +194,12 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 .toList();
           },
           builder: (items) {
-            return ListView.builder(itemBuilder: (context, index) {
-              return _goodsCard(items[index]);
-            });
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return _goodsCard(items[index]);
+              },
+              itemCount: items.length,
+            );
           }),
     );
   }

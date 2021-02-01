@@ -97,26 +97,6 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 alignment: Alignment.center,
                 child: '我的借还物品'.text.black.size(28.sp).make()))
       ],
-      // body: Stack(
-      //   children: [
-      //     Column(
-      //       children: _listGoods
-      //           .map((item) => _goodsCard(
-      //                 item['imagePath'],
-      //                 item['title'],
-      //                 item['goodsNum'],
-      //               ))
-      //           .toList(),
-      //     ),
-      //     Positioned(
-      //       bottom: 0,
-      //       child: BottomButton(
-      //         title: '扫一扫出借',
-      //         fun: () {},
-      //       ),
-      //     ),
-      //   ],
-      // ),
 
       body: BeeListView(
           path: API.manager.articleBorrow,
