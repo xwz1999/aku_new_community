@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/mine_goods_model.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,9 +34,11 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
     _controller.dispose();
   }
 
-  InkWell _frmLoss() {
+  InkWell _frmLoss(int id) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        await ManagerFunc.fromLoss(id);
+      },
       child: Container(
         width: 120.w,
         height: 44.w,
@@ -135,7 +138,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                           color: Color(0xff999999),
                         ),
                       ),
-                      _frmLoss(),
+                      _frmLoss(model.id),
                     ],
                   ),
                 ),

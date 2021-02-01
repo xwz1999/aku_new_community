@@ -136,6 +136,9 @@ class _Manager {
 
   ///借还管理：查询该用户的所有物品借还信息
   String get articleBorrowMylist => '/user/articleBorrow/myList';
+
+  ///借还管理：报损
+  String get fromLoss => '/user/articleBorrow/frmLoss';
 }
 
 class _Community {

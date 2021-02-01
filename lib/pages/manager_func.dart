@@ -148,4 +148,14 @@ class ManagerFunc {
     return baseModel;
   }
   
+  static Future<BaseModel> fromLoss(int id)async{
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.fromLoss,
+      params: {
+        'articleBorrowId':id
+      },
+      showMessage: true,
+    );
+    return baseModel;
+  }
 }
