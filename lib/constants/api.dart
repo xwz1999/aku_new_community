@@ -130,6 +130,12 @@ class _Manager {
 
   ///物品出户：app批量删除物品出户信息
   String get articleOutDelete => '/user/articleOut/falseDelete';
+
+  ///借还管理：查询所有可借物品信息
+  String get articleBorrow => '/user/articleBorrow/list';
+
+  ///借还管理：查询该用户的所有物品借还信息
+  String get articleBorrowMylist => '/user/articleBorrow/myList';
 }
 
 class _Community {

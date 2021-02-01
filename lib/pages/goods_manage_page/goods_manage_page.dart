@@ -1,6 +1,12 @@
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/manager/article_borrow_model.dart';
+import 'package:akuCommunity/pages/goods_manage_page/mine_goods_page/mine_goods_page.dart';
+import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 // Package imports:
 import 'package:velocity_x/velocity_x.dart';
@@ -8,8 +14,7 @@ import 'package:velocity_x/velocity_x.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/bottom_button.dart';
-import 'package:akuCommunity/widget/cached_image_wrapper.dart';
+import 'package:akuCommunity/const/resource.dart';
 
 class GoodsManagePage extends StatefulWidget {
   GoodsManagePage({Key key}) : super(key: key);
@@ -19,46 +24,9 @@ class GoodsManagePage extends StatefulWidget {
 }
 
 class _GoodsManagePageState extends State<GoodsManagePage> {
-  List<Map<String, dynamic>> _listGoods = [
-    {
-      'imagePath':
-          'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=409315131,2212208097&fm=26&gp=0.jpg',
-      'title': '榔头',
-      'goodsNum': 4
-    },
-    {
-      'imagePath':
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600315000206&di=d63920cce862ea3143b94f5efd9ee48f&imgtype=0&src=http%3A%2F%2Fimg009.hc360.cn%2Fy3%2FM06%2F97%2F52%2FwKhQh1T9gwqEG8-EAAAAADtr0hA725.jpg',
-      'title': '梯子',
-      'goodsNum': 2
-    },
-    {
-      'imagePath':
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=742033541,898484766&fm=26&gp=0.jpg',
-      'title': '电钻',
-      'goodsNum': 10
-    },
-    {
-      'imagePath':
-          'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=655760492,2421981969&fm=26&gp=0.jpg',
-      'title': '多功能螺丝刀',
-      'goodsNum': 7
-    },
-    {
-      'imagePath':
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600315263467&di=87b7fa8cd8bc03f5bd320f29efd00418&imgtype=0&src=http%3A%2F%2Ftu.ossfiles.cn%3A9186%2Fgroup3%2FM00%2F08%2FB6%2FrBpVfl8H3XuAOUA-AAFkF36vtNY168.jpg',
-      'title': '手电筒',
-      'goodsNum': 5
-    },
-    {
-      'imagePath':
-          'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1922842359,3407397182&fm=26&gp=0.jpg',
-      'title': '胶带',
-      'goodsNum': 6
-    }
-  ];
+  EasyRefreshController _easyRefreshController;
 
-  Container _goodsCard(String imagePath, title, int goodsNum) {
+  Container _goodsCard(ArticleBorrowModel model) {
     return Container(
       margin: EdgeInsets.only(
         top: 20.w,
@@ -73,28 +41,28 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
       ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(6)),
+        borderRadius: BorderRadius.all(Radius.circular(6.w)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            height: 120.w,
+            width: 160.w,
             margin: EdgeInsets.only(right: 20.w),
             child: ClipRRect(
-              child: CachedImageWrapper(
-                url: imagePath,
-                width: 160.w,
-                height: 120.w,
-              ),
-            ),
+                child: FadeInImage.assetNetwork(
+                    placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                    image: API.image(
+                        model.imgUrls.isEmpty ? '' : model.imgUrls.first.url))),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                '物品名称：$title',
+                '物品名称：${model.name}',
                 style: TextStyle(
                   fontSize: 28.sp,
                   color: Color(0xff4a4b51),
@@ -102,7 +70,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
               ),
               SizedBox(height: 20.w),
               Text(
-                '数量剩余：$goodsNum个',
+                '数量剩余：${model.quantity}',
                 style: TextStyle(
                   fontSize: 24.sp,
                   color: Color(0xff999999),
@@ -121,31 +89,56 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
       title: '借还管理',
       actions: [
         InkWell(
-            onTap: () {},
+            onTap: () {
+              MineGoodsPage().to();
+            },
             child: Container(
                 padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
                 alignment: Alignment.center,
                 child: '我的借还物品'.text.black.size(28.sp).make()))
       ],
-      body: Stack(
-        children: [
-          Column(
-            children: _listGoods
-                .map((item) => _goodsCard(
-                      item['imagePath'],
-                      item['title'],
-                      item['goodsNum'],
-                    ))
-                .toList(),
-          ),
-          Positioned(
-            bottom: 0,
-            child: BottomButton(
-              title: '扫一扫出借',
-              fun: () {},
-            ),
-          ),
-        ],
+      // body: Stack(
+      //   children: [
+      //     Column(
+      //       children: _listGoods
+      //           .map((item) => _goodsCard(
+      //                 item['imagePath'],
+      //                 item['title'],
+      //                 item['goodsNum'],
+      //               ))
+      //           .toList(),
+      //     ),
+      //     Positioned(
+      //       bottom: 0,
+      //       child: BottomButton(
+      //         title: '扫一扫出借',
+      //         fun: () {},
+      //       ),
+      //     ),
+      //   ],
+      // ),
+
+      body: BeeListView(
+          path: API.manager.articleBorrow,
+          controller: _easyRefreshController,
+          convert: (models) {
+            return models.tableList
+                .map((e) => ArticleBorrowModel.fromJson(e))
+                .toList();
+          },
+          builder: (items) {
+            return ListView.separated(
+                itemBuilder: (context, index) {
+                  return _goodsCard(items[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return 16.w.heightBox;
+                },
+                itemCount: items.length);
+          }),
+      bottomNavi: BottomButton(
+        child: '扫一扫出借'.text.black.size(32.sp).bold.make(),
+        onPressed: () {},
       ),
     );
   }
