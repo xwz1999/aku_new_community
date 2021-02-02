@@ -4,6 +4,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/pages/personal/widget/order_card.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -37,7 +38,70 @@ class _LifePayPageState extends State<LifePayPage> {
     super.dispose();
   }
 
-  
+  String _getCustomYears(int year) {
+    int dif = year - DateTime.now().year;
+    if (dif < 0) {
+      if (dif == -1) {
+        return '去年';
+      } else if (dif == -2) {
+        return '前年';
+      } else {
+        return '${-dif}年前';
+      }
+    } else if (dif == 0) {
+      return '今年';
+    } else {
+      if (dif == 1) {
+        return '明年';
+      } else {
+        return '$dif年后';
+      }
+    }
+  }
+
+  Widget _buildCard(LifePayMolde model) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.w), color: kForeGroundColor),
+      child: Row(
+        children: [
+          BeeCheckBox.round(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              '${_getCustomYears(model.years)}(${model.years})'
+                  .text
+                  .color(ktextSubColor)
+                  .size(28.sp)
+                  .make(),
+              24.w.heightBox,
+              '待缴：${model.paymentNum}项'
+                  .text
+                  .color(ktextPrimary)
+                  .size(28.sp)
+                  .make(),
+              24.w.heightBox,
+              RichText(
+                  text: TextSpan(
+                      text: '合计：',
+                      style: TextStyle(
+                          color: ktextPrimary,
+                          fontSize: 28.sp,
+                          fontWeight: FontWeight.bold),
+                      children: [
+                    TextSpan(
+                        text: '¥',
+                        style: TextStyle(
+                            color: kDangerColor,
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.bold)),
+                  ]))
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,45 +119,6 @@ class _LifePayPageState extends State<LifePayPage> {
           ),
         ),
       ],
-      // body: Stack(
-      //   children: [
-      //     ListView(
-      //       padding: EdgeInsets.only(bottom: 130.w),
-      //       children: [
-      //         Container(
-      //           margin: EdgeInsets.only(
-      //             top: 32.w,
-      //             left: 32.w,
-      //             right: 32.w,
-      //           ),
-      //           child: RichText(
-      //             text: TextSpan(
-      //                 style:
-      //                     TextStyle(fontSize: 28.sp, color: Color(0xff666666)),
-      //                 children: <InlineSpan>[
-      //                   TextSpan(
-      //                     text: '深圳华茂悦峰',
-      //                   ),
-      //                   TextSpan(
-      //                     text: '1幢-1单元-702室',
-      //                     style: TextStyle(fontWeight: FontWeight.bold),
-      //                   ),
-      //                 ]),
-      //           ),
-      //         ),
-      //         OrderCard(
-      //             fun: LifePayInfoPage(
-      //           bundle: Bundle()
-      //             ..putMap('commentMap', {'title': '明细', 'isActions': false}),
-      //         ).to),
-      //       ],
-      //     ),
-      //     Positioned(
-      //       bottom: 0,
-      //       child: SubmitBar(title: '去缴费'),
-      //     ),
-      //   ],
-      // ),
       body: BeeListView(
           path: API.manager.dailyPaymentList,
           controller: _controller,
@@ -102,13 +127,18 @@ class _LifePayPageState extends State<LifePayPage> {
                 .map((e) => LifePayMolde.fromJson(e))
                 .toList();
           },
-          builder: (items){
-            return ListView.builder(itemBuilder: (context, index){
-              // return _buildCard(items[index]);
-              return OrderCard();
-            },
-            // itemCount: items.length,
-            ) ;
+          builder: (items) {
+            return Column(
+              children: [
+                ListView.builder(
+                  itemBuilder: (context, index) {
+                    // return _buildCard(items[index]);
+                    return _buildCard(items[index]);
+                  },
+                  itemCount: 1,
+                ),
+              ],
+            );
           }),
     );
   }
