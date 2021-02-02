@@ -2,7 +2,6 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 

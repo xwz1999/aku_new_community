@@ -133,4 +133,13 @@ class UserProvider extends ChangeNotifier {
       await updateProfile();
     }
   }
+
+  ///设置默认房屋
+  String _currentHouse =
+      await SignFunc.getUserDetail().then((value) => value.estateNames.first);
+  String get currentHouse => _currentHouse;
+  setCurrentHouse(String house) {
+    _currentHouse = house;
+    notifyListeners();
+  }
 }
