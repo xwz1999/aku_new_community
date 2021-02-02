@@ -84,10 +84,10 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                     ],
                   ),
                 ),
-                // Icon(
-                //   CupertinoIcons.chevron_forward,
-                //   size: 40.w,
-                // ),
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  size: 40.w,
+                ),
               ],
             ),
           ),

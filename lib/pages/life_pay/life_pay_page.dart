@@ -1,13 +1,19 @@
 // Flutter imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/pages/personal/widget/order_card.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:provider/provider.dart';
 
 // Package imports:
 import 'package:velocity_x/velocity_x.dart';
@@ -38,25 +44,49 @@ class _LifePayPageState extends State<LifePayPage> {
     super.dispose();
   }
 
-  String _getCustomYears(int year) {
-    int dif = year - DateTime.now().year;
-    if (dif < 0) {
-      if (dif == -1) {
-        return '去年';
-      } else if (dif == -2) {
-        return '前年';
-      } else {
-        return '${-dif}年前';
-      }
-    } else if (dif == 0) {
-      return '今年';
-    } else {
-      if (dif == 1) {
-        return '明年';
-      } else {
-        return '$dif年后';
-      }
-    }
+  Widget _buildHouseCard(
+    String title,
+    String detail,
+  ) {
+    return Padding(
+      padding: EdgeInsets.all(32.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '报修房屋'.text.black.size(28.sp).make(),
+          32.w.heightBox,
+          GestureDetector(
+            onTap: () {},
+            child: Row(
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_HOUSE_PNG,
+                  width: 60.w,
+                  height: 60.w,
+                ),
+                40.w.widthBox,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      title.text.black.size(32.sp).bold.make(),
+                      10.w.heightBox,
+                      detail.text.black.size(32.sp).bold.make()
+                    ],
+                  ),
+                ),
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  size: 40.w,
+                ),
+              ],
+            ),
+          ),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
+        ],
+      ),
+    );
   }
 
   Widget _buildCard(LifePayMolde model) {
@@ -64,12 +94,15 @@ class _LifePayPageState extends State<LifePayPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.w), color: kForeGroundColor),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BeeCheckBox.round(),
+          BeeCheckBox.round(
+            onChange: (value) {},
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              '${_getCustomYears(model.years)}(${model.years})'
+              '${BeeParse.getCustomYears(model.years)}(${model.years})'
                   .text
                   .color(ktextSubColor)
                   .size(28.sp)
@@ -98,6 +131,23 @@ class _LifePayPageState extends State<LifePayPage> {
                   ]))
             ],
           ),
+          Column(
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFF2A2A2A),
+                    borderRadius: BorderRadius.circular(22.w),
+                  ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
+                  child: '选择明细'.text.color(Colors.white).size(22.sp).make(),
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
         ],
       ),
     );
@@ -105,6 +155,7 @@ class _LifePayPageState extends State<LifePayPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '生活缴费',
       actions: [
@@ -128,15 +179,19 @@ class _LifePayPageState extends State<LifePayPage> {
                 .toList();
           },
           builder: (items) {
-            return Column(
+            return 
+            Column(
               children: [
+                // _buildHouseCard(kEstateName, userProvider.userDetailModel.estateNames.isEmpty
+                //       ? ''
+                //       : BeeParse.getEstateName(
+                //           userProvider.userDetailModel.estateNames[0])),
                 ListView.builder(
                   itemBuilder: (context, index) {
-                    // return _buildCard(items[index]);
                     return _buildCard(items[index]);
                   },
-                  itemCount: 1,
-                ),
+                  itemCount: items.length,
+                ).expand(),
               ],
             );
           }),
