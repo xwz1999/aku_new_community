@@ -48,43 +48,45 @@ class _LifePayPageState extends State<LifePayPage> {
     String title,
     String detail,
   ) {
-    return Padding(
-      padding: EdgeInsets.all(32.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          '报修房屋'.text.black.size(28.sp).make(),
-          32.w.heightBox,
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Image.asset(
-                  R.ASSETS_ICONS_HOUSE_PNG,
-                  width: 60.w,
-                  height: 60.w,
-                ),
-                40.w.widthBox,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      title.text.black.size(32.sp).bold.make(),
-                      10.w.heightBox,
-                      detail.text.black.size(32.sp).bold.make()
-                    ],
+    return Material(
+      color: kForeGroundColor,
+      child: Padding(
+        padding: EdgeInsets.all(32.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            '当前房屋'.text.black.size(28.sp).make(),
+            32.w.heightBox,
+            GestureDetector(
+              onTap: () {},
+              child: Row(
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_HOUSE_PNG,
+                    width: 60.w,
+                    height: 60.w,
                   ),
-                ),
-                Icon(
-                  CupertinoIcons.chevron_forward,
-                  size: 40.w,
-                ),
-              ],
+                  40.w.widthBox,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        title.text.black.size(32.sp).bold.make(),
+                        10.w.heightBox,
+                        detail.text.black.size(32.sp).bold.make()
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    CupertinoIcons.chevron_forward,
+                    size: 40.w,
+                  ),
+                ],
+              ),
             ),
-          ),
-          24.w.heightBox,
-          BeeDivider.horizontal(),
-        ],
+            24.w.heightBox,
+          ],
+        ),
       ),
     );
   }
@@ -96,11 +98,17 @@ class _LifePayPageState extends State<LifePayPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BeeCheckBox.round(
-            onChange: (value) {},
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BeeCheckBox.round(
+                onChange: (value) {},
+              ),
+            ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               '${BeeParse.getCustomYears(model.years)}(${model.years})'
                   .text
@@ -132,6 +140,8 @@ class _LifePayPageState extends State<LifePayPage> {
             ],
           ),
           Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () {},
@@ -145,7 +155,6 @@ class _LifePayPageState extends State<LifePayPage> {
                   child: '选择明细'.text.color(Colors.white).size(22.sp).make(),
                 ),
               ),
-              Spacer(),
             ],
           ),
         ],
@@ -179,22 +188,76 @@ class _LifePayPageState extends State<LifePayPage> {
                 .toList();
           },
           builder: (items) {
-            return 
-            Column(
+            return Column(
               children: [
-                // _buildHouseCard(kEstateName, userProvider.userDetailModel.estateNames.isEmpty
-                //       ? ''
-                //       : BeeParse.getEstateName(
-                //           userProvider.userDetailModel.estateNames[0])),
-                ListView.builder(
-                  itemBuilder: (context, index) {
-                    return _buildCard(items[index]);
-                  },
-                  itemCount: items.length,
-                ).expand(),
+                _buildHouseCard(
+                    kEstateName,
+                    userProvider.userDetailModel.estateNames.isEmpty
+                        ? ''
+                        : BeeParse.getEstateName(
+                            userProvider.userDetailModel.estateNames[0])),
+                16.w.heightBox,
+                Container(
+                  padding: EdgeInsets.all(32.w),
+                  width: double.infinity,
+                  color: kForeGroundColor,
+                  constraints: BoxConstraints(minHeight: 20.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
+                      ...List.generate(
+                          items.length, (index) => _buildCard(items[index])),
+                    ],
+                  ),
+                ),
               ],
             );
           }),
+      bottomNavi: Container(
+        padding: EdgeInsets.fromLTRB(
+            32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
+        child: Row(
+          children: [
+            BeeCheckBox.round(
+              onChange: (value) {},
+              size: 40.w,
+            ),
+            Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RichText(
+                    text: TextSpan(
+                        text: '合计：',
+                        style: TextStyle(
+                            color: ktextPrimary,
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.bold),
+                        children: [
+                      TextSpan(
+                          text: '¥3009.84',
+                          style: TextStyle(
+                              color: kDangerColor,
+                              fontSize: 32.sp,
+                              fontWeight: FontWeight.bold)),
+                    ])),
+                '已选10项'.text.color(ktextSubColor).size(20.sp).make(),
+              ],
+            ),
+            MaterialButton(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(37.w)),
+              color: kPrimaryColor,
+              padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
+              onPressed: () {},
+              child: '去缴费'.text.black.size(32.sp).bold.make(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
