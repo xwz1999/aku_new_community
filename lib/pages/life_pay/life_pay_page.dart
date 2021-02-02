@@ -3,6 +3,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/personal/widget/order_card.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -58,7 +59,9 @@ class _LifePayPageState extends State<LifePayPage> {
             '当前房屋'.text.black.size(28.sp).make(),
             32.w.heightBox,
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                MyHousePage().to();
+              },
               child: Row(
                 children: [
                   Image.asset(
