@@ -205,6 +205,9 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/add.png)
   static const String ASSETS_ICONS_ADD_PNG = 'assets/icons/add.png';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/alarm.png)
+  static const String ASSETS_ICONS_ALARM_PNG = 'assets/icons/alarm.png';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/app_add.png)
   static const String ASSETS_ICONS_APP_ADD_PNG = 'assets/icons/app_add.png';
 
