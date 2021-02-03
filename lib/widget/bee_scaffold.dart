@@ -22,28 +22,31 @@ class BeeScaffold extends StatefulWidget {
   final Widget leading;
   final Widget bottomNavi;
   final PreferredSizeWidget appBarBottom;
-  BeeScaffold(
-      {Key key,
-      @required this.title,
-      this.body,
-      this.actions,
-      this.leading,
-      this.bgColor = Colors.white,
-      this.bodyColor = const Color(0xFFF9F9F9),
-      this.bottomNavi,
-      this.appBarBottom})
-      : super(key: key);
+  final FloatingActionButton fab;
+  BeeScaffold({
+    Key key,
+    @required this.title,
+    this.body,
+    this.actions,
+    this.leading,
+    this.bgColor = Colors.white,
+    this.bodyColor = const Color(0xFFF9F9F9),
+    this.bottomNavi,
+    this.appBarBottom,
+    this.fab,
+  }) : super(key: key);
 
-  BeeScaffold.white(
-      {Key key,
-      @required this.title,
-      this.body,
-      this.actions,
-      this.leading,
-      this.bgColor = Colors.white,
-      this.bottomNavi,
-      this.appBarBottom})
-      : this.bodyColor = Colors.white,
+  BeeScaffold.white({
+    Key key,
+    @required this.title,
+    this.body,
+    this.actions,
+    this.leading,
+    this.bgColor = Colors.white,
+    this.bottomNavi,
+    this.appBarBottom,
+    this.fab,
+  })  : this.bodyColor = Colors.white,
         super(key: key);
 
   @override
@@ -67,6 +70,7 @@ class _BeeScaffoldState extends State<BeeScaffold> {
       ),
       body: widget.body,
       bottomNavigationBar: widget.bottomNavi,
+      floatingActionButton: widget.fab,
     );
   }
 }
