@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/application_objects.dart';
+import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:flutter/material.dart';
 
 class AppProvider extends ChangeNotifier {
@@ -28,10 +29,24 @@ class AppProvider extends ChangeNotifier {
     return _myApplications;
   }
 
+  ///初始化我的应用
+  initApplications() {
+    if (HiveStore.appBox.containsKey('app'))
+      _myApplications = (HiveStore.appBox.get('app') as List<String>)
+          .map((e) => AO.fromRaw(e))
+          .toList();
+    notifyListeners();
+  }
+
   ///添加我的应用
   insertApplication(AO app) {
     if (!_myApplications.contains(app) && _myApplications.length < 7)
       _myApplications.insert(0, app);
+    if (!_myApplications.contains(app) && _myApplications.length >= 7) {
+      _myApplications.insert(0, app);
+      _myApplications.removeLast();
+    }
+    HiveStore.appBox.put('app', _myApplications.map((e) => e.title).toList());
     notifyListeners();
   }
 

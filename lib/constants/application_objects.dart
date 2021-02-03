@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/questionnaire_page/questionnaire_details_page/questionnaire_details_page.dart';
@@ -40,13 +41,13 @@ class AO {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
       other is AO && runtimeType == other.runtimeType && title == other.title;
 
   @override
   int get hashCode => title.hashCode;
 }
 
+///所有应用
 List<AO> appObjects = [
   AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, OpenDoorPage()),
   AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, OpeningCodePage()),
@@ -64,6 +65,43 @@ List<AO> appObjects = [
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, QuestionnaireDetailsPage()),
   AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, GoodsManagePage()),
+  AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, AlarmPage()),
 ];
 
+///全部应用按钮
 AO allApp = AO('全部应用', R.ASSETS_APPLICATIONS_ALL_APP_PNG, AllApplicationPage());
+
+///为您推荐 original value
+List<String> _recommendApp = [
+  '一键开门',
+  '访客邀请',
+  '报事报修',
+  '建议咨询',
+  '一键报警',
+];
+
+///为您推荐
+List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
+
+///智慧管家 original value
+List<String> _smartManagerApp = [
+  '一键开门',
+  '开门码',
+  '访客邀请',
+  '报事报修',
+  '生活缴费',
+  '业委会',
+  '建议咨询',
+  '便民电话',
+  '活动投票',
+  '物品出门',
+  '投诉表扬',
+  '问卷调查',
+  '装修管理',
+  '借还管理',
+  '一键报警',
+];
+
+///智慧管家
+List<AO> get smartManagerApp =>
+    _smartManagerApp.map((e) => AO.fromRaw(e)).toList();
