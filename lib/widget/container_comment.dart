@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t container_comment need to be cleaned.")
 class ContainerComment extends StatelessWidget {
   final Widget customWidget;
   final double radius;

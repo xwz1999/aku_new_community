@@ -133,13 +133,6 @@ class _MarketPageState extends State<MarketPage>
                           imagePath: 'assets/example/guanggao5.png',
                           radius: 36,
                         ),
-                        ContainerComment(
-                          radius: 8,
-                          customWidget: GridButtons(
-                            gridList: [],
-                            crossCount: 4,
-                          ),
-                        ),
                       ],
                     ),
                   ),

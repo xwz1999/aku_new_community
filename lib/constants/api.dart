@@ -159,6 +159,9 @@ class _Community {
 
   ///社区公告：根据社区公告主键id查询社区公告信息
   String get boardDetail => '/user/announcement/findById';
+
+  ///社区话题：查询最新的所有主题信息
+  String get topicList => '/user/gambit/list';
 }
 
 class _Upload {

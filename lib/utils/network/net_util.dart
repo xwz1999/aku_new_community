@@ -178,7 +178,7 @@ class NetUtil {
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
-    if (!model.status && model.message == '登录失效，请登录') {
+    if (!model.status && model.message == '登录失效，请登录' && userProvider.isLogin) {
       userProvider.logout();
       Get.offAll(SignInPage());
     }

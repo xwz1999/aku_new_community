@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t grid_buttons need to be cleaned.")
 class GridButtons extends StatefulWidget {
   final List<GridButton> gridList;
   final int crossCount;
@@ -21,7 +23,6 @@ class GridButton {
 }
 
 class _GridButtonsState extends State<GridButtons> {
-  
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -55,9 +56,10 @@ class _GridButtonsState extends State<GridButtons> {
         );
       },
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: widget.crossCount,
-          mainAxisSpacing: 6.0,
-          childAspectRatio: 1.0),
+        crossAxisCount: widget.crossCount,
+        mainAxisSpacing: 6.0,
+        childAspectRatio: 1.0,
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/ui/community/notice/notice_page.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -202,10 +204,7 @@ class _PropertyIndexState extends State<PropertyIndex>
             SliverToBoxAdapter(
               child: ContainerComment(
                 radius: 8,
-                customWidget: GridButtons(
-                  gridList: _gridList,
-                  crossCount: 4,
-                ),
+                customWidget: ApplicationView.custom(items: smartManagerApp),
               ),
             ),
             SliverToBoxAdapter(
