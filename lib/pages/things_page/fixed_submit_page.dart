@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -158,10 +159,22 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   }
 
   Widget _buildCheckBox(FixedSubmitModel model) {
-    return Container(
+    return 
+    // GestureDetector(
+    //   onTap: () {
+    //     if (_selected.contains(model.id)) {
+    //       _selected.remove(model.id);
+    //     } else {
+    //       _selected.add(model.id);
+    //     }
+    //     setState(() {});
+    //   },
+      // child: 
+      Container(
         alignment: Alignment.centerLeft,
         constraints: BoxConstraints(minHeight: 384.w, minWidth: 686.w),
         child: FixedCheckBox(
+          key:ValueKey(model.id),
           onChanged: (isSelect) {
             if (isSelect) {
               _selected.add(model.id);
@@ -170,7 +183,10 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
             }
             setState(() {});
           },
-        ));
+        ),
+        // child: BeeRadio(value: model.id, groupValues: _selected),
+      // ),
+    );
   }
 
   Widget _showDeletDialog() {
@@ -246,8 +262,8 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
             },
           ).expand(),
           MaterialButton(
-            disabledColor: kDarkSubColor,
-            disabledTextColor: ktextSubColor,
+            disabledColor: Colors.white.withOpacity(0.5),
+            disabledTextColor: ktextSubColor.withOpacity(0.8),
             textColor: ktextPrimary,
             onPressed: _isEdit
                 ? _selected.isEmpty

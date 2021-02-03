@@ -8,13 +8,19 @@ import 'package:akuCommunity/utils/headers.dart';
 
 class BeeCheckBox extends StatefulWidget {
   final Function(bool) onChange;
-  BeeCheckBox({Key key, this.onChange}) : super(key: key);
-
+  final bool isRound;
+  final double size;
+  BeeCheckBox({Key key, this.onChange, this.isRound, this.size})
+      : super(key: key);
+  BeeCheckBox.round({Key key, this.onChange, this.size})
+      : this.isRound = true,
+        super(key: key);
   @override
   _BeeCheckBoxState createState() => _BeeCheckBoxState();
 }
 
 class _BeeCheckBoxState extends State<BeeCheckBox> {
+  double get boxSize => widget.size ?? 28.w;
   bool _isSelect = false;
   @override
   Widget build(BuildContext context) {
@@ -27,13 +33,14 @@ class _BeeCheckBoxState extends State<BeeCheckBox> {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          border: Border.all(
-              width: 1.w, color: _isSelect ? kPrimaryColor : kDarkSubColor),
-          color: _isSelect ? kPrimaryColor : Colors.transparent,
-        ),
+            border: Border.all(
+                width: 1.w, color: _isSelect ? kPrimaryColor : kDarkSubColor),
+            color: _isSelect ? kPrimaryColor : Colors.transparent,
+            borderRadius:
+                BorderRadius.circular(widget.isRound ? boxSize / 2 : 0)),
         curve: Curves.easeInOutCubic,
-        width: 28.w,
-        height: 28.w,
+        width: boxSize,
+        height: boxSize,
         child: _isSelect
             ? Icon(
                 CupertinoIcons.check_mark,

@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/manager/mine_goods_model.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
@@ -17,81 +20,25 @@ class MineGoodsPage extends StatefulWidget {
 }
 
 class _MineGoodsPageState extends State<MineGoodsPage> {
-  List<Map<String, dynamic>> _listGoods = [
-    {
-      'title': '榔头',
-      'goodsNum': 6,
-      'borrowTime': '2020.09.18 12:00',
-      'timeLength': '7',
-      'status': '未还'
-    },
-    {
-      'title': '梯子',
-      'goodsNum': 1,
-      'borrowTime': '2020.08.28 12:00',
-      'timeLength': '3',
-      'status': '已还'
-    },
-    {
-      'title': '电钻',
-      'goodsNum': 1,
-      'borrowTime': '2020.07.04 12:00',
-      'timeLength': '6',
-      'status': '未还'
-    },
-    {
-      'title': '多功能螺丝刀',
-      'goodsNum': 4,
-      'borrowTime': '2020.04.06 12:00',
-      'timeLength': '4',
-      'status': '已还'
-    },
-    {
-      'title': '手电筒',
-      'goodsNum': 2,
-      'borrowTime': '2020.02.19 12:00',
-      'timeLength': '2',
-      'status': '已还'
-    },
-    {
-      'title': '胶带',
-      'goodsNum': 3,
-      'borrowTime': '2020.01.14 12:00',
-      'timeLength': '8',
-      'status': '未还'
-    },
-  ];
-
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  EasyRefreshController _controller;
 
   @override
   void initState() {
     super.initState();
-  }
-
-  void _onRefresh() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-
-    _refreshController.refreshCompleted();
-  }
-
-  void _onLoading() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
+    _controller = EasyRefreshController();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _refreshController.dispose();
+    _controller.dispose();
   }
 
-  InkWell _frmLoss() {
+  InkWell _frmLoss(int id) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        await ManagerFunc.fromLoss(id);
+      },
       child: Container(
         width: 120.w,
         height: 44.w,
@@ -109,8 +56,15 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
     );
   }
 
-  Container _goodsCard(
-      String title, borrowTime, timeLength, status, int goodsNum) {
+  String _getDatelength(int date) {
+    if (date >= 24) {
+      return '${date / 24}' + '${date % 24}';
+    } else {
+      return '$date';
+    }
+  }
+
+  Container _goodsCard(MineGoodsModel model) {
     return Container(
       margin: EdgeInsets.only(
         top: 20.w,
@@ -136,7 +90,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  '物品名称：$title',
+                  '物品名称：${model.name}',
                   style: TextStyle(
                     fontSize: 28.sp,
                     color: Color(0xff4a4b51),
@@ -145,7 +99,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借还数量：$goodsNum个',
+                    '借还数量：10个',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff333333),
@@ -155,7 +109,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借用时间: $borrowTime',
+                    '借用时间: ${model.beginDate}',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff999999),
@@ -165,7 +119,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借用时长: $timeLength日',
+                    '借用时长: ${_getDatelength(model.borrowDate)}',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff999999),
@@ -178,23 +132,23 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '借用状态: $status',
+                        '借用状态: ${BeeMap.borrowStatus}',
                         style: TextStyle(
                           fontSize: 24.sp,
                           color: Color(0xff999999),
                         ),
                       ),
-                      _frmLoss(),
+                      _frmLoss(model.id),
                     ],
                   ),
                 ),
                 SizedBox(height: 12.w),
                 Divider(color: Color(0xfff9f9f9)),
-                status == '未还'
+                model.borrowStatus == 1
                     ? Container(
                         margin: EdgeInsets.only(bottom: 9.w),
                         child: Text(
-                          '温馨提示：您的物品已借用$timeLength天，如果用完，请及时归还',
+                          '温馨提示：您的物品已借用${_getDatelength(model.borrowDate)},如果用完，请及时归还',
                           style: TextStyle(
                             fontSize: 22.sp,
                             color: Color(0xff999999),
@@ -214,26 +168,42 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '我的借还物品',
-      body: RefreshConfiguration(
-        child: SmartRefresher(
-          controller: _refreshController,
-          header: WaterDropHeader(),
-          footer: ClassicFooter(),
-          onRefresh: _onRefresh,
-          onLoading: _onLoading,
-          enablePullUp: true,
-          child: ListView.builder(
-            itemBuilder: (BuildContext context, int index) => _goodsCard(
-              _listGoods[index]['title'],
-              _listGoods[index]['borrowTime'],
-              _listGoods[index]['timeLength'],
-              _listGoods[index]['status'],
-              _listGoods[index]['goodsNum'],
-            ),
-            itemCount: _listGoods.length,
-          ),
-        ),
-      ),
+      // body: RefreshConfiguration(
+      //   child: SmartRefresher(
+      //     controller: _refreshController,
+      //     header: WaterDropHeader(),
+      //     footer: ClassicFooter(),
+      //     onRefresh: _onRefresh,
+      //     onLoading: _onLoading,
+      //     enablePullUp: true,
+      //     child: ListView.builder(
+      //       itemBuilder: (BuildContext context, int index) => _goodsCard(
+      //         _listGoods[index]['title'],
+      //         _listGoods[index]['borrowTime'],
+      //         _listGoods[index]['timeLength'],
+      //         _listGoods[index]['status'],
+      //         _listGoods[index]['goodsNum'],
+      //       ),
+      //       itemCount: _listGoods.length,
+      //     ),
+      //   ),
+      // ),
+      body: BeeListView(
+          path: API.manager.articleBorrowMylist,
+          controller: _controller,
+          convert: (model) {
+            return model.tableList
+                .map((e) => MineGoodsModel.fromJson(e))
+                .toList();
+          },
+          builder: (items) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return _goodsCard(items[index]);
+              },
+              itemCount: items.length,
+            );
+          }),
     );
   }
 }

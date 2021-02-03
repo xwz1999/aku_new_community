@@ -32,8 +32,10 @@ class BeeMap {
     2: '50kg-100kg',
     3: '> 100kg',
   };
-  Map<int,String> goodsOutApproach={
-    1:'自己搬运',
-    2:'搬家公司',
+  Map<int, String> goodsOutApproach = {
+    1: '自己搬运',
+    2: '搬家公司',
   };
+
+ static Map<int, String> borrowStatus = {1: '出借中', 2: '已归还'};
 }

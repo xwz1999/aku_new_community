@@ -2,6 +2,7 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/goods_out_model.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class GoodsInfoCard extends StatelessWidget {
     );
   }
 
-Color _getColor(int state) {
+  Color _getColor(int state) {
     switch (state) {
       case 1:
       case 2:
@@ -51,6 +52,7 @@ Color _getColor(int state) {
         return kDangerColor;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -135,14 +137,15 @@ Color _getColor(int state) {
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.only(bottom: 25.w),
+                        margin: EdgeInsets.only(bottom: 8.w),
                         child: Text(
                           '图片信息',
                           style: TextStyle(
                               fontSize: 28.sp, color: Color(0xff333333)),
                         ),
                       ),
-                      ImageHorizontalList(imageUrl: []),
+                      HorizontalImageView(
+                          model.imgUrl.map((e) => e.url).toList()),
                     ],
                   ),
                 ),
@@ -150,7 +153,7 @@ Color _getColor(int state) {
             ),
           ),
           GoodsInfoCardButton(
-            id:model.id,
+            id: model.id,
             tel: model.movingCompanyTel,
           )
         ],

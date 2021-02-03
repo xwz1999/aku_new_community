@@ -31,6 +31,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox.put('login', true);
     await updateProfile();
     await updateUserDetail();
+    await setCurrentHouse(_userDetailModel?.estateNames?.first??'');
     notifyListeners();
   }
 
@@ -132,5 +133,13 @@ class UserProvider extends ChangeNotifier {
     if (model.status) {
       await updateProfile();
     }
+  }
+
+  ///设置默认房屋
+  String _currentHouse;
+  String get currentHouse => _currentHouse;
+  setCurrentHouse(String house) {
+    _currentHouse = house;
+    notifyListeners();
   }
 }

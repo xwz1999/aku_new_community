@@ -6,6 +6,7 @@ import 'dart:io';
 // Flutter imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
@@ -44,7 +45,8 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   String _itemName;
   DateTime _date;
-  String get datetime=>DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
+  String get datetime =>
+      DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
   int _selectWeight;
   String _selectTel;
   List<String> _listWeight = [
@@ -67,7 +69,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
 
   bool needMoveCompany = false;
 
-  Widget _houseAddress(String title, subtitle) {
+  Widget _houseAddress(String subtitle) {
     return Container(
       padding: EdgeInsets.only(bottom: 24.w),
       margin: EdgeInsets.only(bottom: 40.w),
@@ -88,41 +90,51 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 42.w),
-                child: Image.asset(
-                  R.ASSETS_IMAGES_HOUSE_ATTESTATION_PNG,
-                  height: 59.w,
-                  width: 59.w,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 32.sp,
-                      color: Color(0xff333333),
-                    ),
+          GestureDetector(
+            onTap: () {
+              MyHousePage().to();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 42.w),
+                  child: Image.asset(
+                    R.ASSETS_IMAGES_HOUSE_ATTESTATION_PNG,
+                    height: 59.w,
+                    width: 59.w,
                   ),
-                  SizedBox(height: 10.w),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 32.sp,
-                      color: Color(0xff333333),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      kEstateName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 32.sp,
+                        color: Color(0xff333333),
+                      ),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    SizedBox(height: 10.w),
+                    Text(
+                      BeeParse.getEstateName(subtitle),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 32.sp,
+                        color: Color(0xff333333),
+                      ),
+                    )
+                  ],
+                ),
+                Spacer(),
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  size: 40.w,
+                ),
+              ],
+            ).material(color: Colors.transparent),
           ),
         ],
       ),
@@ -340,7 +352,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     setState(() {});
   }
 
-  Widget _getMovingCompany(String movingCompany) {
+  Widget _getMovingCompany() {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -350,12 +362,13 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           InkWell(
             onTap: () async {
               _selectTel = await SelectMoveCompanyPage().to();
+              setState(() {});
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 30.w),
               child: Row(
                 children: [
-                  (movingCompany.isEmptyOrNull ? '请选择搬家公司' : movingCompany)
+                  (_selectTel.isEmptyOrNull ? '请选择搬家公司' : _selectTel)
                       .text
                       .color(ktextSubColor)
                       .size(36.sp)
@@ -395,16 +408,9 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(
-              kEstateName,
-              userProvider.userDetailModel.estateNames.isEmpty
-                  ? ''
-                  : BeeParse.getEstateName(
-                      userProvider.userDetailModel.estateNames[0])),
+          _houseAddress(userProvider.currentHouse),
           _getWeight(),
-          _itemPicker(
-              '出户时间', datetime,
-              () async {
+          _itemPicker('出户时间', datetime, () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());
             setState(() {});
           }),
@@ -412,7 +418,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             _showItmePicker();
           }),
           _getApproach(),
-          _selectApproach == 0 ? SizedBox() : _getMovingCompany(''),
+          _selectApproach == 0 ? SizedBox() : _getMovingCompany(),
           Container(
             margin: EdgeInsets.only(top: 54.w, bottom: 24.w),
             child: Text(
