@@ -163,13 +163,6 @@ class _HomePageState extends State<HomePage>
                     radius: 8,
                     customWidget: ApplicationView(),
                   ),
-                  ContainerComment(
-                    radius: 8,
-                    customWidget: GridButtons(
-                      gridList: _gridList,
-                      crossCount: 4,
-                    ),
-                  ),
                   // SingleAdSpace(
                   //   imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
                   // ),

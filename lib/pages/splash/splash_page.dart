@@ -40,6 +40,8 @@ class _SplashPageState extends State<SplashPage> {
     //ensure call _originOp first.
     await _originOp();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.initApplications();
     //app init delay 2 second
     await Future.delayed(Duration(seconds: 2));
     if (HiveStore.appBox.get('login') ?? false) {
