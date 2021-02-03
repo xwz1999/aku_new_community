@@ -1,11 +1,11 @@
-class LifePayMolde {
+class LifePayModel {
   int years;
   int paymentNum;
   List<DailyPaymentTypeVos> dailyPaymentTypeVos;
 
-  LifePayMolde({this.years, this.paymentNum, this.dailyPaymentTypeVos});
+  LifePayModel({this.years, this.paymentNum, this.dailyPaymentTypeVos});
 
-  LifePayMolde.fromJson(Map<String, dynamic> json) {
+  LifePayModel.fromJson(Map<String, dynamic> json) {
     years = json['years'];
     paymentNum = json['paymentNum'];
     if (json['dailyPaymentTypeVos'] != null) {

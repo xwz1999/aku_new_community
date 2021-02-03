@@ -92,7 +92,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   size: 40.w,
                 ),
               ],
-            ),
+            ).material(color: Colors.transparent),
           ),
           24.w.heightBox,
           BeeDivider.horizontal(),

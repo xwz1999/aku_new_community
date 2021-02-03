@@ -3,16 +3,16 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
+import 'package:akuCommunity/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
+import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
-
 
 // Package imports:
 import 'package:velocity_x/velocity_x.dart';
@@ -29,8 +29,29 @@ class LifePayPage extends StatefulWidget {
   _LifePayPageState createState() => _LifePayPageState();
 }
 
+class SelectList {
+  bool value;
+  List<String> selected;
+  SelectList();
+}
+
 class _LifePayPageState extends State<LifePayPage> {
   EasyRefreshController _controller;
+  List<SelectList> selectItems = [];
+  List<int> _selectYears = [];
+  List<LifePayModel> _models;
+  bool get isAllSelect => _models.length == _selectYears.length;
+
+  int _getLength(LifePayModel model) {
+    int count = 0;
+    model.dailyPaymentTypeVos.forEach((element) {
+      element.detailedVoList.forEach((element) {
+        count++;
+      });
+    });
+    return count;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -92,7 +113,7 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 
-  Widget _buildCard(LifePayMolde model) {
+  Widget _buildCard(LifePayModel model, int index) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.w), color: kForeGroundColor),
@@ -102,8 +123,59 @@ class _LifePayPageState extends State<LifePayPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BeeCheckBox.round(
-                onChange: (value) {},
+              GestureDetector(
+                onTap: () {
+                  if (selectItems[index].selected.length ==
+                      _getLength(model)) {
+                    selectItems[index].value = false;
+                    selectItems[index].selected.clear();
+                    _selectYears.remove(index);
+                  } else {
+                    selectItems[index].value = true;
+                    _selectYears.add(index);
+                    for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
+                      for (var j = 0;
+                          i <
+                              model
+                                  .dailyPaymentTypeVos[i].detailedVoList.length;
+                          i++) {
+                        String id = model.dailyPaymentTypeVos[i].id.toString() +
+                            model.dailyPaymentTypeVos[i].detailedVoList[j]
+                                .groupId
+                                .toString();
+                        if (!selectItems[index].selected.contains(id)) {
+                          selectItems[index].selected.add(id);
+                        }
+                      }
+                    }
+                  }
+                  setState(() {});
+                },
+                child: BeeCheckRadio(
+                  value: index,
+                  groupValue: _selectYears,
+                  // onChange: (value) {
+                  //   if (value) {
+                  //     selectItems[index].value=false;
+                  //     selectItems[index].selected.clear();
+                  //   } else {
+                  //     selectItems[index].value=true;
+                  //     for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
+                  //       for (var j = 0;
+                  //           i <
+                  //               model
+                  //                   .dailyPaymentTypeVos[i].detailedVoList.length;
+                  //           i++) {
+                  //         selectItems[index].selected.add(
+                  //             model.dailyPaymentTypeVos[i].id.toString() +
+                  //                 model.dailyPaymentTypeVos[i].detailedVoList[j]
+                  //                     .groupId
+                  //                     .toString());
+                  //       }
+                  //     }
+                  //   }
+                  // },
+                ),
               ),
             ],
           ),
@@ -145,7 +217,12 @@ class _LifePayPageState extends State<LifePayPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  LifePayDetailPage(
+                    model: _models[index],
+                    selectItems: selectItems[index].selected,
+                  ).to();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Color(0xFF2A2A2A),
@@ -185,10 +262,11 @@ class _LifePayPageState extends State<LifePayPage> {
           controller: _controller,
           convert: (model) {
             return model.tableList
-                .map((e) => LifePayMolde.fromJson(e))
+                .map((e) => LifePayModel.fromJson(e))
                 .toList();
           },
           builder: (items) {
+            _models = items;
             return Column(
               children: [
                 _buildHouseCard(
@@ -207,8 +285,8 @@ class _LifePayPageState extends State<LifePayPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
-                      ...List.generate(
-                          items.length, (index) => _buildCard(items[index])),
+                      ...List.generate(items.length,
+                          (index) => _buildCard(items[index], index)),
                     ],
                   ),
                 ),
@@ -220,9 +298,51 @@ class _LifePayPageState extends State<LifePayPage> {
             32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
         child: Row(
           children: [
-            BeeCheckBox.round(
-              onChange: (value) {},
-              size: 40.w,
+            // BeeCheckBox.round(
+            //   onChange: (value) {
+            //     if (value) {
+            //       _selectYears.clear();
+            //     } else {
+            //       for (var i = 0; i < _models.length; i++) {
+            //         _selectYears.add(i);
+            //       }
+            //     }
+            //     setState(() {});
+            //   },
+            //   size: 40.w,
+            // ),
+            GestureDetector(
+              onTap: () {
+                if (isAllSelect) {
+                  _selectYears.clear();
+                } else {
+                  for (var i = 0; i < _models.length; i++) {
+                    if (!_selectYears.contains(i)) {
+                      _selectYears.add(i);
+                    }
+                  }
+                }
+                setState(() {});
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 1.w,
+                        color: isAllSelect ? kPrimaryColor : kDarkSubColor),
+                    color: isAllSelect ? kPrimaryColor : Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.w)),
+                curve: Curves.easeInOutCubic,
+                width: 40.w,
+                height: 40.w,
+                child: isAllSelect
+                    ? Icon(
+                        CupertinoIcons.check_mark,
+                        size: 25.w,
+                        color: Colors.white,
+                      )
+                    : SizedBox(),
+              ),
             ),
             Spacer(),
             Column(
@@ -247,6 +367,7 @@ class _LifePayPageState extends State<LifePayPage> {
                 '已选10项'.text.color(ktextSubColor).size(20.sp).make(),
               ],
             ),
+            24.w.widthBox,
             MaterialButton(
               elevation: 0,
               shape: RoundedRectangleBorder(
