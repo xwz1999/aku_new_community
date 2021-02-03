@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,7 +66,9 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           '报修房屋'.text.black.size(28.sp).make(),
           32.w.heightBox,
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              MyHousePage().to();
+            },
             child: Row(
               children: [
                 Image.asset(

@@ -4,17 +4,15 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
-import 'package:akuCommunity/pages/personal/widget/order_card.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:provider/provider.dart';
+
 
 // Package imports:
 import 'package:velocity_x/velocity_x.dart';
@@ -85,7 +83,7 @@ class _LifePayPageState extends State<LifePayPage> {
                     size: 40.w,
                   ),
                 ],
-              ),
+              ).material(color: Colors.transparent),
             ),
             24.w.heightBox,
           ],
