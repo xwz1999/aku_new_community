@@ -10,6 +10,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:akuCommunity/widget/activity_card.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t activities_page need to be cleaned.")
 class ActivitiesPage extends StatefulWidget {
   ActivitiesPage({Key key}) : super(key: key);
 

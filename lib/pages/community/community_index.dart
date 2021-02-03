@@ -12,6 +12,8 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'widget/tab_list.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t community_index need to be cleaned.")
 class CommunityIndex extends StatefulWidget {
   CommunityIndex({Key key}) : super(key: key);
 

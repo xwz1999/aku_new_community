@@ -11,9 +11,14 @@ class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
   final TabController controller;
   final List<String> tabs;
   final Function(int index) onTap;
-  BeeTabBar(
-      {Key key, @required this.controller, @required this.tabs, this.onTap})
-      : super(key: key);
+  final bool scrollable;
+  BeeTabBar({
+    Key key,
+    @required this.controller,
+    @required this.tabs,
+    this.onTap,
+    this.scrollable = false,
+  }) : super(key: key);
 
   @override
   _BeeTabBarState createState() => _BeeTabBarState();
@@ -54,6 +59,7 @@ class _BeeTabBarState extends State<BeeTabBar> {
       indicatorSize: TabBarIndicatorSize.label,
       tabs: widget.tabs.map((e) => Tab(text: e)).toList(),
       onTap: widget.onTap,
+      isScrollable: widget.scrollable,
     );
   }
 }

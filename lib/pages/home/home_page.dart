@@ -5,6 +5,7 @@ import 'dart:convert';
 // Flutter imports:
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';
+import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -105,23 +106,6 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  _buildColButton({IconData icon, String title, VoidCallback onTap}) {
-    return MaterialButton(
-      onPressed: onTap,
-      minWidth: 0,
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 48.w, color: Colors.black),
-          4.hb,
-          title.text.size(20.sp).black.make(),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -132,12 +116,11 @@ class _HomePageState extends State<HomePage>
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-          _buildColButton(
-            icon: AntDesign.bells,
+          ColumnActionButton(
+            onPressed: MessageCenterPage().to,
             title: '消息',
-            onTap: MessageCenterPage().to,
+            path: R.ASSETS_ICONS_ALARM_PNG,
           ),
-          16.wb,
         ],
       ),
       body: EasyRefresh(

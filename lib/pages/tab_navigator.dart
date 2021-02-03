@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/community/community_views/community_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,8 @@ class _TabNavigatorState extends State<TabNavigator> {
       HomePage(),
       // MarketPage(),
       PropertyIndex(),
-      CommunityIndex(),
+      // CommunityIndex(),
+      CommunityPage(),
       PersonalIndex()
     ];
   }
