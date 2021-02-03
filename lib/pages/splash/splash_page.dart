@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:

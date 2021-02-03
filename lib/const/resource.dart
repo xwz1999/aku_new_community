@@ -3,6 +3,106 @@
 class R {
   const R._();
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/advice.png)
+  static const String ASSETS_APPLICATIONS_ADVICE_PNG =
+      'assets/applications/advice.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/all_app.png)
+  static const String ASSETS_APPLICATIONS_ALL_APP_PNG =
+      'assets/applications/all_app.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/borrow.png)
+  static const String ASSETS_APPLICATIONS_BORROW_PNG =
+      'assets/applications/borrow.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/box.png)
+  static const String ASSETS_APPLICATIONS_BOX_PNG =
+      'assets/applications/box.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/committee.png)
+  static const String ASSETS_APPLICATIONS_COMMITTEE_PNG =
+      'assets/applications/committee.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/community_phone.png)
+  static const String ASSETS_APPLICATIONS_COMMUNITY_PHONE_PNG =
+      'assets/applications/community_phone.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/complaint.png)
+  static const String ASSETS_APPLICATIONS_COMPLAINT_PNG =
+      'assets/applications/complaint.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/decoration.png)
+  static const String ASSETS_APPLICATIONS_DECORATION_PNG =
+      'assets/applications/decoration.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/digital.png)
+  static const String ASSETS_APPLICATIONS_DIGITAL_PNG =
+      'assets/applications/digital.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/door_code.png)
+  static const String ASSETS_APPLICATIONS_DOOR_CODE_PNG =
+      'assets/applications/door_code.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/fix.png)
+  static const String ASSETS_APPLICATIONS_FIX_PNG =
+      'assets/applications/fix.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/goods_out.png)
+  static const String ASSETS_APPLICATIONS_GOODS_OUT_PNG =
+      'assets/applications/goods_out.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/home_live.png)
+  static const String ASSETS_APPLICATIONS_HOME_LIVE_PNG =
+      'assets/applications/home_live.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/hospital.png)
+  static const String ASSETS_APPLICATIONS_HOSPITAL_PNG =
+      'assets/applications/hospital.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/makeup.png)
+  static const String ASSETS_APPLICATIONS_MAKEUP_PNG =
+      'assets/applications/makeup.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/oepn_door.png)
+  static const String ASSETS_APPLICATIONS_OEPN_DOOR_PNG =
+      'assets/applications/oepn_door.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/payment.png)
+  static const String ASSETS_APPLICATIONS_PAYMENT_PNG =
+      'assets/applications/payment.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/police.png)
+  static const String ASSETS_APPLICATIONS_POLICE_PNG =
+      'assets/applications/police.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/question.png)
+  static const String ASSETS_APPLICATIONS_QUESTION_PNG =
+      'assets/applications/question.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/snack.png)
+  static const String ASSETS_APPLICATIONS_SNACK_PNG =
+      'assets/applications/snack.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/tool_bmts.png)
+  static const String ASSETS_APPLICATIONS_TOOL_BMTS_PNG =
+      'assets/applications/tool_bmts.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/toy.png)
+  static const String ASSETS_APPLICATIONS_TOY_PNG =
+      'assets/applications/toy.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/visitor_invite.png)
+  static const String ASSETS_APPLICATIONS_VISITOR_INVITE_PNG =
+      'assets/applications/visitor_invite.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/vote.png)
+  static const String ASSETS_APPLICATIONS_VOTE_PNG =
+      'assets/applications/vote.png';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/applications/wine.png)
+  static const String ASSETS_APPLICATIONS_WINE_PNG =
+      'assets/applications/wine.png';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/example/QR_code.png)
   static const String ASSETS_EXAMPLE_QR_CODE_PNG = 'assets/example/QR_code.png';
 

@@ -4,6 +4,8 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/home/application/all_application.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -74,8 +76,7 @@ class _HomePageState extends State<HomePage>
     GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
         AdvicePage(type: AdviceType.SUGGESTION).to),
     GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, ConvenientPhonePage().to),
-    GridButton(
-        '全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, TotalApplicationsPage().to),
+    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, AllApplicationPage().to),
   ];
 
   @override
@@ -158,6 +159,10 @@ class _HomePageState extends State<HomePage>
                   HomeSearch(),
                   HomeSwiper(),
                   SizedBox(height: 100.w),
+                  ContainerComment(
+                    radius: 8,
+                    customWidget: ApplicationView(),
+                  ),
                   ContainerComment(
                     radius: 8,
                     customWidget: GridButtons(
