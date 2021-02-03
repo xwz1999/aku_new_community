@@ -126,7 +126,6 @@ class _AlarmPageState extends State<AlarmPage> {
               Container(
                   margin: EdgeInsets.only(top: 32.w),
                   width: 686.w,
-                  height: 148.w,
                   decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(16),
@@ -138,7 +137,6 @@ class _AlarmPageState extends State<AlarmPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 24.w),
                       Container(
                         margin: EdgeInsets.only(top: 24.w, left: 32.w),
                         child: Text(
@@ -174,6 +172,7 @@ class _AlarmPageState extends State<AlarmPage> {
                           ],
                         ),
                       ),
+                      24.hb,
                     ],
                   )),
               Spacer(),
