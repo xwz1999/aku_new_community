@@ -169,6 +169,9 @@ class _Community {
   String get eventByTopicId => '/user/gambit/listByGambitId';
 
   String get newEventList => '/user/gambit/list';
+
+  ///社区活动： 写帖子（添加主题信息）
+  String get addEvent => '/user/gambit/writePost';
 }
 
 class _Upload {
@@ -180,4 +183,6 @@ class _Upload {
 
   ///上传报事报修信息 报事报修照片
   String get uploadRepair => '/user/upload/uploadRepair';
+
+  String get uploadEvent => '/user/upload/uploadGambit';
 }

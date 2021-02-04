@@ -35,11 +35,12 @@ class _NewCommunityViewState extends State<NewCommunityView>
           itemBuilder: (context, index) {
             final item = items[index] as EventItemModel;
             return ChatCard(
+              content: item.content,
               name: item.createName ?? '',
-              title: item.gambitTitle ?? '',
+              topic: item.gambitTitle ?? '',
               contentImg: item.imgUrls,
               date: item.date,
-              id: item.id,
+              id: item.createId,
               headImg: item.headSculptureImgUrl,
             );
           },

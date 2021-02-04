@@ -15,23 +15,25 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ChatCard extends StatefulWidget {
   final String name;
-  final String title;
+  final String topic;
   final List<ImgModel> headImg;
   final List<ImgModel> contentImg;
   final DateTime date;
   final bool initLike;
+  final String content;
 
   ///userID
   final int id;
   ChatCard({
     Key key,
     @required this.name,
-    @required this.title,
+    @required this.topic,
     @required this.headImg,
     @required this.contentImg,
     @required this.date,
     this.initLike = false,
     @required this.id,
+    @required this.content,
   }) : super(key: key);
 
   @override
@@ -226,9 +228,21 @@ class _ChatCardState extends State<ChatCard> {
               children: [
                 widget.name.text.size(36.sp).make(),
                 6.hb,
-                widget.title.text.make(),
+                widget.content.text.make(),
                 20.hb,
                 _renderImage(),
+                widget.topic.isEmpty
+                    ? SizedBox()
+                    : Chip(
+                        label: '#${widget.topic}'.text.size(22.sp).make(),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 5.w),
+                        labelPadding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        shape: StadiumBorder(
+                          side: BorderSide(),
+                        ),
+                      ),
                 Row(
                   children: [
                     BeeDateUtil(widget.date)
@@ -248,13 +262,13 @@ class _ChatCardState extends State<ChatCard> {
                                 title: '你确定删除吗'.text.isIntrinsic.make(),
                                 actions: [
                                   CupertinoDialogAction(
-                                    child: '取消'.text.isIntrinsic.make(),
+                                    child: '取消'.text.black.isIntrinsic.make(),
                                     onPressed: () => Get.back(),
                                   ),
                                   CupertinoDialogAction(
                                     child: '确定'
                                         .text
-                                        .color(kPrimaryColor)
+                                        .color(Colors.orange)
                                         .isIntrinsic
                                         .make(),
                                     onPressed: () => Get.back(result: true),
