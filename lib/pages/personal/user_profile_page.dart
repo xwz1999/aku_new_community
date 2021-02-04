@@ -98,7 +98,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               tag: 'AVATAR',
               child: ClipOval(
                 child: FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(userProvider.userInfoModel.imgUrl),
                   height: 56.w,
                   width: 56.w,

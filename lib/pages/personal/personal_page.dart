@@ -124,8 +124,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                             tag: 'AVATAR',
                             child: ClipOval(
                               child: FadeInImage.assetNetwork(
-                                //TODO PLACEHOLDER
-                                placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                 image: API.image(
                                     userProvider?.userInfoModel?.imgUrl ?? ''),
                                 height: 106.w,
