@@ -37,20 +37,19 @@ class SelectList {
 
 class _LifePayPageState extends State<LifePayPage> {
   EasyRefreshController _controller;
-  List<SelectList> selectItems = [];
+  // List<SelectList> selectItems = [];
   List<int> _selectYears = [];
-  List<LifePayModel> _models;
-  bool get isAllSelect => _models.length == _selectYears.length;
+  List<LifePayModel> _models = [];
 
-  int _getLength(LifePayModel model) {
-    int count = 0;
-    model.dailyPaymentTypeVos.forEach((element) {
-      element.detailedVoList.forEach((element) {
-        count++;
-      });
-    });
-    return count;
-  }
+  // int _getLength(LifePayModel model) {
+  //   int count = 0;
+  //   model.dailyPaymentTypeVos.forEach((element) {
+  //     element.detailedVoList.forEach((element) {
+  //       count++;
+  //     });
+  //   });
+  //   return count;
+  // }
 
   @override
   void initState() {
@@ -125,29 +124,35 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               GestureDetector(
                 onTap: () {
-                  if (selectItems[index].selected.length ==
-                      _getLength(model)) {
-                    selectItems[index].value = false;
-                    selectItems[index].selected.clear();
+                  // if (selectItems[index].selected.length ==
+                  //     _getLength(model)) {
+                  //   selectItems[index].value = false;
+                  //   selectItems[index].selected.clear();
+                  //   _selectYears.remove(index);
+                  // } else {
+                  //   selectItems[index].value = true;
+                  //   _selectYears.add(index);
+                  //   for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
+                  //     for (var j = 0;
+                  //         i <
+                  //             model
+                  //                 .dailyPaymentTypeVos[i].detailedVoList.length;
+                  //         i++) {
+                  //       String id = model.dailyPaymentTypeVos[i].id.toString() +
+                  //           model.dailyPaymentTypeVos[i].detailedVoList[j]
+                  //               .groupId
+                  //               .toString();
+                  //       if (!selectItems[index].selected.contains(id)) {
+                  //         selectItems[index].selected.add(id);
+                  //       }
+                  //     }
+                  //   }
+                  // }
+                  // setState(() {});
+                  if (_selectYears.contains(index)) {
                     _selectYears.remove(index);
                   } else {
-                    selectItems[index].value = true;
                     _selectYears.add(index);
-                    for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
-                      for (var j = 0;
-                          i <
-                              model
-                                  .dailyPaymentTypeVos[i].detailedVoList.length;
-                          i++) {
-                        String id = model.dailyPaymentTypeVos[i].id.toString() +
-                            model.dailyPaymentTypeVos[i].detailedVoList[j]
-                                .groupId
-                                .toString();
-                        if (!selectItems[index].selected.contains(id)) {
-                          selectItems[index].selected.add(id);
-                        }
-                      }
-                    }
                   }
                   setState(() {});
                 },
@@ -220,7 +225,7 @@ class _LifePayPageState extends State<LifePayPage> {
                 onTap: () {
                   LifePayDetailPage(
                     model: _models[index],
-                    selectItems: selectItems[index].selected,
+                    // selectItems: selectItems[index].selected,
                   ).to();
                 },
                 child: Container(
@@ -313,7 +318,7 @@ class _LifePayPageState extends State<LifePayPage> {
             // ),
             GestureDetector(
               onTap: () {
-                if (isAllSelect) {
+                if (_models.length == _selectYears.length) {
                   _selectYears.clear();
                 } else {
                   for (var i = 0; i < _models.length; i++) {
@@ -329,13 +334,17 @@ class _LifePayPageState extends State<LifePayPage> {
                 decoration: BoxDecoration(
                     border: Border.all(
                         width: 1.w,
-                        color: isAllSelect ? kPrimaryColor : kDarkSubColor),
-                    color: isAllSelect ? kPrimaryColor : Colors.transparent,
+                        color: _models.length == _selectYears.length
+                            ? kPrimaryColor
+                            : kDarkSubColor),
+                    color: _models.length == _selectYears.length
+                        ? kPrimaryColor
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(20.w)),
                 curve: Curves.easeInOutCubic,
                 width: 40.w,
                 height: 40.w,
-                child: isAllSelect
+                child: _models.length == _selectYears.length
                     ? Icon(
                         CupertinoIcons.check_mark,
                         size: 25.w,
