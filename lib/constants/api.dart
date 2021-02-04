@@ -164,7 +164,7 @@ class _Community {
   String get boardDetail => '/user/announcement/findById';
 
   ///社区话题：查询最新的所有主题信息
-  String get topicList => '/user/gambit/list';
+  String get topicList => '/user/gambit/listGambit';
 
   String get eventByTopicId => '/user/gambit/listByGambitId';
 
