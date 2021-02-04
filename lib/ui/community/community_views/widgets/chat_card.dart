@@ -1,3 +1,4 @@
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -6,6 +7,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -213,7 +215,30 @@ class _ChatCardState extends State<ChatCard> {
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
                             height: 48.w,
-                            onPressed: () {},
+                            onPressed: () async {
+                              bool result =
+                                  await Get.dialog(CupertinoAlertDialog(
+                                title: '你确定删除吗'.text.isIntrinsic.make(),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    child: '取消'.text.isIntrinsic.make(),
+                                    onPressed: () => Get.back(),
+                                  ),
+                                  CupertinoDialogAction(
+                                    child: '确定'
+                                        .text
+                                        .color(kPrimaryColor)
+                                        .isIntrinsic
+                                        .make(),
+                                    onPressed: () => Get.back(result: true),
+                                  ),
+                                ],
+                              ));
+
+                              if (result == true) {
+                                //TODO delete operation
+                              }
+                            },
                             child: '删除'.text.black.size(28.sp).make(),
                           )
                         : SizedBox(),
