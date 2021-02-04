@@ -1,10 +1,8 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +12,9 @@ import 'package:provider/provider.dart';
 
 class LifePayDetailPage extends StatefulWidget {
   final LifePayModel model;
-  final List<String> selectItems;
   LifePayDetailPage({
     Key key,
     this.model,
-    this.selectItems,
   }) : super(key: key);
 
   @override
@@ -26,6 +22,7 @@ class LifePayDetailPage extends StatefulWidget {
 }
 
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
+  List<String> _selectItems=[];
   int get listLength {
     int count = 0;
     widget.model.dailyPaymentTypeVos.forEach((element) {
@@ -37,7 +34,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   }
 
   bool get isAllSelect {
-    return listLength == widget.selectItems.length;
+    return listLength == _selectItems.length;
   }
 
   Widget _buildTile(int groupId, int id, int years, int price) {
@@ -46,17 +43,17 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
         GestureDetector(
             onTap: () {
               String item = id.toString() + groupId.toString();
-              if (widget.selectItems.contains(item)) {
-                widget.selectItems.remove(item);
+              if (_selectItems.contains(item)) {
+                _selectItems.remove(item);
               } else {
-                widget.selectItems.add(item);
+                _selectItems.add(item);
               }
 
               setState(() {});
             },
             child: BeeCheckRadio(
                 value: id.toString() + groupId.toString(),
-                groupValue: widget.selectItems)),
+                groupValue: _selectItems)),
         24.w.widthBox,
         groupId == 1
             ? '$years上半年'.text.black.size(28.sp).make()
@@ -120,7 +117,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             GestureDetector(
               onTap: () {
                 if (isAllSelect) {
-                  widget.selectItems.clear();
+                  _selectItems.clear();
                 } else {
                   for (var i = 0;
                       i < widget.model.dailyPaymentTypeVos.length;
@@ -135,8 +132,8 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                               widget.model.dailyPaymentTypeVos[i]
                                   .detailedVoList[j].groupId
                                   .toString();
-                      if (!widget.selectItems.contains(id)) {
-                        widget.selectItems.add(id);
+                      if (!_selectItems.contains(id)) {
+                        _selectItems.add(id);
                       }
                     }
                   }
