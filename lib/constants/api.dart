@@ -142,6 +142,9 @@ class _Manager {
 
   ///生活缴费：查询生活缴费信息list
   String get dailyPaymentList => '/user/dailyPayment/list';
+
+  ///生活缴费：查询当前用户的房屋是否缴费
+  String get findEstatelsPament => '/user/dailyPayment/findEstateIsPayment';
 }
 
 class _Community {
