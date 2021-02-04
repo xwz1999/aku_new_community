@@ -25,10 +25,10 @@ class ChatCard extends StatefulWidget {
   final int id;
   ChatCard({
     Key key,
-    this.name,
-    this.title,
-    this.headImg,
-    this.contentImg,
+    @required this.name,
+    @required this.title,
+    @required this.headImg,
+    @required this.contentImg,
     @required this.date,
     this.initLike = false,
     @required this.id,

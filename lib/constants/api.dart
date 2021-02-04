@@ -167,6 +167,8 @@ class _Community {
   String get topicList => '/user/gambit/list';
 
   String get eventByTopicId => '/user/gambit/listByGambitId';
+
+  String get newEventList => '/user/gambit/list';
 }
 
 class _Upload {
