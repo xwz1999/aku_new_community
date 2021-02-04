@@ -4,6 +4,8 @@ import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
 import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -24,6 +26,9 @@ class ChatCard extends StatefulWidget {
 
   ///userID
   final int id;
+
+  final int themeId;
+
   ChatCard({
     Key key,
     @required this.name,
@@ -34,6 +39,7 @@ class ChatCard extends StatefulWidget {
     this.initLike = false,
     @required this.id,
     @required this.content,
+    @required this.themeId,
   }) : super(key: key);
 
   @override
@@ -122,9 +128,13 @@ class _ChatCardState extends State<ChatCard> {
                           height: 78.w,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
-                          onPressed: () {
+                          onPressed: () async {
                             cancel();
-                            //TODO 点赞
+                            await NetUtil().get(
+                              API.community.like,
+                              params: {'themeId': widget.id},
+                              showMessage: true,
+                            );
                             setState(() {
                               _like = !_like;
                             });

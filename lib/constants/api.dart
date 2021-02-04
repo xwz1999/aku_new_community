@@ -172,6 +172,9 @@ class _Community {
 
   ///社区活动： 写帖子（添加主题信息）
   String get addEvent => '/user/gambit/writePost';
+
+  ///社区话题：app用户点赞/取消点赞
+  String get like => '/user/gambit/likes';
 }
 
 class _Upload {

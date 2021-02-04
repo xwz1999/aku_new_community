@@ -59,6 +59,8 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   (context, index) {
                     final item = items[index] as EventItemModel;
                     return ChatCard(
+                      initLike: item.isLike == 1,
+                      themeId: item.id,
                       content: item.content,
                       name: item.createName,
                       topic: item.gambitTitle,

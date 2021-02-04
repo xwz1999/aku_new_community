@@ -42,6 +42,8 @@ class _NewCommunityViewState extends State<NewCommunityView>
               date: item.date,
               id: item.createId,
               headImg: item.headSculptureImgUrl,
+              themeId: item.id,
+              initLike: item.isLike == 1,
             );
           },
           itemCount: items.length,
