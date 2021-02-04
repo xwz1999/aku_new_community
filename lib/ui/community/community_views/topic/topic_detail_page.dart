@@ -60,6 +60,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                       headImg: item.headSculptureImgUrl,
                       contentImg: item.imgUrls,
                       date: item.date,
+                      id: item.createId,
                     );
                   },
                   childCount: items.length,
