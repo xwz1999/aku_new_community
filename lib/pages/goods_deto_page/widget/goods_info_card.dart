@@ -101,7 +101,7 @@ class GoodsInfoCard extends StatelessWidget {
                             fontSize: 32.sp,
                             color: Color(0xff333333)),
                       ),
-                      Text(BeeMap().fixState[model.status],
+                      Text(BeeMap.fixState[model.status],
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 28.sp,
@@ -120,11 +120,11 @@ class GoodsInfoCard extends StatelessWidget {
                             BorderSide(color: Color(0xffeeeeee), width: 0.5)),
                   ),
                   child: Column(children: [
-                    _builTile('物品重量', BeeMap().goodsOutweight[model.weight]),
+                    _builTile('物品重量', BeeMap.goodsOutweight[model.weight]),
                     _builTile('出户时间', model.expectedTime),
                     _builTile('物品名称', model.name),
                     _builTile(
-                        '搬运方式', BeeMap().goodsOutApproach[model.approach]),
+                        '搬运方式', BeeMap.goodsOutApproach[model.approach]),
                   ]),
                 ),
                 Container(

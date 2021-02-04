@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,6 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/fixed_evaluate_page.dart';
-import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
@@ -102,7 +102,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     borderRadius: BorderRadius.circular(36.w),
                     color: Colors.transparent,
                   ),
-                  child: BeeMap()
+                  child: BeeMap
                       .fixTag[model.appReportRepairVo.type]
                       .text
                       .black
@@ -110,7 +110,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                       .make(),
                 ),
                 Spacer(),
-                BeeMap()
+                BeeMap
                     .fixState[model.appReportRepairVo.status]
                     .text
                     .color(_getColor(_model.appReportRepairVo.status))
@@ -226,7 +226,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           ...model.appProcessRecordVo
               .map((e) => Row(
                     children: [
-                      BeeMap()
+                      BeeMap
                           .processClass[e.operationType]
                           .text
                           .color(ktextSubColor)

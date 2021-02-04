@@ -29,6 +29,19 @@ class _EventVotingPageState extends State<EventVotingPage> {
     super.dispose();
   }
 
+  String _getButtonText(int status) {
+    switch (status) {
+      case 1:
+      case 2:
+        return '去投票';
+      case 3:
+        return '已结束';
+      case 4:
+        return '已投票';
+      default:
+    }
+  }
+
   Widget _buildCard(EventVotingModel model) {
     return Container(
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -46,7 +59,11 @@ class _EventVotingPageState extends State<EventVotingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.title.text.black.size(28.sp).bold.make(),
+                model.title.text.black
+                    .size(28.sp)
+                    .bold
+                    .overflow(TextOverflow.ellipsis)
+                    .make(),
                 16.w.heightBox,
                 model.content.text.color(ktextSubColor).size(24.sp).make(),
                 8.w.heightBox,
@@ -73,13 +90,18 @@ class _EventVotingPageState extends State<EventVotingPage> {
                         avatars: model.headImgURls.map((e) => e.url).toList()),
                     Spacer(),
                     MaterialButton(
-                      color: kPrimaryColor,
+                      color: model.status == 3 ? kDarkSubColor : kPrimaryColor,
                       minWidth: 120.w,
                       padding:
                           EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                       elevation: 0,
                       onPressed: () {},
-                      child: '去投票'.text.black.size(20.sp).bold.make(),
+                      child: (_getButtonText(model.status))
+                          .text
+                          .black
+                          .size(20.sp)
+                          .bold
+                          .make(),
                     ),
                   ],
                 )

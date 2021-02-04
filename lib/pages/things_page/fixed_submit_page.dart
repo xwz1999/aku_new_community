@@ -105,7 +105,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                 padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
                 child: Row(
                   children: [
-                    BeeMap()
+                    BeeMap
                         .fixTag[model.type]
                         .text
                         .color(ktextPrimary)
@@ -113,7 +113,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                         .size(32.sp)
                         .make(),
                     Spacer(),
-                    BeeMap()
+                    BeeMap
                         .fixState[model.status]
                         .text
                         .color(_getColor(model.status))

@@ -1,10 +1,10 @@
 class BeeMap {
-  Map<int, String> fixTag = {
+  static Map<int, String> fixTag = {
     1: '公区报修',
     2: '家庭报修',
   };
 
-  Map<int, String> fixState = {
+  static Map<int, String> fixState = {
     1: '待分配',
     2: '未接单',
     3: '处理中',
@@ -15,7 +15,7 @@ class BeeMap {
     8: '未知'
   };
 
-  Map<int, String> processClass = {
+  static Map<int, String> processClass = {
     1: '报修时间',
     2: '管家分派',
     3: '师傅接单',
@@ -27,15 +27,22 @@ class BeeMap {
     9: '取消'
   };
 
-  Map<int, String> goodsOutweight = {
+  static Map<int, String> goodsOutweight = {
     1: '< 50kg',
     2: '50kg-100kg',
     3: '> 100kg',
   };
-  Map<int, String> goodsOutApproach = {
+  static Map<int, String> goodsOutApproach = {
     1: '自己搬运',
     2: '搬家公司',
   };
 
- static Map<int, String> borrowStatus = {1: '出借中', 2: '已归还'};
+  static Map<int, String> borrowStatus = {1: '出借中', 2: '已归还'};
+
+  static Map<int, String> votingStatus = {
+    1: '未开始',
+    2: '进行中',
+    3: '已结束',
+    4: '已投票',
+  };
 }
