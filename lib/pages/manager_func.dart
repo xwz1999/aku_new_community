@@ -158,4 +158,12 @@ class ManagerFunc {
     );
     return baseModel;
   }
+
+  static Future<BaseModel> findEstatelsPayment()async{
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.findEstatelsPament,
+      showMessage: false,
+    );
+    return baseModel.data;
+  }
 }

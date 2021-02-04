@@ -1,5 +1,7 @@
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/estate_payment_model.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
@@ -9,7 +11,8 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:provider/provider.dart';
 
 class MyHousePage extends StatefulWidget {
-  MyHousePage({Key key}) : super(key: key);
+  final bool needFindPayTag;
+  MyHousePage({Key key, this.needFindPayTag = false}) : super(key: key);
 
   @override
   _MyHousePageState createState() => _MyHousePageState();
@@ -41,6 +44,20 @@ Widget _unPaidTag() {
 
 class _MyHousePageState extends State<MyHousePage> {
   int _select;
+  List<EstatePaymentModel> _list;
+  List<EstatePaymentModel> get _unPaidList => _list.where((element) => element.status == 1).toList();
+  @override
+  void initState() {
+    super.initState();
+    if (widget.needFindPayTag) {
+      ManagerFunc.findEstatelsPayment().then((value) {
+        _list = value.data;
+        return _list;
+      });
+      
+    }
+  }
+
   Widget _buildCard(String currentHouse, String estateName, int index,
       {bool paid = false}) {
     return Container(
@@ -65,7 +82,12 @@ class _MyHousePageState extends State<MyHousePage> {
             children: [
               kEstateName.text.size(24.sp).color(ktextSubColor).bold.make(),
               16.w.heightBox,
-              BeeParse.getEstateName(estateName).text.color(ktextPrimary).size(28.sp).bold.make(),
+              BeeParse.getEstateName(estateName)
+                  .text
+                  .color(ktextPrimary)
+                  .size(28.sp)
+                  .bold
+                  .make(),
             ],
           ),
           Spacer(),
@@ -88,7 +110,10 @@ class _MyHousePageState extends State<MyHousePage> {
         children: <Widget>[
           ...userProvider.userDetailModel.estateNames
               .map((e) => _buildCard(userProvider.currentHouse, e,
-                  userProvider.userDetailModel.estateNames.indexOf(e)))
+                  userProvider.userDetailModel.estateNames.indexOf(e),
+                  paid: widget.needFindPayTag
+                      ? false
+                      : _unPaidList.one((element) => element.roomName == e)))
               .toList(),
         ].sepWidget(separate: BeeDivider.horizontal()),
       ),

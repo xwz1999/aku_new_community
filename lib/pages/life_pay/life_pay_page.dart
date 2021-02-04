@@ -78,7 +78,9 @@ class _LifePayPageState extends State<LifePayPage> {
             32.w.heightBox,
             GestureDetector(
               onTap: () {
-                MyHousePage().to();
+                MyHousePage(
+                  needFindPayTag: true,
+                ).to();
               },
               child: Row(
                 children: [
