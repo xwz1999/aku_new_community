@@ -28,6 +28,11 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'event_add',
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       body: BeeListView(
         convert: (model) {
           return model.tableList

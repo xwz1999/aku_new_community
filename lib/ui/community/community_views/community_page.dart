@@ -39,6 +39,11 @@ class _CommunityPageState extends State<CommunityPage>
           path: R.ASSETS_ICONS_ALARM_PNG,
         ),
       ],
+      fab: FloatingActionButton(
+        onPressed: () {},
+        heroTag: 'event_add',
+        child: Icon(Icons.add),
+      ),
       appBarBottom: PreferredSize(
         preferredSize: Size.fromHeight(48),
         child: Align(
