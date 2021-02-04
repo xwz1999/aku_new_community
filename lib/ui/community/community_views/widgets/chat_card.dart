@@ -2,6 +2,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
@@ -216,7 +217,7 @@ class _ChatCardState extends State<ChatCard> {
       child: MaterialButton(
         padding: EdgeInsets.zero,
         onPressed: () {
-          //TODO go to chat detail page.
+          Get.to(EventDetailPage());
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
