@@ -175,6 +175,9 @@ class _Community {
 
   ///社区话题：app用户点赞/取消点赞
   String get like => '/user/gambit/likes';
+
+  ///社区话题：查询活跃话题（取前4个）
+  String get hotTopic => '/user/gambit/findActivityGambit';
 }
 
 class _Upload {
