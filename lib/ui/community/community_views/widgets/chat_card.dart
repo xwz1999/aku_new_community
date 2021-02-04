@@ -4,6 +4,8 @@ import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
+import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,16 +56,36 @@ class _ChatCardState extends State<ChatCard> {
   _renderImage() {
     if (widget.contentImg.isEmpty) return SizedBox();
     if (widget.contentImg.length == 1)
-      return ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: 300.w,
-          minWidth: 300.w,
+      return MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.w),
         ),
-        child: FadeInImage.assetNetwork(
-          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-          image: API.image(widget.contentImg.first.url),
+        onPressed: () {
+          Get.to(
+            BeeImagePreview.path(path: widget.contentImg.first.url),
+            opaque: false,
+          );
+        },
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 300.w,
+            maxWidth: 300.w,
+          ),
+          child: Hero(
+            tag: widget.contentImg.first.url,
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: API.image(widget.contentImg.first.url),
+            ),
+          ),
         ),
       );
+    else
+      return BeeGridImageView(
+          urls: widget.contentImg.map((e) => e.url).toList());
   }
 
   _buildMoreButton() {
@@ -209,7 +231,12 @@ class _ChatCardState extends State<ChatCard> {
                 _renderImage(),
                 Row(
                   children: [
-                    BeeDateUtil(widget.date).timeAgo.text.make(),
+                    BeeDateUtil(widget.date)
+                        .timeAgo
+                        .text
+                        .size(28.sp)
+                        .color(Color(0xFF999999))
+                        .make(),
                     _isMyself
                         ? FlatButton(
                             materialTapTargetSize:
