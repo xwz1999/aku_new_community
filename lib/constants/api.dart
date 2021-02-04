@@ -162,6 +162,8 @@ class _Community {
 
   ///社区话题：查询最新的所有主题信息
   String get topicList => '/user/gambit/list';
+
+  String get eventByTopicId => '/user/gambit/listByGambitId';
 }
 
 class _Upload {
