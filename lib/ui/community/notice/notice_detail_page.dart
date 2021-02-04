@@ -99,7 +99,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                                 color: Colors.black12,
                               ),
                               child: FadeInImage.assetNetwork(
-                                placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                 image: API.image(e.url),
                                 fit: BoxFit.cover,
                               ),

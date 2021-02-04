@@ -530,6 +530,10 @@ class R {
   static const String ASSETS_IMAGES_PHONE_LOGO_PNG =
       'assets/images/phone_logo.png';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/images/placeholder.webp)
+  static const String ASSETS_IMAGES_PLACEHOLDER_WEBP =
+      'assets/images/placeholder.webp';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/images/white.png)
   static const String ASSETS_IMAGES_WHITE_PNG = 'assets/images/white.png';
 

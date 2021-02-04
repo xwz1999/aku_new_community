@@ -96,7 +96,7 @@ class NoticeCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8.w),
                           ),
                           child: FadeInImage.assetNetwork(
-                            placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                             image: API.image(model.imgUrls.first.url),
                             width: 152.w,
                             height: 152.w,
