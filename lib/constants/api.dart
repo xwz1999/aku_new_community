@@ -148,6 +148,9 @@ class _Manager {
 
   ///活动投票：app查询所有活动投票信息
   String get enventVotingList => '/user/eventVoting/list';
+
+  ///活动投票：投票详情
+  String get voteDetail => '/user/eventVoting/voteDetail';
 }
 
 class _Community {

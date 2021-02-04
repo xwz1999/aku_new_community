@@ -147,23 +147,30 @@ class ManagerFunc {
     );
     return baseModel;
   }
-  
-  static Future<BaseModel> fromLoss(int id)async{
+
+  static Future<BaseModel> fromLoss(int id) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.fromLoss,
-      params: {
-        'articleBorrowId':id
-      },
+      params: {'articleBorrowId': id},
       showMessage: true,
     );
     return baseModel;
   }
 
-  static Future<BaseModel> findEstatelsPayment()async{
+  static Future<BaseModel> findEstatelsPayment() async {
     BaseModel baseModel = await NetUtil().get(
       API.manager.findEstatelsPament,
       showMessage: false,
     );
+    return baseModel.data;
+  }
+
+  static Future<BaseModel> voteDetail(int id) async {
+    BaseModel baseModel = await NetUtil().get(API.manager.voteDetail,
+        params: {
+          'voteId': 1,
+        },
+        showMessage: false);
     return baseModel.data;
   }
 }

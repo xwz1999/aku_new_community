@@ -1,6 +1,7 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/event_voting_model.dart';
+import 'package:akuCommunity/pages/event_activity/voting_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
@@ -44,15 +45,20 @@ class _EventVotingPageState extends State<EventVotingPage> {
 
   Widget _buildCard(EventVotingModel model) {
     return Container(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      // clipBehavior: Clip.,
       decoration: BoxDecoration(
           color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
       child: Column(
         children: [
-          ClipRect(
-            child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                image: API.image(model.imgUrls[0])),
+          SizedBox(
+            height: 210.w,
+            width: double.infinity,
+            child: ClipRect(
+              child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                  image: API.image(
+                      model.imgUrls.isNotEmpty ? model.imgUrls.first.url : '')),
+            ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(24.w, 16.w, 24.w, 24.w),
@@ -90,12 +96,17 @@ class _EventVotingPageState extends State<EventVotingPage> {
                         avatars: model.headImgURls.map((e) => e.url).toList()),
                     Spacer(),
                     MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(22.w)),
                       color: model.status == 3 ? kDarkSubColor : kPrimaryColor,
                       minWidth: 120.w,
+                      height: 44.w,
                       padding:
                           EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                       elevation: 0,
-                      onPressed: () {},
+                      onPressed: () {
+                        VotingDetailPage(id: model.id,).to();
+                      },
                       child: (_getButtonText(model.status))
                           .text
                           .black
