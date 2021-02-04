@@ -101,8 +101,8 @@ class _EventVotingPageState extends State<EventVotingPage> {
                       color: model.status == 3 ? kDarkSubColor : kPrimaryColor,
                       minWidth: 120.w,
                       height: 44.w,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
+                      // padding:
+                      //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                       elevation: 0,
                       onPressed: () {
                         VotingDetailPage(id: model.id,).to();
