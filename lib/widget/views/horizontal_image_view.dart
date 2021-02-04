@@ -43,7 +43,7 @@ class HorizontalImageView extends StatelessWidget {
                 child: FadeInImage.assetNetwork(
                   height: 184.w,
                   width: 184.w,
-                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(urls[index]),
                   fit: BoxFit.cover,
                 ),

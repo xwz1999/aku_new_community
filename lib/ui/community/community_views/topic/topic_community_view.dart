@@ -21,55 +21,55 @@ class _TopicCommunityViewState extends State<TopicCommunityView>
   EasyRefreshController _refreshController = EasyRefreshController();
 
   _buildItem(CommunityTopicModel model) {
-    var firstImg = '';
-    if (model?.imgUrls?.isNotEmpty ?? false) {
-      firstImg = model?.imgUrls?.first?.url ?? '';
-    }
     return MaterialButton(
       padding: EdgeInsets.symmetric(horizontal: 53.w, vertical: 20.w),
       onPressed: () {
-        Get.to(TopicDetailPage(id: model.id));
+        Get.to(TopicDetailPage(model: model));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.w),
-              color: Colors.black12,
-            ),
-            child: Stack(
-              children: [
-                FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                  image: API.image(firstImg),
-                  height: 160.w,
-                  width: 250.w,
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(8.w),
-                    ),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      //TODO 等待后端接口补充话题摘要
-                      // model.summary
-                      child: ('#${''}')
-                          .text
-                          .center
-                          .size(28.sp)
-                          .white
-                          .make()
-                          .material(color: Colors.black26),
+          Hero(
+            tag: "${model.firstImg}_${model.id}",
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.w),
+                color: Colors.black12,
+              ),
+              child: Stack(
+                children: [
+                  FadeInImage.assetNetwork(
+                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                    image: API.image(model.firstImg),
+                    height: 160.w,
+                    width: 250.w,
+                    fit: BoxFit.cover,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(8.w),
+                      ),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                        //TODO 等待后端接口补充话题摘要
+                        // model.summary
+                        child: ('#${''}')
+                            .text
+                            .center
+                            .size(28.sp)
+                            .white
+                            .make()
+                            .material(color: Colors.black26),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           12.wb,

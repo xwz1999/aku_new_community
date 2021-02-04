@@ -50,7 +50,7 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
                   96.hb,
                   20.wb,
                   FadeInImage.assetNetwork(
-                    placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                     image: API.image(model.imgUrl.first.url),
                     height: 60.w,
                     width: 60.w,

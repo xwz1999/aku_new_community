@@ -14,6 +14,14 @@ class CommunityTopicModel {
   List<ImgModel> headSculptureImgUrl;
   List<GambitThemeCommentVoList> gambitThemeCommentVoList;
 
+  String get firstImg {
+    var firstImg = '';
+    if (imgUrls?.isNotEmpty ?? false) {
+      firstImg = imgUrls?.first?.url ?? '';
+    }
+    return firstImg;
+  }
+
   CommunityTopicModel(
       {this.id,
       this.createId,

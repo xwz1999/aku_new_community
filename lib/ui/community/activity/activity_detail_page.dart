@@ -119,7 +119,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                                 ),
                                 clipBehavior: Clip.antiAlias,
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                   image: e.url,
                                 ),
                               ),

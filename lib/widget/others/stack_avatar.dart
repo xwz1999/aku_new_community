@@ -32,7 +32,7 @@ class StackAvatar extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 height: 44.w,
                 width: 44.w,
-                placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 image: API.image(avatars[index]),
               ),
             ),

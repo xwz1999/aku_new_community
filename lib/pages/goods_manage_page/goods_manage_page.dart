@@ -53,7 +53,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             margin: EdgeInsets.only(right: 20.w),
             child: ClipRRect(
                 child: FadeInImage.assetNetwork(
-                    placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                     image: API.image(
                         model.imgUrls.isEmpty ? '' : model.imgUrls.first.url))),
           ),

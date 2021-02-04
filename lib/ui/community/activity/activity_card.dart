@@ -48,7 +48,7 @@ class ActivityCard extends StatelessWidget {
                   child: Material(
                     color: Colors.grey,
                     child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                       image: API.image(firstPath),
                       height: 210.w,
                       width: double.infinity,
