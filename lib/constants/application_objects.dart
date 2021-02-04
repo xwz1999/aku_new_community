@@ -1,5 +1,6 @@
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
@@ -58,7 +59,7 @@ List<AO> appObjects = [
   AO('建议咨询', R.ASSETS_APPLICATIONS_ADVICE_PNG,
       AdvicePage(type: AdviceType.SUGGESTION)),
   AO('便民电话', R.ASSETS_APPLICATIONS_COMMUNITY_PHONE_PNG, ConvenientPhonePage()),
-  AO('活动投票', R.ASSETS_APPLICATIONS_VOTE_PNG, SizedBox()),
+  AO('活动投票', R.ASSETS_APPLICATIONS_VOTE_PNG, EventVotingPage()),
   AO('物品出门', R.ASSETS_APPLICATIONS_GOODS_OUT_PNG, GoodsDetoPage()),
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
       AdvicePage(type: AdviceType.COMPLAIN)),

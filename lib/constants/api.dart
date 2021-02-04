@@ -145,6 +145,9 @@ class _Manager {
 
   ///生活缴费：查询当前用户的房屋是否缴费
   String get findEstatelsPament => '/user/dailyPayment/findEstateIsPayment';
+
+  ///活动投票：app查询所有活动投票信息
+  String get enventVotingList => '/user/eventVoting/list';
 }
 
 class _Community {
