@@ -1,14 +1,16 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:flutter/material.dart';
-
-// Project imports:
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class EventDetailPage extends StatefulWidget {
   final int themeId;
