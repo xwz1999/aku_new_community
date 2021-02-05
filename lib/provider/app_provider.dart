@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
-import 'package:flutter/material.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为

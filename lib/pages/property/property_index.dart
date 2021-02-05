@@ -1,16 +1,21 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/ui/community/notice/notice_card.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_list_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 import 'widget/property_card.dart';
 
 //TODO CLEAN BOTTOM CODES.

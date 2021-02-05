@@ -4,18 +4,11 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
-import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +16,15 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
+import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_button.dart';

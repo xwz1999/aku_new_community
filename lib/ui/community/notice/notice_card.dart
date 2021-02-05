@@ -1,13 +1,18 @@
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
-import 'package:flustars/flustars.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
 
 class NoticeCard extends StatelessWidget {
   final BoardItemModel model;

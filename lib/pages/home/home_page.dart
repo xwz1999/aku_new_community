@@ -3,9 +3,6 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/widget/buttons/column_action_button.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +16,7 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
+import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/service/base_model.dart';
@@ -28,7 +26,9 @@ import 'package:akuCommunity/ui/community/community_func.dart';
 import 'package:akuCommunity/ui/home/home_notification.dart';
 import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
 

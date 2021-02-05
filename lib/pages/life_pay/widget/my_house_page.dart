@@ -1,14 +1,19 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/estate_payment_model.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:provider/provider.dart';
 
 class MyHousePage extends StatefulWidget {
   final bool needFindPayTag;

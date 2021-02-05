@@ -1,3 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/new_community_view.dart';
@@ -6,8 +13,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key key}) : super(key: key);

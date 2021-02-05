@@ -1,10 +1,15 @@
-import 'package:akuCommunity/ui/community/community_views/widgets/my_event_card.dart';
-import 'package:akuCommunity/utils/headers.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/my_event_item_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:akuCommunity/ui/community/community_views/widgets/my_event_card.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class MyCommunityView extends StatefulWidget {
   MyCommunityView({Key key}) : super(key: key);

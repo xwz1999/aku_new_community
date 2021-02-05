@@ -1,19 +1,20 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:async';
 import 'dart:math';
 
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
-import 'package:akuCommunity/ui/community/notice/notice_page.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 // Package imports:
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
+import 'package:akuCommunity/ui/community/notice/notice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class HomeNotification extends StatefulWidget {

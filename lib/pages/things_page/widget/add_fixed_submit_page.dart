@@ -2,9 +2,6 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +17,16 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/finish_fixed_submit_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {

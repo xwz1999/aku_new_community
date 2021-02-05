@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +15,7 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/fixed_evaluate_page.dart';
+import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';

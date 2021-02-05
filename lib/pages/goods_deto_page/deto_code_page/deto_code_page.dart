@@ -1,8 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +8,10 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 // Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';

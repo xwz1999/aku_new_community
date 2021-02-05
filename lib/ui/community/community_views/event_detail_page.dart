@@ -1,5 +1,8 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class EventDetailPage extends StatefulWidget {
   EventDetailPage({Key key}) : super(key: key);

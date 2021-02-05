@@ -1,5 +1,8 @@
-import 'package:akuCommunity/model/common/img_model.dart';
+// Package imports:
 import 'package:flustars/flustars.dart';
+
+// Project imports:
+import 'package:akuCommunity/model/common/img_model.dart';
 
 class MyEventItemModel {
   int id;
