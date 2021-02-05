@@ -21,6 +21,7 @@ import 'package:get/get.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int id;
+
   VotingDetailPage({Key key, this.id}) : super(key: key);
 
   @override
@@ -33,6 +34,14 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   bool _isOnload = true;
   // List<int> _select = [];
   int _selectId;
+  bool _hasVoted = false;
+  bool get isVoted {
+    if ((_model.status == 4) || _hasVoted) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +54,32 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
     super.dispose();
   }
 
+  Widget _unCheck() {
+    return Container(
+      width: 40.w,
+      height: 40.w,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        border: Border.all(
+          color: Color(0xFF979797),
+          width: 3.w,
+        ),
+        borderRadius: BorderRadius.circular(20.w),
+      ),
+      alignment: Alignment.center,
+      child: Container(
+        width: 24.w,
+        height: 24.w,
+        decoration: BoxDecoration(
+          color: kDarkSubColor,
+          borderRadius: BorderRadius.circular(12.w),
+        ),
+      ),
+    );
+  }
+
   Widget _buildVoteCard(AppVoteCandidateVos model) {
+    double _percent = (model.total.toDouble()) / (_model.totals.toDouble());
     return Container(
       padding: EdgeInsets.symmetric(vertical: 40.w),
       constraints: BoxConstraints(maxHeight: 230.w),
@@ -72,22 +106,28 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             //
             //
             //暂时用单选
-            child: GestureDetector(
-              onTap: () {
-                _selectId = model.id;
-                setState(() {});
-              },
-              child: BeeSingleCheck(
-                value: model.id,
-                groupValue: _selectId,
-              ),
-            ).material(color: Colors.transparent),
+            child: _model.status == 3 || _model.status == 1
+                ? _unCheck()
+                : GestureDetector(
+                    onTap: () {
+                      _selectId = model.id;
+                      setState(() {});
+                    },
+                    child: BeeSingleCheck(
+                      value: model.id,
+                      groupValue: _selectId,
+                    ),
+                  ).material(color: Colors.transparent),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4.w),
-            child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                image: API.image(model.imgUrls.first.url)),
+          SizedBox(
+            width: 150.w,
+            height: 150.w,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4.w),
+              child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                  image: API.image(model.imgUrls.first.url)),
+            ),
           ),
           30.w.widthBox,
           Column(
@@ -95,10 +135,28 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             children: [
               // '测试'.text.black.size(32.sp).make(),
               // 10.w.heightBox,
-              model.name.text.black.size(32.sp).make()
+              model.name.text.black.size(32.sp).make(),
+              33.w.heightBox,
+              isVoted && _model.status != 3
+                  ? Row(
+                      children: [
+                        SizedBox(
+                          width: 280.w,
+                          child: LinearProgressIndicator(
+                            value: _percent,
+                          ),
+                        ),
+                        8.w.widthBox,
+                        '$_percent%'
+                            .text
+                            .color(ktextSubColor)
+                            .size(24.sp)
+                            .make(),
+                      ],
+                    )
+                  : SizedBox()
             ],
-          ),
-          Spacer(),
+          ).expand(),
         ],
       ),
     );
@@ -145,9 +203,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
           await ManagerFunc.voteDetail(widget.id)
               .then((value) => _model = value);
           _isOnload = false;
-          setState(() {
-            
-          });
+          setState(() {});
         },
         header: MaterialHeader(),
         child: _isOnload
@@ -207,6 +263,8 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   await ManagerFunc.vote(_selectId, widget.id);
               if (baseModel.status) {
                 Get.dialog(_shouwVoteDialog());
+                _hasVoted = true;
+                setState(() {});
               } else {
                 BotToast.showText(text: '${baseModel.message}');
               }
