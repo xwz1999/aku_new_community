@@ -60,6 +60,7 @@ class _PropertyIndexState extends State<PropertyIndex>
         controller: _refreshController,
         firstRefresh: true,
         header: MaterialHeader(),
+        footer: MaterialFooter(),
         onRefresh: () async {
           _page = 1;
           _models = await _getItems();
