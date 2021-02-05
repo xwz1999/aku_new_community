@@ -1,18 +1,18 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/one_alarm/alarm_detail_page.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
-import 'package:flutter_beautiful_popup/main.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
-import 'package:akuCommunity/pages/one_alarm/widget/explain_template.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
@@ -41,41 +41,6 @@ class _AlarmPageState extends State<AlarmPage> {
   AmapController _amapController;
   Location _location;
 
-  void showExplain(BuildContext context) {
-    final popup = BeautifulPopup.customize(
-      context: context,
-      build: (options) => ExplainTemplate(options),
-    );
-    popup.show(
-        title: Text(
-          '功能说明',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 32.sp,
-            color: Color(0xff15c0ec),
-          ),
-        ),
-        content: Text(
-          '点击“呼叫110”后,您可以直接拨打本地110。页面中提供了您当前所在位置,以便您与警方沟通。(GPS信号弱时，位置可能存在偏移)',
-          style: TextStyle(
-            fontSize: 28.sp,
-            color: Color(0xff666666),
-          ),
-        ),
-        actions: [
-          MaterialButton(
-            color: Color(0xff15c0ec),
-            textColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                side: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(50))),
-            child: Text('关闭'),
-            onPressed: Navigator.of(context).pop,
-          )
-        ],
-        close: SizedBox());
-  }
-
   @override
   void initState() {
     super.initState();
@@ -96,15 +61,9 @@ class _AlarmPageState extends State<AlarmPage> {
     return BeeScaffold(
       title: '一键报警',
       actions: [
-        InkWell(
-          onTap: () {
-            showExplain(context);
-          },
-          child: Container(
-            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-            child: '全部已读'.text.black.size(28.sp).make(),
-            alignment: Alignment.center,
-          ),
+        MaterialButton(
+          onPressed: () => Get.to(AlarmDetailPage()),
+          child: '功能说明'.text.black.size(28.sp).make(),
         )
       ],
       body: Stack(
