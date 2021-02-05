@@ -45,17 +45,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
             : ListView(
                 children: [
                   ChatCard(
-                    initLike: _model.isLike == 1,
-                    name: _model.createName,
-                    topic: _model.gambitTitle,
-                    headImg: _model.headSculptureImgUrl,
-                    contentImg: _model.imgUrls,
-                    date: _model.date,
-                    id: _model.id,
-                    content: _model.content,
-                    themeId: _model.id,
-                    comments: _model.gambitThemeCommentVoList,
-                    likeNames: _model.likeNames,
+                   model:_model,
                     hideLine: true,
                     canTap: false,
                   ),

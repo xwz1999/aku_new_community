@@ -31,7 +31,9 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox.put('login', true);
     await updateProfile();
     await updateUserDetail();
-    await setCurrentHouse(_userDetailModel?.estateNames?.first??'');
+    await setCurrentHouse((_userDetailModel?.estateNames?.isEmpty ?? true)
+        ? ''
+        : _userDetailModel?.estateNames?.first);
     notifyListeners();
   }
 

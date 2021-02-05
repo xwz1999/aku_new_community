@@ -95,6 +95,7 @@ dependencies:
     git:
       url: http://192.168.2.201:8099/aku_fe/power_logger.git
   flutter_rating_bar: ^3.2.0+1
+  jpush_flutter: ^0.6.3
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
 import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
@@ -21,42 +21,18 @@ import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
 import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';
 
 class ChatCard extends StatefulWidget {
-  final String name;
-  final String topic;
-  final List<ImgModel> headImg;
-  final List<ImgModel> contentImg;
-  final DateTime date;
-  final bool initLike;
-  final String content;
-
-  ///userID
-  final int id;
-
-  final int themeId;
+  final EventItemModel model;
 
   final VoidCallback onDelete;
-
-  final List<GambitThemeCommentVoList> comments;
-  final List<LikeNames> likeNames;
 
   final bool hideLine;
   final bool canTap;
 
   ChatCard({
     Key key,
-    @required this.name,
-    @required this.topic,
-    @required this.headImg,
-    @required this.contentImg,
-    @required this.date,
-    @required this.initLike,
-    @required this.id,
-    @required this.content,
-    @required this.themeId,
+    @required this.model,
     this.onDelete,
-    @required this.comments,
     this.hideLine = false,
-    @required this.likeNames,
     this.canTap = true,
   }) : super(key: key);
 
@@ -65,23 +41,22 @@ class ChatCard extends StatefulWidget {
 }
 
 class _ChatCardState extends State<ChatCard> {
-  bool _like = false;
-
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    return (userProvider?.userInfoModel?.id ?? -1) == widget.id;
+    return (userProvider?.userInfoModel?.id ?? -1) == widget.model.id;
   }
 
   String get firstHead {
-    if (widget.headImg == null || widget.headImg.isEmpty)
+    if (widget.model.headSculptureImgUrl == null ||
+        widget.model.headSculptureImgUrl.isEmpty)
       return '';
     else
-      return widget.headImg.first.url;
+      return widget.model.headSculptureImgUrl.first.url;
   }
 
   _renderImage() {
-    if (widget.contentImg.isEmpty) return SizedBox();
-    if (widget.contentImg.length == 1)
+    if (widget.model.imgUrls.isEmpty) return SizedBox();
+    if (widget.model.imgUrls.length == 1)
       return MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
@@ -91,7 +66,7 @@ class _ChatCardState extends State<ChatCard> {
         ),
         onPressed: () {
           Get.to(
-            BeeImagePreview.path(path: widget.contentImg.first.url),
+            BeeImagePreview.path(path: widget.model.imgUrls.first.url),
             opaque: false,
           );
         },
@@ -101,17 +76,17 @@ class _ChatCardState extends State<ChatCard> {
             maxWidth: 300.w,
           ),
           child: Hero(
-            tag: widget.contentImg.first.url,
+            tag: widget.model.imgUrls.first.url,
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(widget.contentImg.first.url),
+              image: API.image(widget.model.imgUrls.first.url),
             ),
           ),
         ),
       );
     else
       return BeeGridImageView(
-          urls: widget.contentImg.map((e) => e.url).toList());
+          urls: widget.model.imgUrls.map((e) => e.url).toList());
   }
 
   _buildMoreButton() {
@@ -150,15 +125,16 @@ class _ChatCardState extends State<ChatCard> {
                             cancel();
                             await NetUtil().get(
                               API.community.like,
-                              params: {'themeId': widget.themeId},
+                              params: {'themeId': widget.model.id},
                               showMessage: true,
                             );
                             setState(() {
-                              _like = !_like;
+                              widget.model.isLike =
+                                  (widget.model.isLike == 1) ? 0 : 1;
                             });
                           },
                           child: [
-                            _like
+                            widget.model.isLike == 1
                                 ? Icon(Icons.favorite,
                                     size: 30.w, color: Colors.red)
                                 : Icon(Icons.favorite_border, size: 30.w),
@@ -221,7 +197,7 @@ class _ChatCardState extends State<ChatCard> {
         children: [
           Icon(Icons.favorite_border_rounded, size: 24.w),
           14.wb,
-          ...widget.likeNames
+          ...widget.model.likeNames
               .map((e) => e.name.text.make())
               .toList()
               .sepWidget(separate: ','.text.make()),
@@ -232,14 +208,46 @@ class _ChatCardState extends State<ChatCard> {
 
   _renderComment() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.comments.map((e) {
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: widget.model.gambitThemeCommentVoList.map((e) {
         StringBuffer buffer = StringBuffer();
         buffer.write(e.createName);
         if (e.parentName != null) buffer.write('回复${e.parentName}');
         buffer.write(':${e.content}');
-        return buffer.toString().text.make();
+        return InkWell(
+          child: buffer.toString().text.make(),
+          onTap: () {
+            addComment();
+          },
+        );
       }).toList(),
+    );
+  }
+
+  addComment() async {
+    FocusNode node = FocusNode();
+    node.requestFocus();
+    Get.bottomSheet(
+      Row(
+        children: [
+          TextField(
+            focusNode: node,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              isDense: true,
+            ),
+          ).p(16.w).expand(),
+          16.wb,
+          MaterialButton(
+            color: kPrimaryColor,
+            onPressed: () {},
+            minWidth: 64.w,
+            child: '发送'.text.make(),
+          ),
+          16.wb,
+        ],
+      ).material(color: Colors.white),
+      barrierColor: Colors.transparent,
     );
   }
 
@@ -253,21 +261,18 @@ class _ChatCardState extends State<ChatCard> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.likeNames.isEmpty ? SizedBox() : _renderLike(),
-            (widget.likeNames.isNotEmpty && widget.comments.isNotEmpty)
+            widget.model.likeNames.isEmpty ? SizedBox() : _renderLike(),
+            (widget.model.likeNames.isNotEmpty &&
+                    widget.model.gambitThemeCommentVoList.isNotEmpty)
                 ? Divider(height: 1.w, thickness: 1.w)
                 : SizedBox(),
-            widget.comments.isEmpty ? SizedBox() : _renderComment(),
+            widget.model.gambitThemeCommentVoList.isEmpty
+                ? SizedBox()
+                : _renderComment(),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _like = widget.initLike ?? false;
   }
 
   @override
@@ -285,7 +290,7 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () {
-                Get.to(EventDetailPage(themeId: widget.themeId));
+                Get.to(EventDetailPage(themeId: widget.model.id));
               }
             : null,
         child: Row(
@@ -306,15 +311,18 @@ class _ChatCardState extends State<ChatCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.name.text.black.size(36.sp).make(),
+                widget.model.createName.text.black.size(36.sp).make(),
                 6.hb,
-                widget.content.text.black.make(),
+                widget.model.content.text.black.make(),
                 20.hb,
                 _renderImage(),
-                widget.topic?.isEmpty ?? true
+                widget.model.gambitTitle?.isEmpty ?? true
                     ? SizedBox()
                     : Chip(
-                        label: '#${widget.topic}'.text.size(22.sp).make(),
+                        label: '#${widget.model.gambitTitle}'
+                            .text
+                            .size(22.sp)
+                            .make(),
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 5.w),
                         labelPadding: EdgeInsets.zero,
@@ -326,7 +334,7 @@ class _ChatCardState extends State<ChatCard> {
                 Row(
                   children: [
                     64.hb,
-                    BeeDateUtil(widget.date)
+                    BeeDateUtil(widget.model.date)
                         .timeAgo
                         .text
                         .size(28.sp)
@@ -360,7 +368,7 @@ class _ChatCardState extends State<ChatCard> {
                               if (result == true) {
                                 await NetUtil().get(
                                   API.community.deleteMyEvent,
-                                  params: {'themeId': widget.themeId},
+                                  params: {'themeId': widget.model.id},
                                   showMessage: true,
                                 );
                                 if (widget.onDelete != null) widget.onDelete();
