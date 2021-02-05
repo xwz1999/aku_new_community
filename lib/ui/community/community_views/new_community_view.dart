@@ -14,12 +14,17 @@ class NewCommunityView extends StatefulWidget {
   NewCommunityView({Key key}) : super(key: key);
 
   @override
-  _NewCommunityViewState createState() => _NewCommunityViewState();
+  NewCommunityViewState createState() => NewCommunityViewState();
 }
 
-class _NewCommunityViewState extends State<NewCommunityView>
+class NewCommunityViewState extends State<NewCommunityView>
     with AutomaticKeepAliveClientMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
+
+  refresh() {
+    _refreshController?.callRefresh();
+  }
+
   @override
   void dispose() {
     _refreshController?.dispose();

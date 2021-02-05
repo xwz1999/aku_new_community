@@ -81,7 +81,7 @@ class NoticeCard extends StatelessWidget {
                 width: 200.w,
                 padding: EdgeInsets.only(left: 32.w),
                 alignment: Alignment.topLeft,
-                child: sameDay ? title() : SizedBox(),
+                child: sameDay ? SizedBox() : title(),
               ),
               model.imgUrls.length == 0
                   ? SizedBox(height: 152.w)

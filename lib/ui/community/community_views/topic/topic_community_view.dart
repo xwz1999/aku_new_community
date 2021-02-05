@@ -19,12 +19,15 @@ class TopicCommunityView extends StatefulWidget {
   TopicCommunityView({Key key}) : super(key: key);
 
   @override
-  _TopicCommunityViewState createState() => _TopicCommunityViewState();
+  TopicCommunityViewState createState() => TopicCommunityViewState();
 }
 
-class _TopicCommunityViewState extends State<TopicCommunityView>
+class TopicCommunityViewState extends State<TopicCommunityView>
     with AutomaticKeepAliveClientMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
+  refresh() {
+    _refreshController?.callRefresh();
+  }
 
   _buildItem(CommunityTopicModel model) {
     return MaterialButton(
