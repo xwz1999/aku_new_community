@@ -4,7 +4,6 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/home/application/all_application.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,35 +11,24 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
-import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
-import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
-import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
-import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
-import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/ui/community/activity/activity_card.dart';
 import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/community/community_func.dart';
 import 'package:akuCommunity/ui/home/home_notification.dart';
 import 'package:akuCommunity/ui/home/home_title.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
 
@@ -67,18 +55,6 @@ class _HomePageState extends State<HomePage>
 
   ActivityItemModel _activityItemModel;
   List<BoardItemModel> _boardItemModels = [];
-
-  List<GridButton> _gridList = [
-    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, OpenDoorPage().to),
-    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, VisitorAccessPage().to),
-    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, FixedSubmitPage().to),
-    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, LifePayPage().to),
-    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, IndustryCommitteePage().to),
-    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
-        AdvicePage(type: AdviceType.SUGGESTION).to),
-    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, ConvenientPhonePage().to),
-    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, AllApplicationPage().to),
-  ];
 
   @override
   void initState() {

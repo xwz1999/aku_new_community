@@ -6,31 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
-import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
 import 'package:akuCommunity/pages/activities_page/activities_page.dart';
-import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
-import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
-import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
-import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
-import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
-import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
-import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
-import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
-import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/circle_trend.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'widget/property_card.dart';
 
@@ -47,48 +32,6 @@ class PropertyIndex extends StatefulWidget {
 @Deprecated("sh*t property_index need to be cleaned.")
 class _PropertyIndexState extends State<PropertyIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  List<GridButton> _gridList = [
-    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
-      OpenDoorPage().to();
-    }),
-    GridButton('开门码', R.ASSETS_ICONS_TOOL_KMM_PNG, () {
-      OpeningCodePage().to();
-    }),
-    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
-      VisitorAccessPage().to();
-    }),
-    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      FixedSubmitPage().to();
-    }),
-    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
-      LifePayPage().to();
-    }),
-    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
-      IndustryCommitteePage().to();
-    }),
-    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
-        AdvicePage(type: AdviceType.SUGGESTION).to),
-    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
-      ConvenientPhonePage().to();
-    }),
-    GridButton('活动投票', R.ASSETS_ICONS_TOOL_HDTP_PNG, () {
-      Get.to(ActivitiesPage());
-    }),
-    GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
-      GoodsDetoPage().to();
-    }),
-    GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG,
-        AdvicePage(type: AdviceType.COMPLAIN).to),
-    GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
-      QuestionnairePage().to();
-    }),
-    GridButton('装修管理', R.ASSETS_ICONS_TOOL_ZXGL_PNG, () {
-      FitupManagePage().to();
-    }),
-    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
-      TotalApplicationsPage().to();
-    }),
-  ];
   @override
   bool get wantKeepAlive => true;
   List<Map<String, dynamic>> _listView = [
@@ -195,12 +138,6 @@ class _PropertyIndexState extends State<PropertyIndex>
         child: CustomScrollView(
           controller: _controller,
           slivers: [
-            SliverToBoxAdapter(
-              child: SingleAdSpace(
-                imagePath: 'assets/example/guanggao5.png',
-                radius: 16,
-              ),
-            ),
             SliverToBoxAdapter(
               child: ContainerComment(
                 radius: 8,
