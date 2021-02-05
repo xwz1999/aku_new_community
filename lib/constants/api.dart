@@ -151,6 +151,9 @@ class _Manager {
 
   ///活动投票：投票详情
   String get voteDetail => '/user/eventVoting/voteDetail';
+
+  ///活动投票：用户投票
+  String get vote => '/user/eventVoting/vote';
 }
 
 class _Community {

@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -12,6 +15,7 @@ import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int id;
@@ -63,7 +67,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             //     }
             //   },
             // ),
-//
+            //
             //
             //暂时用单选
             child: GestureDetector(
@@ -100,6 +104,32 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
 
   Widget _emptyWidget() {
     return Container();
+  }
+
+  Widget _shouwVoteDialog() {
+    return CupertinoAlertDialog(
+      title: '投票成功'.text.black.size(32.sp).bold.isIntrinsic.make(),
+      actions: [
+        CupertinoDialogAction(
+          child: '取消'.text.black.size(34.sp).isIntrinsic.make(),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        CupertinoDialogAction(
+          child: '查看结果'
+              .text
+              .color(kPrimaryColor)
+              .size(34.sp)
+              .bold
+              .isIntrinsic
+              .make(),
+          onPressed: () {
+            Get.back();
+          },
+        )
+      ],
+    );
   }
 
   @override
@@ -163,6 +193,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                 ],
               ),
       ),
+      bottomNavi: BottomButton(
+          onPressed: () {
+            Get.dialog(_shouwVoteDialog());
+          },
+          child: '投票'.text.black.size(28.sp).bold.make()),
     );
   }
 }

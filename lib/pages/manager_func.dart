@@ -174,4 +174,12 @@ class ManagerFunc {
         showMessage: false);
     return VotingDetailModel.fromJson(baseModel.data);
   }
+
+  static Future<BaseModel> vote(int voteId, int candleId) async {
+    BaseModel baseModel = await NetUtil().post(API.manager.vote, params: {
+      'voteId': voteId,
+      'candidateId': candleId,
+    });
+    return baseModel;
+  }
 }
