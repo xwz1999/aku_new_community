@@ -73,6 +73,9 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                       contentImg: item.imgUrls,
                       date: item.date,
                       id: item.createId,
+                      onDelete: () {
+                        _refreshController.callRefresh();
+                      },
                     );
                   },
                   childCount: items.length,

@@ -8,12 +8,14 @@ class BeeDateUtil {
   bool get sameYear => _now.year == this.date.year;
   bool get sameMonth => sameYear && _now.month == this.date.month;
   bool get sameDay => sameMonth && _now.day == this.date.day;
-  bool get isYesterday => (DateTime(_now.year, _now.month, _now.day - 1)
-          .compareTo(DateTime(this.date.year)) ==
-      0);
-  bool get isDoubleYesterday => (DateTime(_now.year, _now.month, _now.day - 2)
-          .compareTo(DateTime(this.date.year)) ==
-      0);
+  bool get isYesterday =>
+      (DateTime(_now.year, _now.month, _now.day - 1).compareTo(
+              DateTime(this.date.year, this.date.month, this.date.day)) ==
+          0);
+  bool get isDoubleYesterday =>
+      (DateTime(_now.year, _now.month, _now.day - 2).compareTo(
+              DateTime(this.date.year, this.date.month, this.date.day)) ==
+          0);
 
   String get timeAgo {
     Duration duration = _now.difference(date);

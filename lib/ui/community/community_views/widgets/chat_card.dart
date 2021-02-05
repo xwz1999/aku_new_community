@@ -33,6 +33,8 @@ class ChatCard extends StatefulWidget {
 
   final int themeId;
 
+  final VoidCallback onDelete;
+
   ChatCard({
     Key key,
     @required this.name,
@@ -44,6 +46,7 @@ class ChatCard extends StatefulWidget {
     @required this.id,
     @required this.content,
     @required this.themeId,
+    this.onDelete,
   }) : super(key: key);
 
   @override
@@ -136,7 +139,7 @@ class _ChatCardState extends State<ChatCard> {
                             cancel();
                             await NetUtil().get(
                               API.community.like,
-                              params: {'themeId': widget.id},
+                              params: {'themeId': widget.themeId},
                               showMessage: true,
                             );
                             setState(() {
@@ -291,7 +294,12 @@ class _ChatCardState extends State<ChatCard> {
                               ));
 
                               if (result == true) {
-                                //TODO delete operation
+                                await NetUtil().get(
+                                  API.community.deleteMyEvent,
+                                  params: {'themeId': widget.themeId},
+                                  showMessage: true,
+                                );
+                                if (widget.onDelete != null) widget.onDelete();
                               }
                             },
                             child: '删除'.text.black.size(28.sp).make(),

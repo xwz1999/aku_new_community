@@ -15,11 +15,12 @@ import 'package:akuCommunity/constants/api.dart';
 class BeeImagePreview extends StatefulWidget {
   final File file;
   final String path;
-  BeeImagePreview.file({Key key, @required this.file})
+  final String tag;
+  BeeImagePreview.file({Key key, @required this.file, this.tag})
       : path = null,
         super(key: key);
 
-  BeeImagePreview.path({Key key, @required this.path})
+  BeeImagePreview.path({Key key, @required this.path, this.tag})
       : file = null,
         super(key: key);
 
@@ -31,7 +32,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
   Widget get image {
     if (widget.file == null)
       return Hero(
-        tag: widget.path,
+        tag: widget.tag ?? widget.path,
         child: FadeInImage.assetNetwork(
           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
           image: API.image(widget.path),
@@ -39,7 +40,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
       );
     else
       return Hero(
-        tag: widget.file.hashCode,
+        tag: widget.tag ?? widget.file.hashCode,
         child: Image.file(widget.file),
       );
   }

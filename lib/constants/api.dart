@@ -187,6 +187,9 @@ class _Community {
 
   ///社区话题：我的动态
   String get myEvent => '/user/gambit/myTidings';
+
+  ///社区话题：假删除主题信息（只能删除自己的）
+  String get deleteMyEvent => '/user/gambit/falseDelete';
 }
 
 class _Upload {

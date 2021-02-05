@@ -49,6 +49,9 @@ class _NewCommunityViewState extends State<NewCommunityView>
               headImg: item.headSculptureImgUrl,
               themeId: item.id,
               initLike: item.isLike == 1,
+              onDelete: () {
+                _refreshController.callRefresh();
+              },
             );
           },
           itemCount: items.length,
