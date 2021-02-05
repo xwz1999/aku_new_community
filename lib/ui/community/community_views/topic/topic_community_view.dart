@@ -56,9 +56,7 @@ class _TopicCommunityViewState extends State<TopicCommunityView>
                       ),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                        //TODO 等待后端接口补充话题摘要
-                        // model.summary
-                        child: ('#${''}')
+                        child: ('#${model.summary}')
                             .text
                             .center
                             .size(28.sp)
@@ -76,7 +74,7 @@ class _TopicCommunityViewState extends State<TopicCommunityView>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              (model?.gambitTitle ?? '')
+              (model?.title ?? '')
                   .text
                   .maxLines(2)
                   .size(28.sp)

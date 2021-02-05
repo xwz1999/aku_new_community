@@ -12,6 +12,7 @@ import 'package:velocity_x/velocity_x.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 
+//TODO 图片大小限制
 class BeeImagePicker {
   static Future<File> pick({
     String title,
