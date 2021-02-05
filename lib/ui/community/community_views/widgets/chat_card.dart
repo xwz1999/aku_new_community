@@ -232,16 +232,21 @@ class _ChatCardState extends State<ChatCard> {
 
   _renderComment() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: widget.comments.map((e) {
         StringBuffer buffer = StringBuffer();
         buffer.write(e.createName);
         if (e.parentName != null) buffer.write('回复${e.parentName}');
         buffer.write(':${e.content}');
-        return buffer.toString().text.make();
+        return InkWell(
+          child: buffer.toString().text.make(),
+          onTap: () {},
+        );
       }).toList(),
     );
   }
+
+  addComment() {}
 
   _renderLikeAndComment() {
     return Material(
