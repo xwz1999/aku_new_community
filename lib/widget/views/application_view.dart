@@ -52,6 +52,7 @@ class _ApplicationViewState extends State<ApplicationView> {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: EdgeInsets.zero,
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemBuilder: (context, index) {
