@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -21,6 +22,27 @@ import 'package:akuCommunity/utils/developer_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  JPush jpush = new JPush();
+  jpush.addEventHandler(
+    // 接收通知回调方法。
+    onReceiveNotification: (Map<String, dynamic> message) async {
+      print("flutter onReceiveNotification: $message");
+    },
+    // 点击通知回调方法。
+    onOpenNotification: (Map<String, dynamic> message) async {
+      print("flutter onOpenNotification: $message");
+    },
+    // 接收自定义消息回调方法。
+    onReceiveMessage: (Map<String, dynamic> message) async {
+      print("flutter onReceiveMessage: $message");
+    },
+  );
+  jpush.setup(
+    appKey: "6a2c6507e3e8b3187ac1c9f9",
+    channel: "developer-default",
+    production: false,
+    debug: true, // 设置是否打印 debug 日志
+  );
   DeveloperUtil.setDev(true);
   runApp(MyApp());
 }
