@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 

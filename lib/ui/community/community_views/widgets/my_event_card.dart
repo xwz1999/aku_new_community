@@ -1,12 +1,9 @@
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/my_event_item_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
