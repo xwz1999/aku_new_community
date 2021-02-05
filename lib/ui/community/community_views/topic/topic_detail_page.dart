@@ -64,20 +64,10 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   (context, index) {
                     final item = items[index] as EventItemModel;
                     return ChatCard(
-                      initLike: item.isLike == 1,
-                      themeId: item.id,
-                      content: item.content,
-                      name: item.createName,
-                      topic: item.gambitTitle,
-                      headImg: item.headSculptureImgUrl,
-                      contentImg: item.imgUrls,
-                      date: item.date,
-                      id: item.createId,
+                      model:item,
                       onDelete: () {
                         _refreshController.callRefresh();
                       },
-                      comments: item.gambitThemeCommentVoList,
-                      likeNames: item.likeNames,
                     );
                   },
                   childCount: items.length,

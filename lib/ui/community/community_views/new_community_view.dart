@@ -45,17 +45,7 @@ class NewCommunityViewState extends State<NewCommunityView>
           itemBuilder: (context, index) {
             final item = items[index] as EventItemModel;
             return ChatCard(
-              content: item.content,
-              name: item.createName ?? '',
-              topic: item.gambitTitle ?? '',
-              contentImg: item.imgUrls,
-              date: item.date,
-              id: item.createId,
-              headImg: item.headSculptureImgUrl,
-              themeId: item.id,
-              initLike: item.isLike == 1,
-              comments: item.gambitThemeCommentVoList,
-              likeNames: item.likeNames,
+              model: item,
               onDelete: () {
                 _refreshController.callRefresh();
               },

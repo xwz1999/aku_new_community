@@ -47,9 +47,12 @@ class UserDetailModel {
     identity = json['identity'];
     roomStatus = json['roomStatus'];
     nickName = json['nickName'];
-    estateNames = json['estateNames'].cast<String>();
-    if (json['estateNames']==null) {
-      estateNames=[];
+    if (json['estateNames'] != null)
+      estateNames = json['estateNames'].cast<String>();
+    else
+      estateNames = [];
+    if (json['estateNames'] == null) {
+      estateNames = [];
     }
   }
 
