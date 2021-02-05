@@ -9,8 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/app_bar_action.dart';
-import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
 import 'package:akuCommunity/widget/search_bar_delegate.dart';
 import 'package:akuCommunity/widget/single_ad_space.dart';
 import 'widget/market_list.dart';

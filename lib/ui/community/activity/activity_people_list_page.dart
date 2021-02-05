@@ -11,7 +11,6 @@ import 'package:akuCommunity/model/community/activity_people_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/others/stack_avatar.dart';
 
 class ActivityPeopleListPage extends StatefulWidget {
   final int id;

@@ -184,6 +184,9 @@ class _Community {
 
   ///社区话题：查询活跃话题（取前4个）
   String get hotTopic => '/user/gambit/findActivityGambit';
+
+  ///社区话题：我的动态
+  String get myEvent => '/user/gambit/myTidings';
 }
 
 class _Upload {

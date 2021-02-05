@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Project imports:
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/const/resource.dart';
-import 'community/community_index.dart';
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
 import 'property/property_index.dart';

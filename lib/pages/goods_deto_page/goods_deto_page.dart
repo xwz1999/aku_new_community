@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
-import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/goods_out_model.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
