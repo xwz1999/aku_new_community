@@ -20,6 +20,7 @@ class _BeeSingleCheckState extends State<BeeSingleCheck> {
       height: 40.w,
       width: 40.w,
       decoration: BoxDecoration(
+        color: kPrimaryColor.withOpacity(_selected ? 1 : 0),
         border: Border.all(
           color: _selected ? kPrimaryColor : Color(0xFF979797),
           width: 3.w,
@@ -34,9 +35,9 @@ class _BeeSingleCheckState extends State<BeeSingleCheck> {
         curve: Curves.easeInOutCubic,
         opacity: _selected ? 1 : 0,
         child: Icon(
-          CupertinoIcons.chevron_up,
+          CupertinoIcons.checkmark,
           color: Colors.white,
-          size: 24.w,
+          size: 28.w,
         ),
       ),
     );

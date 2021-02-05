@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -143,6 +145,9 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
           await ManagerFunc.voteDetail(widget.id)
               .then((value) => _model = value);
           _isOnload = false;
+          setState(() {
+            
+          });
         },
         header: MaterialHeader(),
         child: _isOnload
@@ -194,8 +199,18 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               ),
       ),
       bottomNavi: BottomButton(
-          onPressed: () {
-            Get.dialog(_shouwVoteDialog());
+          onPressed: () async {
+            if (_selectId == null) {
+              BotToast.showText(text: '请先选择候选人！');
+            } else {
+              BaseModel baseModel =
+                  await ManagerFunc.vote(_selectId, widget.id);
+              if (baseModel.status) {
+                Get.dialog(_shouwVoteDialog());
+              } else {
+                BotToast.showText(text: '${baseModel.message}');
+              }
+            }
           },
           child: '投票'.text.black.size(28.sp).bold.make()),
     );
