@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/moving_company_model.dart';
+import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
@@ -165,12 +166,12 @@ class ManagerFunc {
     return baseModel.data;
   }
 
-  static Future<BaseModel> voteDetail(int id) async {
+  static Future<VotingDetailModel> voteDetail(int id) async {
     BaseModel baseModel = await NetUtil().get(API.manager.voteDetail,
         params: {
           'voteId': 1,
         },
         showMessage: false);
-    return baseModel.data;
+    return VotingDetailModel.fromJson(baseModel.data);
   }
 }
