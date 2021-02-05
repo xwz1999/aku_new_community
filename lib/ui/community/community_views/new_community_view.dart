@@ -54,6 +54,8 @@ class NewCommunityViewState extends State<NewCommunityView>
               headImg: item.headSculptureImgUrl,
               themeId: item.id,
               initLike: item.isLike == 1,
+              comments: item.gambitThemeCommentVoList,
+              likeNames: item.likeNames,
               onDelete: () {
                 _refreshController.callRefresh();
               },

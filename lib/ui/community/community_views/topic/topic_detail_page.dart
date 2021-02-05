@@ -76,6 +76,8 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                       onDelete: () {
                         _refreshController.callRefresh();
                       },
+                      comments: item.gambitThemeCommentVoList,
+                      likeNames: item.likeNames,
                     );
                   },
                   childCount: items.length,

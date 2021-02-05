@@ -190,6 +190,9 @@ class _Community {
 
   ///社区话题：假删除主题信息（只能删除自己的）
   String get deleteMyEvent => '/user/gambit/falseDelete';
+
+  ///社区话题：查询主题信息详情
+  String get getEventDetail => '/user/gambit/GambitThemeDetail';
 }
 
 class _Upload {
