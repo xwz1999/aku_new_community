@@ -28,6 +28,11 @@ class MyEventCard extends StatelessWidget {
 
   BeeDateUtil get beeDate => BeeDateUtil(model.date);
 
+  bool get sameDay =>
+      model.date.year == (preModel?.date?.year ?? 0) &&
+      model.date.month == (preModel?.date?.month ?? 0) &&
+      model.date.day == (preModel?.date?.day ?? 0);
+
   Widget title() {
     if (beeDate.sameDay) return '今天'.text.size(52.sp).bold.make();
     if (beeDate.isYesterday)
@@ -65,19 +70,22 @@ class MyEventCard extends StatelessWidget {
                 width: 200.w,
                 padding: EdgeInsets.only(left: 32.w),
                 alignment: Alignment.topLeft,
-                child: beeDate.sameDay ? SizedBox() : title(),
+                child: sameDay ? SizedBox() : title(),
               ),
               model.imgUrl.length == 0
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
                         Get.to(
-                          BeeImagePreview.path(path: model.imgUrl.first.url),
+                          BeeImagePreview.path(
+                            path: model.imgUrl.first.url,
+                            tag: API.image(model.imgUrl.first.url),
+                          ),
                           opaque: false,
                         );
                       },
                       child: Hero(
-                        tag: model.imgUrl.first.url,
+                        tag: API.image(model.imgUrl.first.url),
                         child: Container(
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(

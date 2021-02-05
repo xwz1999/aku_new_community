@@ -73,6 +73,11 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                       contentImg: item.imgUrls,
                       date: item.date,
                       id: item.createId,
+                      onDelete: () {
+                        _refreshController.callRefresh();
+                      },
+                      comments: item.gambitThemeCommentVoList,
+                      likeNames: item.likeNames,
                     );
                   },
                   childCount: items.length,

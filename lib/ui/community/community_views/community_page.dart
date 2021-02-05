@@ -25,6 +25,11 @@ class _CommunityPageState extends State<CommunityPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
   List<String> _tabs = ['最新', '话题', '我的'];
+  GlobalKey<TopicCommunityViewState> topicKey =
+      GlobalKey<TopicCommunityViewState>();
+  GlobalKey<MyCommunityViewState> myKey = GlobalKey<MyCommunityViewState>();
+  GlobalKey<NewCommunityViewState> newKey = GlobalKey<NewCommunityViewState>();
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +52,22 @@ class _CommunityPageState extends State<CommunityPage>
         ),
       ],
       fab: FloatingActionButton(
-        onPressed: () => Get.to(AddNewEventPage()),
+        onPressed: () async {
+          bool result = await Get.to(AddNewEventPage());
+          if (result == true) {
+            switch (_tabController.index) {
+              case 0:
+                newKey.currentState.refresh();
+                break;
+              case 1:
+                topicKey.currentState.refresh();
+                break;
+              case 2:
+                myKey.currentState.refresh();
+                break;
+            }
+          }
+        },
         heroTag: 'event_add',
         child: Icon(Icons.add),
       ),
@@ -64,9 +84,9 @@ class _CommunityPageState extends State<CommunityPage>
       ),
       body: TabBarView(
         children: [
-          NewCommunityView(),
-          TopicCommunityView(),
-          MyCommunityView(),
+          NewCommunityView(key: newKey),
+          TopicCommunityView(key: topicKey),
+          MyCommunityView(key: myKey),
         ],
         controller: _tabController,
       ),

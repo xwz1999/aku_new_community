@@ -100,6 +100,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
           params: _params,
         );
         _models = widget.convert(_model);
+        widget.controller.resetLoadState();
         setState(() {});
       },
       firstRefresh: true,

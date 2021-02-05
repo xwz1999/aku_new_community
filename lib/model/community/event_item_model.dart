@@ -46,7 +46,8 @@ class EventItemModel {
       json['likeNames'].forEach((v) {
         likeNames.add(new LikeNames.fromJson(v));
       });
-    }
+    } else
+      likeNames = [];
     if (json['imgUrls'] != null) {
       imgUrls = new List<ImgModel>();
       json['imgUrls'].forEach((v) {
@@ -66,7 +67,8 @@ class EventItemModel {
       json['gambitThemeCommentVoList'].forEach((v) {
         gambitThemeCommentVoList.add(new GambitThemeCommentVoList.fromJson(v));
       });
-    }
+    } else
+      gambitThemeCommentVoList = [];
   }
 
   Map<String, dynamic> toJson() {

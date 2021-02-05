@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,14 @@ class ChatCard extends StatefulWidget {
 
   final int themeId;
 
+  final VoidCallback onDelete;
+
+  final List<GambitThemeCommentVoList> comments;
+  final List<LikeNames> likeNames;
+
+  final bool hideLine;
+  final bool canTap;
+
   ChatCard({
     Key key,
     @required this.name,
@@ -40,10 +49,15 @@ class ChatCard extends StatefulWidget {
     @required this.headImg,
     @required this.contentImg,
     @required this.date,
-    this.initLike = false,
+    @required this.initLike,
     @required this.id,
     @required this.content,
     @required this.themeId,
+    this.onDelete,
+    @required this.comments,
+    this.hideLine = false,
+    @required this.likeNames,
+    this.canTap = true,
   }) : super(key: key);
 
   @override
@@ -136,7 +150,7 @@ class _ChatCardState extends State<ChatCard> {
                             cancel();
                             await NetUtil().get(
                               API.community.like,
-                              params: {'themeId': widget.id},
+                              params: {'themeId': widget.themeId},
                               showMessage: true,
                             );
                             setState(() {
@@ -199,6 +213,57 @@ class _ChatCardState extends State<ChatCard> {
     });
   }
 
+  _renderLike() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          Icon(Icons.favorite_border_rounded, size: 24.w),
+          14.wb,
+          ...widget.likeNames
+              .map((e) => e.name.text.make())
+              .toList()
+              .sepWidget(separate: ','.text.make()),
+        ],
+      ),
+    );
+  }
+
+  _renderComment() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widget.comments.map((e) {
+        StringBuffer buffer = StringBuffer();
+        buffer.write(e.createName);
+        if (e.parentName != null) buffer.write('回复${e.parentName}');
+        buffer.write(':${e.content}');
+        return buffer.toString().text.make();
+      }).toList(),
+    );
+  }
+
+  _renderLikeAndComment() {
+    return Material(
+      borderRadius: BorderRadius.circular(8.w),
+      color: Color(0xFFF7F7F7),
+      child: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            widget.likeNames.isEmpty ? SizedBox() : _renderLike(),
+            (widget.likeNames.isNotEmpty && widget.comments.isNotEmpty)
+                ? Divider(height: 1.w, thickness: 1.w)
+                : SizedBox(),
+            widget.comments.isEmpty ? SizedBox() : _renderComment(),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -207,21 +272,22 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: Color(0xFFE5E5E5),
+            color: widget.hideLine ? Colors.transparent : Color(0xFFE5E5E5),
           ),
         ),
       ),
       child: MaterialButton(
         padding: EdgeInsets.zero,
-        onPressed: () {
-          Get.to(EventDetailPage());
-        },
+        onPressed: widget.canTap
+            ? () {
+                Get.to(EventDetailPage(themeId: widget.themeId));
+              }
+            : null,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -240,12 +306,12 @@ class _ChatCardState extends State<ChatCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.name.text.size(36.sp).make(),
+                widget.name.text.black.size(36.sp).make(),
                 6.hb,
-                widget.content.text.make(),
+                widget.content.text.black.make(),
                 20.hb,
                 _renderImage(),
-                widget.topic.isEmpty
+                widget.topic?.isEmpty ?? true
                     ? SizedBox()
                     : Chip(
                         label: '#${widget.topic}'.text.size(22.sp).make(),
@@ -259,6 +325,7 @@ class _ChatCardState extends State<ChatCard> {
                       ),
                 Row(
                   children: [
+                    64.hb,
                     BeeDateUtil(widget.date)
                         .timeAgo
                         .text
@@ -291,7 +358,12 @@ class _ChatCardState extends State<ChatCard> {
                               ));
 
                               if (result == true) {
-                                //TODO delete operation
+                                await NetUtil().get(
+                                  API.community.deleteMyEvent,
+                                  params: {'themeId': widget.themeId},
+                                  showMessage: true,
+                                );
+                                if (widget.onDelete != null) widget.onDelete();
                               }
                             },
                             child: '删除'.text.black.size(28.sp).make(),
@@ -301,6 +373,7 @@ class _ChatCardState extends State<ChatCard> {
                     _buildMoreButton(),
                   ],
                 ),
+                _renderLikeAndComment(),
               ],
             ).expand(),
           ],
