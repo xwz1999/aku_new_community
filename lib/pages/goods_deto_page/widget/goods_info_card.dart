@@ -1,15 +1,14 @@
 // Flutter imports:
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/goods_out_model.dart';
-import 'package:akuCommunity/utils/bee_map.dart';
-import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/model/manager/goods_out_model.dart';
+import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 import 'goods_info_card_button.dart';
-import 'image_horizontal_list.dart';
 
 class GoodsInfoCard extends StatelessWidget {
   final GoodsOutModel model;

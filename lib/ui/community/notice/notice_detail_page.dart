@@ -1,15 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/board_detail_model.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int id;

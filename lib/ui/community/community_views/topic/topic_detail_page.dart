@@ -1,12 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/community_topic_model.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_sliver_header.dart';
 import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class TopicDetailPage extends StatefulWidget {
   final CommunityTopicModel model;
@@ -28,6 +32,11 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'event_add',
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       body: BeeListView(
         convert: (model) {
           return model.tableList
@@ -55,11 +64,15 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   (context, index) {
                     final item = items[index] as EventItemModel;
                     return ChatCard(
+                      initLike: item.isLike == 1,
+                      themeId: item.id,
+                      content: item.content,
                       name: item.createName,
-                      title: item.gambitTitle,
+                      topic: item.gambitTitle,
                       headImg: item.headSculptureImgUrl,
                       contentImg: item.imgUrls,
                       date: item.date,
+                      id: item.createId,
                     );
                   },
                   childCount: items.length,

@@ -1,37 +1,21 @@
 // Flutter imports:
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/ui/community/notice/notice_page.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 // Project imports:
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/activities_page/activities_details_page/activities_details_page.dart';
-import 'package:akuCommunity/pages/activities_page/activities_page.dart';
-import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
-import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
-import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
-import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
-import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
-import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
-import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
-import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/total_application_page/total_applications_page.dart';
-import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/application_objects.dart';
+import 'package:akuCommunity/model/community/board_model.dart';
+import 'package:akuCommunity/ui/community/notice/notice_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_list_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/circle_trend.dart';
 import 'package:akuCommunity/widget/container_comment.dart';
-import 'package:akuCommunity/widget/grid_buttons.dart';
-import 'package:akuCommunity/widget/single_ad_space.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 import 'widget/property_card.dart';
 
 //TODO CLEAN BOTTOM CODES.
@@ -47,131 +31,23 @@ class PropertyIndex extends StatefulWidget {
 @Deprecated("sh*t property_index need to be cleaned.")
 class _PropertyIndexState extends State<PropertyIndex>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  List<GridButton> _gridList = [
-    GridButton('一键开门', R.ASSETS_ICONS_TOOL_YJKM_PNG, () {
-      OpenDoorPage().to();
-    }),
-    GridButton('开门码', R.ASSETS_ICONS_TOOL_KMM_PNG, () {
-      OpeningCodePage().to();
-    }),
-    GridButton('访客通行', R.ASSETS_ICONS_TOOL_FKYQ_PNG, () {
-      VisitorAccessPage().to();
-    }),
-    GridButton('报事报修', R.ASSETS_ICONS_TOOL_BSBX_PNG, () {
-      FixedSubmitPage().to();
-    }),
-    GridButton('生活缴费', R.ASSETS_ICONS_TOOL_SHJF_PNG, () {
-      LifePayPage().to();
-    }),
-    GridButton('业委会', R.ASSETS_ICONS_TOOL_YWH_PNG, () {
-      IndustryCommitteePage().to();
-    }),
-    GridButton('建议咨询', R.ASSETS_ICONS_TOOL_JYTS_PNG,
-        AdvicePage(type: AdviceType.SUGGESTION).to),
-    GridButton('便民电话', R.ASSETS_ICONS_TOOL_BMDH_PNG, () {
-      ConvenientPhonePage().to();
-    }),
-    GridButton('活动投票', R.ASSETS_ICONS_TOOL_HDTP_PNG, () {
-      Get.to(ActivitiesPage());
-    }),
-    GridButton('物品出户', R.ASSETS_ICONS_TOOL_WPCM_PNG, () {
-      GoodsDetoPage().to();
-    }),
-    GridButton('投诉表扬', R.ASSETS_ICONS_TOOL_TSBY_PNG,
-        AdvicePage(type: AdviceType.COMPLAIN).to),
-    GridButton('问卷调查', R.ASSETS_ICONS_TOOL_WJDC_PNG, () {
-      QuestionnairePage().to();
-    }),
-    GridButton('装修管理', R.ASSETS_ICONS_TOOL_ZXGL_PNG, () {
-      FitupManagePage().to();
-    }),
-    GridButton('全部应用', R.ASSETS_ICONS_TOOL_QBYY_PNG, () {
-      TotalApplicationsPage().to();
-    }),
-  ];
   @override
   bool get wantKeepAlive => true;
-  List<Map<String, dynamic>> _listView = [
-    {
-      'title': '今天',
-      'contentList': <Map<String, dynamic>>[
-        {
-          'subtitle': '小区环境秩序管理局物业执法简讯',
-          'imagePath':
-              'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=486282784,967147496&fm=26&gp=0.jpg'
-        },
-        {
-          'subtitle': '小区健身房已经修缮完毕',
-          'imagePath':
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600342657805&di=e47b51d9359495ee90488f7244afa85b&imgtype=0&src=http%3A%2F%2Fimage.cnpp.cn%2Fupload%2Fimages%2F20190122%2F14340317774_1200x800.jpg'
-        }
-      ]
-    },
-    {
-      'title': '118月',
-      'contentList': <Map<String, dynamic>>[
-        {
-          'subtitle': '小区有了狗狗专用便桶',
-          'imagePath':
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600342731226&di=2223958ede406daa9fa85f3ea908e601&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180505%2F570fe33aab56409fa62f0626ab78f4cd.jpeg'
-        },
-      ]
-    },
-    {
-      'title': '217月',
-      'contentList': <Map<String, dynamic>>[
-        {
-          'subtitle': '小区开展保安员业务培训暨消防技能演练',
-          'imagePath':
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600342893169&di=9f2fcf7e3b967ac99f0a2b22e59869d8&imgtype=0&src=http%3A%2F%2Fwww.nbbaxh.net%2FUploadFiles%2Fcontent%2F2018731649142.jpg'
-        },
-      ]
-    },
-  ];
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
-  ScrollController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void _onRefresh() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-
-    _refreshController.refreshCompleted();
-  }
-
-  void _onLoading() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
-  }
-
-  void activityRouter() {
-    ActivitiesPage().to;
-  }
-
-  void activityDetailsRouter(String imagePath, title, bool isOver, isVote,
-      isVoteOver, List<String> memberList) {
-    ActivitiesDetailsPage(
-      bundle: Bundle()
-        ..putMap('details', {
-          'title': title,
-          'imagePath': imagePath,
-          'isOver': isOver,
-          'isVote': isVote,
-          'isVoteOver': isVoteOver,
-          'memberList': memberList
-        }),
-    ).to;
-  }
-
-  void noticeRouter(String theme, imagePath) {
-    NoticePage().to;
+  EasyRefreshController _refreshController = EasyRefreshController();
+  int _page = 1;
+  int _pageCount = 0;
+  List<BoardItemModel> _models = [];
+  Future<List<BoardItemModel>> _getItems() async {
+    BaseListModel model = await NetUtil().getList(
+      API.community.boardList,
+      params: {
+        'pageNum': _page,
+        'size': 10,
+      },
+    );
+    _pageCount = model.pageCount;
+    return model.tableList.map((e) => BoardItemModel.fromJson(e)).toList();
   }
 
   @override
@@ -185,22 +61,24 @@ class _PropertyIndexState extends State<PropertyIndex>
     super.build(context);
     return BeeScaffold(
       title: '物业',
-      body: SmartRefresher(
+      body: EasyRefresh(
         controller: _refreshController,
-        header: WaterDropHeader(),
-        footer: ClassicFooter(),
-        onRefresh: _onRefresh,
-        onLoading: _onLoading,
-        enablePullUp: true,
+        firstRefresh: true,
+        header: MaterialHeader(),
+        footer: MaterialFooter(),
+        onRefresh: () async {
+          _page = 1;
+          _models = await _getItems();
+          setState(() {});
+        },
+        onLoad: () async {
+          _page++;
+          _models.addAll(await _getItems());
+          if (_page >= _pageCount) _refreshController.finishLoad(noMore: true);
+          setState(() {});
+        },
         child: CustomScrollView(
-          controller: _controller,
           slivers: [
-            SliverToBoxAdapter(
-              child: SingleAdSpace(
-                imagePath: 'assets/example/guanggao5.png',
-                radius: 16,
-              ),
-            ),
             SliverToBoxAdapter(
               child: ContainerComment(
                 radius: 8,
@@ -227,14 +105,23 @@ class _PropertyIndexState extends State<PropertyIndex>
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => CircleTrend(
-                  title: _listView[index]['title'],
-                  contentList: _listView[index]['contentList'],
-                  fun: noticeRouter,
-                ),
+                itemBuilder: (context, index) => SizedBox(),
                 itemCount: 3,
               ),
             ),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final BoardItemModel model = _models[index];
+                BoardItemModel preModel;
+                if (index >= 1) preModel = _models[index - 1];
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 8.w),
+                  child: NoticeCard(model: model, preModel: preModel),
+                );
+              },
+              childCount: _models.length,
+            )),
           ],
         ),
       ),

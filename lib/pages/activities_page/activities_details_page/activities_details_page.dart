@@ -17,6 +17,8 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t activities_details_page need to be cleaned.")
 class ActivitiesDetailsPage extends StatefulWidget {
   final Bundle bundle;
   ActivitiesDetailsPage({Key key, this.bundle}) : super(key: key);

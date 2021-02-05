@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +13,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 // Project imports:
 import 'package:akuCommunity/pages/splash/splash_page.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';

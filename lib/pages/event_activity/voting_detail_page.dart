@@ -1,13 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_box.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
-import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int id;

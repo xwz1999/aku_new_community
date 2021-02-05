@@ -1,3 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
+import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/new_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_community_view.dart';
@@ -5,7 +13,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
 
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key key}) : super(key: key);
@@ -39,6 +46,11 @@ class _CommunityPageState extends State<CommunityPage>
           path: R.ASSETS_ICONS_ALARM_PNG,
         ),
       ],
+      fab: FloatingActionButton(
+        onPressed: () => Get.to(AddNewEventPage()),
+        heroTag: 'event_add',
+        child: Icon(Icons.add),
+      ),
       appBarBottom: PreferredSize(
         preferredSize: Size.fromHeight(48),
         child: Align(

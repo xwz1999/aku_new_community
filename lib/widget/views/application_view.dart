@@ -1,10 +1,15 @@
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/constants/application_objects.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class ApplicationView extends StatefulWidget {
   final List<AO> items;
@@ -52,6 +57,7 @@ class _ApplicationViewState extends State<ApplicationView> {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: EdgeInsets.zero,
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemBuilder: (context, index) {

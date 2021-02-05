@@ -1,33 +1,27 @@
+// Package imports:
+import 'package:flustars/flustars.dart';
+
 // Project imports:
 import 'package:akuCommunity/model/common/img_model.dart';
 
-class CommunityTopicModel {
+class MyEventItemModel {
   int id;
-  String title;
-  String summary;
   String content;
   List<ImgModel> imgUrl;
-  int activityNum;
+  String createDate;
 
   String get firstImg {
-    if (imgUrl.isEmpty)
-      return '';
-    else
-      return imgUrl.first.url;
+    String img = '';
+    if (imgUrl.isNotEmpty) img = imgUrl.first.url;
+    return img;
   }
 
-  CommunityTopicModel(
-      {this.id,
-      this.title,
-      this.summary,
-      this.content,
-      this.imgUrl,
-      this.activityNum});
+  DateTime get date => DateUtil.getDateTime(createDate);
 
-  CommunityTopicModel.fromJson(Map<String, dynamic> json) {
+  MyEventItemModel({this.id, this.content, this.imgUrl, this.createDate});
+
+  MyEventItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
-    summary = json['summary'];
     content = json['content'];
     if (json['imgUrl'] != null) {
       imgUrl = new List<ImgModel>();
@@ -36,19 +30,17 @@ class CommunityTopicModel {
       });
     } else
       imgUrl = [];
-    activityNum = json['activityNum'];
+    createDate = json['createDate'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['title'] = this.title;
-    data['summary'] = this.summary;
     data['content'] = this.content;
     if (this.imgUrl != null) {
       data['imgUrl'] = this.imgUrl.map((v) => v.toJson()).toList();
     }
-    data['activityNum'] = this.activityNum;
+    data['createDate'] = this.createDate;
     return data;
   }
 }

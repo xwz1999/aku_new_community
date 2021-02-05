@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -98,7 +97,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               tag: 'AVATAR',
               child: ClipOval(
                 child: FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_ICONS_PROPOSAL_PNG,
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(userProvider.userInfoModel.imgUrl),
                   height: 56.w,
                   width: 56.w,

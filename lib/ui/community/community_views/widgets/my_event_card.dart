@@ -2,56 +2,42 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
+import 'package:akuCommunity/model/community/my_event_item_model.dart';
+import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
 
-class NoticeCard extends StatelessWidget {
-  final BoardItemModel model;
-  final BoardItemModel preModel;
-  const NoticeCard({
+class MyEventCard extends StatelessWidget {
+  final MyEventItemModel model;
+  final MyEventItemModel preModel;
+  const MyEventCard({
     Key key,
     @required this.model,
     @required this.preModel,
   }) : super(key: key);
 
-  bool get sameDay =>
-      model.releaseDate.year == (preModel?.releaseDate?.year ?? 0) &&
-      model.releaseDate.month == (preModel?.releaseDate?.month ?? 0) &&
-      model.releaseDate.day == (preModel?.releaseDate?.day ?? 0);
-
-  bool get isYesterday {
-    DateTime now = DateTime.now();
-    DateTime yestoday = DateTime(now.year, now.month, now.day - 1);
-    return yestoday.year == model.releaseDate.year &&
-        yestoday.month == model.releaseDate.month &&
-        yestoday.day == model.releaseDate.day;
-  }
-
   bool get isFirst => preModel == null;
 
-  bool get notSameYear =>
-      model.releaseDate.year != (preModel?.releaseDate?.year ?? 0);
+  bool get notSameYear => model.date.year != (preModel?.date?.year ?? 0);
+
+  BeeDateUtil get beeDate => BeeDateUtil(model.date);
 
   Widget title() {
-    if (DateUtil.isToday(model.releaseDate.millisecond))
-      return '今天'.text.size(52.sp).bold.make();
-    if (isYesterday)
+    if (beeDate.sameDay) return '今天'.text.size(52.sp).bold.make();
+    if (beeDate.isYesterday)
       return '昨天'.text.size(52.sp).bold.make();
     else
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          model.releaseDate.day.toString().text.size(52.sp).bold.make(),
-          '${model.releaseDate.month}月'.text.size(36.sp).make(),
+          model.date.day.toString().text.size(52.sp).bold.make(),
+          '${model.date.month}月'.text.size(36.sp).make(),
         ],
       );
   }
@@ -62,8 +48,8 @@ class NoticeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        (notSameYear && model.releaseDate.year != DateTime.now().year)
-            ? '${model.releaseDate.year}年'
+        (notSameYear && model.date.year != DateTime.now().year)
+            ? '${model.date.year}年'
                 .text
                 .bold
                 .size(52.sp)
@@ -71,9 +57,7 @@ class NoticeCard extends StatelessWidget {
                 .paddingOnly(left: 32.w, top: isFirst ? 0 : 64.w, bottom: 32.w)
             : SizedBox(),
         MaterialButton(
-          onPressed: () {
-            Get.to(NoticeDetailPage(id: model.id));
-          },
+          onPressed: () {},
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -81,19 +65,19 @@ class NoticeCard extends StatelessWidget {
                 width: 200.w,
                 padding: EdgeInsets.only(left: 32.w),
                 alignment: Alignment.topLeft,
-                child: sameDay ? SizedBox() : title(),
+                child: beeDate.sameDay ? SizedBox() : title(),
               ),
-              model.imgUrls.length == 0
+              model.imgUrl.length == 0
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
                         Get.to(
-                          BeeImagePreview.path(path: model.imgUrls.first.url),
+                          BeeImagePreview.path(path: model.imgUrl.first.url),
                           opaque: false,
                         );
                       },
                       child: Hero(
-                        tag: model.imgUrls.first.url,
+                        tag: model.imgUrl.first.url,
                         child: Container(
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
@@ -102,7 +86,7 @@ class NoticeCard extends StatelessWidget {
                           ),
                           child: FadeInImage.assetNetwork(
                             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: API.image(model.imgUrls.first.url),
+                            image: API.image(model.imgUrl.first.url),
                             width: 152.w,
                             height: 152.w,
                             fit: BoxFit.cover,
@@ -111,7 +95,7 @@ class NoticeCard extends StatelessWidget {
                       ),
                     ),
               10.wb,
-              model.title.text.make().expand(),
+              model.content.text.make().expand(),
             ],
           ),
         ),

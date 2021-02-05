@@ -1,3 +1,8 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
@@ -14,8 +19,6 @@ import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 ///应用对象
 ///Application Object
