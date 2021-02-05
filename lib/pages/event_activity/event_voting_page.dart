@@ -39,12 +39,13 @@ class _EventVotingPageState extends State<EventVotingPage> {
     switch (status) {
       case 1:
       case 2:
-        return '去投票';
+        return '去参与';
       case 3:
         return '已结束';
       case 4:
-        return '已投票';
+        return '已填写';
       default:
+      return '';
     }
   }
 

@@ -154,6 +154,9 @@ class _Manager {
 
   ///活动投票：用户投票
   String get vote => '/user/eventVoting/vote';
+
+  ///问卷调查：app查询所有的问卷调查list
+  String get questionnaireList => '/user/questionnaire/list';
 }
 
 class _Community {

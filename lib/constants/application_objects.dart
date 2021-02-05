@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -66,7 +67,7 @@ List<AO> appObjects = [
   AO('物品出门', R.ASSETS_APPLICATIONS_GOODS_OUT_PNG, GoodsDetoPage()),
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
       AdvicePage(type: AdviceType.COMPLAIN)),
-  AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, QuestionnaireDetailsPage()),
+  AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, QuestionnairePage()),
   AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, GoodsManagePage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, AlarmPage()),
