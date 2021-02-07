@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:akuCommunity/pages/questionnaire_page/questionnaire_page.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,7 +15,6 @@ import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
-import 'package:akuCommunity/pages/questionnaire_page/questionnaire_details_page/questionnaire_details_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';

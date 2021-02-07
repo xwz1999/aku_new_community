@@ -157,6 +157,9 @@ class _Manager {
 
   ///问卷调查：app查询所有的问卷调查list
   String get questionnaireList => '/user/questionnaire/list';
+
+  ///问卷调查：根据问卷id查询问卷详情
+  String get questionnairefindById => '/user/questionnaire/findById';
 }
 
 class _Community {

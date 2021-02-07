@@ -3,6 +3,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -25,6 +26,42 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
     return Container();
   }
 
+  Widget _singleCheck(String title, List<QuestionnaireChoiceVoList> answers) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          title.text.black.size(32.sp).bold.make(),
+          64.w.heightBox,
+          Flex(
+            direction: Axis.horizontal,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ...answers.oddList().map((e){
+                    return Row(
+                      children: [
+                        BeeSingleCheck(
+                          value: e.id,
+                          groupValue: ,
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ].sepWidget(separate: 48.w.heightBox),
+              ).expand(flex: 1),
+              Column(
+                children: [],
+              ).expand(flex: 1),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -35,6 +72,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         onRefresh: () async {
           _model = await ManagerFunc.questionnairefindById(widget.id);
           _onload = false;
+          setState(() {});
         },
         child: _onload
             ? _emptyWidget()
@@ -53,13 +91,24 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                         image: API.image(_model.voResourcesImgList.first.url)),
                   ),
                   40.w.heightBox,
-                  _model.title.text.color(ktextPrimary).size(32.sp).bold.make(),
+                  Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: _model.title.text
+                          .color(ktextPrimary)
+                          .size(32.sp)
+                          .bold
+                          .make()),
                   36.w.heightBox,
                   _model.description.text
                       .color(ktextPrimary)
                       .size(28.sp)
                       .make(),
                   130.w.heightBox,
+                  _singleCheck(
+                      'title',
+                      _model.questionnaireTopicVoList.first
+                          .questionnaireChoiceVoList)
                 ],
               ),
       ),

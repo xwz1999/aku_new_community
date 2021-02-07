@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/moving_company_model.dart';
+import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -181,5 +182,16 @@ class ManagerFunc {
       'candidateId': candleId,
     });
     return baseModel;
+  }
+
+  static Future<QuestionnaireDetialModel> questionnairefindById(int id) async {
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.questionnairefindById,
+      params: {
+        'questionnaireId': id,
+      },
+      showMessage: false,
+    );
+    return QuestionnaireDetialModel.fromJson(baseModel.data);
   }
 }
