@@ -202,6 +202,7 @@ class _Community {
 
   ///社区话题：评论
   String get sendAComment => '/user/gambit/comment';
+
 }
 
 class _Upload {

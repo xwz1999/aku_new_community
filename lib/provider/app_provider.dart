@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/community/hot_topic_model.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -56,5 +60,14 @@ class AppProvider extends ChangeNotifier {
   ///移除我的应用
   removeApplication(AO obj) {
     if (_myApplications.remove(obj)) notifyListeners();
+  }
+
+  List<HotTopicModel> _hotTopicModels = [];
+  List<HotTopicModel> get hotTopicModels => _hotTopicModels;
+  updateHotTopicModel() async {
+    BaseModel model = await NetUtil().get(API.community.hotTopic);
+    _hotTopicModels =
+        (model.data as List).map((e) => HotTopicModel.fromJson(e)).toList();
+    notifyListeners();
   }
 }

@@ -2,12 +2,15 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/model/community/hot_topic_model.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
@@ -29,6 +32,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
   bool _commentable = true;
   List<File> _files = [];
   TextEditingController _textEditingController = TextEditingController();
+  HotTopicModel _hotTopicModel;
 
   ///发表动态
   _addEvent() async {
@@ -40,8 +44,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
     }
 
     Map<String, dynamic> params = {
-      //TODO 话题ID
-      'gambitId': -1,
+      'gambitId': _hotTopicModel == null ? -1 : _hotTopicModel.id,
       'content': content,
       'isComment': _commentable ? 1 : 0,
       'isPublic': 1,
@@ -89,6 +92,46 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
         ],
       ),
     );
+  }
+
+  _pickTopic() {
+    final appProvider = Provider.of<AppProvider>(context);
+    return Wrap(
+      direction: Axis.horizontal,
+      children: [
+        '选择话题：'.text.black.size(34.sp).make(),
+        ...appProvider.hotTopicModels
+            .map((e) => _renderTopic(e))
+            .toList()
+            .sepWidget(separate: 20.wb),
+      ],
+    );
+  }
+
+  Widget _renderTopic(HotTopicModel model) {
+    bool sameModel = model.id == _hotTopicModel?.id ?? -1;
+    return MaterialButton(
+      elevation: 0,
+      color: sameModel ? kPrimaryColor : Colors.white,
+      onPressed: () {
+        _hotTopicModel = model;
+        setState(() {});
+      },
+      child: model.name.text.size(34.sp).black.make(),
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: Color(0xFF999999),
+          width: 1.w,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.updateHotTopicModel();
   }
 
   @override
@@ -146,7 +189,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
           _buildSelectable(),
           Divider(height: 1.w),
           28.hb,
-          //TODO 选择话题
+          _pickTopic(),
         ],
       ).material(color: Colors.white),
     );
