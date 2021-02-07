@@ -199,6 +199,9 @@ class _Community {
 
   ///社区话题：查询主题信息详情
   String get getEventDetail => '/user/gambit/GambitThemeDetail';
+
+  ///社区话题：评论
+  String get sendAComment => '/user/gambit/comment';
 }
 
 class _Upload {

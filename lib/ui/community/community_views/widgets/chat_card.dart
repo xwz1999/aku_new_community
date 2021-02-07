@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/community/community_views/widgets/send_a_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -147,7 +148,12 @@ class _ChatCardState extends State<ChatCard> {
                           height: 78.w,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
-                          onPressed: () {},
+                          onPressed: () {
+                            SendAChat.send(
+                              parentId: 0,
+                              themeId: widget.model.id,
+                            );
+                          },
                           child: [
                             Icon(CupertinoIcons.bubble_right, size: 30.w),
                             10.wb,
@@ -217,37 +223,10 @@ class _ChatCardState extends State<ChatCard> {
         return InkWell(
           child: buffer.toString().text.make(),
           onTap: () {
-            addComment();
+            SendAChat.send(parentId: e.id, themeId: widget.model.id);
           },
         );
       }).toList(),
-    );
-  }
-
-  addComment() async {
-    FocusNode node = FocusNode();
-    node.requestFocus();
-    Get.bottomSheet(
-      Row(
-        children: [
-          TextField(
-            focusNode: node,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              isDense: true,
-            ),
-          ).p(16.w).expand(),
-          16.wb,
-          MaterialButton(
-            color: kPrimaryColor,
-            onPressed: () {},
-            minWidth: 64.w,
-            child: '发送'.text.make(),
-          ),
-          16.wb,
-        ],
-      ).material(color: Colors.white),
-      barrierColor: Colors.transparent,
     );
   }
 
