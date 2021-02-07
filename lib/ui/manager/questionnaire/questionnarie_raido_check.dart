@@ -1,14 +1,14 @@
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
-import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
+import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
-class QuestionnaireSingleCheck extends StatefulWidget {
+class QuestionnaireRadioCheck extends StatefulWidget {
   final String title;
   final List<QuestionnaireChoiceVoList> answers;
-  final int selected;
+  final List<int> selected;
   final Function(int id) onPressed;
-  QuestionnaireSingleCheck(
+  QuestionnaireRadioCheck(
       {Key key,
       @required this.title,
       @required this.answers,
@@ -17,11 +17,11 @@ class QuestionnaireSingleCheck extends StatefulWidget {
       : super(key: key);
 
   @override
-  _QuestionnaireSingleCheckState createState() =>
-      _QuestionnaireSingleCheckState();
+  _QuestionnaireRadioCheckState createState() =>
+      _QuestionnaireRadioCheckState();
 }
 
-class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
+class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +46,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                             onTap: () {
                               widget.onPressed(e.id);
                             },
-                            child: BeeSingleCheck(
+                            child: BeeCheckRadio(
                               value: e.id,
                               groupValue: widget.selected,
                             ),
@@ -68,7 +68,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                             onTap: () {
                               widget.onPressed(e.id);
                             },
-                            child: BeeSingleCheck(
+                            child: BeeCheckRadio(
                               value: e.id,
                               groupValue: widget.selected,
                             ),
