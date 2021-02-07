@@ -30,6 +30,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   List<int> _radio = [];
   int _expanded;
   String _expand;
+  String _short;
   Widget _emptyWidget() {
     return Container();
   }
@@ -95,6 +96,42 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
             ),
           ),
           BeeDivider.horizontal()
+        ],
+      ),
+    );
+  }
+
+  Widget _shortAnswer(String title) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          title.text.color(ktextPrimary).size(28.sp).make(),
+          24.w.heightBox,
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1.w,
+                color: Color(0xFFD4CFBE),
+              ),
+              borderRadius: BorderRadius.circular(8.w),
+            ),
+            child: TextField(
+              minLines: 5,
+              maxLines: 10,
+              scrollPadding: EdgeInsets.zero,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 32.w, vertical: 28.w),
+                  isDense: true),
+              onChanged: (value) {
+                _short = value;
+                setState(() {});
+              },
+            ),
+          )
         ],
       ),
     );
@@ -169,7 +206,8 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                   _expandedCheck(
                       'title',
                       _model.questionnaireTopicVoList.first
-                          .questionnaireChoiceVoList)
+                          .questionnaireChoiceVoList),
+                  _shortAnswer('title')
                 ],
               ),
       ),
