@@ -1,27 +1,6 @@
 //TODO CLEAN BOTTOM CODES.
 @Deprecated("sh*t assets_image need to be cleaned.")
 class AssetsImage {
-  static const  TAB_HOME_UNSELECT = 'assets/icons/tabbar_home_no.png';
-
-  static const TAB_HOME_SELECT = 'assets/icons/tabbar_home.png';
-
-  static const TAB_MARKET_UNSELECT = 'assets/icons/tabbar_market_no.png';
-
-  static const TAB_MARKET_SELECT = 'assets/icons/tabbar_market.png';
-
-  static const TAB_HOUSE_UNSELECT = 'assets/icons/tabbar_house_no.png';
-
-  static const TAB_HOUSE_SELECT = 'assets/icons/tabbar_house.png';
-
-  static const TAB_MESSAGE_UNSELECT = 'assets/icons/tabbar_message_no.png';
-
-  static const TAB_MESSAGE_SELECT = 'assets/icons/tabbar_message.png';
-
-  static const TAB_USER_UNSELECT = 'assets/icons/tabbar_user_no.png';
-
-  static const TAB_USER_SELECT = 'assets/icons/tabbar_user.png';
-
-  static const NOTIFICATION = 'assets/icons/icon_notification.png';
 
   static const LOCATION = 'assets/icons/location.png';
 
