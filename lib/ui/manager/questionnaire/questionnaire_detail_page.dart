@@ -2,6 +2,7 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
@@ -21,46 +22,46 @@ class QuestionnaireDetailPage extends StatefulWidget {
 class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   QuestionnaireDetialModel _model;
   bool _onload = true;
-
+  int _select;
   Widget _emptyWidget() {
     return Container();
   }
 
-  Widget _singleCheck(String title, List<QuestionnaireChoiceVoList> answers) {
-    return Container(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          title.text.black.size(32.sp).bold.make(),
-          64.w.heightBox,
-          Flex(
-            direction: Axis.horizontal,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ...answers.oddList().map((e){
-                    return Row(
-                      children: [
-                        BeeSingleCheck(
-                          value: e.id,
-                          groupValue: ,
-                        ),
-                      ],
-                    );
-                  }).toList(),
-                ].sepWidget(separate: 48.w.heightBox),
-              ).expand(flex: 1),
-              Column(
-                children: [],
-              ).expand(flex: 1),
-            ],
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _singleCheck(String title, List<QuestionnaireChoiceVoList> answers) {
+  //   return Container(
+  //     width: double.infinity,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         title.text.black.size(32.sp).bold.make(),
+  //         64.w.heightBox,
+  //         Flex(
+  //           direction: Axis.horizontal,
+  //           children: [
+  //             Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: <Widget>[
+  //                 ...answers.oddList().map((e){
+  //                   return Row(
+  //                     children: [
+  //                       BeeSingleCheck(
+  //                         value: e.id,
+  //                         groupValue: ,
+  //                       ),
+  //                     ],
+  //                   );
+  //                 }).toList(),
+  //               ].sepWidget(separate: 48.w.heightBox),
+  //             ).expand(flex: 1),
+  //             Column(
+  //               children: [],
+  //             ).expand(flex: 1),
+  //           ],
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +106,16 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       .size(28.sp)
                       .make(),
                   130.w.heightBox,
-                  _singleCheck(
-                      'title',
-                      _model.questionnaireTopicVoList.first
+                  QuestionnaireSingleCheck(
+                      title: 'title',
+                      selected: _select,
+                      onPressed: (id) {
+                        _select = id;
+                        setState(() {
+                          
+                        });
+                      },
+                      answers: _model.questionnaireTopicVoList.first
                           .questionnaireChoiceVoList)
                 ],
               ),
