@@ -4,12 +4,15 @@ import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnarie_raido_check.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int id;
@@ -25,8 +28,76 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   bool _onload = true;
   int _select;
   List<int> _radio = [];
+  int _expanded;
+  String _expand;
   Widget _emptyWidget() {
     return Container();
+  }
+
+  Widget _expandedCheck(String title, List<QuestionnaireChoiceVoList> answers) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          title.text.black.size(32.sp).bold.make(),
+          64.w.heightBox,
+          GestureDetector(
+            onTap: () {
+              Get.bottomSheet(
+                CupertinoActionSheet(
+                  // title: ,
+                  cancelButton: CupertinoActionSheetAction(
+                    child: '取消'.text.black.size(28.sp).make(),
+                    onPressed: () {
+                      Get.back();
+                    },
+                  ),
+                  actions: answers
+                      .map((e) => CupertinoActionSheetAction(
+                          onPressed: () {
+                            _expanded = e.id;
+                            _expand = e.answer;
+                            Get.back();
+                            setState(() {});
+                          },
+                          child: e.answer.text.black
+                              .size(28.sp)
+                              .isIntrinsic
+                              .make()))
+                      .toList(),
+                ),
+              );
+            },
+            child: Row(
+              children: [
+                Container(
+                  // decoration: BoxDecoration(
+                  //     border: Border(
+                  //         bottom: BorderSide(
+                  //             width: 1.w, color: Color(0xFFE8E8E8)))),
+                  height: 96.w,
+                  width: double.infinity,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 32.w, vertical: 28.w),
+                  child: (_expand ?? '请选择')
+                      .text
+                      .color(ktextSubColor)
+                      .size(28.sp)
+                      .make(),
+                ).expand(),
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  color: Color(0xFFD8D8D8),
+                  size: 40.w,
+                ),
+              ],
+            ),
+          ),
+          BeeDivider.horizontal()
+        ],
+      ),
+    );
   }
 
   @override
@@ -95,6 +166,10 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       setState(() {});
                     },
                   ),
+                  _expandedCheck(
+                      'title',
+                      _model.questionnaireTopicVoList.first
+                          .questionnaireChoiceVoList)
                 ],
               ),
       ),
