@@ -34,6 +34,7 @@ class StackAvatar extends StatelessWidget {
                 width: 44.w,
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 image: API.image(avatars[index]),
+                fit: BoxFit.cover,
               ),
             ),
           );

@@ -22,7 +22,7 @@ class ActivityCard extends StatelessWidget {
 
   String get firstPath =>
       (model.imgUrls?.isEmpty ?? true) ? null : model.imgUrls.first.url;
-
+  bool get outdate => model.end.compareTo(DateTime.now()) == -1;
   Widget build(BuildContext context) {
     return MaterialButton(
       clipBehavior: Clip.antiAlias,
@@ -51,6 +51,7 @@ class ActivityCard extends StatelessWidget {
                       image: API.image(firstPath),
                       height: 210.w,
                       width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -87,8 +88,11 @@ class ActivityCard extends StatelessWidget {
               shape: StadiumBorder(),
               height: 44.w,
               minWidth: 120.w,
-              onPressed: () {},
-              child: '去看看'.text.size(20.sp).bold.make(),
+              disabledColor: Color(0xFFABABAB),
+              onPressed: outdate ? null : ActivityDetailPage(id: model.id).to,
+              child: outdate
+                  ? '已结束'.text.size(20.sp).bold.make()
+                  : '去看看'.text.size(20.sp).bold.make(),
             ),
           ].row().p(24.w),
         ],

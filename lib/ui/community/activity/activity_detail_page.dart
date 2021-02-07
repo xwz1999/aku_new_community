@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +33,8 @@ class ActivityDetailPage extends StatefulWidget {
 class _ActivityDetailPageState extends State<ActivityDetailPage> {
   ActivityDetailModel model;
   EasyRefreshController _refreshController = EasyRefreshController();
-
+  bool get outdate =>
+      (model?.registEndDate ?? DateTime(0)).compareTo(DateTime.now()) == -1;
   Widget get emptyWidget => Shimmer.fromColors(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,6 +124,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                   image: e.url,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -184,6 +188,20 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                 ],
               ),
       ).material(color: Colors.white),
+      bottomNavi: outdate
+          ? SizedBox()
+          : BottomButton(
+              onPressed: () async {
+                VoidCallback cancel = BotToast.showLoading();
+                NetUtil().get(
+                  API.community.signUpActivity,
+                  params: {'activityId': widget.id},
+                  showMessage: true,
+                );
+                cancel();
+              },
+              child: '我要报名'.text.make(),
+            ),
     );
   }
 }

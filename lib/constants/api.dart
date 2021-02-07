@@ -203,6 +203,8 @@ class _Community {
   ///社区话题：评论
   String get sendAComment => '/user/gambit/comment';
 
+  ///社区活动：报名
+  String get signUpActivity => '/user/activity/signUp';
 }
 
 class _Upload {
