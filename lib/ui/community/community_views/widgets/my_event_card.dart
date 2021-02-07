@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -62,7 +63,9 @@ class MyEventCard extends StatelessWidget {
                 .paddingOnly(left: 32.w, top: isFirst ? 0 : 64.w, bottom: 32.w)
             : SizedBox(),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(EventDetailPage(themeId: model.id));
+          },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

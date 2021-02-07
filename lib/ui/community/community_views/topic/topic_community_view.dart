@@ -39,7 +39,8 @@ class TopicCommunityViewState extends State<TopicCommunityView>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Hero(
-            tag: "${model.firstImg}_${model.id}",
+            // tag: "${model.firstImg}_${model.id}",
+            tag: model.hashCode.toString(),
             child: Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
