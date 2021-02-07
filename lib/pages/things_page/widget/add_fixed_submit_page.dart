@@ -235,6 +235,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
       bottomNavi: BottomButton(
         onPressed: _canSubmit(_selectType, _textEditingController.text)
             ? () async {
+                VoidCallback cancel = BotToast.showLoading();
                 List<String> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.reportRepairInsert(
@@ -247,6 +248,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   FinishFixedSubmitPage().to();
                 } else
                   BotToast.showText(text: baseModel.message);
+                cancel();
               }
             : () {
                 BotToast.showText(text: '请填写完整报修信息！');

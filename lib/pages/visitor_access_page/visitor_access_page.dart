@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -268,9 +269,11 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     String tel,
   ) {
     return InkWell(
-      onTap: () {
-        ManagerFunc.insertVisitorInfo(id, type, _userName.text, _selectSex, tel,
-            _userCarNum.text, dateTime);
+      onTap: () async {
+        VoidCallback cancel = BotToast.showLoading();
+        await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
+            _selectSex, tel, _userCarNum.text, dateTime);
+        cancel();
         Get.back();
       },
       child: Container(

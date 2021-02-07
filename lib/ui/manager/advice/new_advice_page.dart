@@ -189,6 +189,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
       ),
       bottomNavi: BottomButton(
         onPressed: () {
+          VoidCallback cancel = BotToast.showLoading();
           if (_formKey.currentState.validate()) {
             int type = 1;
             switch (widget.type) {
@@ -201,6 +202,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
             }
             addAdvice(type, _files, _editingController.text);
           }
+          cancel();
         },
         child: '确认提交'.text.make(),
       ),

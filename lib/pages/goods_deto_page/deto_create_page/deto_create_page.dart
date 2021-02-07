@@ -439,6 +439,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         child: '确认提交'.text.color(ktextPrimary).bold.make(),
         onPressed: _canSubmit(_selectWeight, _selectApproach, _date, _itemName)
             ? () async {
+                VoidCallback cancel = BotToast.showLoading();
                 List<String> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.articleOutSubmit(
@@ -455,6 +456,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   Get.back();
                 } else
                   BotToast.showText(text: baseModel.message);
+                cancel();
               }
             : () {
                 BotToast.showText(text: '请填写完整物品出户信息！');

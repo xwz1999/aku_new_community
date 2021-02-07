@@ -14,13 +14,13 @@ class PropertyCard extends StatelessWidget {
   PropertyCard({Key key}) : super(key: key);
 
   final List<Map<String, dynamic>> _listCard = [
-    {
-      'title': '语音管家',
-      'subtitle': '随时随地帮你下单',
-      'image': AssetsImage.PROPERTY,
-      'coloList': [Color(0xff33dfe4), Color(0xff00ccf3)],
-      'shapeColoList': [Color(0xff04ddf2), Color(0xff339a8f)]
-    },
+    // {
+    //   'title': '语音管家',
+    //   'subtitle': '随时随地帮你下单',
+    //   'image': AssetsImage.PROPERTY,
+    //   'coloList': [Color(0xff33dfe4), Color(0xff00ccf3)],
+    //   'shapeColoList': [Color(0xff04ddf2), Color(0xff339a8f)]
+    // },
     {
       'title': '电话物业',
       'subtitle': '24小时在线',
@@ -182,9 +182,9 @@ class PropertyCard extends StatelessWidget {
           );
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 1,
             crossAxisSpacing: 40.w,
-            childAspectRatio: 323.w / 160.w),
+            childAspectRatio: 600.w / 160.w),
       ),
     );
   }
