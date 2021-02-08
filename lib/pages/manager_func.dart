@@ -204,7 +204,7 @@ class ManagerFunc {
       API.manager.questionnaireSubmit,
       params: {
         'id': id,
-        'appQuestionnaireAnswerSubmits': jsonEncode(model),
+        'appQuestionnaireAnswerSubmits':model,
       },
       showMessage: true,
     );
