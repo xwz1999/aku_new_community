@@ -12,17 +12,19 @@ import 'package:velocity_x/velocity_x.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 
-//TODO 图片大小限制
 class BeeImagePicker {
-  static Future<File> pick({
-    String title,
-  }) async {
+  static Future<File> pick(
+      {String title, double maxWidth = 1000, double maxHeight = 1000}) async {
     PickedFile file = await Get.bottomSheet(CupertinoActionSheet(
       title: title.text.isIntrinsic.make(),
       actions: [
         CupertinoDialogAction(
           onPressed: () async => Get.back(
-            result: await ImagePicker().getImage(source: ImageSource.gallery),
+            result: await ImagePicker().getImage(
+              source: ImageSource.gallery,
+              maxHeight: maxHeight,
+              maxWidth: maxWidth,
+            ),
           ),
           child: [
             Icon(CupertinoIcons.photo),
@@ -32,7 +34,11 @@ class BeeImagePicker {
         ),
         CupertinoDialogAction(
           onPressed: () async => Get.back(
-            result: await ImagePicker().getImage(source: ImageSource.camera),
+            result: await ImagePicker().getImage(
+              source: ImageSource.camera,
+              maxHeight: maxHeight,
+              maxWidth: maxWidth,
+            ),
           ),
           child: [
             Icon(CupertinoIcons.camera),
