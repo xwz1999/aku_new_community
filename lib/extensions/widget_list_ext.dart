@@ -15,3 +15,27 @@ extension WidgetListExt on List<Widget> {
     });
   }
 }
+
+extension OddListExt<T> on List<T> {
+  List<T> oddList() {
+    List<T> _newList = [];
+    this.forEach((element) {
+      if (this.indexOf(element).isEven) {
+        _newList.add(element);
+      }
+    });
+    return _newList;
+  }
+}
+
+extension EvenListExt<T> on List<T> {
+  List<T>  evenList() {
+    List<T>  _newList = [];
+    this.forEach((element) {
+      if (this.indexOf(element).isOdd) {
+        _newList.add(element);
+      }
+    });
+    return _newList;
+  }
+}
