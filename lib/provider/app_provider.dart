@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/model/common/real_time_weather_model.dart';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -68,6 +71,69 @@ class AppProvider extends ChangeNotifier {
     BaseModel model = await NetUtil().get(API.community.hotTopic);
     _hotTopicModels =
         (model.data as List).map((e) => HotTopicModel.fromJson(e)).toList();
+    notifyListeners();
+  }
+
+  RealTimeWeatherModel _weatherModel;
+  RealTimeWeatherModel get weatherModel => _weatherModel;
+
+  String get weatherTemp =>
+      _weatherModel?.result?.realtime?.temperature?.toStringAsFixed(0) ?? '';
+
+  String get weatherType {
+    if (_weatherModel?.result?.realtime?.skycon == null) return '';
+    switch (_weatherModel.result.realtime.skycon) {
+      case 'CLEAR_DAY':
+      case 'CLEAR_NIGHT':
+        return '晴';
+      case 'PARTLY_CLOUDY_DAY':
+      case 'PARTLY_CLOUDY_NIGHT':
+        return '多云';
+      case 'CLOUDY':
+        return '阴';
+      case 'LIGHT_HAZE':
+        return '轻度雾霾';
+      case 'MODERATE_HAZE':
+        return '中度雾霾';
+      case 'HEAVY_HAZE':
+        return '重度雾霾';
+      case 'LIGHT_RAIN':
+        return '小雨';
+      case 'MODERATE_RAIN':
+        return '中雨';
+      case 'HEAVY_RAIN':
+        return '大雨';
+      case 'STORM_RAIN':
+        return '暴雨';
+      case 'FOG':
+        return '雾';
+      case 'LIGHT_SNOW':
+        return '小雪';
+      case 'MODERATE_SNOW':
+        return '中雪';
+      case 'HEAVY_SNOW':
+        return '大雪';
+      case 'STORM_SNOW':
+        return '暴雪';
+      case 'DUST':
+        return '浮尘';
+      case 'SAND':
+        return '沙尘';
+      case 'WIND':
+        return '大风';
+      default:
+        return '';
+    }
+  }
+
+  Location _location;
+  Location get location => _location;
+  getWeather() async {
+    _location = await AmapLocation.instance.fetchLocation();
+    Response response = await Dio().get(
+      'https://api.caiyunapp.com/v2.5/Rl2lmppO9q15q8W6/${_location.latLng.longitude},${_location.latLng.latitude}/realtime.json',
+    );
+    _weatherModel = RealTimeWeatherModel.fromJson(response.data);
     notifyListeners();
   }
 }

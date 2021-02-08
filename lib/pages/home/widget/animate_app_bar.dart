@@ -1,8 +1,10 @@
 // Flutter imports:
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
@@ -37,6 +39,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
       title: 'TEST'.text.make(),
       backgroundColor: _bgColor,
@@ -49,7 +52,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '深圳',
+                appProvider?.location?.city ?? '',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24.sp,
@@ -57,7 +60,8 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
                 ),
               ),
               Text(
-                '阴 27℃',
+                '${appProvider.weatherType} ${appProvider.weatherTemp}℃',
+                // '阴 27℃',
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Color(0xff333333),

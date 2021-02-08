@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/weather/weather_util.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
     await HiveStore.init();
 
     //初始化AMap
-    AmapLocation.instance.init(iosKey: 'ios key');
+    await AmapLocation.instance.init(iosKey: 'ios key');
   }
 
   Future _initOp() async {
@@ -42,6 +43,7 @@ class _SplashPageState extends State<SplashPage> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.initApplications();
+    appProvider.getWeather();
     //app init delay 2 second
     await Future.delayed(Duration(seconds: 2));
     if (HiveStore.appBox.get('login') ?? false) {
