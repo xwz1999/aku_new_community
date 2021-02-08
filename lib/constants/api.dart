@@ -1,6 +1,6 @@
 class API {
   ///HOST
-  static const String host = 'http://192.168.2.201:8804';
+  static const String host = 'http://test.akuhotel.com:8804';
 
   ///接口基础地址
   static const String baseURL = '$host/IntelligentCommunity/app';
