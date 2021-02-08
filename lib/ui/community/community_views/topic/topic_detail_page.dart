@@ -52,7 +52,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
               SliverPersistentHeader(
                 delegate: TopicSliverHeader(
                   id: widget.model.id,
-                  title: 'TEST',
+                  title: widget.model.summary,
                   imgPath: widget.model.firstImg,
                   subTitle: widget.model.content,
                 ),
@@ -64,7 +64,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   (context, index) {
                     final item = items[index] as EventItemModel;
                     return ChatCard(
-                      model:item,
+                      model: item,
                       onDelete: () {
                         _refreshController.callRefresh();
                       },

@@ -41,7 +41,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
-      title: 'TEST'.text.make(),
+      title: '人才公寓智慧小区'.text.make(),
       backgroundColor: _bgColor,
       elevation: 0,
       centerTitle: true,
