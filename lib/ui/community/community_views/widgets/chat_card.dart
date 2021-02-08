@@ -231,6 +231,8 @@ class _ChatCardState extends State<ChatCard> {
   }
 
   _renderLikeAndComment() {
+    if (widget.model.likeNames.isEmpty &&
+        widget.model.gambitThemeCommentVoList.isEmpty) return SizedBox();
     return Material(
       borderRadius: BorderRadius.circular(8.w),
       color: Color(0xFFF7F7F7),
@@ -284,6 +286,7 @@ class _ChatCardState extends State<ChatCard> {
                 image: API.image(firstHead),
                 height: 86.w,
                 width: 86.w,
+                fit: BoxFit.cover,
               ),
             ),
             24.wb,

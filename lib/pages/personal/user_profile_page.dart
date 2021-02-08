@@ -101,6 +101,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   image: API.image(userProvider.userInfoModel.imgUrl),
                   height: 56.w,
                   width: 56.w,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

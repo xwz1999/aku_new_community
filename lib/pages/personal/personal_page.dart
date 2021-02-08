@@ -129,6 +129,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     userProvider?.userInfoModel?.imgUrl ?? ''),
                                 height: 106.w,
                                 width: 106.w,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
