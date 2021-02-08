@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/utils/weather/weather_util.dart';
 import 'package:flutter/material.dart';
 
@@ -68,7 +69,7 @@ class _SplashPageState extends State<SplashPage> {
       body: SizedBox(
         height: 80,
         width: 80,
-        child: Placeholder(),
+        child: Image.asset(R.ASSETS_IMAGES_LOGO_PNG),
       ).centered(),
       bottomNavigationBar: SizedBox(
         child: CircularProgressIndicator().centered(),
