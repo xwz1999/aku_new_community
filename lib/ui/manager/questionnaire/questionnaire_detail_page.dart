@@ -6,6 +6,8 @@ import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_truefalse.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnarie_raido_check.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/submit_complish_page.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
@@ -248,7 +250,12 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
       bottomNavi: BottomButton(
         child: '确认提交'.text.black.size(32.sp).bold.make(),
         onPressed: () async {
-          await ManagerFunc.questionnaireSubmit(widget.id, _submitModels);
+          BaseModel baseModel =
+              await ManagerFunc.questionnaireSubmit(widget.id, _submitModels);
+          SubmitComplishPage(
+            status: baseModel.status,
+            message: baseModel.message,
+          ).to();
         },
       ),
     );
