@@ -11,6 +11,7 @@ import 'package:akuCommunity/model/community/hot_topic_model.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:power_logger/power_logger.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为
@@ -133,6 +134,7 @@ class AppProvider extends ChangeNotifier {
     Response response = await Dio().get(
       'https://api.caiyunapp.com/v2.5/Rl2lmppO9q15q8W6/${_location.latLng.longitude},${_location.latLng.latitude}/realtime.json',
     );
+    LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);
     notifyListeners();
   }

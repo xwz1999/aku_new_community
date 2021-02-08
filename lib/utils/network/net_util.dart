@@ -19,7 +19,6 @@ import 'package:akuCommunity/utils/network/base_model.dart';
 
 class NetUtil {
   Dio _dio;
-  Logger _logger;
   static final NetUtil _netUtil = NetUtil._internal();
 
   factory NetUtil() => _netUtil;
@@ -27,11 +26,6 @@ class NetUtil {
   Dio get dio => _dio;
 
   NetUtil._internal() {
-    _logger = Logger(
-        printer: PrettyPrinter(
-      methodCount: 2,
-      errorMethodCount: 4,
-    ));
     BaseOptions options = BaseOptions(
       baseUrl: API.baseURL,
       connectTimeout: API.networkTimeOut,
@@ -43,12 +37,6 @@ class NetUtil {
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options) async => options,
       onResponse: (Response response) async {
-        _logger.v({
-          'path': response.request.path,
-          'header': response.request.headers,
-          'params': response.request.queryParameters,
-          'data': response.data,
-        });
         LoggerData.addData(response);
         return response;
       },
@@ -61,7 +49,6 @@ class NetUtil {
 
   ///call auth after login
   auth(String token) {
-    _logger.d('setToken@$token');
     _dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
   }
 
@@ -150,10 +137,6 @@ class NetUtil {
   }
 
   _parseErr(DioError err) {
-    _logger.v({
-      'type': err.type.toString(),
-      'message': err.message,
-    });
     LoggerData.addData(err);
     _makeToast(String message) {
       BotToast.showText(text: '$message\_${err?.response?.statusCode ?? ''}');
