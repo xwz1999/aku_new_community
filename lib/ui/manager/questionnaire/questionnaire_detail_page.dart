@@ -151,6 +151,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
             answers: questionModel.questionnaireChoiceVoList);
 
       case 2:
+        submitModels[index].choiceAnswer.remove(-1);
         return QuestionnaireRadioCheck(
           title: questionModel.topic,
           selected: submitModels[index].choiceAnswer,
@@ -169,7 +170,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         return _expandedCheck(questionModel.topic,
             questionModel.questionnaireChoiceVoList, submitModels, index);
       case 4:
-      return   QuestionnaireTruefalse(
+        return QuestionnaireTruefalse(
           title: questionModel.topic,
           selected: submitModels[index].choiceAnswer.first,
           onPressed: (id) {
@@ -246,7 +247,9 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
       ),
       bottomNavi: BottomButton(
         child: '确认提交'.text.black.size(32.sp).bold.make(),
-        onPressed: () {},
+        onPressed: () async {
+          await ManagerFunc.questionnaireSubmit(widget.id, _submitModels);
+        },
       ),
     );
   }

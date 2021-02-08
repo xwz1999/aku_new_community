@@ -1,7 +1,10 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/moving_company_model.dart';
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
+import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -193,5 +196,18 @@ class ManagerFunc {
       showMessage: false,
     );
     return QuestionnaireDetialModel.fromJson(baseModel.data);
+  }
+
+  static Future<BaseModel> questionnaireSubmit(
+      int id, List<AppQuestionnaireAnswerSubmits> model) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.questionnaireSubmit,
+      params: {
+        'id': id,
+        'appQuestionnaireAnswerSubmits': jsonEncode(model),
+      },
+      showMessage: true,
+    );
+    return baseModel;
   }
 }
