@@ -1,13 +1,12 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/ui/search/bee_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:flutter_icons/flutter_icons.dart';
-
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/search_bar_delegate.dart';
+import 'package:get/get.dart';
 
 class HomeSearch extends StatefulWidget {
   HomeSearch({Key key}) : super(key: key);
@@ -33,37 +32,31 @@ class _HomeSearchState extends State<HomeSearch> {
         right: 32.w,
         bottom: 17.w,
       ),
-      child: InkWell(
-        onTap: () {
-          showSearch(context: context, delegate: SearchBarDelegate());
+      child: MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        height: 72.w,
+        shape: StadiumBorder(),
+        elevation: 0,
+        minWidth: double.infinity,
+        color: Color(0xFFF3F3F3),
+        onPressed: () {
+          Get.to(BeeSearch());
         },
-        child: Container(
-          width: 686.w,
-          height: 72.w,
-          padding: EdgeInsets.only(
-            top: 16.w,
-            bottom: 16.w,
-            left: 24.w,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(36.w)),
-          ),
-          child: Row(children: [
+        child: Row(
+          children: [
             Icon(
-              AntDesign.search1,
-              color: Color(0xff999999),
-              size: 28.sp,
+              Icons.search,
+              size: 32.w,
+              color: Color(0xFF666666),
             ),
-            SizedBox(width: 16.w),
-            Text(
-              '搜索商品、活动、帖子、应用',
-              style: TextStyle(
-                fontSize: 28.sp,
-                color: Color(0xff999999),
-              ),
-            )
-          ]),
+            10.wb,
+            '搜索商品、活动、帖子、应用'
+                .text
+                .size(28.sp)
+                .color(ktextSubColor)
+                .make()
+                .expand(),
+          ],
         ),
       ),
     );
