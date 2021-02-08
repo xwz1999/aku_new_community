@@ -31,7 +31,7 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
   bool _onloading = true;
   String get result {
     if (_selected == _companyModel.appMovingCompanyVoList.length) {
-      return null;
+      return '已选择自己联系';
     } else {
       return _companyModel.appMovingCompanyVoList[_selected].tel;
     }
@@ -92,7 +92,7 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
               ],
             ).expand(),
           ],
-        ),
+        ).material(color: Colors.transparent),
       ),
     );
   }
@@ -104,6 +104,7 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
         setState(() {});
       },
       child: Container(
+        width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 28.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,7 +120,7 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
             '自己联系'.text.color(ktextPrimary).size(28.sp).bold.make()
           ],
         ),
-      ),
+      ).material(color: Colors.transparent),
     );
   }
 

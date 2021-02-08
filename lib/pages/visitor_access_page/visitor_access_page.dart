@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,79 +35,126 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userCarNum = new TextEditingController();
   DateTime dateTime;
   int _selectSex;
-  Widget _house() {
-    return Container(
-      padding: EdgeInsets.only(
-        left: 36.w,
-        right: 36.w,
-        top: 32.w,
-      ),
+  // Widget _house() {
+  //   return Container(
+  //     padding: EdgeInsets.only(
+  //       left: 36.w,
+  //       right: 36.w,
+  //       top: 32.w,
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           '来访房屋',
+  //           style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
+  //         ),
+  //         SizedBox(height: 32.w),
+  //         Container(
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: [
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.start,
+  //                 children: [
+  //                   Image.asset(
+  //                     AssetsImage.HOUSE,
+  //                     height: 60.w,
+  //                     width: 60.w,
+  //                   ),
+  //                   SizedBox(width: 40.w),
+  //                   Column(
+  //                     crossAxisAlignment: CrossAxisAlignment.start,
+  //                     children: [
+  //                       Text(
+  //                         '宁波华茂悦峰',
+  //                         style: TextStyle(
+  //                             fontWeight: FontWeight.w600,
+  //                             fontSize: 34.sp,
+  //                             color: Color(0xff333333)),
+  //                       ),
+  //                       SizedBox(height: 10.w),
+  //                       Text(
+  //                         '1幢-1单元-702室',
+  //                         style: TextStyle(
+  //                             fontWeight: FontWeight.w600,
+  //                             fontSize: 34.sp,
+  //                             color: Color(0xff333333)),
+  //                       )
+  //                     ],
+  //                   ),
+  //                 ],
+  //               ),
+  //               Container(
+  //                 alignment: Alignment.center,
+  //                 padding: EdgeInsets.symmetric(
+  //                   vertical: 14.w,
+  //                   horizontal: 21.w,
+  //                 ),
+  //                 decoration: BoxDecoration(
+  //                   color: Color(0xffFEC200),
+  //                   borderRadius: BorderRadius.all(Radius.circular(4)),
+  //                 ),
+  //                 child: Text(
+  //                   '邀请客户填写',
+  //                   style: TextStyle(
+  //                       fontWeight: FontWeight.w600,
+  //                       fontSize: 28.sp,
+  //                       color: Color(0xff333333)),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         SizedBox(height: 26.w),
+  //         Divider(),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  Widget _buildHouseCard(
+    String title,
+    String detail,
+  ) {
+    return Padding(
+      padding: EdgeInsets.all(32.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '来访房屋',
-            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
-          ),
-          SizedBox(height: 32.w),
-          Container(
+          '报修房屋'.text.black.size(28.sp).make(),
+          32.w.heightBox,
+          GestureDetector(
+            onTap: () {
+              MyHousePage().to();
+            },
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      AssetsImage.HOUSE,
-                      height: 60.w,
-                      width: 60.w,
-                    ),
-                    SizedBox(width: 40.w),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '宁波华茂悦峰',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 34.sp,
-                              color: Color(0xff333333)),
-                        ),
-                        SizedBox(height: 10.w),
-                        Text(
-                          '1幢-1单元-702室',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 34.sp,
-                              color: Color(0xff333333)),
-                        )
-                      ],
-                    ),
-                  ],
+                Image.asset(
+                  R.ASSETS_ICONS_HOUSE_PNG,
+                  width: 60.w,
+                  height: 60.w,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(
-                    vertical: 14.w,
-                    horizontal: 21.w,
+                40.w.widthBox,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      title.text.black.size(32.sp).bold.make(),
+                      10.w.heightBox,
+                      detail.text.black.size(32.sp).bold.make()
+                    ],
                   ),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFEC200),
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                  ),
-                  child: Text(
-                    '邀请客户填写',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28.sp,
-                        color: Color(0xff333333)),
-                  ),
+                ),
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  size: 40.w,
                 ),
               ],
-            ),
+            ).material(color: Colors.transparent),
           ),
-          SizedBox(height: 26.w),
-          Divider(),
+          24.w.heightBox,
+          BeeDivider.horizontal(),
         ],
       ),
     );
@@ -339,7 +390,12 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 },
                 child: Column(
                   children: [
-                    _house(),
+                    _buildHouseCard(
+                        kEstateName,
+                        userProvider.userDetailModel.estateNames.isEmpty
+                            ? ''
+                            : BeeParse.getEstateName(
+                                userProvider.userDetailModel.estateNames[0])),
                     _input('访客姓名', '请输入访客姓名', _userName),
                     _sexSelect(),
                     _input('是否驾车', '请输入,例如浙A88888(没有驾车可不填)', _userCarNum),

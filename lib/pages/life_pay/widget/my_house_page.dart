@@ -49,8 +49,9 @@ Widget _unPaidTag() {
 
 class _MyHousePageState extends State<MyHousePage> {
   int _select;
-  List<EstatePaymentModel> _list;
-  List<EstatePaymentModel> get _unPaidList => _list.where((element) => element.status == 1).toList();
+  List<EstatePaymentModel> _list = [];
+  List<EstatePaymentModel> get _unPaidList =>
+      _list.where((element) => element.status == 1).toList();
   @override
   void initState() {
     super.initState();
@@ -59,7 +60,6 @@ class _MyHousePageState extends State<MyHousePage> {
         _list = value.data;
         return _list;
       });
-      
     }
   }
 
@@ -67,41 +67,41 @@ class _MyHousePageState extends State<MyHousePage> {
       {bool paid = false}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () {
-              _select = index;
-              setState(() {});
-            },
-            child: CommonRadio(
+      child: GestureDetector(
+        onTap: () {
+          _select = index;
+          setState(() {});
+        },
+        child: Row(
+          children: [
+            CommonRadio(
               value: index,
               groupValue: _select,
               size: 32.w,
             ),
-          ),
-          24.w.widthBox,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              kEstateName.text.size(24.sp).color(ktextSubColor).bold.make(),
-              16.w.heightBox,
-              BeeParse.getEstateName(estateName)
-                  .text
-                  .color(ktextPrimary)
-                  .size(28.sp)
-                  .bold
-                  .make(),
-            ],
-          ),
-          Spacer(),
-          currentHouse == estateName
-              ? _currentHouseTag()
-              : paid
-                  ? _unPaidTag()
-                  : SizedBox()
-        ],
+            24.w.widthBox,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                kEstateName.text.size(24.sp).color(ktextSubColor).bold.make(),
+                16.w.heightBox,
+                BeeParse.getEstateName(estateName)
+                    .text
+                    .color(ktextPrimary)
+                    .size(28.sp)
+                    .bold
+                    .make(),
+              ],
+            ),
+            Spacer(),
+            currentHouse == estateName
+                ? _currentHouseTag()
+                : paid
+                    ? _unPaidTag()
+                    : SizedBox()
+          ],
+        ).material(color: Colors.transparent),
       ),
     );
   }

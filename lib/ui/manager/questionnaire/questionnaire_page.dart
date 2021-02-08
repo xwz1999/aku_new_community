@@ -13,6 +13,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_detail_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
+import 'package:common_utils/common_utils.dart';
 
 class QuestionnairePage extends StatefulWidget {
   QuestionnairePage({Key key}) : super(key: key);
@@ -43,94 +44,107 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   }
 
   Widget _buildCard(QuestionnaireModel model) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.w),
-        color: kForeGroundColor,
-      ),
-      width: double.infinity,
-      // height: 236.w,
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.w),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(8.w)),
-                width: 160.w,
-                height: 120.w,
-                child: ClipRRect(
-                  child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                      image: API.image(model.imgUrls.first.url)),
+    return GestureDetector(
+      onTap: () {
+        QuestionnaireDetailPage(
+          id: model.id,
+        ).to();
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.w),
+          color: kForeGroundColor,
+        ),
+        width: double.infinity,
+        // height: 236.w,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.w),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8.w)),
+                  width: 160.w,
+                  height: 120.w,
+                  child: ClipRRect(
+                    child: FadeInImage.assetNetwork(
+                        placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                        image: API.image(model.imgUrls.first.url)),
+                  ),
                 ),
-              ),
-              20.w.widthBox,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  model.title.text.black.size(28.sp).make(),
-                  6.w.heightBox,
-                  model.description.text
-                      .color(ktextSubColor)
-                      .size(28.sp)
-                      .maxLines(1)
-                      .overflow(TextOverflow.ellipsis)
+                20.w.widthBox,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    model.title.text.black.size(28.sp).make(),
+                    6.w.heightBox,
+                    model.description.text
+                        .color(ktextSubColor)
+                        .size(28.sp)
+                        .maxLines(1)
+                        .overflow(TextOverflow.ellipsis)
+                        .make(),
+                    6.w.heightBox,
+                    RichText(
+                        text: TextSpan(
+                            text: '参与时间:',
+                            style: TextStyle(
+                              color: ktextSubColor,
+                              fontSize: 24.sp,
+                            ),
+                            children: [
+                          TextSpan(
+                            style: TextStyle(
+                              color: ktextPrimary,
+                              fontSize: 24.sp,
+                            ),
+                            text: DateUtil.formatDateStr(model.beginDate,
+                                    format: "MM月dd日 HH:mm") +
+                                '至' +
+                                DateUtil.formatDateStr(model.endDate,
+                                    format: "MM月dd日 HH:mm"),
+                          ),
+                        ])),
+                  ],
+                ).expand()
+              ],
+            ),
+            40.w.heightBox,
+            Row(
+              children: [
+                StackAvatar(
+                    avatars: model.headImgURls.map((e) => e.url).toList()),
+                26.w.widthBox,
+                '${model.answerNum}人已参加'.text.black.size(20.sp).make(),
+                Spacer(),
+                MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22.w)),
+                  color: model.status == 3 ? kDarkSubColor : kPrimaryColor,
+                  minWidth: 120.w,
+                  height: 44.w,
+                  // padding:
+                  //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
+                  elevation: 0,
+                  onPressed: () {
+                    QuestionnaireDetailPage(
+                      id: model.id,
+                    ).to();
+                  },
+                  child: (_getButtonText(model.status))
+                      .text
+                      .black
+                      .size(20.sp)
+                      .bold
                       .make(),
-                  6.w.heightBox,
-                  RichText(
-                      text: TextSpan(
-                          text: '参与时间:',
-                          style: TextStyle(
-                            color: ktextSubColor,
-                            fontSize: 24.sp,
-                          ),
-                          children: [
-                        TextSpan(
-                          style: TextStyle(
-                            color: ktextPrimary,
-                            fontSize: 24.sp,
-                          ),
-                          text: model.beginDate + '至' + model.endDate,
-                        ),
-                      ])),
-                ],
-              ).expand()
-            ],
-          ),
-          40.w.heightBox,
-          Row(
-            children: [
-              StackAvatar(
-                  avatars: model.headImgURls.map((e) => e.url).toList()),
-              26.w.widthBox,
-              '${model.answerNum}人已参加'.text.black.size(20.sp).make(),
-              Spacer(),
-              MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(22.w)),
-                color: model.status == 3 ? kDarkSubColor : kPrimaryColor,
-                minWidth: 120.w,
-                height: 44.w,
-                // padding:
-                //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
-                elevation: 0,
-                onPressed: () {
-                  QuestionnaireDetailPage(id: model.id,).to();
-                },
-                child: (_getButtonText(model.status))
-                    .text
-                    .black
-                    .size(20.sp)
-                    .bold
-                    .make(),
-              ),
-            ],
-          )
-        ],
-      ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ).material(color: Colors.transparent),
     );
   }
 
