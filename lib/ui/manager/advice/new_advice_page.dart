@@ -25,14 +25,16 @@ import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;
-  NewAdvicePage({Key key, @required this.type}) : super(key: key);
+  final int initType;
+  NewAdvicePage({Key key, @required this.type, @required this.initType})
+      : super(key: key);
 
   @override
   _NewAdvicePageState createState() => _NewAdvicePageState();
 }
 
 class _NewAdvicePageState extends State<NewAdvicePage> {
-  int _type = 0;
+  int _type;
   List<File> _files = [];
   TextEditingController _editingController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -113,6 +115,12 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
     if (baseModel.status) {
       Get.back(result: true);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _type = widget.initType;
   }
 
   @override
