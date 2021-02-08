@@ -293,7 +293,30 @@ class _ChatCardState extends State<ChatCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.model.createName.text.black.size(36.sp).make(),
+                [
+                  widget.model.createName.text.black
+                      .size(36.sp)
+                      .make()
+                      .expand(),
+                  PopupMenuButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.w)),
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          child: '举报'.text.isIntrinsic.make(),
+                          value: 0,
+                        ),
+                      ];
+                    },
+                    onSelected: (_) async {
+                      VoidCallback cancel = BotToast.showLoading();
+                      await Future.delayed(Duration(milliseconds: 1000));
+                      cancel();
+                      BotToast.showText(text: '举报成功');
+                    },
+                  ),
+                ].row(),
                 6.hb,
                 widget.model.content.text.black.make(),
                 20.hb,

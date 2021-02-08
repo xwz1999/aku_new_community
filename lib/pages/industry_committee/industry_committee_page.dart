@@ -60,19 +60,19 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
           ))
           .make()
           .expand(),
-      MaterialButton(
-        onPressed: CommitteeMailboxPage().to,
-        height: 98.w,
-        color: kPrimaryColor,
-        child: '业委会信箱'.text.size(32.sp).color(ktextPrimary).make(),
-      )
-          .box
-          .color(kPrimaryColor)
-          .padding(EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewPadding.bottom,
-          ))
-          .make()
-          .expand(),
+      // MaterialButton(
+      //   onPressed: CommitteeMailboxPage().to,
+      //   height: 98.w,
+      //   color: kPrimaryColor,
+      //   child: '业委会信箱'.text.size(32.sp).color(ktextPrimary).make(),
+      // )
+      //     .box
+      //     .color(kPrimaryColor)
+      //     .padding(EdgeInsets.only(
+      //       bottom: MediaQuery.of(context).viewPadding.bottom,
+      //     ))
+      //     .make()
+      //     .expand(),
     ].row();
   }
 
@@ -83,10 +83,12 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4.w),
-            child: SizedBox(
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: API.image(model.firstImg),
               height: 150.w,
               width: 150.w,
-              child: Placeholder(),
+              fit: BoxFit.cover,
             ),
           ),
           24.wb,
@@ -100,7 +102,10 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                   height: 44.w,
                   padding:
                       EdgeInsets.symmetric(horizontal: 22.w, vertical: 6.w),
-                  child: 'XXX'.text.size(24.sp).color(ktextPrimary).make(),
+                  child: model.positionValue.text
+                      .size(24.sp)
+                      .color(ktextPrimary)
+                      .make(),
                   decoration: BoxDecoration(
                     color: Color(0xFFFFF3CD),
                     borderRadius: BorderRadius.circular(22.w),
@@ -115,7 +120,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                     .size(24.sp)
                     .color(ktextSubColor)
                     .make(),
-                '任职期限：XXXXX'.text.size(24.sp).color(ktextSubColor).make(),
+                // '任职期限：XXXXX'.text.size(24.sp).color(ktextSubColor).make(),
                 '从事岗位：${model.profession}'
                     .text
                     .size(24.sp)

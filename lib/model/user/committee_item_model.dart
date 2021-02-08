@@ -1,3 +1,5 @@
+import 'package:akuCommunity/model/common/img_model.dart';
+
 class CommitteeItemModel {
   int id;
   int positionId;
@@ -10,6 +12,12 @@ class CommitteeItemModel {
   String roomNumber;
   int unitNo;
   int estateNo;
+  List<ImgModel> imgUrls;
+
+  String get firstImg {
+    if (imgUrls.isEmpty) return '';
+    return imgUrls.first.url;
+  }
 
   String get sexValue {
     if (sexId == 0 || sexId == null) return '未设置';
@@ -18,18 +26,33 @@ class CommitteeItemModel {
     return '未设置';
   }
 
-  CommitteeItemModel(
-      {this.id,
-      this.positionId,
-      this.name,
-      this.sexId,
-      this.age,
-      this.educationId,
-      this.roomName,
-      this.profession,
-      this.roomNumber,
-      this.unitNo,
-      this.estateNo});
+  String get positionValue {
+    switch (positionId) {
+      case 1:
+        return '业委会主任';
+      case 2:
+        return '业委会副主任';
+      case 3:
+        return '业委会委员';
+      default:
+        return '';
+    }
+  }
+
+  CommitteeItemModel({
+    this.id,
+    this.positionId,
+    this.name,
+    this.sexId,
+    this.age,
+    this.educationId,
+    this.roomName,
+    this.profession,
+    this.roomNumber,
+    this.unitNo,
+    this.estateNo,
+    this.imgUrls,
+  });
 
   CommitteeItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -43,6 +66,11 @@ class CommitteeItemModel {
     roomNumber = json['roomNumber'];
     unitNo = json['unitNo'];
     estateNo = json['estateNo'];
+    if (json['imgUrls'] != null) {
+      imgUrls =
+          (json['imgUrls'] as List).map((e) => ImgModel.fromJson(e)).toList();
+    } else
+      imgUrls = [];
   }
 
   Map<String, dynamic> toJson() {
