@@ -11,7 +11,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/dotted_line.dart';
@@ -146,7 +145,6 @@ class DetoCodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '出户二维码',
       body: Container(
@@ -156,10 +154,9 @@ class DetoCodePage extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 192.w - kToolbarHeight),
-                _header(BeeParse.getEstateName(
-                    userProvider.userDetailModel.estateNames[0])),
+                _header(model.appArticleOutQRCodeVo.roomName),
                 SizedBox(height: 32.w),
-                _card(model.appArticleOutQRCodeVo.residentName,
+                _card(model.appArticleOutQRCodeVo.applicantName,
                     model.appArticleOutQRCodeVo.effectiveTime),
               ],
             ),

@@ -26,25 +26,32 @@ class ArticleQRModel {
 
 class AppArticleOutQRCodeVo {
   int id;
-  int residentId;
-  String residentName;
+  String roomName;
+  int applicantId;
+  String applicantName;
   String effectiveTime;
 
   AppArticleOutQRCodeVo(
-      {this.id, this.residentId, this.residentName, this.effectiveTime});
+      {this.id,
+      this.roomName,
+      this.applicantId,
+      this.applicantName,
+      this.effectiveTime});
 
   AppArticleOutQRCodeVo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    residentId = json['residentId'];
-    residentName = json['residentName'];
+    roomName = json['roomName'];
+    applicantId = json['applicantId'];
+    applicantName = json['applicantName'];
     effectiveTime = json['effectiveTime'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['residentId'] = this.residentId;
-    data['residentName'] = this.residentName;
+    data['roomName'] = this.roomName;
+    data['applicantId'] = this.applicantId;
+    data['applicantName'] = this.applicantName;
     data['effectiveTime'] = this.effectiveTime;
     return data;
   }
