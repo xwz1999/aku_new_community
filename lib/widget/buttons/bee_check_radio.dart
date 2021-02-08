@@ -27,6 +27,7 @@ class _BeeCheckRadioState extends State<BeeCheckRadio> {
       height: 40.w,
       width: 40.w,
       decoration: BoxDecoration(
+        color: kPrimaryColor.withOpacity(_selected ? 1 : 0),
         border: Border.all(
           color: _selected ? kPrimaryColor : Color(0xFF979797),
           width: 3.w,
@@ -41,8 +42,9 @@ class _BeeCheckRadioState extends State<BeeCheckRadio> {
         curve: Curves.easeInOutCubic,
         opacity: _selected ? 1 : 0,
         child: Icon(
-          CupertinoIcons.chevron_forward,
-          size: 24.w,
+          CupertinoIcons.checkmark,
+          color: Colors.white,
+          size: 28.w,
         ),
       ),
     );

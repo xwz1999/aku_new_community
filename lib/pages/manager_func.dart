@@ -1,13 +1,17 @@
 // Package imports:
+import 'dart:convert';
+
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
+import 'package:akuCommunity/model/manager/moving_company_model.dart';
+import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
+import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
+import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
 // Project imports:
 import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
-import 'package:akuCommunity/model/manager/moving_company_model.dart';
-import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 
@@ -180,6 +184,30 @@ class ManagerFunc {
       'voteId': voteId,
       'candidateId': candleId,
     });
+    return baseModel;
+  }
+
+  static Future<QuestionnaireDetialModel> questionnairefindById(int id) async {
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.questionnairefindById,
+      params: {
+        'questionnaireId': id,
+      },
+      showMessage: false,
+    );
+    return QuestionnaireDetialModel.fromJson(baseModel.data);
+  }
+
+  static Future<BaseModel> questionnaireSubmit(
+      int id, List<AppQuestionnaireAnswerSubmits> model) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.questionnaireSubmit,
+      params: {
+        'id': id,
+        'appQuestionnaireAnswerSubmits':model,
+      },
+      showMessage: true,
+    );
     return baseModel;
   }
 }

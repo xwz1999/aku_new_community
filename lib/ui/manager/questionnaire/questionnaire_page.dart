@@ -10,6 +10,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/questinnaire_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_detail_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
 
@@ -116,7 +117,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                 // padding:
                 //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                 elevation: 0,
-                onPressed: () {},
+                onPressed: () {
+                  QuestionnaireDetailPage(id: model.id,).to();
+                },
                 child: (_getButtonText(model.status))
                     .text
                     .black
