@@ -59,31 +59,33 @@ class _PersonalIndexState extends State<PersonalIndex>
                 child: Column(
                   children: [
                     Spacer(),
-                    Container(
-                      margin: EdgeInsets.only(left: 32.w),
-                      child: Row(
-                        children: [
-                          Hero(
-                            tag: 'AVATAR',
-                            child: ClipOval(
-                              child: FadeInImage.assetNetwork(
-                                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                image: API.image(
-                                    userProvider?.userInfoModel?.imgUrl ?? ''),
-                                height: 106.w,
-                                width: 106.w,
-                                fit: BoxFit.cover,
+                    MaterialButton(
+                      padding: EdgeInsets.all(5.w),
+                      onPressed: () {
+                        if (!userProvider.isLogin)
+                          SignInPage().to();
+                        else
+                          UserProfilePage().to();
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 32.w),
+                        child: Row(
+                          children: [
+                            Hero(
+                              tag: 'AVATAR',
+                              child: ClipOval(
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                                  image: API.image(
+                                      userProvider?.userInfoModel?.imgUrl ??
+                                          ''),
+                                  height: 106.w,
+                                  width: 106.w,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              if (!userProvider.isLogin)
-                                SignInPage().to();
-                              else
-                                UserProfilePage().to();
-                            },
-                            child: Container(
+                            Container(
                                 margin: EdgeInsets.only(left: 16.w),
                                 child: userProvider.isLogin
                                     ? Text(
@@ -101,8 +103,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                                           color: Color(0xffad8940),
                                         ),
                                       )),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Stack(
