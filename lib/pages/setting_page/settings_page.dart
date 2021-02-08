@@ -120,10 +120,11 @@ class _SettingsPageState extends State<SettingsPage> {
               title: '关于小蜜蜂智慧社区',
               onTap: () => AboutPage().to(),
             ),
-            _buildTile(
-              title: '邀请注册',
-              onTap: () => InvitePage().to(),
-            ),
+            //TODO 邀请注册
+            // _buildTile(
+            //   title: '邀请注册',
+            //   onTap: () => InvitePage().to(),
+            // ),
           ].sepWidget(
               separate: Divider(
             indent: 32.w,

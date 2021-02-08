@@ -21,13 +21,8 @@ class AboutPage extends StatelessWidget {
 
     return BeeScaffold(
       title: '关于小蜜蜂智慧社区',
-      body: Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(
-          top: 72.w,
-          left: 36.w,
-          right: 35.w),
-      child: ListView(
+      body: ListView(
+        padding: EdgeInsets.all(32.w),
         children: [
           Text(
             aboutText,
@@ -40,7 +35,6 @@ class AboutPage extends StatelessWidget {
           ),
         ],
       ),
-    ),
     );
   }
 }
