@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
-import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -263,7 +264,9 @@ class _ChatCardState extends State<ChatCard> {
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: widget.hideLine ? Colors.transparent : Color(0xFFE5E5E5),
+            color: widget.hideLine
+                ? Colors.transparent
+                : Color(0xFFE5E5E5).withOpacity(0.5),
           ),
         ),
       ),
@@ -311,14 +314,15 @@ class _ChatCardState extends State<ChatCard> {
                     },
                     onSelected: (_) async {
                       VoidCallback cancel = BotToast.showLoading();
-                      await Future.delayed(Duration(milliseconds: 1000));
+                      await Future.delayed(
+                          Duration(milliseconds: 500 + Random().nextInt(500)));
                       cancel();
                       BotToast.showText(text: '举报成功');
                     },
                   ),
                 ].row(),
                 6.hb,
-                widget.model.content.text.black.make(),
+                widget.model.content.text.size(32.sp).black.make(),
                 20.hb,
                 _renderImage(),
                 widget.model.gambitTitle?.isEmpty ?? true
