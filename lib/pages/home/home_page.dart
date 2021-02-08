@@ -27,7 +27,7 @@ import 'package:akuCommunity/ui/home/home_notification.dart';
 import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
-import 'package:akuCommunity/widget/container_comment.dart';
+import 'package:akuCommunity/widget/views/application_box.dart';
 import 'package:akuCommunity/widget/views/application_view.dart';
 import 'widget/home_search.dart';
 import 'widget/home_swiper.dart';
@@ -59,27 +59,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    Future<String> loadString =
-        DefaultAssetBundle.of(context).loadString("assets/json/shop.json");
-    loadString.then((String value) {
-      // 通知框架此对象的内部状态已更改
-      akuShop(value);
-    });
-    // akuShop(page);
     _scrollController = ScrollController();
-  }
-
-  Future<void> akuShop(String response) async {
-    Map<String, dynamic> result = json.decode(response.toString());
-    BaseModel model = BaseModel.fromJson(result);
-    model.result.forEach((item) {
-      item["count"] = 1;
-      item["isCheck"] = false;
-      AkuShopModel list = AkuShopModel.fromJson(item);
-      setState(() {
-        _shopList.add(list);
-      });
-    });
   }
 
   @override
@@ -116,12 +96,9 @@ class _HomePageState extends State<HomePage>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   HomeSearch(),
-                  HomeSwiper(),
-                  SizedBox(height: 100.w),
-                  ContainerComment(
-                    radius: 8,
-                    customWidget: ApplicationView(),
-                  ),
+                  // HomeSwiper(),
+                  // SizedBox(height: 100.w),
+                  ApplicationBox(child: ApplicationView()),
                   // SingleAdSpace(
                   //   imagePath: R.ASSETS_EXAMPLE_GUANGGAO2_PNG,
                   // ),

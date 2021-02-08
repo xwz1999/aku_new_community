@@ -9,6 +9,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t home_swiper need to be cleaned.")
 class HomeSwiper extends StatefulWidget {
   HomeSwiper({Key key}) : super(key: key);
 
