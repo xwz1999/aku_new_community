@@ -1,12 +1,13 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
+import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_truefalse.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnarie_raido_check.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,16 +27,14 @@ class QuestionnaireDetailPage extends StatefulWidget {
 class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   QuestionnaireDetialModel _model;
   bool _onload = true;
-  int _select;
-  List<int> _radio = [];
-  int _expanded;
-  String _expand;
-  String _short;
+
+  List<AppQuestionnaireAnswerSubmits> _submitModels = [];
   Widget _emptyWidget() {
     return Container();
   }
 
-  Widget _expandedCheck(String title, List<QuestionnaireChoiceVoList> answers) {
+  Widget _expandedCheck(String title, List<QuestionnaireChoiceVoList> answers,
+      List<AppQuestionnaireAnswerSubmits> submitModels, int index) {
     return Container(
       width: double.infinity,
       child: Column(
@@ -57,8 +56,8 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                   actions: answers
                       .map((e) => CupertinoActionSheetAction(
                           onPressed: () {
-                            _expanded = e.id;
-                            _expand = e.answer;
+                            submitModels[index].choiceAnswer.first = e.id;
+                            submitModels[index].shortAnswer = e.answer;
                             Get.back();
                             setState(() {});
                           },
@@ -81,7 +80,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                   width: double.infinity,
                   padding:
                       EdgeInsets.symmetric(horizontal: 32.w, vertical: 28.w),
-                  child: (_expand ?? '请选择')
+                  child: (submitModels[index].shortAnswer ?? '请选择')
                       .text
                       .color(ktextSubColor)
                       .size(28.sp)
@@ -101,7 +100,8 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
     );
   }
 
-  Widget _shortAnswer(String title) {
+  Widget _shortAnswer(String title,
+      List<AppQuestionnaireAnswerSubmits> submitModels, int index) {
     return Container(
       width: double.infinity,
       child: Column(
@@ -127,7 +127,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       EdgeInsets.symmetric(horizontal: 32.w, vertical: 28.w),
                   isDense: true),
               onChanged: (value) {
-                _short = value;
+                submitModels[index].shortAnswer = value;
                 setState(() {});
               },
             ),
@@ -135,6 +135,54 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         ],
       ),
     );
+  }
+
+  Widget _topicWidget(QuestionnaireTopicVoList questionModel,
+      List<AppQuestionnaireAnswerSubmits> submitModels, int index) {
+    switch (questionModel.type) {
+      case 1:
+        return QuestionnaireSingleCheck(
+            title: questionModel.topic,
+            selected: submitModels[index].choiceAnswer.first,
+            onPressed: (id) {
+              submitModels[index].choiceAnswer.first = id;
+              setState(() {});
+            },
+            answers: questionModel.questionnaireChoiceVoList);
+
+      case 2:
+        return QuestionnaireRadioCheck(
+          title: questionModel.topic,
+          selected: submitModels[index].choiceAnswer,
+          answers: questionModel.questionnaireChoiceVoList,
+          onPressed: (id) {
+            if (submitModels[index].choiceAnswer.contains(id)) {
+              submitModels[index].choiceAnswer.remove(id);
+            } else {
+              submitModels[index].choiceAnswer.add(id);
+            }
+            setState(() {});
+          },
+        );
+
+      case 3:
+        return _expandedCheck(questionModel.topic,
+            questionModel.questionnaireChoiceVoList, submitModels, index);
+      case 4:
+      return   QuestionnaireTruefalse(
+          title: questionModel.topic,
+          selected: submitModels[index].choiceAnswer.first,
+          onPressed: (id) {
+            submitModels[index].choiceAnswer.first = id;
+            setState(() {});
+          },
+        );
+      case 5:
+        return _shortAnswer(questionModel.topic, submitModels, index);
+
+      default:
+        return Container();
+    }
   }
 
   @override
@@ -147,6 +195,13 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         onRefresh: () async {
           _model = await ManagerFunc.questionnairefindById(widget.id);
           _onload = false;
+          _submitModels = _model.questionnaireTopicVoList
+              .map((e) => AppQuestionnaireAnswerSubmits(
+                    topicId: e.id,
+                    choiceAnswer: [-1],
+                  ))
+              .toList();
+          print(_submitModels);
           setState(() {});
         },
         child: _onload
@@ -180,34 +235,12 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       .size(28.sp)
                       .make(),
                   130.w.heightBox,
-                  QuestionnaireSingleCheck(
-                      title: 'title',
-                      selected: _select,
-                      onPressed: (id) {
-                        _select = id;
-                        setState(() {});
-                      },
-                      answers: _model.questionnaireTopicVoList.first
-                          .questionnaireChoiceVoList),
-                  QuestionnaireRadioCheck(
-                    title: 'title',
-                    selected: _radio,
-                    answers: _model.questionnaireTopicVoList.first
-                        .questionnaireChoiceVoList,
-                    onPressed: (id) {
-                      if (_radio.contains(id)) {
-                        _radio.remove(id);
-                      } else {
-                        _radio.add(id);
-                      }
-                      setState(() {});
-                    },
-                  ),
-                  _expandedCheck(
-                      'title',
-                      _model.questionnaireTopicVoList.first
-                          .questionnaireChoiceVoList),
-                  _shortAnswer('title')
+                  ...List.generate(
+                      _model.questionnaireTopicVoList.length,
+                      (index) => _topicWidget(
+                          _model.questionnaireTopicVoList[index],
+                          _submitModels,
+                          index)).sepWidget(separate: 80.w.heightBox),
                 ],
               ),
       ),
