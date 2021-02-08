@@ -70,7 +70,7 @@ class _HomeNotificationState extends State<HomeNotification> {
                   duration: Duration(milliseconds: 1000),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    key: ValueKey(randomItem?.id ?? 0),
+                    key: ObjectKey(randomItem),
                     child: Text(randomItem?.title ?? ''),
                   ),
                 ),
