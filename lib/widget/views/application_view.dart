@@ -13,11 +13,13 @@ import 'package:akuCommunity/utils/headers.dart';
 
 class ApplicationView extends StatefulWidget {
   final List<AO> items;
-  ApplicationView({Key key})
+  final bool needAllApp;
+  ApplicationView({Key key, this.needAllApp = true})
       : items = null,
         super(key: key);
 
-  ApplicationView.custom({Key key, @required this.items})
+  ApplicationView.custom(
+      {Key key, @required this.items, this.needAllApp = true})
       : assert(items != null),
         super(key: key);
 
@@ -61,10 +63,11 @@ class _ApplicationViewState extends State<ApplicationView> {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemBuilder: (context, index) {
-        if (index == _items.length) return _buildTile(allApp);
+        if (index == _items.length && widget.needAllApp)
+          return _buildTile(allApp);
         return _buildTile(_items[index]);
       },
-      itemCount: _items.length + 1,
+      itemCount: widget.needAllApp ? _items.length + 1 : _items.length,
       shrinkWrap: true,
     );
   }

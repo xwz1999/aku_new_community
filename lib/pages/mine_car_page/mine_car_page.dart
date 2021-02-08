@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/pages/mine_car_page/car_add_page/car_add_page.dart';
 import 'package:akuCommunity/pages/mine_car_page/select_community_page/select_community_page.dart';
-import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class MineCarPage extends StatefulWidget {
-  final Bundle bundle;
-  MineCarPage({Key key, this.bundle}) : super(key: key);
+  MineCarPage({Key key}) : super(key: key);
 
   @override
   _MineCarPageState createState() => _MineCarPageState();
@@ -148,7 +146,6 @@ class _MineCarPageState extends State<MineCarPage> {
             ),
           ),
           SizedBox(height: 39.w),
-          _inkWellCheck(widget.bundle.getMap('carType')['type']),
         ],
       ),
     );
@@ -157,7 +154,7 @@ class _MineCarPageState extends State<MineCarPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '我的${widget.bundle.getMap('carType')['type']}',
+      title: '我的',
       body: Container(
         color: Colors.white,
         child: Stack(
@@ -176,19 +173,6 @@ class _MineCarPageState extends State<MineCarPage> {
                                 ))
                             .toList(),
                       ),
-                      // Container(
-                      //   margin: EdgeInsets.only(top: 64.w),
-                      //   child: Column(
-                      //     children: _listCart
-                      //         .map((item) => _containerInfoCard(
-                      //               item['title'],
-                      //               item['isDelete'],
-                      //             ))
-                      //         .toList(),
-                      //   ),
-                      // ),
-                      _containerAttestation(
-                          widget.bundle.getMap('carType')['type']),
                     ],
                   ),
                 ),
