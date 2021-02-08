@@ -143,7 +143,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 margin: EdgeInsets.only(left: 16.w),
                                 child: userProvider.isLogin
                                     ? Text(
-                                        userProvider.userInfoModel.nickName,
+                                        userProvider.userInfoModel?.nickName ??
+                                            '',
                                         style: TextStyle(
                                           fontSize: 32.sp,
                                           color: Color(0xffad8940),

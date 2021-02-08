@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/search/bee_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -234,7 +235,9 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           elevation: 0,
           minWidth: double.infinity,
           color: Color(0xFFF3F3F3),
-          onPressed: () {},
+          onPressed: () {
+            Get.to(BeeSearch());
+          },
           child: Row(
             children: [
               Icon(
