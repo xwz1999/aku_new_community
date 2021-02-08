@@ -325,7 +325,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
             _selectSex, tel, _userCarNum.text, dateTime);
         cancel();
-        Get.back();
+        Get.off(VisitorRecordPage());
       },
       child: Container(
         alignment: Alignment.center,
@@ -367,8 +367,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     return BeeScaffold(
       title: '访客通行',
       actions: [
-        InkWell(
-          onTap: () {
+        MaterialButton(
+          onPressed: () {
             VisitorRecordPage().to();
           },
           child: Container(
