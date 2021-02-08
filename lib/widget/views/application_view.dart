@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -29,10 +32,18 @@ class ApplicationView extends StatefulWidget {
 
 class _ApplicationViewState extends State<ApplicationView> {
   _buildTile(AO object) {
+    final userProvider = Provider.of<UserProvider>(context);
     return MaterialButton(
       shape: StadiumBorder(),
       padding: EdgeInsets.zero,
-      onPressed: () => Get.to(object.page),
+      onPressed: () {
+        if (userProvider.isLogin)
+          Get.to(object.page);
+        else {
+          BotToast.showText(text: '请先登陆');
+          Get.to(SignInPage());
+        }
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

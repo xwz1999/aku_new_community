@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -104,17 +105,13 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                 padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
                 child: Row(
                   children: [
-                    BeeMap
-                        .fixTag[model.type]
-                        .text
+                    BeeMap.fixTag[model.type].text
                         .color(ktextPrimary)
                         .bold
                         .size(32.sp)
                         .make(),
                     Spacer(),
-                    BeeMap
-                        .fixState[model.status]
-                        .text
+                    BeeMap.fixState[model.status].text
                         .color(_getColor(model.status))
                         .size(24.sp)
                         .make(),
@@ -158,32 +155,32 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   }
 
   Widget _buildCheckBox(FixedSubmitModel model) {
-    return 
-    // GestureDetector(
-    //   onTap: () {
-    //     if (_selected.contains(model.id)) {
-    //       _selected.remove(model.id);
-    //     } else {
-    //       _selected.add(model.id);
-    //     }
-    //     setState(() {});
-    //   },
-      // child: 
-      Container(
-        alignment: Alignment.centerLeft,
-        constraints: BoxConstraints(minHeight: 384.w, minWidth: 686.w),
-        child: FixedCheckBox(
-          key:ValueKey(model.id),
-          onChanged: (isSelect) {
-            if (isSelect) {
-              _selected.add(model.id);
-            } else {
-              _selected.remove(model.id);
-            }
-            setState(() {});
-          },
-        ),
-        // child: BeeRadio(value: model.id, groupValues: _selected),
+    return
+        // GestureDetector(
+        //   onTap: () {
+        //     if (_selected.contains(model.id)) {
+        //       _selected.remove(model.id);
+        //     } else {
+        //       _selected.add(model.id);
+        //     }
+        //     setState(() {});
+        //   },
+        // child:
+        Container(
+      alignment: Alignment.centerLeft,
+      constraints: BoxConstraints(minHeight: 384.w, minWidth: 686.w),
+      child: FixedCheckBox(
+        key: ValueKey(model.id),
+        onChanged: (isSelect) {
+          if (isSelect) {
+            _selected.add(model.id);
+          } else {
+            _selected.remove(model.id);
+          }
+          setState(() {});
+        },
+      ),
+      // child: BeeRadio(value: model.id, groupValues: _selected),
       // ),
     );
   }
@@ -233,63 +230,45 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               setState(() {});
             })
       ],
-      body: Column(
-        children: [
-          BeeListView(
-            controller: _easyRefreshController,
-            path: API.manager.fixedSubmit,
-            convert: (model) {
-              return model.tableList
-                  .map((e) => FixedSubmitModel.fromJson(e))
-                  .toList();
-            },
-            builder: (items) {
-              return ListView.separated(
-                  padding: EdgeInsets.all(32.w),
-                  itemBuilder: (context, index) {
-                    return Stack(
-                      children: [
-                        _buildCheckBox(items[index]),
-                        _buildCard(items[index])
-                      ],
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return 24.w.heightBox;
-                  },
-                  itemCount: items.length);
-            },
-          ).expand(),
-          MaterialButton(
-            disabledColor: Colors.white.withOpacity(0.5),
-            disabledTextColor: ktextSubColor.withOpacity(0.8),
-            textColor: ktextPrimary,
-            onPressed: _isEdit
-                ? _selected.isEmpty
-                    ? null
-                    : () {
-                        Get.dialog(_showDeletDialog());
-                      }
+      body: BeeListView(
+        controller: _easyRefreshController,
+        path: API.manager.fixedSubmit,
+        convert: (model) {
+          return model.tableList
+              .map((e) => FixedSubmitModel.fromJson(e))
+              .toList();
+        },
+        builder: (items) {
+          return ListView.separated(
+              padding: EdgeInsets.all(32.w),
+              itemBuilder: (context, index) {
+                return Stack(
+                  children: [
+                    _buildCheckBox(items[index]),
+                    _buildCard(items[index])
+                  ],
+                );
+              },
+              separatorBuilder: (context, index) {
+                return 24.w.heightBox;
+              },
+              itemCount: items.length);
+        },
+      ),
+      bottomNavi: BottomButton(
+        onPressed: _isEdit
+            ? _selected.isEmpty
+                ? null
                 : () {
-                    userProvider.isLogin
-                        ? AddFixedSubmitPage().to()
-                        : BotToast.showText(text: '请先登录！');
-                  },
-            child: _isEdit
-                ? '删除订单'.text.bold.size(32.sp).make()
-                : '新增'.text.bold.size(32.sp).make(),
-            minWidth: double.infinity,
-            height: 98.w,
-            elevation: 0,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            padding: EdgeInsets.zero,
-          )
-              .box
-              .padding(EdgeInsets.only(
-                  bottom: MediaQuery.of(context).padding.bottom))
-              .color(kPrimaryColor)
-              .make(),
-        ],
+                    Get.dialog(_showDeletDialog());
+                  }
+            : () async {
+                bool needRefresh = await Get.to(AddFixedSubmitPage());
+                if (needRefresh == null) _easyRefreshController.callRefresh();
+              },
+        child: _isEdit
+            ? '删除订单'.text.bold.size(32.sp).make()
+            : '新增'.text.bold.size(32.sp).make(),
       ),
     );
   }

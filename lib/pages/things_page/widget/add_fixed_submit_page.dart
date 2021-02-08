@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -201,7 +202,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   }
 
   bool _canSubmit(int seletType, String text) {
-    if (seletType.isNull) {
+    if (seletType == null) {
       return false;
     } else if (text.isEmpty) {
       return false;
@@ -213,48 +214,54 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
-    return BeeScaffold(
-      title: '报事报修',
-      body: Column(
-        children: [
-          ListView(
-            children: [
-              _buildHouseCard(
-                  kEstateName,
-                  userProvider.userDetailModel.estateNames.isEmpty
-                      ? ''
-                      : BeeParse.getEstateName(
-                          userProvider.userDetailModel.estateNames[0])),
-              _getType(),
-              _buildReportCard(),
-              _addImages(),
-            ],
-          ).expand(),
-        ],
+    return WillPopScope(
+      child: BeeScaffold(
+        title: '报事报修',
+        body: Column(
+          children: [
+            ListView(
+              children: [
+                _buildHouseCard(
+                    kEstateName,
+                    userProvider.userDetailModel.estateNames.isEmpty
+                        ? ''
+                        : BeeParse.getEstateName(
+                            userProvider.userDetailModel.estateNames[0])),
+                _getType(),
+                _buildReportCard(),
+                _addImages(),
+              ],
+            ).expand(),
+          ],
+        ),
+        bottomNavi: BottomButton(
+          onPressed: _canSubmit(_selectType, _textEditingController.text)
+              ? () async {
+                  VoidCallback cancel = BotToast.showLoading();
+                  List<String> urls = await NetUtil()
+                      .uploadFiles(_files, API.upload.uploadRepair);
+                  BaseModel baseModel = await ManagerFunc.reportRepairInsert(
+                      BeeParse.getEstateNameId(
+                          userProvider.userDetailModel.estateNames[0]),
+                      _selectType + 1,
+                      _textEditingController.text,
+                      urls);
+                  if (baseModel.status) {
+                    Get.off(FinishFixedSubmitPage());
+                  } else
+                    BotToast.showText(text: baseModel.message);
+                  cancel();
+                }
+              : () {
+                  BotToast.showText(text: '请填写完整报修信息！');
+                },
+          child: '确认提交'.text.black.bold.size(32.sp).make(),
+        ),
       ),
-      bottomNavi: BottomButton(
-        onPressed: _canSubmit(_selectType, _textEditingController.text)
-            ? () async {
-                VoidCallback cancel = BotToast.showLoading();
-                List<String> urls = await NetUtil()
-                    .uploadFiles(_files, API.upload.uploadRepair);
-                BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                    BeeParse.getEstateNameId(
-                        userProvider.userDetailModel.estateNames[0]),
-                    _selectType + 1,
-                    _textEditingController.text,
-                    urls);
-                if (baseModel.status) {
-                  FinishFixedSubmitPage().to();
-                } else
-                  BotToast.showText(text: baseModel.message);
-                cancel();
-              }
-            : () {
-                BotToast.showText(text: '请填写完整报修信息！');
-              },
-        child: '确认提交'.text.black.bold.size(32.sp).make(),
-      ),
+      onWillPop: () async {
+        Get.back(result: true);
+        return false;
+      },
     );
   }
 }
