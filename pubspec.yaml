@@ -111,7 +111,6 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
-    - assets/example/
     - assets/tab/
     - assets/json/
     - assets/applications/

@@ -10,6 +10,8 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
+//TODO CLEAN BOTTOM CODES.
+@Deprecated("sh*t comment_message_page need to be cleaned.")
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key key}) : super(key: key);
 
