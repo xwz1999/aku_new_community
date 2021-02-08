@@ -27,7 +27,9 @@ class LifePayDetailPage extends StatefulWidget {
 }
 
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
-  List<String> _selectItems=[];
+  List<String> _selectItems = [];
+  double _payTotal = 0;
+  int _payNum = 0;
   int get listLength {
     int count = 0;
     widget.model.dailyPaymentTypeVos.forEach((element) {
@@ -50,8 +52,12 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               String item = id.toString() + groupId.toString();
               if (_selectItems.contains(item)) {
                 _selectItems.remove(item);
+                _payNum -= 1;
+                _payTotal -= price.toDouble();
               } else {
                 _selectItems.add(item);
+                _payNum += 1;
+                _payTotal += price.toDouble();
               }
 
               setState(() {});
@@ -123,6 +129,8 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               onTap: () {
                 if (isAllSelect) {
                   _selectItems.clear();
+                  _payNum = 0;
+                  _payTotal = 0;
                 } else {
                   for (var i = 0;
                       i < widget.model.dailyPaymentTypeVos.length;
@@ -139,6 +147,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                                   .toString();
                       if (!_selectItems.contains(id)) {
                         _selectItems.add(id);
+                        _payNum += 1;
+                        _payTotal += widget.model.dailyPaymentTypeVos[i]
+                            .detailedVoList[j].paymentPrice.toDouble();
                       }
                     }
                   }
@@ -179,13 +190,13 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                             fontWeight: FontWeight.bold),
                         children: [
                       TextSpan(
-                          text: '¥3009.84',
+                          text: '$_payTotal',
                           style: TextStyle(
                               color: kDangerColor,
                               fontSize: 32.sp,
                               fontWeight: FontWeight.bold)),
                     ])),
-                '已选10项'.text.color(ktextSubColor).size(20.sp).make(),
+                '$_payNum'.text.color(ktextSubColor).size(20.sp).make(),
               ],
             ),
             MaterialButton(
@@ -195,7 +206,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               color: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
               onPressed: () {
-                Get.back();
+                Get.back(result: [_payNum, _payTotal]);
               },
               child: '选好了'.text.black.size(32.sp).bold.make(),
             ),

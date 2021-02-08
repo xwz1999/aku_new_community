@@ -1,11 +1,20 @@
 class BeeParse {
   static int getEstateNameId(String estateName) {
-    int a = int.parse(estateName.split('|')[0]);
-    return a;
+    if (estateName.isEmpty) {
+      return -1;
+    } else {
+      int a = int.parse(estateName.split('|')[0]);
+
+      return a;
+    }
   }
 
   static String getEstateName(String estateNmae) {
-    return estateNmae.split('|')[1];
+    if (estateNmae.isEmpty) {
+      return '';
+    } else {
+      return estateNmae.split('|')[1];
+    }
   }
 
   static String getCustomYears(int year) {

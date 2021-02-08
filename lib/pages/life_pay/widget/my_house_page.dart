@@ -43,12 +43,11 @@ Widget _unPaidTag() {
         borderRadius: BorderRadius.circular(36.w),
         color: Color(0xFFFFEBE8),
         border: Border.all(width: 2.w, color: Color(0xFFFC361D))),
-    child: '当前房屋'.text.color(Color(0xFFFC361D)).size(20.sp).make(),
+    child: '未缴费'.text.color(Color(0xFFFC361D)).size(20.sp).make(),
   );
 }
 
 class _MyHousePageState extends State<MyHousePage> {
-  int _select;
   List<EstatePaymentModel> _list = [];
   List<EstatePaymentModel> get _unPaidList =>
       _list.where((element) => element.status == 1).toList();
@@ -65,18 +64,19 @@ class _MyHousePageState extends State<MyHousePage> {
 
   Widget _buildCard(String currentHouse, String estateName, int index,
       {bool paid = false}) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
       child: GestureDetector(
         onTap: () {
-          _select = index;
+          userProvider.setCurrentHouse(estateName);
           setState(() {});
         },
         child: Row(
           children: [
             CommonRadio(
-              value: index,
-              groupValue: _select,
+              value: BeeParse.getEstateNameId(estateName),
+              groupValue: userProvider.currentHouseId,
               size: 32.w,
             ),
             24.w.widthBox,
@@ -113,13 +113,16 @@ class _MyHousePageState extends State<MyHousePage> {
       title: '我的房屋',
       body: ListView(
         children: <Widget>[
-          ...userProvider.userDetailModel.estateNames
-              .map((e) => _buildCard(userProvider.currentHouse, e,
-                  userProvider.userDetailModel.estateNames.indexOf(e),
-                  paid: widget.needFindPayTag
-                      ? false
-                      : _unPaidList.one((element) => element.roomName == e)))
-              .toList(),
+          ...userProvider.userDetailModel.estateNames.isEmpty
+              ? [SizedBox()]
+              : userProvider.userDetailModel.estateNames
+                  .map((e) => _buildCard(userProvider.currentHouse, e,
+                      userProvider.userDetailModel.estateNames.indexOf(e),
+                      paid: widget.needFindPayTag
+                          ? false
+                          : _unPaidList
+                              .one((element) => element.roomName == e)))
+                  .toList(),
         ].sepWidget(separate: BeeDivider.horizontal()),
       ),
     );

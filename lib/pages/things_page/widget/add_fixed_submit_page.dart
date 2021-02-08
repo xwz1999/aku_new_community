@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/widget/others/bee_header_house.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -219,12 +220,13 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
         children: [
           ListView(
             children: [
-              _buildHouseCard(
-                  kEstateName,
-                  userProvider.userDetailModel.estateNames.isEmpty
-                      ? ''
-                      : BeeParse.getEstateName(
-                          userProvider.userDetailModel.estateNames[0])),
+              // _buildHouseCard(
+              //     kEstateName,
+              //     userProvider.userDetailModel.estateNames.isEmpty
+              //         ? ''
+              //         : BeeParse.getEstateName(
+              //             userProvider.userDetailModel.estateNames[0])),
+              BeeHeaderHouse(),
               _getType(),
               _buildReportCard(),
               _addImages(),
