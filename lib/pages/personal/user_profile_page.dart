@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -170,46 +171,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           _buildTile(
             '出生日期',
             userProvider.userInfoModel.birthdayValue.text.make(),
-            onPressed: () {
-              Get.dialog(
-                CupertinoAlertDialog(
-                  title: '请选择'.text.isIntrinsic.make(),
-                  content: SizedBox(
-                    height: 340.w,
-                    child: CupertinoTheme(
-                      data: CupertinoThemeData(
-                        textTheme: CupertinoTextThemeData(
-                          dateTimePickerTextStyle: TextStyle(
-                            fontSize: 30.sp,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                      child: CupertinoDatePicker(
-                        maximumYear: DateTime.now().year,
-                        minimumYear: 1900,
-                        mode: CupertinoDatePickerMode.date,
-                        onDateTimeChanged: (date) {
-                          _birthday = date;
-                        },
-                      ),
-                    ),
-                  ),
-                  actions: [
-                    CupertinoDialogAction(
-                      child: '取消'.text.isIntrinsic.make(),
-                      onPressed: Get.back,
-                    ),
-                    CupertinoDialogAction(
-                      child: '确定'.text.isIntrinsic.make(),
-                      onPressed: () {
-                        userProvider.setBirthday(_birthday);
-                        Get.back();
-                      },
-                    ),
-                  ],
-                ),
-              );
+            onPressed: () async {
+              DateTime date = await BeeDatePicker.pick(DateTime.now());
+              if (date != null) userProvider.setBirthday(date);
             },
           ),
         ].sepWidget(

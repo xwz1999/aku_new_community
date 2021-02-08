@@ -91,15 +91,32 @@ class TopicCommunityViewState extends State<TopicCommunityView>
                   .bold
                   .overflow(TextOverflow.ellipsis)
                   .make(),
+              Spacer(),
               (model?.content ?? '')
                   .text
                   .maxLines(1)
                   .size(22.sp)
+                  .color(Color(0xFF666666))
                   .overflow(TextOverflow.ellipsis)
                   .make(),
-              12.hb,
+              21.hb,
+              [
+                Spacer(),
+                Image.asset(
+                  R.ASSETS_ICONS_HOT_FIRE_PNG,
+                  height: 24.w,
+                  width: 24.w,
+                ),
+                12.wb,
+                '${model?.activityNum}'
+                    .text
+                    .maxLines(1)
+                    .size(22.sp)
+                    .overflow(TextOverflow.ellipsis)
+                    .make()
+              ].row(),
             ],
-          ).expand(),
+          ).box.height(160.w).make().expand(),
         ],
       ),
     );

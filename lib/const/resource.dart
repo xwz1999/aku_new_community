@@ -236,6 +236,9 @@ class R {
   static const String ASSETS_ICONS_GROUPBUY_TAB_UNSELECTED_PNG =
       'assets/icons/groupbuy_tab_unselected.png';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/hot_fire.png)
+  static const String ASSETS_ICONS_HOT_FIRE_PNG = 'assets/icons/hot_fire.png';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/icons/house.png)
   static const String ASSETS_ICONS_HOUSE_PNG = 'assets/icons/house.png';
 
