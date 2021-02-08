@@ -83,7 +83,7 @@ List<AO> userAppObjects = [
   AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, MineCarPage()),
   AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, ActivityListPage()),
   AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, LifePayPage()),
-  AO('我的保修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, FixedSubmitPage()),
+  AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, FixedSubmitPage()),
   AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, AddressPage()),
   AO('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, Scaffold()),
   AO('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, VisitorAccessPage()),

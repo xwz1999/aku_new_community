@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,36 +51,16 @@ class __BeeDatePickerState extends State<_BeeDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Material(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 48,
-              child: NavigationToolbar(
-                leading: TextButton(
-                  onPressed: Get.back,
-                  child: '取消'.text.black.make(),
-                ),
-                trailing: TextButton(
-                  onPressed: () => Get.back(result: _date),
-                  child: '确定'.text.black.make(),
-                ),
-              ),
-            ),
-            CupertinoDatePicker(
-              use24hFormat: widget.use24H,
-              maximumDate: widget.max,
-              minimumDate: widget.min,
-              initialDateTime: _date,
-              onDateTimeChanged: (date) => _date = date,
-              mode:widget.mode?? CupertinoDatePickerMode.date,
-            ).expand(),
-          ],
-        ),
-      ),
-      height: Get.height / 3,
+    return BeeCustomPicker(
+      onPressed: () => Get.back(result: _date),
+      body: CupertinoDatePicker(
+        use24hFormat: widget.use24H,
+        maximumDate: widget.max,
+        minimumDate: widget.min,
+        initialDateTime: _date,
+        onDateTimeChanged: (date) => _date = date,
+        mode: widget.mode ?? CupertinoDatePickerMode.date,
+      ).expand(),
     );
   }
 }
