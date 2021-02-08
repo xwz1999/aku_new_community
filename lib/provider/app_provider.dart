@@ -1,13 +1,13 @@
 // Flutter imports:
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/hot_topic_model.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/constants/application_objects.dart';
+import 'package:akuCommunity/model/community/hot_topic_model.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为

@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/ui/community/community_views/widgets/send_a_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
+import 'package:akuCommunity/ui/community/community_views/widgets/send_a_chat.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';

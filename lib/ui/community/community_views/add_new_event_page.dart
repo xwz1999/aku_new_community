@@ -2,8 +2,6 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:akuCommunity/model/community/hot_topic_model.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +14,8 @@ import 'package:velocity_x/velocity_x.dart';
 // Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/community/hot_topic_model.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
