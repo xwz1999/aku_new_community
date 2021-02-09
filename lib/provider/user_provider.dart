@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -139,6 +140,7 @@ class UserProvider extends ChangeNotifier {
 
   ///设置默认房屋
   String _currentHouse;
+  int get currentHouseId => BeeParse.getEstateNameId(_currentHouse);
   String get currentHouse => _currentHouse;
   setCurrentHouse(String house) {
     _currentHouse = house;
