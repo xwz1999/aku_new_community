@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -130,42 +131,24 @@ class _UserProfilePageState extends State<UserProfilePage> {
           _buildTile(
             '性别',
             userProvider.userInfoModel.sexValue.text.make(),
-            onPressed: () {
-              showCupertinoDialog(
-                context: context,
-                builder: (context) {
-                  return CupertinoAlertDialog(
-                    title: '请选择'.text.isIntrinsic.make(),
-                    content: SizedBox(
-                      child: CupertinoPicker(
-                        itemExtent: 50,
-                        onSelectedItemChanged: (index) {
-                          _sex = index + 1;
-                        },
-                        children: [
-                          '男'.text.isIntrinsic.make().centered(),
-                          '女'.text.isIntrinsic.make().centered(),
-                        ],
-                        useMagnifier: true,
-                      ),
-                      height: 300.w,
-                    ),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: '取消'.text.isIntrinsic.make(),
-                        onPressed: Get.back,
-                      ),
-                      CupertinoDialogAction(
-                        child: '确定'.text.isIntrinsic.make(),
-                        onPressed: () {
-                          userProvider.setSex(_sex);
-                          Get.back();
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
+            onPressed: () async {
+              int result = await Get.bottomSheet(BeeCustomPicker(
+                onPressed: () => Get.back(result: _sex),
+                body: CupertinoPicker(
+                  itemExtent: 50,
+                  onSelectedItemChanged: (index) {
+                    _sex = index + 1;
+                  },
+                  children: [
+                    '男'.text.isIntrinsic.make().centered(),
+                    '女'.text.isIntrinsic.make().centered(),
+                  ],
+                  useMagnifier: true,
+                ).expand(),
+              ));
+              if (result != null) {
+                userProvider.setSex(_sex);
+              }
             },
           ),
           _buildTile(
