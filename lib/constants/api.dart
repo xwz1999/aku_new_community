@@ -16,6 +16,7 @@ class API {
   static _Manager manager = _Manager();
   static _Upload upload = _Upload();
   static _Community community = _Community();
+  static _Message message = _Message();
 }
 
 class _Login {
@@ -224,4 +225,8 @@ class _Upload {
   String get uploadRepair => '/user/upload/uploadRepair';
 
   String get uploadEvent => '/user/upload/uploadGambit';
+}
+
+class _Message {
+  String get center => '/user/message/messageCenter';
 }

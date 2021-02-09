@@ -1,8 +1,14 @@
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/message/message_center_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:badges/badges.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -14,6 +20,8 @@ class MessageCenter extends StatefulWidget {
 }
 
 class _MessageCenterState extends State<MessageCenter> {
+  MessageCenterModel _model;
+
   Widget _buildMessageTile({
     String title,
     String content,
@@ -49,8 +57,9 @@ class _MessageCenterState extends State<MessageCenter> {
     ).pSymmetric(h: 32.w, v: 18.w);
   }
 
-  _getMessageCenter()async{
-    
+  Future<MessageCenterModel> _getMessageCenter() async {
+    Response response = await NetUtil().dio.get(API.message.center);
+    return MessageCenterModel.fromJson(response.data);
   }
 
   @override
@@ -65,23 +74,29 @@ class _MessageCenterState extends State<MessageCenter> {
       ],
       body: EasyRefresh(
         header: MaterialHeader(),
-        onRefresh: () async {},
-        child: ListView(
-          children: [
-            _buildMessageTile(
-              title: '系统通知',
-              path: R.ASSETS_ICONS_SYSTEM_NOTICE_PNG,
-              content: '',
-              count: 4,
-            ),
-            _buildMessageTile(
-              title: '评论通知',
-              path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
-              content: '',
-              count: 0,
-            ),
-          ].sepWidget(separate: Divider(indent: 32.w, endIndent: 32.w)),
-        ),
+        firstRefresh: true,
+        onRefresh: () async {
+          _model = await _getMessageCenter();
+          setState(() {});
+        },
+        child: _model == null
+            ? SizedBox()
+            : ListView(
+                children: [
+                  _buildMessageTile(
+                    title: '系统通知',
+                    path: R.ASSETS_ICONS_SYSTEM_NOTICE_PNG,
+                    content: _model.sysTitle,
+                    count: _model.sysCount,
+                  ),
+                  // _buildMessageTile(
+                  //   title: '评论通知',
+                  //   path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
+                  //   content: '',
+                  //   count: 0,
+                  // ),
+                ].sepWidget(separate: Divider(indent: 32.w, endIndent: 32.w)),
+              ),
       ).material(color: Colors.white),
     );
   }
