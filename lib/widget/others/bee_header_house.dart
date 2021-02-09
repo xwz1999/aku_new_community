@@ -49,7 +49,7 @@ class _BeeHeaderHouseState extends State<BeeHeaderHouse> {
                       children: [
                         kEstateName.text.black.size(32.sp).bold.make(),
                         10.w.heightBox,
-                        BeeParse.getEstateName(userProvider.currentHouse)
+                        userProvider.currentHouse
                             .text
                             .black
                             .size(32.sp)

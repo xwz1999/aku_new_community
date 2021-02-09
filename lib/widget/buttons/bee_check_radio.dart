@@ -17,8 +17,11 @@ class BeeCheckRadio<T> extends StatefulWidget {
 
 class _BeeCheckRadioState extends State<BeeCheckRadio> {
   bool get _selected {
-    if (widget.groupValue.contains(widget.value)) return true;
-    return false;
+    if (widget.groupValue.contains(widget.value)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
