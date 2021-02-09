@@ -209,16 +209,17 @@ class _LifePayPageState extends State<LifePayPage> {
     return BeeScaffold(
       title: '生活缴费',
       actions: [
-        InkWell(
-          onTap: () {
-            LifePayRecordPage().to();
-          },
-          child: Container(
-            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-            alignment: Alignment.center,
-            child: '缴费记录'.text.black.size(28.sp).make(),
-          ),
-        ),
+        //TODO 缴费记录 无接口
+        // InkWell(
+        //   onTap: () {
+        //     LifePayRecordPage().to();
+        //   },
+        //   child: Container(
+        //     padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+        //     alignment: Alignment.center,
+        //     child: '缴费记录'.text.black.size(28.sp).make(),
+        //   ),
+        // ),
       ],
       body: BeeListView(
           path: API.manager.dailyPaymentList,

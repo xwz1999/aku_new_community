@@ -270,6 +270,7 @@ class _SignInPageState extends State<SignInPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FlatButton(
+                        shape: StadiumBorder(),
                         padding: EdgeInsets.zero,
                         onPressed: AgreementPage().to,
                         child: Text(
@@ -280,6 +281,7 @@ class _SignInPageState extends State<SignInPage> {
                         )),
                     SizedBox(width: 15.w),
                     FlatButton(
+                        shape: StadiumBorder(),
                         padding: EdgeInsets.zero,
                         onPressed: PrivacyPage().to,
                         child: Text(
