@@ -104,7 +104,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
                           vertical: 50.w, horizontal: 32.w),
                       alignment: Alignment.topLeft,
                       constraints: BoxConstraints(
-                          minHeight: 650.w + 96.w, minWidth: 686.w),
+                          minHeight: 652.w + 96.w, minWidth: 686.w),
                       child: BeeRadio(
                           value: items[index].id, groupValues: _select),
                     ),
