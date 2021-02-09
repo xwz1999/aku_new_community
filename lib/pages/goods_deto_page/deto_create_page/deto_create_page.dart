@@ -119,7 +119,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                     ),
                     SizedBox(height: 10.w),
                     Text(
-                      BeeParse.getEstateName(subtitle),
+                      subtitle,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 32.sp,

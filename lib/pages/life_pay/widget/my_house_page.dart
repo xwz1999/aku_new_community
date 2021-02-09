@@ -64,7 +64,7 @@ class _MyHousePageState extends State<MyHousePage> {
     }
   }
 
-  Widget _buildCard(String currentHouse, String estateName, int index,
+  Widget _buildCard(int currentHouseId, String estateName, int index,
       {bool paid = false}) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     return Container(
@@ -97,7 +97,7 @@ class _MyHousePageState extends State<MyHousePage> {
               ],
             ),
             Spacer(),
-            currentHouse == estateName
+            currentHouseId == BeeParse.getEstateNameId(estateName)
                 ? _currentHouseTag()
                 : paid
                     ? _unPaidTag()
@@ -118,7 +118,7 @@ class _MyHousePageState extends State<MyHousePage> {
           ...userProvider.userDetailModel.estateNames.isEmpty
               ? [SizedBox()]
               : userProvider.userDetailModel.estateNames
-                  .map((e) => _buildCard(userProvider.currentHouse, e,
+                  .map((e) => _buildCard(userProvider.currentHouseId, e,
                       userProvider.userDetailModel.estateNames.indexOf(e),
                       paid: widget.needFindPayTag
                           ? false

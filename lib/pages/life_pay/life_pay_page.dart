@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/others/bee_header_house.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,27 +33,16 @@ class LifePayPage extends StatefulWidget {
 class SelectPay {
   double payTotal;
   int payCount;
-  SelectPay();
+  SelectPay({this.payCount, this.payTotal});
 }
 
 class _LifePayPageState extends State<LifePayPage> {
   EasyRefreshController _controller;
-  // List<SelectList> selectItems = [];
   List<int> _selectYears = [];
   List<LifePayModel> _models = [];
   List<SelectPay> _selectPay = [];
   double _totalCost = 0;
   int _count = 0;
-  // int _getLength(LifePayModel model) {
-  //   int count = 0;
-  //   model.dailyPaymentTypeVos.forEach((element) {
-  //     element.detailedVoList.forEach((element) {
-  //       count++;
-  //     });
-  //   });
-  //   return count;
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -64,59 +55,61 @@ class _LifePayPageState extends State<LifePayPage> {
     super.dispose();
   }
 
-  // Widget _buildHouseCard(
-  //   String title,
-  //   String detail,
-  // ) {
-  //   return Material(
-  //     color: kForeGroundColor,
-  //     child: Padding(
-  //       padding: EdgeInsets.all(32.w),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           '当前房屋'.text.black.size(28.sp).make(),
-  //           32.w.heightBox,
-  //           GestureDetector(
-  //             onTap: () {
-  //               MyHousePage(
-  //                 needFindPayTag: true,
-  //               ).to();
-  //             },
-  //             child: Row(
-  //               children: [
-  //                 Image.asset(
-  //                   R.ASSETS_ICONS_HOUSE_PNG,
-  //                   width: 60.w,
-  //                   height: 60.w,
-  //                 ),
-  //                 40.w.widthBox,
-  //                 Expanded(
-  //                   child: Column(
-  //                     crossAxisAlignment: CrossAxisAlignment.start,
-  //                     children: [
-  //                       title.text.black.size(32.sp).bold.make(),
-  //                       10.w.heightBox,
-  //                       detail.text.black.size(32.sp).bold.make()
-  //                     ],
-  //                   ),
-  //                 ),
-  //                 Icon(
-  //                   CupertinoIcons.chevron_forward,
-  //                   size: 40.w,
-  //                 ),
-  //               ],
-  //             ).material(color: Colors.transparent),
-  //           ),
-  //           24.w.heightBox,
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _buildHouseCard() {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    return Material(
+      color: kForeGroundColor,
+      child: Padding(
+        padding: EdgeInsets.all(32.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            '当前房屋'.text.black.size(28.sp).make(),
+            32.w.heightBox,
+            GestureDetector(
+              onTap: () {
+                MyHousePage(
+                  needFindPayTag: true,
+                ).to();
+              },
+              child: Row(
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_HOUSE_PNG,
+                    width: 60.w,
+                    height: 60.w,
+                  ),
+                  40.w.widthBox,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        kEstateName.text.black.size(32.sp).bold.make(),
+                        10.w.heightBox,
+                        userProvider.currentHouse.text.black
+                            .size(32.sp)
+                            .bold
+                            .make()
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    CupertinoIcons.chevron_forward,
+                    size: 40.w,
+                  ),
+                ],
+              ).material(color: Colors.transparent),
+            ),
+            24.w.heightBox,
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _buildCard(LifePayModel model, int index) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 20.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.w), color: kForeGroundColor),
       child: Row(
@@ -127,70 +120,26 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               GestureDetector(
                 onTap: () {
-                  // if (selectItems[index].selected.length ==
-                  //     _getLength(model)) {
-                  //   selectItems[index].value = false;
-                  //   selectItems[index].selected.clear();
-                  //   _selectYears.remove(index);
-                  // } else {
-                  //   selectItems[index].value = true;
-                  //   _selectYears.add(index);
-                  //   for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
-                  //     for (var j = 0;
-                  //         i <
-                  //             model
-                  //                 .dailyPaymentTypeVos[i].detailedVoList.length;
-                  //         i++) {
-                  //       String id = model.dailyPaymentTypeVos[i].id.toString() +
-                  //           model.dailyPaymentTypeVos[i].detailedVoList[j]
-                  //               .groupId
-                  //               .toString();
-                  //       if (!selectItems[index].selected.contains(id)) {
-                  //         selectItems[index].selected.add(id);
-                  //       }
-                  //     }
-                  //   }
-                  // }
-                  // setState(() {});
-                  if (_selectYears.contains(index)) {
-                    _selectYears.remove(index);
-                    _totalCost -= _selectPay[index].payTotal;
-                    _count -= _selectPay[index].payCount;
-                  } else {
-                    _selectYears.add(index);
-                    _totalCost += _selectPay[index].payTotal;
-                    _count += _selectPay[index].payCount;
-                  }
-                  setState(() {});
+                  setState(() {
+                    if (_selectYears.contains(index)) {
+                      _selectYears.remove(index);
+                      _totalCost -= (_selectPay[index].payTotal ?? 0.0);
+                      _count -= (_selectPay[index].payCount ?? 0);
+                    } else {
+                      _selectYears.add(index);
+                      _totalCost += (_selectPay[index].payTotal ?? 0.0);
+                      _count += (_selectPay[index].payCount ?? 0);
+                    }
+                  });
                 },
                 child: BeeCheckRadio(
                   value: index,
                   groupValue: _selectYears,
-                  // onChange: (value) {
-                  //   if (value) {
-                  //     selectItems[index].value=false;
-                  //     selectItems[index].selected.clear();
-                  //   } else {
-                  //     selectItems[index].value=true;
-                  //     for (var i = 0; i < model.dailyPaymentTypeVos.length; i++) {
-                  //       for (var j = 0;
-                  //           i <
-                  //               model
-                  //                   .dailyPaymentTypeVos[i].detailedVoList.length;
-                  //           i++) {
-                  //         selectItems[index].selected.add(
-                  //             model.dailyPaymentTypeVos[i].id.toString() +
-                  //                 model.dailyPaymentTypeVos[i].detailedVoList[j]
-                  //                     .groupId
-                  //                     .toString());
-                  //       }
-                  //     }
-                  //   }
-                  // },
                 ),
               ),
             ],
           ),
+          24.w.widthBox,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -201,7 +150,7 @@ class _LifePayPageState extends State<LifePayPage> {
                   .size(28.sp)
                   .make(),
               24.w.heightBox,
-              '待缴：${model.paymentNum}项'
+              '待缴：${model.paymentNum}项  已选${_selectPay[index].payCount}项'
                   .text
                   .color(ktextPrimary)
                   .size(28.sp)
@@ -216,26 +165,26 @@ class _LifePayPageState extends State<LifePayPage> {
                           fontWeight: FontWeight.bold),
                       children: [
                     TextSpan(
-                        text: '¥',
+                        text: '¥ ${_selectPay[index].payTotal}',
                         style: TextStyle(
                             color: kDangerColor,
                             fontSize: 28.sp,
                             fontWeight: FontWeight.bold)),
                   ]))
             ],
-          ),
+          ).expand(),
           Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {
-                  List payMent = LifePayDetailPage(
+                onTap: () async {
+                  List payMent = await LifePayDetailPage(
                     model: _models[index],
-                    // selectItems: selectItems[index].selected,
                   ).to();
                   _selectPay[index].payCount = payMent[0];
                   _selectPay[index].payTotal = payMent[1];
+                  setState(() {});
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -279,6 +228,8 @@ class _LifePayPageState extends State<LifePayPage> {
             'estateId': userProvider.currentHouseId,
           },
           convert: (model) {
+            _selectPay = List.generate(model.tableList.length,
+                (index) => SelectPay(payCount: 0, payTotal: 0.0));
             return model.tableList
                 .map((e) => LifePayModel.fromJson(e))
                 .toList();
@@ -287,13 +238,7 @@ class _LifePayPageState extends State<LifePayPage> {
             _models = items;
             return Column(
               children: [
-                // _buildHouseCard(
-                //     kEstateName,
-                //     userProvider.userDetailModel.estateNames.isEmpty
-                //         ? ''
-                //         : BeeParse.getEstateName(
-                //             userProvider.userDetailModel.estateNames[0])),
-                BeeHeaderHouse(),
+                _buildHouseCard(),
                 16.w.heightBox,
                 Container(
                   padding: EdgeInsets.all(32.w),
@@ -305,7 +250,8 @@ class _LifePayPageState extends State<LifePayPage> {
                     children: [
                       '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
                       ...List.generate(items.length,
-                          (index) => _buildCard(items[index], index)),
+                              (index) => _buildCard(items[index], index))
+                          .sepWidget(separate: BeeDivider.horizontal()),
                     ],
                   ),
                 ),
@@ -318,19 +264,6 @@ class _LifePayPageState extends State<LifePayPage> {
             32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
         child: Row(
           children: [
-            // BeeCheckBox.round(
-            //   onChange: (value) {
-            //     if (value) {
-            //       _selectYears.clear();
-            //     } else {
-            //       for (var i = 0; i < _models.length; i++) {
-            //         _selectYears.add(i);
-            //       }
-            //     }
-            //     setState(() {});
-            //   },
-            //   size: 40.w,
-            // ),
             GestureDetector(
               onTap: () {
                 if (_models.length == _selectYears.length) {
@@ -396,7 +329,7 @@ class _LifePayPageState extends State<LifePayPage> {
                               fontSize: 32.sp,
                               fontWeight: FontWeight.bold)),
                     ])),
-                '$_count'.text.color(ktextSubColor).size(20.sp).make(),
+                '已选$_count项'.text.color(ktextSubColor).size(20.sp).make(),
               ],
             ),
             24.w.widthBox,

@@ -141,7 +141,7 @@ class UserProvider extends ChangeNotifier {
   ///设置默认房屋
   String _currentHouse;
   int get currentHouseId => BeeParse.getEstateNameId(_currentHouse);
-  String get currentHouse => _currentHouse;
+  String get currentHouse => BeeParse.getEstateName(_currentHouse);
   setCurrentHouse(String house) {
     _currentHouse = house;
     notifyListeners();

@@ -60,7 +60,7 @@ class DailyPaymentTypeVos {
 
 class DetailedVoList {
   int groupId;
-  int paymentPrice;
+  double paymentPrice;
   List<DetailsVoList> detailsVoList;
 
   DetailedVoList({this.groupId, this.paymentPrice, this.detailsVoList});
@@ -91,9 +91,9 @@ class DetailedVoList {
 class DetailsVoList {
   int id;
   String month;
-  int costPrice;
-  int paidPrice;
-  int totalPrice;
+  double costPrice;
+  double paidPrice;
+  double totalPrice;
   String beginDate;
   String endDate;
   String unitPriceType;

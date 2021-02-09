@@ -44,11 +44,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
     return listLength == _selectItems.length;
   }
 
-  Widget _buildTile(int groupId, int id, int years, int price) {
-    return Row(
-      children: [
-        GestureDetector(
-            onTap: () {
+  Widget _buildTile(int groupId, int id, int years, double price) {
+    return GestureDetector(
+         onTap: () {
               String item = id.toString() + groupId.toString();
               if (_selectItems.contains(item)) {
                 _selectItems.remove(item);
@@ -62,21 +60,25 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
 
               setState(() {});
             },
-            child: BeeCheckRadio(
-                value: id.toString() + groupId.toString(),
-                groupValue: _selectItems)),
-        24.w.widthBox,
-        groupId == 1
-            ? '$years上半年'.text.black.size(28.sp).make()
-            : '$years下半年'.text.black.size(28.sp).make(),
-        Spacer(),
-        '¥${price.toString()}'.text.color(kDangerColor).size(28.sp).bold.make(),
-        24.w.widthBox,
-        Icon(
-          CupertinoIcons.chevron_forward,
-          size: 40.w,
-        ),
-      ],
+          child: Row(
+        children: [
+           
+               BeeCheckRadio(
+                  value: id.toString() + groupId.toString(),
+                  groupValue: _selectItems),
+          24.w.widthBox,
+          groupId == 1
+              ? '$years上半年'.text.black.size(28.sp).make()
+              : '$years下半年'.text.black.size(28.sp).make(),
+          Spacer(),
+          '¥${price.toString()}'.text.color(kDangerColor).size(28.sp).bold.make(),
+          24.w.widthBox,
+          Icon(
+            CupertinoIcons.chevron_forward,
+            size: 40.w,
+          ),
+        ],
+      ).material(color: Colors.transparent),
     );
   }
 
@@ -90,7 +92,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             children: [
               model.name.text.black.size(30.sp).bold.make(),
               Spacer(),
-              '$kEstateName ${BeeParse.getEstateName(userProvider.currentHouse)}'
+              '$kEstateName ${userProvider.currentHouse}'
                   .text
                   .color(ktextSubColor)
                   .size(24.sp)
@@ -127,34 +129,36 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           children: [
             GestureDetector(
               onTap: () {
-                if (isAllSelect) {
-                  _selectItems.clear();
-                  _payNum = 0;
-                  _payTotal = 0;
-                } else {
-                  for (var i = 0;
-                      i < widget.model.dailyPaymentTypeVos.length;
-                      i++) {
-                    for (var j = 0;
-                        i <
-                            widget.model.dailyPaymentTypeVos[i].detailedVoList
-                                .length;
+                setState(() {
+                  if (isAllSelect) {
+                    _selectItems.clear();
+                    _payNum = 0;
+                    _payTotal = 0;
+                  } else {
+                    for (var i = 0;
+                        i < widget.model.dailyPaymentTypeVos.length;
                         i++) {
-                      String id =
-                          widget.model.dailyPaymentTypeVos[i].id.toString() +
-                              widget.model.dailyPaymentTypeVos[i]
-                                  .detailedVoList[j].groupId
-                                  .toString();
-                      if (!_selectItems.contains(id)) {
-                        _selectItems.add(id);
-                        _payNum += 1;
-                        _payTotal += widget.model.dailyPaymentTypeVos[i]
-                            .detailedVoList[j].paymentPrice.toDouble();
+                      for (var j = 0;
+                          i <
+                              widget.model.dailyPaymentTypeVos[i].detailedVoList
+                                  .length;
+                          i++) {
+                        String id =
+                            widget.model.dailyPaymentTypeVos[i].id.toString() +
+                                widget.model.dailyPaymentTypeVos[i]
+                                    .detailedVoList[j].groupId
+                                    .toString();
+                        if (!_selectItems.contains(id)) {
+                          _selectItems.add(id);
+                          _payNum += 1;
+                          _payTotal += widget.model.dailyPaymentTypeVos[i]
+                              .detailedVoList[j].paymentPrice
+                              .toDouble();
+                        }
                       }
                     }
                   }
-                }
-                setState(() {});
+                });
               },
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
@@ -196,7 +200,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                               fontSize: 32.sp,
                               fontWeight: FontWeight.bold)),
                     ])),
-                '$_payNum'.text.color(ktextSubColor).size(20.sp).make(),
+                '已选$_payNum项'.text.color(ktextSubColor).size(20.sp).make(),
               ],
             ),
             MaterialButton(
