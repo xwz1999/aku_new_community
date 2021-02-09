@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/ui/message/message_center.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -46,7 +47,7 @@ class _CommunityPageState extends State<CommunityPage>
       title: '社区',
       actions: [
         ColumnActionButton(
-          onPressed: () {},
+          onPressed: MessageCenter().to,
           title: '消息',
           path: R.ASSETS_ICONS_ALARM_PNG,
         ),
