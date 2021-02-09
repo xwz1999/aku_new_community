@@ -36,13 +36,15 @@ class QuestionnaireModel {
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });
-    }else imgUrls=[];
+    } else
+      imgUrls = [];
     if (json['headImgURls'] != null) {
       headImgURls = new List<ImgModel>();
       json['headImgURls'].forEach((v) {
         headImgURls.add(new ImgModel.fromJson(v));
       });
-    }else headImgURls=[];
+    } else
+      headImgURls = [];
   }
 
   Map<String, dynamic> toJson() {

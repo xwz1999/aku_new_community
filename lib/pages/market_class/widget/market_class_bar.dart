@@ -18,10 +18,7 @@ class MarketClassBar extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(right: 32.w),
-        padding: EdgeInsets.only(
-            left: 40.w,
-            top: 15.w,
-            bottom: 15.w),
+        padding: EdgeInsets.only(left: 40.w, top: 15.w, bottom: 15.w),
         decoration: BoxDecoration(
           color: Color(0xfff3f3f3),
           borderRadius: BorderRadius.all(Radius.circular(36)),

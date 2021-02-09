@@ -102,8 +102,7 @@ class _HouseAuthenticatePageState extends State<HouseAuthenticatePage> {
                             Text(
                               _inputList[index]['title'],
                               style: TextStyle(
-                                  fontSize: 28.sp,
-                                  color: Color(0xff333333)),
+                                  fontSize: 28.sp, color: Color(0xff333333)),
                             ),
                             SizedBox(height: 25.w),
                             CommonInput(

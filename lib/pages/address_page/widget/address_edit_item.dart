@@ -27,8 +27,10 @@ class _AddressEditItemState extends State<AddressEditItem> {
     super.initState();
     _userName = new TextEditingController(text: widget.addressInfo['name']);
     _userPhone = new TextEditingController(text: widget.addressInfo['phone']);
-    _userAddress = new TextEditingController(text: widget.addressInfo['address']);
-    _userAddressDetail = new TextEditingController(text: widget.addressInfo['address']);
+    _userAddress =
+        new TextEditingController(text: widget.addressInfo['address']);
+    _userAddressDetail =
+        new TextEditingController(text: widget.addressInfo['address']);
   }
 
   @override
@@ -70,16 +72,14 @@ class _AddressEditItemState extends State<AddressEditItem> {
                   border: InputBorder.none, //去掉输入框的下滑线
                   fillColor: Colors.white,
                   filled: true,
-                  hintStyle: TextStyle(
-                      color: Color(0xff999999), fontSize: 28.sp),
+                  hintStyle:
+                      TextStyle(color: Color(0xff999999), fontSize: 28.sp),
                   prefixIcon: Padding(
                     padding: EdgeInsets.only(
                       left: 32.w,
-                      right:
-                          (item['title'] == '收货人' ? 88 : 60).w,
+                      right: (item['title'] == '收货人' ? 88 : 60).w,
                       top: 28.w,
-                      bottom:
-                          (item['title'] == '详细地址' ? 158 : 28).w,
+                      bottom: (item['title'] == '详细地址' ? 158 : 28).w,
                     ),
                     child: Text(
                       item['title'],

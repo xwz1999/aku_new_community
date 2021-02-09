@@ -45,7 +45,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
       case 4:
         return '已填写';
       default:
-      return '';
+        return '';
     }
   }
 
@@ -111,7 +111,9 @@ class _EventVotingPageState extends State<EventVotingPage> {
                       //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                       elevation: 0,
                       onPressed: () {
-                        VotingDetailPage(id: model.id,).to();
+                        VotingDetailPage(
+                          id: model.id,
+                        ).to();
                       },
                       child: (_getButtonText(model.status))
                           .text

@@ -7,7 +7,9 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class OrderCard extends StatefulWidget {
-  OrderCard({Key key,}) : super(key: key);
+  OrderCard({
+    Key key,
+  }) : super(key: key);
 
   @override
   _OrderCardState createState() => _OrderCardState();
@@ -76,7 +78,7 @@ class _OrderCardState extends State<OrderCard> {
 
   Widget _checkInfo() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         // LifePayInfoPage(bundle: Bundle()
         //   ..putMap('detailMap', {'title': '去年（2019年）'}),).to;
       },

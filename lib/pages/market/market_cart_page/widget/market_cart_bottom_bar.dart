@@ -45,7 +45,7 @@ class MarketCartBottomBar extends StatelessWidget {
     );
   }
 
-  Widget _settlement(CartProvidde model,BuildContext context) {
+  Widget _settlement(CartProvidde model, BuildContext context) {
     return Row(
       children: [
         model.allPrice != 0
@@ -99,7 +99,10 @@ class MarketCartBottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _selectAll(model),
-            _settlement(model,context,)
+            _settlement(
+              model,
+              context,
+            )
           ],
         ),
       );

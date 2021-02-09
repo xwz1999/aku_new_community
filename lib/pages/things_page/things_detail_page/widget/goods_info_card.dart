@@ -49,10 +49,7 @@ class GoodsInfoCard extends StatelessWidget {
                     blurRadius: 10.0),
               ],
             ),
-            padding: EdgeInsets.only(
-                top: 25.w,
-                left: 24.w,
-                right: 24.w),
+            padding: EdgeInsets.only(top: 25.w, left: 24.w, right: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -97,8 +94,7 @@ class GoodsInfoCard extends StatelessWidget {
                           child: Text(
                             infodetails,
                             style: TextStyle(
-                                fontSize: 28.sp,
-                                color: Color(0xff333333)),
+                                fontSize: 28.sp, color: Color(0xff333333)),
                           ),
                         )
                       : Column(
@@ -106,8 +102,7 @@ class GoodsInfoCard extends StatelessWidget {
                           children: detoInfoList
                               .map(
                                 (item) => Container(
-                                  padding: EdgeInsets.only(
-                                      top: 8.w),
+                                  padding: EdgeInsets.only(top: 8.w),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -141,13 +136,11 @@ class GoodsInfoCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: EdgeInsets.only(
-                                  bottom: 25.w),
+                              margin: EdgeInsets.only(bottom: 25.w),
                               child: Text(
                                 '图片信息',
                                 style: TextStyle(
-                                    fontSize: 28.sp,
-                                    color: Color(0xff333333)),
+                                    fontSize: 28.sp, color: Color(0xff333333)),
                               ),
                             ),
                             ImageHorizontalList(imageUrl: listImage),

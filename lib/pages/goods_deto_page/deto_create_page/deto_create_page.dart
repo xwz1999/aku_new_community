@@ -54,7 +54,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     '50kg-100kg',
     '> 100kg',
   ];
-  int _selectApproach=0;
+  int _selectApproach = 0;
   List<String> _listMode = [
     '自己搬运',
     '搬家公司',

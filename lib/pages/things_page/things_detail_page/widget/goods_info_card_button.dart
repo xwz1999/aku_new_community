@@ -121,8 +121,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                             color: Color(0xff333333),
                           ),
                           Container(
-                            margin:
-                                EdgeInsets.only(left: 14.w),
+                            margin: EdgeInsets.only(left: 14.w),
                             child: Text(
                               _listButton[index]['title'],
                               style: TextStyle(

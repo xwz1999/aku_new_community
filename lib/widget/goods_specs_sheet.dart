@@ -305,7 +305,6 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
             break;
           default:
         }
-
       },
       child: Container(
         decoration: BoxDecoration(

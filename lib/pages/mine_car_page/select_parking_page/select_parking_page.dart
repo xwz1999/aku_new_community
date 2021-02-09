@@ -39,9 +39,8 @@ class _SelectParkingPageState extends State<SelectParkingPage> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
-                  padding: EdgeInsets.symmetric(
-                      vertical: 28.w,
-                      horizontal: 32.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 28.w, horizontal: 32.w),
                   child: Text(
                     '${widget.bundle.getString('title')}地下车库11号${index + 1}',
                     style: TextStyle(

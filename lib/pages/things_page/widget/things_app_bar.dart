@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 
-//TODO CLEAN BOTTOM CODES. 
+//TODO CLEAN BOTTOM CODES.
 @Deprecated("sh*t app bar need to be cleaned.")
 class ThingsAppBar extends StatelessWidget {
   final String title, subtitle;
@@ -54,12 +54,10 @@ class ThingsAppBar extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontSize: 28.sp,
           ),
-          labelPadding:
-              EdgeInsets.symmetric(horizontal: 131.5.w),
+          labelPadding: EdgeInsets.symmetric(horizontal: 131.5.w),
           indicatorColor: Color(0xffffc40c),
           indicatorSize: TabBarIndicatorSize.label,
-          indicatorPadding:
-              EdgeInsets.symmetric(horizontal: 21.w),
+          indicatorPadding: EdgeInsets.symmetric(horizontal: 21.w),
           isScrollable: true,
           controller: tabController,
           tabs: List.generate(

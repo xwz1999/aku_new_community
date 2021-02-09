@@ -97,7 +97,6 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 alignment: Alignment.center,
                 child: '我的借还物品'.text.black.size(28.sp).make()))
       ],
-
       body: BeeListView(
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,

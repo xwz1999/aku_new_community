@@ -9,7 +9,7 @@ import 'package:akuCommunity/utils/headers.dart';
 class CommonInput extends StatefulWidget {
   final TextEditingController inputController;
   final String hintText;
-  CommonInput({Key key,this.inputController,this.hintText}) : super(key: key);
+  CommonInput({Key key, this.inputController, this.hintText}) : super(key: key);
 
   @override
   _CommonInputState createState() => _CommonInputState();

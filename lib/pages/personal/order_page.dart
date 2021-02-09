@@ -75,10 +75,7 @@ class _OrderPageState extends State<OrderPage>
       onTap: () {},
       child: Container(
         margin: EdgeInsets.only(right: 32.w),
-        padding: EdgeInsets.only(
-            left: 40.w,
-            top: 20.w,
-            bottom: 20.w),
+        padding: EdgeInsets.only(left: 40.w, top: 20.w, bottom: 20.w),
         decoration: BoxDecoration(
           color: BaseStyle.colorf3f3f3,
           borderRadius: BorderRadius.all(Radius.circular(36)),

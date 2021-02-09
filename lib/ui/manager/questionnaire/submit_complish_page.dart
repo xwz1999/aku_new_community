@@ -29,7 +29,9 @@ class SubmitComplishPage extends StatelessWidget {
                 color: this.status ? kPrimaryColor : kDangerColor,
               ),
               child: Icon(
-                this.status ? CupertinoIcons.checkmark : CupertinoIcons.multiply,
+                this.status
+                    ? CupertinoIcons.checkmark
+                    : CupertinoIcons.multiply,
                 size: 100.w,
               ),
             ),

@@ -65,7 +65,9 @@ class BillCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _listBill.map((item) => _billItem(item['title'],item['value'])).toList(),
+        children: _listBill
+            .map((item) => _billItem(item['title'], item['value']))
+            .toList(),
       ),
     );
   }

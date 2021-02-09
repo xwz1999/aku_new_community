@@ -77,8 +77,7 @@ class _InvoiceInputState extends State<InvoiceInput> {
                               fillColor: Colors.white,
                               filled: true,
                               hintStyle: TextStyle(
-                                  color: Color(0xff999999),
-                                  fontSize: 24.sp),
+                                  color: Color(0xff999999), fontSize: 24.sp),
                             ),
                           ),
                         ),

@@ -54,7 +54,7 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
     if (!mounted) return;
     setState(() {
       // images = (resultList == null) ? [] : resultList;
-      if(resultList != null){
+      if (resultList != null) {
         images.addAll(resultList);
       }
     });

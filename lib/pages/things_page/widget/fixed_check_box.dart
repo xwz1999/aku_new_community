@@ -18,7 +18,6 @@ class FixedCheckBox extends StatefulWidget {
 class _FixedCheckBoxState extends State<FixedCheckBox> {
   bool _isSelected = false;
 
-  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,9 +45,8 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
           width: 24.w,
           height: 24.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24.w),
-            color: kPrimaryColor.withOpacity(_isSelected?1:0)
-          ),
+              borderRadius: BorderRadius.circular(24.w),
+              color: kPrimaryColor.withOpacity(_isSelected ? 1 : 0)),
         ),
       ),
     );

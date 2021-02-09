@@ -39,8 +39,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
               ),
               decoration: BoxDecoration(
                 color: Color(0xffffffff),
-                borderRadius:
-                    BorderRadius.all(Radius.circular(8.w)),
+                borderRadius: BorderRadius.all(Radius.circular(8.w)),
               ),
               height: 746.w,
               width: 686.w,
@@ -66,8 +65,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                     ),
                     decoration: BoxDecoration(
                       color: Color(0xfffffbf6),
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(8.w)),
+                      borderRadius: BorderRadius.all(Radius.circular(8.w)),
                     ),
                     width: 646.w,
                     height: 146.w,

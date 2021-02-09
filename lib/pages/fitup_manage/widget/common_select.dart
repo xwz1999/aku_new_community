@@ -25,54 +25,54 @@ class _CommonSelectState extends State<CommonSelect> {
   Widget build(BuildContext context) {
     return Container(
       child: InkWell(
-        onTap: (){
+        onTap: () {
           switch (widget.title) {
-                case '时间':
-                  DatePicker.showDatePicker(context,
-                      showTitleActions: true,
-                      minTime: DateTime(2020, 1, 1),
-                      maxTime: DateTime(2020, 12, 31), onChanged: (date) {
-                    print('change $date in time zone ' +
-                        date.timeZoneOffset.inHours.toString());
-                  }, onConfirm: (date) {
-                    pickerData = date.toString().substring(0, 11);
+            case '时间':
+              DatePicker.showDatePicker(context,
+                  showTitleActions: true,
+                  minTime: DateTime(2020, 1, 1),
+                  maxTime: DateTime(2020, 12, 31), onChanged: (date) {
+                print('change $date in time zone ' +
+                    date.timeZoneOffset.inHours.toString());
+              }, onConfirm: (date) {
+                pickerData = date.toString().substring(0, 11);
+                setState(() {});
+              }, currentTime: DateTime.now(), locale: LocaleType.zh);
+              break;
+            case '证件类型':
+              Picker(
+                  adapter: PickerDataAdapter<String>(
+                    pickerdata: [
+                      ["身份证", "驾驶证", "护照"]
+                    ],
+                    isArray: true,
+                  ),
+                  changeToFirst: true,
+                  hideHeader: false,
+                  title: Text(
+                    "证件类型",
+                    style: TextStyle(
+                      fontSize: 32.sp,
+                      color: Color(0xff333333),
+                    ),
+                  ),
+                  confirmTextStyle: TextStyle(
+                    fontSize: 28.sp,
+                    color: Color(0xffffc40c),
+                  ),
+                  cancelTextStyle: TextStyle(
+                    fontSize: 28.sp,
+                    color: Color(0xff333333),
+                  ),
+                  onConfirm: (Picker picker, List value) {
+                    pickerData = picker.getSelectedValues()[0];
                     setState(() {});
-                  }, currentTime: DateTime.now(), locale: LocaleType.zh);
-                  break;
-                case '证件类型':
-                  Picker(
-                      adapter: PickerDataAdapter<String>(
-                        pickerdata: [
-                          ["身份证", "驾驶证", "护照"]
-                        ],
-                        isArray: true,
-                      ),
-                      changeToFirst: true,
-                      hideHeader: false,
-                      title: Text(
-                        "证件类型",
-                        style: TextStyle(
-                          fontSize: 32.sp,
-                          color: Color(0xff333333),
-                        ),
-                      ),
-                      confirmTextStyle: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xffffc40c),
-                      ),
-                      cancelTextStyle: TextStyle(
-                        fontSize: 28.sp,
-                        color: Color(0xff333333),
-                      ),
-                      onConfirm: (Picker picker, List value) {
-                        pickerData = picker.getSelectedValues()[0];
-                        setState(() {});
-                        print(value.toString());
-                        print(picker.getSelectedValues());
-                      }).showModal(context);
-                  break;
-                default:
-              }
+                    print(value.toString());
+                    print(picker.getSelectedValues());
+                  }).showModal(context);
+              break;
+            default:
+          }
         },
         child: Container(
           child: Row(

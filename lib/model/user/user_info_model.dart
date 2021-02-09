@@ -38,7 +38,7 @@ class UserInfoModel {
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    if (json['imgUrls'] != null&&(json['imgUrls'] as List).length!=0)
+    if (json['imgUrls'] != null && (json['imgUrls'] as List).length != 0)
       imgUrl = (json['imgUrls'] as List).first['url'];
     name = json['name'];
     nickName = json['nickName'];

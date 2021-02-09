@@ -76,7 +76,7 @@ class _MineHousePageState extends State<MineHousePage> {
   Widget _inkWellCheck() {
     return InkWell(
       onTap: () {
-      HouseAuthenticatePage().to;
+        HouseAuthenticatePage().to;
       },
       child: Container(
         padding: EdgeInsets.only(

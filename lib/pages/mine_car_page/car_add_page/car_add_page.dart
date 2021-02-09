@@ -85,8 +85,7 @@ class _CarAddPageState extends State<CarAddPage> {
                         Text(
                           '您的车牌号',
                           style: TextStyle(
-                              fontSize: 28.sp,
-                              color: Color(0xff333333)),
+                              fontSize: 28.sp, color: Color(0xff333333)),
                         ),
                         SizedBox(height: 25.w),
                         CommonInput(

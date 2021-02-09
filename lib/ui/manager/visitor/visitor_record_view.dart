@@ -23,7 +23,6 @@ class VisitorRecordView extends StatefulWidget {
 class _VisitorRecordViewState extends State<VisitorRecordView> {
   EasyRefreshController _refreshController = EasyRefreshController();
 
- 
   @override
   void dispose() {
     _refreshController?.dispose();

@@ -102,17 +102,12 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     borderRadius: BorderRadius.circular(36.w),
                     color: Colors.transparent,
                   ),
-                  child: BeeMap
-                      .fixTag[model.appReportRepairVo.type]
-                      .text
-                      .black
+                  child: BeeMap.fixTag[model.appReportRepairVo.type].text.black
                       .size(20.sp)
                       .make(),
                 ),
                 Spacer(),
-                BeeMap
-                    .fixState[model.appReportRepairVo.status]
-                    .text
+                BeeMap.fixState[model.appReportRepairVo.status].text
                     .color(_getColor(_model.appReportRepairVo.status))
                     .size(24.sp)
                     .bold
@@ -226,9 +221,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           ...model.appProcessRecordVo
               .map((e) => Row(
                     children: [
-                      BeeMap
-                          .processClass[e.operationType]
-                          .text
+                      BeeMap.processClass[e.operationType].text
                           .color(ktextSubColor)
                           .size(28.sp)
                           .make(),

@@ -19,16 +19,18 @@ class BeeDivider extends StatelessWidget {
       this.isHorizontal})
       : super(key: key);
   BeeDivider.horizontal({
-    Key key, this.indent, this.endIndent,
-  })  : 
-        thickness = 1.w,
+    Key key,
+    this.indent,
+    this.endIndent,
+  })  : thickness = 1.w,
         color = Color(0xFFE8E8E8),
         isHorizontal = true,
         super(key: key);
   BeeDivider.vertical({
-    Key key, this.indent, this.endIndent,
-  })  :
-        thickness = 1.w,
+    Key key,
+    this.indent,
+    this.endIndent,
+  })  : thickness = 1.w,
         color = Color(0xFFE8E8E8),
         isHorizontal = false,
         super(key: key);

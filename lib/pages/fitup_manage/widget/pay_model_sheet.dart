@@ -43,7 +43,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
     }
   ];
 
-  int _currentindex = 0 ;
+  int _currentindex = 0;
 
   void _showModelBotoomSheet() {
     showModalBottomSheet(
@@ -153,8 +153,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                     Text(
                       title,
                       style: TextStyle(
-                          fontSize: BaseStyle.fontSize28,
-                          color: ktextPrimary),
+                          fontSize: BaseStyle.fontSize28, color: ktextPrimary),
                     ),
                     _listPay[index]['isCheck']
                         ? Icon(
@@ -195,8 +194,7 @@ class _PayModelSheetState extends State<PayModelSheet> {
                 Text(
                   _listPay[_currentindex]['title'],
                   style: TextStyle(
-                      fontSize: BaseStyle.fontSize28,
-                      color: ktextPrimary),
+                      fontSize: BaseStyle.fontSize28, color: ktextPrimary),
                 ),
               ],
             ),

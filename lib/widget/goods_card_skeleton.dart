@@ -59,8 +59,7 @@ class GoodsCardSkeleton extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            margin:
-                                EdgeInsets.only(bottom: 6.w),
+                            margin: EdgeInsets.only(bottom: 6.w),
                             height: 30.w,
                             width: double.infinity,
                           ),
@@ -69,8 +68,7 @@ class GoodsCardSkeleton extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            margin:
-                                EdgeInsets.only(bottom: 20.w),
+                            margin: EdgeInsets.only(bottom: 20.w),
                             height: 30.w,
                             width: double.infinity,
                           ),

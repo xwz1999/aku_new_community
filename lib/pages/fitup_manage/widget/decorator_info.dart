@@ -54,8 +54,7 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
         children: [
           Text(
             title,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           widget
@@ -79,8 +78,7 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
         children: [
           Text(
             '上传证件照片',
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
           Row(

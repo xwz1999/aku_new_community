@@ -98,12 +98,10 @@ class GoodsInfoCardButton extends StatelessWidget {
                     onTap: () async {
                       switch (_listButton[index]['title']) {
                         case '查看二维码':
-                          ArticleQRModel _model = await ManagerFunc.getQRcode(id);
+                          ArticleQRModel _model =
+                              await ManagerFunc.getQRcode(id);
                           if (_model.status) {
-                            DetoCodePage(
-                              id: id,
-                              model: _model
-                            ).to();
+                            DetoCodePage(id: id, model: _model).to();
                           } else {
                             BotToast.showText(text: _model.message);
                           }

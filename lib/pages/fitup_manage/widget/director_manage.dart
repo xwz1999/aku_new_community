@@ -19,7 +19,6 @@ class DirectorManage extends StatefulWidget {
 }
 
 class _DirectorManageState extends State<DirectorManage> {
-
   TextEditingController _companyName = new TextEditingController();
 
   int memberNum = 1;

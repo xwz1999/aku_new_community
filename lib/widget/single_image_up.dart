@@ -104,12 +104,10 @@ class _SingleImageUpState extends State<SingleImageUp> {
                     border: Border.all(
                         color: Color(0xffe8e8e8),
                         width: images.length == 0 ? 0 : 4.w),
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(6.w)),
+                    borderRadius: BorderRadius.all(Radius.circular(6.w)),
                   ),
                   child: ClipRRect(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(6.w)),
+                    borderRadius: BorderRadius.all(Radius.circular(6.w)),
                     child: images.length == 0
                         ? Image.asset(
                             widget.imagePath,
