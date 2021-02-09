@@ -56,7 +56,9 @@ class _MyHousePageState extends State<MyHousePage> {
     super.initState();
     if (widget.needFindPayTag) {
       ManagerFunc.findEstatelsPayment().then((value) {
-        _list = value.data;
+        _list = (value.data as List)
+            .map((e) => EstatePaymentModel.fromJson(e))
+            .toList();
         return _list;
       });
     }

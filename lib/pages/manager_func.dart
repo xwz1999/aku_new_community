@@ -167,7 +167,7 @@ class ManagerFunc {
       API.manager.findEstatelsPament,
       showMessage: false,
     );
-    return baseModel.data;
+    return baseModel;
   }
 
   static Future<VotingDetailModel> voteDetail(int id) async {
@@ -204,7 +204,7 @@ class ManagerFunc {
       API.manager.questionnaireSubmit,
       params: {
         'id': id,
-        'appQuestionnaireAnswerSubmits':model,
+        'appQuestionnaireAnswerSubmits': model,
       },
       showMessage: true,
     );
