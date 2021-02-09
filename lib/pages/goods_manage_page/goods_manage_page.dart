@@ -88,16 +88,14 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
     return BeeScaffold(
       title: '借还管理',
       actions: [
-        InkWell(
-            onTap: () {
-              MineGoodsPage().to();
-            },
-            child: Container(
-                padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-                alignment: Alignment.center,
-                child: '我的借还物品'.text.black.size(28.sp).make()))
+        MaterialButton(
+          onPressed: () {
+            MineGoodsPage().to();
+          },
+          child: '我的借还物品'.text.black.size(28.sp).make(),
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+        ),
       ],
-
       body: BeeListView(
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
