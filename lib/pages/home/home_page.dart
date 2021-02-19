@@ -1,14 +1,14 @@
 // Dart imports:
-import 'dart:async';
-import 'dart:convert';
 
 // Flutter imports:
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
@@ -19,7 +19,6 @@ import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
-import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/ui/community/activity/activity_card.dart';
 import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/community/community_func.dart';
@@ -30,7 +29,6 @@ import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/views/application_box.dart';
 import 'package:akuCommunity/widget/views/application_view.dart';
 import 'widget/home_search.dart';
-import 'widget/home_swiper.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -67,16 +65,31 @@ class _HomePageState extends State<HomePage>
     super.build(context);
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-          ColumnActionButton(
-            onPressed: MessageCenterPage().to,
-            title: '消息',
-            path: R.ASSETS_ICONS_ALARM_PNG,
-          ),
+          Stack(children: [
+            ColumnActionButton(
+              onPressed: MessageCenterPage().to,
+              title: '消息',
+              path: R.ASSETS_ICONS_ALARM_PNG,
+            ),
+            Positioned(
+                top: 0,
+                right: 0,
+                child: appProvider.messageCenterModel.sysCount == 0
+                    ? SizedBox()
+                    : Container(
+                        width: 2.w,
+                        height: 2.w,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(1.w)),
+                      ))
+          ]),
         ],
       ),
       body: EasyRefresh(
@@ -86,6 +99,7 @@ class _HomePageState extends State<HomePage>
         onRefresh: () async {
           _activityItemModel = await CommunityFunc.activity();
           _boardItemModels = await CommunityFunc.board();
+          appProvider.getMessageCenter();
           setState(() {});
         },
         child: CustomScrollView(

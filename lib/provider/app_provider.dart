@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:akuCommunity/model/common/real_time_weather_model.dart';
+import 'package:akuCommunity/model/message/message_center_model.dart';
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -136,6 +137,15 @@ class AppProvider extends ChangeNotifier {
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);
+    notifyListeners();
+  }
+
+  /// 消息中心
+  MessageCenterModel _messageCenterModel;
+  MessageCenterModel get messageCenterModel => _messageCenterModel??MessageCenterModel.zero();
+  getMessageCenter() async {
+     Response response = await NetUtil().dio.get(API.message.center);
+    _messageCenterModel=MessageCenterModel.fromJson(response.data);
     notifyListeners();
   }
 }

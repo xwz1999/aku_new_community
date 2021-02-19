@@ -1,5 +1,4 @@
 // Package imports:
-import 'dart:convert';
 
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/moving_company_model.dart';
