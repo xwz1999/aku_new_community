@@ -1,7 +1,7 @@
 // Dart imports:
 
 // Flutter imports:
-import 'package:akuCommunity/pages/message_center_page/system_message_page/message_center_page.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';

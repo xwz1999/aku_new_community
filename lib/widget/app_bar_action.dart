@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:akuCommunity/pages/message_center_page/system_message_page/message_center_page.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

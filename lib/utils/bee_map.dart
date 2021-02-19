@@ -45,4 +45,14 @@ class BeeMap {
     3: '已结束',
     4: '已投票',
   };
+
+  static Map<int, String> messageRead = {
+    1: '未读',
+    3: '已读',
+  };
+
+  static Map<int,bool> messageIsRead ={
+    1:false,
+    2:true,
+  };
 }
