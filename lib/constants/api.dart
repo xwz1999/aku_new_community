@@ -233,4 +233,12 @@ class _Message {
 
   ///消息中心：查询所有的系统通知
   String get sysMessageList => '/user/message/sysMessageList';
+
+
+  ///消息中心：全部已读
+  String get allRead => '/user/message/allRead';
+
+  ///消息中心：阅读消息（未读 -> 已读）
+  String get readMessage => '/user/message/readMessage';
+
 }

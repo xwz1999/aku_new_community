@@ -53,6 +53,6 @@ class BeeMap {
 
   static Map<int,bool> messageIsRead ={
     1:false,
-    2:true,
+    3:true,
   };
 }
