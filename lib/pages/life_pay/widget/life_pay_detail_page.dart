@@ -46,32 +46,36 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
 
   Widget _buildTile(int groupId, int id, int years, double price) {
     return GestureDetector(
-         onTap: () {
-              String item = id.toString() + groupId.toString();
-              if (_selectItems.contains(item)) {
-                _selectItems.remove(item);
-                _payNum -= 1;
-                _payTotal -= price.toDouble();
-              } else {
-                _selectItems.add(item);
-                _payNum += 1;
-                _payTotal += price.toDouble();
-              }
+      onTap: () {
+        String item = id.toString() + groupId.toString();
+        if (_selectItems.contains(item)) {
+          _selectItems.remove(item);
+          _payNum -= 1;
+          _payTotal -= price.toDouble();
+        } else {
+          _selectItems.add(item);
+          _payNum += 1;
+          _payTotal += price.toDouble();
+        }
 
-              setState(() {});
-            },
-          child: Row(
+        setState(() {});
+      },
+      child: Row(
         children: [
-           
-               BeeCheckRadio(
-                  value: id.toString() + groupId.toString(),
-                  groupValue: _selectItems),
+          BeeCheckRadio(
+              value: id.toString() + groupId.toString(),
+              groupValue: _selectItems),
           24.w.widthBox,
           groupId == 1
               ? '$years上半年'.text.black.size(28.sp).make()
               : '$years下半年'.text.black.size(28.sp).make(),
           Spacer(),
-          '¥${price.toString()}'.text.color(kDangerColor).size(28.sp).bold.make(),
+          '¥${price.toString()}'
+              .text
+              .color(kDangerColor)
+              .size(28.sp)
+              .bold
+              .make(),
           24.w.widthBox,
           Icon(
             CupertinoIcons.chevron_forward,

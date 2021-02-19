@@ -122,8 +122,7 @@ class GoodsInfoCard extends StatelessWidget {
                     _builTile('物品重量', BeeMap.goodsOutweight[model.weight]),
                     _builTile('出户时间', model.expectedTime),
                     _builTile('物品名称', model.name),
-                    _builTile(
-                        '搬运方式', BeeMap.goodsOutApproach[model.approach]),
+                    _builTile('搬运方式', BeeMap.goodsOutApproach[model.approach]),
                   ]),
                 ),
                 Container(

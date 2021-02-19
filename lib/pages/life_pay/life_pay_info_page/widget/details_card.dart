@@ -11,7 +11,7 @@ import 'package:akuCommunity/utils/headers.dart';
 
 class DetailsCard extends StatefulWidget {
   final Function fun;
-  DetailsCard({Key key,this.fun}) : super(key: key);
+  DetailsCard({Key key, this.fun}) : super(key: key);
 
   @override
   _DetailsCardState createState() => _DetailsCardState();
@@ -51,49 +51,49 @@ class _DetailsCardState extends State<DetailsCard> {
   InkWell _detailContent(Function fun) {
     return InkWell(
       onTap: fun,
-      child:Container(
-      margin: EdgeInsets.only(top: 32.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.radio_button_unchecked,
-                color: BaseStyle.color999999,
-                size: 40.w,
-              ),
-              SizedBox(width: 24.w),
-              Text(
-                '2019上半年',
-                style: TextStyle(
-                  fontSize: BaseStyle.fontSize28,
-                  color: ktextPrimary,
+      child: Container(
+        margin: EdgeInsets.only(top: 32.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.radio_button_unchecked,
+                  color: BaseStyle.color999999,
+                  size: 40.w,
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                '¥${50.90}',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: BaseStyle.fontSize28,
-                  color: Color(0xfffc361d),
+                SizedBox(width: 24.w),
+                Text(
+                  '2019上半年',
+                  style: TextStyle(
+                    fontSize: BaseStyle.fontSize28,
+                    color: ktextPrimary,
+                  ),
                 ),
-              ),
-              SizedBox(width: 28.w),
-              Icon(
-                AntDesign.right,
-                color: BaseStyle.color999999,
-                size: 30.w,
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  '¥${50.90}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: BaseStyle.fontSize28,
+                    color: Color(0xfffc361d),
+                  ),
+                ),
+                SizedBox(width: 28.w),
+                Icon(
+                  AntDesign.right,
+                  color: BaseStyle.color999999,
+                  size: 30.w,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 

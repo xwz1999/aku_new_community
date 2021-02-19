@@ -15,7 +15,6 @@ class PayOrderPage extends StatelessWidget {
   final Bundle bundle;
   PayOrderPage({Key key, this.bundle}) : super(key: key);
 
-
   final List<Map<String, dynamic>> _listPay = [
     {
       'title': '支付宝支付',

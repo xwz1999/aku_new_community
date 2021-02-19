@@ -39,7 +39,6 @@ class _InvoicePageState extends State<InvoicePage> {
     });
   }
 
-
   Container _containerInvoiceDetailCheck() {
     return Container(
       color: Colors.white,
@@ -219,7 +218,7 @@ class _InvoicePageState extends State<InvoicePage> {
     return BeeScaffold(
       key: _scaffoldKey,
       title: '开具发票',
-      leading:IconButton(
+      leading: IconButton(
         icon: Icon(AntDesign.left, size: 40.sp),
         onPressed: () {
           Get.back();

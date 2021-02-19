@@ -105,8 +105,8 @@ class _CommunityCardState extends State<CommunityCard> {
     );
   }
 
-  Container _cardFooter(String imagePath,title,
-      List<String> headList, bool isOver, int peopleNum, Function fun) {
+  Container _cardFooter(String imagePath, title, List<String> headList,
+      bool isOver, int peopleNum, Function fun) {
     return Container(
       margin: EdgeInsets.only(top: 40.w),
       child: Row(
@@ -130,15 +130,14 @@ class _CommunityCardState extends State<CommunityCard> {
                 Text(
                   '$peopleNum人已参加',
                   style: TextStyle(
-                      fontSize: BaseStyle.fontSize22,
-                      color: ktextPrimary),
+                      fontSize: BaseStyle.fontSize22, color: ktextPrimary),
                 ),
               ],
             ),
           ),
           InkWell(
             onTap: () {
-              fun(imagePath,title);
+              fun(imagePath, title);
             },
             child: Container(
               alignment: Alignment.center,

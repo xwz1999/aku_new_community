@@ -122,8 +122,7 @@ class ActivityCard extends StatelessWidget {
                   TextSpan(
                     text: subtitleSecond,
                     style: TextStyle(
-                        fontSize: BaseStyle.fontSize24,
-                        color: ktextPrimary),
+                        fontSize: BaseStyle.fontSize24, color: ktextPrimary),
                   ),
                 ]),
               ),
@@ -166,7 +165,11 @@ class ActivityCard extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(22)),
                       ),
                       child: Text(
-                        isOver ? '已结束' : isVote ? '去投票' : '去参与',
+                        isOver
+                            ? '已结束'
+                            : isVote
+                                ? '去投票'
+                                : '去参与',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: BaseStyle.fontSize22,

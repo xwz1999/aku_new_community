@@ -8,7 +8,7 @@ import 'package:akuCommunity/utils/headers.dart';
 
 class SubmitBar extends StatefulWidget {
   final String title;
-  SubmitBar({Key key,this.title}) : super(key: key);
+  SubmitBar({Key key, this.title}) : super(key: key);
 
   @override
   _SubmitBarState createState() => _SubmitBarState();
@@ -54,8 +54,7 @@ class _SubmitBarState extends State<SubmitBar> {
                     TextSpan(
                       text: '合计：',
                       style: TextStyle(
-                          fontSize: BaseStyle.fontSize26,
-                          color: ktextPrimary),
+                          fontSize: BaseStyle.fontSize26, color: ktextPrimary),
                     ),
                     TextSpan(
                       text: '¥${3009.84}',

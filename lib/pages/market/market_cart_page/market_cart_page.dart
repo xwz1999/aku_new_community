@@ -324,8 +324,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                 return SlideAction(
                   child: Text(
                     '移至收藏夹',
-                    style: TextStyle(
-                        fontSize: 28.sp, color: Colors.white),
+                    style: TextStyle(fontSize: 28.sp, color: Colors.white),
                   ),
                   color: renderingMode == SlidableRenderingMode.slide
                       ? Color(0xffffc40c).withOpacity(animation.value)
@@ -349,8 +348,7 @@ class _MarketCartPageState extends State<MarketCartPage> {
                   ),
                   child: Text(
                     '删除',
-                    style: TextStyle(
-                        fontSize: 28.sp, color: Colors.white),
+                    style: TextStyle(fontSize: 28.sp, color: Colors.white),
                   ),
                   // onTap: () => _showSnackBar(context, 'Delete'),
                 );

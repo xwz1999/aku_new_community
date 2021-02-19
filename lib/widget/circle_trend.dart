@@ -20,9 +20,7 @@ class CircleTrend extends StatefulWidget {
 class _CircleTrendState extends State<CircleTrend> {
   TextStyle _textStyleTitle() {
     return TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 52.sp,
-        color: Color(0xff333333));
+        fontWeight: FontWeight.w600, fontSize: 52.sp, color: Color(0xff333333));
   }
 
   TextStyle _textStyleSubtitle() {

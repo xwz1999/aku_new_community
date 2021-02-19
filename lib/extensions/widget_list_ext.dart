@@ -29,8 +29,8 @@ extension OddListExt<T> on List<T> {
 }
 
 extension EvenListExt<T> on List<T> {
-  List<T>  evenList() {
-    List<T>  _newList = [];
+  List<T> evenList() {
+    List<T> _newList = [];
     this.forEach((element) {
       if (this.indexOf(element).isOdd) {
         _newList.add(element);

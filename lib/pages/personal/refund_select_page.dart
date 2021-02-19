@@ -23,8 +23,6 @@ class RefundSelectPage extends StatefulWidget {
 }
 
 class _RefundSelectPageState extends State<RefundSelectPage> {
-  
-
   Container _containerContentList(List<Map<String, dynamic>> listContent) {
     return Container(
       child: Column(

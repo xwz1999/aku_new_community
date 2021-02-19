@@ -40,7 +40,8 @@ class EventVotingModel {
       json['headImgURls'].forEach((v) {
         headImgURls.add(new ImgModel.fromJson(v));
       });
-    }else headImgURls=[];
+    } else
+      headImgURls = [];
   }
 
   Map<String, dynamic> toJson() {

@@ -53,10 +53,8 @@ class _ChangeNickNameState extends State<ChangeNickName> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
                   hintText: '${userProvider.userInfoModel.nickName}',
-                   hintStyle: TextStyle(
-                    color: Color(0xFF999999),
-                    fontSize: 34.sp
-                  ),
+                  hintStyle:
+                      TextStyle(color: Color(0xFF999999), fontSize: 34.sp),
                   border: UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: Color(0xFFEEEEEE),

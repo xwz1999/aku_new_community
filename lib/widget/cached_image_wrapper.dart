@@ -26,7 +26,7 @@ class CachedImageWrapper extends StatelessWidget {
       {@required this.url,
       @required this.width,
       @required this.height,
-      this.isSigned=true,
+      this.isSigned = true,
       this.imageType: ImageType.normal,
       this.fit: BoxFit.cover});
 
@@ -40,9 +40,13 @@ class CachedImageWrapper extends StatelessWidget {
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
-                  color:isSigned?Colors.transparent:Colors.grey.withOpacity(0.6),
-                  image:isSigned? DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover, scale: 1):null,
+                  color: isSigned
+                      ? Colors.transparent
+                      : Colors.grey.withOpacity(0.6),
+                  image: isSigned
+                      ? DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover, scale: 1)
+                      : null,
                 ),
               );
             },

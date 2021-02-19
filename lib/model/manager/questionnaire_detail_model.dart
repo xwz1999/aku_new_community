@@ -33,7 +33,8 @@ class QuestionnaireDetialModel {
       json['voResourcesImgList'].forEach((v) {
         voResourcesImgList.add(new VoResourcesImgList.fromJson(v));
       });
-    }else voResourcesImgList=[];
+    } else
+      voResourcesImgList = [];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,7 +75,8 @@ class QuestionnaireTopicVoList {
         questionnaireChoiceVoList
             .add(new QuestionnaireChoiceVoList.fromJson(v));
       });
-    }else questionnaireChoiceVoList=[];
+    } else
+      questionnaireChoiceVoList = [];
   }
 
   Map<String, dynamic> toJson() {
@@ -85,7 +87,8 @@ class QuestionnaireTopicVoList {
     if (this.questionnaireChoiceVoList != null) {
       data['questionnaireChoiceVoList'] =
           this.questionnaireChoiceVoList.map((v) => v.toJson()).toList();
-    }else questionnaireChoiceVoList=[];
+    } else
+      questionnaireChoiceVoList = [];
     return data;
   }
 }

@@ -47,7 +47,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
             : ListView(
                 children: [
                   ChatCard(
-                   model:_model,
+                    model: _model,
                     hideLine: true,
                     canTap: false,
                   ),

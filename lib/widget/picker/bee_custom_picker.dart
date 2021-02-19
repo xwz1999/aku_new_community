@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class BeeCustomPicker extends StatefulWidget {
-
   final Widget body;
   final VoidCallback onPressed;
   BeeCustomPicker({Key key, this.body, this.onPressed}) : super(key: key);

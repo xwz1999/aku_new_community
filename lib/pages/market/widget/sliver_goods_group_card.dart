@@ -145,8 +145,7 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
             ),
             decoration: BoxDecoration(
               color: isOverTime ? Color(0xffd9d9d9) : Color(0xffffeee3),
-              borderRadius:
-                  BorderRadius.all(Radius.circular(4.w)),
+              borderRadius: BorderRadius.all(Radius.circular(4.w)),
             ),
             child: Row(
               children: [
@@ -178,16 +177,14 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
                   children: [
                     Text(
                       '原产地:$address',
-                      style: TextStyle(
-                          color: Color(0xff999999),
-                          fontSize: 20.sp),
+                      style:
+                          TextStyle(color: Color(0xff999999), fontSize: 20.sp),
                     ),
                     SizedBox(height: 10.w),
                     Text(
                       '预计到货:$arrivalTime',
-                      style: TextStyle(
-                          color: Color(0xff999999),
-                          fontSize: 20.sp),
+                      style:
+                          TextStyle(color: Color(0xff999999), fontSize: 20.sp),
                     )
                   ],
                 ),
@@ -217,8 +214,7 @@ class _SliverGoodsGroupCardState extends State<SliverGoodsGroupCard> {
           ),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius:
-                BorderRadius.all(Radius.circular(8.w)),
+            borderRadius: BorderRadius.all(Radius.circular(8.w)),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

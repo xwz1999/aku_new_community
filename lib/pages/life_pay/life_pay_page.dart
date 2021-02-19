@@ -125,6 +125,12 @@ class _LifePayPageState extends State<LifePayPage> {
                       _selectYears.remove(index);
                       _totalCost -= (_selectPay[index].payTotal ?? 0.0);
                       _count -= (_selectPay[index].payCount ?? 0);
+                      if (_count < 0) {
+                        _count = 0;
+                      }
+                      if (_totalCost < 0) {
+                        _totalCost = 0;
+                      }
                     } else {
                       _selectYears.add(index);
                       _totalCost += (_selectPay[index].payTotal ?? 0.0);

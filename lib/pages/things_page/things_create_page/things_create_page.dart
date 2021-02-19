@@ -135,10 +135,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
 
   Widget _containerTextField() {
     return Container(
-      padding: EdgeInsets.only(
-          top: 32.w,
-          left: 22.w,
-          right: 35.w),
+      padding: EdgeInsets.only(top: 32.w, left: 22.w, right: 35.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: Color(0xffd4cfbe), width: 1.0),
@@ -180,7 +177,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
           alignment: Alignment.center,
           height: 98.w,
           width: 750.w,
-          padding: EdgeInsets.symmetric(vertical:26.5.w),
+          padding: EdgeInsets.symmetric(vertical: 26.5.w),
           color: Color(0xffffc40c),
           child: Text(
             '确认提交',
@@ -207,8 +204,7 @@ class _ThingsCreatePageState extends State<ThingsCreatePage> {
         children: [
           Text(
             title,
-            style: TextStyle(
-                fontSize: 28.sp, color: Color(0xff333333)),
+            style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 32.w),
           widget,

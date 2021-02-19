@@ -44,12 +44,13 @@ class CartProvidde with ChangeNotifier {
         "isCheck": false
       };
       tempList.add(newGoods);
-   AkuShopModel  _newgoods= AkuShopModel.fromJson(newGoods);
-  int _goodIndex= cartList.indexWhere((element) {
-     return element.itemid==_newgoods.itemid;
-   });
-   _goodIndex>-1?cartList[_goodIndex].count+=count:
-      cartList.add(_newgoods);
+      AkuShopModel _newgoods = AkuShopModel.fromJson(newGoods);
+      int _goodIndex = cartList.indexWhere((element) {
+        return element.itemid == _newgoods.itemid;
+      });
+      _goodIndex > -1
+          ? cartList[_goodIndex].count += count
+          : cartList.add(_newgoods);
     }
     cartString = json.encode(tempList).toString();
     print(cartString);

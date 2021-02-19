@@ -8,11 +8,12 @@ import 'package:akuCommunity/utils/headers.dart';
 const ktextPrimary = Color(0xff333333);
 const ktextSubColor = Color(0xff666666);
 const kForeGroundColor = Color(0xFFFFFFFF);
-const kPrimaryColor=Color(0xFFFFC40C);
-const kDarkPrimaryColor=Color(0xFFFF8200);
-const kDangerColor=Color(0xFFFF3B30);
-const kEstateName='宁波华悦茂峰';
-const kDarkSubColor=Color(0xFF979797);
+const kPrimaryColor = Color(0xFFFFC40C);
+const kDarkPrimaryColor = Color(0xFFFF8200);
+const kDangerColor = Color(0xFFFF3B30);
+const kEstateName = '宁波华悦茂峰';
+const kDarkSubColor = Color(0xFF979797);
+
 class BaseStyle {
   ///字体类
   static final double fontSize18 = 18.sp;
