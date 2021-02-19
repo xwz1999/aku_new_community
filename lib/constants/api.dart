@@ -230,4 +230,7 @@ class _Upload {
 class _Message {
   ///消息中心：消息中心 获取系统通知未读数量和标题
   String get center => '/user/message/messageCenter';
+
+  ///消息中心：查询所有的系统通知
+  String get sysMessageList => '/user/message/sysMessageList';
 }
