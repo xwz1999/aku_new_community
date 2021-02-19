@@ -3,6 +3,7 @@
 // Flutter imports:
 import 'package:akuCommunity/pages/message_center_page/system_message_page/message_center_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -71,26 +72,16 @@ class _HomePageState extends State<HomePage>
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-          Stack(children: [
-            ColumnActionButton(
+         Badge(
+           elevation: 0,
+           showBadge: appProvider.messageCenterModel.sysCount==0,
+           position: BadgePosition.topEnd(),
+           child: ColumnActionButton(
               onPressed: MessageCenterPage().to,
               title: '消息',
               path: R.ASSETS_ICONS_ALARM_PNG,
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: appProvider.messageCenterModel.sysCount == 0
-                  ? SizedBox()
-                  : Container(
-                      width: 2.w,
-                      height: 2.w,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(1.w)),
-                    ),
-            )
-          ]),
+         )
         ],
       ),
       body: EasyRefresh(

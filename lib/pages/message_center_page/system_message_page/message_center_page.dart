@@ -1,8 +1,10 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/system_message_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -38,7 +40,10 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
     SystemMessageModel model,
   }) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        await NetUtil().dio.get(API.message.readMessage);
+        
+      },
       child: Container(
         padding: EdgeInsets.fromLTRB(28.w, 32.w, 28.w, 20.w),
         child: Row(
@@ -46,23 +51,11 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
             SizedBox(
                 width: 90.w,
                 height: 90.w,
-                child: Stack(
-                  children: [
-                    Image.asset(path),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: isRead[model.status]
-                          ? SizedBox()
-                          : Container(
-                              width: 2.w,
-                              height: 2.w,
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(1.w)),
-                            ),
-                    )
-                  ],
+                child: Badge(
+                  child: Image.asset(path),
+                  showBadge: !isRead[model.status],
+                  elevation: 0,
+                  position: BadgePosition.topEnd(top: 8.w, end: 8.w),
                 )),
             15.w.widthBox,
             Column(
