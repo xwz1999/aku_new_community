@@ -73,12 +73,12 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
               count: appProvider.messageCenterModel.sysCount,
               onTap: SystemMessagePage().to,
             ),
-            // _buildCard(
-            //   path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
-            //   title: '评论通知',
-            //   content: '',
-            //   count: 0,
-            // ),
+            _buildCard(
+              path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
+              title: '评论通知',
+              content: appProvider.messageCenterModel.commentTitle,
+              count: appProvider.messageCenterModel.commentCount,
+            ),
             // _buildCard(
             //   path: R.ASSETS_ICONS_SHOP_NOTICE_PNG,
             //   title: '商城通知',
