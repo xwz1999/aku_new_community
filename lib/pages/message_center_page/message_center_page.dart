@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/pages/message_center_page/comment_message/comment_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message/system_message_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
@@ -105,6 +106,10 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 content:
                     appProvider.messageCenterModel.commentTitle ?? '无评论通知消息',
                 count: appProvider.messageCenterModel.commentCount ?? 0,
+                onTap: () async {
+                  await NetUtil().dio.get(API.message.allReadComment);
+                  CommentMessagePage().to();
+                },
               ),
               // _buildCard(
               //   path: R.ASSETS_ICONS_SHOP_NOTICE_PNG,

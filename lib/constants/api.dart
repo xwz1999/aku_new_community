@@ -242,4 +242,11 @@ class _Message {
 
   ///消息中心：根据消息列表主键id和用户主键id查询系统通知消息详情
   String get getSystemMessageDetial => '/user/message/sysMessageDetail';
+
+  ///消息中心：查询所有的评论通知
+  String get commentMessageList => '/user/message/sysCommentMessageList';
+
+  ///消息中心：评论通知全部已读(进入评论通知列表后调用)
+  String get allReadComment => '/user/message/allReadComment';
+
 }
