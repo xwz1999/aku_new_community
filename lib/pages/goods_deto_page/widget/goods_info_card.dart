@@ -130,6 +130,7 @@ class GoodsInfoCard extends StatelessWidget {
                     top: 19.w,
                     bottom: 30.w,
                   ),
+                  constraints: BoxConstraints(minHeight: 280.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
