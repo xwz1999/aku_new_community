@@ -1,8 +1,10 @@
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/system_message_model.dart';
+import 'package:akuCommunity/pages/message_center_page/system_message/system_message_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,7 +35,14 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
 
   Widget _buildCard(SystemMessageModel model) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        await NetUtil().dio.get(API.message.readMessage, queryParameters: {
+          'sysMessageId': model.id,
+        });
+        SystemMessageDetailPage(
+          id: model.id,
+        ).to();
+      },
       child: Container(
         decoration: BoxDecoration(
           color: kForeGroundColor,

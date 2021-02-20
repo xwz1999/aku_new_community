@@ -1,11 +1,14 @@
 import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/message/message_center_model.dart';
-import 'package:akuCommunity/service/net.dart';
-import 'package:dio/dio.dart';
+import 'package:akuCommunity/model/message/system_message_detail_model.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 
 class MessageFunc {
-  // static Future<MessageCenterModel> messageCenter() async {
-  //   Response response = await Net().dio.get(API.message.center);
-  //   return MessageCenterModel.fromJson(response.data);
-  // }
+  static Future<SystemMessageDetailModel> getSystemMessageDetial(int id) async {
+    BaseModel baseModel =
+        await NetUtil().get(API.message.getSystemMessageDetial, params: {
+      'sysMessageId': id,
+    });
+    return SystemMessageDetailModel.fromJson(baseModel.data);
+  }
 }

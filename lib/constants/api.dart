@@ -234,11 +234,12 @@ class _Message {
   ///消息中心：查询所有的系统通知
   String get sysMessageList => '/user/message/sysMessageList';
 
-
   ///消息中心：全部已读
   String get allRead => '/user/message/allRead';
 
   ///消息中心：阅读消息（未读 -> 已读）
   String get readMessage => '/user/message/readMessage';
 
+  ///消息中心：根据消息列表主键id和用户主键id查询系统通知消息详情
+  String get getSystemMessageDetial => '/user/message/sysMessageDetail';
 }
