@@ -1,9 +1,15 @@
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/comment_message_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/bee_date_util.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:akuCommunity/const/resource.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key key}) : super(key: key);
@@ -26,6 +32,65 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
     super.dispose();
   }
 
+  String getTime(String time) {
+//  var dif= DateTime.now().difference(DateUtil.getDateTime(time));
+    return BeeDateUtil(DateUtil.getDateTime(time)).timeAgo;
+  }
+
+  Widget buildCard(CommentMessageModel model) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.fromLTRB(32.w, 32.w, 32.w, 16.w),
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Container(
+                  width: 86.w,
+                  height: 86.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.w),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: FadeInImage.assetNetwork(
+                      placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                      image: model.imgUrls.first.url)),
+            ],
+          ),
+          Column(
+            children: [
+              model.createName.text.black.size(36.sp).make(),
+              (model.respondentName.isEmptyOrNull
+                      ? model.content
+                      : '回复了${model.respondentName}:${model.content}')
+                  .text
+                  .black
+                  .size(28.sp)
+                  .isIntrinsic
+                  .make(),
+              getTime(model.createDate)
+                  .text
+                  .color(Color(0xFF999999))
+                  .size(28.sp)
+                  .make(),
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                width: 160.w,
+                height: 160.w,
+                child: FadeInImage.assetNetwork(
+                    placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                    image: model.imgUrls.first.url),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -39,7 +104,14 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
                 .toList();
           },
           builder: (items) {
-            return Container();
+            return ListView.separated(
+                itemBuilder: (context, index) {
+                  return buildCard(items[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return BeeDivider.horizontal();
+                },
+                itemCount: items.length);
           }),
     );
   }
