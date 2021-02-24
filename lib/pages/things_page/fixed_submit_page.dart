@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +24,7 @@ import 'package:akuCommunity/pages/things_page/widget/fixed_detail_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_map.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
 
 class FixedSubmitPage extends StatefulWidget {

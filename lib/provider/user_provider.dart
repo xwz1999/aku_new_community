@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +9,7 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/user_detail_model.dart';
 import 'package:akuCommunity/model/user/user_info_model.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';

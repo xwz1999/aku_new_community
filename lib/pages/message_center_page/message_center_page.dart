@@ -1,15 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:badges/badges.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/message_center_page/comment_message/comment_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message/system_message_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
-import 'package:badges/badges.dart';
-import 'package:flutter/material.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:provider/provider.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key key}) : super(key: key);

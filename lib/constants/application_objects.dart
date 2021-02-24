@@ -1,15 +1,10 @@
 // Flutter imports:
-import 'package:akuCommunity/pages/address_page/address_page.dart';
-import 'package:akuCommunity/pages/mine_car_page/mine_car_page.dart';
-import 'package:akuCommunity/pages/mine_house_page/mine_house_page.dart';
-import 'package:akuCommunity/pages/setting_page/settings_page.dart';
-import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 // Project imports:
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
 import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
@@ -17,13 +12,18 @@ import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
+import 'package:akuCommunity/pages/mine_car_page/mine_car_page.dart';
+import 'package:akuCommunity/pages/mine_house_page/mine_house_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
+import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
 import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
+import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
 
 ///应用对象
 ///Application Object

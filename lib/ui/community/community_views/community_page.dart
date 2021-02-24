@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/ui/message/message_center.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,6 +9,7 @@ import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dar
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/new_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_community_view.dart';
+import 'package:akuCommunity/ui/message/message_center.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';

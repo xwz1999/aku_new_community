@@ -1,12 +1,14 @@
 // Flutter imports:
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/ui/search/bee_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'package:akuCommunity/utils/headers.dart';
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/ui/search/bee_search.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class HomeSearch extends StatefulWidget {
   HomeSearch({Key key}) : super(key: key);

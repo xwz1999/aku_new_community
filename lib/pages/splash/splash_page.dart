@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/utils/weather/weather_util.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,10 +12,12 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
+import 'package:akuCommunity/utils/weather/weather_util.dart';
 
 //TODO splashPage
 class SplashPage extends StatefulWidget {

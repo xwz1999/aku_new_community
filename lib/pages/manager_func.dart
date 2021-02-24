@@ -1,16 +1,17 @@
 // Package imports:
 
-import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
-import 'package:akuCommunity/model/manager/moving_company_model.dart';
-import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
-import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
-import 'package:akuCommunity/model/manager/voting_detail_model.dart';
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
 // Project imports:
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
+import 'package:akuCommunity/model/manager/moving_company_model.dart';
+import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
+import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
+import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 

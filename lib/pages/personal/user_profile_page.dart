@@ -2,8 +2,6 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
-import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +23,8 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_file_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:akuCommunity/widget/picker/bee_image_picker.dart';
 
 class UserProfilePage extends StatefulWidget {

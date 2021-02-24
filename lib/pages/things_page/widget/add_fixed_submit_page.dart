@@ -2,7 +2,6 @@
 import 'dart:io';
 
 // Flutter imports:
-import 'package:akuCommunity/widget/others/bee_header_house.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +28,7 @@ import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:akuCommunity/widget/others/bee_header_house.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {

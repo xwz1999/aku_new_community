@@ -1,3 +1,12 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
@@ -7,15 +16,11 @@ import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.d
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_truefalse.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnarie_raido_check.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/submit_complish_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int id;

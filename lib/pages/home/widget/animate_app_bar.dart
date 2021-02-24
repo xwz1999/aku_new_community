@@ -1,11 +1,13 @@
 // Flutter imports:
-import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/provider/app_provider.dart';
 
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
   final ScrollController scrollController;

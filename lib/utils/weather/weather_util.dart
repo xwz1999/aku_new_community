@@ -1,6 +1,9 @@
-import 'package:akuCommunity/model/common/real_time_weather_model.dart';
+// Package imports:
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:dio/dio.dart';
+
+// Project imports:
+import 'package:akuCommunity/model/common/real_time_weather_model.dart';
 
 class WeatherUtil {
   static Location _location;

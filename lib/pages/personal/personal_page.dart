@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +12,14 @@ import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/pages/personal/order_page.dart';
 import 'package:akuCommunity/pages/personal/user_profile_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/views/application_view.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool isSign;

@@ -1,11 +1,13 @@
 // Flutter imports:
-import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+// Project imports:
+import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
 
 class BeeDatePicker {
   static Future<DateTime> pick(DateTime initDate) async {

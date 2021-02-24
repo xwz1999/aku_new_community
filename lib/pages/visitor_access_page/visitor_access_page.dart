@@ -1,8 +1,4 @@
 // Flutter imports:
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +11,14 @@ import 'package:velocity_x/velocity_x.dart';
 
 // Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
+import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
+import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/common_input.dart';
 import 'package:akuCommunity/widget/picker/bee_date_picker.dart';

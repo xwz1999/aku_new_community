@@ -1,11 +1,11 @@
 // Flutter imports:
-import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart';
 import 'package:akuCommunity/pages/market_class/market_class_page.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class AppBarAction extends StatefulWidget {

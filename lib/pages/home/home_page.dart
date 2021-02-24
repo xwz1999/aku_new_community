@@ -1,13 +1,11 @@
 // Dart imports:
 
 // Flutter imports:
-import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +18,8 @@ import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/community/activity/activity_card.dart';
 import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/community/community_func.dart';
