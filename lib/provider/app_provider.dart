@@ -66,7 +66,10 @@ class AppProvider extends ChangeNotifier {
 
   ///移除我的应用
   removeApplication(AO obj) {
-    if (_myApplications.remove(obj)) notifyListeners();
+    if (_myApplications.remove(obj)) {
+      HiveStore.appBox.put('app', _myApplications.map((e) => e.title).toList());
+      notifyListeners();
+    }
   }
 
   List<HotTopicModel> _hotTopicModels = [];
@@ -144,10 +147,11 @@ class AppProvider extends ChangeNotifier {
 
   /// 消息中心
   MessageCenterModel _messageCenterModel;
-  MessageCenterModel get messageCenterModel => _messageCenterModel??MessageCenterModel.zero();
+  MessageCenterModel get messageCenterModel =>
+      _messageCenterModel ?? MessageCenterModel.zero();
   getMessageCenter() async {
-     Response response = await NetUtil().dio.get(API.message.center);
-    _messageCenterModel=MessageCenterModel.fromJson(response.data);
+    Response response = await NetUtil().dio.get(API.message.center);
+    _messageCenterModel = MessageCenterModel.fromJson(response.data);
     notifyListeners();
   }
 }
