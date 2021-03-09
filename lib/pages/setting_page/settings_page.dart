@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
+import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -146,6 +148,14 @@ class _SettingsPageState extends State<SettingsPage> {
             _buildTile(
               title: '账号管理',
               onTap: AccountManagerPage().to,
+            ),
+            _buildTile(
+              title: '小蜜蜂用户协议',
+              onTap: AgreementPage().to,
+            ),
+            _buildTile(
+              title: '小蜜蜂隐私政策',
+              onTap: PrivacyPage().to,
             ),
           ].sepWidget(
               separate: Divider(

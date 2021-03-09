@@ -7,7 +7,7 @@ import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
-import 'package:akuCommunity/widget/single_image_up.dart';
+// import 'package:akuCommunity/widget/single_image_up.dart';
 import 'common_select.dart';
 
 class DecoratorInfo extends StatefulWidget {
@@ -81,16 +81,16 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
             style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              _uploadImageList.length,
-              (index) => SingleImageUp(
-                title: _uploadImageList[index]['title'],
-                imagePath: _uploadImageList[index]['imagePath'],
-              ),
-            ),
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: List.generate(
+          //     _uploadImageList.length,
+          //     (index) => SingleImageUp(
+          //       title: _uploadImageList[index]['title'],
+          //       imagePath: _uploadImageList[index]['imagePath'],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

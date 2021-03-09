@@ -2,6 +2,7 @@
 import 'dart:math';
 
 // Flutter imports:
+import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,6 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/common_image_picker.dart';
 
 class FeedBackPage extends StatefulWidget {
   FeedBackPage({Key key}) : super(key: key);
@@ -130,7 +130,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                     style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                   ),
                   SizedBox(height: 24.w),
-                  CommonImagePicker(),
+                  GridImagePicker(onChange: (files) {}),
                   SizedBox(height: 76.w),
                   _inkWellSubmit(),
                 ],
