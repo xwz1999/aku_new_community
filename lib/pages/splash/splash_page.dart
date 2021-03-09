@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -58,7 +59,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 300), () {
-      if (mounted) PowerLogger.init(context);
+      if (mounted) PowerLogger.init(context, debug: DeveloperUtil.dev);
     });
     _initOp().then((value) => Get.offAll(TabNavigator()));
   }

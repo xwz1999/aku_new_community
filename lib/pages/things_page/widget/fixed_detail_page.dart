@@ -405,15 +405,15 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     '维修结果'.text.black.size(32.sp).bold.isIntrinsic.make(),
                     20.w.heightBox,
                     BeeDivider.horizontal(),
-                    Padding(
-                      padding: EdgeInsets.all(20.w),
-                      child: FadeInImage.assetNetwork(
-                        placeholder: R.ASSETS_EXAMPLE_BG1_PNG,
-                        image: 'null',
-                        width: 646.w,
-                        height: 323.w,
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.all(20.w),
+                    //   child: FadeInImage.assetNetwork(
+                    //     placeholder: R.ASSETS_EXAMPLE_BG1_PNG,
+                    //     image: 'null',
+                    //     width: 646.w,
+                    //     height: 323.w,
+                    //   ),
+                    // ),
                     4.w.heightBox,
                     Row(
                       children: [
