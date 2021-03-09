@@ -92,21 +92,18 @@ class NoticeCard extends StatelessWidget {
                           opaque: false,
                         );
                       },
-                      child: Hero(
-                        tag: model.imgUrls.first.url,
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(8.w),
-                          ),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: API.image(model.imgUrls.first.url),
-                            width: 152.w,
-                            height: 152.w,
-                            fit: BoxFit.cover,
-                          ),
+                      child: Container(
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(8.w),
+                        ),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                          image: API.image(model.imgUrls.first.url),
+                          width: 152.w,
+                          height: 152.w,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

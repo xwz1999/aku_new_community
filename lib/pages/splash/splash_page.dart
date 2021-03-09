@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -36,6 +37,7 @@ class _SplashPageState extends State<SplashPage> {
 
     //初始化AMap
     await AmapLocation.instance.init(iosKey: 'ios key');
+    await Permission.locationWhenInUse.request();
   }
 
   Future _initOp() async {

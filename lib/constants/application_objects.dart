@@ -72,7 +72,7 @@ List<AO> appObjects = [
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
       AdvicePage(type: AdviceType.COMPLAIN)),
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, QuestionnairePage()),
-  AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
+  // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, GoodsManagePage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, AlarmPage()),
 ];
@@ -119,7 +119,7 @@ List<String> _smartManagerApp = [
   '物品出门',
   '投诉表扬',
   '问卷调查',
-  '装修管理',
+  // '装修管理',
   '借还管理',
   '一键报警',
 ];
