@@ -239,6 +239,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.5"
+  device_info:
+    dependency: transitive
+    description:
+      name: device_info
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
+  device_info_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_platform_interface
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -713,7 +727,7 @@ packages:
       name: package_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.3+4"
   path:
     dependency: transitive
     description:
@@ -824,10 +838,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1469b68b32bb5a7d02e6c89c5a9933ef77f738ad"
-      url: "http://192.168.2.201:8099/aku_fe/power_logger.git"
+      resolved-ref: "0436e0b02d1673ee828a757413a86999cd25603c"
+      url: "http://159.75.73.143:8080/laiiihz/power_logger"
     source: git
-    version: "0.0.1"
+    version: "0.1.1"
   pretty_json:
     dependency: transitive
     description:

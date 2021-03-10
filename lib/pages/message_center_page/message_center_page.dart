@@ -83,26 +83,9 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
         actions: [
           MaterialButton(
             onPressed: () async {
-              // await NetUtil().dio.get(API.message.allRead);
-              // _refreshController.callRefresh();
-              // setState(() {});
-              LocalNotification localNotification = LocalNotification(
-                id: 234,
-                title: 'notification title',
-                buildId: 1,
-                content: 'notification content',
-                fireTime: DateTime.fromMillisecondsSinceEpoch(
-                    DateTime.now().millisecond + 3000),
-                subtitle: 'notification subtitle', // 该参数只有在 iOS 有效
-                badge: 5, // 该参数只有在 iOS 有效
-                extra: {'test': 'test'},
-                // 设置 extras ，extras 需要是 Map<String, String>
-              );
-              JPush().sendLocalNotification(localNotification).then((res) {
-                print(res);
-              });
-              // JPush().applyPushAuthority(new NotificationSettingsIOS(
-              //     sound: true, alert: true, badge: true));
+              await NetUtil().dio.get(API.message.allRead);
+              _refreshController.callRefresh();
+              setState(() {});
             },
             child: '全部已读'.text.size(28.sp).black.make(),
             padding: EdgeInsets.symmetric(horizontal: 32.w),
