@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
@@ -82,9 +83,26 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
         actions: [
           MaterialButton(
             onPressed: () async {
-              await NetUtil().dio.get(API.message.allRead);
-              _refreshController.callRefresh();
-              setState(() {});
+              // await NetUtil().dio.get(API.message.allRead);
+              // _refreshController.callRefresh();
+              // setState(() {});
+              LocalNotification localNotification = LocalNotification(
+                id: 234,
+                title: 'notification title',
+                buildId: 1,
+                content: 'notification content',
+                fireTime: DateTime.fromMillisecondsSinceEpoch(
+                    DateTime.now().millisecond + 3000),
+                subtitle: 'notification subtitle', // 该参数只有在 iOS 有效
+                badge: 5, // 该参数只有在 iOS 有效
+                extra: {'test': 'test'},
+                // 设置 extras ，extras 需要是 Map<String, String>
+              );
+              JPush().sendLocalNotification(localNotification).then((res) {
+                print(res);
+              });
+              // JPush().applyPushAuthority(new NotificationSettingsIOS(
+              //     sound: true, alert: true, badge: true));
             },
             child: '全部已读'.text.size(28.sp).black.make(),
             padding: EdgeInsets.symmetric(horizontal: 32.w),

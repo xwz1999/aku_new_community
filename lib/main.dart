@@ -43,6 +43,8 @@ void main() async {
     production: false,
     debug: true, // 设置是否打印 debug 日志
   );
+  jpush.applyPushAuthority(
+      new NotificationSettingsIOS(sound: true, alert: true, badge: true));
   DeveloperUtil.setDev(true);
   runApp(MyApp());
 }

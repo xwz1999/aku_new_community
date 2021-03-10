@@ -28,11 +28,6 @@ PODS:
     - AMapFoundation-NO-IDFA (~> 1.6.4)
   - AMapSearch-NO-IDFA (7.3.0):
     - AMapFoundation-NO-IDFA (~> 1.6.3)
-  - BSGridCollectionViewLayout (1.2.5)
-  - BSImagePicker (2.10.3):
-    - BSGridCollectionViewLayout (= 1.2.5)
-    - BSImageView (= 1.0.3)
-  - BSImageView (1.0.3)
   - core_location_fluttify (0.0.1):
     - Flutter
     - foundation_fluttify
@@ -47,9 +42,13 @@ PODS:
     - Flutter
   - image_picker (0.0.1):
     - Flutter
-  - multi_image_picker (4.7.14):
-    - BSImagePicker (~> 2.10.3)
+  - JCore (2.4.0)
+  - JPush (3.4.0):
+    - JCore (< 3.0.0, >= 2.0.0)
+  - jpush_flutter (0.0.2):
     - Flutter
+    - JCore (= 2.4.0)
+    - JPush (= 3.4.0)
   - package_info (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -81,7 +80,7 @@ DEPENDENCIES:
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - foundation_fluttify (from `.symlinks/plugins/foundation_fluttify/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
-  - multi_image_picker (from `.symlinks/plugins/multi_image_picker/ios`)
+  - jpush_flutter (from `.symlinks/plugins/jpush_flutter/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
@@ -98,10 +97,9 @@ SPEC REPOS:
     - AMapFoundation-NO-IDFA
     - AMapLocation-NO-IDFA
     - AMapSearch-NO-IDFA
-    - BSGridCollectionViewLayout
-    - BSImagePicker
-    - BSImageView
     - FMDB
+    - JCore
+    - JPush
     - WechatOpenSDK
 
 EXTERNAL SOURCES:
@@ -123,8 +121,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/foundation_fluttify/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
-  multi_image_picker:
-    :path: ".symlinks/plugins/multi_image_picker/ios"
+  jpush_flutter:
+    :path: ".symlinks/plugins/jpush_flutter/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
@@ -153,16 +151,15 @@ SPEC CHECKSUMS:
   AMapFoundation-NO-IDFA: 68a24362b110b8e0a3677605d0fd36bdf521f2bb
   AMapLocation-NO-IDFA: 2a3edfee336b38481b892e1ecc85df0f6b365851
   AMapSearch-NO-IDFA: 85555dc9ba312949d39a259baa4ef4e0619fa944
-  BSGridCollectionViewLayout: 333dcb457a5a3bdd9212607ab5756553dcfe06cb
-  BSImagePicker: 07404254f2fcdaf5a2eb403c0f8c337267ce8738
-  BSImageView: a149459433a2687157d034c78e059d30ac7f2544
   core_location_fluttify: 9466a411ea7d22c6349c7e6a767ae4623f01eb1d
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   foundation_fluttify: 0c45145e3fad1fb99188e4979daed5b24cd9b278
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
-  multi_image_picker: c068931d08240565e0615fb01437d16984909183
+  JCore: a29e4b0ee54e1301446dc02d8e1c350404108b34
+  JPush: defaa108c38806f6efdcfaf4c416854d25fca8e5
+  jpush_flutter: 364b245849348e05377d67295d0896ddd664a896
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
