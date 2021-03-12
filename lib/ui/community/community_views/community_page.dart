@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,6 +17,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
+import 'package:provider/provider.dart';
 
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key key}) : super(key: key);
@@ -54,6 +58,13 @@ class _CommunityPageState extends State<CommunityPage>
       ],
       fab: FloatingActionButton(
         onPressed: () async {
+          final userProvider =
+              Provider.of<UserProvider>(context, listen: false);
+          if (userProvider.isNotLogin) {
+            BotToast.showText(text: '请先登录');
+            Get.to(SignInPage());
+            return;
+          }
           bool result = await Get.to(AddNewEventPage());
           if (result == true) {
             switch (_tabController.index) {

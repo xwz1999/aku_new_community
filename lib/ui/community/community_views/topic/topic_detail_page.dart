@@ -1,4 +1,8 @@
 // Flutter imports:
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +15,8 @@ import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_sliver_header.dart';
 import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class TopicDetailPage extends StatefulWidget {
   final CommunityTopicModel model;
@@ -34,7 +40,16 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         heroTag: 'event_add',
-        onPressed: () {},
+        onPressed: () async {
+          final userProvider =
+              Provider.of<UserProvider>(context, listen: false);
+          if (userProvider.isNotLogin) {
+            BotToast.showText(text: '请先登录');
+            Get.to(SignInPage());
+            return;
+          }
+          bool result = await Get.to(AddNewEventPage());
+        },
         child: Icon(Icons.add),
       ),
       body: BeeListView(

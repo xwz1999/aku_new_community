@@ -15,16 +15,9 @@ import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 
 class UserProvider extends ChangeNotifier {
-  //登录状态管理
-  bool _isSigned = false;
-  get isSigned => _isSigned;
-  setisSigned(bool state) {
-    _isSigned = state;
-    notifyListeners();
-  }
-
   bool _isLogin = false;
   bool get isLogin => _isLogin;
+  bool get isNotLogin => !_isLogin;
   Future setLogin(int token) async {
     _isLogin = true;
     NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
