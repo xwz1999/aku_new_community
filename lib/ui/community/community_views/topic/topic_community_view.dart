@@ -91,7 +91,6 @@ class TopicCommunityViewState extends State<TopicCommunityView>
                   .bold
                   .overflow(TextOverflow.ellipsis)
                   .make(),
-              Spacer(),
               (model?.content ?? '')
                   .text
                   .maxLines(1)
@@ -116,7 +115,7 @@ class TopicCommunityViewState extends State<TopicCommunityView>
                     .make()
               ].row(),
             ],
-          ).box.height(160.w).make().expand(),
+          ).box.make().expand(),
         ],
       ),
     );
