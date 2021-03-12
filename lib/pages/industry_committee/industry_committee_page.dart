@@ -31,8 +31,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
       MaterialButton(
         onPressed: () {
           Get.dialog(CupertinoAlertDialog(
-            //TODO 业委会电话, for test only
-            title: '(0574) 8888 8888'.text.isIntrinsic.make(),
+            title: '0574-87760023'.text.isIntrinsic.make(),
             actions: [
               CupertinoDialogAction(
                 child: '取消'.text.isIntrinsic.make(),

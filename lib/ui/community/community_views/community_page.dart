@@ -30,7 +30,7 @@ class CommunityPage extends StatefulWidget {
 class _CommunityPageState extends State<CommunityPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
-  List<String> _tabs = ['最新', '话题', '我的'];
+  List<String> _tabs = [];
   GlobalKey<TopicCommunityViewState> topicKey =
       GlobalKey<TopicCommunityViewState>();
   GlobalKey<MyCommunityViewState> myKey = GlobalKey<MyCommunityViewState>();
@@ -39,6 +39,9 @@ class _CommunityPageState extends State<CommunityPage>
   @override
   void initState() {
     super.initState();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    if (userProvider.isLogin) _tabs = ['最新', '话题', '我的'];
+    if (userProvider.isNotLogin) _tabs = ['最新', '话题'];
     _tabController = TabController(
       vsync: this,
       length: _tabs.length,
@@ -46,13 +49,23 @@ class _CommunityPageState extends State<CommunityPage>
   }
 
   @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '社区',
       actions: [
         ColumnActionButton(
-          onPressed: MessageCenter().to,
+          onPressed: () {
+            if (LoginUtil.isNotLogin) return;
+            MessageCenter().to();
+          },
           title: '消息',
           path: R.ASSETS_ICONS_ALARM_PNG,
         ),
@@ -90,11 +103,16 @@ class _CommunityPageState extends State<CommunityPage>
         ),
       ),
       body: TabBarView(
-        children: [
-          NewCommunityView(key: newKey),
-          TopicCommunityView(key: topicKey),
-          MyCommunityView(key: myKey),
-        ],
+        children: userProvider.isLogin
+            ? [
+                NewCommunityView(key: newKey),
+                TopicCommunityView(key: topicKey),
+                MyCommunityView(key: myKey),
+              ]
+            : [
+                NewCommunityView(key: newKey),
+                TopicCommunityView(key: topicKey),
+              ],
         controller: _tabController,
       ),
       bodyColor: Colors.white,

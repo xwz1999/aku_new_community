@@ -1,6 +1,7 @@
 // Dart imports:
 
 // Flutter imports:
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -72,19 +73,19 @@ class _HomePageState extends State<HomePage>
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-         Badge(
-           elevation: 0,
-           showBadge: appProvider.messageCenterModel.sysCount==0,
-           position: BadgePosition.topEnd(),
-           child: ColumnActionButton(
-              onPressed: (){
-                
+          Badge(
+            elevation: 0,
+            showBadge: appProvider.messageCenterModel.sysCount == 0,
+            position: BadgePosition.topEnd(),
+            child: ColumnActionButton(
+              onPressed: () {
+                if (LoginUtil.isNotLogin) return;
                 MessageCenterPage().to();
               },
               title: '消息',
               path: R.ASSETS_ICONS_ALARM_PNG,
             ),
-         )
+          )
         ],
       ),
       body: EasyRefresh(

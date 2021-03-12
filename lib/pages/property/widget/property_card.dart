@@ -99,7 +99,7 @@ class PropertyCard extends StatelessWidget {
             onTap: () {
               switch (_listCard[index]['title']) {
                 case '电话物业':
-                  _showDialog(context, '0574-88467897');
+                  _showDialog(context, '0574-87760023');
                   break;
                 case '语音管家':
                   break;
