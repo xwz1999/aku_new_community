@@ -116,7 +116,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '昵称',
-            userProvider.userInfoModel.nickName.text.make(),
+            (userProvider.userInfoModel?.nickName ?? '').text.make(),
             onPressed: () {
               ChangeNickName().to();
             },

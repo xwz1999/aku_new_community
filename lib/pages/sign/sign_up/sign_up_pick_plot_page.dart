@@ -24,7 +24,7 @@ class _SignUpPickPlotPageState extends State<SignUpPickPlotPage> {
       body: ListView(
         children: [
           ListTile(
-            title: 'PLACEHOLDER PLOT'.text.make(),
+            title: '五象新区人才公寓'.text.make(),
             onTap: SignUpPickBuildingPage().to,
           ).material(color: Colors.white),
         ],
