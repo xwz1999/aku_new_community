@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -40,7 +41,10 @@ class _BeeSearchState extends State<BeeSearch> {
 
   Widget _buildColumnIcon(AO e) {
     return MaterialButton(
-      onPressed: () => Get.to(e.page),
+      onPressed: () {
+        if (LoginUtil.isNotLogin) return;
+        Get.to(e.page);
+      },
       shape: StadiumBorder(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

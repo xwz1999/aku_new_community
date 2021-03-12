@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,12 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
       padding: EdgeInsets.zero,
-      onPressed: editMode ? null : () => Get.to(object.page),
+      onPressed: editMode
+          ? null
+          : () {
+              if (LoginUtil.isNotLogin) return;
+              Get.to(object.page);
+            },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
