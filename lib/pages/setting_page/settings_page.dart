@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
+import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +19,6 @@ import 'package:akuCommunity/extensions/widget_list_ext.dart';
 import 'package:akuCommunity/pages/setting_page/about_page/about_page.dart';
 import 'package:akuCommunity/pages/setting_page/account_manager_page.dart';
 import 'package:akuCommunity/pages/setting_page/feedback_page/feedback_page.dart';
-import 'package:akuCommunity/pages/setting_page/invite_page/invite_page.dart';
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
@@ -85,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         onPressed: () {
                           userProvider.logout();
-                          Get.offAll(SignInPage());
+                          Get.offAll(TabNavigator());
                         },
                       ),
                     ],
