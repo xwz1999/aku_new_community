@@ -3,6 +3,7 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -106,13 +107,7 @@ class _ChatCardState extends State<ChatCard> {
         color: Color(0xFFD8D8D8),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         onPressed: () {
-          final userProvider =
-              Provider.of<UserProvider>(context, listen: false);
-          if (userProvider.isNotLogin) {
-            BotToast.showText(text: '请先登录');
-            Get.to(SignInPage());
-            return;
-          }
+          if (LoginUtil.isNotLogin) return;
           BotToast.showAttachedWidget(
             targetContext: context,
             preferDirection: PreferDirection.leftCenter,
@@ -322,6 +317,7 @@ class _ChatCardState extends State<ChatCard> {
                       ];
                     },
                     onSelected: (_) async {
+                      if (LoginUtil.isNotLogin) return;
                       VoidCallback cancel = BotToast.showLoading();
                       await Future.delayed(
                           Duration(milliseconds: 500 + Random().nextInt(500)));

@@ -77,7 +77,10 @@ class _HomePageState extends State<HomePage>
            showBadge: appProvider.messageCenterModel.sysCount==0,
            position: BadgePosition.topEnd(),
            child: ColumnActionButton(
-              onPressed: MessageCenterPage().to,
+              onPressed: (){
+                
+                MessageCenterPage().to();
+              },
               title: '消息',
               path: R.ASSETS_ICONS_ALARM_PNG,
             ),

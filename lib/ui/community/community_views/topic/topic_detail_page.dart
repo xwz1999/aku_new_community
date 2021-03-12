@@ -2,6 +2,7 @@
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
@@ -41,13 +42,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'event_add',
         onPressed: () async {
-          final userProvider =
-              Provider.of<UserProvider>(context, listen: false);
-          if (userProvider.isNotLogin) {
-            BotToast.showText(text: '请先登录');
-            Get.to(SignInPage());
-            return;
-          }
+          if (LoginUtil.isNotLogin) return;
           bool result = await Get.to(AddNewEventPage());
         },
         child: Icon(Icons.add),
