@@ -63,6 +63,9 @@ class _User {
 
   ///修改头像
   String get udpdateAvatar => '/user/personalData/updateHeadPortrait';
+
+  ///意见反馈：app意见反馈提交（建议）
+  String get feedback => '/user/feedback/submit';
 }
 
 class _Manager {
@@ -248,5 +251,4 @@ class _Message {
 
   ///消息中心：评论通知全部已读(进入评论通知列表后调用)
   String get allReadComment => '/user/message/allReadComment';
-
 }

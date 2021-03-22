@@ -31,6 +31,8 @@ PODS:
   - core_location_fluttify (0.0.1):
     - Flutter
     - foundation_fluttify
+  - device_info (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - fluwx (0.0.1):
     - Flutter
@@ -76,6 +78,7 @@ DEPENDENCIES:
   - amap_map_fluttify (from `.symlinks/plugins/amap_map_fluttify/ios`)
   - amap_search_fluttify (from `.symlinks/plugins/amap_search_fluttify/ios`)
   - core_location_fluttify (from `.symlinks/plugins/core_location_fluttify/ios`)
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - Flutter (from `Flutter`)
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - foundation_fluttify (from `.symlinks/plugins/foundation_fluttify/ios`)
@@ -113,6 +116,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/amap_search_fluttify/ios"
   core_location_fluttify:
     :path: ".symlinks/plugins/core_location_fluttify/ios"
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   Flutter:
     :path: Flutter
   fluwx:
@@ -152,6 +157,7 @@ SPEC CHECKSUMS:
   AMapLocation-NO-IDFA: 2a3edfee336b38481b892e1ecc85df0f6b365851
   AMapSearch-NO-IDFA: 85555dc9ba312949d39a259baa4ef4e0619fa944
   core_location_fluttify: 9466a411ea7d22c6349c7e6a767ae4623f01eb1d
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a

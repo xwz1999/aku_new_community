@@ -2,7 +2,7 @@ name: akuCommunity
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.0-dev+12
+version: 1.1.10-dev+17
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -89,9 +89,7 @@ dependencies:
       url: http://192.168.2.201:8099/zhangmeng/random_character.git
 
   image_picker: ^0.6.7+21
-  power_logger:
-    git:
-      url: http://159.75.73.143:8080/laiiihz/power_logger
+  power_logger: ^0.1.3
   flutter_rating_bar: ^3.2.0+1
   jpush_flutter: ^0.6.3
   badges: ^1.1.6

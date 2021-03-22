@@ -1,7 +1,10 @@
 // Dart imports:
+import 'dart:io';
 import 'dart:math';
 
 // Flutter imports:
+import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +27,8 @@ class FeedBackPage extends StatefulWidget {
 
 class _FeedBackPageState extends State<FeedBackPage> {
   TextEditingController _ideaContent = new TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<File> _files = [];
 
   Widget _containerTextField() {
     return Container(
@@ -39,6 +44,10 @@ class _FeedBackPageState extends State<FeedBackPage> {
           fontWeight: FontWeight.w600,
         ),
         controller: _ideaContent,
+        validator: (text) {
+          if (text?.isEmpty ?? true) return '意见不能为空';
+          return null;
+        },
         onChanged: (String value) {},
         maxLines: 10,
         decoration: InputDecoration(
@@ -63,17 +72,22 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   Widget _inkWellSubmit() {
     return InkWell(
-      onTap: () {
-        if (TextUtil.isEmpty(_ideaContent.text))
-          BotToast.showText(text: '意见不能为空');
-        else {
+      onTap: () async {
+        if (_formKey.currentState.validate()) {
+          if (_files?.isNotEmpty ?? false) {
+            //TODO upload file
+          }
           var cancelAction = BotToast.showLoading();
-          Future.delayed(Duration(milliseconds: 1000 + Random().nextInt(1000)),
-              () {
-            BotToast.showText(text: '提交成功');
-            cancelAction();
-            Get.back();
-          });
+          await NetUtil().post(
+            API.user.feedback,
+            params: {
+              'content': _ideaContent.text,
+              'fileUrls': [],
+            },
+            showMessage: true,
+          );
+          cancelAction();
+          Get.back();
         }
       },
       child: Container(
@@ -123,14 +137,19 @@ class _FeedBackPageState extends State<FeedBackPage> {
                     style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                   ),
                   SizedBox(height: 24.w),
-                  _containerTextField(),
+                  Form(
+                    child: _containerTextField(),
+                    key: _formKey,
+                  ),
                   SizedBox(height: 24.w),
                   Text(
                     '添加图片信息(0/9)',
                     style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
                   ),
                   SizedBox(height: 24.w),
-                  GridImagePicker(onChange: (files) {}),
+                  GridImagePicker(onChange: (files) {
+                    _files = files;
+                  }),
                   SizedBox(height: 76.w),
                   _inkWellSubmit(),
                 ],
