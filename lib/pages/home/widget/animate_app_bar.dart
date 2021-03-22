@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/provider/app_provider.dart';
 
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
@@ -43,10 +40,8 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
-      title: '人才公寓智慧小区'.text.make(),
+      title: Text('人才公寓智慧小区'),
       backgroundColor: _bgColor,
-      elevation: 0,
-      centerTitle: true,
       leading: Container(
         margin: EdgeInsets.only(left: 32.w),
         child: Column(

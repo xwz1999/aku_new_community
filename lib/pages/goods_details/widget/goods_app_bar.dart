@@ -1,13 +1,10 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart';
 import 'package:akuCommunity/utils/headers.dart';

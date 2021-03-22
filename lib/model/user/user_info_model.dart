@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:common_utils/common_utils.dart';
 
 class UserInfoModel {

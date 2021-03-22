@@ -1,10 +1,8 @@
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/pick_building_model.dart';
 import 'package:akuCommunity/model/user/user_detail_model.dart';

@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'asset.dart';
 import 'bee_scaffold.dart';
 

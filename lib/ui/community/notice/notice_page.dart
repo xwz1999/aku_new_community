@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';

@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 
-// Package imports:
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 
 class BeeImagePicker {

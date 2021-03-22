@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:hive/hive.dart';
 
 class HiveStore {

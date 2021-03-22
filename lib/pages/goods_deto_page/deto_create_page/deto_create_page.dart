@@ -1,19 +1,15 @@
 // Flutter imports:
 
-// Dart imports:
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';

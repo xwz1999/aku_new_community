@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
 import 'package:akuCommunity/provider/user_provider.dart';

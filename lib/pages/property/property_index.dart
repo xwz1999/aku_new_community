@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/model/community/board_model.dart';

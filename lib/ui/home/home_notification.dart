@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';

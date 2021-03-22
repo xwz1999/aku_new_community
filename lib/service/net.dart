@@ -1,12 +1,9 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
-// Package imports:
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
-// Project imports:
 import 'base_model.dart';
 
 // import 'net_header.dart';

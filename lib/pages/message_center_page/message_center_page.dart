@@ -1,13 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/message_center_page/comment_message/comment_message_page.dart';
 import 'package:akuCommunity/pages/message_center_page/system_message/system_message_page.dart';

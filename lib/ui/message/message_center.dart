@@ -1,15 +1,12 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-// Package imports:
 import 'package:badges/badges.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/message_center_model.dart';
 import 'package:akuCommunity/utils/headers.dart';

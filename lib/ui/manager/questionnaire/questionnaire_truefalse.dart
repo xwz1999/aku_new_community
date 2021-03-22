@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 

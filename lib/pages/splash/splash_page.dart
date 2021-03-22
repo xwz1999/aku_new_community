@@ -1,8 +1,5 @@
-// Flutter imports:
-import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,11 +10,11 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/weather/weather_util.dart';
 

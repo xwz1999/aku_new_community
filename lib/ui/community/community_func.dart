@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/model/community/board_model.dart';

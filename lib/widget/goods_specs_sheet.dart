@@ -1,14 +1,11 @@
-// Flutter imports:
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/routers/page_routers.dart';

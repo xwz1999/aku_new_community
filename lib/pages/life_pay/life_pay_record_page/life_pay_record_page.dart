@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';

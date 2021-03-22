@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/ui/community/community_views/community_page.dart';
 import 'home/home_page.dart';

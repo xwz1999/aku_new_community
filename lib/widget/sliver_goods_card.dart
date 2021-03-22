@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/pages/goods_details/goods_details_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';

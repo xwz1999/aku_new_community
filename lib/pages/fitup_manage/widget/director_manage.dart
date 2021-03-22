@@ -1,15 +1,14 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
-// import 'package:akuCommunity/widget/single_image_up.dart';
 import 'decorator_info.dart';
 import 'house_info.dart';
+
+// import 'package:akuCommunity/widget/single_image_up.dart';
 
 class DirectorManage extends StatefulWidget {
   DirectorManage({Key key}) : super(key: key);

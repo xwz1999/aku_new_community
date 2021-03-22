@@ -1,20 +1,16 @@
-// Dart imports:
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/manager/visitor_list_item_model.dart';

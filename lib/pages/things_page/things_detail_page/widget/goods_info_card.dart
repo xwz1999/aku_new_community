@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'goods_info_card_button.dart';
 import 'image_horizontal_list.dart';

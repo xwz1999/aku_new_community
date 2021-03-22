@@ -1,26 +1,22 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
-import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
+import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
 import 'package:akuCommunity/ui/community/community_views/widgets/send_a_chat.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
 import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';

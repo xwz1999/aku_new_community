@@ -111,3 +111,7 @@ flutter:
     - assets/tab/
     - assets/json/
     - assets/applications/
+
+import_sorter:
+  emojis: true
+  comments: false

@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-// Project imports:
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';

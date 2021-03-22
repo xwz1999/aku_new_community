@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 
 class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
@@ -48,15 +45,7 @@ class _BeeTabBarState extends State<BeeTabBar> {
   Widget build(BuildContext context) {
     return TabBar(
       controller: widget.controller,
-      unselectedLabelStyle: TextStyle(
-        fontSize: BaseStyle.fontSize28,
-      ),
-      labelStyle: TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: BaseStyle.fontSize28,
-      ),
       indicatorColor: Color(0xffffc40c),
-      indicatorSize: TabBarIndicatorSize.label,
       tabs: widget.tabs.map((e) => Tab(text: e)).toList(),
       onTap: widget.onTap,
       isScrollable: widget.scrollable,

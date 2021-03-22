@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/ui/manager/visitor/visitor_record_view.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';

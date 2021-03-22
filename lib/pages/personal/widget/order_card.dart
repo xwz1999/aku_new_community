@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/personal/evaluate_good_page.dart';
 import 'package:akuCommunity/pages/personal/look_logistics_page.dart';

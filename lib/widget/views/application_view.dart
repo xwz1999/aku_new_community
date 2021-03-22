@@ -1,19 +1,16 @@
-// Flutter imports:
-import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/login_util.dart';
 
 class ApplicationView extends StatefulWidget {
   final List<AO> items;

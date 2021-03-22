@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:common_utils/common_utils.dart';
 
-// Project imports:
 import 'package:akuCommunity/model/common/img_model.dart';
 
 class AdviceDetailModel {

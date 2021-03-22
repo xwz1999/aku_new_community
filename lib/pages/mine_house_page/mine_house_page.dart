@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/pages/mine_house_page/house_authenticate_page/house_authenticate_page.dart';
 import 'package:akuCommunity/utils/headers.dart';

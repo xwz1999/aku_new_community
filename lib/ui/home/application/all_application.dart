@@ -1,19 +1,16 @@
-// Flutter imports:
-import 'package:akuCommunity/utils/login_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/search/bee_search.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:akuCommunity/utils/login_util.dart';
 import 'package:akuCommunity/widget/bee_back_button.dart';
 
 class AllApplicationPage extends StatefulWidget {

@@ -1,11 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatefulWidget {
@@ -60,10 +56,7 @@ class _BeeScaffoldState extends State<BeeScaffold> {
       backgroundColor: widget.bodyColor,
       appBar: AppBar(
         backgroundColor: widget.bgColor,
-        elevation: 0,
-        title:
-            widget.title.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
-        centerTitle: true,
+        title: widget.title.text.make(),
         leading: widget.leading ?? BeeBackButton(),
         actions: widget.actions,
         bottom: widget.appBarBottom,

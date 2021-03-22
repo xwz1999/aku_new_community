@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/pages/mine_car_page/car_add_page/car_add_page.dart';
 import 'package:akuCommunity/pages/mine_car_page/select_community_page/select_community_page.dart';

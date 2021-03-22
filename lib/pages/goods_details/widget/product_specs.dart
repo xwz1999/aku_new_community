@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Project imports:
 import 'package:akuCommunity/widget/goods_specs_sheet.dart';
 
 class ProductSpecs extends StatefulWidget {

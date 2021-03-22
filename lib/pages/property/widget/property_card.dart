@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/utils/headers.dart';
 

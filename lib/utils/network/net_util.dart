@@ -1,7 +1,5 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
@@ -9,7 +7,6 @@ import 'package:logger/logger.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';

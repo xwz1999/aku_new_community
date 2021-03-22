@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/model/message/system_message_detail_model.dart';
 import 'package:akuCommunity/model/message/system_message_model.dart';
 import 'package:akuCommunity/pages/message_center_page/message_func.dart';

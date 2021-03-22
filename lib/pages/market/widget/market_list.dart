@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/utils/headers.dart';

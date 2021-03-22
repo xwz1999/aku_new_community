@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-// Project imports:
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/community/hot_topic_model.dart';
@@ -98,6 +94,8 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
     final appProvider = Provider.of<AppProvider>(context);
     return Wrap(
       direction: Axis.horizontal,
+      spacing: 4.w,
+      runSpacing: 4.w,
       children: [
         '选择话题：'.text.black.size(34.sp).make(),
         ...appProvider.hotTopicModels

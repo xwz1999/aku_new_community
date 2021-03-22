@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/system_message_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';

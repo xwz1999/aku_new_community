@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:shimmer/shimmer.dart';
 
-// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 
 class GoodsCardSkeleton extends StatelessWidget {

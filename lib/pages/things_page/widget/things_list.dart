@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-// Project imports:
 import 'package:akuCommunity/utils/headers.dart';
 import 'things_card.dart';
 

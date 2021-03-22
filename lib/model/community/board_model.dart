@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:flustars/flustars.dart';
 
-// Project imports:
 import 'package:akuCommunity/model/common/img_model.dart';
 
 class BoardItemModel {
