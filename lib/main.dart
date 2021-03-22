@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
@@ -20,6 +22,9 @@ import 'package:akuCommunity/utils/developer_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
   JPush jpush = new JPush();
   jpush.addEventHandler(
     // 接收通知回调方法。
@@ -80,23 +85,27 @@ class _MyAppState extends State<MyApp> {
             FocusManager.instance.primaryFocus.unfocus();
           }
         },
-        child: GetMaterialApp(
-          title: '智慧社区',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.theme,
-          home: SplashPage(),
-          //国际化支持
-          localizationsDelegates: [
-            PickerLocalizationsDelegate.delegate,
-            RefreshLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [const Locale('zh', 'CH')],
-          locale: Locale('zh'),
-          builder: BotToastInit(),
-          navigatorObservers: [BotToastNavigatorObserver()],
+        child: ScreenUtilInit(
+          designSize: Size(750, 1334),
+          allowFontScaling: true,
+          builder: () => GetMaterialApp(
+            title: '智慧社区',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.theme,
+            home: SplashPage(),
+            //国际化支持
+            localizationsDelegates: [
+              PickerLocalizationsDelegate.delegate,
+              RefreshLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [const Locale('zh', 'CH')],
+            locale: Locale('zh'),
+            builder: BotToastInit(),
+            navigatorObservers: [BotToastNavigatorObserver()],
+          ),
         ),
       ),
     );

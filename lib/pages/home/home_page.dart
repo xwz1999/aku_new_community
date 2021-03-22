@@ -62,8 +62,6 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    ScreenUtil.init(context,
-        designSize: Size(750, 1334), allowFontScaling: true);
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
