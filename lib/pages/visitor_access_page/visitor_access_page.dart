@@ -238,33 +238,28 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     int type,
     String tel,
   ) {
-    return InkWell(
-      onTap: () async {
+    return MaterialButton(
+      onPressed: () async {
         VoidCallback cancel = BotToast.showLoading();
         await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
             _selectSex, tel, _userCarNum.text, dateTime);
         cancel();
         Get.off(VisitorRecordPage());
       },
-      child: Container(
-        alignment: Alignment.center,
-        height: 96.w,
-        width: 686.w,
-        padding: EdgeInsets.symmetric(
-          vertical: 26.w,
-        ),
-        decoration: BoxDecoration(
-            color: Color(0xffffc40c),
-            borderRadius: BorderRadius.all(Radius.circular(48))),
-        child: Text(
-          '生成通行证',
-          style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 32.sp,
-              color: Color(0xff333333)),
+      minWidth: double.infinity,
+      height: 96.w,
+      shape: StadiumBorder(),
+      color: Color(0xffffc40c),
+      elevation: 0,
+      child: Text(
+        '生成通行证',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 32.sp,
+          color: Color(0xff333333),
         ),
       ),
-    );
+    ).pSymmetric(h: 26.w);
   }
 
   Widget _tips() {
