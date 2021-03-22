@@ -32,6 +32,14 @@ class AppTheme {
         ),
         indicatorSize: TabBarIndicatorSize.label,
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: Color(0xFF333333),
+        selectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        type: BottomNavigationBarType.fixed,
+        unselectedLabelStyle: TextStyle(),
+      ),
     );
   }
 }

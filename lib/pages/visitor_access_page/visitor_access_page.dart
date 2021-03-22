@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
@@ -31,84 +30,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userName = new TextEditingController();
   TextEditingController _userCarNum = new TextEditingController();
   DateTime dateTime;
-  int _selectSex;
-  // Widget _house() {
-  //   return Container(
-  //     padding: EdgeInsets.only(
-  //       left: 36.w,
-  //       right: 36.w,
-  //       top: 32.w,
-  //     ),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         Text(
-  //           '来访房屋',
-  //           style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
-  //         ),
-  //         SizedBox(height: 32.w),
-  //         Container(
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: [
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.start,
-  //                 children: [
-  //                   Image.asset(
-  //                     AssetsImage.HOUSE,
-  //                     height: 60.w,
-  //                     width: 60.w,
-  //                   ),
-  //                   SizedBox(width: 40.w),
-  //                   Column(
-  //                     crossAxisAlignment: CrossAxisAlignment.start,
-  //                     children: [
-  //                       Text(
-  //                         '宁波华茂悦峰',
-  //                         style: TextStyle(
-  //                             fontWeight: FontWeight.w600,
-  //                             fontSize: 34.sp,
-  //                             color: Color(0xff333333)),
-  //                       ),
-  //                       SizedBox(height: 10.w),
-  //                       Text(
-  //                         '1幢-1单元-702室',
-  //                         style: TextStyle(
-  //                             fontWeight: FontWeight.w600,
-  //                             fontSize: 34.sp,
-  //                             color: Color(0xff333333)),
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ],
-  //               ),
-  //               Container(
-  //                 alignment: Alignment.center,
-  //                 padding: EdgeInsets.symmetric(
-  //                   vertical: 14.w,
-  //                   horizontal: 21.w,
-  //                 ),
-  //                 decoration: BoxDecoration(
-  //                   color: Color(0xffFEC200),
-  //                   borderRadius: BorderRadius.all(Radius.circular(4)),
-  //                 ),
-  //                 child: Text(
-  //                   '邀请客户填写',
-  //                   style: TextStyle(
-  //                       fontWeight: FontWeight.w600,
-  //                       fontSize: 28.sp,
-  //                       color: Color(0xff333333)),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //         SizedBox(height: 26.w),
-  //         Divider(),
-  //       ],
-  //     ),
-  //   );
-  // }
+  int _selectSex = 1;
 
   Widget _buildHouseCard(
     String title,
@@ -119,7 +41,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          '报修房屋'.text.black.size(28.sp).make(),
+          '来访房屋'.text.black.size(28.sp).make(),
           32.w.heightBox,
           GestureDetector(
             onTap: () {
@@ -365,14 +287,11 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
       title: '访客通行',
       actions: [
         MaterialButton(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {
             VisitorRecordPage().to();
           },
-          child: Container(
-            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-            child: '访客记录'.text.black.size(28.sp).make(),
-            alignment: Alignment.center,
-          ),
+          child: '访客记录'.text.black.size(28.sp).make(),
         )
       ],
       body: Container(

@@ -100,14 +100,10 @@ class _TabNavigatorState extends State<TabNavigator> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         items: _bottomNav,
         currentIndex: _currentIndex,
         selectedFontSize: 20.sp,
-        unselectedFontSize: 16.sp,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black38,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        unselectedFontSize: 20.sp,
         onTap: (index) {
           _pageController.jumpToPage(index);
         },

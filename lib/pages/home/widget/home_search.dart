@@ -29,7 +29,7 @@ class _HomeSearchState extends State<HomeSearch> {
         top: 127.w + ScreenUtil().statusBarHeight,
         left: 32.w,
         right: 32.w,
-        bottom: 17.w,
+        bottom: 16.w,
       ),
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
