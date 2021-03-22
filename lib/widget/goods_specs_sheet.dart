@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ import 'package:akuCommunity/pages/confirm_order_page/confirm_order_page.dart';
 import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/toast.dart';
 import 'cached_image_wrapper.dart';
 
 class GoodsSpecsSheet extends StatefulWidget {
@@ -284,7 +284,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
         Get.back();
         switch (type) {
           case '加入购物车':
-            Toast.globalToast('已添加入购物车');
+            BotToast.showText(text: '已添加入购物车');
             model.save(widget.itemid, widget.itemtitle, count, widget.itemprice,
                 widget.itempic);
             break;
@@ -301,7 +301,7 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
             ).to;
             break;
           case '请选择规格':
-            Toast.globalToast('已添加入购物车');
+            BotToast.showText(text: '已添加入购物车');
             break;
           default:
         }
