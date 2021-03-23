@@ -94,7 +94,7 @@ class _SignInPageState extends State<SignInPage> {
       if (response.data['choose'] == 1) {
         userProvider.setLogin(response.data['token']);
         cancel();
-        Get.offAll(TabNavigator());
+        Get.offAll(()=>TabNavigator());
       } else {
         cancel();
         signUpProvider.setTel(_phone.text);

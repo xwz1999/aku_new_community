@@ -81,7 +81,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         onPressed: () {
                           userProvider.logout();
-                          Get.offAll(TabNavigator());
+                          Get.offAll(()=>TabNavigator());
                         },
                       ),
                     ],

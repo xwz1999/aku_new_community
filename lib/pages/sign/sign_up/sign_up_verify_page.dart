@@ -86,7 +86,7 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
             signUpProvider.setName(_nameController.text);
             signUpProvider.setIdNumber(_idNumberController.text);
             bool result = await SignFunc.signUp();
-            if (result) Get.offAll(TabNavigator());
+            if (result) Get.offAll(()=>TabNavigator());
           }
         },
         elevation: 0,

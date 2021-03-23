@@ -11,6 +11,7 @@ enum ImageType {
   assets, //资源目录
 }
 
+@Deprecated("cached_image_wrapper need to be cleaned.")
 class CachedImageWrapper extends StatelessWidget {
   final String url;
   final double width;

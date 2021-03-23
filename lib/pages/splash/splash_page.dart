@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     PowerLogger.start(context, debug: DeveloperUtil.dev);
-    _initOp().then((value) => Get.offAll(TabNavigator()));
+    _initOp().then((value) => Get.offAll(()=>TabNavigator()));
   }
 
   @override
