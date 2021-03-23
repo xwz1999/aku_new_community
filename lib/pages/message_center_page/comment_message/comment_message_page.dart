@@ -62,7 +62,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
           Column(
             children: [
               model.createName.text.black.size(36.sp).make(),
-              (model.respondentName.isEmptyOrNull
+              ((model.respondentName?.isEmptyOrNull ?? true)
                       ? model.content
                       : '回复了${model.respondentName}:${model.content}')
                   .text

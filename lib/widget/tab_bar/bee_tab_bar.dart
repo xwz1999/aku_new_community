@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-
 class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
   final TabController controller;
   final List<String> tabs;

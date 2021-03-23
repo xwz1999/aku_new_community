@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -16,7 +15,6 @@ import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
-import 'package:akuCommunity/utils/weather/weather_util.dart';
 
 //TODO splashPage
 class SplashPage extends StatefulWidget {

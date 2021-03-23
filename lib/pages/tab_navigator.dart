@@ -17,8 +17,9 @@ class TabNavigator extends StatefulWidget {
   _TabNavigatorState createState() => _TabNavigatorState();
 }
 
-class _TabNavigatorState extends State<TabNavigator> {
-  PageController _pageController = PageController();
+class _TabNavigatorState extends State<TabNavigator>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
   int _currentIndex = 0;
   DateTime _lastPressed;
 
@@ -37,6 +38,8 @@ class _TabNavigatorState extends State<TabNavigator> {
       CommunityPage(),
       PersonalIndex()
     ];
+
+    _tabController = TabController(length: _pages.length, vsync: this);
   }
 
   _buildBottomBar(
@@ -87,27 +90,24 @@ class _TabNavigatorState extends State<TabNavigator> {
           //否则关闭app
           return true;
         },
-        child: PageView.builder(
-          itemBuilder: (context, index) => _pages[index],
-          itemCount: _pages.length,
-          controller: _pageController,
-          // physics: NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
+        child: TabBarView(
+          children: _pages,
+          controller: _tabController,
+          physics: NeverScrollableScrollPhysics(),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _bottomNav,
-        currentIndex: _currentIndex,
-        selectedFontSize: 20.sp,
-        unselectedFontSize: 20.sp,
-        onTap: (index) {
-          _pageController.jumpToPage(index);
-        },
-      ),
+      bottomNavigationBar: StatefulBuilder(builder: (context, setFunc) {
+        return BottomNavigationBar(
+          items: _bottomNav,
+          currentIndex: _currentIndex,
+          selectedFontSize: 20.sp,
+          unselectedFontSize: 20.sp,
+          onTap: (index) {
+            _tabController.animateTo(index, curve: Curves.easeInOutCubic);
+            setFunc(() => _currentIndex = index);
+          },
+        );
+      }),
     );
   }
 }
