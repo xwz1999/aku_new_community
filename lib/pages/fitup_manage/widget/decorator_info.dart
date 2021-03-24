@@ -5,7 +5,6 @@ import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/common_input.dart';
-import 'common_select.dart';
 
 // import 'package:akuCommunity/widget/single_image_up.dart';
 
@@ -103,7 +102,7 @@ class _DecoratorInfoState extends State<DecoratorInfo> {
         children: [
           _cardList(
               '姓名', CommonInput(inputController: _userName, hintText: '请输入姓名')),
-          _cardList('证件类型', CommonSelect(title: '证件类型')),
+          // _cardList('证件类型', CommonSelect(title: '证件类型')),
           _cardList('证件号',
               CommonInput(inputController: _userIDCard, hintText: '请输入证件号')),
           _cardList('联系方式',

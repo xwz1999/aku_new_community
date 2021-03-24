@@ -5,7 +5,6 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bottom_button.dart';
 import 'package:akuCommunity/widget/common_input.dart';
-import 'common_select.dart';
 import 'house_info.dart';
 import 'pay_model_sheet.dart';
 
@@ -50,8 +49,8 @@ class _OwnerManageState extends State<OwnerManage>
         'widget':
             CommonInput(inputController: _contactsPhone, hintText: '请输入联系方式')
       },
-      {'title': '预计开始时间', 'widget': CommonSelect(title: '时间')},
-      {'title': '预计结束时间', 'widget': CommonSelect(title: '时间')},
+      // {'title': '预计开始时间', 'widget': CommonSelect(title: '时间')},
+      // {'title': '预计结束时间', 'widget': CommonSelect(title: '时间')},
     ];
   }
 
