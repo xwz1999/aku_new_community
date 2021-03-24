@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/api.dart';
@@ -12,7 +11,6 @@ import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/column_action_button.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key key}) : super(key: key);

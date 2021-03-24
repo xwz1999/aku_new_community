@@ -12,6 +12,7 @@ import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key key}) : super(key: key);
@@ -44,22 +45,23 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(32.w, 32.w, 32.w, 16.w),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            children: [
-              Container(
-                  width: 86.w,
-                  height: 86.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.w),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                      image: model.imgUrls.first.url)),
-            ],
+          Container(
+            width: 86.w,
+            height: 86.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.w),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: model.imgUrls.first.url,
+            ),
           ),
+          10.wb,
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               model.createName.text.black.size(36.sp).make(),
               ((model.respondentName?.isEmptyOrNull ?? true)
@@ -77,17 +79,15 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
                   .make(),
             ],
           ),
-          Column(
-            children: [
-              Container(
-                width: 160.w,
-                height: 160.w,
-                child: FadeInImage.assetNetwork(
-                    placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                    image: model.imgUrls.first.url),
-              )
-            ],
-          )
+          Spacer(),
+          Container(
+            width: 160.w,
+            height: 160.w,
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: model.imgUrls.first.url,
+            ),
+          ),
         ],
       ),
     );
