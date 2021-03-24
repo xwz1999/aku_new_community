@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:logger/logger.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
@@ -32,14 +31,14 @@ class NetUtil {
     );
     if (_dio == null) _dio = Dio(options);
     dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (RequestOptions options) async => options,
-      onResponse: (Response response) async {
+      onRequest: (options, handler) async => handler.next(options),
+      onResponse: (response, handler) async {
         LoggerData.addData(response);
-        return response;
+        return handler.next(response);
       },
-      onError: (DioError error) async {
+      onError: (error, handler) async {
         _parseErr(error);
-        return error;
+        return handler.next(error);
       },
     ));
   }
@@ -140,17 +139,17 @@ class NetUtil {
     }
 
     switch (err.type) {
-      case DioErrorType.CONNECT_TIMEOUT:
-      case DioErrorType.SEND_TIMEOUT:
-      case DioErrorType.RECEIVE_TIMEOUT:
+      case DioErrorType.connectTimeout:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.receiveTimeout:
         _makeToast('连接超时');
         break;
-      case DioErrorType.RESPONSE:
+      case DioErrorType.response:
         _makeToast('服务器出错');
         break;
-      case DioErrorType.CANCEL:
+      case DioErrorType.cancel:
         break;
-      case DioErrorType.DEFAULT:
+      case DioErrorType.other:
         _makeToast('未知错误');
         break;
     }

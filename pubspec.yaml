@@ -18,7 +18,7 @@ dependencies:
   # 权限组件
   permission_handler: ^5.0.1+1
   # 版本信息
-  package_info: ^0.4.1
+  package_info: ^2.0.0
   #上拉加载
   pull_to_refresh: ^1.6.4
   # 状态管理
@@ -60,7 +60,7 @@ dependencies:
   #滑块
   flutter_slidable: ^0.5.7
   #http
-  dio: ^3.0.10
+  dio: ^4.0.0-prev3
   #骨架
   shimmer: ^1.1.2
   #时间选择
@@ -87,8 +87,8 @@ dependencies:
     git:
       url: http://192.168.2.201:8099/zhangmeng/random_character.git
 
-  image_picker: ^0.6.7+21
-  power_logger: ^0.1.3
+  image_picker: ^0.7.3
+  power_logger: ^1.0.0-nullsafety.0
   flutter_rating_bar: ^3.2.0+1
   jpush_flutter:
     git:

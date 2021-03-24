@@ -15,6 +15,7 @@ import 'base_model.dart';
 /// 自定义枚举
 enum Method { get, post }
 
+@Deprecated("net need to be cleaned.")
 class Net {
   // 工厂模式
   factory Net() => _getInstance();
@@ -47,7 +48,7 @@ class Net {
   /// 打印拦截器(便于调试)
   static final interceptors = InterceptorsWrapper(
     /// 请求发送前处理处理一些事情
-    onRequest: (RequestOptions options) {
+    onRequest: (options, handler) {
       print("--------------------请求参数---------------------");
       print(json.encode(options.headers));
       print(options.method);
@@ -55,23 +56,23 @@ class Net {
       print(options.baseUrl + options.path);
       print(options.data);
       print("--------------------请求参数---------------------");
-      return options;
+      return handler.next(options);
     },
 
     /// 在数据响应前做一些预处理
-    onResponse: (Response response) {
+    onResponse: (response, handler) {
       // Log.i("--------------------响应结果---------------------");
       // Log.e("response.statusCode", "${response.statusCode}");
       // Log.e("response.data", "${json.encode(response.data)}");
       // Log.e("response.headers", "${response.headers}");
       // Log.i("--------------------响应结果---------------------");
-      return response;
+      return handler.next(response);
     },
 
     /// 错误处理
-    onError: (DioError e) {
+    onError: (DioError e, handler) {
       // Log.e("DioError", "$e");
-      return e;
+      return handler.next(e);
     },
   );
   // 单列模式
