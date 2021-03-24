@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:badges/badges.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';

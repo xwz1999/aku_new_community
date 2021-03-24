@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';

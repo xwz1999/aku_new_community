@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -94,7 +94,7 @@ class _SignInPageState extends State<SignInPage> {
       if (response.data['choose'] == 1) {
         userProvider.setLogin(response.data['token']);
         cancel();
-        Get.offAll(()=>TabNavigator());
+        Get.offAll(() => TabNavigator());
       } else {
         cancel();
         signUpProvider.setTel(_phone.text);

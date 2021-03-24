@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -86,7 +86,7 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
             signUpProvider.setName(_nameController.text);
             signUpProvider.setIdNumber(_idNumberController.text);
             bool result = await SignFunc.signUp();
-            if (result) Get.offAll(()=>TabNavigator());
+            if (result) Get.offAll(() => TabNavigator());
           }
         },
         elevation: 0,

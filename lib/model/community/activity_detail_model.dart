@@ -1,4 +1,4 @@
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 
 import 'package:akuCommunity/model/common/img_model.dart';
 
