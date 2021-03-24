@@ -104,7 +104,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
 //动态申请权限，ios 要在info.plist 上面添加
   Future<bool> requestPermission() async {
     var status = await Permission.photos.status;
-    if (status.isUndetermined) {
+    if (status.isDenied) {
       await [Permission.photos].request();
     }
     return status.isGranted;
