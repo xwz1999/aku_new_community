@@ -40,6 +40,12 @@ class AppTheme {
         type: BottomNavigationBarType.fixed,
         unselectedLabelStyle: TextStyle(),
       ),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
+          if (states.contains(MaterialState.selected)) return Color(0xFFFFD000);
+          return null;
+        }),
+      ),
     );
   }
 }
