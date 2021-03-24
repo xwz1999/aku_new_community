@@ -69,7 +69,7 @@ class NoticeCard extends StatelessWidget {
             : SizedBox(),
         MaterialButton(
           onPressed: () {
-            Get.to(NoticeDetailPage(id: model.id));
+            Get.to(() => NoticeDetailPage(id: model.id));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

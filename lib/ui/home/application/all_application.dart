@@ -35,7 +35,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           ? null
           : () {
               if (LoginUtil.isNotLogin) return;
-              Get.to(object.page);
+              Get.to(() => object.page);
             },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -239,7 +239,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           minWidth: double.infinity,
           color: Color(0xFFF3F3F3),
           onPressed: () {
-            Get.to(BeeSearch());
+            Get.to(() => BeeSearch());
           },
           child: Row(
             children: [

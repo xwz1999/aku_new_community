@@ -190,10 +190,10 @@ class ConfirmContent extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(InvoicePage(
-                                bundle: Bundle()
-                                  ..putString('title', '1123123123123'),
-                              ));
+                              Get.to(() => InvoicePage(
+                                    bundle: Bundle()
+                                      ..putString('title', '1123123123123'),
+                                  ));
                             },
                             child: Row(
                               children: [

@@ -114,18 +114,16 @@ class AddressItem extends StatelessWidget {
       top: 55.w,
       child: InkWell(
         onTap: () {
-          Get.to(
-            AddressEditPage(
-              bundle: Bundle()
-                ..putMap('details', {
-                  'title': '编辑地址',
-                  'name': name,
-                  'phone': phone,
-                  'address': address,
-                  'isDelete': true
-                }),
-            ),
-          );
+          AddressEditPage(
+            bundle: Bundle()
+              ..putMap('details', {
+                'title': '编辑地址',
+                'name': name,
+                'phone': phone,
+                'address': address,
+                'isDelete': true
+              }),
+          ).to();
         },
         child: Row(
           children: [

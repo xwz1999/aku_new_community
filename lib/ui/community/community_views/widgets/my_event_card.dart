@@ -61,7 +61,7 @@ class MyEventCard extends StatelessWidget {
             : SizedBox(),
         MaterialButton(
           onPressed: () {
-            Get.to(EventDetailPage(themeId: model.id));
+            Get.to(() => EventDetailPage(themeId: model.id));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

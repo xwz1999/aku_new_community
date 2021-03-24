@@ -55,7 +55,7 @@ class _AlarmPageState extends State<AlarmPage> {
       title: '一键报警',
       actions: [
         MaterialButton(
-          onPressed: () => Get.to(AlarmDetailPage()),
+          onPressed: () => Get.to(() => AlarmDetailPage()),
           child: '功能说明'.text.black.size(28.sp).make(),
         )
       ],

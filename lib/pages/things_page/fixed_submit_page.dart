@@ -260,7 +260,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                     Get.dialog(_showDeletDialog());
                   }
             : () async {
-                bool needRefresh = await Get.to(AddFixedSubmitPage());
+                bool needRefresh = await Get.to(() => AddFixedSubmitPage());
                 if (needRefresh == null) _easyRefreshController.callRefresh();
               },
         child: _isEdit

@@ -55,7 +55,7 @@ class _SignUpPickRolePageState extends State<SignUpPickRolePage> {
         shape: StadiumBorder(),
         disabledColor: kPrimaryColor.withOpacity(0.3),
         child: '提交'.text.make(),
-        onPressed: () => Get.to(SignUpSetNicknamePage()),
+        onPressed: () => Get.to(() => SignUpSetNicknamePage()),
         elevation: 0,
       ).pLTRB(82.w, 0, 82.w, 155.w),
     );

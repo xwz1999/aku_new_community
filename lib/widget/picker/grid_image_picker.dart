@@ -80,7 +80,7 @@ class _GridImagePickerState extends State<GridImagePicker> {
         ),
         child: MaterialButton(
           onPressed: () {
-            Get.to(BeeImagePreview.file(file: file), opaque: false);
+            Get.to(() => BeeImagePreview.file(file: file), opaque: false);
           },
           onLongPress: () async {
             bool result = await Get.dialog(CupertinoAlertDialog(

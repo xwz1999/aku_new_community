@@ -39,7 +39,7 @@ class _HomeSearchState extends State<HomeSearch> {
         minWidth: double.infinity,
         color: Color(0xFFF3F3F3),
         onPressed: () {
-          Get.to(BeeSearch());
+          Get.to(() => BeeSearch());
         },
         child: Row(
           children: [

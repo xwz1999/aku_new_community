@@ -274,7 +274,7 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () {
-                Get.to(EventDetailPage(themeId: widget.model.id));
+                Get.to(() => EventDetailPage(themeId: widget.model.id));
               }
             : null,
         child: Row(

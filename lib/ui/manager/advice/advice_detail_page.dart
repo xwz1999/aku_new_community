@@ -184,7 +184,8 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       ),
       bottomNavi: BottomButton(
         onPressed: () async {
-          bool result = await Get.to(AdviceAddCommentPage(id: widget.model.id));
+          bool result =
+              await Get.to(() => AdviceAddCommentPage(id: widget.model.id));
           if (result && mounted) _refreshController.callRefresh();
         },
         child: '继续提问'.text.bold.make(),

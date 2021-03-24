@@ -17,7 +17,7 @@ class LoginUtil {
     final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
     if (userProvider.isNotLogin) {
       BotToast.showText(text: '请先登录');
-      Get.to(SignInPage());
+      Get.to(() => SignInPage());
       return false;
     }
     return true;

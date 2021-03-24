@@ -60,7 +60,7 @@ class _HomeNotificationState extends State<HomeNotification> {
             : GestureDetector(
                 onTap: () {
                   if (randomItem != null)
-                    Get.to(NoticeDetailPage(id: randomItem.id));
+                    Get.to(() => NoticeDetailPage(id: randomItem.id));
                 },
                 child: AnimatedSwitcher(
                   duration: Duration(milliseconds: 1000),

@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
       } else {
         cancel();
         signUpProvider.setTel(_phone.text);
-        await Get.to(SignUpPickPlotPage());
+        await Get.to(() => SignUpPickPlotPage());
         signUpProvider.clearAll();
       }
     } else {

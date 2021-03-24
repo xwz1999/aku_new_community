@@ -29,7 +29,7 @@ class TopicCommunityViewState extends State<TopicCommunityView>
     return MaterialButton(
       padding: EdgeInsets.symmetric(horizontal: 53.w, vertical: 20.w),
       onPressed: () {
-        Get.to(TopicDetailPage(model: model));
+        Get.to(() => TopicDetailPage(model: model));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

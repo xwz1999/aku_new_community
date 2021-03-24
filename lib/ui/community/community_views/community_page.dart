@@ -70,7 +70,7 @@ class _CommunityPageState extends State<CommunityPage>
       fab: FloatingActionButton(
         onPressed: () async {
           if (LoginUtil.isNotLogin) return;
-          bool result = await Get.to(AddNewEventPage());
+          bool result = await Get.to(() => AddNewEventPage());
           if (result == true) {
             switch (_tabController.index) {
               case 0:

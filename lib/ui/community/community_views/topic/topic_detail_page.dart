@@ -40,7 +40,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
         heroTag: 'event_add',
         onPressed: () async {
           if (LoginUtil.isNotLogin) return;
-          bool result = await Get.to(AddNewEventPage());
+          bool result = await Get.to(() => AddNewEventPage());
         },
         child: Icon(Icons.add),
       ),

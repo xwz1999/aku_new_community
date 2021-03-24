@@ -161,7 +161,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                   MaterialButton(
                     height: 92.w,
                     onPressed: () =>
-                        Get.to(ActivityPeopleListPage(id: widget.id)),
+                        Get.to(() => ActivityPeopleListPage(id: widget.id)),
                     child: Row(
                       children: [
                         StackAvatar(

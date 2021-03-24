@@ -73,7 +73,7 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
                 final signUpProvider =
                     Provider.of<SignUpProvider>(context, listen: false);
                 signUpProvider.setNickName(_textEditingController.text);
-                Get.to(SignUpVerifyPage());
+                Get.to(() => SignUpVerifyPage());
               }
             },
           ),
