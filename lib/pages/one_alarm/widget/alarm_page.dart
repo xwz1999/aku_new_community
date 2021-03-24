@@ -1,11 +1,14 @@
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:amap_flutter_base/amap_flutter_base.dart';
+import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:amap_flutter_map/amap_flutter_map.dart';
 import 'package:flutter/material.dart';
 
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
-import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -27,34 +30,27 @@ class AlarmPage extends StatefulWidget {
 }
 
 class _AlarmPageState extends State<AlarmPage> {
-  final _option = MyLocationOption(
-    show: true,
-    myLocationType: MyLocationType.Locate,
-  );
+  AMapController _mapController;
+
   Future<void> _makephonenum(String url) async {
     (await canLaunch(url)) ? await launch(url) : throw 'Could not launch $url';
   }
 
-  AmapController _amapController;
-  Location _location;
-
   @override
   void initState() {
     super.initState();
-    AmapLocation.instance.fetchLocation().then((location) {
-      _location = location;
-      setState(() {});
-    });
     PermissionUtil.getLocationPermission();
   }
 
   @override
   void dispose() {
     super.dispose();
+    _mapController?.disponse();
   }
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '一键报警',
       actions: [
@@ -66,14 +62,26 @@ class _AlarmPageState extends State<AlarmPage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          AmapView(
-            onMapCreated: (controller) async {
-              _amapController = controller;
-              await _amapController.showMyLocation(_option);
+          AMapWidget(
+            onMapCreated: (controller) {
+              final appProvider =
+                  Provider.of<AppProvider>(context, listen: false);
+              LatLng _target = LatLng(
+                appProvider.location['latitude'],
+                appProvider.location['longitude'],
+              );
+              _mapController = controller;
+              _mapController.moveCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(target: _target, zoom: 18),
+                ),
+              );
             },
-            mapType: MapType.Standard,
-            showZoomControl: false,
-            zoomLevel: 16,
+            myLocationStyleOptions: MyLocationStyleOptions(
+              true,
+              circleFillColor: Theme.of(context).primaryColor.withOpacity(0.2),
+              circleStrokeColor: Theme.of(context).primaryColor,
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -114,17 +122,17 @@ class _AlarmPageState extends State<AlarmPage> {
                               size: 29.sp,
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 5.w),
+                              margin: EdgeInsets.symmetric(horizontal: 5.w),
                               child: Text(
-                                (_location == null)
+                                (appProvider.location == null)
                                     ? '加载中……'
-                                    : _location.aoiName,
+                                    : appProvider.location['address'],
                                 style: TextStyle(
                                   color: Color(0xff666666),
                                   fontSize: 28.sp,
                                 ),
                               ),
-                            ),
+                            ).expand(),
                           ],
                         ),
                       ),
@@ -154,12 +162,7 @@ class _AlarmPageState extends State<AlarmPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(66.w)),
                       color: Color(0xFFFFFFFF),
-                      onPressed: () {
-                        _amapController?.setCenterCoordinate(_location.latLng);
-                        Future.delayed(Duration(milliseconds: 500), () {
-                          if (mounted) _amapController.setZoomLevel(16);
-                        });
-                      },
+                      onPressed: () {},
                       child: Icon(
                         Icons.location_searching,
                         size: 44.w,

@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # 权限组件
-  permission_handler: ^5.0.1+1
+  permission_handler: ^6.1.1
   # 版本信息
   package_info: ^2.0.0
   #上拉加载
@@ -23,7 +23,7 @@ dependencies:
   flutter_screenutil: ^5.0.0-nullsafety.11
   cupertino_icons: ^1.0.2
   # 打电话等各种功能
-  url_launcher: 5.5.2
+  url_launcher: ^6.0.2
   # 工具类
   flustars: ^2.0.1
   # icons
@@ -51,12 +51,10 @@ dependencies:
   flutter_datetime_picker: ^1.4.0
   #随机二维码
   qr_flutter: ^4.0.0
-  #高德地图
-  amap_map_fluttify: 0.29.0
-  amap_location_fluttify: 0.18.0
-
+ 
   #用户存储路径
   path_provider: ^2.0.1
+  
 
   fluwx: ^3.3.0
   get: ^4.0.0-nullsafety.2
@@ -78,6 +76,12 @@ dependencies:
       url: http://159.75.73.143:8080/third_packages/jpush_flutter
 
   badges: ^2.0.0-nullsafety.1
+  amap_flutter_map:
+    git:
+      url: http://159.75.73.143:8080/third_packages/amap_flutter_map
+      ref: nullsafety
+  amap_flutter_location: ^1.0.1
+  amap_flutter_base: ^1.0.2
 
 dev_dependencies:
   flutter_test:

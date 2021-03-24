@@ -48,7 +48,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                appProvider?.location?.city ?? '',
+                appProvider?.location['city'] ?? '',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24.sp,

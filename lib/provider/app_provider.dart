@@ -1,8 +1,7 @@
-import 'dart:io';
-
+import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:flutter/material.dart';
 
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:dio/dio.dart';
 import 'package:power_logger/power_logger.dart';
 
@@ -132,12 +131,34 @@ class AppProvider extends ChangeNotifier {
     }
   }
 
-  Location _location;
-  Location get location => _location;
+  Map<String, Object> _location;
+  Map<String, Object> get location => _location;
+  AMapFlutterLocation _aMapFlutterLocation;
+
+  startLocation() {
+    _aMapFlutterLocation = AMapFlutterLocation();
+    _aMapFlutterLocation.onLocationChanged().listen((event) {
+      _location = event;
+      if (_location != null) {
+        getWeather();
+        stopLocation();
+      }
+    });
+    _aMapFlutterLocation
+        .setLocationOption(AMapLocationOption(onceLocation: true));
+    _aMapFlutterLocation.startLocation();
+  }
+
+  stopLocation() {
+    _aMapFlutterLocation.stopLocation();
+    _aMapFlutterLocation.destroy();
+  }
+
+  // Location _location;
+  // Location get location => _location;
   getWeather() async {
-    _location = await AmapLocation.instance.fetchLocation();
     Response response = await Dio().get(
-      'https://api.caiyunapp.com/v2.5/Rl2lmppO9q15q8W6/${_location.latLng.longitude},${_location.latLng.latitude}/realtime.json',
+      'https://api.caiyunapp.com/v2.5/Rl2lmppO9q15q8W6/${_location['longitude']},${_location['latitude']}/realtime.json',
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);

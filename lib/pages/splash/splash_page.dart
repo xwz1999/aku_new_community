@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -32,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
     await HiveStore.init();
 
     //初始化AMap
-    await AmapLocation.instance.init(iosKey: 'ios key');
+    // await AmapLocation.instance.init(iosKey: 'ios key');
     await Permission.locationWhenInUse.request();
   }
 
@@ -42,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.initApplications();
-    appProvider.getWeather();
+    appProvider.startLocation();
     //app init delay 2 second
     await Future.delayed(Duration(seconds: 2));
     if (HiveStore.appBox.get('login') ?? false) {
@@ -54,7 +53,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     PowerLogger.start(context, debug: DeveloperUtil.dev);
-    _initOp().then((value) => Get.offAll(()=>TabNavigator()));
+    _initOp().then((value) => Get.offAll(() => TabNavigator()));
   }
 
   @override
