@@ -18,6 +18,7 @@ class AppTheme {
           headline6: TextStyle(
             color: Color(0xFF333333),
             fontSize: 36.sp,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

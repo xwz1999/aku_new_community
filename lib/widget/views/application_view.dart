@@ -35,7 +35,7 @@ class _ApplicationViewState extends State<ApplicationView> {
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
-        Get.to(() => object.page);
+        Get.to(object.page);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +46,7 @@ class _ApplicationViewState extends State<ApplicationView> {
             width: 75.w,
           ),
           8.hb,
-          object.title.text.size(24.sp).make(),
+          object.title.text.size(24.sp).bold.make(),
         ],
       ),
     );

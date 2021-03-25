@@ -35,7 +35,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           ? null
           : () {
               if (LoginUtil.isNotLogin) return;
-              Get.to(() => object.page);
+              Get.to(object.page);
             },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

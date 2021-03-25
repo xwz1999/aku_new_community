@@ -1,3 +1,4 @@
+import 'package:akuCommunity/ui/profile/house_owners_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -5,13 +6,11 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
-import 'package:akuCommunity/pages/fitup_manage/fitup_manage_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/mine_car_page/mine_car_page.dart';
-import 'package:akuCommunity/pages/mine_house_page/mine_house_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
 import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
@@ -28,7 +27,7 @@ import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
 class AO {
   String title = '';
   String path = '';
-  Widget page = Scaffold();
+  dynamic page = () => Scaffold();
 
   AO(
     this.title,
@@ -56,40 +55,43 @@ class AO {
 
 ///所有应用
 List<AO> appObjects = [
-  AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, OpenDoorPage()),
-  AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, OpeningCodePage()),
-  AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG, VisitorAccessPage()),
-  AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, FixedSubmitPage()),
-  AO('生活缴费', R.ASSETS_APPLICATIONS_PAYMENT_PNG, LifePayPage()),
-  AO('业委会', R.ASSETS_APPLICATIONS_COMMITTEE_PNG, IndustryCommitteePage()),
+  AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => OpenDoorPage()),
+  AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
+  AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
+      () => VisitorAccessPage()),
+  AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, () => FixedSubmitPage()),
+  AO('生活缴费', R.ASSETS_APPLICATIONS_PAYMENT_PNG, () => LifePayPage()),
+  AO('业委会', R.ASSETS_APPLICATIONS_COMMITTEE_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_APPLICATIONS_ADVICE_PNG,
-      AdvicePage(type: AdviceType.SUGGESTION)),
-  AO('便民电话', R.ASSETS_APPLICATIONS_COMMUNITY_PHONE_PNG, ConvenientPhonePage()),
-  AO('活动投票', R.ASSETS_APPLICATIONS_VOTE_PNG, EventVotingPage()),
-  AO('物品出门', R.ASSETS_APPLICATIONS_GOODS_OUT_PNG, GoodsDetoPage()),
+      () => AdvicePage(type: AdviceType.SUGGESTION)),
+  AO('便民电话', R.ASSETS_APPLICATIONS_COMMUNITY_PHONE_PNG,
+      () => ConvenientPhonePage()),
+  AO('活动投票', R.ASSETS_APPLICATIONS_VOTE_PNG, () => EventVotingPage()),
+  AO('物品出门', R.ASSETS_APPLICATIONS_GOODS_OUT_PNG, () => GoodsDetoPage()),
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
-      AdvicePage(type: AdviceType.COMPLAIN)),
-  AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, QuestionnairePage()),
+      () => AdvicePage(type: AdviceType.COMPLAIN)),
+  AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, () => QuestionnairePage()),
   // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
-  AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, GoodsManagePage()),
-  AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, AlarmPage()),
+  AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => GoodsManagePage()),
+  AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
 ];
 
 List<AO> userAppObjects = [
-  AO('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, MineHousePage()),
-  AO('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, MineCarPage()),
-  AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, MineCarPage()),
-  AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, ActivityListPage()),
-  AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, LifePayPage()),
-  AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, FixedSubmitPage()),
-  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, AddressPage()),
-  AO('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, Scaffold()),
-  AO('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, VisitorAccessPage()),
-  AO('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, SettingsPage()),
+  AO('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () => HouseOwnersPage()),
+  AO('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () => MineCarPage()),
+  AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () => MineCarPage()),
+  AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () => ActivityListPage()),
+  AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () => LifePayPage()),
+  AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () => FixedSubmitPage()),
+  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () => AddressPage()),
+  AO('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () => Scaffold()),
+  AO('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () => VisitorAccessPage()),
+  AO('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () => SettingsPage()),
 ];
 
 ///全部应用按钮
-AO allApp = AO('全部应用', R.ASSETS_APPLICATIONS_ALL_APP_PNG, AllApplicationPage());
+AO allApp =
+    AO('全部应用', R.ASSETS_APPLICATIONS_ALL_APP_PNG, () => AllApplicationPage());
 
 ///为您推荐 original value
 List<String> _recommendApp = [
