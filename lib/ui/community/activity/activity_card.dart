@@ -55,6 +55,7 @@ class ActivityCard extends StatelessWidget {
           model.title.text
               .size(28.sp)
               .black
+              .bold
               .make()
               .pSymmetric(h: 24.w, v: 16.w),
           [

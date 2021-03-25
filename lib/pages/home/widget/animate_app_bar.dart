@@ -57,7 +57,6 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
               ),
               Text(
                 '${appProvider.weatherType} ${appProvider.weatherTemp}℃',
-                // '阴 27℃',
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Color(0xff333333),
