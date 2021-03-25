@@ -12,6 +12,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
+@Deprecated("my_house_page need to be cleaned.")
 class MyHousePage extends StatefulWidget {
   final bool needFindPayTag;
   MyHousePage({Key key, this.needFindPayTag = false}) : super(key: key);

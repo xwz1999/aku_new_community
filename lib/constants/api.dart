@@ -66,6 +66,12 @@ class _User {
 
   ///意见反馈：app意见反馈提交（建议）
   String get feedback => '/user/feedback/submit';
+
+  ///我的房屋：房屋认证(新增房屋)
+  String get authHouse => '/user/myHouse/authentication';
+
+  ///我的房屋：查询所有的房屋审核信息
+  String get houseList => '/user/myHouse/list';
 }
 
 class _Manager {
