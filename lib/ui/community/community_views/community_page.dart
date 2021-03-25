@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';

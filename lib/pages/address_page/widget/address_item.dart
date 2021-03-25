@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:extended_text/extended_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:get/get.dart';
 
 import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';

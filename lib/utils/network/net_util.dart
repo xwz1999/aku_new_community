@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +48,9 @@ class NetUtil {
   auth(String token) {
     _dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
   }
+
+  static String getDate(DateTime date) =>
+      DateUtil.formatDate(date, format: 'yyyy-MM-dd HH:mm:ss');
 
   /// ## alias of Dio().get
   ///

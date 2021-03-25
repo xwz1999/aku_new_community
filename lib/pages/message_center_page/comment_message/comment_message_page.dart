@@ -10,9 +10,9 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/comment_message_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/utils/headers.dart';
 
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key key}) : super(key: key);

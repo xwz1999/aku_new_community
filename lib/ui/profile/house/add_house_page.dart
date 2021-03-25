@@ -1,17 +1,19 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/ui/profile/house/house_item.dart';
 import 'package:akuCommunity/ui/profile/house/pick_building_page.dart';
 import 'package:akuCommunity/ui/profile/house/pick_role_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class AddHousePage extends StatefulWidget {
   AddHousePage({Key key}) : super(key: key);
@@ -267,13 +269,8 @@ class _AddHousePageState extends State<AddHousePage> {
     };
     if (_roleType == 3) {
       params.putIfAbsent(
-        'effectiveTimeStart',
-        () => DateUtil.formatDate(_range.start, format: 'yyyy-MM-dd HH:mm:ss'),
-      );
-      params.putIfAbsent(
-        'effectiveTimeEnd',
-        () => DateUtil.formatDate(_range.end, format: 'yyyy-MM-dd HH:mm:ss'),
-      );
+          'effectiveTimeStart', () => NetUtil.getDate(_range.start));
+      params.putIfAbsent('effectiveTimeEnd', () => NetUtil.getDate(_range.end));
     }
     VoidCallback cancel = BotToast.showLoading();
     BaseModel model = await NetUtil().post(

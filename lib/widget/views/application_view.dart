@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/login_util.dart';
 

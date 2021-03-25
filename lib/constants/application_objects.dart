@@ -1,6 +1,4 @@
-import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/address_page/address_page.dart';
@@ -21,6 +19,7 @@ import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
+import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 
 ///应用对象
 ///Application Object

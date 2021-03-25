@@ -1,11 +1,9 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 
 import 'package:akuCommunity/constants/api.dart';

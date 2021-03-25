@@ -8,7 +8,6 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_record_page/life_pay_record_page.dart';
 import 'package:akuCommunity/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
@@ -18,7 +17,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
-import 'package:akuCommunity/widget/others/bee_header_house.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key key}) : super(key: key);

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'package:akuCommunity/model/message/system_message_detail_model.dart';
-import 'package:akuCommunity/model/message/system_message_model.dart';
 import 'package:akuCommunity/pages/message_center_page/message_func.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';

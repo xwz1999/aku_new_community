@@ -5,9 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
+import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:power_logger/power_logger.dart';

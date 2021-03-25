@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:badges/badges.dart';
-import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/message/message_center_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
