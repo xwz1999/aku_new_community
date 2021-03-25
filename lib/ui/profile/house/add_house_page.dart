@@ -1,6 +1,7 @@
 import 'package:akuCommunity/ui/profile/house/house_item.dart';
 import 'package:akuCommunity/ui/profile/house/pick_building_page.dart';
 import 'package:akuCommunity/ui/profile/house/pick_plot_page.dart';
+import 'package:akuCommunity/ui/profile/house/pick_role_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class _AddHousePageState extends State<AddHousePage> {
   TextEditingController _idController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   HouseItem _item;
+  int _roleType;
   TextStyle get _hintStyle => TextStyle(
         fontSize: 36.sp,
         fontWeight: FontWeight.bold,
@@ -131,20 +133,27 @@ class _AddHousePageState extends State<AddHousePage> {
               _renderTile(
                 title: '楼栋、单元、室',
                 item: _renderPicker(
-                  text: _item.houseName,
+                  text: _item?.houseName,
                   hintText: '请选择楼栋、单元、室',
                   onTap: () async {
                     HouseItem tempItem = await Get.to(() => PickBuildingPage());
                     if (tempItem != null) _item = tempItem;
+                    setState(() {});
                   },
                 ),
               ),
               _renderTile(
                 title: '身份',
                 item: _renderPicker(
-                  text: '',
+                  text: PickRolePage.getType(_roleType),
                   hintText: '请选择身份',
-                  onTap: () {},
+                  onTap: () async {
+                    int role = await Get.to(() => PickRolePage());
+                    if (role != null) {
+                      _roleType = role;
+                      setState(() {});
+                    }
+                  },
                 ),
               ),
               _renderTile(
