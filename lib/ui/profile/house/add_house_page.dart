@@ -1,6 +1,5 @@
 import 'package:akuCommunity/ui/profile/house/house_item.dart';
 import 'package:akuCommunity/ui/profile/house/pick_building_page.dart';
-import 'package:akuCommunity/ui/profile/house/pick_plot_page.dart';
 import 'package:akuCommunity/ui/profile/house/pick_role_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flustars/flustars.dart';
@@ -23,6 +22,8 @@ class _AddHousePageState extends State<AddHousePage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   HouseItem _item;
   int _roleType;
+  DateTimeRange _range;
+
   TextStyle get _hintStyle => TextStyle(
         fontSize: 36.sp,
         fontWeight: FontWeight.bold,
@@ -30,9 +31,16 @@ class _AddHousePageState extends State<AddHousePage> {
       );
 
   TextStyle get _textStyle => _hintStyle.copyWith(color: Color(0xFF333333));
+  // 仅在租客身份下检查租期是否填写
+  bool get _rentCheck => _roleType != 3 ? true : _range != null;
 
+  /// 检查按钮是否可点击
   bool get _buttonCanTap =>
-      _nameController.text.isNotEmpty && _idController.text.isNotEmpty;
+      _nameController.text.isNotEmpty &&
+      _idController.text.isNotEmpty &&
+      _item != null &&
+      _roleType != null &&
+      _rentCheck;
   _renderTile({
     String title,
     Widget item,
@@ -96,6 +104,41 @@ class _AddHousePageState extends State<AddHousePage> {
               size: 38.w,
               color: Color(0xFFE8E8E8),
             ),
+        ],
+      ),
+    );
+  }
+
+  _renderDatePicker() {
+    String start = DateUtil.formatDate(_range?.start, format: 'yyyy-MM-dd');
+    String end = DateUtil.formatDate(_range?.end, format: 'yyyy-MM-dd');
+    bool emptyDate = _range == null;
+    String startValue = emptyDate ? '请选择开始时间' : start;
+    String endValue = emptyDate ? '请选择结束时间' : end;
+    return MaterialButton(
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 30.w),
+      onPressed: () async {
+        DateTimeRange range = await showDateRangePicker(
+          context: context,
+          builder: (context, child) {
+            return Theme(
+              data: ThemeData(primarySwatch: Colors.yellow),
+              child: child,
+            );
+          },
+          firstDate: DateTime.now().subtract(Duration(days: 30)),
+          lastDate: DateTime.now().add(Duration(days: 365 * 10)),
+        );
+        if (range != null) _range = range;
+        setState(() {});
+      },
+      child: Row(
+        children: [
+          Text(startValue, style: emptyDate ? _hintStyle : _textStyle),
+          Expanded(
+            child: Icon(Icons.arrow_forward, color: Color(0xFF999999)),
+          ),
+          Text(endValue, style: emptyDate ? _hintStyle : _textStyle),
         ],
       ),
     );
@@ -177,6 +220,12 @@ class _AddHousePageState extends State<AddHousePage> {
                   },
                 ),
               ),
+              if (_roleType == 3)
+                _renderTile(
+                  title: '租期',
+                  item: _renderDatePicker(),
+                ),
+              SizedBox(),
             ].sepWidget(
                 separate: Divider(
               indent: 32.w,
