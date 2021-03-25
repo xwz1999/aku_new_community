@@ -268,20 +268,20 @@ class _AddHousePageState extends State<AddHousePage> {
     if (_roleType == 3) {
       params.putIfAbsent(
         'effectiveTimeStart',
-        () => DateUtil.formatDate(_range.start, format: 'yyyy-MM-dd HH:mm'),
+        () => DateUtil.formatDate(_range.start, format: 'yyyy-MM-dd HH:mm:ss'),
       );
       params.putIfAbsent(
         'effectiveTimeEnd',
-        () => DateUtil.formatDate(_range.end, format: 'yyyy-MM-dd HH:mm'),
+        () => DateUtil.formatDate(_range.end, format: 'yyyy-MM-dd HH:mm:ss'),
       );
     }
     VoidCallback cancel = BotToast.showLoading();
-    await NetUtil().post(
+    BaseModel model = await NetUtil().post(
       API.user.authHouse,
       params: params,
       showMessage: true,
     );
     cancel();
-    Get.back();
+    if (model.status) Get.back();
   }
 }
