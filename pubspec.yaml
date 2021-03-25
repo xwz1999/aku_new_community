@@ -100,6 +100,7 @@ flutter:
     - assets/tab/
     - assets/json/
     - assets/applications/
+    - assets/static/
 
 import_sorter:
   emojis: true

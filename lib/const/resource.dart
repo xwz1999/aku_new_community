@@ -474,6 +474,10 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/zbbj.json)
   static const String ASSETS_JSON_ZBBJ_JSON = 'assets/json/zbbj.json';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/reviewing.webp)
+  static const String ASSETS_STATIC_REVIEWING_WEBP =
+      'assets/static/reviewing.webp';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/tab/bkjh.png)
   static const String ASSETS_TAB_BKJH_PNG = 'assets/tab/bkjh.png';
 

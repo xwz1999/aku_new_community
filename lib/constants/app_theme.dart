@@ -7,6 +7,12 @@ class AppTheme {
     return ThemeData(primarySwatch: Colors.blue).copyWith(
       primaryColor: Color(0xFFFFD000),
       accentColor: Color(0xFFFFD000),
+      textTheme: TextTheme(
+        subtitle1: TextStyle(
+          fontSize: 28.sp,
+          color: Color(0xFF333333),
+        ),
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData().copyWith(
         backgroundColor: Color(0xFFFFD000),
       ),
@@ -47,6 +53,31 @@ class AppTheme {
           return null;
         }),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled))
+              return Color(0xFFFFF4D7);
+            return Color(0xFFFFD000);
+          }),
+          elevation: MaterialStateProperty.all(0),
+          foregroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled))
+              return Color(0xFF666666);
+            return Color(0xFF333333);
+          }),
+          textStyle: MaterialStateProperty.all(TextStyle(
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          )),
+          padding: MaterialStateProperty.all(
+            EdgeInsets.symmetric(horizontal: 76.w, vertical: 22.w),
+          ),
+          enableFeedback: true,
+        ),
+      ),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      dividerColor: Color(0xFFE8E8E8),
     );
   }
 }

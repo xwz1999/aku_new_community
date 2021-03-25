@@ -1,4 +1,4 @@
-import 'package:akuCommunity/ui/profile/house_owners_page.dart';
+import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
