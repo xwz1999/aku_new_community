@@ -222,7 +222,10 @@ class _ChatCardState extends State<ChatCard> {
         if (e.parentName != null) buffer.write('回复${e.parentName}');
         buffer.write(':${e.content}');
         return InkWell(
-          child: buffer.toString().text.make(),
+          child: Text(
+            buffer.toString(),
+            style: Theme.of(context).textTheme.subtitle2,
+          ),
           onTap: () {
             SendAChat.send(parentId: e.id, themeId: widget.model.id);
           },

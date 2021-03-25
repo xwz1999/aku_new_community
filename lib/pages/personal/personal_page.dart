@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +35,6 @@ class _PersonalIndexState extends State<PersonalIndex>
       pinned: true,
       toolbarHeight: 0,
       elevation: 0,
-      stretch: true,
       floating: true,
       expandedHeight: 450.w - height,
       backgroundColor: Colors.white,
@@ -191,79 +191,86 @@ class _PersonalIndexState extends State<PersonalIndex>
 
   @override
   Widget build(BuildContext context) {
-    double _statusHeight = MediaQuery.of(context).padding.top;
+    final double _statusHeight = MediaQuery.of(context).padding.top;
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-      body: CustomScrollView(
-        physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-        slivers: <Widget>[
-          _sliverAppBar(_statusHeight),
-          // SliverToBoxAdapter(
-          //   child: _containerBar('我的订单'),
-          // ),
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     margin: EdgeInsets.only(top: 10.w),
-          //     color: BaseStyle.colorf9f9f9,
-          //     child: GridButtons(
-          //       gridList: _orderList,
-          //       crossCount: 5,
-          //     ),
-          //   ),
-          // ),
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
-          //     child: Divider(
-          //       color: Color(0xffd8d8d8),
-          //     ),
-          //   ),
-          // ),
-          // SliverToBoxAdapter(
-          //   child: _containerBar('我的团购'),
-          // ),
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     color: BaseStyle.colorf9f9f9,
-          //     margin: EdgeInsets.only(top: 10.w),
-          //     alignment: Alignment.center,
-          //     child: GridButtons(
-          //       gridList: _groupOrderList,
-          //       crossCount: 5,
-          //     ),
-          //   ),
-          // ),
-          // SliverToBoxAdapter(
-          //   child: SingleAdSpace(
-          //     imagePath: 'assets/example/guanggao7.png',
-          //   ),
-          // ),
-          SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xffffffff),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    offset: Offset(1, 1),
-                  ),
-                ],
-              ),
-              margin: EdgeInsets.all(20.w),
-              padding: EdgeInsets.all(12.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _containerBar('我的物业'),
-                  ApplicationView.custom(
-                    items: userAppObjects,
-                    needAllApp: false,
-                  ),
-                ],
+      body: EasyRefresh(
+        header: MaterialHeader(),
+        onRefresh: () async {
+          await userProvider.updateProfile();
+          await userProvider.updateUserDetail();
+        },
+        child: CustomScrollView(
+          slivers: <Widget>[
+            _sliverAppBar(_statusHeight),
+            // SliverToBoxAdapter(
+            //   child: _containerBar('我的订单'),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: Container(
+            //     margin: EdgeInsets.only(top: 10.w),
+            //     color: BaseStyle.colorf9f9f9,
+            //     child: GridButtons(
+            //       gridList: _orderList,
+            //       crossCount: 5,
+            //     ),
+            //   ),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: Container(
+            //     margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
+            //     child: Divider(
+            //       color: Color(0xffd8d8d8),
+            //     ),
+            //   ),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: _containerBar('我的团购'),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: Container(
+            //     color: BaseStyle.colorf9f9f9,
+            //     margin: EdgeInsets.only(top: 10.w),
+            //     alignment: Alignment.center,
+            //     child: GridButtons(
+            //       gridList: _groupOrderList,
+            //       crossCount: 5,
+            //     ),
+            //   ),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: SingleAdSpace(
+            //     imagePath: 'assets/example/guanggao7.png',
+            //   ),
+            // ),
+            SliverToBoxAdapter(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffffffff),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      offset: Offset(1, 1),
+                    ),
+                  ],
+                ),
+                margin: EdgeInsets.all(20.w),
+                padding: EdgeInsets.all(12.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _containerBar('我的物业'),
+                    ApplicationView.custom(
+                      items: userAppObjects,
+                      needAllApp: false,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

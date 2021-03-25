@@ -7,12 +7,12 @@ class AppTheme {
     return ThemeData(primarySwatch: Colors.blue).copyWith(
       primaryColor: Color(0xFFFFD000),
       accentColor: Color(0xFFFFD000),
-      textTheme: TextTheme(
-        subtitle1: TextStyle(
-          fontSize: 28.sp,
-          color: Color(0xFF333333),
-        ),
-      ),
+      textTheme: ThemeData.light().textTheme.copyWith(
+            subtitle1: TextStyle(
+              fontSize: 28.sp,
+              color: Color(0xFF333333),
+            ),
+          ),
       floatingActionButtonTheme: FloatingActionButtonThemeData().copyWith(
         backgroundColor: Color(0xFFFFD000),
       ),
