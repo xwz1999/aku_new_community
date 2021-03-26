@@ -34,6 +34,14 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
     return (appProvider?.selectedHouse?.status ?? 0) == 4;
   }
 
+  Widget get _houseTitle {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    if (_emptyHouse) return Text('还没有绑定房屋');
+    if (appProvider.selectedHouse.status == 1) return Text('您的身份正在审核中，请耐心等待');
+    if (appProvider.selectedHouse.status == 3) return Text('审核未通过');
+    return SizedBox();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
@@ -71,7 +79,8 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 padding: EdgeInsets.symmetric(horizontal: 75.w),
                 child: Image.asset(R.ASSETS_STATIC_REVIEWING_WEBP),
               ),
-            if (!_haveAuthedHouse)
+            Center(child: _houseTitle),
+            if (_emptyHouse)
               Center(
                 child: ElevatedButton(
                   onPressed: _addHouse,

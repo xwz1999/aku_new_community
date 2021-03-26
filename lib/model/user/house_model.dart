@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 class HouseModel {
   int id;
   String roomName;
+
+  ///1.未审核，3.审核失败，4.审核成功
   int status;
+
+  ///1 审核业主，2审核亲属，3审核租客
   int type;
   String effectiveTimeStart;
   String effectiveTimeEnd;
@@ -24,6 +28,21 @@ class HouseModel {
         return '情书';
     }
     return '';
+  }
+
+  String get houseStatus {
+    if (status == 1) return '审核中';
+    if (status == 3) return '审核失败';
+    if (type == 1) return '业主';
+    if (type == 2) return '亲属';
+    if (type == 3) return '租客';
+    return '';
+  }
+
+  Color get houseStatusColor {
+    if (status != 4) return Color(0xFF666666);
+    if (type == 1) return Color(0xFF333333);
+    return Colors.white;
   }
 
   ///我的房屋页面背景颜色

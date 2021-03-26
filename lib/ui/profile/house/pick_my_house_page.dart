@@ -164,9 +164,10 @@ class _HouseCard extends StatelessWidget {
           children: [
             Container(
               child: Text(
-                model.typeValue,
+                model.houseStatus,
                 style: Theme.of(context).textTheme.subtitle2.copyWith(
                       fontWeight: FontWeight.bold,
+                      color: model.houseStatusColor,
                     ),
               ),
               alignment: Alignment.center,
