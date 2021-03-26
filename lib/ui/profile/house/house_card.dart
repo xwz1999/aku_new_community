@@ -127,15 +127,40 @@ class HouseCard extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             Spacer(),
-            Text(
-              '身份',
-              style: Theme.of(context).textTheme.subtitle2.copyWith(
-                    color: Color(0xFF666666),
-                  ),
-            ),
-            Text(
-              _roleName,
-              style: Theme.of(context).textTheme.subtitle1,
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '身份',
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                            color: Color(0xFF666666),
+                          ),
+                    ),
+                    Text(
+                      _roleName,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ],
+                ).expand(),
+                //TODO
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       '到期时间',
+                //       style: Theme.of(context).textTheme.subtitle2.copyWith(
+                //             color: Color(0xFF666666),
+                //           ),
+                //     ),
+                //     Text(
+                //       _roleName,
+                //       style: Theme.of(context).textTheme.subtitle1,
+                //     ),
+                //   ],
+                // ).expand(),
+              ],
             ),
             40.hb,
           ],

@@ -72,6 +72,9 @@ class _User {
 
   ///我的房屋：查询所有的房屋审核信息
   String get houseList => '/user/myHouse/list';
+
+  ///我的房屋：假删除审核信息
+  String get deleteHouse => '/user/myHouse/falseDelete';
 }
 
 class _Manager {

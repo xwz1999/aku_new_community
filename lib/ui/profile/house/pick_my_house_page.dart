@@ -1,9 +1,15 @@
+import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
 import 'package:akuCommunity/ui/profile/house/house_func.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -16,6 +22,7 @@ class PickMyHousePage extends StatefulWidget {
 }
 
 class _PickMyHousePageState extends State<PickMyHousePage> {
+  EasyRefreshController _refreshController = EasyRefreshController();
   _renderTitle(String title) {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.w),
@@ -60,6 +67,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
       title: '我的房屋',
       body: EasyRefresh(
         header: MaterialHeader(),
+        controller: _refreshController,
         onRefresh: () async {
           final appProvider = Provider.of<AppProvider>(context, listen: false);
           appProvider.updateHouses(await HouseFunc.houses);
@@ -83,7 +91,10 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
       ).material(color: Colors.white),
       bottomNavi: ElevatedButton(
         child: Text('新增房屋'),
-        onPressed: () {},
+        onPressed: () async {
+          bool result = await Get.to(() => AddHousePage());
+          if (result == true) _refreshController.callRefresh();
+        },
         style: ButtonStyle(
           padding:
               MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 26.w)),
@@ -98,65 +109,111 @@ class _HouseCard extends StatelessWidget {
   final bool highlight;
   const _HouseCard({Key key, @required this.model, this.highlight = false})
       : super(key: key);
-
+  bool get canTapSlide => model.status == 4 || model.status == 3;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      padding: EdgeInsets.symmetric(horizontal: 32.w),
-      height: 136.w,
-      child: Row(
-        children: [
-          Container(
-            child: Text(
-              model.typeValue,
-              style: Theme.of(context).textTheme.subtitle2.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      actionExtentRatio: 0.2,
+      secondaryActions: [
+        SlideAction(
+          onTap: canTapSlide
+              ? () async {
+                  bool result = await Get.dialog(CupertinoAlertDialog(
+                    title: Text('删除房屋'),
+                    content: Text('删除房屋后，可以再次验证添加'),
+                    actions: [
+                      CupertinoDialogAction(
+                        child: Text('取消'),
+                        onPressed: () => Get.back(),
+                      ),
+                      CupertinoDialogAction(
+                        child: Text('确认'),
+                        onPressed: () => Get.back(result: true),
+                      ),
+                    ],
+                  ));
+                  if (result == true) {
+                    final cancel = BotToast.showLoading();
+                    await NetUtil().post(
+                      API.user.deleteHouse,
+                      params: {
+                        'ids': [model.id]
+                      },
+                    );
+                    cancel();
+                  }
+                }
+              : null,
+          closeOnTap: canTapSlide,
+          child: Text(
+            '删除',
+            style: TextStyle(
+              color: canTapSlide ? Colors.white : Color(0xFF999999),
+              fontSize: 28.sp,
+              fontWeight: FontWeight.bold,
             ),
-            alignment: Alignment.center,
-            height: 88.w,
-            width: 88.w,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4.w),
-              gradient: LinearGradient(
-                colors: model.backgroundColor,
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          ),
+          color: canTapSlide ? Color(0xFFFD4912) : Color(0xFFE8E8E8),
+        ),
+      ],
+      child: MaterialButton(
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
+        height: 136.w,
+        child: Row(
+          children: [
+            Container(
+              child: Text(
+                model.typeValue,
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              alignment: Alignment.center,
+              height: 88.w,
+              width: 88.w,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.w),
+                gradient: LinearGradient(
+                  colors: model.backgroundColor,
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
             ),
-          ),
-          24.wb,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '人才公寓智慧小区',
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(
-                        color:
-                            highlight ? Color(0xFFFF8200) : Color(0xFF333333),
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                8.hb,
-                Text(
-                  model.roomName,
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(
-                        color: Color(0xFF999999),
-                      ),
-                ),
-              ],
+            24.wb,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '人才公寓智慧小区',
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          color:
+                              highlight ? Color(0xFFFF8200) : Color(0xFF333333),
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  8.hb,
+                  Text(
+                    model.roomName,
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          color: Color(0xFF999999),
+                        ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        onPressed: () {
+          final appProvider = Provider.of<AppProvider>(context, listen: false);
+          appProvider.setCurrentHouse(model);
+          Get.back();
+        },
       ),
-      onPressed: () {
-        final appProvider = Provider.of<AppProvider>(context, listen: false);
-        appProvider.setCurrentHouse(model);
-        Get.back();
-      },
     );
   }
 }
