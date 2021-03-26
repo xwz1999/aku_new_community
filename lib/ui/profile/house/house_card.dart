@@ -1,4 +1,5 @@
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -10,30 +11,22 @@ enum CardAuthType {
 }
 
 class HouseCard extends StatelessWidget {
-  final String plotName;
-  final String houseName;
-  final int role;
+  final HouseModel model;
   final CardAuthType type;
   const HouseCard({
     Key key,
-    @required this.plotName,
-    @required this.houseName,
-    @required this.role,
+    @required this.model,
     @required this.type,
   }) : super(key: key);
 
   const HouseCard.fail({
     Key key,
-    @required this.plotName,
-    @required this.houseName,
-    @required this.role,
+    @required this.model,
   })  : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
     Key key,
-    @required this.plotName,
-    @required this.houseName,
-    @required this.role,
+    @required this.model,
   })  : type = CardAuthType.SUCCESS,
         super(key: key);
 
@@ -48,7 +41,7 @@ class HouseCard extends StatelessWidget {
   }
 
   String get _roleName {
-    switch (role) {
+    switch (model.type) {
       case 1:
         return '业主';
       case 2:
@@ -125,12 +118,12 @@ class HouseCard extends StatelessWidget {
             ),
             12.hb,
             Text(
-              plotName,
+              '人才公寓智慧小区',
               style: Theme.of(context).textTheme.headline3,
             ),
             10.hb,
             Text(
-              houseName,
+              model.roomName,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             Spacer(),

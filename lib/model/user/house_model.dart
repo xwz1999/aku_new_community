@@ -11,6 +11,9 @@ class HouseModel {
 
   DateTime get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart);
   DateTime get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd);
+
+  //TODO 未通过状态
+  bool get reviewed => status == 4;
   String get typeValue {
     switch (type) {
       case 1:

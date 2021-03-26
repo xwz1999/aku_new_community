@@ -4,6 +4,7 @@ import 'package:akuCommunity/ui/profile/house/house_func.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
@@ -25,6 +26,32 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
   }
 
   Widget get _renderSep => SliverToBoxAdapter(child: 24.hb);
+
+  List<HouseModel> get housesWithoutSelected {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    List<HouseModel> models = List.from(appProvider.houses);
+    models.removeWhere(
+      (element) => element.id == (appProvider?.selectedHouse?.id ?? -1),
+    );
+    if (models == null || models.isEmpty) return [];
+    return models;
+  }
+
+  _renderList() {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        housesWithoutSelected
+            .map((e) => _HouseCard(model: e))
+            .toList()
+            .sepWidget(
+                separate: Divider(
+              height: 1.w,
+              indent: 32.w,
+              endIndent: 32.w,
+            )),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +75,9 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
                 highlight: true,
               ),
             ),
+            _renderSep,
+            if (housesWithoutSelected.isNotEmpty) _renderTitle('其他房屋'),
+            if (housesWithoutSelected.isNotEmpty) _renderList(),
           ],
         ),
       ).material(color: Colors.white),
@@ -122,7 +152,11 @@ class _HouseCard extends StatelessWidget {
           ),
         ],
       ),
-      onPressed: () {},
+      onPressed: () {
+        final appProvider = Provider.of<AppProvider>(context, listen: false);
+        appProvider.setCurrentHouse(model);
+        Get.back();
+      },
     );
   }
 }

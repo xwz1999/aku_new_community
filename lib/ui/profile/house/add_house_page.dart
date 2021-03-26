@@ -197,7 +197,8 @@ class _AddHousePageState extends State<AddHousePage> {
                   text: PickRolePage.getType(_roleType),
                   hintText: '请选择身份',
                   onTap: () async {
-                    int role = await Get.to(() => PickRolePage());
+                    int role =
+                        await Get.to(() => PickRolePage(init: _roleType));
                     if (role != null) {
                       _roleType = role;
                       setState(() {});
@@ -279,6 +280,6 @@ class _AddHousePageState extends State<AddHousePage> {
       showMessage: true,
     );
     cancel();
-    if (model.status) Get.back(result:true);
+    if (model.status) Get.back(result: true);
   }
 }

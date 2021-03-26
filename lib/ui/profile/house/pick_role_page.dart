@@ -10,6 +10,10 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 ///
 ///业主  亲属  租客
 class PickRolePage extends StatefulWidget {
+  final int init;
+
+  PickRolePage({Key key, this.init = 0}) : super(key: key);
+
   static String getType(int index) {
     switch (index) {
       case 1:
@@ -22,8 +26,6 @@ class PickRolePage extends StatefulWidget {
         return '';
     }
   }
-
-  PickRolePage({Key key}) : super(key: key);
 
   @override
   _PickRolePageState createState() => _PickRolePageState();
@@ -55,6 +57,7 @@ class _PickRolePageState extends State<PickRolePage> {
               setState(() {
                 _pickedValue = value;
               });
+              Get.back(result: _pickedValue);
             },
           ),
           16.wb,
@@ -68,6 +71,12 @@ class _PickRolePageState extends State<PickRolePage> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pickedValue = widget.init;
   }
 
   @override
