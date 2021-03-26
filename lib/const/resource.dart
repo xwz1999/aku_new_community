@@ -474,6 +474,14 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/zbbj.json)
   static const String ASSETS_JSON_ZBBJ_JSON = 'assets/json/zbbj.json';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/house_auth_fail.webp)
+  static const String ASSETS_STATIC_HOUSE_AUTH_FAIL_WEBP =
+      'assets/static/house_auth_fail.webp';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/house_auth_success.webp)
+  static const String ASSETS_STATIC_HOUSE_AUTH_SUCCESS_WEBP =
+      'assets/static/house_auth_success.webp';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/reviewing.webp)
   static const String ASSETS_STATIC_REVIEWING_WEBP =
       'assets/static/reviewing.webp';

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -172,6 +173,32 @@ class AppProvider extends ChangeNotifier {
   getMessageCenter() async {
     Response response = await NetUtil().dio.get(API.message.center);
     _messageCenterModel = MessageCenterModel.fromJson(response.data);
+    notifyListeners();
+  }
+
+  List<HouseModel> _houses = [];
+
+  ///我的房屋列表
+  List<HouseModel> get houses => _houses;
+
+  ///更新房屋列表
+  updateHouses(List<HouseModel> items) {
+    _houses = items;
+    notifyListeners();
+  }
+
+  HouseModel _selectedHouse;
+
+  ///选中的房屋
+  HouseModel get selectedHouse {
+    if (_houses?.isEmpty ?? true) return null;
+    if (_selectedHouse == null) _selectedHouse = _houses.first;
+    return _selectedHouse;
+  }
+
+  ///设置当前选中的房屋
+  setCurrentHouse(HouseModel model) {
+    _selectedHouse = model;
     notifyListeners();
   }
 }

@@ -8,7 +8,16 @@ class AppTheme {
       primaryColor: Color(0xFFFFD000),
       accentColor: Color(0xFFFFD000),
       textTheme: ThemeData.light().textTheme.copyWith(
+            headline3: TextStyle(
+              fontSize: 40.sp,
+              color: Color(0xFF333333),
+              fontWeight: FontWeight.bold,
+            ),
             subtitle1: TextStyle(
+              fontSize: 32.sp,
+              color: Color(0xFF333333),
+            ),
+            subtitle2: TextStyle(
               fontSize: 28.sp,
               color: Color(0xFF333333),
             ),
@@ -74,6 +83,20 @@ class AppTheme {
             EdgeInsets.symmetric(horizontal: 76.w, vertical: 22.w),
           ),
           enableFeedback: true,
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled))
+              return Color(0xFFFFF4D7);
+            return Color(0xFFFFD000).withOpacity(0.2);
+          }),
+          foregroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled))
+              return Color(0xFF666666);
+            return Color(0xFF333333);
+          }),
         ),
       ),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

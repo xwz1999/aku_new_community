@@ -57,7 +57,7 @@ class _AddHousePageState extends State<AddHousePage> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.w),
-          child: Text(title, style: Theme.of(context).textTheme.subtitle1),
+          child: Text(title, style: Theme.of(context).textTheme.subtitle2),
         ),
         item ?? SizedBox(),
       ],
@@ -279,6 +279,6 @@ class _AddHousePageState extends State<AddHousePage> {
       showMessage: true,
     );
     cancel();
-    if (model.status) Get.back();
+    if (model.status) Get.back(result:true);
   }
 }
