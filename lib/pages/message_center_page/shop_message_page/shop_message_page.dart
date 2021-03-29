@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/utils/headers.dart';
@@ -18,8 +17,6 @@ class ShopMessagePage extends StatefulWidget {
 }
 
 class _ShopMessagePageState extends State<ShopMessagePage> {
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
   List<Map<String, dynamic>> _listNotice = [
     {
       'status': '已读',
@@ -51,15 +48,12 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
 
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1500));
-
-    _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
     await Future.delayed(Duration(milliseconds: 1500));
 
     if (mounted) setState(() {});
-    _refreshController.loadComplete();
   }
 
   // void refundRouter() {
@@ -77,7 +71,6 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
   @override
   void dispose() {
     super.dispose();
-    _refreshController.dispose();
   }
 
   InkWell _inkWellLook(String type, content, lookType) {
@@ -192,26 +185,15 @@ class _ShopMessagePageState extends State<ShopMessagePage> {
           ),
         )
       ],
-      body: RefreshConfiguration(
-        hideFooterWhenNotFull: true,
-        child: SmartRefresher(
-          controller: _refreshController,
-          header: WaterDropHeader(),
-          footer: ClassicFooter(),
-          onRefresh: _onRefresh,
-          onLoading: _onLoading,
-          enablePullUp: true,
-          child: ListView.builder(
-            itemBuilder: (context, index) => _containerCard(
-              _listNotice[index]['status'],
-              _listNotice[index]['type'],
-              _listNotice[index]['imagePath'],
-              _listNotice[index]['content'],
-              _listNotice[index]['lookType'],
-            ),
-            itemCount: _listNotice.length,
-          ),
+      body: ListView.builder(
+        itemBuilder: (context, index) => _containerCard(
+          _listNotice[index]['status'],
+          _listNotice[index]['type'],
+          _listNotice[index]['imagePath'],
+          _listNotice[index]['content'],
+          _listNotice[index]['lookType'],
         ),
+        itemCount: _listNotice.length,
       ),
     );
   }

@@ -9,7 +9,6 @@ import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/pages/splash/splash_page.dart';
@@ -94,7 +93,6 @@ class _MyAppState extends State<MyApp> {
             home: SplashPage(),
             //国际化支持
             localizationsDelegates: [
-              RefreshLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

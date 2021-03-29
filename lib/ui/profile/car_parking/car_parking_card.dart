@@ -22,6 +22,7 @@ class CarparkingCard extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(_assetImage)),
           borderRadius: BorderRadius.circular(8.w),
+          boxShadow: model.shadow,
         ),
         clipBehavior: Clip.antiAlias,
         child: Column(

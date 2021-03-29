@@ -474,6 +474,14 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/zbbj.json)
   static const String ASSETS_JSON_ZBBJ_JSON = 'assets/json/zbbj.json';
 
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/car_card_grey.webp)
+  static const String ASSETS_STATIC_CAR_CARD_GREY_WEBP =
+      'assets/static/car_card_grey.webp';
+
+  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/car_card_yellow.webp)
+  static const String ASSETS_STATIC_CAR_CARD_YELLOW_WEBP =
+      'assets/static/car_card_yellow.webp';
+
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/car_park_empty.webp)
   static const String ASSETS_STATIC_CAR_PARK_EMPTY_WEBP =
       'assets/static/car_park_empty.webp';

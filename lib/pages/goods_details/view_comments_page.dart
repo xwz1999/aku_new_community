@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'widget/goods_app_bar.dart';
@@ -68,8 +66,8 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
     },
   ];
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  // RefreshController _refreshController =
+  //     RefreshController(initialRefresh: false);
 
   @override
   void initState() {
@@ -79,7 +77,7 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1500));
 
-    _refreshController.refreshCompleted();
+    // _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
@@ -94,13 +92,13 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
       'viewNum': '235',
     });
     if (mounted) setState(() {});
-    _refreshController.loadComplete();
+    // _refreshController.loadComplete();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _refreshController.dispose();
+    // _refreshController.dispose();
   }
 
   Container _commentsClass() {
@@ -186,34 +184,21 @@ class _ViewCommentsPageState extends State<ViewCommentsPage> {
         children: [
           _commentsClass(),
           Expanded(
-            child: Container(
-              child: RefreshConfiguration(
-                hideFooterWhenNotFull: true,
-                child: SmartRefresher(
-                  controller: _refreshController,
-                  header: WaterDropHeader(),
-                  footer: ClassicFooter(),
-                  onRefresh: _onRefresh,
-                  onLoading: _onLoading,
-                  enablePullUp: true,
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(top: 30.w),
-                    itemBuilder: (BuildContext context, int index) => Container(
-                      color: Colors.white,
-                      child: GoodsCommentsCard(
-                        imagePath: _commentsCardList[index]['imagePath'],
-                        name: _commentsCardList[index]['name'],
-                        subtitle: _commentsCardList[index]['subtitle'],
-                        content: _commentsCardList[index]['content'],
-                        contentImageList: _commentsCardList[index]
-                            ['contentImageList'],
-                        viewNum: _commentsCardList[index]['viewNum'],
-                      ),
-                    ),
-                    itemCount: _commentsCardList.length,
-                  ),
+            child: ListView.builder(
+              padding: EdgeInsets.only(top: 30.w),
+              itemBuilder: (BuildContext context, int index) => Container(
+                color: Colors.white,
+                child: GoodsCommentsCard(
+                  imagePath: _commentsCardList[index]['imagePath'],
+                  name: _commentsCardList[index]['name'],
+                  subtitle: _commentsCardList[index]['subtitle'],
+                  content: _commentsCardList[index]['content'],
+                  contentImageList: _commentsCardList[index]
+                      ['contentImageList'],
+                  viewNum: _commentsCardList[index]['viewNum'],
                 ),
               ),
+              itemCount: _commentsCardList.length,
             ),
           )
         ],

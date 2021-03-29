@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'order_card.dart';
 
 class OrderList extends StatefulWidget {
@@ -132,9 +130,6 @@ class _OrderListState extends State<OrderList>
     }
   ];
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
-
   @override
   void initState() {
     super.initState();
@@ -142,47 +137,32 @@ class _OrderListState extends State<OrderList>
 
   void _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1500));
-
-    _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
     await Future.delayed(Duration(milliseconds: 1500));
 
     if (mounted) setState(() {});
-    _refreshController.loadComplete();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _refreshController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshConfiguration(
-      hideFooterWhenNotFull: true,
-      child: SmartRefresher(
-        controller: _refreshController,
-        header: WaterDropHeader(),
-        footer: ClassicFooter(),
-        onRefresh: _onRefresh,
-        onLoading: _onLoading,
-        enablePullUp: true,
-        child: ListView.builder(
-          itemBuilder: (context, index) => OrderCard(
-            status: _listGood[index]['status'],
-            totalPrice: _listGood[index]['totalPrice'],
-            payPrice: _listGood[index]['payPrice'],
-            listContent: _listGood[index]['listContent'],
-            listButton: _listGood[index]['listButton'],
-            listOrderDetail: _listGood[index]['listOrderDetail'],
-          ),
-          itemCount: _listGood.length,
-        ),
+    return ListView.builder(
+      itemBuilder: (context, index) => OrderCard(
+        status: _listGood[index]['status'],
+        totalPrice: _listGood[index]['totalPrice'],
+        payPrice: _listGood[index]['payPrice'],
+        listContent: _listGood[index]['listContent'],
+        listButton: _listGood[index]['listButton'],
+        listOrderDetail: _listGood[index]['listOrderDetail'],
       ),
+      itemCount: _listGood.length,
     );
   }
 }

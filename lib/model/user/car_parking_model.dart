@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CarParkingModel {
   String code;
   int type;
+  int status;
   String effectiveTimeEnd;
   String get typeName {
     switch (type) {
@@ -18,7 +19,7 @@ class CarParkingModel {
   }
 
   String get carTypeName {
-    switch (type) {
+    switch (status) {
       case 1:
         return '产权车位';
       case 2:
@@ -76,6 +77,7 @@ class CarParkingModel {
     code = json['code'];
     type = json['type'];
     effectiveTimeEnd = json['effectiveTimeEnd'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {

@@ -40,7 +40,7 @@ class _CarManagePageState extends State<CarManagePage> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
-      title: '我的车位',
+      title: '我的车辆',
       actions: [
         // TextButton(
         //   onPressed: () {},

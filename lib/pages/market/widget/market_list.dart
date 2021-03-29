@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/service/base_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -26,8 +24,6 @@ class _MarketListState extends State<MarketList>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
 
   List<AkuShopModel> _shopList = [];
 
@@ -201,40 +197,28 @@ class _MarketListState extends State<MarketList>
     page++;
     // akuShop(page);
     if (mounted) setState(() {});
-    _refreshController.loadComplete();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshConfiguration(
-      hideFooterWhenNotFull: true,
-      child: SmartRefresher(
-        controller: _refreshController,
-        header: WaterDropHeader(),
-        footer: ClassicFooter(),
-        onLoading: _onLoading,
-        enablePullUp: true,
-        enablePullDown: false,
-        child: CustomScrollView(
-          slivers: [
-            widget.isGroup
-                ? SliverGoodsGroupCard()
-                : SliverPadding(
-                    padding: EdgeInsets.only(
-                      top: 30.w,
-                      left: 32.w,
-                      right: 32.w,
-                    ),
-                    sliver: _shopList.length == 0
-                        ? SliverToBoxAdapter(child: GoodsCardSkeleton())
-                        : SliverGoodsCard(
-                            shoplist: _shopList,
-                            isShow: true,
-                          )),
-          ],
-        ),
-      ),
+    return CustomScrollView(
+      slivers: [
+        widget.isGroup
+            ? SliverGoodsGroupCard()
+            : SliverPadding(
+                padding: EdgeInsets.only(
+                  top: 30.w,
+                  left: 32.w,
+                  right: 32.w,
+                ),
+                sliver: _shopList.length == 0
+                    ? SliverToBoxAdapter(child: GoodsCardSkeleton())
+                    : SliverGoodsCard(
+                        shoplist: _shopList,
+                        isShow: true,
+                      )),
+      ],
     );
   }
 }

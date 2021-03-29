@@ -9,8 +9,8 @@ class CarManageCard extends StatelessWidget {
 
   String get _assetImage {
     return model.outdated
-        ? R.ASSETS_STATIC_PARKING_GREY_WEBP
-        : R.ASSETS_STATIC_PARKING_YELLOW_WEBP;
+        ? R.ASSETS_STATIC_CAR_CARD_GREY_WEBP
+        : R.ASSETS_STATIC_CAR_CARD_YELLOW_WEBP;
   }
 
   @override
@@ -22,6 +22,7 @@ class CarManageCard extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(_assetImage)),
           borderRadius: BorderRadius.circular(8.w),
+          boxShadow: model.shadow,
         ),
         clipBehavior: Clip.antiAlias,
         child: Column(
@@ -54,7 +55,7 @@ class CarManageCard extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      model.typeName,
+                      model.carTypeName,
                       style: Theme.of(context).textTheme.subtitle2.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
