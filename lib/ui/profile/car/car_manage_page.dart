@@ -1,4 +1,5 @@
 import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/car/car_manage_card.dart';
 import 'package:akuCommunity/ui/profile/car_parking/car_parking_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
 
-class CarParkingPage extends StatefulWidget {
-  CarParkingPage({Key key}) : super(key: key);
+class CarManagePage extends StatefulWidget {
+  CarManagePage({Key key}) : super(key: key);
 
   @override
-  _CarParkingPageState createState() => _CarParkingPageState();
+  _CarManagePageState createState() => _CarManagePageState();
 }
 
-class _CarParkingPageState extends State<CarParkingPage> {
+class _CarManagePageState extends State<CarManagePage> {
   Widget get _renderEmptyWidget {
     return Center(
       child: Stack(
@@ -24,7 +25,7 @@ class _CarParkingPageState extends State<CarParkingPage> {
             left: 0,
             right: 0,
             child: Text(
-              '还没有车位',
+              '还没有车辆',
               style: TextStyle(
                 color: Color(0xFF999999),
               ),
@@ -49,18 +50,17 @@ class _CarParkingPageState extends State<CarParkingPage> {
       body: EasyRefresh(
         firstRefresh: true,
         onRefresh: () async {
-          await appProvider.updateCarParkingModels();
+          await appProvider.updateCarModels();
         },
         header: MaterialHeader(),
-        emptyWidget:
-            appProvider.carParkingModels.isEmpty ? _renderEmptyWidget : null,
+        emptyWidget: appProvider.carModels.isEmpty ? _renderEmptyWidget : null,
         child: ListView.separated(
           separatorBuilder: (context, index) => 32.hb,
           itemBuilder: (context, index) {
-            return CarparkingCard(model: appProvider.carParkingModels[index]);
+            return CarManageCard(model: appProvider.carModels[index]);
           },
           padding: EdgeInsets.all(32.w),
-          itemCount: appProvider.carParkingModels.length,
+          itemCount: appProvider.carModels.length,
         ),
       ),
     );

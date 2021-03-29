@@ -1,3 +1,4 @@
+import 'package:akuCommunity/ui/profile/car/car_manage_page.dart';
 import 'package:akuCommunity/ui/profile/car_parking/car_parking_page.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +79,7 @@ List<AO> appObjects = [
 List<AO> userAppObjects = [
   AO('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () => HouseOwnersPage()),
   AO('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () => CarParkingPage()),
-  AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () => CarParkingPage()),
+  AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () => CarManagePage()),
   AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () => ActivityListPage()),
   AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () => LifePayPage()),
   AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () => FixedSubmitPage()),

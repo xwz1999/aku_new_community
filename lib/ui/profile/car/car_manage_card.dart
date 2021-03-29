@@ -3,9 +3,9 @@ import 'package:akuCommunity/model/user/car_parking_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 
-class CarparkingCard extends StatelessWidget {
+class CarManageCard extends StatelessWidget {
   final CarParkingModel model;
-  const CarparkingCard({Key key, @required this.model}) : super(key: key);
+  const CarManageCard({Key key, @required this.model}) : super(key: key);
 
   String get _assetImage {
     return model.outdated

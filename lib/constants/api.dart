@@ -75,6 +75,12 @@ class _User {
 
   ///我的房屋：假删除审核信息
   String get deleteHouse => '/user/myHouse/falseDelete';
+
+  ///我的车位：查询所有的车位信息
+  String get carParkingList => '/user/myParkingSpace/list';
+
+  ///我的车辆：查询所有的车辆
+  String get carList => '/user/myCar/list';
 }
 
 class _Manager {

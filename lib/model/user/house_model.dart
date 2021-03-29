@@ -32,7 +32,7 @@ class HouseModel {
 
   String get houseStatus {
     if (status == 1) return '审核中';
-    if (status == 3) return '审核失败';
+    if (status == 3) return '未通过';
     if (type == 1) return '业主';
     if (type == 2) return '亲属';
     if (type == 3) return '租客';

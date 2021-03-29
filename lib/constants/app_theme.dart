@@ -21,6 +21,10 @@ class AppTheme {
               fontSize: 28.sp,
               color: Color(0xFF333333),
             ),
+            bodyText1: TextStyle(
+              fontSize: 24.sp,
+              color: Color(0xFF333333),
+            ),
           ),
       floatingActionButtonTheme: FloatingActionButtonThemeData().copyWith(
         backgroundColor: Color(0xFFFFD000),
