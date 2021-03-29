@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/user/car_parking_model.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:flutter/material.dart';
 
@@ -199,6 +200,13 @@ class AppProvider extends ChangeNotifier {
   ///设置当前选中的房屋
   setCurrentHouse(HouseModel model) {
     _selectedHouse = model;
+    notifyListeners();
+  }
+
+  List<CarParkingModel> _carParkingModels = [];
+  List<CarParkingModel> get carParkingModels => _carParkingModels;
+  updateCarParkingModels(List<CarParkingModel> models) {
+    _carParkingModels = models;
     notifyListeners();
   }
 }

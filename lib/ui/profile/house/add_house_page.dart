@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -170,7 +171,7 @@ class _AddHousePageState extends State<AddHousePage> {
               _renderTile(
                 title: '小区名称',
                 item: _renderPicker(
-                  text: '人才公寓智慧小区',
+                  text: AppValues.plotName,
                   hintText: '请选择小区',
                   // 跳转到选择小区页面
                   // TODO 小区页面

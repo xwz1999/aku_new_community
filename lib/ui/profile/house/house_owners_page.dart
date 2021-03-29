@@ -75,11 +75,20 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                   ),
             if (!_emptyHouse) 88.hb,
             if (!_haveAuthedHouse)
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75.w),
-                child: Image.asset(R.ASSETS_STATIC_REVIEWING_WEBP),
+              Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 75.w),
+                    child: Image.asset(R.ASSETS_STATIC_REVIEWING_WEBP),
+                  ),
+                  Positioned(
+                    bottom: 100.w,
+                    left: 0,
+                    right: 0,
+                    child: _houseTitle.centered(),
+                  ),
+                ],
               ),
-            Center(child: _houseTitle),
             if (_emptyHouse)
               Center(
                 child: ElevatedButton(

@@ -240,7 +240,10 @@ class _SignInPageState extends State<SignInPage> {
                   controller: _code,
                   suffix: MaterialButton(
                     height: 82.w,
-                    shape: StadiumBorder(),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.horizontal(right: Radius.circular(41.w)),
+                    ),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     child: Text(
                       _timer?.isActive ?? false

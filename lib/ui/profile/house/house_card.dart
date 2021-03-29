@@ -1,4 +1,5 @@
 import 'package:akuCommunity/const/resource.dart';
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,7 @@ class HouseCard extends StatelessWidget {
             ),
             12.hb,
             Text(
-              '人才公寓智慧小区',
+              AppValues.plotName,
               style: Theme.of(context).textTheme.headline3,
             ),
             10.hb,

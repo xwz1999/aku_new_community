@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
@@ -190,7 +191,7 @@ class _HouseCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '人才公寓智慧小区',
+                    AppValues.plotName,
                     style: Theme.of(context).textTheme.subtitle1.copyWith(
                           color:
                               highlight ? Color(0xFFFF8200) : Color(0xFF333333),

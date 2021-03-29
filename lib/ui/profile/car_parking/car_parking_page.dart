@@ -1,8 +1,10 @@
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/car_parking/car_parking_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:provider/provider.dart';
 
 class CarParkingPage extends StatefulWidget {
   CarParkingPage({Key key}) : super(key: key);
@@ -35,6 +37,7 @@ class _CarParkingPageState extends State<CarParkingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '我的车位',
       actions: [
@@ -46,14 +49,15 @@ class _CarParkingPageState extends State<CarParkingPage> {
       body: EasyRefresh(
         onRefresh: () async {},
         header: MaterialHeader(),
-        // emptyWidget: _renderEmptyWidget,
+        emptyWidget:
+            appProvider.carParkingModels.isEmpty ? _renderEmptyWidget : null,
         child: ListView.separated(
           separatorBuilder: (context, index) => 32.hb,
           itemBuilder: (context, index) {
-            return CarparkingCard(outdated: false);
+            return CarparkingCard(model: appProvider.carParkingModels[index]);
           },
           padding: EdgeInsets.all(32.w),
-          itemCount: 2,
+          itemCount: appProvider.carParkingModels.length,
         ),
       ),
     );
