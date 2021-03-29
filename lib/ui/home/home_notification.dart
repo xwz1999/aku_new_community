@@ -75,7 +75,7 @@ class _HomeNotificationState extends State<HomeNotification> {
           shape: StadiumBorder(),
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           onPressed: () {
-            NoticePage().to();
+            Get.to(() => NoticePage());
           },
           child: Row(
             children: [

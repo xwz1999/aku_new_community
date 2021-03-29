@@ -8,7 +8,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
 import 'package:akuCommunity/pages/setting_page/about_page/about_page.dart';
 import 'package:akuCommunity/pages/setting_page/account_manager_page.dart';
@@ -81,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         onPressed: () {
                           userProvider.logout();
-                          Get.offAll(()=>TabNavigator());
+                          Get.offAll(() => TabNavigator());
                         },
                       ),
                     ],
@@ -116,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
             // ),
             _buildTile(
               title: '关于小蜜蜂智慧社区',
-              onTap: () => AboutPage().to(),
+              onTap: () => Get.to(() => AboutPage()),
             ),
             //TODO 邀请注册
             // _buildTile(
@@ -139,19 +138,19 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             _buildTile(
               title: '意见反馈',
-              onTap: FeedBackPage().to,
+              onTap: () => Get.to(() => FeedBackPage()),
             ),
             _buildTile(
               title: '账号管理',
-              onTap: AccountManagerPage().to,
+              onTap: () => Get.to(() => AccountManagerPage()),
             ),
             _buildTile(
               title: '小蜜蜂用户协议',
-              onTap: AgreementPage().to,
+              onTap: () => Get.to(() => AgreementPage()),
             ),
             _buildTile(
               title: '小蜜蜂隐私政策',
-              onTap: PrivacyPage().to,
+              onTap: () => Get.to(() => PrivacyPage()),
             ),
           ].sepWidget(
               separate: Divider(

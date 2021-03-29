@@ -362,7 +362,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           16.w.heightBox,
           InkWell(
             onTap: () async {
-              _selectTel = await SelectMoveCompanyPage().to();
+              _selectTel = await Get.to(() => SelectMoveCompanyPage());
               setState(() {});
             },
             child: Padding(

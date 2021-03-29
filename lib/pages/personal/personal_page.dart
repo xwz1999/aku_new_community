@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/base/assets_image.dart';
@@ -60,9 +61,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                       padding: EdgeInsets.all(5.w),
                       onPressed: () {
                         if (!userProvider.isLogin)
-                          SignInPage().to();
+                          Get.to(() => SignInPage());
                         else
-                          UserProfilePage().to();
+                          Get.to(() => UserProfilePage());
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: 32.w),
@@ -162,7 +163,7 @@ class _PersonalIndexState extends State<PersonalIndex>
               ? SizedBox()
               : InkWell(
                   onTap: () {
-                    OrderPage().to;
+                    Get.to(() => OrderPage());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

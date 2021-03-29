@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
@@ -87,7 +88,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
       actions: [
         MaterialButton(
           onPressed: () {
-            MineGoodsPage().to();
+            Get.to(() => MineGoodsPage());
           },
           child: '我的借还物品'.text.black.size(28.sp).make(),
           padding: EdgeInsets.symmetric(horizontal: 32.w),

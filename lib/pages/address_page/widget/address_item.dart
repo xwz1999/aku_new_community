@@ -7,6 +7,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:akuCommunity/pages/address_page/address_edit_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class AddressItem extends StatelessWidget {
   final String name, phone, address;
@@ -113,16 +114,16 @@ class AddressItem extends StatelessWidget {
       top: 55.w,
       child: InkWell(
         onTap: () {
-          AddressEditPage(
-            bundle: Bundle()
-              ..putMap('details', {
-                'title': '编辑地址',
-                'name': name,
-                'phone': phone,
-                'address': address,
-                'isDelete': true
-              }),
-          ).to();
+          Get.to(() => AddressEditPage(
+                bundle: Bundle()
+                  ..putMap('details', {
+                    'title': '编辑地址',
+                    'name': name,
+                    'phone': phone,
+                    'address': address,
+                    'isDelete': true
+                  }),
+              ));
         },
         child: Row(
           children: [

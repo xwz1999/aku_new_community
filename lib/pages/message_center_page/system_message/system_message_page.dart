@@ -13,6 +13,7 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:get/get.dart';
 
 class SystemMessagePage extends StatefulWidget {
   SystemMessagePage({Key key}) : super(key: key);
@@ -41,9 +42,7 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
         await NetUtil().dio.get(API.message.readMessage, queryParameters: {
           'sysMessageId': model.id,
         });
-        SystemMessageDetailPage(
-          id: model.id,
-        ).to();
+        Get.to(() => SystemMessageDetailPage(id: model.id));
       },
       child: Container(
         decoration: BoxDecoration(

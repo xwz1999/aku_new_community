@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/pages/goods_details/view_comments_page.dart';
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 import 'widget/goods_app_bar.dart';
 import 'widget/goods_details_bottom_bar.dart';
 import 'widget/product_content.dart';
@@ -58,7 +59,7 @@ class _GoodsDetailsPageState extends State<GoodsDetailsPage> {
               // ProductSpecs(),
               ProductEvaluate(
                 fun: () {
-                  ViewCommentsPage().to();
+                  Get.to(() => ViewCommentsPage());
                 },
               ),
               ProductDetail(

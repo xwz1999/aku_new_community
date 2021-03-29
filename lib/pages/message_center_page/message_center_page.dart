@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/api.dart';
@@ -99,7 +100,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 title: '系统通知',
                 content: appProvider.messageCenterModel.sysTitle ?? '无系统通知消息',
                 count: appProvider.messageCenterModel.sysCount ?? 0,
-                onTap: SystemMessagePage().to,
+                onTap: () => Get.to(() => SystemMessagePage()),
               ),
               _buildCard(
                 path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
@@ -109,7 +110,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 count: appProvider.messageCenterModel.commentCount ?? 0,
                 onTap: () async {
                   // await NetUtil().dio.get(API.message.allReadComment);
-                  CommentMessagePage().to();
+                  Get.to(() => CommentMessagePage());
                 },
               ),
               // _buildCard(

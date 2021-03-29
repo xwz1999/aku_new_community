@@ -183,9 +183,8 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  List payMent = await LifePayDetailPage(
-                    model: _models[index],
-                  ).to();
+                  List payMent = await Get.to(
+                      () => LifePayDetailPage(model: _models[index]));
                   _selectPay[index].payCount = payMent[0];
                   _selectPay[index].payTotal = payMent[1];
                   setState(() {});

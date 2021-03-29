@@ -58,7 +58,7 @@ class _OpenDoorPageState extends State<OpenDoorPage> {
               ),
               onPressed: () {
                 Get.back();
-                CertificationPage().to;
+                Get.to(() => CertificationPage());
               },
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/life_pay/life_pay_bill_page/life_pay_bill_pag
 import 'package:akuCommunity/routers/page_routers.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:get/get.dart';
 import '../widget/submit_bar.dart';
 import 'widget/details_card.dart';
 
@@ -26,7 +27,7 @@ class _LifePayInfoPageState extends State<LifePayInfoPage> {
           ListView(
             padding: EdgeInsets.only(bottom: 130.w),
             children: [
-              DetailsCard(fun: LifePayBillPage().to),
+              DetailsCard(fun: () => Get.to(() => LifePayBillPage())),
             ],
           ),
           Positioned(

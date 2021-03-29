@@ -176,20 +176,20 @@ class _OrderCardState extends State<OrderCard> {
     }
     return InkWell(
       onTap: () {
-        switch (buttonName) {
-          case '评价':
-            EvaluateGoodPage(
-              bundle: Bundle()
-                ..putMap('details', {
-                  'listContent': widget.listContent,
-                }),
-            ).to;
-            break;
-          case '查看物流':
-            LookLogisticsPage().to;
-            break;
-          default:
-        }
+        // switch (buttonName) {
+        //   case '评价':
+        //     EvaluateGoodPage(
+        //       bundle: Bundle()
+        //         ..putMap('details', {
+        //           'listContent': widget.listContent,
+        //         }),
+        //     ).to;
+        //     break;
+        //   case '查看物流':
+        //     LookLogisticsPage().to;
+        //     break;
+        //   default:
+        // }
       },
       child: Container(
         margin: EdgeInsets.only(left: 16.w),
@@ -230,17 +230,17 @@ class _OrderCardState extends State<OrderCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        OrderDetailsPage(
-          bundle: Bundle()
-            ..putMap('details', {
-              'status': widget.status,
-              'listContent': widget.listContent,
-              'totalPrice': widget.totalPrice,
-              'payPrice': widget.payPrice,
-              'listButton': widget.listButton,
-              'listOrderDetail': widget.listOrderDetail,
-            }),
-        ).to;
+        // OrderDetailsPage(
+        //   bundle: Bundle()
+        //     ..putMap('details', {
+        //       'status': widget.status,
+        //       'listContent': widget.listContent,
+        //       'totalPrice': widget.totalPrice,
+        //       'payPrice': widget.payPrice,
+        //       'listButton': widget.listButton,
+        //       'listOrderDetail': widget.listOrderDetail,
+        //     }),
+        // ).to;
       },
       child: Container(
         decoration: BoxDecoration(

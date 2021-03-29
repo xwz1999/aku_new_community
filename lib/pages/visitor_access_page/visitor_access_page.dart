@@ -288,7 +288,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         MaterialButton(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           onPressed: () {
-            VisitorRecordPage().to();
+            Get.to(() => VisitorRecordPage());
           },
           child: '访客记录'.text.black.size(28.sp).make(),
         )

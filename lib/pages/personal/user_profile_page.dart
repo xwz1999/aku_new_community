@@ -114,14 +114,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
             '昵称',
             (userProvider.userInfoModel?.nickName ?? '').text.make(),
             onPressed: () {
-              ChangeNickName().to();
+              Get.to(() => ChangeNickName());
             },
           ),
           _buildTile(
             '手机号',
             TextUtil.hideNumber(userProvider.userInfoModel.tel).text.make(),
             onPressed: () {
-              UpdateTelPage().to();
+              Get.to(() => UpdateTelPage());
             },
           ),
           _buildTile(

@@ -6,7 +6,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_code_page/deto_code_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
@@ -98,7 +97,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                           ArticleQRModel _model =
                               await ManagerFunc.getQRcode(id);
                           if (_model.status) {
-                            DetoCodePage(id: id, model: _model).to();
+                            Get.to(() => DetoCodePage(id: id, model: _model));
                           } else {
                             BotToast.showText(text: _model.message);
                           }

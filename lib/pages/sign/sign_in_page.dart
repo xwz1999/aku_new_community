@@ -271,7 +271,7 @@ class _SignInPageState extends State<SignInPage> {
                     FlatButton(
                         shape: StadiumBorder(),
                         padding: EdgeInsets.zero,
-                        onPressed: AgreementPage().to,
+                        onPressed: () => Get.to(AgreementPage()),
                         child: Text(
                           '《小蜜蜂用户协议》',
                           style: TextStyle(
@@ -282,7 +282,7 @@ class _SignInPageState extends State<SignInPage> {
                     FlatButton(
                         shape: StadiumBorder(),
                         padding: EdgeInsets.zero,
-                        onPressed: PrivacyPage().to,
+                        onPressed: () => Get.to(() => PrivacyPage()),
                         child: Text(
                           '《小蜜蜂隐私政策》',
                           style: TextStyle(

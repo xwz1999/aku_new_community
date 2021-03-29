@@ -5,6 +5,7 @@ import 'package:akuCommunity/pages/market/market_cart_page/market_cart_page.dart
 import 'package:akuCommunity/pages/market_class/market_class_page.dart';
 import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class AppBarAction extends StatefulWidget {
   final IconData icon;
@@ -43,13 +44,13 @@ class _AppBarActionState extends State<AppBarAction> {
               case '扫一扫':
                 break;
               case '消息':
-                MessageCenterPage().to;
+                Get.to(() => MessageCenterPage());
                 break;
               case '购物车':
-                MarketCartPage().to;
+                Get.to(() => MarketCartPage());
                 break;
               case '分类':
-                MarketClassPage().to;
+                Get.to(() => MarketClassPage());
                 break;
               default:
             }

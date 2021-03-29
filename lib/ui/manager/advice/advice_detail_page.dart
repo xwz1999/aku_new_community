@@ -163,7 +163,8 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       title: '查看详情',
       actions: [
         FlatButton(
-          onPressed: AdviceEvaluatePage(id: widget.model.id).to,
+          onPressed: () =>
+              Get.to(() => AdviceEvaluatePage(id: widget.model.id)),
           child: '评价'.text.make(),
         ),
       ],

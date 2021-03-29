@@ -59,7 +59,7 @@ class _CommunityPageState extends State<CommunityPage>
         ColumnActionButton(
           onPressed: () {
             if (LoginUtil.isNotLogin) return;
-            MessageCenter().to();
+            Get.to(() => MessageCenter());
           },
           title: '消息',
           path: R.ASSETS_ICONS_ALARM_PNG,

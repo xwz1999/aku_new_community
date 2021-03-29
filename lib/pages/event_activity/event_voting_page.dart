@@ -10,6 +10,7 @@ import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
+import 'package:get/get.dart';
 
 class EventVotingPage extends StatefulWidget {
   EventVotingPage({Key key}) : super(key: key);
@@ -108,9 +109,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
                       //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                       elevation: 0,
                       onPressed: () {
-                        VotingDetailPage(
-                          id: model.id,
-                        ).to();
+                        Get.to(() => VotingDetailPage(id: model.id));
                       },
                       child: (_getButtonText(model.status))
                           .text

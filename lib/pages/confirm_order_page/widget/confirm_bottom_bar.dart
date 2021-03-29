@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/confirm_order_page/pay_order_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
+import 'package:get/get.dart';
 
 class ConfirmBottomBar extends StatelessWidget {
   final Map cartMap;
@@ -35,7 +36,7 @@ class ConfirmBottomBar extends StatelessWidget {
   Widget _submit(BuildContext context) {
     return InkWell(
       onTap: () {
-        PayOrderPage().to();
+        Get.to(()=>PayOrderPage());
       },
       child: Container(
         decoration: BoxDecoration(

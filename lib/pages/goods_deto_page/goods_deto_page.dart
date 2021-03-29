@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -125,7 +126,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
                   }
             : () {
                 userProvider.isLogin
-                    ? DetoCreatePage().to()
+                    ? Get.to(()=>DetoCreatePage())
                     : BotToast.showText(text: '请先登录！');
               },
         child: _isEdit

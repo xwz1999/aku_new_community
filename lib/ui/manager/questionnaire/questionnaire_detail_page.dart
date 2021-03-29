@@ -254,10 +254,10 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         onPressed: () async {
           BaseModel baseModel =
               await ManagerFunc.questionnaireSubmit(widget.id, _submitModels);
-          SubmitComplishPage(
-            status: baseModel.status,
-            message: baseModel.message,
-          ).to();
+          Get.to(() => SubmitComplishPage(
+                status: baseModel.status,
+                message: baseModel.message,
+              ));
         },
       ),
     );

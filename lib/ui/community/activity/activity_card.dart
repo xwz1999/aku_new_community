@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
@@ -25,7 +26,7 @@ class ActivityCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       color: Colors.white,
       padding: EdgeInsets.zero,
-      onPressed: ActivityDetailPage(id: model.id).to,
+      onPressed: () => Get.to(() => ActivityDetailPage(id: model.id)),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.w),
@@ -87,7 +88,11 @@ class ActivityCard extends StatelessWidget {
               height: 44.w,
               minWidth: 120.w,
               disabledColor: Color(0xFFABABAB),
-              onPressed: outdate ? null : ActivityDetailPage(id: model.id).to,
+              onPressed: outdate
+                  ? null
+                  : () {
+                      Get.to(() => ActivityDetailPage(id: model.id));
+                    },
               child: outdate
                   ? '已结束'.text.size(20.sp).bold.make()
                   : '去看看'.text.size(20.sp).bold.make(),

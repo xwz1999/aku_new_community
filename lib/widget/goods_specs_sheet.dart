@@ -286,16 +286,16 @@ class _GoodsSpecsSheetState extends State<GoodsSpecsSheet> {
                 widget.itempic);
             break;
           case '立即购买':
-            ConfirmOrderPage(
-              bundle: Bundle()
-                ..putMap('cartMap', {
-                  'itemid': widget.itemid,
-                  'itemtitle': widget.itemtitle,
-                  'itemprice': widget.itemprice,
-                  'itempic': widget.itempic,
-                  'count': count
-                }),
-            ).to;
+            Get.to(() => ConfirmOrderPage(
+                  bundle: Bundle()
+                    ..putMap('cartMap', {
+                      'itemid': widget.itemid,
+                      'itemtitle': widget.itemtitle,
+                      'itemprice': widget.itemprice,
+                      'itempic': widget.itempic,
+                      'count': count
+                    }),
+                ));
             break;
           case '请选择规格':
             BotToast.showText(text: '已添加入购物车');

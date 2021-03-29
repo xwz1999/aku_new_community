@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/model/manager/visitor_list_item_model.dart';
@@ -58,7 +59,7 @@ class _VisitorListItemState extends State<VisitorListItem> {
     return MaterialButton(
       onPressed: () {
         if (!outDate) {
-          VisitorPassportPage(model: widget.model).to();
+          Get.to(() => VisitorPassportPage(model: widget.model));
         }
       },
       color: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
@@ -53,7 +54,7 @@ class _AdviceCardState extends State<AdviceCard> {
       elevation: 0,
       padding: EdgeInsets.zero,
       color: Colors.white,
-      onPressed: AdviceDetailPage(model: widget.model).to,
+      onPressed: () => Get.to(() => AdviceDetailPage(model: widget.model)),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.w),
       ),

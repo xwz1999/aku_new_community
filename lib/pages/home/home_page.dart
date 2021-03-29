@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage>
             child: ColumnActionButton(
               onPressed: () {
                 if (LoginUtil.isNotLogin) return;
-                MessageCenterPage().to();
+                Get.to(() => MessageCenterPage());
               },
               title: '消息',
               path: R.ASSETS_ICONS_ALARM_PNG,
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage>
                   HomeTitle(
                     title: '社区活动',
                     suffixTitle: '更多活动',
-                    onTap: ActivityListPage().to,
+                    onTap: () => Get.to(() => ActivityListPage()),
                   ),
                   _activityItemModel == null
                       ? SizedBox()

@@ -11,6 +11,7 @@ import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_detail_page.
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/others/stack_avatar.dart';
+import 'package:get/get.dart';
 
 class QuestionnairePage extends StatefulWidget {
   QuestionnairePage({Key key}) : super(key: key);
@@ -43,9 +44,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   Widget _buildCard(QuestionnaireModel model) {
     return GestureDetector(
       onTap: () {
-        QuestionnaireDetailPage(
-          id: model.id,
-        ).to();
+        Get.to(() => QuestionnaireDetailPage(
+              id: model.id,
+            ));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -126,9 +127,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                   //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                   elevation: 0,
                   onPressed: () {
-                    QuestionnaireDetailPage(
-                      id: model.id,
-                    ).to();
+                    Get.to(() => QuestionnaireDetailPage(
+                          id: model.id,
+                        ));
                   },
                   child: (_getButtonText(model.status))
                       .text

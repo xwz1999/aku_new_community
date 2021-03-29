@@ -26,7 +26,7 @@ class SliverGoodsCard extends StatelessWidget {
                 bundle: Bundle()
                   ..putString(
                       'shoplist', json.encode(shoplist[index]).toString()),
-              ).to;
+              );
             },
             child: Container(
               color: Colors.white,
@@ -104,7 +104,7 @@ class SliverGoodsCard extends StatelessWidget {
                                           json
                                               .encode(shoplist[index])
                                               .toString()),
-                                  ).to;
+                                  );
                                 },
                                 child: Container(
                                   width: 134.w,

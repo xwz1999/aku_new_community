@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/extensions/page_router.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_building_page.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
@@ -22,7 +22,7 @@ class _SignUpPickPlotPageState extends State<SignUpPickPlotPage> {
         children: [
           ListTile(
             title: '五象新区人才公寓'.text.make(),
-            onTap: SignUpPickBuildingPage().to,
+            onTap: () => Get.to(SignUpPickBuildingPage()),
           ).material(color: Colors.white),
         ],
       ),

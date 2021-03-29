@@ -124,13 +124,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       List<Map<String, dynamic>> listContent, double payPrice) {
     return InkWell(
       onTap: () {
-        RefundSelectPage(
-          bundle: Bundle()
-            ..putMap('details', {
-              'listContent': listContent,
-              'payPrice': payPrice,
-            }),
-        ).to;
+        Get.to(() => RefundSelectPage(
+              bundle: Bundle()
+                ..putMap('details', {
+                  'listContent': listContent,
+                  'payPrice': payPrice,
+                }),
+            ));
       },
       child: Container(
         alignment: Alignment.center,

@@ -41,14 +41,14 @@ class _RefundSelectPageState extends State<RefundSelectPage> {
         'title': '我要退款',
         'subtitle': '没有收到货，与物业协商直接退货',
         'fun': () {
-          RefundApplyPage(
-            bundle: Bundle()
-              ..putMap('details', {
-                'listContent': widget.bundle.getMap('details')['listContent'],
-                'payPrice': widget.bundle.getMap('details')['payPrice'],
-                'isRefundGood': false
-              }),
-          ).to;
+          // RefundApplyPage(
+          //   bundle: Bundle()
+          //     ..putMap('details', {
+          //       'listContent': widget.bundle.getMap('details')['listContent'],
+          //       'payPrice': widget.bundle.getMap('details')['payPrice'],
+          //       'isRefundGood': false
+          //     }),
+          // );
         },
         'isRight': true
       },
@@ -56,14 +56,14 @@ class _RefundSelectPageState extends State<RefundSelectPage> {
         'title': '我要退款退货',
         'subtitle': '已收到货，需要退还货物',
         'fun': () {
-          RefundApplyPage(
-            bundle: Bundle()
-              ..putMap('details', {
-                'listContent': widget.bundle.getMap('details')['listContent'],
-                'payPrice': widget.bundle.getMap('details')['payPrice'],
-                'isRefundGood': true
-              }),
-          ).to;
+          // RefundApplyPage(
+          //   bundle: Bundle()
+          //     ..putMap('details', {
+          //       'listContent': widget.bundle.getMap('details')['listContent'],
+          //       'payPrice': widget.bundle.getMap('details')['payPrice'],
+          //       'isRefundGood': true
+          //     }),
+          // );
         },
         'isRight': true
       }
