@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -280,6 +281,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
 
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '访客通行',
       actions: [
@@ -304,20 +306,19 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 child: Column(
                   children: [
                     _buildHouseCard(
-                        AppValues.plotName,
-                        userProvider.userDetailModel.estateNames.isEmpty
-                            ? ''
-                            : BeeParse.getEstateName(
-                                userProvider.userDetailModel.estateNames[0])),
+                      AppValues.plotName,
+                      appProvider.selectedHouse.roomName,
+                    ),
                     _input('访客姓名', '请输入访客姓名', _userName),
                     _sexSelect(),
                     _input('是否驾车', '请输入,例如浙A88888(没有驾车可不填)', _userCarNum),
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
-                        userProvider.userDetailModel.id,
-                        userProvider.userDetailModel.type,
-                        userProvider.userDetailModel.tel),
+                      appProvider.selectedHouse.id,
+                      userProvider.userDetailModel.type,
+                      userProvider.userDetailModel.tel,
+                    ),
                     _tips(),
                   ],
                 ),

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
@@ -127,6 +130,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold.white(
       title: title,
       body: ListView(
@@ -141,7 +145,12 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
               width: 60.w,
             ),
             40.wb,
-            '宁波华茂悦峰\n1幢-1单元-702室'.text.size(32.sp).black.bold.make(),
+            '${AppValues.plotName}\n${appProvider.selectedHouse.roomName}'
+                .text
+                .size(32.sp)
+                .black
+                .bold
+                .make(),
           ].row(),
           Divider(height: 64.w),
           '您要选择的类型是？'.text.size(28.sp).make(),

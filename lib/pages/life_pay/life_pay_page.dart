@@ -1,8 +1,11 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -53,6 +56,7 @@ class _LifePayPageState extends State<LifePayPage> {
 
   Widget _buildHouseCard() {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Material(
       color: kForeGroundColor,
       child: Padding(
@@ -64,9 +68,7 @@ class _LifePayPageState extends State<LifePayPage> {
             32.w.heightBox,
             GestureDetector(
               onTap: () {
-                MyHousePage(
-                  needFindPayTag: true,
-                ).to();
+                Get.to(() => PickMyHousePage());
               },
               child: Row(
                 children: [
@@ -82,7 +84,7 @@ class _LifePayPageState extends State<LifePayPage> {
                       children: [
                         AppValues.plotName.text.black.size(32.sp).bold.make(),
                         10.w.heightBox,
-                        userProvider.currentHouse.text.black
+                        appProvider.selectedHouse.roomName.text.black
                             .size(32.sp)
                             .bold
                             .make()

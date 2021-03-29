@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +91,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
           ),
           GestureDetector(
             onTap: () {
-              MyHousePage().to();
+              Get.to(() => PickMyHousePage());
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

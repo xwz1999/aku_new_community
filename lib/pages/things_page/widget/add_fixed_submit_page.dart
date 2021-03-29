@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +68,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           32.w.heightBox,
           GestureDetector(
             onTap: () {
-              MyHousePage().to();
+              Get.to(() => PickMyHousePage());
             },
             child: Row(
               children: [
@@ -211,24 +214,19 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return WillPopScope(
       child: BeeScaffold(
         title: '报事报修',
-        body: Column(
+        body: ListView(
           children: [
-            ListView(
-              children: [
-                _buildHouseCard(
-                    AppValues.plotName,
-                    userProvider.userDetailModel.estateNames.isEmpty
-                        ? ''
-                        : BeeParse.getEstateName(
-                            userProvider.userDetailModel.estateNames[0])),
-                _getType(),
-                _buildReportCard(),
-                _addImages(),
-              ],
-            ).expand(),
+            _buildHouseCard(
+              AppValues.plotName,
+              appProvider.selectedHouse.roomName,
+            ),
+            _getType(),
+            _buildReportCard(),
+            _addImages(),
           ],
         ),
         bottomNavi: BottomButton(
@@ -238,8 +236,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   List<String> urls = await NetUtil()
                       .uploadFiles(_files, API.upload.uploadRepair);
                   BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                      BeeParse.getEstateNameId(
-                          userProvider.userDetailModel.estateNames[0]),
+                      appProvider.selectedHouse.id,
                       _selectType + 1,
                       _textEditingController.text,
                       urls);
