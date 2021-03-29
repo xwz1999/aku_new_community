@@ -110,7 +110,7 @@ class _HouseCard extends StatelessWidget {
   final bool highlight;
   const _HouseCard({Key key, @required this.model, this.highlight = false})
       : super(key: key);
-  bool get canTapSlide => model.status == 4 || model.status == 3;
+  bool get canTapSlide => model.status == 4 || model.status == 3 && !highlight;
   @override
   Widget build(BuildContext context) {
     return Slidable(
