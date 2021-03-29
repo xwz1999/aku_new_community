@@ -1,7 +1,10 @@
+import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
@@ -22,7 +25,7 @@ class DetoCodePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            kEstateName,
+            AppValues.plotName,
             style: TextStyle(fontSize: 40.sp, color: Color(0xffffffff)),
           ),
           SizedBox(height: 10.w),
@@ -140,6 +143,7 @@ class DetoCodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppProvider appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '出户二维码',
       body: Container(
@@ -149,7 +153,7 @@ class DetoCodePage extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 192.w - kToolbarHeight),
-                _header(model.appArticleOutQRCodeVo.roomName),
+                _header(appProvider.selectedHouse.roomName),
                 SizedBox(height: 32.w),
                 _card(model.appArticleOutQRCodeVo.applicantName,
                     model.appArticleOutQRCodeVo.effectiveTime),

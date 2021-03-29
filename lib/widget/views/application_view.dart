@@ -32,6 +32,7 @@ class _ApplicationViewState extends State<ApplicationView> {
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
+        if (!LoginUtil.haveRoom(object.title)) return;
         Get.to(object.page);
       },
       child: Column(

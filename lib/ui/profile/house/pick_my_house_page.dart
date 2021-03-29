@@ -110,9 +110,14 @@ class _HouseCard extends StatelessWidget {
   final bool highlight;
   const _HouseCard({Key key, @required this.model, this.highlight = false})
       : super(key: key);
-  bool get canTapSlide => model.status == 4 || model.status == 3 && !highlight;
+  bool get canTapSlide {
+    if (model == null) return false;
+    return model.status == 4 || model.status == 3 && !highlight;
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (model == null) return SizedBox();
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.2,
@@ -165,10 +170,10 @@ class _HouseCard extends StatelessWidget {
           children: [
             Container(
               child: Text(
-                model.houseStatus,
+                model?.houseStatus ?? '',
                 style: Theme.of(context).textTheme.subtitle2.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: model.houseStatusColor,
+                      color: model?.houseStatusColor ?? Colors.white,
                     ),
               ),
               alignment: Alignment.center,

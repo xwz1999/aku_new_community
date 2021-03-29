@@ -1,3 +1,5 @@
+import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -65,6 +67,7 @@ class _MyHousePageState extends State<MyHousePage> {
   Widget _buildCard(int currentHouseId, String estateName, int index,
       {bool paid = false}) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
       child: GestureDetector(
@@ -84,10 +87,13 @@ class _MyHousePageState extends State<MyHousePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                kEstateName.text.size(24.sp).color(ktextSubColor).bold.make(),
+                AppValues.plotName.text
+                    .size(24.sp)
+                    .color(ktextSubColor)
+                    .bold
+                    .make(),
                 16.w.heightBox,
-                BeeParse.getEstateName(estateName)
-                    .text
+                appProvider.selectedHouse.roomName.text
                     .color(ktextPrimary)
                     .size(28.sp)
                     .bold

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -93,7 +94,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             children: [
               model.name.text.black.size(30.sp).bold.make(),
               Spacer(),
-              '$kEstateName ${userProvider.currentHouse}'
+              '${AppValues.plotName} ${userProvider.currentHouse}'
                   .text
                   .color(ktextSubColor)
                   .size(24.sp)

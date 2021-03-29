@@ -35,6 +35,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           ? null
           : () {
               if (LoginUtil.isNotLogin) return;
+              if (!LoginUtil.haveRoom(object.title)) return;
               Get.to(object.page);
             },
       child: Column(

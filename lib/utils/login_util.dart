@@ -1,3 +1,6 @@
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
+import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -27,4 +30,20 @@ class LoginUtil {
   ///
   /// 未登陆状态用户跳转到登录页面
   static bool get isNotLogin => !isLogin;
+
+  static bool haveRoom(String name) {
+    if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬'))) return true;
+    final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
+    if (appProvider.selectedHouse == null) {
+      BotToast.showText(text: '请先添加房屋');
+      Get.to(() => AddHousePage());
+      return false;
+    }
+    if (appProvider.selectedHouse.status != 4) {
+      BotToast.showText(text: '房屋审核中或审核失败');
+      Get.to(() => HouseOwnersPage());
+      return false;
+    }
+    return true;
+  }
 }

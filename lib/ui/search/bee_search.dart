@@ -40,6 +40,7 @@ class _BeeSearchState extends State<BeeSearch> {
     return MaterialButton(
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
+        if (!LoginUtil.haveRoom(e.title)) return;
         Get.to(e.page);
       },
       shape: StadiumBorder(),

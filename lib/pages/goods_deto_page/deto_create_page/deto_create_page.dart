@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -106,7 +108,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      kEstateName,
+                      AppValues.plotName,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 32.sp,
@@ -268,11 +270,13 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             onTap: onTap,
             child: Row(
               children: [
-                (select.isEmptyOrNull ? '请选择' : select)
+                ((select?.isEmptyOrNull ?? true) ? '请选择' : select)
                     .text
-                    .color(select.isEmptyOrNull ? ktextSubColor : ktextPrimary)
+                    .color((select?.isEmptyOrNull ?? true)
+                        ? ktextSubColor
+                        : ktextPrimary)
                     .size(36.sp)
-                    .fontWeight(select.isEmptyOrNull
+                    .fontWeight((select?.isEmptyOrNull ?? true)
                         ? FontWeight.normal
                         : FontWeight.bold)
                     .make(),
@@ -399,12 +403,13 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    AppProvider appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '物品出户',
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(userProvider.currentHouse),
+          _houseAddress(appProvider.selectedHouse.roomName),
           _getWeight(),
           _itemPicker('出户时间', datetime, () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());

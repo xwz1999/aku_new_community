@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,7 @@ class _LifePayPageState extends State<LifePayPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        kEstateName.text.black.size(32.sp).bold.make(),
+                        AppValues.plotName.text.black.size(32.sp).bold.make(),
                         10.w.heightBox,
                         userProvider.currentHouse.text.black
                             .size(32.sp)

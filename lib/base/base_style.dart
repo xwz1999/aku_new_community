@@ -9,7 +9,6 @@ const kForeGroundColor = Color(0xFFFFFFFF);
 const kPrimaryColor = Color(0xFFFFC40C);
 const kDarkPrimaryColor = Color(0xFFFF8200);
 const kDangerColor = Color(0xFFFF3B30);
-const kEstateName = '宁波华悦茂峰';
 const kDarkSubColor = Color(0xFF979797);
 
 class BaseStyle {

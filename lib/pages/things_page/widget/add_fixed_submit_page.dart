@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -218,7 +219,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
             ListView(
               children: [
                 _buildHouseCard(
-                    kEstateName,
+                    AppValues.plotName,
                     userProvider.userDetailModel.estateNames.isEmpty
                         ? ''
                         : BeeParse.getEstateName(
