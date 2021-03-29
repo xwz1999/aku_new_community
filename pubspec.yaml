@@ -28,8 +28,6 @@ dependencies:
   # TODO need remove
   flutter_icons: 1.1.0
   extended_text: ^5.0.4
-  #轮播图
-  flutter_swiper: ^1.1.6
   #图片预览
   photo_view: ^0.11.1
   #图片缓存
@@ -47,10 +45,9 @@ dependencies:
   shimmer: ^2.0.0-nullsafety.0
   #随机二维码
   qr_flutter: ^4.0.0
- 
+
   #用户存储路径
   path_provider: ^2.0.1
-  
 
   fluwx: ^3.3.0
   get: ^4.0.0-nullsafety.2
@@ -67,9 +64,7 @@ dependencies:
   image_picker: ^0.7.3
   power_logger: ^1.0.0-nullsafety.0
   flutter_rating_bar: ^4.0.0
-  jpush_flutter:
-    git:
-      url: http://159.75.73.143:8080/third_packages/jpush_flutter
+  jpush_flutter: ^2.0.1
 
   badges: ^2.0.0-nullsafety.1
   amap_flutter_map:

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
+// import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -31,19 +31,19 @@ class _LookLogisticsPageState extends State<LookLogisticsPage> {
         alignment: Alignment.topCenter,
         children: <Widget>[
           _body(),
-          SlidingUpPanel(
-            margin: EdgeInsets.symmetric(horizontal: 32.w),
-            maxHeight: _panelHeightOpen,
-            minHeight: _panelHeightClosed,
-            parallaxEnabled: true,
-            parallaxOffset: .5,
-            // body: _body(),
-            panelBuilder: (sc) => _panel(sc),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8.0),
-              topRight: Radius.circular(8.0),
-            ),
-          ),
+          // SlidingUpPanel(
+          //   margin: EdgeInsets.symmetric(horizontal: 32.w),
+          //   maxHeight: _panelHeightOpen,
+          //   minHeight: _panelHeightClosed,
+          //   parallaxEnabled: true,
+          //   parallaxOffset: .5,
+          //   // body: _body(),
+          //   panelBuilder: (sc) => _panel(sc),
+          //   borderRadius: BorderRadius.only(
+          //     topLeft: Radius.circular(8.0),
+          //     topRight: Radius.circular(8.0),
+          //   ),
+          // ),
           Positioned(
             top: 32.w + _statusHeight,
             child: Container(
