@@ -43,7 +43,7 @@ class ChatCard extends StatefulWidget {
 class _ChatCardState extends State<ChatCard> {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    return (userProvider?.userInfoModel?.id ?? -1) == widget.model.id;
+    return (userProvider?.userInfoModel?.id ?? -1) == widget.model.createId;
   }
 
   String get firstHead {
@@ -149,10 +149,13 @@ class _ChatCardState extends State<ChatCard> {
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
                           onPressed: () {
-                            SendAChat.send(
-                              parentId: 0,
-                              themeId: widget.model.id,
-                            );
+                            if (widget.model.isComment == 1)
+                              SendAChat.send(
+                                parentId: 0,
+                                themeId: widget.model.id,
+                              );
+                            else
+                              BotToast.showText(text: '不可评论');
                           },
                           child: [
                             Icon(CupertinoIcons.bubble_right, size: 30.w),
