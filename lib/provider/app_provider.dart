@@ -184,6 +184,8 @@ class AppProvider extends ChangeNotifier {
 
   ///更新房屋列表
   updateHouses(List<HouseModel> items) {
+    if (items == null) return;
+    if (items.isEmpty) return;
     _houses = items;
     notifyListeners();
   }

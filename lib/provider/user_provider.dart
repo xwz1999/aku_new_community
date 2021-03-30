@@ -1,3 +1,5 @@
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/house_func.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -10,12 +12,15 @@ import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
   bool get isLogin => _isLogin;
   bool get isNotLogin => !_isLogin;
   Future setLogin(int token) async {
+    final appProvider = Provider.of<AppProvider>(Get.context,listen: false);
     _isLogin = true;
     NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
     HiveStore.appBox.put('token', token);
@@ -25,6 +30,7 @@ class UserProvider extends ChangeNotifier {
     await setCurrentHouse((_userDetailModel?.estateNames?.isEmpty ?? true)
         ? ''
         : _userDetailModel?.estateNames?.first);
+    await appProvider.updateHouses(await HouseFunc.houses);
     notifyListeners();
   }
 
