@@ -24,6 +24,11 @@
 	<true/>
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>请允许访问,否则无法在小蜜蜂社区中发送及保存照片.</string>
 	<key>NSCalendarsUsageDescription</key>
