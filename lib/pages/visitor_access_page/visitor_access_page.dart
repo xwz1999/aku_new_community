@@ -306,7 +306,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 child: Column(
                   children: [
                     _buildHouseCard(
-                      AppValues.plotName,
+                      S.of(context).tempPlotName,
                       appProvider.selectedHouse.roomName,
                     ),
                     _input('访客姓名', '请输入访客姓名', _userName),

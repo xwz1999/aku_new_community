@@ -94,7 +94,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             children: [
               model.name.text.black.size(30.sp).bold.make(),
               Spacer(),
-              '${AppValues.plotName} ${userProvider.currentHouse}'
+              '${S.of(context).tempPlotName} ${userProvider.currentHouse}'
                   .text
                   .color(ktextSubColor)
                   .size(24.sp)

@@ -87,7 +87,10 @@ class _MyHousePageState extends State<MyHousePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppValues.plotName.text
+                S
+                    .of(context)
+                    .tempPlotName
+                    .text
                     .size(24.sp)
                     .color(ktextSubColor)
                     .bold

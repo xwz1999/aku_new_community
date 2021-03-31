@@ -109,7 +109,7 @@ class HouseCard extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(()=>PickMyHousePage());
+                  Get.to(() => PickMyHousePage());
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius:
@@ -119,7 +119,7 @@ class HouseCard extends StatelessWidget {
             ),
             12.hb,
             Text(
-              AppValues.plotName,
+              S.of(context).tempPlotName,
               style: Theme.of(context).textTheme.headline3,
             ),
             10.hb,

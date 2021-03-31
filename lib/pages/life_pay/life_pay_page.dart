@@ -82,7 +82,14 @@ class _LifePayPageState extends State<LifePayPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppValues.plotName.text.black.size(32.sp).bold.make(),
+                        S
+                            .of(context)
+                            .tempPlotName
+                            .text
+                            .black
+                            .size(32.sp)
+                            .bold
+                            .make(),
                         10.w.heightBox,
                         appProvider.selectedHouse.roomName.text.black
                             .size(32.sp)

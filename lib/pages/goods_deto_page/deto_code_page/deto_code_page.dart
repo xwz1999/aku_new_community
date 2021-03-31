@@ -1,13 +1,12 @@
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -25,7 +24,7 @@ class DetoCodePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            AppValues.plotName,
+            S.of(Get.context).tempPlotName,
             style: TextStyle(fontSize: 40.sp, color: Color(0xffffffff)),
           ),
           SizedBox(height: 10.w),

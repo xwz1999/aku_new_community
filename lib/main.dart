@@ -17,6 +17,7 @@ import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
+import 'package:akuCommunity/utils/headers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -87,17 +88,18 @@ class _MyAppState extends State<MyApp> {
           designSize: Size(750, 1334),
           allowFontScaling: true,
           builder: () => GetMaterialApp(
-            title: '智慧社区',
+            onGenerateTitle: (context) => S.of(context).appName,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.theme,
             home: SplashPage(),
             //国际化支持
             localizationsDelegates: [
+              S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: [const Locale('zh', 'CH')],
+            supportedLocales: [const Locale('zh')],
             locale: Locale('zh'),
             builder: BotToastInit(),
             navigatorObservers: [BotToastNavigatorObserver()],

@@ -196,7 +196,7 @@ class _HouseCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    AppValues.plotName,
+                    S.of(context).tempPlotName,
                     style: Theme.of(context).textTheme.subtitle1.copyWith(
                           color:
                               highlight ? Color(0xFFFF8200) : Color(0xFF333333),

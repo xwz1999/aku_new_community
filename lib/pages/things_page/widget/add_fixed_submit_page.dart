@@ -4,6 +4,7 @@ import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -221,7 +222,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
         body: ListView(
           children: [
             _buildHouseCard(
-              AppValues.plotName,
+              S.of(context).tempPlotName,
               appProvider.selectedHouse.roomName,
             ),
             _getType(),
