@@ -1,6 +1,4 @@
-import 'dart:async';
-import 'dart:math';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
 import 'package:akuCommunity/ui/community/notice/notice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
@@ -22,26 +19,6 @@ class HomeNotification extends StatefulWidget {
 }
 
 class _HomeNotificationState extends State<HomeNotification> {
-  BoardItemModel get randomItem {
-    if (widget.items.isEmpty) return null;
-    int index = Random().nextInt(widget.items.length - 1);
-    return widget.items[index];
-  }
-
-  Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(
-        Duration(milliseconds: 5000), (timer) => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,20 +34,17 @@ class _HomeNotificationState extends State<HomeNotification> {
         24.wb,
         widget.items.isEmpty
             ? Spacer()
-            : GestureDetector(
-                onTap: () {
-                  if (randomItem != null)
-                    Get.to(() => NoticeDetailPage(id: randomItem.id));
-                },
-                child: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 1000),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    key: ObjectKey(randomItem),
-                    child: Text(randomItem?.title ?? ''),
-                  ),
+            : Container(
+                alignment: Alignment.centerLeft,
+                height: 85.w,
+                child: AnimatedTextKit(
+                  animatedTexts: widget.items
+                      .map((e) => RotateAnimatedText(e.title))
+                      .toList(),
+                  repeatForever: true,
                 ),
-              ).expand(),
+              ),
+        Spacer(),
         MaterialButton(
           shape: StadiumBorder(),
           padding: EdgeInsets.symmetric(horizontal: 12.w),

@@ -24,6 +24,13 @@ packages:
       url: "http://159.75.73.143:8080/third_packages/amap_flutter_map"
     source: git
     version: "2.0.2-nullsafety"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.1"
   animator:
     dependency: transitive
     description:
