@@ -42,6 +42,27 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
     return listLength == _selectItems.length;
   }
 
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < widget.model.dailyPaymentTypeVos.length; i++) {
+      for (var j = 0;
+          j < widget.model.dailyPaymentTypeVos[i].detailedVoList.length;
+          j++) {
+        String id = widget.model.dailyPaymentTypeVos[i].id.toString() +
+            widget.model.dailyPaymentTypeVos[i].detailedVoList[j].groupId
+                .toString();
+        if (!_selectItems.contains(id)) {
+          _selectItems.add(id);
+          _payNum += 1;
+          _payTotal += widget
+              .model.dailyPaymentTypeVos[i].detailedVoList[j].paymentPrice
+              .toDouble();
+        }
+      }
+    }
+  }
+
   Widget _buildTile(int groupId, int id, int years, double price) {
     return GestureDetector(
       onTap: () {
@@ -75,10 +96,6 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               .bold
               .make(),
           24.w.widthBox,
-          Icon(
-            CupertinoIcons.chevron_forward,
-            size: 40.w,
-          ),
         ],
       ).material(color: Colors.transparent),
     );
@@ -131,36 +148,35 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           children: [
             GestureDetector(
               onTap: () {
-                setState(() {
-                  if (isAllSelect) {
-                    _selectItems.clear();
-                    _payNum = 0;
-                    _payTotal = 0;
-                  } else {
-                    for (var i = 0;
-                        i < widget.model.dailyPaymentTypeVos.length;
-                        i++) {
-                      for (var j = 0;
-                          i <
-                              widget.model.dailyPaymentTypeVos[i].detailedVoList
-                                  .length;
-                          i++) {
-                        String id =
-                            widget.model.dailyPaymentTypeVos[i].id.toString() +
-                                widget.model.dailyPaymentTypeVos[i]
-                                    .detailedVoList[j].groupId
-                                    .toString();
-                        if (!_selectItems.contains(id)) {
-                          _selectItems.add(id);
-                          _payNum += 1;
-                          _payTotal += widget.model.dailyPaymentTypeVos[i]
-                              .detailedVoList[j].paymentPrice
-                              .toDouble();
-                        }
+                if (isAllSelect) {
+                  _selectItems.clear();
+                  _payNum = 0;
+                  _payTotal = 0;
+                } else {
+                  for (var i = 0;
+                      i < widget.model.dailyPaymentTypeVos.length;
+                      i++) {
+                    for (var j = 0;
+                        j <
+                            widget.model.dailyPaymentTypeVos[i].detailedVoList
+                                .length;
+                        j++) {
+                      String id =
+                          widget.model.dailyPaymentTypeVos[i].id.toString() +
+                              widget.model.dailyPaymentTypeVos[i]
+                                  .detailedVoList[j].groupId
+                                  .toString();
+                      if (!_selectItems.contains(id)) {
+                        _selectItems.add(id);
+                        _payNum += 1;
+                        _payTotal += widget.model.dailyPaymentTypeVos[i]
+                            .detailedVoList[j].paymentPrice
+                            .toDouble();
                       }
                     }
                   }
-                });
+                }
+                setState(() {});
               },
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
@@ -205,6 +221,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                 '已选$_payNum项'.text.color(ktextSubColor).size(20.sp).make(),
               ],
             ),
+            8.w.widthBox,
             MaterialButton(
               elevation: 0,
               shape: RoundedRectangleBorder(
