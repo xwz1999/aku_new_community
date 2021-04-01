@@ -82,21 +82,18 @@ class MyEventCard extends StatelessWidget {
                           tag: ImgModel.first(model.imgUrl),
                         );
                       },
-                      child: Hero(
-                        tag: ImgModel.first(model.imgUrl),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(8.w),
-                          ),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: API.image(ImgModel.first(model.imgUrl)),
-                            width: 152.w,
-                            height: 152.w,
-                            fit: BoxFit.cover,
-                          ),
+                      child: Container(
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(8.w),
+                        ),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                          image: API.image(ImgModel.first(model.imgUrl)),
+                          width: 152.w,
+                          height: 152.w,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
