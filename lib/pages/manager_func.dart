@@ -169,11 +169,11 @@ class ManagerFunc {
   }
 
   static Future<VotingDetailModel> voteDetail(int id) async {
-    BaseModel baseModel = await NetUtil().get(API.manager.voteDetail,
-        params: {
-          'voteId': 1,
-        },
-        showMessage: false);
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.voteDetail,
+      params: {'voteId': id},
+      showMessage: false,
+    );
     return VotingDetailModel.fromJson(baseModel.data);
   }
 

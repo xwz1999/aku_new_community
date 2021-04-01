@@ -1,7 +1,10 @@
+import 'package:akuCommunity/widget/views/%20bee_download_view.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
@@ -48,7 +51,10 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
             ),
           ],
         ),
-        onPressed: () {},
+        onPressed: () async {
+          String result = await Get.dialog(BeeDownloadView(file: path));
+          if (result != null) OpenFile.open(result);
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.w),
           side: BorderSide(color: Color(0xFFD4CFBE)),
@@ -86,15 +92,11 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                       .map(
                         (e) => GestureDetector(
                           onTap: () {
-                            Get.to(
-                              BeeImagePreview.path(path: e.url),
-                              opaque: false,
-                            );
+                            BeeImagePreview.toPath(path: e.url, tag: e.url);
                           },
                           child: Hero(
                             tag: e.url,
                             child: Container(
-                              height: 228.w,
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.w),

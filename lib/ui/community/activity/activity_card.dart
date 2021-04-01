@@ -41,7 +41,7 @@ class ActivityCard extends StatelessWidget {
           firstPath == null
               ? SizedBox()
               : Hero(
-                  tag: API.image(firstPath),
+                  tag: firstPath,
                   child: Material(
                     color: Colors.grey,
                     child: FadeInImage.assetNetwork(

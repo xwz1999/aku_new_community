@@ -9,6 +9,7 @@ class API {
   static String get resource => '$host/static';
 
   static String image(String path) => '$resource$path';
+  static String file(String path) => '$resource$path';
 
   static const int networkTimeOut = 10000;
   static _Login login = _Login();

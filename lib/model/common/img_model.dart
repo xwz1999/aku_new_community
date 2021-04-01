@@ -15,6 +15,12 @@ class ImgModel {
     sort = json['sort'];
   }
 
+  static String first(List<ImgModel> models) {
+    if (models == null) return '';
+    if (models.isEmpty) return '';
+    return models.first.url ?? '';
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['url'] = this.url;

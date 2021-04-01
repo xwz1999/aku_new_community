@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -103,6 +104,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
 
   Widget _buildCard(DailyPaymentTypeVos model) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
       child: Column(
@@ -111,7 +113,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             children: [
               model.name.text.black.size(30.sp).bold.make(),
               Spacer(),
-              '${AppValues.plotName} ${userProvider.currentHouse}'
+              '${S.of(context).tempPlotName} ${appProvider.selectedHouse.estateId}'
                   .text
                   .color(ktextSubColor)
                   .size(24.sp)

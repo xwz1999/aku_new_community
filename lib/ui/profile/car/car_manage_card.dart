@@ -36,7 +36,7 @@ class CarManageCard extends StatelessWidget {
               ),
             ),
             Text(
-              AppValues.plotName,
+              S.of(context).tempPlotName,
               style: Theme.of(context)
                   .textTheme
                   .subtitle2

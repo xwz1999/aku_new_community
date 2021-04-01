@@ -70,6 +70,7 @@ class _LifePayPageState extends State<LifePayPage> {
             GestureDetector(
               onTap: () {
                 Get.to(() => PickMyHousePage());
+                _controller.callRefresh();
               },
               child: Row(
                 children: [
@@ -83,7 +84,14 @@ class _LifePayPageState extends State<LifePayPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppValues.plotName.text.black.size(32.sp).bold.make(),
+                        S
+                            .of(context)
+                            .tempPlotName
+                            .text
+                            .black
+                            .size(32.sp)
+                            .bold
+                            .make(),
                         10.w.heightBox,
                         appProvider.selectedHouse.roomName.text.black
                             .size(32.sp)
@@ -210,6 +218,7 @@ class _LifePayPageState extends State<LifePayPage> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '生活缴费',
       actions: [
@@ -227,9 +236,7 @@ class _LifePayPageState extends State<LifePayPage> {
       body: BeeListView(
           path: API.manager.dailyPaymentList,
           controller: _controller,
-          extraParams: {
-            'estateId': userProvider.currentHouseId,
-          },
+          extraParams: {'estateId': appProvider.selectedHouse.estateId},
           convert: (model) {
             _selectPay = List.generate(model.tableList.length,
                 (index) => SelectPay(payCount: 0, payTotal: 0.0));

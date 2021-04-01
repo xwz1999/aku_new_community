@@ -96,7 +96,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               child: ClipOval(
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: API.image(userProvider.userInfoModel.imgUrl),
+                  image: API.image(userProvider.userInfoModel?.imgUrl ?? ''),
                   height: 56.w,
                   width: 56.w,
                   fit: BoxFit.cover,
@@ -107,7 +107,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '姓名',
-            userProvider.userInfoModel.name.text.make(),
+            (userProvider.userInfoModel?.name ?? '').text.make(),
             onPressed: () {},
           ),
           _buildTile(
@@ -119,7 +119,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '手机号',
-            TextUtil.hideNumber(userProvider.userInfoModel.tel).text.make(),
+            TextUtil.hideNumber(userProvider.userInfoModel?.tel ?? '')
+                .text
+                .make(),
             onPressed: () {
               Get.to(() => UpdateTelPage());
             },

@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +41,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
-      title: Text(AppValues.plotName),
+      title: Text( S.of(context).tempPlotName),
       backgroundColor: _bgColor,
       leading: Container(
         margin: EdgeInsets.only(left: 32.w),

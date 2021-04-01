@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -72,14 +71,13 @@ class _MyHousePageState extends State<MyHousePage> {
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
       child: GestureDetector(
         onTap: () {
-          userProvider.setCurrentHouse(estateName);
           setState(() {});
         },
         child: Row(
           children: [
             CommonRadio(
               value: BeeParse.getEstateNameId(estateName),
-              groupValue: userProvider.currentHouseId,
+              groupValue: 0,
               size: 32.w,
             ),
             24.w.widthBox,
@@ -87,7 +85,10 @@ class _MyHousePageState extends State<MyHousePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppValues.plotName.text
+                S
+                    .of(context)
+                    .tempPlotName
+                    .text
                     .size(24.sp)
                     .color(ktextSubColor)
                     .bold
@@ -122,8 +123,8 @@ class _MyHousePageState extends State<MyHousePage> {
           ...userProvider.userDetailModel.estateNames.isEmpty
               ? [SizedBox()]
               : userProvider.userDetailModel.estateNames
-                  .map((e) => _buildCard(userProvider.currentHouseId, e,
-                      userProvider.userDetailModel.estateNames.indexOf(e),
+                  .map((e) => _buildCard(
+                      0, e, userProvider.userDetailModel.estateNames.indexOf(e),
                       paid: widget.needFindPayTag
                           ? false
                           : _unPaidList

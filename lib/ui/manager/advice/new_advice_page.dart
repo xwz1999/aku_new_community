@@ -145,7 +145,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
               width: 60.w,
             ),
             40.wb,
-            '${AppValues.plotName}\n${appProvider.selectedHouse.roomName}'
+            '${S.of(context).tempPlotName}\n${appProvider.selectedHouse.roomName}'
                 .text
                 .size(32.sp)
                 .black

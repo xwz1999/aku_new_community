@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -84,9 +85,9 @@ class NoticeCard extends StatelessWidget {
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
-                        Get.to(
-                          BeeImagePreview.path(path: model.imgUrls.first.url),
-                          opaque: false,
+                        BeeImagePreview.toPath(
+                          path: ImgModel.first(model.imgUrls),
+                          tag: ImgModel.first(model.imgUrls),
                         );
                       },
                       child: Container(
@@ -95,12 +96,15 @@ class NoticeCard extends StatelessWidget {
                           color: Colors.black12,
                           borderRadius: BorderRadius.circular(8.w),
                         ),
-                        child: FadeInImage.assetNetwork(
-                          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                          image: API.image(model.imgUrls.first.url),
-                          width: 152.w,
-                          height: 152.w,
-                          fit: BoxFit.cover,
+                        child: Hero(
+                          tag: ImgModel.first(model.imgUrls),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                            image: ImgModel.first(model.imgUrls),
+                            width: 152.w,
+                            height: 152.w,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

@@ -186,6 +186,10 @@ class AppProvider extends ChangeNotifier {
   updateHouses(List<HouseModel> items) {
     if (items == null) return;
     if (items.isEmpty) return;
+    _selectedHouse = items.firstWhere(
+      (element) => element.id == (_selectedHouse?.id ?? -1),
+      orElse: () => null,
+    );
     _houses = items;
     notifyListeners();
   }

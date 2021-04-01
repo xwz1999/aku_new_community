@@ -12,17 +12,13 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  # 权限组件
+  intl: ^0.17.0
   permission_handler: ^6.1.1
-  # 版本信息
   package_info: ^2.0.0
   provider: ^5.0.0
-  # 屏幕适配
   flutter_screenutil: ^5.0.0-nullsafety.11
   cupertino_icons: ^1.0.2
-  # 打电话等各种功能
   url_launcher: ^6.0.2
-  # 工具类
   flustars: ^2.0.1
   # icons
   # TODO need remove
@@ -62,7 +58,7 @@ dependencies:
   power_logger: ^1.0.0-nullsafety.0
   flutter_rating_bar: ^4.0.0
   jpush_flutter: ^2.0.1
-
+  open_file: ^3.1.0
   badges: ^2.0.0-nullsafety.1
   amap_flutter_map:
     git:
@@ -70,6 +66,8 @@ dependencies:
       ref: nullsafety
   amap_flutter_location: ^1.0.1
   amap_flutter_base: ^1.0.2
+  animated_text_kit: ^4.1.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +77,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/

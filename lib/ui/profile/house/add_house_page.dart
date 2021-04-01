@@ -171,7 +171,7 @@ class _AddHousePageState extends State<AddHousePage> {
               _renderTile(
                 title: '小区名称',
                 item: _renderPicker(
-                  text: AppValues.plotName,
+                  text: S.of(context).tempPlotName,
                   hintText: '请选择小区',
                   // 跳转到选择小区页面
                   // TODO 小区页面

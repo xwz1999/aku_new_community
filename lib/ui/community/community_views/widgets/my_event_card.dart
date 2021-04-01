@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -76,16 +77,13 @@ class MyEventCard extends StatelessWidget {
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
-                        Get.to(
-                          BeeImagePreview.path(
-                            path: model.imgUrl.first.url,
-                            tag: API.image(model.imgUrl.first.url),
-                          ),
-                          opaque: false,
+                        BeeImagePreview.toPath(
+                          path: ImgModel.first(model.imgUrl),
+                          tag: ImgModel.first(model.imgUrl),
                         );
                       },
                       child: Hero(
-                        tag: API.image(model.imgUrl.first.url),
+                        tag: ImgModel.first(model.imgUrl),
                         child: Container(
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
@@ -94,7 +92,7 @@ class MyEventCard extends StatelessWidget {
                           ),
                           child: FadeInImage.assetNetwork(
                             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: API.image(model.imgUrl.first.url),
+                            image: API.image(ImgModel.first(model.imgUrl)),
                             width: 152.w,
                             height: 152.w,
                             fit: BoxFit.cover,

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -122,8 +123,12 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4.w),
               child: FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                  image: API.image(model.imgUrls.first.url)),
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API.image(
+                  ImgModel.first(model.imgUrls),
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           30.w.widthBox,
@@ -213,14 +218,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                 children: [
                   _model.title.text.black.size(32.sp).bold.maxLines(2).make(),
                   44.w.heightBox,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 228.w,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.w),
-                      child: FadeInImage.assetNetwork(
-                          placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                          image: API.image(_model.imgUrls.first.url)),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.w),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      image: API.image(_model.firstImage),
                     ),
                   ),
                   44.w.heightBox,
@@ -257,9 +259,9 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               BotToast.showText(text: '请先选择候选人！');
             } else {
               BaseModel baseModel =
-                  await ManagerFunc.vote(_selectId, widget.id);
+                  await ManagerFunc.vote(widget.id, _selectId);
               if (baseModel.status) {
-                Get.dialog(_shouwVoteDialog());
+                await Get.dialog(_shouwVoteDialog());
                 _hasVoted = true;
                 setState(() {});
               } else {

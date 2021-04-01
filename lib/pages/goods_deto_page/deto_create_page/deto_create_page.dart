@@ -109,7 +109,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppValues.plotName,
+                      S.of(context).tempPlotName,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 32.sp,

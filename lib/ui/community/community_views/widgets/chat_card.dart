@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -65,9 +66,9 @@ class _ChatCardState extends State<ChatCard> {
           borderRadius: BorderRadius.circular(8.w),
         ),
         onPressed: () {
-          Get.to(
-            BeeImagePreview.path(path: widget.model.imgUrls.first.url),
-            opaque: false,
+          BeeImagePreview.toPath(
+            path: ImgModel.first(widget.model.imgUrls),
+            tag: ImgModel.first(widget.model.imgUrls),
           );
         },
         child: ConstrainedBox(
@@ -345,7 +346,7 @@ class _ChatCardState extends State<ChatCard> {
                         shape: StadiumBorder(
                           side: BorderSide(),
                         ),
-                      ),
+                      ).pOnly(top: 10.w),
                 Row(
                   children: [
                     64.hb,
