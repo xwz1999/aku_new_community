@@ -259,9 +259,9 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               BotToast.showText(text: '请先选择候选人！');
             } else {
               BaseModel baseModel =
-                  await ManagerFunc.vote(_selectId, widget.id);
+                  await ManagerFunc.vote(widget.id, _selectId);
               if (baseModel.status) {
-                Get.dialog(_shouwVoteDialog());
+                await Get.dialog(_shouwVoteDialog());
                 _hasVoted = true;
                 setState(() {});
               } else {
