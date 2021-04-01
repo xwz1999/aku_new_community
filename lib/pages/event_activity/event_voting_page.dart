@@ -59,9 +59,11 @@ class _EventVotingPageState extends State<EventVotingPage> {
             width: double.infinity,
             child: ClipRect(
               child: FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                  image: API.image(
-                      model.imgUrls.isNotEmpty ? model.imgUrls.first.url : '')),
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API.image(
+                    model.imgUrls.isNotEmpty ? model.imgUrls.first.url : ''),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Padding(
