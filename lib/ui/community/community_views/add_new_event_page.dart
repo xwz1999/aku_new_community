@@ -18,7 +18,17 @@ import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
 
 class AddNewEventPage extends StatefulWidget {
-  AddNewEventPage({Key key}) : super(key: key);
+  final int initTopic;
+  final String topicName;
+  AddNewEventPage({Key key})
+      : initTopic = null,
+        topicName = null,
+        super(key: key);
+  AddNewEventPage.topic({
+    Key key,
+    @required this.initTopic,
+    @required this.topicName,
+  }) : super(key: key);
 
   @override
   _AddNewEventPageState createState() => _AddNewEventPageState();
@@ -40,12 +50,17 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
     }
 
     Map<String, dynamic> params = {
-      'gambitId': _hotTopicModel == null ? -1 : _hotTopicModel.id,
       'content': content,
       'isComment': _commentable ? 1 : 0,
       'isPublic': 1,
       'imgUrls': imgs,
     };
+    if (widget.initTopic != null) {
+      params.putIfAbsent('gambitId', () => widget.initTopic);
+    } else {
+      params.putIfAbsent(
+          'gambitId', () => _hotTopicModel == null ? -1 : _hotTopicModel.id);
+    }
 
     BaseModel baseModel = await NetUtil().post(
       API.community.addEvent,
@@ -187,7 +202,13 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
           _buildSelectable(),
           Divider(height: 1.w),
           28.hb,
-          _pickTopic(),
+          if (widget.initTopic == null) _pickTopic(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: _renderTopic(
+              HotTopicModel(name: widget.topicName, id: widget.initTopic),
+            ),
+          ),
         ],
       ).material(color: Colors.white),
     );

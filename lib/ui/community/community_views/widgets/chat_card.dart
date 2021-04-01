@@ -345,7 +345,7 @@ class _ChatCardState extends State<ChatCard> {
                         shape: StadiumBorder(
                           side: BorderSide(),
                         ),
-                      ),
+                      ).pOnly(top: 10.w),
                 Row(
                   children: [
                     64.hb,
