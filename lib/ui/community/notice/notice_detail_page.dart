@@ -92,15 +92,11 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                       .map(
                         (e) => GestureDetector(
                           onTap: () {
-                            Get.to(
-                              BeeImagePreview.path(path: e.url),
-                              opaque: false,
-                            );
+                            BeeImagePreview.toPath(path: e.url, tag: e.url);
                           },
                           child: Hero(
                             tag: e.url,
                             child: Container(
-                              height: 228.w,
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.w),

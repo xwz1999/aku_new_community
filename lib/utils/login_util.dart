@@ -32,7 +32,8 @@ class LoginUtil {
   static bool get isNotLogin => !isLogin;
 
   static bool haveRoom(String name) {
-    if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修'))) return true;
+    if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修|我的缴费')))
+      return true;
     final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
     if (appProvider.selectedHouse == null) {
       BotToast.showText(text: '请先添加房屋');

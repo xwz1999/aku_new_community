@@ -29,10 +29,7 @@ class BeeGridImageView extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            Get.to(
-              BeeImagePreview.path(path: urls[index]),
-              opaque: false,
-            );
+            BeeImagePreview.toPath(path: urls[index], tag: urls[index]);
           },
           child: Hero(
             tag: urls[index],
