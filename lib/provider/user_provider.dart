@@ -8,7 +8,6 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/user_detail_model.dart';
 import 'package:akuCommunity/model/user/user_info_model.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
@@ -20,21 +19,20 @@ class UserProvider extends ChangeNotifier {
   bool get isLogin => _isLogin;
   bool get isNotLogin => !_isLogin;
   Future setLogin(int token) async {
-    final appProvider = Provider.of<AppProvider>(Get.context,listen: false);
+    final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
     _isLogin = true;
     NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
     HiveStore.appBox.put('token', token);
     HiveStore.appBox.put('login', true);
     await updateProfile();
     await updateUserDetail();
-    await setCurrentHouse((_userDetailModel?.estateNames?.isEmpty ?? true)
-        ? ''
-        : _userDetailModel?.estateNames?.first);
     await appProvider.updateHouses(await HouseFunc.houses);
     notifyListeners();
   }
 
   logout() {
+    final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
+    appProvider.setCurrentHouse(null);
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
@@ -132,14 +130,5 @@ class UserProvider extends ChangeNotifier {
     if (model.status) {
       await updateProfile();
     }
-  }
-
-  ///设置默认房屋
-  String _currentHouse;
-  int get currentHouseId => BeeParse.getEstateNameId(_currentHouse);
-  String get currentHouse => BeeParse.getEstateName(_currentHouse);
-  setCurrentHouse(String house) {
-    _currentHouse = house;
-    notifyListeners();
   }
 }

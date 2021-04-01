@@ -49,7 +49,10 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
     return SliverList(
       delegate: SliverChildListDelegate(
         housesWithoutSelected
-            .map((e) => _HouseCard(model: e))
+            .map((e) => _HouseCard(
+                  model: e,
+                  controller: _refreshController,
+                ))
             .toList()
             .sepWidget(
                 separate: Divider(
@@ -82,6 +85,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
               child: _HouseCard(
                 model: appProvider.selectedHouse,
                 highlight: true,
+                controller: _refreshController,
               ),
             ),
             _renderSep,
@@ -108,8 +112,13 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
 class _HouseCard extends StatelessWidget {
   final HouseModel model;
   final bool highlight;
-  const _HouseCard({Key key, @required this.model, this.highlight = false})
-      : super(key: key);
+  final EasyRefreshController controller;
+  const _HouseCard({
+    Key key,
+    @required this.model,
+    this.highlight = false,
+    @required this.controller,
+  }) : super(key: key);
   bool get canTapSlide {
     if (model == null) return false;
     return model.status == 4 || model.status == 3 && !highlight;
@@ -147,6 +156,8 @@ class _HouseCard extends StatelessWidget {
                         'ids': [model.id]
                       },
                     );
+                    // if(controller.)
+                    controller.callRefresh();
                     cancel();
                   }
                 }

@@ -5,6 +5,8 @@ class HouseModel {
   int id;
   String roomName;
 
+  int estateId;
+
   ///1.未审核，3.审核失败，4.审核成功
   int status;
 
@@ -87,6 +89,7 @@ class HouseModel {
     this.type,
     this.effectiveTimeStart,
     this.effectiveTimeEnd,
+    this.estateId,
   });
 
   HouseModel.fromJson(Map<String, dynamic> json) {
@@ -96,6 +99,7 @@ class HouseModel {
     type = json['type'];
     effectiveTimeStart = json['effectiveTimeStart'];
     effectiveTimeEnd = json['effectiveTimeEnd'];
+    estateId = json['estateId'];
   }
 
   Map<String, dynamic> toJson() {

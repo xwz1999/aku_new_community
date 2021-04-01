@@ -315,7 +315,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
-                      appProvider.selectedHouse.id,
+                      appProvider.selectedHouse.estateId,
                       userProvider.userDetailModel.type,
                       userProvider.userDetailModel.tel,
                     ),
