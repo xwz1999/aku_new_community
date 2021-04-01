@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_record_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -214,7 +215,7 @@ class _LifePayPageState extends State<LifePayPage> {
       actions: [
         InkWell(
           onTap: () {
-            // LifePayRecordPage().to();
+            Get.to(() => LifePayRecordPage());
           },
           child: Container(
             padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
