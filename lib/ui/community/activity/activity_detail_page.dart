@@ -105,12 +105,12 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                       .map((e) => GestureDetector(
                             onTap: () {
                               Get.to(
-                                BeeImagePreview.path(path: API.image(e.url)),
+                                BeeImagePreview.path(path: e.url),
                                 opaque: false,
                               );
                             },
                             child: Hero(
-                              tag: API.image(e.url),
+                              tag: e.url,
                               child: Container(
                                 height: 228.w,
                                 decoration: BoxDecoration(
@@ -120,7 +120,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                                 clipBehavior: Clip.antiAlias,
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  image: e.url,
+                                  image: API.image(e.url),
                                   fit: BoxFit.cover,
                                 ),
                               ),

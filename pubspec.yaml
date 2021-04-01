@@ -58,7 +58,7 @@ dependencies:
   power_logger: ^1.0.0-nullsafety.0
   flutter_rating_bar: ^4.0.0
   jpush_flutter: ^2.0.1
-
+  open_file: ^3.1.0
   badges: ^2.0.0-nullsafety.1
   amap_flutter_map:
     git:
@@ -67,6 +67,7 @@ dependencies:
   amap_flutter_location: ^1.0.1
   amap_flutter_base: ^1.0.2
   animated_text_kit: ^4.1.1
+  
 
 dev_dependencies:
   flutter_test:

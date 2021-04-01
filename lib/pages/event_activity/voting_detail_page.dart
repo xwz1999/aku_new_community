@@ -219,8 +219,9 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.w),
                       child: FadeInImage.assetNetwork(
-                          placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                          image: API.image(_model.imgUrls.first.url)),
+                        placeholder: R.ASSETS_IMAGES_LOGO_PNG,
+                        image: API.image(_model.imgUrls.first.url),
+                      ),
                     ),
                   ),
                   44.w.heightBox,
