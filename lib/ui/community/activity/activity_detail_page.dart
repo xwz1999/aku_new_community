@@ -104,15 +104,11 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                   ...model.imgUrls
                       .map((e) => GestureDetector(
                             onTap: () {
-                              Get.to(
-                                BeeImagePreview.path(path: e.url),
-                                opaque: false,
-                              );
+                              BeeImagePreview.toPath(path: e.url);
                             },
                             child: Hero(
                               tag: e.url,
                               child: Container(
-                                height: 228.w,
                                 decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius: BorderRadius.circular(8.w),

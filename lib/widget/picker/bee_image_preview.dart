@@ -9,6 +9,34 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 
 class BeeImagePreview extends StatefulWidget {
+  static Future<T> toFile<T>({@required File file, String tag}) async {
+    return await navigator.push(
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: BeeImagePreview.file(file: file, tag: tag),
+          );
+        },
+      ),
+    );
+  }
+
+  static toPath({@required String path, String tag}) {
+    navigator.push(
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: BeeImagePreview.path(path: path, tag: tag),
+          );
+        },
+      ),
+    );
+  }
+
   final File file;
   final String path;
   final String tag;
