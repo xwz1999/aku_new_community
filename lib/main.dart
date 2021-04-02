@@ -22,7 +22,10 @@ import 'package:akuCommunity/utils/headers.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
+    ),
   );
   JPush jpush = new JPush();
   jpush.addEventHandler(

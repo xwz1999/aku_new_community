@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
@@ -31,57 +32,60 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'event_add',
-        onPressed: () async {
-          if (LoginUtil.isNotLogin) return;
-          bool result = await Get.to(() => AddNewEventPage.topic(
-                topicName: widget.model.summary,
-                initTopic: widget.model.id,
-              ));
-        },
-        child: Icon(Icons.add),
-      ),
-      body: BeeListView(
-        convert: (model) {
-          return model.tableList
-              .map((e) => EventItemModel.fromJson(e))
-              .toList();
-        },
-        path: API.community.eventByTopicId,
-        extraParams: {'gambitId': widget.model.id},
-        controller: _refreshController,
-        builder: (items) {
-          return CustomScrollView(
-            slivers: [
-              SliverPersistentHeader(
-                delegate: TopicSliverHeader(
-                  id: widget.model.id,
-                  title: widget.model.summary,
-                  imgPath: widget.model.firstImg,
-                  subTitle: widget.model.content,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          heroTag: 'event_add',
+          onPressed: () async {
+            if (LoginUtil.isNotLogin) return;
+            bool result = await Get.to(() => AddNewEventPage.topic(
+                  topicName: widget.model.summary,
+                  initTopic: widget.model.id,
+                ));
+          },
+          child: Icon(Icons.add),
+        ),
+        body: BeeListView(
+          convert: (model) {
+            return model.tableList
+                .map((e) => EventItemModel.fromJson(e))
+                .toList();
+          },
+          path: API.community.eventByTopicId,
+          extraParams: {'gambitId': widget.model.id},
+          controller: _refreshController,
+          builder: (items) {
+            return CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  delegate: TopicSliverHeader(
+                    id: widget.model.id,
+                    title: widget.model.summary,
+                    imgPath: widget.model.firstImg,
+                    subTitle: widget.model.content,
+                  ),
+                  pinned: true,
+                  floating: true,
                 ),
-                pinned: true,
-                floating: true,
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final item = items[index] as EventItemModel;
-                    return ChatCard(
-                      model: item,
-                      onDelete: () {
-                        _refreshController.callRefresh();
-                      },
-                    );
-                  },
-                  childCount: items.length,
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final item = items[index] as EventItemModel;
+                      return ChatCard(
+                        model: item,
+                        onDelete: () {
+                          _refreshController.callRefresh();
+                        },
+                      );
+                    },
+                    childCount: items.length,
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }

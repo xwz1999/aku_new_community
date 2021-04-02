@@ -99,6 +99,7 @@ class _TabNavigatorState extends State<TabNavigator>
       bottomNavigationBar: StatefulBuilder(builder: (context, setFunc) {
         return BottomNavigationBar(
           items: _bottomNav,
+          backgroundColor: Colors.white,
           currentIndex: _currentIndex,
           selectedFontSize: 20.sp,
           unselectedFontSize: 20.sp,

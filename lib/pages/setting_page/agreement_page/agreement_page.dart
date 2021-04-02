@@ -15,14 +15,8 @@ class _AgreementPageState extends State<AgreementPage> {
       title: '用户协议',
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.w),
-        child: Column(
-          children: [
-            Text(
-              '《用户协议》',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 35.w),
-            ),
-            Text(
-              '''
+        child: Text(
+          '''
 欢迎您使用“小蜜蜂智慧社区”APP软件及服务！
 为使用“小蜜蜂智慧社区”APP软件（以下简称“许可软件”）及服务，您应当阅读并遵守《用户协议》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制、免责条款可能以加粗形式提示您注意。
 
@@ -221,11 +215,9 @@ class _AgreementPageState extends State<AgreementPage> {
 2020年10月21日
 
       ''',
-              style: TextStyle(
-                fontSize: 30.w,
-              ),
-            ),
-          ],
+          style: TextStyle(
+            fontSize: 30.w,
+          ),
         ),
       ),
     );
