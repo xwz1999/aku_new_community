@@ -111,6 +111,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 onTap: () async {
                   await NetUtil().dio.get(API.message.allReadComment);
                   Get.to(() => CommentMessagePage());
+                  setState(() {});
                 },
               ),
               // _buildCard(
