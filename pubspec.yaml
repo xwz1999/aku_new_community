@@ -84,7 +84,6 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/tab/
-    - assets/json/
     - assets/applications/
     - assets/static/
 

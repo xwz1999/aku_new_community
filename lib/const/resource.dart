@@ -444,36 +444,6 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/images/wxpay.png)
   static const String ASSETS_IMAGES_WXPAY_PNG = 'assets/images/wxpay.png';
 
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/czxs.json)
-  static const String ASSETS_JSON_CZXS_JSON = 'assets/json/czxs.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/fsxb.json)
-  static const String ASSETS_JSON_FSXB_JSON = 'assets/json/fsxb.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/jjsh.json)
-  static const String ASSETS_JSON_JJSH_JSON = 'assets/json/jjsh.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/mywj.json)
-  static const String ASSETS_JSON_MYWJ_JSON = 'assets/json/mywj.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/shop.json)
-  static const String ASSETS_JSON_SHOP_JSON = 'assets/json/shop.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/shopclass.json)
-  static const String ASSETS_JSON_SHOPCLASS_JSON = 'assets/json/shopclass.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/smjd.json)
-  static const String ASSETS_JSON_SMJD_JSON = 'assets/json/smjd.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/xxfs.json)
-  static const String ASSETS_JSON_XXFS_JSON = 'assets/json/xxfs.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/yljs.json)
-  static const String ASSETS_JSON_YLJS_JSON = 'assets/json/yljs.json';
-
-  /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/json/zbbj.json)
-  static const String ASSETS_JSON_ZBBJ_JSON = 'assets/json/zbbj.json';
-
   /// ![preview](file:///Users/akufe/Documents/akuCommunity/assets/static/car_card_grey.webp)
   static const String ASSETS_STATIC_CAR_CARD_GREY_WEBP =
       'assets/static/car_card_grey.webp';
