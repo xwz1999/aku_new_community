@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LifePayRecordPage extends StatefulWidget {
   LifePayRecordPage({Key key}) : super(key: key);
@@ -80,7 +81,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                 .bold
                 .make(),
             Spacer(),
-            '人才智慧社区 ${model.roomName}'
+            '${S.of(context).tempPlotName} ${model.roomName}'
                 .text
                 .size(24.sp)
                 .color(Color(0xFF999999))

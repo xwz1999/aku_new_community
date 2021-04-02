@@ -238,7 +238,8 @@ class _LifePayPageState extends State<LifePayPage> {
           controller: _controller,
           extraParams: {'estateId': appProvider.selectedHouse.estateId},
           convert: (model) {
-            _selectPay = List.generate(model.tableList.length,
+            _selectPay = List.generate(
+                (_selectPay.length ?? 0) + model.tableList.length,
                 (index) => SelectPay(payCount: 0, payTotal: 0.0));
             return model.tableList
                 .map((e) => LifePayModel.fromJson(e))
