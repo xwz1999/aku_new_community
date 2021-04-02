@@ -109,8 +109,9 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                     appProvider.messageCenterModel.commentTitle ?? '无评论通知消息',
                 count: appProvider.messageCenterModel.commentCount ?? 0,
                 onTap: () async {
-                  // await NetUtil().dio.get(API.message.allReadComment);
+                  await NetUtil().dio.get(API.message.allReadComment);
                   Get.to(() => CommentMessagePage());
+                  setState(() {});
                 },
               ),
               // _buildCard(

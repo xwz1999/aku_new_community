@@ -1,4 +1,5 @@
 import 'package:akuCommunity/model/common/img_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -41,6 +42,24 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
     return BeeDateUtil(DateUtil.getDateTime(time)).timeAgo;
   }
 
+  Widget _messageContent(CommentMessageModel model) {
+    if (model.type == 2) {
+      return Icon(
+        CupertinoIcons.heart,
+        size: 32.w,
+      );
+    } else {
+      return ((model.respondentName?.isEmptyOrNull ?? true)
+              ? model.content
+              : '回复了${model.respondentName}:${model.content}')
+          .text
+          .black
+          .size(28.sp)
+          .isIntrinsic
+          .make();
+    }
+  }
+
   Widget buildCard(CommentMessageModel model) {
     return Container(
       width: double.infinity,
@@ -66,14 +85,9 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               model.createName.text.black.size(36.sp).make(),
-              ((model.respondentName?.isEmptyOrNull ?? true)
-                      ? model.content
-                      : '回复了${model.respondentName}:${model.content}')
-                  .text
-                  .black
-                  .size(28.sp)
-                  .isIntrinsic
-                  .make(),
+              10.w.heightBox,
+              _messageContent(model),
+              16.w.heightBox,
               getTime(model.createDate)
                   .text
                   .color(Color(0xFF999999))

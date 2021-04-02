@@ -1,4 +1,5 @@
 import 'package:akuCommunity/constants/app_values.dart';
+import 'package:akuCommunity/pages/life_pay/life_pay_record_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -221,24 +222,24 @@ class _LifePayPageState extends State<LifePayPage> {
     return BeeScaffold(
       title: '生活缴费',
       actions: [
-        //TODO 缴费记录 无接口
-        // InkWell(
-        //   onTap: () {
-        //     LifePayRecordPage().to();
-        //   },
-        //   child: Container(
-        //     padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-        //     alignment: Alignment.center,
-        //     child: '缴费记录'.text.black.size(28.sp).make(),
-        //   ),
-        // ),
+        InkWell(
+          onTap: () {
+            Get.to(() => LifePayRecordPage());
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+            alignment: Alignment.center,
+            child: '缴费记录'.text.black.size(28.sp).make(),
+          ),
+        ),
       ],
       body: BeeListView(
           path: API.manager.dailyPaymentList,
           controller: _controller,
           extraParams: {'estateId': appProvider.selectedHouse.estateId},
           convert: (model) {
-            _selectPay = List.generate(model.tableList.length,
+            _selectPay = List.generate(
+                (_selectPay.length ?? 0) + model.tableList.length,
                 (index) => SelectPay(payCount: 0, payTotal: 0.0));
             return model.tableList
                 .map((e) => LifePayModel.fromJson(e))

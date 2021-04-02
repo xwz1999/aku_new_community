@@ -183,6 +183,9 @@ class _Manager {
 
   ///问卷调查：app问卷调查提交
   String get questionnaireSubmit => '/user/questionnaire/submit';
+
+  ///生活缴费：缴费记录
+  String get paymentRecord => '/user/dailyPayment/paymentRecord';
 }
 
 class _Community {

@@ -16,6 +16,7 @@ import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int id;
@@ -33,8 +34,8 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   // List<int> _select = [];
   int _selectId;
   bool _hasVoted = false;
-  bool get isVoted {
-    if ((_model.status == 4) || _hasVoted) {
+  bool get finishVoted {
+    if ((_model.status == 4) || _hasVoted || (_model.status == 3)) {
       return true;
     }
     return false;
@@ -76,16 +77,24 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
     );
   }
 
+  double _getPercent(num numerator, num denominator) {
+    if (denominator == 0) {
+      return 0;
+    } else {
+      return (numerator / denominator) * 100;
+    }
+  }
+
   Widget _buildVoteCard(AppVoteCandidateVos model) {
-    double _percent = (model.total.toDouble()) / (_model.totals.toDouble());
+    double _percent = _getPercent(model.total, _model.totals);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 40.w),
-      constraints: BoxConstraints(maxHeight: 230.w),
+      // constraints: BoxConstraints(maxHeight: 230.w),
       child: Row(
         children: [
           Container(
             alignment: Alignment.center,
-            width: 88.w,
+            width: 58.w,
             height: 150.w,
             //多选
             // child: BeeCheckBox(
@@ -104,7 +113,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             //
             //
             //暂时用单选
-            child: _model.status == 3 || _model.status == 1
+            child: finishVoted
                 ? _unCheck()
                 : GestureDetector(
                     onTap: () {
@@ -139,21 +148,22 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               // 10.w.heightBox,
               model.name.text.black.size(32.sp).make(),
               33.w.heightBox,
-              isVoted && _model.status != 3
+              finishVoted
                   ? Row(
                       children: [
                         SizedBox(
-                          width: 280.w,
+                          width: 290.w,
                           child: LinearProgressIndicator(
                             value: _percent,
                           ),
                         ),
                         8.w.widthBox,
-                        '$_percent%'
+                        '${_percent.toStringAsFixed(2)}%'
                             .text
                             .color(ktextSubColor)
                             .size(24.sp)
-                            .make(),
+                            .make()
+                            .expand(),
                       ],
                     )
                   : SizedBox()
@@ -198,6 +208,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '活动详情',
+      bodyColor: Colors.white,
       body: EasyRefresh(
         firstRefresh: true,
         controller: _refreshController,
@@ -231,8 +242,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   Container(
                     padding: EdgeInsets.fromLTRB(32.w, 50.w, 32.w, 0),
                     decoration: BoxDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: Color(0xFFFAFAFA),
                       borderRadius: BorderRadius.circular(8.w),
+                      border: Border.all(
+                        color: Color(0xFFD9D9D9),
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
