@@ -26,7 +26,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
       top: 0,
       bottom: 0,
       child: Material(
-        color: Colors.white.withOpacity(0 + 0.5 * _offset(shrinkOffset)),
+        color: Colors.black.withOpacity(0 + 0.5 * _offset(shrinkOffset)),
       ),
     );
   }
@@ -35,7 +35,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
     return Positioned(
       left: 0,
       top: ScreenUtil().statusBarHeight,
-      child: BeeBackButton().material(
+      child: BeeBackButton(color: Colors.white).material(
         color: Colors.transparent,
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.circular(24),
@@ -47,7 +47,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
     return Positioned(
       bottom: 202.w - 195.w * _filterOffset(shrinkOffset),
       left: 32.w + (95.w - 32.w) * _offset(shrinkOffset),
-      child: '#$title'.text.bold.size(52.sp).make(),
+      child: '#$title'.text.bold.white.size(52.sp).make(),
     );
   }
 
@@ -57,7 +57,15 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
       left: 32.w,
       child: Opacity(
         opacity: 1 - _offset(shrinkOffset),
-        child: subTitle.text.size(24.sp).make(),
+        child: SizedBox(
+          width: 500.w,
+          child: subTitle.text
+              .size(24.sp)
+              .maxLines(2)
+              .white
+              .overflow(TextOverflow.ellipsis)
+              .make(),
+        ),
       ),
     );
   }
@@ -77,6 +85,13 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
               image: API.image(imgPath),
               fit: BoxFit.cover,
             ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: Material(color: Colors.black.withOpacity(0.4)),
           ),
           _buildOverlay(shrinkOffset),
           _buildBackButton(),

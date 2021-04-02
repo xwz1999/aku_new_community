@@ -203,12 +203,13 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
           Divider(height: 1.w),
           28.hb,
           if (widget.initTopic == null) _pickTopic(),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: _renderTopic(
-              HotTopicModel(name: widget.topicName, id: widget.initTopic),
+          if (widget.initTopic != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: _renderTopic(
+                HotTopicModel(name: widget.topicName, id: widget.initTopic),
+              ),
             ),
-          ),
         ],
       ).material(color: Colors.white),
     );

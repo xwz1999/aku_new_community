@@ -16,14 +16,8 @@ class _PrivacyPageState extends State<PrivacyPage> {
       title: '隐私政策',
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.sp),
-        child: Column(
-          children: [
-            Text(
-              '小蜜蜂智慧社区隐私政策',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 35.w),
-            ),
-            Text(
-              '''
+        child: Text(
+          '''
 小蜜蜂智慧社区APP是由深圳市凯达来科技有限公司提供的一款智慧社区APP，为用户提供更好、更优、更个性化的服务是我们坚持不懈的追求，也希望通过我们提供的服务可以更方便您的生活。依据法律的规定，我们将在特定情形下收集、使用、保存和披露您的个人信息。以下条款描述了我们如何收集、使用、保存和披露您的个人信息。
 本政策将帮助您了解以下内容，请根据以下目录阅读相应章节：
 1.个人信息的收集
@@ -124,11 +118,9 @@ class _PrivacyPageState extends State<PrivacyPage> {
 深圳市凯达来科技有限公司
 2020年10月20日
     ''',
-              style: TextStyle(
-                fontSize: 30.w,
-              ),
-            ),
-          ],
+          style: TextStyle(
+            fontSize: 30.w,
+          ),
         ),
       ),
     );
