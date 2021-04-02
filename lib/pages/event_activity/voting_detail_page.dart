@@ -208,6 +208,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '活动详情',
+      bodyColor: Colors.white,
       body: EasyRefresh(
         firstRefresh: true,
         controller: _refreshController,
@@ -241,8 +242,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   Container(
                     padding: EdgeInsets.fromLTRB(32.w, 50.w, 32.w, 0),
                     decoration: BoxDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: Color(0xFFFAFAFA),
                       borderRadius: BorderRadius.circular(8.w),
+                      border: Border.all(
+                        color: Color(0xFFD9D9D9),
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
