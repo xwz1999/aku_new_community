@@ -100,7 +100,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
     List<String> urls =
-        await NetUtil().uploadFiles(files, API.upload.uploadArticle);
+        await NetUtil().uploadFiles(files, API.upload.uploadAdvice);
     BaseModel baseModel = await NetUtil().post(
       API.manager.addAdvice,
       params: {
@@ -210,7 +210,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
                 type = _type == 0 ? 2 : 1;
                 break;
               case AdviceType.COMPLAIN:
-                type = _type == 0 ? 4 : 3;
+                type = _type == 0 ? 3 : 4;
                 break;
             }
             addAdvice(type, _files, _editingController.text);
