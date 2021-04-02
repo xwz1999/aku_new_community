@@ -19,7 +19,6 @@ class HomeNotification extends StatefulWidget {
 }
 
 class _HomeNotificationState extends State<HomeNotification> {
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -38,8 +37,12 @@ class _HomeNotificationState extends State<HomeNotification> {
                 alignment: Alignment.centerLeft,
                 height: 85.w,
                 child: AnimatedTextKit(
+                  pause: Duration(milliseconds: 2000),
                   animatedTexts: widget.items
-                      .map((e) => RotateAnimatedText(e.title))
+                      .map((e) => RotateAnimatedText(
+                            e.title,
+                            duration: Duration(milliseconds: 3000),
+                          ))
                       .toList(),
                   repeatForever: true,
                 ),

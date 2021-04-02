@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -107,4 +108,11 @@ class AppTheme {
       dividerColor: Color(0xFFE8E8E8),
     );
   }
+}
+
+class SystemStyle {
+  static const lightStatusBar = SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Colors.white,
+  );
 }

@@ -100,7 +100,7 @@ class NoticeCard extends StatelessWidget {
                           tag: ImgModel.first(model.imgUrls),
                           child: FadeInImage.assetNetwork(
                             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: ImgModel.first(model.imgUrls),
+                            image: API.image(ImgModel.first(model.imgUrls)),
                             width: 152.w,
                             height: 152.w,
                             fit: BoxFit.cover,

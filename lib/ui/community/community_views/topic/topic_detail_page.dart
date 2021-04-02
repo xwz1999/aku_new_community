@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -33,7 +34,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+      value: SystemStyle.lightStatusBar,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           heroTag: 'event_add',

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -56,7 +57,8 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             clipBehavior: Clip.antiAlias,
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: model.imgUrls.first.url,
+              image: API.image(ImgModel.first(model.headSculpture)),
+              fit: BoxFit.cover,
             ),
           ),
           10.wb,
@@ -85,7 +87,8 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             height: 160.w,
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: model.imgUrls.first.url,
+              image: API.image(ImgModel.first(model.imgUrls)),
+              fit: BoxFit.cover,
             ),
           ),
         ],
