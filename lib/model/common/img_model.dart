@@ -1,17 +1,18 @@
 class ImgModel {
   String url;
   String size;
-  int longs;
-  int paragraph;
+  double longs;
+  double paragraph;
   int sort;
+  double get aspect => paragraph / longs;
 
   ImgModel({this.url, this.size, this.longs, this.paragraph, this.sort});
 
   ImgModel.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     size = json['size'];
-    longs = json['longs'];
-    paragraph = json['paragraph'];
+    longs = json['longs'] + .0;
+    paragraph = json['paragraph'] + .0;
     sort = json['sort'];
   }
 
@@ -19,6 +20,12 @@ class ImgModel {
     if (models == null) return '';
     if (models.isEmpty) return '';
     return models.first.url ?? '';
+  }
+
+  static ImgModel firstModel(List<ImgModel> models) {
+    if (models == null) return null;
+    if (models.isEmpty) return null;
+    return models.first;
   }
 
   Map<String, dynamic> toJson() {

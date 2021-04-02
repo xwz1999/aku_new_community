@@ -62,6 +62,7 @@ class _ChatCardState extends State<ChatCard> {
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
+        minWidth: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.w),
         ),
@@ -92,6 +93,7 @@ class _ChatCardState extends State<ChatCard> {
 
   _buildMoreButton() {
     return Builder(builder: (context) {
+      final userProvider = Provider.of<UserProvider>(context);
       return MaterialButton(
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -131,6 +133,18 @@ class _ChatCardState extends State<ChatCard> {
                               showMessage: true,
                             );
                             setState(() {
+                              if (widget.model.isLike == 0) {
+                                widget.model.likeNames.add(
+                                  LikeNames(
+                                    id: Random().nextInt(1000),
+                                    name: userProvider.userInfoModel.nickName,
+                                  ),
+                                );
+                              } else {
+                                widget.model.likeNames.removeWhere((element) =>
+                                    element.name ==
+                                    userProvider.userInfoModel.nickName);
+                              }
                               widget.model.isLike =
                                   (widget.model.isLike == 1) ? 0 : 1;
                             });
