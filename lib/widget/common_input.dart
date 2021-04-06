@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
+@Deprecated("DO NOT USE THIS WIDGET")
 class CommonInput extends StatefulWidget {
   final TextEditingController inputController;
   final String hintText;
