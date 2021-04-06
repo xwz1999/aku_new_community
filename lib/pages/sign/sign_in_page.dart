@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,6 @@ import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
       } else {
         cancel();
         signUpProvider.setTel(_phone.text);
-        await Get.to(() => SignUpPickPlotPage());
+        await Get.to(() => SignUpSetNicknamePage());
         signUpProvider.clearAll();
       }
     } else {

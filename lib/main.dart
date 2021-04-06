@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/pages/splash/splash_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/cart.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/developer_util.dart';
@@ -72,7 +71,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CartProvidde()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => AppProvider()),
         ChangeNotifierProvider(create: (context) => SignUpProvider()),

@@ -40,7 +40,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
-      title: Text( S.of(context).tempPlotName),
+      title: Text(S.of(context).tempPlotName),
       backgroundColor: _bgColor,
       leading: Container(
         margin: EdgeInsets.only(left: 32.w),
@@ -48,14 +48,15 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                appProvider?.location['city'] ?? '',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.sp,
-                  color: Color(0xff333333),
+              if (appProvider?.location != null)
+                Text(
+                  appProvider?.location['city'] ?? '',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24.sp,
+                    color: Color(0xff333333),
+                  ),
                 ),
-              ),
               Text(
                 '${appProvider.weatherType} ${appProvider.weatherTemp}℃',
                 style: TextStyle(

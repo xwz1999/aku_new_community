@@ -1,3 +1,6 @@
+import 'package:akuCommunity/pages/sign/sign_func.dart';
+import 'package:akuCommunity/pages/tab_navigator.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -8,7 +11,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_verify_page.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
@@ -68,12 +70,15 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
             height: 89.w,
             child: '保存'.text.make(),
             shape: StadiumBorder(),
-            onPressed: () {
+            onPressed: () async {
+              final cancel = BotToast.showLoading();
               if (_globalKey.currentState.validate()) {
                 final signUpProvider =
                     Provider.of<SignUpProvider>(context, listen: false);
                 signUpProvider.setNickName(_textEditingController.text);
-                Get.to(() => SignUpVerifyPage());
+                cancel();
+                bool result = await SignFunc.signUp();
+                if (result) Get.offAll(() => TabNavigator());
               }
             },
           ),
