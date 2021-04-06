@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_record_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';

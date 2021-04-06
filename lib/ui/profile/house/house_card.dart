@@ -1,5 +1,4 @@
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/material.dart';

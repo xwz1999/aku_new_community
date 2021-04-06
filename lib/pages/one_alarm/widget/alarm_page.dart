@@ -22,7 +22,7 @@ class PermissionUtil {
 }
 
 class AlarmPage extends StatefulWidget {
-  AlarmPage({Key key, bundle}) : super(key: key);
+  AlarmPage({Key key}) : super(key: key);
 
   @override
   _AlarmPageState createState() => _AlarmPageState();

@@ -3,7 +3,6 @@ import 'package:akuCommunity/ui/profile/car_parking/car_parking_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
@@ -83,7 +82,7 @@ List<AO> userAppObjects = [
   AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () => ActivityListPage()),
   AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () => LifePayPage()),
   AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () => FixedSubmitPage()),
-  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () => AddressPage()),
+  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () => Scaffold()),
   AO('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () => Scaffold()),
   AO('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () => VisitorAccessPage()),
   AO('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () => SettingsPage()),

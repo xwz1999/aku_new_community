@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
