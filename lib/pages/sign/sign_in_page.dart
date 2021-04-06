@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +14,13 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -50,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       alignment: Alignment.center,
       child: Image.asset(
-        AssetsImage.LOGO,
+        R.ASSETS_IMAGES_LOGO_PNG,
         height: 184.w,
         width: 266.w,
       ),

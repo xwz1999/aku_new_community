@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:akuCommunity/model/user/car_parking_model.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:flutter/material.dart';
 
 class CarparkingCard extends StatelessWidget {
   final CarParkingModel model;

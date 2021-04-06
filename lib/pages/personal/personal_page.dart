@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
@@ -48,7 +47,7 @@ class _PersonalIndexState extends State<PersonalIndex>
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(AssetsImage.MINEBG),
+                    image: AssetImage(R.ASSETS_IMAGES_MINE_BG_PNG),
                     fit: BoxFit.cover,
                   ),
                 ),

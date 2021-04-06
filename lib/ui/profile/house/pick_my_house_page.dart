@@ -1,18 +1,20 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
 import 'package:akuCommunity/ui/profile/house/house_func.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
 
 class PickMyHousePage extends StatefulWidget {
   PickMyHousePage({Key key}) : super(key: key);

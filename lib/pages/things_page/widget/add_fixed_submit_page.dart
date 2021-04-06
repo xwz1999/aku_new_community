@@ -1,9 +1,5 @@
 import 'dart:io';
 
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +12,16 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
-
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
 import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/finish_fixed_submit_page.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
+import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';

@@ -1,18 +1,18 @@
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/house_func.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/user/user_detail_model.dart';
 import 'package:akuCommunity/model/user/user_info_model.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/house_func.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
   bool _isLogin = false;

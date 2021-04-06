@@ -38,10 +38,10 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
         child: _onload
             ? _empty()
             : Center(
-              child: Padding(
-                padding: EdgeInsets.all(32.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Padding(
+                  padding: EdgeInsets.all(32.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       20.w.heightBox,
                       '系统通知'.text.black.bold.size(32.sp).make(),
@@ -51,8 +51,8 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
                       _model.content.text.black.size(28.sp).isIntrinsic.make(),
                     ],
                   ),
+                ),
               ),
-            ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';

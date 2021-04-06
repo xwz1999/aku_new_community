@@ -1,4 +1,3 @@
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/my_event_item_model.dart';
 import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
 import 'package:akuCommunity/utils/bee_date_util.dart';

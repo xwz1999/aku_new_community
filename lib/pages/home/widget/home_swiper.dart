@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:flutter_swiper/flutter_swiper.dart';
-
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
+
+// import 'package:flutter_swiper/flutter_swiper.dart';
+
 
 //TODO CLEAN BOTTOM CODES.
 @Deprecated("sh*t home_swiper need to be cleaned.")

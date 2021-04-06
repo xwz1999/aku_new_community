@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';

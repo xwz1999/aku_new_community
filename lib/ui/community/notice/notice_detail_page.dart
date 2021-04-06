@@ -1,7 +1,6 @@
-import 'package:akuCommunity/widget/views/%20bee_download_view.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
@@ -15,6 +14,7 @@ import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
+import 'package:akuCommunity/widget/views/%20bee_download_view.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int id;

@@ -1,9 +1,9 @@
-import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';

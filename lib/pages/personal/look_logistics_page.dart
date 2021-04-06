@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-// import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/cached_image_wrapper.dart';
+
+// import 'package:sliding_up_panel/sliding_up_panel.dart';
+
 
 class LookLogisticsPage extends StatefulWidget {
   LookLogisticsPage({Key key}) : super(key: key);
