@@ -23,11 +23,6 @@ dependencies:
   # icons
   # TODO need remove
   flutter_icons: 1.1.0
-  extended_text: ^5.0.4
-  #图片预览
-  photo_view: ^0.11.1
-  #图片缓存
-  cached_network_image: ^3.0.0-nullsafety
   #弹窗
   bot_toast: ^4.0.1
   #滑块
@@ -48,7 +43,7 @@ dependencies:
   hive: ^2.0.0
   hive_flutter: ^1.0.0
   logger: ^1.0.0
-  flutter_easyrefresh: ^2.1.8
+  flutter_easyrefresh: 2.1.8
   random_character:
     git:
       url: http://159.75.73.143:8080/mengfucius/random_character
