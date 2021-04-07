@@ -33,7 +33,7 @@ class AppAdviceDetailVo {
         ? new AppAdviceVo.fromJson(json['appAdviceVo'])
         : null;
     if (json['appAdviceContentVos'] != null) {
-      appAdviceContentVos = new List<AppAdviceContentVos>();
+      appAdviceContentVos = [];
       json['appAdviceContentVos'].forEach((v) {
         appAdviceContentVos.add(new AppAdviceContentVos.fromJson(v));
       });
@@ -78,7 +78,7 @@ class AppAdviceVo {
     content = json['content'];
     createDate = json['createDate'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

@@ -40,14 +40,14 @@ class ActivityDetailModel {
     registrationEndTime = json['registrationEndTime'];
     countRegistration = json['countRegistration'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headImgURls'] != null) {
-      headImgURls = new List<ImgModel>();
+      headImgURls = [];
       json['headImgURls'].forEach((v) {
         headImgURls.add(new ImgModel.fromJson(v));
       });

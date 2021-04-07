@@ -27,7 +27,7 @@ class GoodsOutModel {
     status = json['status'];
     movingCompanyTel = json['movingCompanyTel'];
     if (json['imgUrl'] != null) {
-      imgUrl = new List<ImgUrl>();
+      imgUrl = [];
       json['imgUrl'].forEach((v) {
         imgUrl.add(new ImgUrl.fromJson(v));
       });

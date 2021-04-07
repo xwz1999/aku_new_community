@@ -17,7 +17,7 @@ class FixedDetailModel {
         ? new AppReportRepairVo.fromJson(json['appReportRepairVo'])
         : null;
     if (json['appProcessRecordVo'] != null) {
-      appProcessRecordVo = new List<AppProcessRecordVo>();
+      appProcessRecordVo = [];
       json['appProcessRecordVo'].forEach((v) {
         appProcessRecordVo.add(new AppProcessRecordVo.fromJson(v));
       });
@@ -61,7 +61,7 @@ class AppReportRepairVo {
     status = json['status'];
     reportDetail = json['reportDetail'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

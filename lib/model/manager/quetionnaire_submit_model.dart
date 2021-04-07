@@ -7,7 +7,7 @@ class QuestionnaireSubmitModel {
   QuestionnaireSubmitModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['appQuestionnaireAnswerSubmits'] != null) {
-      appQuestionnaireAnswerSubmits = new List<AppQuestionnaireAnswerSubmits>();
+      appQuestionnaireAnswerSubmits = [];
       json['appQuestionnaireAnswerSubmits'].forEach((v) {
         appQuestionnaireAnswerSubmits
             .add(new AppQuestionnaireAnswerSubmits.fromJson(v));

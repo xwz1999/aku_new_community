@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/car/car_manage_card.dart';
-import 'package:akuCommunity/ui/profile/car_parking/car_parking_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 

@@ -9,7 +9,7 @@ class LifePayModel {
     years = json['years'];
     paymentNum = json['paymentNum'];
     if (json['dailyPaymentTypeVos'] != null) {
-      dailyPaymentTypeVos = new List<DailyPaymentTypeVos>();
+      dailyPaymentTypeVos = [];
       json['dailyPaymentTypeVos'].forEach((v) {
         dailyPaymentTypeVos.add(new DailyPaymentTypeVos.fromJson(v));
       });
@@ -39,7 +39,7 @@ class DailyPaymentTypeVos {
     id = json['id'];
     name = json['name'];
     if (json['detailedVoList'] != null) {
-      detailedVoList = new List<DetailedVoList>();
+      detailedVoList = [];
       json['detailedVoList'].forEach((v) {
         detailedVoList.add(new DetailedVoList.fromJson(v));
       });
@@ -69,7 +69,7 @@ class DetailedVoList {
     groupId = json['groupId'];
     paymentPrice = json['paymentPrice'];
     if (json['detailsVoList'] != null) {
-      detailsVoList = new List<DetailsVoList>();
+      detailsVoList = [];
       json['detailsVoList'].forEach((v) {
         detailsVoList.add(new DetailsVoList.fromJson(v));
       });

@@ -29,7 +29,7 @@ class CommunityTopicModel {
     summary = json['summary'];
     content = json['content'];
     if (json['imgUrl'] != null) {
-      imgUrl = new List<ImgModel>();
+      imgUrl = [];
       json['imgUrl'].forEach((v) {
         imgUrl.add(new ImgModel.fromJson(v));
       });
