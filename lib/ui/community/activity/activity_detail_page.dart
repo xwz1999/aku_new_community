@@ -182,7 +182,10 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
               ),
       ).material(color: Colors.white),
       bottomNavi: outdate
-          ? SizedBox()
+          ? BottomButton(
+              onPressed: null,
+              child: '该活动已结束'.text.make(),
+            )
           : BottomButton(
               onPressed: () async {
                 VoidCallback cancel = BotToast.showLoading();
