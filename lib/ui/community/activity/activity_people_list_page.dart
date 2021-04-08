@@ -1,10 +1,10 @@
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/activity_people_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';

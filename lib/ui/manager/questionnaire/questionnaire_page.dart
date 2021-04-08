@@ -1,4 +1,3 @@
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/questinnaire_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_detail_page.dart';

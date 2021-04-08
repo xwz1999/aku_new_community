@@ -14,7 +14,6 @@ class CommitteeItemModel {
   int estateNo;
   List<ImgModel> imgUrls;
 
-
   String get sexValue {
     if (sexId == 0 || sexId == null) return '未设置';
     if (sexId == 1) return '男';

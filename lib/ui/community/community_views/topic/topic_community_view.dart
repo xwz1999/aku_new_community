@@ -1,12 +1,12 @@
 import 'dart:ui';
 
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/community/community_topic_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_detail_page.dart';

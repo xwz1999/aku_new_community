@@ -41,7 +41,7 @@ class ActivityItemModel {
       imgUrls = [];
     }
     if (json['headImgURls'] != null) {
-      headImgURls =[];
+      headImgURls = [];
       json['headImgURls'].forEach((v) {
         headImgURls.add(new ImgModel.fromJson(v));
       });
