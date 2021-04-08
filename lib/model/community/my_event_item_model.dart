@@ -8,12 +8,6 @@ class MyEventItemModel {
   List<ImgModel> imgUrl;
   String createDate;
 
-  String get firstImg {
-    String img = '';
-    if (imgUrl.isNotEmpty) img = imgUrl.first.url;
-    return img;
-  }
-
   DateTime get date => DateUtil.getDateTime(createDate);
 
   MyEventItemModel({this.id, this.content, this.imgUrl, this.createDate});

@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -63,7 +64,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   delegate: TopicSliverHeader(
                     id: widget.model.id,
                     title: widget.model.summary,
-                    imgPath: widget.model.firstImg,
+                    imgPath: ImgModel.first(widget.model.imgUrl),
                     subTitle: widget.model.content,
                   ),
                   pinned: true,

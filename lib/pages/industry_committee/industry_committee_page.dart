@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
             borderRadius: BorderRadius.circular(4.w),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(model.firstImg),
+              image: API.image(ImgModel.first(model.imgUrls)),
               height: 150.w,
               width: 150.w,
               fit: BoxFit.cover,

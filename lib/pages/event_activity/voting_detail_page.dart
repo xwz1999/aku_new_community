@@ -233,7 +233,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                     borderRadius: BorderRadius.circular(8.w),
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: API.image(_model.firstImage),
+                      image: API.image(ImgModel.first(_model.imgUrls)),
                     ),
                   ),
                   44.w.heightBox,

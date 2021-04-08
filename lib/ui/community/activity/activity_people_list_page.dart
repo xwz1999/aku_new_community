@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -47,7 +48,7 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
                   20.wb,
                   FadeInImage.assetNetwork(
                     placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    image: API.image(model.imgUrl.first.url),
+                    image: API.image(ImgModel.first(model.imgUrl)),
                     height: 60.w,
                     width: 60.w,
                   ),

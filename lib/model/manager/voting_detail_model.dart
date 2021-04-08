@@ -9,12 +9,6 @@ class VotingDetailModel {
   List<ImgModel> imgUrls;
   List<AppVoteCandidateVos> appVoteCandidateVos;
 
-  String get firstImage {
-    if (imgUrls == null) return '';
-    if (imgUrls.isEmpty) return '';
-    return imgUrls.first.url ?? '';
-  }
-
   VotingDetailModel(
       {this.id,
       this.title,

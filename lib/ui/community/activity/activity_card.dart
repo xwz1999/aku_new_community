@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -18,8 +19,6 @@ class ActivityCard extends StatelessWidget {
     @required this.model,
   }) : super(key: key);
 
-  String get firstPath =>
-      (model.imgUrls?.isEmpty ?? true) ? null : model.imgUrls.first.url;
   bool get outdate => model.end.compareTo(DateTime.now()) == -1;
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -38,15 +37,15 @@ class ActivityCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          firstPath == null
+          ImgModel.first(model.imgUrls) == null
               ? SizedBox()
               : Hero(
-                  tag: firstPath,
+                  tag: ImgModel.first(model.imgUrls),
                   child: Material(
                     color: Colors.grey,
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: API.image(firstPath),
+                      image: API.image(ImgModel.first(model.imgUrls)),
                       height: 210.w,
                       width: double.infinity,
                       fit: BoxFit.cover,

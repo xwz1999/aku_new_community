@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -21,7 +22,7 @@ class QuestionnairePage extends StatefulWidget {
 }
 
 class _QuestionnairePageState extends State<QuestionnairePage> {
-  EasyRefreshController _easyRefreshController;
+  EasyRefreshController _easyRefreshController = EasyRefreshController();
   @override
   void initState() {
     super.initState();
@@ -68,8 +69,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                   height: 120.w,
                   child: ClipRRect(
                     child: FadeInImage.assetNetwork(
-                        placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                        image: API.image(model.imgUrls.first.url)),
+                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      image: API.image(ImgModel.first(model.imgUrls)),
+                    ),
                   ),
                 ),
                 20.w.widthBox,
@@ -144,6 +146,12 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
         ),
       ).material(color: Colors.transparent),
     );
+  }
+
+  @override
+  void dispose() {
+    _easyRefreshController?.dispose();
+    super.dispose();
   }
 
   @override

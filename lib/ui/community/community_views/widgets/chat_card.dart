@@ -47,14 +47,6 @@ class _ChatCardState extends State<ChatCard> {
     return (userProvider?.userInfoModel?.id ?? -1) == widget.model.createId;
   }
 
-  String get firstHead {
-    if (widget.model.headSculptureImgUrl == null ||
-        widget.model.headSculptureImgUrl.isEmpty)
-      return '';
-    else
-      return widget.model.headSculptureImgUrl.first.url;
-  }
-
   _renderImage() {
     if (widget.model.imgUrls.isEmpty) return SizedBox();
     if (widget.model.imgUrls.length == 1)
@@ -78,10 +70,10 @@ class _ChatCardState extends State<ChatCard> {
             maxWidth: 300.w,
           ),
           child: Hero(
-            tag: widget.model.imgUrls.first.url,
+            tag: ImgModel.first(widget.model.imgUrls),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(widget.model.imgUrls.first.url),
+              image: API.image(ImgModel.first(widget.model.imgUrls)),
             ),
           ),
         ),
@@ -306,7 +298,8 @@ class _ChatCardState extends State<ChatCard> {
               clipBehavior: Clip.antiAlias,
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(firstHead),
+                image:
+                    API.image(ImgModel.first(widget.model.headSculptureImgUrl)),
                 height: 86.w,
                 width: 86.w,
                 fit: BoxFit.cover,

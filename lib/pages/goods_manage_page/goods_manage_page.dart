@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class GoodsManagePage extends StatefulWidget {
 }
 
 class _GoodsManagePageState extends State<GoodsManagePage> {
-  EasyRefreshController _easyRefreshController;
+  EasyRefreshController _easyRefreshController = EasyRefreshController();
 
   Container _goodsCard(ArticleBorrowModel model) {
     return Container(
@@ -50,10 +51,11 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             width: 160.w,
             margin: EdgeInsets.only(right: 20.w),
             child: ClipRRect(
-                child: FadeInImage.assetNetwork(
-                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    image: API.image(
-                        model.imgUrls.isEmpty ? '' : model.imgUrls.first.url))),
+              child: FadeInImage.assetNetwork(
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API.image(ImgModel.first(model.imgUrls)),
+              ),
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

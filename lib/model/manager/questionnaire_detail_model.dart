@@ -1,3 +1,5 @@
+import 'package:akuCommunity/model/common/img_model.dart';
+
 class QuestionnaireDetialModel {
   int id;
   String title;
@@ -5,7 +7,7 @@ class QuestionnaireDetialModel {
   String beginDate;
   String endDate;
   List<QuestionnaireTopicVoList> questionnaireTopicVoList;
-  List<VoResourcesImgList> voResourcesImgList;
+  List<ImgModel> voResourcesImgList;
 
   QuestionnaireDetialModel(
       {this.id,
@@ -31,7 +33,7 @@ class QuestionnaireDetialModel {
     if (json['voResourcesImgList'] != null) {
       voResourcesImgList = [];
       json['voResourcesImgList'].forEach((v) {
-        voResourcesImgList.add(new VoResourcesImgList.fromJson(v));
+        voResourcesImgList.add(new ImgModel.fromJson(v));
       });
     } else
       voResourcesImgList = [];
@@ -115,31 +117,3 @@ class QuestionnaireChoiceVoList {
   }
 }
 
-class VoResourcesImgList {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
-
-  VoResourcesImgList(
-      {this.url, this.size, this.longs, this.paragraph, this.sort});
-
-  VoResourcesImgList.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    size = json['size'];
-    longs = json['longs'];
-    paragraph = json['paragraph'];
-    sort = json['sort'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['size'] = this.size;
-    data['longs'] = this.longs;
-    data['paragraph'] = this.paragraph;
-    data['sort'] = this.sort;
-    return data;
-  }
-}

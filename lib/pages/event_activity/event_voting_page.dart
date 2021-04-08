@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -60,8 +61,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
             child: ClipRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(
-                    model.imgUrls.isNotEmpty ? model.imgUrls.first.url : ''),
+                image: API.image(ImgModel.first(model.imgUrls)),
                 fit: BoxFit.cover,
               ),
             ),

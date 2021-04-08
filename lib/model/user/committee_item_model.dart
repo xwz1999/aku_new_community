@@ -14,10 +14,6 @@ class CommitteeItemModel {
   int estateNo;
   List<ImgModel> imgUrls;
 
-  String get firstImg {
-    if (imgUrls.isEmpty) return '';
-    return imgUrls.first.url;
-  }
 
   String get sexValue {
     if (sexId == 0 || sexId == null) return '未设置';

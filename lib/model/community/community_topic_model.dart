@@ -8,13 +8,6 @@ class CommunityTopicModel {
   List<ImgModel> imgUrl;
   int activityNum;
 
-  String get firstImg {
-    if (imgUrl.isEmpty)
-      return '';
-    else
-      return imgUrl.first.url;
-  }
-
   CommunityTopicModel(
       {this.id,
       this.title,

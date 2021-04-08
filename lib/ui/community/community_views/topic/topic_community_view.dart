@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -47,7 +48,7 @@ class TopicCommunityViewState extends State<TopicCommunityView>
                 children: [
                   FadeInImage.assetNetwork(
                     placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    image: API.image(model.firstImg),
+                    image: API.image(ImgModel.first(model.imgUrl)),
                     height: 160.w,
                     width: 250.w,
                     fit: BoxFit.cover,

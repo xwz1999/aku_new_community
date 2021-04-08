@@ -1,3 +1,4 @@
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -219,11 +220,13 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       borderRadius: BorderRadius.circular(4.w),
                     ),
                     width: double.infinity,
-                    height: 228.w,
                     clipBehavior: Clip.antiAlias,
                     child: FadeInImage.assetNetwork(
-                        placeholder: R.ASSETS_IMAGES_LOGO_PNG,
-                        image: API.image(_model.voResourcesImgList.first.url)),
+                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      image: API.image(
+                        ImgModel.first(_model.voResourcesImgList),
+                      ),
+                    ),
                   ),
                   40.w.heightBox,
                   Container(

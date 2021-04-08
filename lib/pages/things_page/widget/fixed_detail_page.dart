@@ -38,7 +38,7 @@ class CancelModel {
 
 class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
-  EasyRefreshController _easyRefreshController;
+  EasyRefreshController _easyRefreshController = EasyRefreshController();
   FixedDetailModel _model = FixedDetailModel();
   bool get showRepairCard => _model?.appDispatchListVo != null;
   bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
