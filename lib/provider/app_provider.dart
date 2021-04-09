@@ -160,7 +160,7 @@ class AppProvider extends ChangeNotifier {
   // Location get location => _location;
   getWeather() async {
     Response response = await Dio().get(
-      'https://api.caiyunapp.com/v2.5/Rl2lmppO9q15q8W6/${_location['longitude']},${_location['latitude']}/realtime.json',
+      'https://api.caiyunapp.com/v2.5/YETFbiaWktYHfCQE/${_location['longitude']},${_location['latitude']}/realtime.json',
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);
