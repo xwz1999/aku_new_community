@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,6 +51,7 @@ void main() async {
   jpush.applyPushAuthority(
       new NotificationSettingsIOS(sound: true, alert: true, badge: true));
   DeveloperUtil.setDev(true);
+  registerWxApi(appId: AppConfig.wechatAppId);
   runApp(MyApp());
 }
 
@@ -61,12 +63,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    registerWxApi(appId: 'wxd7bdef0d4849ddb8');
-  }
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

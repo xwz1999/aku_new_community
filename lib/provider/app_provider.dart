@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -160,7 +161,7 @@ class AppProvider extends ChangeNotifier {
   // Location get location => _location;
   getWeather() async {
     Response response = await Dio().get(
-      'https://api.caiyunapp.com/v2.5/YETFbiaWktYHfCQE/${_location['longitude']},${_location['latitude']}/realtime.json',
+      'https://api.caiyunapp.com/v2.5/${AppConfig.caiYunAPI}/${_location['longitude']},${_location['latitude']}/realtime.json',
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);

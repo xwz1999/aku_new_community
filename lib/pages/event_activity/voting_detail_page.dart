@@ -151,19 +151,15 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               finishVoted
                   ? Row(
                       children: [
-                        SizedBox(
-                          width: 290.w,
-                          child: LinearProgressIndicator(
-                            value: _percent,
-                          ),
-                        ),
+                        LinearProgressIndicator(
+                          value: _percent * 0.01,
+                        ).expand(),
                         8.w.widthBox,
                         '${_percent.toStringAsFixed(2)}%'
                             .text
                             .color(ktextSubColor)
                             .size(24.sp)
-                            .make()
-                            .expand(),
+                            .make(),
                       ],
                     )
                   : SizedBox()
