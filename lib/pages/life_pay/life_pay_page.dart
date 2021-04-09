@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_record_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
@@ -14,7 +13,6 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/pages/life_pay/widget/life_pay_detail_page.dart';
-import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
@@ -215,6 +213,15 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 
+  double getPayTotal(LifePayModel list) {
+    num total = 0;
+    for (var item in list.dailyPaymentTypeVos) {
+      total += ((item.detailedVoList[1].paymentPrice ?? 0) +
+          (item.detailedVoList[2].paymentPrice ?? 0));
+    }
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
@@ -238,12 +245,15 @@ class _LifePayPageState extends State<LifePayPage> {
           controller: _controller,
           extraParams: {'estateId': appProvider.selectedHouse.estateId},
           convert: (model) {
-            _selectPay = List.generate(
-                (_selectPay.length ?? 0) + model.tableList.length,
-                (index) => SelectPay(payCount: 0, payTotal: 0.0));
-            return model.tableList
-                .map((e) => LifePayModel.fromJson(e))
-                .toList();
+            List<LifePayModel> lifePayModels =
+                model.tableList.map((e) => LifePayModel.fromJson(e)).toList();
+            _selectPay.addAll(lifePayModels
+                .map((e) => SelectPay(
+                      payCount: e.dailyPaymentTypeVos.length,
+                      payTotal: getPayTotal(e),
+                    ))
+                .toList());
+            return lifePayModels;
           },
           builder: (items) {
             _models = items;
@@ -286,7 +296,7 @@ class _LifePayPageState extends State<LifePayPage> {
                     if (!_selectYears.contains(i)) {
                       _selectYears.add(i);
                     }
-                  }
+                  }  
                   _totalCost = 0;
                   _count = 0;
                   for (var item in _selectPay) {
