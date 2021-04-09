@@ -238,7 +238,7 @@ class _Community {
 
 class _Upload {
   ///上传咨询建议照片
-  String get uploadArticle => '/user/upload/uploadArticle';
+  String get uploadAdvice => '/user/upload/uploadAdvice';
 
   ///上传头像
   String get uploadAvatar => '/user/upload/appHeadSculpture';

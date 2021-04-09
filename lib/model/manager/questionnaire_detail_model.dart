@@ -23,13 +23,13 @@ class QuestionnaireDetialModel {
     beginDate = json['beginDate'];
     endDate = json['endDate'];
     if (json['questionnaireTopicVoList'] != null) {
-      questionnaireTopicVoList = new List<QuestionnaireTopicVoList>();
+      questionnaireTopicVoList = [];
       json['questionnaireTopicVoList'].forEach((v) {
         questionnaireTopicVoList.add(new QuestionnaireTopicVoList.fromJson(v));
       });
     }
     if (json['voResourcesImgList'] != null) {
-      voResourcesImgList = new List<VoResourcesImgList>();
+      voResourcesImgList = [];
       json['voResourcesImgList'].forEach((v) {
         voResourcesImgList.add(new VoResourcesImgList.fromJson(v));
       });
@@ -70,7 +70,7 @@ class QuestionnaireTopicVoList {
     type = json['type'];
     topic = json['topic'];
     if (json['questionnaireChoiceVoList'] != null) {
-      questionnaireChoiceVoList = new List<QuestionnaireChoiceVoList>();
+      questionnaireChoiceVoList = [];
       json['questionnaireChoiceVoList'].forEach((v) {
         questionnaireChoiceVoList
             .add(new QuestionnaireChoiceVoList.fromJson(v));

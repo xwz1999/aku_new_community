@@ -1,21 +1,18 @@
-import 'package:akuCommunity/constants/app_values.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/pages/life_pay/widget/my_house_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -34,6 +31,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userCarNum = new TextEditingController();
   DateTime dateTime;
   int _selectSex = 1;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Widget _buildHouseCard(
     String title,
@@ -82,7 +80,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     );
   }
 
-  Widget _input(String title, hintText, TextEditingController controller) {
+  Widget _input(String title, hintText, TextEditingController controller,
+      FormFieldValidator validator) {
     return Container(
       padding: EdgeInsets.only(
         left: 36.w,
@@ -103,7 +102,11 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
             style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
           ),
           SizedBox(height: 25.w),
-          CommonInput(inputController: controller, hintText: hintText)
+          CommonInput(
+            inputController: controller,
+            hintText: hintText,
+            validator: validator,
+          ),
         ],
       ),
     );
@@ -243,11 +246,17 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   ) {
     return MaterialButton(
       onPressed: () async {
-        VoidCallback cancel = BotToast.showLoading();
-        await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
-            _selectSex, tel, _userCarNum.text, dateTime);
-        cancel();
-        Get.off(VisitorRecordPage());
+        if (formKey.currentState.validate()) {
+          if (dateTime == null) {
+            BotToast.showText(text: '请选择到访时间');
+            return;
+          }
+          VoidCallback cancel = BotToast.showLoading();
+          await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
+              _selectSex, tel, _userCarNum.text, dateTime);
+          cancel();
+          Get.off(VisitorRecordPage());
+        }
       },
       minWidth: double.infinity,
       height: 96.w,
@@ -293,8 +302,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           child: '访客记录'.text.black.size(28.sp).make(),
         )
       ],
-      body: Container(
-        color: Colors.white,
+      body: Form(
+        key: formKey,
         child: ListView(
           children: [
             SingleChildScrollView(
@@ -309,9 +318,23 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                       S.of(context).tempPlotName,
                       appProvider.selectedHouse.roomName,
                     ),
-                    _input('访客姓名', '请输入访客姓名', _userName),
+                    _input(
+                      '访客姓名',
+                      '请输入访客姓名',
+                      _userName,
+                      (text) {
+                        if (TextUtil.isEmpty(text)) return '姓名不能为空';
+                        if (!RegexUtil.isZh(text)) return '姓名包含特殊文字';
+                        return null;
+                      },
+                    ),
                     _sexSelect(),
-                    _input('是否驾车', '请输入,例如浙A88888(没有驾车可不填)', _userCarNum),
+                    _input(
+                      '是否驾车',
+                      '请输入,例如浙A88888(没有驾车可不填)',
+                      _userCarNum,
+                      (text) => null,
+                    ),
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
@@ -325,7 +348,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
               ),
             ),
           ],
-        ),
+        ).material(color: Colors.white),
       ),
     );
   }

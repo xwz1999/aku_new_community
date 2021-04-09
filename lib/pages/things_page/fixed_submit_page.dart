@@ -10,7 +10,6 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
-
 import 'package:akuCommunity/model/user/fixed_submit_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/add_fixed_submit_page.dart';

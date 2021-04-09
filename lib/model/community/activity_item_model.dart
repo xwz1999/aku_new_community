@@ -33,7 +33,7 @@ class ActivityItemModel {
     registrationStartTime = json['registrationStartTime'];
     registrationEndTime = json['registrationEndTime'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });
@@ -41,7 +41,7 @@ class ActivityItemModel {
       imgUrls = [];
     }
     if (json['headImgURls'] != null) {
-      headImgURls = new List<ImgModel>();
+      headImgURls =[];
       json['headImgURls'].forEach((v) {
         headImgURls.add(new ImgModel.fromJson(v));
       });

@@ -51,8 +51,8 @@ class BeeMap {
     3: '已读',
   };
 
-  static Map<int,bool> messageIsRead ={
-    1:false,
-    3:true,
+  static Map<int, bool> messageIsRead = {
+    1: false,
+    3: true,
   };
 }

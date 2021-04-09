@@ -126,7 +126,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
                   }
             : () {
                 userProvider.isLogin
-                    ? Get.to(()=>DetoCreatePage())
+                    ? Get.to(() => DetoCreatePage())
                     : BotToast.showText(text: '请先登录！');
               },
         child: _isEdit

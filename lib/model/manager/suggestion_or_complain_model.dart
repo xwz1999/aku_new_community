@@ -28,7 +28,7 @@ class SuggestionOrComplainModel {
     score = json['score'];
     createDate = DateUtil.getDateTime(json['createDate']);
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

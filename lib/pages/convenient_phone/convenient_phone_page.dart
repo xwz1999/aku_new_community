@@ -39,47 +39,45 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
   }
 
   Widget _buildTile(ConvenientPhoneModel model) {
-    return Material(
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  model.name.text.black.size(32.sp).make(),
-                  12.w.heightBox,
-                  model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
-                ],
-              ).expand(),
-              IconButton(
-                icon: Image.asset(
-                  R.ASSETS_ICONS_PHONE_PNG,
-                  width: 40.w,
-                  height: 40.w,
-                ),
-                onPressed: () async {
-                  bool result = await Get.dialog(CupertinoAlertDialog(
-                    title: model.tel.text.isIntrinsic.make(),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: '取消'.text.isIntrinsic.make(),
-                        onPressed: () => Get.back(),
-                      ),
-                      CupertinoDialogAction(
-                        child: '确定'.text.isIntrinsic.make(),
-                        onPressed: () => Get.back(result: true),
-                      ),
-                    ],
-                  ));
-                  if (result == true) launch('tel:${model.tel}');
-                },
-              )
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                model.name.text.black.size(32.sp).make(),
+                12.w.heightBox,
+                model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
+              ],
+            ).expand(),
+            IconButton(
+              icon: Image.asset(
+                R.ASSETS_ICONS_PHONE_PNG,
+                width: 40.w,
+                height: 40.w,
+              ),
+              onPressed: () async {
+                bool result = await Get.dialog(CupertinoAlertDialog(
+                  title: model.tel.text.isIntrinsic.make(),
+                  actions: [
+                    CupertinoDialogAction(
+                      child: '取消'.text.isIntrinsic.make(),
+                      onPressed: () => Get.back(),
+                    ),
+                    CupertinoDialogAction(
+                      child: '确定'.text.isIntrinsic.make(),
+                      onPressed: () => Get.back(result: true),
+                    ),
+                  ],
+                ));
+                if (result == true) launch('tel:${model.tel}');
+              },
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -134,27 +132,25 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               },
               builder: (items) {
                 return ListView.separated(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                    itemBuilder: (context, index) {
-                      return _buildTile(items[index]);
-                    },
-                    separatorBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.w),
-                        child: Divider(
-                          thickness: 1.w,
-                          height: 1.w,
-                          color: Color(0xFFD8D8D8),
-                        ),
-                      );
-                    },
-                    itemCount: items.length);
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+                  itemBuilder: (context, index) {
+                    return _buildTile(items[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 1.w,
+                      height: 40.w,
+                      color: Color(0xFFD8D8D8),
+                    );
+                  },
+                  itemCount: items.length,
+                );
               },
             ),
           ),
         ],
-      ),
+      ).material(color: Colors.white),
     );
   }
 }

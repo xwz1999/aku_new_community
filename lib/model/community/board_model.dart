@@ -17,7 +17,7 @@ class BoardItemModel {
     title = json['title'];
     releaseTime = json['releaseTime'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls =[];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

@@ -69,8 +69,6 @@ class _TabNavigatorState extends State<TabNavigator>
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
       _buildBottomBar('首页', R.ASSETS_ICONS_TABBAR_HOME_NO_PNG,
           R.ASSETS_ICONS_TABBAR_HOME_PNG),
-      // _buildBottomBar(
-      //     '商城', AssetsImage.TAB_MARKET_UNSELECT, AssetsImage.TAB_MARKET_SELECT),
       _buildBottomBar('物业', R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
           R.ASSETS_ICONS_TABBAR_HOUSE_PNG),
       _buildBottomBar('社区', R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,

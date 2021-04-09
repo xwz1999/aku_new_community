@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
@@ -28,10 +27,7 @@ class HorizontalImageView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.to(
-                BeeImagePreview.path(path: urls[index]),
-                opaque: false,
-              );
+              BeeImagePreview.toPath(path: urls[index], tag: urls[index]);
             },
             child: Hero(
               tag: urls[index],

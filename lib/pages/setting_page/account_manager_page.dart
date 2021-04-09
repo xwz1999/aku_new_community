@@ -38,7 +38,7 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
                           ),
                         ),
                         onPressed: () {
-                          Get.offAll(()=>SignInPage());
+                          Get.offAll(() => SignInPage());
                         },
                       ),
                     ],

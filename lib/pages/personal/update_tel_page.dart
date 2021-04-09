@@ -94,7 +94,8 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               '新号码'.text.black.size(28.sp).make(),
               TextFormField(
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]*')),
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(11),
                 ],
                 controller: _newTelController,
                 onChanged: (value) {
@@ -147,8 +148,10 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               '验证码'.text.black.size(28.sp).make(),
               TextFormField(
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]*'))
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(11),
                 ],
+                keyboardType: TextInputType.number,
                 controller: _codeController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,

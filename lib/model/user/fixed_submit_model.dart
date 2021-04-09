@@ -16,7 +16,7 @@ class FixedSubmitModel {
     status = json['status'];
     reportDetail = json['reportDetail'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

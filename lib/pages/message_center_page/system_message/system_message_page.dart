@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
@@ -13,7 +14,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:get/get.dart';
 
 class SystemMessagePage extends StatefulWidget {
   SystemMessagePage({Key key}) : super(key: key);

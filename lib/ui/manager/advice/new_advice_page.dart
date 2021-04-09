@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:akuCommunity/constants/app_values.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +12,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
@@ -100,7 +99,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
     List<String> urls =
-        await NetUtil().uploadFiles(files, API.upload.uploadArticle);
+        await NetUtil().uploadFiles(files, API.upload.uploadAdvice);
     BaseModel baseModel = await NetUtil().post(
       API.manager.addAdvice,
       params: {
@@ -210,7 +209,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
                 type = _type == 0 ? 2 : 1;
                 break;
               case AdviceType.COMPLAIN:
-                type = _type == 0 ? 4 : 3;
+                type = _type == 0 ? 3 : 4;
                 break;
             }
             addAdvice(type, _files, _editingController.text);

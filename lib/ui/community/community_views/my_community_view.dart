@@ -36,6 +36,7 @@ class MyCommunityViewState extends State<MyCommunityView>
       },
       builder: (items) {
         return ListView.separated(
+          padding: EdgeInsets.symmetric(vertical: 10.w),
           itemBuilder: (context, index) {
             final MyEventItemModel model = items[index];
             MyEventItemModel preModel;

@@ -9,7 +9,7 @@ class AkuShopClassModel {
     cid = json['cid'];
     mainName = json['main_name'];
     if (json['data'] != null) {
-      data = new List<Data>();
+      data = [];
       json['data'].forEach((v) {
         data.add(new Data.fromJson(v));
       });
@@ -36,7 +36,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     nextName = json['next_name'];
     if (json['info'] != null) {
-      info = new List<Info>();
+      info = [];
       json['info'].forEach((v) {
         info.add(new Info.fromJson(v));
       });

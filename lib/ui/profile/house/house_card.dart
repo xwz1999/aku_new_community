@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/app_values.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
-import 'package:flutter/material.dart';
 import 'package:akuCommunity/utils/headers.dart';
-import 'package:get/get.dart';
 
 enum CardAuthType {
   FAIL,

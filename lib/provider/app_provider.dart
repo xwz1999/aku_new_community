@@ -1,5 +1,3 @@
-import 'package:akuCommunity/model/user/car_parking_model.dart';
-import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -12,6 +10,8 @@ import 'package:akuCommunity/constants/application_objects.dart';
 import 'package:akuCommunity/model/common/real_time_weather_model.dart';
 import 'package:akuCommunity/model/community/hot_topic_model.dart';
 import 'package:akuCommunity/model/message/message_center_model.dart';
+import 'package:akuCommunity/model/user/car_parking_model.dart';
+import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/utils/hive_store.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';

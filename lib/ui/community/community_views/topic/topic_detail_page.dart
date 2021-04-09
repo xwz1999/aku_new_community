@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,6 +5,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/community/community_topic_model.dart';
 import 'package:akuCommunity/model/community/event_item_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
 import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/new_community_view.dart';
 import 'package:akuCommunity/ui/community/community_views/topic/topic_community_view.dart';
-import 'package:akuCommunity/ui/message/message_center.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/login_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -59,7 +59,7 @@ class _CommunityPageState extends State<CommunityPage>
         ColumnActionButton(
           onPressed: () {
             if (LoginUtil.isNotLogin) return;
-            Get.to(() => MessageCenter());
+            Get.to(() => MessageCenterPage());
           },
           title: '消息',
           path: R.ASSETS_ICONS_ALARM_PNG,

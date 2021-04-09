@@ -31,14 +31,14 @@ class VotingDetailModel {
     status = json['status'];
     totals = json['totals'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['appVoteCandidateVos'] != null) {
-      appVoteCandidateVos = new List<AppVoteCandidateVos>();
+      appVoteCandidateVos = [];
       json['appVoteCandidateVos'].forEach((v) {
         appVoteCandidateVos.add(new AppVoteCandidateVos.fromJson(v));
       });
@@ -104,7 +104,7 @@ class AppVoteCandidateVos {
     name = json['name'];
     total = json['total'];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });

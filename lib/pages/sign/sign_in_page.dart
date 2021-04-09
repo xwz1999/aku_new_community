@@ -8,20 +8,20 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flustars/flustars.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/num_ext.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_pick_plot_page.dart';
+import 'package:akuCommunity/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
 import 'package:akuCommunity/provider/user_provider.dart';
@@ -50,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       alignment: Alignment.center,
       child: Image.asset(
-        AssetsImage.LOGO,
+        R.ASSETS_IMAGES_LOGO_PNG,
         height: 184.w,
         width: 266.w,
       ),
@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
       } else {
         cancel();
         signUpProvider.setTel(_phone.text);
-        await Get.to(() => SignUpPickPlotPage());
+        await Get.to(() => SignUpSetNicknamePage());
         signUpProvider.clearAll();
       }
     } else {
@@ -146,6 +146,7 @@ class _SignInPageState extends State<SignInPage> {
     String hint,
     Widget prefix,
     Widget suffix,
+    TextInputType type = TextInputType.number,
     TextEditingController controller,
   }) {
     return Container(
@@ -161,6 +162,11 @@ class _SignInPageState extends State<SignInPage> {
           prefix ?? SizedBox(),
           20.wb,
           TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(11),
+            ],
+            keyboardType: type,
             controller: controller,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
@@ -231,6 +237,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 26.hb,
                 _buildTextField(
+                  type: TextInputType.number,
                   prefix: Image.asset(
                     R.ASSETS_IMAGES_CODE_LOGO_PNG,
                     height: 50.w,

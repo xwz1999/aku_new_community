@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_record_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LifePayRecordPage extends StatefulWidget {
   LifePayRecordPage({Key key}) : super(key: key);

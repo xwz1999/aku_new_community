@@ -2,17 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/base/assets_image.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/pages/personal/order_page.dart';
 import 'package:akuCommunity/pages/personal/user_profile_page.dart';
 import 'package:akuCommunity/pages/sign/sign_in_page.dart';
 import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
@@ -50,7 +47,7 @@ class _PersonalIndexState extends State<PersonalIndex>
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(AssetsImage.MINEBG),
+                    image: AssetImage(R.ASSETS_IMAGES_MINE_BG_PNG),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -159,32 +156,6 @@ class _PersonalIndexState extends State<PersonalIndex>
               color: ktextPrimary,
             ),
           ),
-          title == '我的物业'
-              ? SizedBox()
-              : InkWell(
-                  onTap: () {
-                    Get.to(() => OrderPage());
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '查看全部',
-                        style: TextStyle(
-                          fontSize: BaseStyle.fontSize22,
-                          color: ktextPrimary,
-                        ),
-                      ),
-                      SizedBox(width: 8.w),
-                      Icon(
-                        AntDesign.right,
-                        size: BaseStyle.fontSize28,
-                        color: BaseStyle.color999999,
-                      ),
-                    ],
-                  ),
-                ),
         ],
       ),
     );
@@ -204,46 +175,6 @@ class _PersonalIndexState extends State<PersonalIndex>
         child: CustomScrollView(
           slivers: <Widget>[
             _sliverAppBar(_statusHeight),
-            // SliverToBoxAdapter(
-            //   child: _containerBar('我的订单'),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     margin: EdgeInsets.only(top: 10.w),
-            //     color: BaseStyle.colorf9f9f9,
-            //     child: GridButtons(
-            //       gridList: _orderList,
-            //       crossCount: 5,
-            //     ),
-            //   ),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     margin: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
-            //     child: Divider(
-            //       color: Color(0xffd8d8d8),
-            //     ),
-            //   ),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: _containerBar('我的团购'),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: Container(
-            //     color: BaseStyle.colorf9f9f9,
-            //     margin: EdgeInsets.only(top: 10.w),
-            //     alignment: Alignment.center,
-            //     child: GridButtons(
-            //       gridList: _groupOrderList,
-            //       crossCount: 5,
-            //     ),
-            //   ),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: SingleAdSpace(
-            //     imagePath: 'assets/example/guanggao7.png',
-            //   ),
-            // ),
             SliverToBoxAdapter(
               child: Container(
                 decoration: BoxDecoration(

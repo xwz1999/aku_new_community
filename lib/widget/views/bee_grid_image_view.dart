@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/utils/headers.dart';

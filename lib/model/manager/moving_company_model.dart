@@ -5,7 +5,7 @@ class MovingCompanyModel {
 
   MovingCompanyModel.fromJson(Map<String, dynamic> json) {
     if (json['appMovingCompanyVoList'] != null) {
-      appMovingCompanyVoList = new List<AppMovingCompanyVoList>();
+      appMovingCompanyVoList = [];
       json['appMovingCompanyVoList'].forEach((v) {
         appMovingCompanyVoList.add(new AppMovingCompanyVoList.fromJson(v));
       });

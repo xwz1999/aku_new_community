@@ -68,7 +68,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         return index == 0 ? 2 : 1;
         break;
       case AdviceType.COMPLAIN:
-        return index == 0 ? 4 : 3;
+        return index == 0 ? 3 : 4;
         break;
     }
     return 0;

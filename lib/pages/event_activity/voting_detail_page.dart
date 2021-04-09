@@ -1,13 +1,14 @@
-import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/utils/headers.dart';
@@ -16,7 +17,6 @@ import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int id;

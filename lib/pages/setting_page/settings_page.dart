@@ -132,10 +132,10 @@ class _SettingsPageState extends State<SettingsPage> {
           )),
           26.hb,
           ...[
-            _buildTile(
-              title: '清除缓存',
-              onTap: () {},
-            ),
+            // _buildTile(
+            //   title: '清除缓存',
+            //   onTap: () {},
+            // ),
             _buildTile(
               title: '意见反馈',
               onTap: () => Get.to(() => FeedBackPage()),
@@ -156,7 +156,6 @@ class _SettingsPageState extends State<SettingsPage> {
               separate: Divider(
             indent: 32.w,
             endIndent: 32.w,
-            color: Color(0xFFD8D8D8),
             thickness: 1.w,
             height: 1.w,
           )),

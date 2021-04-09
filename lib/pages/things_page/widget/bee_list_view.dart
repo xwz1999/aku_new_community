@@ -98,7 +98,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
         );
         _models = widget.convert(_model);
         widget.controller?.resetLoadState();
-        if(mounted)setState(() {});
+        if (mounted) setState(() {});
       },
       firstRefresh: true,
       onLoad: () async {

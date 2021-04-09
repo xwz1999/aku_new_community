@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:provider/provider.dart';
+
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/car_parking/car_parking_card.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:provider/provider.dart';
 
 class CarParkingPage extends StatefulWidget {
   CarParkingPage({Key key}) : super(key: key);

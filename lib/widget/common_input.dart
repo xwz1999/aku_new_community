@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
+@Deprecated("DO NOT USE THIS WIDGET")
 class CommonInput extends StatefulWidget {
   final TextEditingController inputController;
   final String hintText;
-  CommonInput({Key key, this.inputController, this.hintText}) : super(key: key);
+  final FormFieldValidator validator;
+  CommonInput({Key key, this.inputController, this.hintText, this.validator})
+      : super(key: key);
 
   @override
   _CommonInputState createState() => _CommonInputState();
@@ -18,6 +21,7 @@ class _CommonInputState extends State<CommonInput> {
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
+        validator: widget.validator,
         cursorColor: Color(0xffffc40c),
         style: TextStyle(
           fontWeight: FontWeight.w600,

@@ -40,28 +40,28 @@ class EventItemModel {
     gambitTitle = json['gambitTitle'];
     createDate = json['createDate'];
     if (json['likeNames'] != null) {
-      likeNames = new List<LikeNames>();
+      likeNames = [];
       json['likeNames'].forEach((v) {
         likeNames.add(new LikeNames.fromJson(v));
       });
     } else
       likeNames = [];
     if (json['imgUrls'] != null) {
-      imgUrls = new List<ImgModel>();
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headSculptureImgUrl'] != null) {
-      headSculptureImgUrl = new List<ImgModel>();
+      headSculptureImgUrl = [];
       json['headSculptureImgUrl'].forEach((v) {
         headSculptureImgUrl.add(new ImgModel.fromJson(v));
       });
     } else
       headSculptureImgUrl = [];
     if (json['gambitThemeCommentVoList'] != null) {
-      gambitThemeCommentVoList = new List<GambitThemeCommentVoList>();
+      gambitThemeCommentVoList = [];
       json['gambitThemeCommentVoList'].forEach((v) {
         gambitThemeCommentVoList.add(new GambitThemeCommentVoList.fromJson(v));
       });

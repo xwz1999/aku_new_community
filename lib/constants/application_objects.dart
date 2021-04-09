@@ -1,9 +1,6 @@
-import 'package:akuCommunity/ui/profile/car/car_manage_page.dart';
-import 'package:akuCommunity/ui/profile/car_parking/car_parking_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/address_page/address_page.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
@@ -11,7 +8,6 @@ import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
-import 'package:akuCommunity/pages/open_door_page/open_door_page.dart';
 import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
 import 'package:akuCommunity/pages/setting_page/settings_page.dart';
 import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
@@ -20,6 +16,8 @@ import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/home/application/all_application.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
 import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
+import 'package:akuCommunity/ui/profile/car/car_manage_page.dart';
+import 'package:akuCommunity/ui/profile/car_parking/car_parking_page.dart';
 import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
 
 ///应用对象
@@ -55,7 +53,7 @@ class AO {
 
 ///所有应用
 List<AO> appObjects = [
-  AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => OpenDoorPage()),
+  AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
   AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
       () => VisitorAccessPage()),
@@ -83,7 +81,7 @@ List<AO> userAppObjects = [
   AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () => ActivityListPage()),
   AO('我的缴费', R.ASSETS_ICONS_USER_ICON_WDJF_PNG, () => LifePayPage()),
   AO('我的报修', R.ASSETS_ICONS_USER_ICON_WDBX_PNG, () => FixedSubmitPage()),
-  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () => AddressPage()),
+  AO('我的地址', R.ASSETS_ICONS_USER_ICON_WDDZ_PNG, () => Scaffold()),
   AO('我的管家', R.ASSETS_ICONS_USER_ICON_WDGJ_PNG, () => Scaffold()),
   AO('我的访客', R.ASSETS_ICONS_USER_ICON_WDFK_PNG, () => VisitorAccessPage()),
   AO('设置', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () => SettingsPage()),
