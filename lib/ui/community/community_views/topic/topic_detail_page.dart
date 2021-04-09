@@ -35,7 +35,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemStyle.lightStatusBar,
+      value: SystemStyle.initial,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           heroTag: 'event_add',

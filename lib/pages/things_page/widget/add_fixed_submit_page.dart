@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_theme.dart';
+import 'package:akuCommunity/widget/picker/bee_house_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +12,11 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/pages/things_page/widget/finish_fixed_submit_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
@@ -51,50 +50,15 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     super.dispose();
   }
 
-  Widget _buildHouseCard(
-    String title,
-    String detail,
-  ) {
-    return Padding(
-      padding: EdgeInsets.all(32.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          '报修房屋'.text.black.size(28.sp).make(),
-          32.w.heightBox,
-          GestureDetector(
-            onTap: () {
-              Get.to(() => PickMyHousePage());
-            },
-            child: Row(
-              children: [
-                Image.asset(
-                  R.ASSETS_ICONS_HOUSE_PNG,
-                  width: 60.w,
-                  height: 60.w,
-                ),
-                40.w.widthBox,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      title.text.black.size(32.sp).bold.make(),
-                      10.w.heightBox,
-                      detail.text.black.size(32.sp).bold.make()
-                    ],
-                  ),
-                ),
-                Icon(
-                  CupertinoIcons.chevron_forward,
-                  size: 40.w,
-                ),
-              ],
-            ).material(color: Colors.transparent),
-          ),
-          24.w.heightBox,
-          BeeDivider.horizontal(),
-        ],
-      ),
+  Widget _buildHouseCard() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        '报修房屋'.text.black.size(28.sp).make().pSymmetric(h: 32.w),
+        8.w.heightBox,
+        BeeHousePicker(),
+        BeeDivider.horizontal(indent: 32.w, endIndent: 32.w),
+      ],
     );
   }
 
@@ -209,17 +173,13 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return WillPopScope(
       child: BeeScaffold(
         title: '报事报修',
         body: ListView(
           children: [
-            _buildHouseCard(
-              S.of(context).tempPlotName,
-              appProvider.selectedHouse.roomName,
-            ),
+            _buildHouseCard(),
             _getType(),
             _buildReportCard(),
             _addImages(),

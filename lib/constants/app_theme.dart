@@ -111,8 +111,13 @@ class AppTheme {
 }
 
 class SystemStyle {
-  static const lightStatusBar = SystemUiOverlayStyle(
+  static const initial = SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.light,
     systemNavigationBarColor: Colors.white,
+  );
+
+  static const yellowBottomBar = SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Color(0xFFFFD000),
   );
 }

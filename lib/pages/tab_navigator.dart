@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +77,7 @@ class _TabNavigatorState extends State<TabNavigator>
       _buildBottomBar('我的', R.ASSETS_ICONS_TABBAR_USER_NO_PNG,
           R.ASSETS_ICONS_TABBAR_USER_PNG),
     ];
-    return Scaffold(
+    return BeeScaffold(
       body: WillPopScope(
         onWillPop: () async {
           if (_lastPressed == null ||
@@ -94,7 +95,7 @@ class _TabNavigatorState extends State<TabNavigator>
           physics: NeverScrollableScrollPhysics(),
         ),
       ),
-      bottomNavigationBar: StatefulBuilder(builder: (context, setFunc) {
+      bottomNavi: StatefulBuilder(builder: (context, setFunc) {
         return BottomNavigationBar(
           items: _bottomNav,
           backgroundColor: Colors.white,

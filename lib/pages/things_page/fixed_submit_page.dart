@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -214,6 +215,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
+      systemStyle: SystemStyle.yellowBottomBar,
       title: '报事报修',
       actions: [
         IconButton(

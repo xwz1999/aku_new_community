@@ -1,10 +1,12 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/widget/bee_back_button.dart';
 
-class BeeScaffold extends StatefulWidget {
+class BeeScaffold extends StatelessWidget {
   final String title;
   final Widget body;
 
@@ -19,6 +21,8 @@ class BeeScaffold extends StatefulWidget {
   final Widget bottomNavi;
   final PreferredSizeWidget appBarBottom;
   final FloatingActionButton fab;
+
+  final SystemUiOverlayStyle systemStyle;
   BeeScaffold({
     Key key,
     @required this.title,
@@ -30,6 +34,7 @@ class BeeScaffold extends StatefulWidget {
     this.bottomNavi,
     this.appBarBottom,
     this.fab,
+    this.systemStyle = SystemStyle.initial,
   }) : super(key: key);
 
   BeeScaffold.white({
@@ -42,28 +47,29 @@ class BeeScaffold extends StatefulWidget {
     this.bottomNavi,
     this.appBarBottom,
     this.fab,
+    this.systemStyle = SystemStyle.initial,
   })  : this.bodyColor = Colors.white,
         super(key: key);
 
   @override
-  _BeeScaffoldState createState() => _BeeScaffoldState();
-}
-
-class _BeeScaffoldState extends State<BeeScaffold> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: widget.bodyColor,
-      appBar: AppBar(
-        backgroundColor: widget.bgColor,
-        title: widget.title.text.make(),
-        leading: widget.leading ?? BeeBackButton(),
-        actions: widget.actions,
-        bottom: widget.appBarBottom,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: systemStyle,
+      child: Scaffold(
+        backgroundColor: bodyColor,
+        appBar: title == null
+            ? null
+            : AppBar(
+                backgroundColor: bgColor,
+                title: title.text.make(),
+                leading: leading ?? BeeBackButton(),
+                actions: actions,
+                bottom: appBarBottom,
+              ),
+        body: body,
+        bottomNavigationBar: bottomNavi,
+        floatingActionButton: fab,
       ),
-      body: widget.body,
-      bottomNavigationBar: widget.bottomNavi,
-      floatingActionButton: widget.fab,
     );
   }
 }
