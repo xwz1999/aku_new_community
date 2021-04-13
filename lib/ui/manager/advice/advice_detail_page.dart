@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
@@ -161,6 +162,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '查看详情',
+      systemStyle: SystemStyle.yellowBottomBar,
       actions: [
         TextButton(
           onPressed: () =>

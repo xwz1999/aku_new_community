@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -195,6 +196,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '问卷调查',
+      systemStyle: SystemStyle.yellowBottomBar,
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),

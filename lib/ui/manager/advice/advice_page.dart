@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,6 +91,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: title,
+      systemStyle: SystemStyle.yellowBottomBar,
       actions: [
         TextButton(
           onPressed: () => setState(() => _selectedMode = !_selectedMode),

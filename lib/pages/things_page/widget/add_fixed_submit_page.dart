@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -175,6 +176,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return WillPopScope(
       child: BeeScaffold(
+        systemStyle: SystemStyle.yellowBottomBar,
         title: '报事报修',
         body: ListView(
           children: [

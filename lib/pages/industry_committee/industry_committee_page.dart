@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -133,6 +134,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '业委会',
+      systemStyle: SystemStyle.genStyle(bottom: Color(0xFF2A2A2A)),
       body: BeeListView(
         path: API.manager.commiteeStaff,
         convert: (model) {

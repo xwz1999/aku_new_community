@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -70,6 +71,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
     final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '我的房屋',
+      systemStyle: SystemStyle.yellowBottomBar,
       body: EasyRefresh(
         header: MaterialHeader(),
         controller: _refreshController,

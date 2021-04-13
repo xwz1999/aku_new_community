@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -203,6 +204,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
+      systemStyle: SystemStyle.yellowBottomBar,
       title: '活动详情',
       bodyColor: Colors.white,
       body: EasyRefresh(

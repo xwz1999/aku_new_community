@@ -120,4 +120,11 @@ class SystemStyle {
     statusBarIconBrightness: Brightness.light,
     systemNavigationBarColor: Color(0xFFFFD000),
   );
+
+  static genStyle({@required Color bottom}) {
+    return SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: bottom,
+    );
+  }
 }

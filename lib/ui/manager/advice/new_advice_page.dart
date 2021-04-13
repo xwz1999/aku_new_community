@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -131,6 +132,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold.white(
+      systemStyle: SystemStyle.yellowBottomBar,
       title: title,
       body: ListView(
         padding: EdgeInsets.all(32.w),
