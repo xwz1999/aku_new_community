@@ -142,7 +142,7 @@ packages:
       name: crypto
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -156,7 +156,7 @@ packages:
       name: decimal
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.0+1"
   device_info:
     dependency: transitive
     description:
@@ -170,7 +170,7 @@ packages:
       name: device_info_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -200,7 +200,7 @@ packages:
     source: hosted
     version: "6.1.0"
   firebase_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.flutter-io.cn"
@@ -278,7 +278,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   flutter_rating_bar:
     dependency: "direct main"
     description:
@@ -292,14 +292,14 @@ packages:
       name: flutter_screenutil
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.0.0-nullsafety.11"
+    version: "5.0.0"
   flutter_slidable:
     dependency: "direct main"
     description:
       name: flutter_slidable
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.0-nullsafety.0"
+    version: "0.6.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -316,14 +316,14 @@ packages:
       name: fluwx
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.3.0"
+    version: "3.4.1"
   get:
     dependency: "direct main"
     description:
       name: get
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.0-nullsafety.2"
+    version: "4.1.4"
   glob:
     dependency: transitive
     description:
@@ -351,7 +351,7 @@ packages:
       name: hive
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   hive_flutter:
     dependency: "direct main"
     description:
@@ -379,7 +379,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.7.3"
+    version: "0.7.4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -393,14 +393,14 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   import_sorter:
     dependency: "direct dev"
     description:
       name: import_sorter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.4.2"
+    version: "4.4.3"
   intl:
     dependency: "direct main"
     description:
@@ -498,7 +498,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   path_provider_windows:
     dependency: transitive
     description:
@@ -526,7 +526,7 @@ packages:
       name: permission_handler_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   platform:
     dependency: transitive
     description:
@@ -554,7 +554,7 @@ packages:
       name: process
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.1"
+    version: "4.2.1"
   provider:
     dependency: "direct main"
     description:
@@ -640,7 +640,7 @@ packages:
       name: shimmer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0-nullsafety.0"
+    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -736,7 +736,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.3"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -785,7 +785,7 @@ packages:
       name: velocity_x
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.6.0"
+    version: "2.6.1"
   vxstate:
     dependency: transitive
     description:
@@ -799,7 +799,7 @@ packages:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   xdg_directories:
     dependency: transitive
     description:

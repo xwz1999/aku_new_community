@@ -1,4 +1,6 @@
 import 'package:akuCommunity/constants/config.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +23,15 @@ import 'package:akuCommunity/utils/headers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  Future.delayed(Duration(seconds: 5), () {
+    FirebaseCrashlytics.instance.log("Higgs-Boson detected! Bailing out");
+  });
+
+  FlutterError.onError = (detail) {
+    FirebaseCrashlytics.instance.recordFlutterError(detail);
+  };
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -83,7 +94,6 @@ class _MyAppState extends State<MyApp> {
         },
         child: ScreenUtilInit(
           designSize: Size(750, 1334),
-          allowFontScaling: true,
           builder: () => GetMaterialApp(
             onGenerateTitle: (context) => S.of(context).appName,
             debugShowCheckedModeBanner: false,
