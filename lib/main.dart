@@ -1,16 +1,11 @@
-import 'package:akuCommunity/constants/config.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:akuCommunity/main_initialize.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/app_theme.dart';
@@ -22,47 +17,15 @@ import 'package:akuCommunity/utils/developer_util.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  Future.delayed(Duration(seconds: 5), () {
-    FirebaseCrashlytics.instance.log("Higgs-Boson detected! Bailing out");
-  });
-
-  FlutterError.onError = (detail) {
-    FirebaseCrashlytics.instance.recordFlutterError(detail);
-  };
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.white,
-    ),
-  );
-  JPush jpush = new JPush();
-  jpush.addEventHandler(
-    // 接收通知回调方法。
-    onReceiveNotification: (Map<String, dynamic> message) async {
-      print("flutter onReceiveNotification: $message");
-    },
-    // 点击通知回调方法。
-    onOpenNotification: (Map<String, dynamic> message) async {
-      print("flutter onOpenNotification: $message");
-    },
-    // 接收自定义消息回调方法。
-    onReceiveMessage: (Map<String, dynamic> message) async {
-      print("flutter onReceiveMessage: $message");
-    },
-  );
-  jpush.setup(
-    appKey: "6a2c6507e3e8b3187ac1c9f9",
-    channel: "developer-default",
-    production: false,
-    debug: true, // 设置是否打印 debug 日志
-  );
-  jpush.applyPushAuthority(
-      new NotificationSettingsIOS(sound: true, alert: true, badge: true));
   DeveloperUtil.setDev(true);
-  registerWxApi(appId: AppConfig.wechatAppId);
+  WidgetsFlutterBinding.ensureInitialized();
+
+  ///firebase crashlytics initalize
+  await MainInitialize.initFirebase();
+  MainInitialize.initTheme();
+  await MainInitialize.initJPush();
+  MainInitialize.initWechat();
+
   runApp(MyApp());
 }
 

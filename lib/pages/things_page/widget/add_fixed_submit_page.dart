@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/widget/picker/bee_house_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

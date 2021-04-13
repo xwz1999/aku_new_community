@@ -114,7 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
             //   ),
             // ),
             _buildTile(
-              title: null,
+              title: '关于小蜜蜂智慧社区',
               onTap: () => Get.to(() => AboutPage()),
             ),
             //TODO 邀请注册
