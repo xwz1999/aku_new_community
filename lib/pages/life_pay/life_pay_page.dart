@@ -14,7 +14,6 @@ import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
@@ -54,7 +53,6 @@ class _LifePayPageState extends State<LifePayPage> {
   }
 
   Widget _buildHouseCard() {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return Material(
       color: kForeGroundColor,
@@ -224,7 +222,6 @@ class _LifePayPageState extends State<LifePayPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '生活缴费',

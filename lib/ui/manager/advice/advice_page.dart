@@ -91,7 +91,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
     return BeeScaffold(
       title: title,
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () => setState(() => _selectedMode = !_selectedMode),
           child: (_selectedMode ? '完成' : '编辑').text.make(),
         ),

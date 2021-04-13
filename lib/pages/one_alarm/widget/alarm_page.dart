@@ -156,7 +156,7 @@ class _AlarmPageState extends State<AlarmPage> {
                             spreadRadius: 1,
                           )
                         ]),
-                    child: FlatButton(
+                    child: MaterialButton(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(66.w)),
@@ -181,7 +181,7 @@ class _AlarmPageState extends State<AlarmPage> {
                 decoration:
                     BoxDecoration(color: Color(0xFFFFFFFF).withOpacity(0.9)),
                 child: Stack(
-                  overflow: Overflow.visible,
+                  clipBehavior: Clip.none,
                   alignment: Alignment.topCenter,
                   children: [
                     Positioned(
@@ -215,7 +215,7 @@ class _AlarmPageState extends State<AlarmPage> {
                               )
                             ],
                           ),
-                          child: FlatButton(
+                          child: MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(172.w)),
                             onPressed: () {

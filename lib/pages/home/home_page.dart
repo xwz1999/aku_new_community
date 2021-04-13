@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/model/aku_shop_model.dart';
 import 'package:akuCommunity/model/community/activity_item_model.dart';
 import 'package:akuCommunity/model/community/board_model.dart';
 import 'package:akuCommunity/pages/home/widget/animate_app_bar.dart';
@@ -43,7 +42,6 @@ class _HomePageState extends State<HomePage>
 
   ScrollController _scrollController;
 
-  List<AkuShopModel> _shopList = [];
   List<dynamic> data;
 
   EasyRefreshController _refreshController = EasyRefreshController();

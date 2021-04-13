@@ -272,30 +272,33 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 SizedBox(height: 59.w),
                 _inkWellLogin(),
+                10.hb,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FlatButton(
-                        shape: StadiumBorder(),
-                        padding: EdgeInsets.zero,
-                        onPressed: () => Get.to(AgreementPage()),
-                        child: Text(
-                          '《小蜜蜂用户协议》',
-                          style: TextStyle(
-                            color: Colors.lightBlue,
-                          ),
-                        )),
+                    MaterialButton(
+                      shape: StadiumBorder(),
+                      padding: EdgeInsets.zero,
+                      onPressed: () => Get.to(AgreementPage()),
+                      child: Text(
+                        '《小蜜蜂用户协议》',
+                        style: TextStyle(
+                          color: Colors.lightBlue,
+                        ),
+                      ),
+                    ),
                     SizedBox(width: 15.w),
-                    FlatButton(
-                        shape: StadiumBorder(),
-                        padding: EdgeInsets.zero,
-                        onPressed: () => Get.to(() => PrivacyPage()),
-                        child: Text(
-                          '《小蜜蜂隐私政策》',
-                          style: TextStyle(
-                            color: Colors.lightBlue,
-                          ),
-                        ))
+                    MaterialButton(
+                      shape: StadiumBorder(),
+                      padding: EdgeInsets.zero,
+                      onPressed: () => Get.to(() => PrivacyPage()),
+                      child: Text(
+                        '《小蜜蜂隐私政策》',
+                        style: TextStyle(
+                          color: Colors.lightBlue,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],

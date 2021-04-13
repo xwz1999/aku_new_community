@@ -364,10 +364,7 @@ class _ChatCardState extends State<ChatCard> {
                         .color(Color(0xFF999999))
                         .make(),
                     _isMyself
-                        ? FlatButton(
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            height: 48.w,
+                        ? TextButton(
                             onPressed: () async {
                               bool result =
                                   await Get.dialog(CupertinoAlertDialog(

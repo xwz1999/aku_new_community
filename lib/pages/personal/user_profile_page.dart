@@ -32,7 +32,6 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   int _sex = 1;
-  DateTime _birthday = DateTime.now();
   Widget _buildTile(String title, Widget suffix, {VoidCallback onPressed}) {
     return MaterialButton(
       color: Colors.white,

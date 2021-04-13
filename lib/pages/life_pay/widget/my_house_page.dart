@@ -65,7 +65,6 @@ class _MyHousePageState extends State<MyHousePage> {
 
   Widget _buildCard(int currentHouseId, String estateName, int index,
       {bool paid = false}) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
