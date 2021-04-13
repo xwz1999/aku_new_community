@@ -1,10 +1,12 @@
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:akuCommunity/provider/app_provider.dart';
+import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
 
 class BeeHousePicker extends StatelessWidget {

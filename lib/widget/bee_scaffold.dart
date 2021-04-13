@@ -1,9 +1,9 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatelessWidget {

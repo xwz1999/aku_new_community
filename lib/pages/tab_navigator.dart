@@ -1,4 +1,3 @@
-import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/ui/community/community_views/community_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
 import 'property/property_index.dart';

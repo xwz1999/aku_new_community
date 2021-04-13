@@ -1,12 +1,14 @@
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/constants/config.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:power_logger/power_logger.dart';
+
+import 'package:akuCommunity/constants/app_theme.dart';
+import 'package:akuCommunity/constants/config.dart';
 
 class MainInitialize {
   ///初始化firebase

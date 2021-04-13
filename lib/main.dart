@@ -1,4 +1,3 @@
-import 'package:akuCommunity/main_initialize.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/app_theme.dart';
+import 'package:akuCommunity/main_initialize.dart';
 import 'package:akuCommunity/pages/splash/splash_page.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/provider/sign_up_provider.dart';
