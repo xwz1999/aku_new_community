@@ -20,7 +20,7 @@ class _BeeCheckButtonState extends State<BeeCheckButton> {
   bool get isSelect => widget.groupValue == widget.value;
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return MaterialButton(
       onPressed: () {
         widget.onChange(widget.value);
       },

@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/model/manager/life_pay_model.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
 import 'package:akuCommunity/utils/bee_parse.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
@@ -102,7 +101,6 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   }
 
   Widget _buildCard(DailyPaymentTypeVos model) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),

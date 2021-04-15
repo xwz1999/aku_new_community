@@ -162,7 +162,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
     return BeeScaffold(
       title: '查看详情',
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () =>
               Get.to(() => AdviceEvaluatePage(id: widget.model.id)),
           child: '评价'.text.make(),

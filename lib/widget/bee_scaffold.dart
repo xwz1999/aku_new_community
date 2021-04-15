@@ -1,9 +1,9 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatelessWidget {
@@ -25,7 +25,7 @@ class BeeScaffold extends StatelessWidget {
   final SystemUiOverlayStyle systemStyle;
   BeeScaffold({
     Key key,
-    @required this.title,
+    this.title,
     this.body,
     this.actions,
     this.leading,
@@ -53,19 +53,21 @@ class BeeScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget appBar;
+    if (title != null)
+      appBar = AppBar(
+        backgroundColor: bgColor,
+        title: title.text.make(),
+        leading: leading ?? BeeBackButton(),
+        actions: actions,
+        bottom: appBarBottom,
+      );
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: systemStyle,
       child: Scaffold(
         backgroundColor: bodyColor,
-        appBar: title == null
-            ? null
-            : AppBar(
-                backgroundColor: bgColor,
-                title: title.text.make(),
-                leading: leading ?? BeeBackButton(),
-                actions: actions,
-                bottom: appBarBottom,
-              ),
+        appBar: appBar,
         body: body,
         bottomNavigationBar: bottomNavi,
         floatingActionButton: fab,
