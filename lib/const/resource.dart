@@ -116,6 +116,14 @@ class R {
   static const String ASSETS_ICONS_APP_REDUCE_PNG =
       'assets/icons/app_reduce.png';
 
+  /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/article_count.png)
+  static const String ASSETS_ICONS_ARTICLE_COUNT_PNG =
+      'assets/icons/article_count.png';
+
+  /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/article_name.png)
+  static const String ASSETS_ICONS_ARTICLE_NAME_PNG =
+      'assets/icons/article_name.png';
+
   /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/comment_notice.png)
   static const String ASSETS_ICONS_COMMENT_NOTICE_PNG =
       'assets/icons/comment_notice.png';

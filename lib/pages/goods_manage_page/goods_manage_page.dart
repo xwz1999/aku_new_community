@@ -1,3 +1,4 @@
+import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -117,7 +118,11 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
           }),
       bottomNavi: BottomButton(
         child: '扫一扫'.text.black.size(32.sp).bold.make(),
-        onPressed: () {},
+        onPressed: widget.isBorrow
+            ? () {
+                Get.to(() => BorrowGoodsPage());
+              }
+            : () {},
       ),
     );
   }

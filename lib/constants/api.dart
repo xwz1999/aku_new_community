@@ -160,6 +160,9 @@ class _Manager {
   ///借还管理：报损
   String get fromLoss => '/user/articleBorrow/frmLoss';
 
+  ///借还管理：根据物品总类主键id查询未借出的物品明细(出借状态恒为未出借)【借取页面】
+  String get articleBorrowFindDetail => '/user/articleBorrow/findDetailById';
+
   ///生活缴费：查询生活缴费信息list
   String get dailyPaymentList => '/user/dailyPayment/list';
 

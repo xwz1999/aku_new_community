@@ -53,9 +53,11 @@ class _SelectBorrowReturnPageState extends State<SelectBorrowReturnPage> {
         .withRounded(value: 8.w)
         .make()
         .onInkTap(() {
-      Get.to(() => GoodsManagePage(
-            isBorrow: isBorrow,
-          ));
+      Get.to(
+        () => GoodsManagePage(
+          isBorrow: isBorrow,
+        ),
+      );
     });
   }
 }
