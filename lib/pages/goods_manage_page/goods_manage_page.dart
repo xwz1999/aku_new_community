@@ -16,7 +16,8 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 
 class GoodsManagePage extends StatefulWidget {
-  GoodsManagePage({Key key}) : super(key: key);
+  final bool isBorrow;
+  GoodsManagePage({Key key, this.isBorrow = true}) : super(key: key);
 
   @override
   _GoodsManagePageState createState() => _GoodsManagePageState();
@@ -115,7 +116,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 itemCount: items.length);
           }),
       bottomNavi: BottomButton(
-        child: '扫一扫出借'.text.black.size(32.sp).bold.make(),
+        child: '扫一扫'.text.black.size(32.sp).bold.make(),
         onPressed: () {},
       ),
     );

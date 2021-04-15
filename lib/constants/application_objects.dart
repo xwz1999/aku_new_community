@@ -1,10 +1,10 @@
+import 'package:akuCommunity/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
 import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
-import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
 import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
 import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
@@ -70,7 +70,7 @@ List<AO> appObjects = [
       () => AdvicePage(type: AdviceType.COMPLAIN)),
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, () => QuestionnairePage()),
   // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
-  AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => GoodsManagePage()),
+  AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
 ];
 
