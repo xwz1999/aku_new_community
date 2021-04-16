@@ -77,6 +77,9 @@ class _User {
   ///我的房屋：假删除审核信息
   String get deleteHouse => '/user/myHouse/falseDelete';
 
+  ///我的房屋：修改选中的房产审核id
+  String get changeSelectExanmineId => '/user/myHouse/changeSelectExamineId';
+
   ///我的车位：查询所有的车位信息
   String get carParkingList => '/user/myParkingSpace/list';
 

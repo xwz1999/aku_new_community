@@ -47,6 +47,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
       onTap: () {
         Get.to(() => QuestionnaireDetailPage(
               id: model.id,
+              status: model.status,
             ));
       },
       child: Container(

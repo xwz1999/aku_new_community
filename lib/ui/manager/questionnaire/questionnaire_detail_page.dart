@@ -22,7 +22,8 @@ import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int id;
-  QuestionnaireDetailPage({Key key, this.id}) : super(key: key);
+  final int status;
+  QuestionnaireDetailPage({Key key, this.id, this.status}) : super(key: key);
 
   @override
   _QuestionnaireDetailPageState createState() =>
@@ -253,15 +254,22 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
               ),
       ),
       bottomNavi: BottomButton(
-        child: '确认提交'.text.black.size(32.sp).bold.make(),
-        onPressed: () async {
-          BaseModel baseModel =
-              await ManagerFunc.questionnaireSubmit(widget.id, _submitModels);
-          Get.to(() => SubmitComplishPage(
-                status: baseModel.status,
-                message: baseModel.message,
-              ));
-        },
+        child: '确认提交'
+            .text
+            .color(widget.status != 2 ? ktextSubColor : ktextPrimary)
+            .size(32.sp)
+            .bold
+            .make(),
+        onPressed: widget.status != 2
+            ? () {}
+            : () async {
+                BaseModel baseModel = await ManagerFunc.questionnaireSubmit(
+                    widget.id, _submitModels);
+                Get.to(() => SubmitComplishPage(
+                      status: baseModel.status,
+                      message: baseModel.message,
+                    ));
+              },
       ),
     );
   }
