@@ -21,6 +21,8 @@ class BorrowGoodsPage extends StatefulWidget {
 
 class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   EasyRefreshController _easyRefreshController;
+  List<int> _submitIds = [];
+  List<int> _counts = [];
   @override
   void initState() {
     super.initState();
@@ -50,6 +52,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
+            _counts.addAll(List.filled(models.tableList.length, 0));
             return models.tableList
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
@@ -58,7 +61,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             return ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
                 itemBuilder: (context, index) {
-                  return _goodsCard(items[index]);
+                  return _goodsCard(items[index], _counts[index]);
                 },
                 separatorBuilder: (_, __) {
                   return 16.w.heightBox;
@@ -93,7 +96,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
     );
   }
 
-  Widget _goodsCard(ArticleBorrowModel model) {
+  Widget _goodsCard(ArticleBorrowModel model, int index) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -137,16 +140,48 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
               ],
             ),
           ],
-        )
+        ),
+        _counts[index] == 0
+            ? SizedBox()
+            : Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: 40.w,
+                    height: 40.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.w),
+                      color: kPrimaryColor,
+                    ),
+                    child: '${_counts[index]}'
+                        .text
+                        .color(ktextPrimary)
+                        .size(24.sp)
+                        .bold
+                        .make(),
+                  ),
+                ],
+              ).expand()
       ],
     )
         .box
         .color(Colors.white)
+        .height(232.w)
+        .width(686.w)
         .padding(EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w))
         .withRounded(value: 6.w)
         .make()
-        .onInkTap(() {
-      Get.to(() => BorrowGoodsDetailPage());
+        .onInkTap(() async {
+      List<int> ids;
+      await Get.to(() => BorrowGoodsDetailPage(
+            articleId: model.id,
+          )).then((value) {
+        ids = value;
+        _counts[index] = ids.length;
+        _submitIds.addAll(ids);
+        setState(() {});
+      });
     });
   }
 }

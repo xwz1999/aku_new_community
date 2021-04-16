@@ -124,6 +124,10 @@ class R {
   static const String ASSETS_ICONS_ARTICLE_NAME_PNG =
       'assets/icons/article_name.png';
 
+  /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/borrow_status.png)
+  static const String ASSETS_ICONS_BORROW_STATUS_PNG =
+      'assets/icons/borrow_status.png';
+
   /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/comment_notice.png)
   static const String ASSETS_ICONS_COMMENT_NOTICE_PNG =
       'assets/icons/comment_notice.png';

@@ -6,9 +6,12 @@ import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/commo
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:akuCommunity/widget/animated/animated_scale.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:akuCommunity/widget/buttons/radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akuCommunity/const/resource.dart';
@@ -26,6 +29,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   List<ArticleBorrowDetailModel> _models;
   bool _onload = true;
   List<int> _selectItems = [];
+  bool get allSelect => _selectItems.length == _models.length;
   @override
   void initState() {
     super.initState();
@@ -58,7 +62,91 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
                 children: [..._models.map((e) => _goodsCard(e)).toList()],
               ),
       ),
+      bottomNavi: _onload ? _empty() : _bottomButton(),
     );
+  }
+
+  Widget _allSelectButton() {
+    return GestureDetector(
+      onTap: () {
+        if (allSelect) {
+          _selectItems.clear();
+        } else {
+          _selectItems.clear();
+          _models.forEach((element) {
+            _selectItems.add(element.id);
+          });
+        }
+        setState(() {});
+      },
+      child: AnimatedContainer(
+        height: 40.w,
+        width: 40.w,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: allSelect ? kPrimaryColor : Color(0xFF979797),
+            width: 3.w,
+          ),
+          borderRadius: BorderRadius.circular(20.w),
+        ),
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOutCubic,
+        alignment: Alignment.center,
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic,
+          opacity: allSelect ? 1 : 0,
+          child: AnimatedScale(
+            scale: allSelect ? 1 : 0,
+            child: Container(
+              height: 24.w,
+              width: 24.w,
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(12.w),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomButton() {
+    return Row(
+      children: [
+        _allSelectButton(),
+        16.w.widthBox,
+        '全选'.text.color(ktextSubColor).size(24.sp).make(),
+        Spacer(),
+        '已选择 '.richText.color(ktextPrimary).size(24.sp).withTextSpanChildren([
+          '${_selectItems.length}'
+              .textSpan
+              .size(32.sp)
+              .color(ktextPrimary)
+              .make(),
+          ' 项'.textSpan.size(24.sp).color(ktextPrimary).make(),
+        ]).make(),
+        32.w.widthBox,
+        MaterialButton(
+          elevation: 0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(37.w)),
+          color: kPrimaryColor,
+          padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
+          onPressed: () {
+            Get.back(result: _selectItems);
+          },
+          child: '确定'.text.black.size(32.sp).bold.make(),
+        ),
+      ],
+    )
+        .pSymmetric(v: 22.w, h: 32.w)
+        .box
+        .color(Colors.white)
+        .width(double.infinity)
+        .padding(EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom))
+        .make();
   }
 
   Widget _empty() {
@@ -77,11 +165,24 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CommonRadio(
-          size: 32.w,
-          value: model.id,
-          groupValue: _selectItems,
-        ),
+        GestureDetector(
+          onTap: () {
+            if (_selectItems.contains(model.id)) {
+              _selectItems.remove(model.id);
+            } else {
+              _selectItems.add(model.id);
+            }
+            setState(() {});
+          },
+          child: Container(
+            height: 232.w - 48.w,
+            alignment: Alignment.center,
+            child: BeeRadio(
+              value: model.id,
+              groupValues: _selectItems,
+            ),
+          ),
+        ).material(color: Colors.transparent),
         24.w.widthBox,
         SizedBox(
           width: 184.w,
@@ -105,7 +206,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
                   height: 40.w,
                 ),
                 4.w.widthBox,
-                '物品名称:'.text.color(ktextSubColor).size(28.sp).make(),
+                '物品名称：'.text.color(ktextSubColor).size(28.sp).make(),
                 '${model.name}'.text.color(ktextPrimary).size(28.sp).make(),
               ],
             ),
@@ -118,7 +219,20 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
                   height: 40.w,
                 ),
                 4.w.widthBox,
-                '剩余数量:'.text.color(ktextSubColor).size(28.sp).make(),
+                '物品单号：'.text.color(ktextSubColor).size(28.sp).make(),
+                '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+              ],
+            ),
+            12.w.heightBox,
+            Row(
+              children: [
+                Image.asset(
+                  R.ASSETS_ICONS_BORROW_STATUS_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                4.w.widthBox,
+                '出借状态：'.text.color(ktextSubColor).size(28.sp).make(),
                 '${model.borrowStatus}'
                     .text
                     .color(ktextPrimary)
