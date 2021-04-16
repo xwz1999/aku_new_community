@@ -124,9 +124,17 @@ class R {
   static const String ASSETS_ICONS_ARTICLE_NAME_PNG =
       'assets/icons/article_name.png';
 
+  /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/borrow_failure.png)
+  static const String ASSETS_ICONS_BORROW_FAILURE_PNG =
+      'assets/icons/borrow_failure.png';
+
   /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/borrow_status.png)
   static const String ASSETS_ICONS_BORROW_STATUS_PNG =
       'assets/icons/borrow_status.png';
+
+  /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/borrow_success.png)
+  static const String ASSETS_ICONS_BORROW_SUCCESS_PNG =
+      'assets/icons/borrow_success.png';
 
   /// ![preview](file:///Users/zhangmeng/akuCommunity/assets/icons/comment_notice.png)
   static const String ASSETS_ICONS_COMMENT_NOTICE_PNG =

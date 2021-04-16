@@ -2,7 +2,8 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/article_borrow_model.dart';
-import 'package:akuCommunity/pages/goods_manage_page/borrow_goods_detail_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_finsh_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
@@ -94,10 +95,11 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
               BaseModel baseModel = await NetUtil().post(
                   API.manager.articleBorrowGoods,
                   params: {"ids": _submitIds},
-                  showMessage: true);
-              if (baseModel.status) {
-                Get.back();
-              }
+                  showMessage: false);
+              Get.to(BorrowFinshPage(
+                isSuccess: baseModel.status,
+                failText: baseModel.message,
+              ));
             },
             child: '借出'.text.black.size(32.sp).bold.make(),
           ),
