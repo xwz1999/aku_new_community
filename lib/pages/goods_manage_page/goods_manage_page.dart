@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -122,7 +123,9 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             ? () {
                 Get.to(() => BorrowGoodsPage());
               }
-            : () {},
+            : () {
+                Get.to(() => ReturnGoodsDetailPage());
+              },
       ),
     );
   }
