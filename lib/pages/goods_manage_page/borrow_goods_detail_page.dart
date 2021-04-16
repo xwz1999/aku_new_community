@@ -2,8 +2,6 @@ import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/article_borrow_detail_model.dart';
-import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/animated/animated_scale.dart';
@@ -18,7 +16,9 @@ import 'package:akuCommunity/const/resource.dart';
 
 class BorrowGoodsDetailPage extends StatefulWidget {
   final int articleId;
-  BorrowGoodsDetailPage({Key key, this.articleId}) : super(key: key);
+  final List<int> receiveIds;
+  BorrowGoodsDetailPage({Key key, this.articleId, this.receiveIds})
+      : super(key: key);
 
   @override
   _BorrowGoodsDetailPageState createState() => _BorrowGoodsDetailPageState();
@@ -34,6 +34,9 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   void initState() {
     super.initState();
     _easyRefreshController = EasyRefreshController();
+    if (widget.receiveIds != null && widget.receiveIds.isNotEmpty) {
+      _selectItems = widget.receiveIds;
+    }
   }
 
   @override

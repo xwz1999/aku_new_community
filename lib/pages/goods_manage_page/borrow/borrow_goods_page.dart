@@ -21,6 +21,7 @@ class BorrowGoodsPage extends StatefulWidget {
 
 class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   EasyRefreshController _easyRefreshController;
+  List<int> _receiveIds = [];
   List<int> _submitIds = [];
   List<int> _counts = [];
   @override
@@ -52,16 +53,18 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
-            _counts.addAll(List.filled(models.tableList.length, 0));
             return models.tableList
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
           },
           builder: (items) {
+            if (_counts.isEmpty) {
+              _counts = List.filled(items.length, 0);
+            }
             return ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
                 itemBuilder: (context, index) {
-                  return _goodsCard(items[index], _counts[index]);
+                  return _goodsCard(items[index], index);
                 },
                 separatorBuilder: (_, __) {
                   return 16.w.heightBox;
@@ -71,7 +74,11 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
       bottomNavi: Row(
         children: [
           '已选择 '.richText.color(ktextPrimary).size(24.sp).withTextSpanChildren([
-            '0'.textSpan.size(32.sp).color(ktextPrimary).make(),
+            '${_submitIds.length}'
+                .textSpan
+                .size(32.sp)
+                .color(ktextPrimary)
+                .make(),
             ' 项'.textSpan.size(24.sp).color(ktextPrimary).make(),
           ]).make(),
           Spacer(),
@@ -144,7 +151,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
         _counts[index] == 0
             ? SizedBox()
             : Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
                     alignment: Alignment.center,
@@ -173,15 +180,17 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
         .withRounded(value: 6.w)
         .make()
         .onInkTap(() async {
-      List<int> ids;
+      _receiveIds.forEach((element) {
+        _submitIds.remove(element);
+      });
       await Get.to(() => BorrowGoodsDetailPage(
             articleId: model.id,
           )).then((value) {
-        ids = value;
-        _counts[index] = ids.length;
-        _submitIds.addAll(ids);
-        setState(() {});
+        _receiveIds = value;
       });
+      _counts[index] = _receiveIds.length;
+      _submitIds.addAll(_receiveIds);
+      setState(() {});
     });
   }
 }
