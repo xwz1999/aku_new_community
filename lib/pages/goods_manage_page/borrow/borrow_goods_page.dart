@@ -4,6 +4,8 @@ import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/article_borrow_model.dart';
 import 'package:akuCommunity/pages/goods_manage_page/borrow_goods_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
+import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -88,7 +90,15 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
                 borderRadius: BorderRadius.circular(37.w)),
             color: kPrimaryColor,
             padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
-            onPressed: () {},
+            onPressed: () async {
+              BaseModel baseModel = await NetUtil().post(
+                  API.manager.articleBorrowGoods,
+                  params: {"ids": _submitIds},
+                  showMessage: true);
+              if (baseModel.status) {
+                Get.back();
+              }
+            },
             child: '借出'.text.black.size(32.sp).bold.make(),
           ),
         ],
@@ -185,6 +195,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
       });
       await Get.to(() => BorrowGoodsDetailPage(
             articleId: model.id,
+            receiveIds: _receiveIds,
           )).then((value) {
         _receiveIds = value;
       });
