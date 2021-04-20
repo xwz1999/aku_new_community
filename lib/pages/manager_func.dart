@@ -16,18 +16,19 @@ import 'package:akuCommunity/utils/network/net_util.dart';
 class ManagerFunc {
   static insertVisitorInfo(int id, int type, String name, int sex, String tel,
       String carNum, DateTime expectedVisitDate) async {
-    BaseModel baseModel = await NetUtil().post(API.manager.insertVisitorInfo,
-        params: {
-          'buildingUnitEstateId': id,
-          'type': type,
-          'name': name,
-          'sex': sex,
-          'tel': tel,
-          'carNum': carNum,
-          'expectedVisitDate': DateUtil.formatDate(expectedVisitDate,
-              format: "yyyy-MM-dd HH:mm:ss")
-        },
-        showMessage: true);
+    BaseModel baseModel = await NetUtil().post(
+      API.manager.insertVisitorInfo,
+      params: {
+        'buildingUnitEstateId': id,
+        'type': type,
+        'name': name,
+        'sex': sex,
+        'tel': tel,
+        'carNum': carNum,
+        'expectedVisitDate': NetUtil.getDate(expectedVisitDate),
+      },
+      showMessage: true,
+    );
     return baseModel;
   }
 

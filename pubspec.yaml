@@ -40,17 +40,17 @@ dependencies:
   fluwx: ^3.3.0
   get: ^4.0.0-nullsafety.2
   velocity_x: ^2.6.0
-  hive: ^2.0.0
+  hive: ^2.0.3
   hive_flutter: ^1.0.0
   logger: ^1.0.0
-  flutter_easyrefresh: 2.1.8
+  flutter_easyrefresh: ^2.2.1
   random_character:
     git:
       url: http://159.75.73.143:8080/mengfucius/random_character
       ref: null-safety
 
   image_picker: ^0.7.3
-  power_logger: ^1.0.0-nullsafety.1
+  power_logger: ^1.1.1-nullsafety.3
   flutter_rating_bar: ^4.0.0
   jpush_flutter: ^2.0.1
   open_file: ^3.1.0

@@ -252,8 +252,15 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
             return;
           }
           VoidCallback cancel = BotToast.showLoading();
-          await ManagerFunc.insertVisitorInfo(id, type, _userName.text,
-              _selectSex, tel, _userCarNum.text, dateTime);
+          await ManagerFunc.insertVisitorInfo(
+            id,
+            type,
+            _userName.text,
+            _selectSex,
+            tel,
+            _userCarNum.text,
+            dateTime,
+          );
           cancel();
           Get.off(VisitorRecordPage());
         }

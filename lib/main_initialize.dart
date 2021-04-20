@@ -14,8 +14,10 @@ class MainInitialize {
   ///初始化firebase
   static Future initFirebase() async {
     await Firebase.initializeApp();
+    //TODO setCrashlyticsCollectionEnabled state
     FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     FlutterError.onError = (detail) {
+      LoggerData.addData(detail.exception.toString(), tag: 'EXCEPTION');
       FirebaseCrashlytics.instance.recordFlutterError(detail);
     };
   }
@@ -47,7 +49,7 @@ class MainInitialize {
       debug: true,
     );
     String rID = await jpush.getRegistrationID();
-    LoggerData.addData('RegistrationID:$rID');
+    LoggerData.addData(rID, tag: 'RegistrationID');
   }
 
   static initWechat() {
