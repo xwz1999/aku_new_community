@@ -48,9 +48,7 @@ class _SelectBorrowReturnPageState extends State<SelectBorrowReturnPage> {
       ],
     )
         .box
-        .color(Colors.white)
         .padding(EdgeInsets.symmetric(vertical: 40.w, horizontal: 32.w))
-        .withRounded(value: 8.w)
         .make()
         .onInkTap(() {
       Get.to(
@@ -58,6 +56,10 @@ class _SelectBorrowReturnPageState extends State<SelectBorrowReturnPage> {
           isBorrow: isBorrow,
         ),
       );
-    });
+    }).material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(8.w),
+      clipBehavior: Clip.antiAlias,
+    );
   }
 }

@@ -17,8 +17,9 @@ class MainInitialize {
     //TODO setCrashlyticsCollectionEnabled state
     FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     FlutterError.onError = (detail) {
-      LoggerData.addData(detail.exception.toString(), tag: 'EXCEPTION');
+      LoggerData.addData(detail);
       FirebaseCrashlytics.instance.recordFlutterError(detail);
+      FlutterError.presentError(detail);
     };
   }
 

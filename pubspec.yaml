@@ -50,7 +50,7 @@ dependencies:
       ref: null-safety
 
   image_picker: ^0.7.3
-  power_logger: ^1.1.1-nullsafety.3
+  power_logger: ^1.2.0
   flutter_rating_bar: ^4.0.0
   jpush_flutter: ^2.0.1
   open_file: ^3.1.0
