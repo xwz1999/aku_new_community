@@ -72,6 +72,7 @@ dev_dependencies:
     sdk: flutter
   import_sorter: ^4.4.2
   grinder: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
 
 flutter:
   uses-material-design: true
