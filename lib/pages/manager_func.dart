@@ -1,5 +1,6 @@
 // Package imports:
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
@@ -12,8 +13,10 @@ import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:flutter/foundation.dart';
 
 class ManagerFunc {
+  @Deprecated('')
   static insertVisitorInfo(int id, int type, String name, int sex, String tel,
       String carNum, DateTime expectedVisitDate) async {
     BaseModel baseModel = await NetUtil().post(
@@ -30,6 +33,35 @@ class ManagerFunc {
       showMessage: true,
     );
     return baseModel;
+  }
+
+  static Future<String> shareVisitor({
+    @required int estateId,
+    String name,
+    String tel,
+    int sex,
+    String carNumber,
+    DateTime date,
+  }) async {
+    final cancel = BotToast.showLoading();
+    Map<String, dynamic> params = {
+      'estateId': estateId,
+    };
+    if (name != null) params.putIfAbsent('name', () => name);
+    if (tel != null) params.putIfAbsent('tel', () => tel);
+    if (sex != null) params.putIfAbsent('sex', () => sex);
+    if (carNumber != null) params.putIfAbsent('carNumber', () => carNumber);
+    if (date != null)
+      params.putIfAbsent('visitDateStart', () => NetUtil.getDate(date));
+    Response response = await NetUtil().dio.post(
+          API.manager.shareInvite,
+          data: params,
+        );
+    cancel();
+    if (response.data['status'] && response.data['code'] != null) {
+      return response.data['code'];
+    }
+    return null;
   }
 
   static reportRepairInsert(

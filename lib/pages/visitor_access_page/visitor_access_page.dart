@@ -1,3 +1,4 @@
+import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/pages/manager_func.dart';
@@ -17,7 +19,6 @@ import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_divider.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/common_input.dart';
-import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key key}) : super(key: key);
@@ -117,46 +118,45 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     IconData sexIcon,
     int value,
   ) {
-    return InkWell(
-      onTap: () {
+    return MaterialButton(
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      elevation: 0,
+      onPressed: () {
         setState(() {
           _selectSex = value;
         });
       },
-      child: Container(
-        height: 72.w,
-        width: 176.w,
-        padding: EdgeInsets.symmetric(
-          vertical: 13.w,
+      height: 72.w,
+      minWidth: 176.w,
+      padding: EdgeInsets.symmetric(
+        vertical: 13.w,
+      ),
+      color: Color(0xffffffff),
+      shape: StadiumBorder(
+        side: BorderSide(
+          width: 1.w,
+          color: value == _selectSex ? Color(0xffffc40c) : Color(0xff979797),
         ),
-        decoration: BoxDecoration(
-            color: Color(0xffffffff),
-            borderRadius: BorderRadius.all(Radius.circular(36)),
-            border: Border.all(
-                color:
-                    value == _selectSex ? Color(0xffffc40c) : Color(0xff979797),
-                width: 1)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              sexIcon,
-              size: 32.sp,
-              color:
-                  value == _selectSex ? Color(0xff333333) : Color(0xff979797),
-            ),
-            SizedBox(width: 9.w),
-            Text(
-              sex,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30.sp,
-                  color: value == _selectSex
-                      ? Color(0xff333333)
-                      : Color(0xff979797)),
-            ),
-          ],
-        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            sexIcon,
+            size: 32.sp,
+            color: value == _selectSex ? Color(0xff333333) : Color(0xff979797),
+          ),
+          SizedBox(width: 9.w),
+          Text(
+            sex,
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 30.sp,
+                color: value == _selectSex
+                    ? Color(0xff333333)
+                    : Color(0xff979797)),
+          ),
+        ],
       ),
     );
   }
@@ -217,7 +217,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                   Text(
                     dateTime == null
                         ? '请选择到访时间'
-                        : '${dateTime.toString().substring(0, 11)}',
+                        : '${DateUtil.formatDate(dateTime, format: 'yyyy-MM-dd')}',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 34.sp,
@@ -244,26 +244,20 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
     int type,
     String tel,
   ) {
+    final appProvider = Provider.of<AppProvider>(context);
     return MaterialButton(
       onPressed: () async {
-        if (formKey.currentState.validate()) {
-          if (dateTime == null) {
-            BotToast.showText(text: '请选择到访时间');
-            return;
-          }
-          VoidCallback cancel = BotToast.showLoading();
-          await ManagerFunc.insertVisitorInfo(
-            id,
-            type,
-            _userName.text,
-            _selectSex,
-            tel,
-            _userCarNum.text,
-            dateTime,
-          );
-          cancel();
-          Get.off(VisitorRecordPage());
-        }
+        String result = await ManagerFunc.shareVisitor(
+          estateId: appProvider.selectedHouse.estateId,
+          name: _userName.text,
+          sex: _selectSex,
+          carNumber: _userCarNum.text,
+          date: dateTime,
+          tel: tel,
+        );
+        if (result != null)
+          Share.share(
+              'http://test.akuhotel.com:8804/static/dist/index.html#/visitor?$result');
       },
       minWidth: double.infinity,
       height: 96.w,

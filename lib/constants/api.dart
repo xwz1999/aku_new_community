@@ -97,6 +97,8 @@ class _Manager {
   ///访客通行：添加填写的访客信息
   String get insertVisitorInfo => '/user/visitorAccess/insertVisitorInfo';
 
+  String get shareInvite => '/user/visitorInvite/share';
+
   ///访客通行：查询访客记录信息（包含条件搜索）
   String get visitorAccessList => '/user/visitorAccess/list';
 
