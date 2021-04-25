@@ -229,9 +229,11 @@ class _HouseCard extends StatelessWidget {
             ),
           ],
         ),
-        onPressed: () {
+        onPressed: () async {
           final appProvider = Provider.of<AppProvider>(context, listen: false);
           appProvider.setCurrentHouse(model);
+          //我的房屋：修改选中的房产审核id
+          await NetUtil().get(API.user.changeSelectExanmineId,params: {"examineId":model.estateId});
           Get.back();
         },
       ),

@@ -1,3 +1,5 @@
+import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,8 @@ import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:akuCommunity/widget/buttons/bottom_button.dart';
 
 class GoodsManagePage extends StatefulWidget {
-  GoodsManagePage({Key key}) : super(key: key);
+  final bool isBorrow;
+  GoodsManagePage({Key key, this.isBorrow = true}) : super(key: key);
 
   @override
   _GoodsManagePageState createState() => _GoodsManagePageState();
@@ -115,8 +118,14 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 itemCount: items.length);
           }),
       bottomNavi: BottomButton(
-        child: '扫一扫出借'.text.black.size(32.sp).bold.make(),
-        onPressed: () {},
+        child: '扫一扫'.text.black.size(32.sp).bold.make(),
+        onPressed: widget.isBorrow
+            ? () {
+                Get.to(() => BorrowGoodsPage());
+              }
+            : () {
+                Get.to(() => ReturnGoodsDetailPage());
+              },
       ),
     );
   }

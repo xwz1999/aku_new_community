@@ -266,22 +266,29 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               ),
       ),
       bottomNavi: BottomButton(
-          onPressed: () async {
-            if (_selectId == null) {
-              BotToast.showText(text: '请先选择候选人！');
-            } else {
-              BaseModel baseModel =
-                  await ManagerFunc.vote(widget.id, _selectId);
-              if (baseModel.status) {
-                await Get.dialog(_shouwVoteDialog());
-                _hasVoted = true;
-                setState(() {});
-              } else {
-                BotToast.showText(text: '${baseModel.message}');
-              }
-            }
-          },
-          child: '投票'.text.black.size(28.sp).bold.make()),
+          onPressed: _model.status != 2
+              ? () {}
+              : () async {
+                  if (_selectId == null) {
+                    BotToast.showText(text: '请先选择候选人！');
+                  } else {
+                    BaseModel baseModel =
+                        await ManagerFunc.vote(widget.id, _selectId);
+                    if (baseModel.status) {
+                      await Get.dialog(_shouwVoteDialog());
+                      _hasVoted = true;
+                      setState(() {});
+                    } else {
+                      BotToast.showText(text: '${baseModel.message}');
+                    }
+                  }
+                },
+          child: '投票'
+              .text
+              .color(_model.status != 2 ? ktextSubColor : ktextPrimary)
+              .size(28.sp)
+              .bold
+              .make()),
     );
   }
 }

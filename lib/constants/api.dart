@@ -77,6 +77,9 @@ class _User {
   ///我的房屋：假删除审核信息
   String get deleteHouse => '/user/myHouse/falseDelete';
 
+  ///我的房屋：修改选中的房产审核id
+  String get changeSelectExanmineId => '/user/myHouse/changeSelectExamineId';
+
   ///我的车位：查询所有的车位信息
   String get carParkingList => '/user/myParkingSpace/list';
 
@@ -161,6 +164,18 @@ class _Manager {
 
   ///借还管理：报损
   String get fromLoss => '/user/articleBorrow/frmLoss';
+
+  ///借还管理：根据物品总类主键id查询未借出的物品明细(出借状态恒为未出借)【借取页面】
+  String get articleBorrowFindDetail => '/user/articleBorrow/findDetailById';
+
+  ///借还管理：借取物品
+  String get articleBorrowGoods => '/user/articleBorrow/borrow';
+
+  ///借还管理：归还物品
+  String get articleReturnGoods => '/user/articleBorrow/articleReturn';
+
+  ///借还管理：根据用户主键id查询需要归还物品信息（归还界面）
+  String get articleReturnList => '/articleBorrow/findBorrowByUserId';
 
   ///生活缴费：查询生活缴费信息list
   String get dailyPaymentList => '/user/dailyPayment/list';
