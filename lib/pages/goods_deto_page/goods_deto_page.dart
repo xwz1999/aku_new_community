@@ -65,9 +65,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
-      systemStyle: _isEdit
-          ? SystemStyle.genStyle(bottom: Color(0xFFFFD000).withOpacity(0.2))
-          : SystemStyle.yellowBottomBar,
+      systemStyle: SystemStyle.yellowBottomBar,
       title: '物品出户',
       actions: [
         IconButton(

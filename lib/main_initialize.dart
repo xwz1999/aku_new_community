@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,10 +16,10 @@ class MainInitialize {
   static Future initFirebase() async {
     await Firebase.initializeApp();
     //TODO setCrashlyticsCollectionEnabled state
-    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
     FlutterError.onError = (detail) {
       LoggerData.addData(detail);
-      FirebaseCrashlytics.instance.recordFlutterError(detail);
+      if (kReleaseMode) FirebaseCrashlytics.instance.recordFlutterError(detail);
       FlutterError.presentError(detail);
     };
   }

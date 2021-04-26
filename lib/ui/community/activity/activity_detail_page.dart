@@ -1,3 +1,4 @@
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -78,6 +79,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '活动详情',
+      systemStyle: SystemStyle.yellowBottomBar,
       body: EasyRefresh(
         header: MaterialHeader(),
         onRefresh: () async {

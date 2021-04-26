@@ -1,5 +1,6 @@
 // Dart imports:
 
+import 'package:akuCommunity/ui/community/public_infomation_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -109,6 +110,11 @@ class _HomePageState extends State<HomePage>
               child: Column(
                 children: [
                   HomeNotification(items: _boardItemModels),
+                  HomeTitle(
+                    title: '公共资讯',
+                    suffixTitle: '更多资讯',
+                    onTap: () => Get.to(() => PublicInfomationPage()),
+                  ),
                   HomeTitle(
                     title: '社区活动',
                     suffixTitle: '更多活动',

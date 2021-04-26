@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -404,6 +405,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
+      systemStyle: SystemStyle.yellowBottomBar,
       title: '物品出户',
       body: ListView(
         padding: EdgeInsets.all(32.w),
