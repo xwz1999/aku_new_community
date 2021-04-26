@@ -1,4 +1,5 @@
 import 'package:akuCommunity/pages/goods_manage_page/select_borrow_return_page.dart';
+import 'package:akuCommunity/ui/community/facility/pick_facility_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:akuCommunity/const/resource.dart';
@@ -72,6 +73,7 @@ List<AO> appObjects = [
   // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
+  AO('设施预约', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () => PickFacilityPage()),
 ];
 
 List<AO> userAppObjects = [
@@ -120,6 +122,7 @@ List<String> _smartManagerApp = [
   // '装修管理',
   '借还管理',
   '一键报警',
+  '设施预约',
 ];
 
 ///智慧管家

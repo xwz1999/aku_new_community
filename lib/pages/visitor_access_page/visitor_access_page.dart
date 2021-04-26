@@ -2,7 +2,6 @@ import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -265,7 +264,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
       color: Color(0xffffc40c),
       elevation: 0,
       child: Text(
-        '生成通行证',
+        '分享',
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 32.sp,
