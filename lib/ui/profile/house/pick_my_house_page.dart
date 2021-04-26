@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/user/house_model.dart';
 import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
@@ -233,7 +233,8 @@ class _HouseCard extends StatelessWidget {
           final appProvider = Provider.of<AppProvider>(context, listen: false);
           appProvider.setCurrentHouse(model);
           //我的房屋：修改选中的房产审核id
-          await NetUtil().get(API.user.changeSelectExanmineId,params: {"examineId":model.estateId});
+          await NetUtil().get(API.user.changeSelectExanmineId,
+              params: {"examineId": model.estateId});
           Get.back();
         },
       ),

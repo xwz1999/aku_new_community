@@ -1,4 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:akuCommunity/base/base_style.dart';
+import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/article_borrow_model.dart';
@@ -8,12 +16,6 @@ import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:akuCommunity/const/resource.dart';
 
 class BorrowGoodsPage extends StatefulWidget {
   BorrowGoodsPage({Key key}) : super(key: key);

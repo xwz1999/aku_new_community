@@ -1,5 +1,3 @@
-import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_page.dart';
-import 'package:akuCommunity/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +9,9 @@ import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
 import 'package:akuCommunity/model/common/img_model.dart';
 import 'package:akuCommunity/model/manager/article_borrow_model.dart';
+import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_page.dart';
 import 'package:akuCommunity/pages/goods_manage_page/mine_goods_page/mine_goods_page.dart';
+import 'package:akuCommunity/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/utils/headers.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';

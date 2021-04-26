@@ -293,7 +293,7 @@ class _LifePayPageState extends State<LifePayPage> {
                     if (!_selectYears.contains(i)) {
                       _selectYears.add(i);
                     }
-                  }  
+                  }
                   _totalCost = 0;
                   _count = 0;
                   for (var item in _selectPay) {

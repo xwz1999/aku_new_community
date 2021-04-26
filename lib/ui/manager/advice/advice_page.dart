@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_card.dart';

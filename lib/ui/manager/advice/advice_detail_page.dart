@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
@@ -10,6 +9,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/manager/advice_detail_model.dart';
 import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
 import 'package:akuCommunity/ui/manager/advice/advice_add_comment_page.dart';

@@ -1,12 +1,14 @@
-import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/extensions/widget_list_ext.dart';
+import 'package:akuCommunity/pages/goods_manage_page/goods_manage_page.dart';
+import 'package:akuCommunity/widget/bee_scaffold.dart';
 
 class SelectBorrowReturnPage extends StatefulWidget {
   SelectBorrowReturnPage({Key key}) : super(key: key);

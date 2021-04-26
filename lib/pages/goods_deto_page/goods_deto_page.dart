@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/manager/goods_out_model.dart';
 import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';

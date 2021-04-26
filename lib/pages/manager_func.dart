@@ -1,5 +1,7 @@
 // Package imports:
 
+import 'package:flutter/foundation.dart';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -13,7 +15,6 @@ import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
 import 'package:akuCommunity/model/manager/voting_detail_model.dart';
 import 'package:akuCommunity/utils/network/base_model.dart';
 import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:flutter/foundation.dart';
 
 class ManagerFunc {
   @Deprecated('')

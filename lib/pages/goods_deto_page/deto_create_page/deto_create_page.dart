@@ -2,7 +2,6 @@
 
 import 'dart:io';
 
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/pages/goods_deto_page/select_move_company_page.dart';
 import 'package:akuCommunity/pages/manager_func.dart';
 import 'package:akuCommunity/provider/app_provider.dart';

@@ -1,6 +1,5 @@
 // Dart imports:
 
-import 'package:akuCommunity/ui/community/public_infomation_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +19,7 @@ import 'package:akuCommunity/provider/app_provider.dart';
 import 'package:akuCommunity/ui/community/activity/activity_card.dart';
 import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
 import 'package:akuCommunity/ui/community/community_func.dart';
+import 'package:akuCommunity/ui/community/public_infomation_page.dart';
 import 'package:akuCommunity/ui/home/home_notification.dart';
 import 'package:akuCommunity/ui/home/home_title.dart';
 import 'package:akuCommunity/utils/headers.dart';

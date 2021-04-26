@@ -1,4 +1,3 @@
-import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:akuCommunity/const/resource.dart';
 import 'package:akuCommunity/constants/api.dart';
+import 'package:akuCommunity/constants/app_theme.dart';
 import 'package:akuCommunity/model/community/activity_detail_model.dart';
 import 'package:akuCommunity/ui/community/activity/activity_people_list_page.dart';
 import 'package:akuCommunity/utils/headers.dart';
