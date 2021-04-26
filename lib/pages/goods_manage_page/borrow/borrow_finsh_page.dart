@@ -6,7 +6,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:akuCommunity/base/base_style.dart';
 import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/home/home_page.dart';
 import 'package:akuCommunity/pages/tab_navigator.dart';
 import 'package:akuCommunity/widget/bee_scaffold.dart';
 
