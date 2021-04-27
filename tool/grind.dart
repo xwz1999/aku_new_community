@@ -6,8 +6,8 @@ main(args) => grind(args);
 test() => new TestRunner().testAsync();
 
 @DefaultTask()
-buildApk() {
-  runAsync(
+buildApk() async {
+  await runAsync(
     'flutter',
     arguments: [
       'build',
