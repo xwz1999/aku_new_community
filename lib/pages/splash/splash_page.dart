@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -32,7 +35,9 @@ class _SplashPageState extends State<SplashPage> {
 
     //初始化AMap
     // await AmapLocation.instance.init(iosKey: 'ios key');
-    await Permission.locationWhenInUse.request();
+    if (!kIsWeb && !Platform.isMacOS) {
+      await Permission.locationWhenInUse.request();
+    }
   }
 
   Future _initOp() async {

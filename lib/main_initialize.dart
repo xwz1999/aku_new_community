@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,11 +17,16 @@ class MainInitialize {
   ///初始化firebase
   static Future initFirebase() async {
     await Firebase.initializeApp();
-    //TODO setCrashlyticsCollectionEnabled state
-    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
+    // web MacOS Platform not support firebase
+    if (!kIsWeb && !Platform.isMacOS) {
+      FirebaseCrashlytics.instance
+          .setCrashlyticsCollectionEnabled(kReleaseMode);
+    }
     FlutterError.onError = (detail) {
       LoggerData.addData(detail);
-      if (kReleaseMode) FirebaseCrashlytics.instance.recordFlutterError(detail);
+      if (kReleaseMode && !kIsWeb && !Platform.isMacOS) {
+        FirebaseCrashlytics.instance.recordFlutterError(detail);
+      }
       FlutterError.presentError(detail);
     };
   }
@@ -29,6 +36,7 @@ class MainInitialize {
   }
 
   static Future initJPush() async {
+    if (kIsWeb || Platform.isMacOS) return;
     JPush jpush = new JPush();
     Function(Map<String, dynamic> message) jPushLogger(String type) {
       return (Map<String, dynamic> message) async {
@@ -55,6 +63,7 @@ class MainInitialize {
   }
 
   static initWechat() {
+    if (kIsWeb || Platform.isMacOS) return;
     registerWxApi(appId: AppConfig.wechatAppId);
   }
 }
