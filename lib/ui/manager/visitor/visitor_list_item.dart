@@ -5,9 +5,9 @@ import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/model/manager/visitor_list_item_model.dart';
-import 'package:akuCommunity/ui/manager/visitor/visitor_passport_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/model/manager/visitor_list_item_model.dart';
+import 'package:aku_community/ui/manager/visitor/visitor_passport_page.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;

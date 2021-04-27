@@ -1,4 +1,4 @@
-import 'package:akuCommunity/model/common/img_model.dart';
+import 'package:aku_community/model/common/img_model.dart';
 
 class ArticleReturnModel {
   int id;
@@ -23,7 +23,7 @@ class ArticleReturnModel {
     beginDate = json['beginDate'];
     borrowTime = json['borrowTime'];
     if (json['imgList'] != null) {
-      imgList = new List<ImgModel>();
+      imgList = [];
       json['imgList'].forEach((v) {
         imgList.add(new ImgModel.fromJson(v));
       });

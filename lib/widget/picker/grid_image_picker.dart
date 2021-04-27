@@ -7,9 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/painters/plus_painter.dart';
-import 'package:akuCommunity/widget/picker/bee_image_picker.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/painters/plus_painter.dart';
+import 'package:aku_community/widget/picker/bee_image_picker.dart';
+import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 ///网格图片选择
 ///

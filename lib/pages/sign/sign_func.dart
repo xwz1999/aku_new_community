@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/user/pick_building_model.dart';
-import 'package:akuCommunity/model/user/user_detail_model.dart';
-import 'package:akuCommunity/model/user/user_info_model.dart';
-import 'package:akuCommunity/provider/sign_up_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/user/pick_building_model.dart';
+import 'package:aku_community/model/user/user_detail_model.dart';
+import 'package:aku_community/model/user/user_info_model.dart';
+import 'package:aku_community/provider/sign_up_provider.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 
 class SignFunc {
   static Future sendMessageCode(String phone) async {

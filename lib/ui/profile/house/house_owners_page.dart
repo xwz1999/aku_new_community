@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
-import 'package:akuCommunity/ui/profile/house/house_card.dart';
-import 'package:akuCommunity/ui/profile/house/house_func.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_community/ui/profile/house/house_card.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class HouseOwnersPage extends StatefulWidget {
   HouseOwnersPage({Key key}) : super(key: key);

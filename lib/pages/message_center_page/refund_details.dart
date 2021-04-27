@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class RefundDetails extends StatelessWidget {
   final double statusHeight;

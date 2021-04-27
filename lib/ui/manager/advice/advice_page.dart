@@ -5,19 +5,19 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_card.dart';
-import 'package:akuCommunity/ui/manager/advice/new_advice_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/animated/animated_transition.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/buttons/radio_button.dart';
-import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/manager/advice/advice_card.dart';
+import 'package:aku_community/ui/manager/advice/new_advice_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/animated/animated_transition.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/buttons/radio_button.dart';
+import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 enum AdviceType {
   SUGGESTION,

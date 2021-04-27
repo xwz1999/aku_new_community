@@ -7,17 +7,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/model/manager/fixed_detail_model.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/pages/things_page/widget/fixed_evaluate_page.dart';
-import 'package:akuCommunity/utils/bee_map.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/model/manager/fixed_detail_model.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/pages/things_page/widget/fixed_evaluate_page.dart';
+import 'package:aku_community/utils/bee_map.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;

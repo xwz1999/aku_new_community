@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 
 class SendAChat extends StatefulWidget {
   final FocusNode node;

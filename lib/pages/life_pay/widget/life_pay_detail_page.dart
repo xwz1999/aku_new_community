@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/life_pay_model.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/model/manager/life_pay_model.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/bee_parse.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayDetailPage extends StatefulWidget {
   final LifePayModel model;

@@ -5,11 +5,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_detail_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
+import 'package:aku_community/ui/manager/advice/advice_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class AdviceCard extends StatefulWidget {
   final SuggestionOrComplainModel model;

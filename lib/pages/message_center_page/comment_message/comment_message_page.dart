@@ -6,15 +6,15 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/message/comment_message_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/utils/bee_date_util.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/message/comment_message_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/utils/bee_date_util.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key key}) : super(key: key);

@@ -5,13 +5,13 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/pages/message_center_page/comment_message/comment_message_page.dart';
-import 'package:akuCommunity/pages/message_center_page/system_message/system_message_page.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/pages/message_center_page/comment_message/comment_message_page.dart';
+import 'package:aku_community/pages/message_center_page/system_message/system_message_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key key}) : super(key: key);

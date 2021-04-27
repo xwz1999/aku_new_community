@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/widget/picker/bee_custom_picker.dart';
+import 'package:aku_community/widget/picker/bee_custom_picker.dart';
 
 class BeeDatePicker {
   static Future<DateTime> pick(

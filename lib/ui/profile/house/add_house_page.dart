@@ -6,14 +6,14 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/ui/profile/house/house_item.dart';
-import 'package:akuCommunity/ui/profile/house/pick_building_page.dart';
-import 'package:akuCommunity/ui/profile/house/pick_role_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/ui/profile/house/house_item.dart';
+import 'package:aku_community/ui/profile/house/pick_building_page.dart';
+import 'package:aku_community/ui/profile/house/pick_role_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AddHousePage extends StatefulWidget {
   AddHousePage({Key key}) : super(key: key);

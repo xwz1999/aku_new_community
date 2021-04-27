@@ -3,10 +3,10 @@ import 'package:flutter/rendering.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class HorizontalImageView extends StatelessWidget {
   final List<String> urls;

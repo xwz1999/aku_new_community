@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:akuCommunity/constants/api.dart';
+import 'package:aku_community/constants/api.dart';
 
 class BeeDownloadView extends StatefulWidget {
   final String file;

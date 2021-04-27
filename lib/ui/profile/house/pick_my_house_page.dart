@@ -7,15 +7,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/model/user/house_model.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
-import 'package:akuCommunity/ui/profile/house/house_func.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/model/user/house_model.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickMyHousePage extends StatefulWidget {
   PickMyHousePage({Key key}) : super(key: key);

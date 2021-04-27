@@ -4,13 +4,13 @@ import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_detail_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/board_model.dart';
+import 'package:aku_community/ui/community/notice/notice_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class NoticeCard extends StatelessWidget {
   final BoardItemModel model;

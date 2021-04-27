@@ -8,8 +8,8 @@ import 'package:fluwx/fluwx.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:power_logger/power_logger.dart';
 
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/constants/config.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/constants/config.dart';
 
 class MainInitialize {
   ///初始化firebase

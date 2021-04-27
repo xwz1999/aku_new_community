@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/activity_item_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/community/activity/activity_card.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/community/activity_item_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/community/activity/activity_card.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ActivityListPage extends StatefulWidget {
   ActivityListPage({Key key}) : super(key: key);

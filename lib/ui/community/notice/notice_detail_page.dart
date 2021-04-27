@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/board_detail_model.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
-import 'package:akuCommunity/widget/views/%20bee_download_view.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/community/board_detail_model.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/widget/views/%20bee_download_view.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int id;

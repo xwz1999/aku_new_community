@@ -7,12 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:random_character/chinese_character/random_chinese_charater.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/pages/sign/sign_up/sign_up_common_widget.dart';
-import 'package:akuCommunity/pages/tab_navigator.dart';
-import 'package:akuCommunity/provider/sign_up_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/pages/sign/sign_func.dart';
+import 'package:aku_community/pages/sign/sign_up/sign_up_common_widget.dart';
+import 'package:aku_community/pages/tab_navigator.dart';
+import 'package:aku_community/provider/sign_up_provider.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
   SignUpSetNicknamePage({Key key}) : super(key: key);

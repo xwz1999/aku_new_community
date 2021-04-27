@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/search/bee_search.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/login_util.dart';
-import 'package:akuCommunity/widget/bee_back_button.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/search/bee_search.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/login_util.dart';
+import 'package:aku_community/widget/bee_back_button.dart';
 
 class AllApplicationPage extends StatefulWidget {
   AllApplicationPage({Key key}) : super(key: key);

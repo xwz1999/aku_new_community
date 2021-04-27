@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ManageCarParkingPage extends StatefulWidget {
   ManageCarParkingPage({Key key}) : super(key: key);

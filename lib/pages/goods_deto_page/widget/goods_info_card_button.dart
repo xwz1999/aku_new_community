@@ -6,10 +6,10 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
-import 'package:akuCommunity/pages/goods_deto_page/deto_code_page/deto_code_page.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/model/manager/article_QR_code_model.dart';
+import 'package:aku_community/pages/goods_deto_page/deto_code_page/deto_code_page.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
   final String tel;

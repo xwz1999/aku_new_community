@@ -1,4 +1,4 @@
-import 'package:akuCommunity/model/common/img_model.dart';
+import 'package:aku_community/model/common/img_model.dart';
 
 class FixedDetailModel {
   AppReportRepairVo appReportRepairVo;

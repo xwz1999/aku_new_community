@@ -6,17 +6,17 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/extensions/widget_list_ext.dart';
-import 'package:akuCommunity/pages/setting_page/about_page/about_page.dart';
-import 'package:akuCommunity/pages/setting_page/account_manager_page.dart';
-import 'package:akuCommunity/pages/setting_page/agreement_page/agreement_page.dart';
-import 'package:akuCommunity/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:akuCommunity/pages/setting_page/feedback_page/feedback_page.dart';
-import 'package:akuCommunity/pages/tab_navigator.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/extensions/num_ext.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
+import 'package:aku_community/pages/setting_page/about_page/about_page.dart';
+import 'package:aku_community/pages/setting_page/account_manager_page.dart';
+import 'package:aku_community/pages/setting_page/agreement_page/agreement_page.dart';
+import 'package:aku_community/pages/setting_page/agreement_page/privacy_page.dart';
+import 'package:aku_community/pages/setting_page/feedback_page/feedback_page.dart';
+import 'package:aku_community/pages/tab_navigator.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key key}) : super(key: key);

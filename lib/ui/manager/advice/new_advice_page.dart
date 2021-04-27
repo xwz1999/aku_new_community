@@ -10,17 +10,17 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/picker/grid_image_picker.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;

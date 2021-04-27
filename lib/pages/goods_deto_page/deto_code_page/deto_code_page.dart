@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:akuCommunity/model/manager/article_QR_code_model.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/dotted_line.dart';
+import 'package:aku_community/model/manager/article_QR_code_model.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/dotted_line.dart';
 
 class DetoCodePage extends StatelessWidget {
   final int id;

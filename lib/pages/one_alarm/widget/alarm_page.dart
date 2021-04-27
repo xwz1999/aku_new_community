@@ -10,10 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/pages/one_alarm/alarm_detail_page.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/pages/one_alarm/alarm_detail_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PermissionUtil {
   static Future<bool> getLocationPermission() async {

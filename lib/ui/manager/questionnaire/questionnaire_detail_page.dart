@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
-import 'package:akuCommunity/model/manager/quetionnaire_submit_model.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_siglecheck.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_truefalse.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/questionnarie_raido_check.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/submit_complish_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
+import 'package:aku_community/model/manager/quetionnaire_submit_model.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/ui/manager/questionnaire/questionnaire_siglecheck.dart';
+import 'package:aku_community/ui/manager/questionnaire/questionnaire_truefalse.dart';
+import 'package:aku_community/ui/manager/questionnaire/questionnarie_raido_check.dart';
+import 'package:aku_community/ui/manager/questionnaire/submit_complish_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int id;

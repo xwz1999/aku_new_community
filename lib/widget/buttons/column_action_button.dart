@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class ColumnActionButton extends StatelessWidget {
   final VoidCallback onPressed;

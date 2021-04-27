@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/login_util.dart';
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/login_util.dart';
 
 class ApplicationView extends StatefulWidget {
   final List<AO> items;

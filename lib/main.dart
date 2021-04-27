@@ -7,14 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/main_initialize.dart';
-import 'package:akuCommunity/pages/splash/splash_page.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/sign_up_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/developer_util.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/main_initialize.dart';
+import 'package:aku_community/pages/splash/splash_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/provider/sign_up_provider.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/developer_util.dart';
+import 'package:aku_community/utils/headers.dart';
 
 void main() async {
   DeveloperUtil.setDev(true);

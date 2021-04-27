@@ -1,6 +1,6 @@
 import 'package:flustars/flustars.dart';
 
-import 'package:akuCommunity/model/common/img_model.dart';
+import 'package:aku_community/model/common/img_model.dart';
 
 class SuggestionOrComplainModel {
   int id;

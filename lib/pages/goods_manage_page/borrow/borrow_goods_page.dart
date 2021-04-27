@@ -5,17 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/manager/article_borrow_model.dart';
-import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_finsh_page.dart';
-import 'package:akuCommunity/pages/goods_manage_page/borrow/borrow_goods_detail_page.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/manager/article_borrow_model.dart';
+import 'package:aku_community/pages/goods_manage_page/borrow/borrow_finsh_page.dart';
+import 'package:aku_community/pages/goods_manage_page/borrow/borrow_goods_detail_page.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class BorrowGoodsPage extends StatefulWidget {
   BorrowGoodsPage({Key key}) : super(key: key);

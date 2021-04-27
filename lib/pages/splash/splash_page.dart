@@ -8,12 +8,12 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/tab_navigator.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/developer_util.dart';
-import 'package:akuCommunity/utils/hive_store.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/tab_navigator.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/developer_util.dart';
+import 'package:aku_community/utils/hive_store.dart';
 
 //TODO splashPage
 class SplashPage extends StatefulWidget {

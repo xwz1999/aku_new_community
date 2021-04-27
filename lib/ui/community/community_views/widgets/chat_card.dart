@@ -8,18 +8,18 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/community/event_item_model.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/ui/community/community_views/event_detail_page.dart';
-import 'package:akuCommunity/ui/community/community_views/widgets/send_a_chat.dart';
-import 'package:akuCommunity/utils/bee_date_util.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/login_util.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/picker/bee_image_preview.dart';
-import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/event_item_model.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/community/community_views/event_detail_page.dart';
+import 'package:aku_community/ui/community/community_views/widgets/send_a_chat.dart';
+import 'package:aku_community/utils/bee_date_util.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/login_util.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class ChatCard extends StatefulWidget {
   final EventItemModel model;

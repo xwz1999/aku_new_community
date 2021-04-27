@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/pages/convenient_phone/convenient_phone_page.dart';
-import 'package:akuCommunity/pages/event_activity/event_voting_page.dart';
-import 'package:akuCommunity/pages/goods_deto_page/goods_deto_page.dart';
-import 'package:akuCommunity/pages/goods_manage_page/select_borrow_return_page.dart';
-import 'package:akuCommunity/pages/industry_committee/industry_committee_page.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_page.dart';
-import 'package:akuCommunity/pages/one_alarm/widget/alarm_page.dart';
-import 'package:akuCommunity/pages/opening_code_page/opening_code_page.dart';
-import 'package:akuCommunity/pages/setting_page/settings_page.dart';
-import 'package:akuCommunity/pages/things_page/fixed_submit_page.dart';
-import 'package:akuCommunity/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:akuCommunity/ui/community/activity/activity_list_page.dart';
-import 'package:akuCommunity/ui/community/facility/pick_facility_page.dart';
-import 'package:akuCommunity/ui/home/application/all_application.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_page.dart';
-import 'package:akuCommunity/ui/manager/questionnaire/questionnaire_page.dart';
-import 'package:akuCommunity/ui/profile/car/car_manage_page.dart';
-import 'package:akuCommunity/ui/profile/car_parking/car_parking_page.dart';
-import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:aku_community/pages/event_activity/event_voting_page.dart';
+import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
+import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
+import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
+import 'package:aku_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
+import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
+import 'package:aku_community/pages/setting_page/settings_page.dart';
+import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
+import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:aku_community/ui/community/activity/activity_list_page.dart';
+import 'package:aku_community/ui/community/facility/pick_facility_page.dart';
+import 'package:aku_community/ui/home/application/all_application.dart';
+import 'package:aku_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_community/ui/manager/questionnaire/questionnaire_page.dart';
+import 'package:aku_community/ui/profile/car/car_manage_page.dart';
+import 'package:aku_community/ui/profile/car_parking/car_parking_page.dart';
+import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 
 ///应用对象
 ///Application Object

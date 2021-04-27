@@ -7,21 +7,21 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/extensions/num_ext.dart';
-import 'package:akuCommunity/model/user/fixed_submit_model.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/pages/things_page/widget/add_fixed_submit_page.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/pages/things_page/widget/fixed_check_box.dart';
-import 'package:akuCommunity/pages/things_page/widget/fixed_detail_page.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/bee_map.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/views/horizontal_image_view.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/extensions/num_ext.dart';
+import 'package:aku_community/model/user/fixed_submit_model.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/pages/things_page/widget/add_fixed_submit_page.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/pages/things_page/widget/fixed_check_box.dart';
+import 'package:aku_community/pages/things_page/widget/fixed_detail_page.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/bee_map.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class FixedSubmitPage extends StatefulWidget {
   FixedSubmitPage({Key key}) : super(key: key);

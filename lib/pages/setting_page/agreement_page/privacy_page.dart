@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PrivacyPage extends StatefulWidget {
   PrivacyPage({Key key}) : super(key: key);

@@ -5,14 +5,14 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/model/manager/moving_company_model.dart';
-import 'package:akuCommunity/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/model/manager/moving_company_model.dart';
+import 'package:aku_community/pages/goods_deto_page/deto_create_page/widget/common_radio.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class SelectMoveCompanyPage extends StatefulWidget {
   SelectMoveCompanyPage({Key key}) : super(key: key);

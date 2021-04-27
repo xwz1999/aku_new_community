@@ -8,16 +8,16 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/pages/manager_func.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/ui/manager/visitor/visitor_record_page.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/common_input.dart';
-import 'package:akuCommunity/widget/picker/bee_date_picker.dart';
+import 'package:aku_community/pages/manager_func.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/manager/visitor/visitor_record_page.dart';
+import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/common_input.dart';
+import 'package:aku_community/widget/picker/bee_date_picker.dart';
 
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key key}) : super(key: key);

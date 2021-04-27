@@ -7,12 +7,12 @@ import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/network/base_file_model.dart';
-import 'package:akuCommunity/utils/network/base_list_model.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/network/base_file_model.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/utils/network/base_model.dart';
 
 class NetUtil {
   Dio _dio;

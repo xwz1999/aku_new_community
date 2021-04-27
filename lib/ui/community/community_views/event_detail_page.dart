@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/event_item_model.dart';
-import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/community/event_item_model.dart';
+import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class EventDetailPage extends StatefulWidget {
   final int themeId;

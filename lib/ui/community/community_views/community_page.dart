@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/pages/message_center_page/message_center_page.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
-import 'package:akuCommunity/ui/community/community_views/my_community_view.dart';
-import 'package:akuCommunity/ui/community/community_views/new_community_view.dart';
-import 'package:akuCommunity/ui/community/community_views/topic/topic_community_view.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/login_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/column_action_button.dart';
-import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
+import 'package:aku_community/pages/message_center_page/message_center_page.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/community/community_views/add_new_event_page.dart';
+import 'package:aku_community/ui/community/community_views/my_community_view.dart';
+import 'package:aku_community/ui/community/community_views/new_community_view.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_community_view.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/login_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/column_action_button.dart';
+import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key key}) : super(key: key);

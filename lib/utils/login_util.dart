@@ -2,11 +2,11 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/ui/profile/house/add_house_page.dart';
-import 'package:akuCommunity/ui/profile/house/house_owners_page.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 
 /// | 名称 | 函数 |
 /// |-----|------|

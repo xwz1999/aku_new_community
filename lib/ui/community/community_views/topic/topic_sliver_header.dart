@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_back_button.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_back_button.dart';
 
 class TopicSliverHeader extends SliverPersistentHeaderDelegate {
   final String imgPath;

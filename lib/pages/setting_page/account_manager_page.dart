@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AccountManagerPage extends StatefulWidget {
   AccountManagerPage({Key key}) : super(key: key);

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:akuCommunity/utils/network/base_list_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 
 /// ## BeeListView
 ///```dart

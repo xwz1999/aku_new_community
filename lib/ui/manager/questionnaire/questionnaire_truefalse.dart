@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/buttons/bee_single_check.dart';
 
 class QuestionnaireTruefalse extends StatefulWidget {
   final String title;

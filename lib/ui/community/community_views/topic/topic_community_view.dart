@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/community/community_topic_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/community/community_views/topic/topic_detail_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/community_topic_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class TopicCommunityView extends StatefulWidget {
   TopicCommunityView({Key key}) : super(key: key);

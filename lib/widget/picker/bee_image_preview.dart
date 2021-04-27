@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
 
 class BeeImagePreview extends StatefulWidget {
   static Future<T> toFile<T>({@required File file, String tag}) async {

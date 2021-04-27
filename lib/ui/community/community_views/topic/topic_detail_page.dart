@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/community/community_topic_model.dart';
-import 'package:akuCommunity/model/community/event_item_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/community/community_views/add_new_event_page.dart';
-import 'package:akuCommunity/ui/community/community_views/topic/topic_sliver_header.dart';
-import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
-import 'package:akuCommunity/utils/login_util.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/community_topic_model.dart';
+import 'package:aku_community/model/community/event_item_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/community/community_views/add_new_event_page.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_sliver_header.dart';
+import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_community/utils/login_util.dart';
 
 class TopicDetailPage extends StatefulWidget {
   final CommunityTopicModel model;

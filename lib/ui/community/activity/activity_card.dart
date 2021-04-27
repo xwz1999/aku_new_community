@@ -4,13 +4,13 @@ import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/common/img_model.dart';
-import 'package:akuCommunity/model/community/activity_item_model.dart';
-import 'package:akuCommunity/ui/community/activity/activity_detail_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/others/stack_avatar.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/activity_item_model.dart';
+import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/others/stack_avatar.dart';
 
 class ActivityCard extends StatelessWidget {
   final ActivityItemModel model;

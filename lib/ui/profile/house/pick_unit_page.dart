@@ -4,9 +4,9 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/model/user/pick_building_model.dart';
-import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/model/user/pick_building_model.dart';
+import 'package:aku_community/pages/sign/sign_func.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickUnitPage extends StatefulWidget {
   final int buildingId;

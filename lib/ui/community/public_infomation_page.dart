@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/tab_bar/bee_tab_bar.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class PublicInfomationPage extends StatefulWidget {
   PublicInfomationPage({Key key}) : super(key: key);

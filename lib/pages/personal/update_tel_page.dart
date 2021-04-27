@@ -10,10 +10,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/pages/sign/sign_func.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/pages/sign/sign_func.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class UpdateTelPage extends StatefulWidget {
   UpdateTelPage({Key key}) : super(key: key);

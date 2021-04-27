@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/model/community/board_model.dart';
-import 'package:akuCommunity/ui/community/notice/notice_card.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/base_list_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/views/application_box.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/model/community/board_model.dart';
+import 'package:aku_community/ui/community/notice/notice_card.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/views/application_box.dart';
+import 'package:aku_community/widget/views/application_view.dart';
 import 'widget/property_card.dart';
 
 //TODO CLEAN BOTTOM CODES.

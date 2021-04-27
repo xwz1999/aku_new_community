@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class ApplicationBox extends StatelessWidget {
   final Widget child;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/community/event_item_model.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/community/event_item_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
 
 class NewCommunityView extends StatefulWidget {
   NewCommunityView({Key key}) : super(key: key);

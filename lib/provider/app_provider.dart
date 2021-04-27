@@ -5,17 +5,17 @@ import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:dio/dio.dart';
 import 'package:power_logger/power_logger.dart';
 
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/constants/config.dart';
-import 'package:akuCommunity/model/common/real_time_weather_model.dart';
-import 'package:akuCommunity/model/community/hot_topic_model.dart';
-import 'package:akuCommunity/model/message/message_center_model.dart';
-import 'package:akuCommunity/model/user/car_parking_model.dart';
-import 'package:akuCommunity/model/user/house_model.dart';
-import 'package:akuCommunity/utils/hive_store.dart';
-import 'package:akuCommunity/utils/network/base_model.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/constants/config.dart';
+import 'package:aku_community/model/common/real_time_weather_model.dart';
+import 'package:aku_community/model/community/hot_topic_model.dart';
+import 'package:aku_community/model/message/message_center_model.dart';
+import 'package:aku_community/model/user/car_parking_model.dart';
+import 'package:aku_community/model/user/house_model.dart';
+import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为

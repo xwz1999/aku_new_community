@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/animated/animated_scale.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/animated/animated_scale.dart';
 
 class BeeRadio<T> extends StatefulWidget {
   final T value;

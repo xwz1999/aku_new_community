@@ -6,19 +6,19 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/model/manager/life_pay_model.dart';
-import 'package:akuCommunity/pages/life_pay/life_pay_record_page.dart';
-import 'package:akuCommunity/pages/life_pay/widget/life_pay_detail_page.dart';
-import 'package:akuCommunity/pages/things_page/widget/bee_list_view.dart';
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/ui/profile/house/pick_my_house_page.dart';
-import 'package:akuCommunity/utils/bee_parse.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/bee_divider.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bee_check_radio.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/manager/life_pay_model.dart';
+import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
+import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
+import 'package:aku_community/utils/bee_parse.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key key}) : super(key: key);

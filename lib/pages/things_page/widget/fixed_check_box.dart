@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
+import 'package:aku_community/base/base_style.dart';
 
 class FixedCheckBox extends StatefulWidget {
   final Function(bool isSelect) onChanged;

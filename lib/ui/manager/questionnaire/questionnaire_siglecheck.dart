@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:akuCommunity/model/manager/questionnaire_detail_model.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/buttons/bee_single_check.dart';
+import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/buttons/bee_single_check.dart';
 
 class QuestionnaireSingleCheck extends StatefulWidget {
   final String title;

@@ -7,18 +7,18 @@ import 'package:get/get.dart' hide Response;
 import 'package:shimmer/shimmer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/app_theme.dart';
-import 'package:akuCommunity/model/manager/advice_detail_model.dart';
-import 'package:akuCommunity/model/manager/suggestion_or_complain_model.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_add_comment_page.dart';
-import 'package:akuCommunity/ui/manager/advice/advice_evaluate_page.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/utils/network/net_util.dart';
-import 'package:akuCommunity/widget/bee_scaffold.dart';
-import 'package:akuCommunity/widget/buttons/bottom_button.dart';
-import 'package:akuCommunity/widget/views/bee_grid_image_view.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/model/manager/advice_detail_model.dart';
+import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
+import 'package:aku_community/ui/manager/advice/advice_add_comment_page.dart';
+import 'package:aku_community/ui/manager/advice/advice_evaluate_page.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class AdviceDetailPage extends StatefulWidget {
   final SuggestionOrComplainModel model;

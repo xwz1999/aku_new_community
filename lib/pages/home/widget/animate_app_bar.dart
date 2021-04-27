@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/provider/app_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
   final ScrollController scrollController;

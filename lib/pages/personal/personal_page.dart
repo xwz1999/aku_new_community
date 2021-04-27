@@ -6,16 +6,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'package:akuCommunity/base/base_style.dart';
-import 'package:akuCommunity/const/resource.dart';
-import 'package:akuCommunity/constants/api.dart';
-import 'package:akuCommunity/constants/application_objects.dart';
-import 'package:akuCommunity/pages/personal/user_profile_page.dart';
-import 'package:akuCommunity/pages/sign/sign_in_page.dart';
-import 'package:akuCommunity/painters/user_bottom_bar_painter.dart';
-import 'package:akuCommunity/provider/user_provider.dart';
-import 'package:akuCommunity/utils/headers.dart';
-import 'package:akuCommunity/widget/views/application_view.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/pages/personal/user_profile_page.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
+import 'package:aku_community/painters/user_bottom_bar_painter.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/views/application_view.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool isSign;
