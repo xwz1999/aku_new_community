@@ -13,11 +13,15 @@ class BeeImagePreview extends StatefulWidget {
     return await navigator.push(
       PageRouteBuilder(
         opaque: false,
+        fullscreenDialog: true,
         pageBuilder: (context, animation, secondAnimation) {
           return FadeTransition(
             opacity: animation,
             child: BeeImagePreview.file(file: file, tag: tag),
           );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return child;
         },
       ),
     );
@@ -27,10 +31,14 @@ class BeeImagePreview extends StatefulWidget {
     navigator.push(
       PageRouteBuilder(
         opaque: false,
+        fullscreenDialog: true,
         pageBuilder: (context, animation, secondAnimation) {
+          return BeeImagePreview.path(path: path, tag: tag);
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
-            child: BeeImagePreview.path(path: path, tag: tag),
+            child: child,
           );
         },
       ),

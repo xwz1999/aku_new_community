@@ -177,10 +177,12 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         ),
         secondChild: BottomButton(
           onPressed: () async {
-            bool needRefresh = await Get.to(NewAdvicePage(
-              type: widget.type,
-              initType: _tabController.index,
-            ));
+            bool needRefresh = await Get.to(
+              () => NewAdvicePage(
+                type: widget.type,
+                initType: _tabController.index,
+              ),
+            );
             if (needRefresh == true) {
               _refreshController.callRefresh();
               Get.dialog(CupertinoAlertDialog(

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:aku_community/widget/bee_back_button.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -201,8 +203,10 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return BeeScaffold(
+      leading: BeeBackButton(),
+      title: '',
+      bgColor: Colors.white,
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -279,7 +283,7 @@ class _SignInPageState extends State<SignInPage> {
                     MaterialButton(
                       shape: StadiumBorder(),
                       padding: EdgeInsets.zero,
-                      onPressed: () => Get.to(AgreementPage()),
+                      onPressed: () => Get.to(() => AgreementPage()),
                       child: Text(
                         '《小蜜蜂用户协议》',
                         style: TextStyle(
