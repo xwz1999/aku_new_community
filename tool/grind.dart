@@ -5,7 +5,7 @@ main(args) => grind(args);
 @Task()
 test() => new TestRunner().testAsync();
 
-@DefaultTask()
+@Task()
 buildApk() async {
   await runAsync(
     'flutter',
@@ -13,6 +13,17 @@ buildApk() async {
       'build',
       'apk',
       '--target-platform=android-arm64',
+    ],
+  );
+}
+
+@Task('build ios')
+buildIos() async {
+  await runAsync(
+    'flutter',
+    arguments: [
+      'build',
+      'ios',
     ],
   );
 }
