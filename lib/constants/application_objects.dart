@@ -73,7 +73,7 @@ List<AO> appObjects = [
   // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
-  AO('设施预约', R.ASSETS_ICONS_USER_ICON_SZ_PNG, () => PickFacilityPage()),
+  AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => PickFacilityPage()),
 ];
 
 List<AO> userAppObjects = [

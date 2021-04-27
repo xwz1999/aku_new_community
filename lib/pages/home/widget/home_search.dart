@@ -26,7 +26,7 @@ class _HomeSearchState extends State<HomeSearch> {
         ),
       ),
       padding: EdgeInsets.only(
-        top: 127.w + ScreenUtil().statusBarHeight,
+        top: MediaQuery.of(context).padding.top,
         left: 32.w,
         right: 32.w,
         bottom: 16.w,
