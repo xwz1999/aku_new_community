@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
-  permission_handler: ^6.1.1
+  permission_handler: ^7.0.0
   package_info: ^2.0.0
   provider: ^5.0.0
   flutter_screenutil: ^5.0.0-nullsafety.11
@@ -22,7 +22,9 @@ dependencies:
   flustars: ^2.0.1
   # icons
   # TODO need remove
-  flutter_icons: 1.1.0
+  flutter_icons:
+    git:
+      url: git@git.oa00.com:flutter_third/flutter-icons.git
   #弹窗
   bot_toast: ^4.0.1
   #滑块
@@ -39,20 +41,22 @@ dependencies:
 
   fluwx: ^3.3.0
   get: ^4.0.0-nullsafety.2
-  velocity_x: ^2.6.0
+  velocity_x: ^3.0.0
   hive: ^2.0.3
   hive_flutter: ^1.0.0
   logger: ^1.0.0
   flutter_easyrefresh: ^2.2.1
   random_character:
     git:
-      url: http://159.75.73.143:8080/mengfucius/random_character
+      url: git@git.oa00.com:flutter_pub/random_character.git
       ref: null-safety
 
   image_picker: ^0.7.3
   power_logger: ^1.2.0
   flutter_rating_bar: ^4.0.0
-  jpush_flutter: ^2.0.1
+  jpush_flutter:
+    git:
+      url: https://git.oa00.com/flutter_third/jpush-flutter-plugin
   open_file: ^3.1.0
   badges: ^2.0.0-nullsafety.1
   amap_flutter_map: ^2.0.1

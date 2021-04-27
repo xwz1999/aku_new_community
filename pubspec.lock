@@ -28,7 +28,7 @@ packages:
       name: animated_text_kit
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.1"
+    version: "4.2.1"
   animator:
     dependency: transitive
     description:
@@ -49,7 +49,7 @@ packages:
       name: args
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   async:
     dependency: transitive
     description:
@@ -210,7 +210,7 @@ packages:
       name: firebase_core
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -231,14 +231,14 @@ packages:
       name: firebase_crashlytics
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.2"
   flustars:
     dependency: "direct main"
     description:
@@ -268,10 +268,12 @@ packages:
   flutter_icons:
     dependency: "direct main"
     description:
-      name: flutter_icons
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.1.0"
+      path: "."
+      ref: HEAD
+      resolved-ref: "0831af6f0f239d20fb9578612d7a893e2a53d044"
+      url: "git@git.oa00.com:flutter_third/flutter-icons.git"
+    source: git
+    version: "1.1.1-nullsafety.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -328,7 +330,7 @@ packages:
       name: fluwx
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.4.1"
+    version: "3.4.2"
   get:
     dependency: "direct main"
     description:
@@ -363,7 +365,7 @@ packages:
       name: hive
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   hive_flutter:
     dependency: "direct main"
     description:
@@ -412,14 +414,14 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.1"
+    version: "2.1.0"
   import_sorter:
     dependency: "direct dev"
     description:
       name: import_sorter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.4.3"
+    version: "4.5.0"
   intl:
     dependency: "direct main"
     description:
@@ -430,9 +432,11 @@ packages:
   jpush_flutter:
     dependency: "direct main"
     description:
-      name: jpush_flutter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: cbe804fd2389255be02729abbfd07deb6c468951
+      url: "https://git.oa00.com/flutter_third/jpush-flutter-plugin"
+    source: git
     version: "2.0.1"
   js:
     dependency: transitive
@@ -482,7 +486,7 @@ packages:
       name: open_file
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.0"
   package_info:
     dependency: "direct main"
     description:
@@ -531,7 +535,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   pedantic:
     dependency: transitive
     description:
@@ -545,14 +549,14 @@ packages:
       name: permission_handler
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.1.1"
+    version: "7.0.0"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.2"
+    version: "3.3.0"
   petitparser:
     dependency: transitive
     description:
@@ -615,7 +619,7 @@ packages:
       path: "."
       ref: null-safety
       resolved-ref: "2a4d0949486432033d4b1a948243644a79a6b445"
-      url: "http://159.75.73.143:8080/mengfucius/random_character"
+      url: "git@git.oa00.com:flutter_pub/random_character.git"
     source: git
     version: "0.1.0-nullsafety.0"
   rational:
@@ -832,7 +836,7 @@ packages:
       name: velocity_x
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.6.1"
+    version: "3.0.0"
   vxstate:
     dependency: transitive
     description:
