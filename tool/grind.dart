@@ -6,9 +6,15 @@ main(args) => grind(args);
 test() => new TestRunner().testAsync();
 
 @DefaultTask()
-@Depends(test)
-build() {
-  Pub.build();
+buildApk() {
+  runAsync(
+    'flutter',
+    arguments: [
+      'build',
+      'apk',
+      '--target-platform=android-arm64',
+    ],
+  );
 }
 
 @Task()
@@ -24,7 +30,7 @@ void format() {
   DartFmt.format(libDir);
 }
 
-@Task()
+@Task('auto sort and format code')
 @Depends(sort, format)
 void git() {
   log(' commit to git');
