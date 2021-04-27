@@ -22,14 +22,14 @@ class PermissionUtil {
 }
 
 class AlarmPage extends StatefulWidget {
-  AlarmPage({Key key}) : super(key: key);
+  AlarmPage({Key? key}) : super(key: key);
 
   @override
   _AlarmPageState createState() => _AlarmPageState();
 }
 
 class _AlarmPageState extends State<AlarmPage> {
-  AMapController _mapController;
+  AMapController? _mapController;
 
   Future<void> _makephonenum(String url) async {
     (await canLaunch(url)) ? await launch(url) : throw 'Could not launch $url';
@@ -66,11 +66,11 @@ class _AlarmPageState extends State<AlarmPage> {
               final appProvider =
                   Provider.of<AppProvider>(context, listen: false);
               LatLng _target = LatLng(
-                appProvider.location['latitude'],
-                appProvider.location['longitude'],
+                appProvider.location!['latitude'] as double,
+                appProvider.location!['longitude'] as double,
               );
               _mapController = controller;
-              _mapController.moveCamera(
+              _mapController!.moveCamera(
                 CameraUpdate.newCameraPosition(
                   CameraPosition(target: _target, zoom: 18),
                 ),
@@ -125,7 +125,7 @@ class _AlarmPageState extends State<AlarmPage> {
                               child: Text(
                                 (appProvider.location == null)
                                     ? '加载中……'
-                                    : appProvider.location['address'],
+                                    : appProvider.location!['address'] as String,
                                 style: TextStyle(
                                   color: Color(0xff666666),
                                   fontSize: 28.sp,

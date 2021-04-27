@@ -1,7 +1,7 @@
 class ArticleQRModel {
-  AppArticleOutQRCodeVo appArticleOutQRCodeVo;
-  String message;
-  bool status;
+  AppArticleOutQRCodeVo? appArticleOutQRCodeVo;
+  String? message;
+  bool? status;
 
   ArticleQRModel({this.appArticleOutQRCodeVo, this.message, this.status});
 
@@ -16,7 +16,7 @@ class ArticleQRModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.appArticleOutQRCodeVo != null) {
-      data['appArticleOutQRCodeVo'] = this.appArticleOutQRCodeVo.toJson();
+      data['appArticleOutQRCodeVo'] = this.appArticleOutQRCodeVo!.toJson();
     }
     data['message'] = this.message;
     data['status'] = this.status;
@@ -25,11 +25,11 @@ class ArticleQRModel {
 }
 
 class AppArticleOutQRCodeVo {
-  int id;
-  String roomName;
-  int applicantId;
-  String applicantName;
-  String effectiveTime;
+  int? id;
+  String? roomName;
+  int? applicantId;
+  String? applicantName;
+  String? effectiveTime;
 
   AppArticleOutQRCodeVo(
       {this.id,

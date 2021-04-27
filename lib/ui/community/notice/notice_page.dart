@@ -10,7 +10,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class NoticePage extends StatefulWidget {
-  NoticePage({Key key}) : super(key: key);
+  NoticePage({Key? key}) : super(key: key);
 
   @override
   _NoticePageState createState() => _NoticePageState();
@@ -22,17 +22,17 @@ class _NoticePageState extends State<NoticePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '社区公告',
-      body: BeeListView(
+      body: BeeListView<BoardItemModel>(
         controller: _refreshController,
         path: API.community.boardList,
         convert: (model) =>
-            model.tableList.map((e) => BoardItemModel.fromJson(e)).toList(),
+            model.tableList!.map((e) => BoardItemModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
             padding: EdgeInsets.symmetric(vertical: 32.w),
             itemBuilder: (context, index) {
               final BoardItemModel model = items[index];
-              BoardItemModel preModel;
+              BoardItemModel? preModel;
               if (index >= 1) preModel = items[index - 1];
               return NoticeCard(
                 model: model,

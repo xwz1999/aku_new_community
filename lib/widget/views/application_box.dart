@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class ApplicationBox extends StatelessWidget {
-  final Widget child;
-  ApplicationBox({Key key, this.child}) : super(key: key);
+  final Widget? child;
+  ApplicationBox({Key? key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -22,16 +22,16 @@ import 'package:aku_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class ChatCard extends StatefulWidget {
-  final EventItemModel model;
+  final EventItemModel? model;
 
-  final VoidCallback onDelete;
+  final VoidCallback? onDelete;
 
   final bool hideLine;
   final bool canTap;
 
   ChatCard({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
     this.onDelete,
     this.hideLine = false,
     this.canTap = true,
@@ -44,12 +44,12 @@ class ChatCard extends StatefulWidget {
 class _ChatCardState extends State<ChatCard> {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    return (userProvider?.userInfoModel?.id ?? -1) == widget.model.createId;
+    return (userProvider.userInfoModel?.id ?? -1) == widget.model!.createId;
   }
 
   _renderImage() {
-    if (widget.model.imgUrls.isEmpty) return SizedBox();
-    if (widget.model.imgUrls.length == 1)
+    if (widget.model!.imgUrls!.isEmpty) return SizedBox();
+    if (widget.model!.imgUrls!.length == 1)
       return MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
@@ -60,8 +60,8 @@ class _ChatCardState extends State<ChatCard> {
         ),
         onPressed: () {
           BeeImagePreview.toPath(
-            path: ImgModel.first(widget.model.imgUrls),
-            tag: ImgModel.first(widget.model.imgUrls),
+            path: ImgModel.first(widget.model!.imgUrls),
+            tag: ImgModel.first(widget.model!.imgUrls),
           );
         },
         child: ConstrainedBox(
@@ -70,17 +70,17 @@ class _ChatCardState extends State<ChatCard> {
             maxWidth: 300.w,
           ),
           child: Hero(
-            tag: ImgModel.first(widget.model.imgUrls),
+            tag: ImgModel.first(widget.model!.imgUrls),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(ImgModel.first(widget.model.imgUrls)),
+              image: API.image(ImgModel.first(widget.model!.imgUrls)),
             ),
           ),
         ),
       );
     else
       return BeeGridImageView(
-          urls: widget.model.imgUrls.map((e) => e.url).toList());
+          urls: widget.model!.imgUrls!.map((e) => e.url).toList());
   }
 
   _buildMoreButton() {
@@ -121,28 +121,28 @@ class _ChatCardState extends State<ChatCard> {
                             cancel();
                             await NetUtil().get(
                               API.community.like,
-                              params: {'themeId': widget.model.id},
+                              params: {'themeId': widget.model!.id},
                               showMessage: true,
                             );
                             setState(() {
-                              if (widget.model.isLike == 0) {
-                                widget.model.likeNames.add(
+                              if (widget.model!.isLike == 0) {
+                                widget.model!.likeNames!.add(
                                   LikeNames(
                                     id: Random().nextInt(1000),
-                                    name: userProvider.userInfoModel.nickName,
+                                    name: userProvider.userInfoModel!.nickName,
                                   ),
                                 );
                               } else {
-                                widget.model.likeNames.removeWhere((element) =>
+                                widget.model!.likeNames!.removeWhere((element) =>
                                     element.name ==
-                                    userProvider.userInfoModel.nickName);
+                                    userProvider.userInfoModel!.nickName);
                               }
-                              widget.model.isLike =
-                                  (widget.model.isLike == 1) ? 0 : 1;
+                              widget.model!.isLike =
+                                  (widget.model!.isLike == 1) ? 0 : 1;
                             });
                           },
                           child: [
-                            widget.model.isLike == 1
+                            widget.model!.isLike == 1
                                 ? Icon(Icons.favorite,
                                     size: 30.w, color: Colors.red)
                                 : Icon(Icons.favorite_border, size: 30.w),
@@ -156,10 +156,10 @@ class _ChatCardState extends State<ChatCard> {
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
                           onPressed: () {
-                            if (widget.model.isComment == 1)
+                            if (widget.model!.isComment == 1)
                               SendAChat.send(
                                 parentId: 0,
-                                themeId: widget.model.id,
+                                themeId: widget.model!.id,
                               );
                             else
                               BotToast.showText(text: '不可评论');
@@ -213,8 +213,8 @@ class _ChatCardState extends State<ChatCard> {
         children: [
           Icon(Icons.favorite_border_rounded, size: 24.w),
           14.wb,
-          ...widget.model.likeNames
-              .map((e) => e.name.text.make())
+          ...widget.model!.likeNames!
+              .map((e) => e.name!.text.make())
               .toList()
               .sepWidget(separate: ','.text.make()),
         ],
@@ -225,7 +225,7 @@ class _ChatCardState extends State<ChatCard> {
   _renderComment() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: widget.model.gambitThemeCommentVoList.map((e) {
+      children: widget.model!.gambitThemeCommentVoList!.map((e) {
         StringBuffer buffer = StringBuffer();
         buffer.write(e.createName);
         if (e.parentName != null) buffer.write('回复${e.parentName}');
@@ -236,7 +236,7 @@ class _ChatCardState extends State<ChatCard> {
             style: Theme.of(context).textTheme.subtitle2,
           ),
           onTap: () {
-            SendAChat.send(parentId: e.id, themeId: widget.model.id);
+            SendAChat.send(parentId: e.id, themeId: widget.model!.id);
           },
         );
       }).toList(),
@@ -244,8 +244,8 @@ class _ChatCardState extends State<ChatCard> {
   }
 
   _renderLikeAndComment() {
-    if (widget.model.likeNames.isEmpty &&
-        widget.model.gambitThemeCommentVoList.isEmpty) return SizedBox();
+    if (widget.model!.likeNames!.isEmpty &&
+        widget.model!.gambitThemeCommentVoList!.isEmpty) return SizedBox();
     return Material(
       borderRadius: BorderRadius.circular(8.w),
       color: Color(0xFFF7F7F7),
@@ -255,12 +255,12 @@ class _ChatCardState extends State<ChatCard> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.model.likeNames.isEmpty ? SizedBox() : _renderLike(),
-            (widget.model.likeNames.isNotEmpty &&
-                    widget.model.gambitThemeCommentVoList.isNotEmpty)
+            widget.model!.likeNames!.isEmpty ? SizedBox() : _renderLike(),
+            (widget.model!.likeNames!.isNotEmpty &&
+                    widget.model!.gambitThemeCommentVoList!.isNotEmpty)
                 ? Divider(height: 1.w, thickness: 1.w)
                 : SizedBox(),
-            widget.model.gambitThemeCommentVoList.isEmpty
+            widget.model!.gambitThemeCommentVoList!.isEmpty
                 ? SizedBox()
                 : _renderComment(),
           ],
@@ -286,7 +286,7 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () {
-                Get.to(() => EventDetailPage(themeId: widget.model.id));
+                Get.to(() => EventDetailPage(themeId: widget.model!.id));
               }
             : null,
         child: Row(
@@ -299,7 +299,7 @@ class _ChatCardState extends State<ChatCard> {
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 image:
-                    API.image(ImgModel.first(widget.model.headSculptureImgUrl)),
+                    API.image(ImgModel.first(widget.model!.headSculptureImgUrl)),
                 height: 86.w,
                 width: 86.w,
                 fit: BoxFit.cover,
@@ -310,7 +310,7 @@ class _ChatCardState extends State<ChatCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 [
-                  widget.model.createName.text.black
+                  widget.model!.createName!.text.black
                       .size(36.sp)
                       .make()
                       .expand(),
@@ -325,7 +325,7 @@ class _ChatCardState extends State<ChatCard> {
                         ),
                       ];
                     },
-                    onSelected: (_) async {
+                    onSelected: (dynamic _) async {
                       if (LoginUtil.isNotLogin) return;
                       VoidCallback cancel = BotToast.showLoading();
                       await Future.delayed(
@@ -336,13 +336,13 @@ class _ChatCardState extends State<ChatCard> {
                   ),
                 ].row(),
                 6.hb,
-                widget.model.content.text.size(32.sp).black.make(),
+                widget.model!.content!.text.size(32.sp).black.make(),
                 20.hb,
                 _renderImage(),
-                widget.model.gambitTitle?.isEmpty ?? true
+                widget.model!.gambitTitle?.isEmpty ?? true
                     ? SizedBox()
                     : Chip(
-                        label: '#${widget.model.gambitTitle}'
+                        label: '#${widget.model!.gambitTitle}'
                             .text
                             .size(22.sp)
                             .make(),
@@ -357,7 +357,7 @@ class _ChatCardState extends State<ChatCard> {
                 Row(
                   children: [
                     64.hb,
-                    BeeDateUtil(widget.model.date)
+                    BeeDateUtil(widget.model!.date)
                         .timeAgo
                         .text
                         .size(28.sp)
@@ -366,7 +366,7 @@ class _ChatCardState extends State<ChatCard> {
                     _isMyself
                         ? TextButton(
                             onPressed: () async {
-                              bool result =
+                              bool? result =
                                   await Get.dialog(CupertinoAlertDialog(
                                 title: '你确定删除吗'.text.isIntrinsic.make(),
                                 actions: [
@@ -388,10 +388,10 @@ class _ChatCardState extends State<ChatCard> {
                               if (result == true) {
                                 await NetUtil().get(
                                   API.community.deleteMyEvent,
-                                  params: {'themeId': widget.model.id},
+                                  params: {'themeId': widget.model!.id},
                                   showMessage: true,
                                 );
-                                if (widget.onDelete != null) widget.onDelete();
+                                if (widget.onDelete != null) widget.onDelete!();
                               }
                             },
                             child: '删除'.text.black.size(28.sp).make(),

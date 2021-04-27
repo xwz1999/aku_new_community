@@ -19,7 +19,7 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key key}) : super(key: key);
+  SettingsPage({Key? key}) : super(key: key);
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -27,9 +27,9 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   Widget _buildTile({
-    String title,
-    VoidCallback onTap,
-    Widget suffix,
+    required String title,
+    VoidCallback? onTap,
+    Widget? suffix,
   }) {
     return MaterialButton(
       color: Colors.white,

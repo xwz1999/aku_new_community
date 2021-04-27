@@ -1,7 +1,7 @@
 class LifePayModel {
-  int years;
-  int paymentNum;
-  List<DailyPaymentTypeVos> dailyPaymentTypeVos;
+  int? years;
+  int? paymentNum;
+  List<DailyPaymentTypeVos>? dailyPaymentTypeVos;
 
   LifePayModel({this.years, this.paymentNum, this.dailyPaymentTypeVos});
 
@@ -11,7 +11,7 @@ class LifePayModel {
     if (json['dailyPaymentTypeVos'] != null) {
       dailyPaymentTypeVos = [];
       json['dailyPaymentTypeVos'].forEach((v) {
-        dailyPaymentTypeVos.add(new DailyPaymentTypeVos.fromJson(v));
+        dailyPaymentTypeVos!.add(new DailyPaymentTypeVos.fromJson(v));
       });
     }
   }
@@ -22,16 +22,16 @@ class LifePayModel {
     data['paymentNum'] = this.paymentNum;
     if (this.dailyPaymentTypeVos != null) {
       data['dailyPaymentTypeVos'] =
-          this.dailyPaymentTypeVos.map((v) => v.toJson()).toList();
+          this.dailyPaymentTypeVos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class DailyPaymentTypeVos {
-  int id;
-  String name;
-  List<DetailedVoList> detailedVoList;
+  int? id;
+  String? name;
+  List<DetailedVoList>? detailedVoList;
 
   DailyPaymentTypeVos({this.id, this.name, this.detailedVoList});
 
@@ -41,7 +41,7 @@ class DailyPaymentTypeVos {
     if (json['detailedVoList'] != null) {
       detailedVoList = [];
       json['detailedVoList'].forEach((v) {
-        detailedVoList.add(new DetailedVoList.fromJson(v));
+        detailedVoList!.add(new DetailedVoList.fromJson(v));
       });
     }
   }
@@ -52,16 +52,16 @@ class DailyPaymentTypeVos {
     data['name'] = this.name;
     if (this.detailedVoList != null) {
       data['detailedVoList'] =
-          this.detailedVoList.map((v) => v.toJson()).toList();
+          this.detailedVoList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class DetailedVoList {
-  int groupId;
-  double paymentPrice;
-  List<DetailsVoList> detailsVoList;
+  int? groupId;
+  double? paymentPrice;
+  List<DetailsVoList>? detailsVoList;
 
   DetailedVoList({this.groupId, this.paymentPrice, this.detailsVoList});
 
@@ -71,7 +71,7 @@ class DetailedVoList {
     if (json['detailsVoList'] != null) {
       detailsVoList = [];
       json['detailsVoList'].forEach((v) {
-        detailsVoList.add(new DetailsVoList.fromJson(v));
+        detailsVoList!.add(new DetailsVoList.fromJson(v));
       });
     }
   }
@@ -82,22 +82,22 @@ class DetailedVoList {
     data['paymentPrice'] = this.paymentPrice;
     if (this.detailsVoList != null) {
       data['detailsVoList'] =
-          this.detailsVoList.map((v) => v.toJson()).toList();
+          this.detailsVoList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class DetailsVoList {
-  int id;
-  String month;
-  double costPrice;
-  double paidPrice;
-  double totalPrice;
-  String beginDate;
-  String endDate;
-  String unitPriceType;
-  int num;
+  int? id;
+  String? month;
+  double? costPrice;
+  double? paidPrice;
+  double? totalPrice;
+  String? beginDate;
+  String? endDate;
+  String? unitPriceType;
+  int? num;
 
   DetailsVoList(
       {this.id,

@@ -3,13 +3,13 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class SuggestionOrComplainModel {
-  int id;
-  int type;
-  int status;
-  String content;
-  int score;
-  DateTime createDate;
-  List<ImgModel> imgUrls;
+  int? id;
+  int? type;
+  int? status;
+  String? content;
+  int? score;
+  DateTime? createDate;
+  List<ImgModel>? imgUrls;
 
   SuggestionOrComplainModel(
       {this.id,
@@ -30,18 +30,18 @@ class SuggestionOrComplainModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
 }
 
 class ImgUrls {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
 

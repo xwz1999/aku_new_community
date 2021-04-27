@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aku_community/base/base_style.dart';
 
 class FixedCheckBox extends StatefulWidget {
-  final Function(bool isSelect) onChanged;
-  FixedCheckBox({Key key, this.onChanged}) : super(key: key);
+  final Function(bool isSelect)? onChanged;
+  FixedCheckBox({Key? key, this.onChanged}) : super(key: key);
 
   @override
   _FixedCheckBoxState createState() => _FixedCheckBoxState();
@@ -22,7 +22,7 @@ class _FixedCheckBoxState extends State<FixedCheckBox> {
         setState(() {
           _isSelected = !_isSelected;
         });
-        widget.onChanged(_isSelected);
+        widget.onChanged!(_isSelected);
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),

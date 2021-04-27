@@ -1,8 +1,8 @@
 class SystemMessageModel {
-  int id;
-  String content;
-  int status;
-  String title;
+  int? id;
+  String? content;
+  int? status;
+  String? title;
 
   SystemMessageModel({this.id, this.content, this.status, this.title});
 

@@ -15,22 +15,22 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class SelectMoveCompanyPage extends StatefulWidget {
-  SelectMoveCompanyPage({Key key}) : super(key: key);
+  SelectMoveCompanyPage({Key? key}) : super(key: key);
 
   @override
   _SelectMoveCompanyPageState createState() => _SelectMoveCompanyPageState();
 }
 
 class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
-  int _selected;
-  MovingCompanyModel _companyModel;
-  EasyRefreshController _controller;
+  int? _selected;
+  late MovingCompanyModel _companyModel;
+  EasyRefreshController? _controller;
   bool _onloading = true;
-  String get result {
-    if (_selected == _companyModel.appMovingCompanyVoList.length) {
+  String? get result {
+    if (_selected == _companyModel.appMovingCompanyVoList!.length) {
       return '已选择自己联系';
     } else {
-      return _companyModel.appMovingCompanyVoList[_selected].tel;
+      return _companyModel.appMovingCompanyVoList![_selected!].tel;
     }
   }
 
@@ -46,7 +46,7 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
     super.dispose();
   }
 
-  Widget _buildCard(int index, String name, String tel) {
+  Widget _buildCard(int index, String name, String? tel) {
     return GestureDetector(
       onTap: () {
         _selected = index;
@@ -143,13 +143,13 @@ class _SelectMoveCompanyPageState extends State<SelectMoveCompanyPage> {
             : ListView(
                 padding: EdgeInsets.all(32.w),
                 children: [
-                  ..._companyModel.appMovingCompanyVoList
+                  ..._companyModel.appMovingCompanyVoList!
                       .map((e) => _buildCard(
-                          _companyModel.appMovingCompanyVoList.indexOf(e),
-                          e.name,
+                          _companyModel.appMovingCompanyVoList!.indexOf(e),
+                          e.name!,
                           e.tel))
                       .toList(),
-                  _buildForself(_companyModel.appMovingCompanyVoList.length)
+                  _buildForself(_companyModel.appMovingCompanyVoList!.length)
                 ].sepWidget(separate: BeeDivider.horizontal()),
               ),
       ),

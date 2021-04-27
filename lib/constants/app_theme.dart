@@ -62,7 +62,7 @@ class AppTheme {
         unselectedLabelStyle: TextStyle(),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
+        fillColor: MaterialStateProperty.resolveWith<Color?>((states) {
           if (states.contains(MaterialState.selected)) return Color(0xFFFFD000);
           return null;
         }),
@@ -121,7 +121,7 @@ class SystemStyle {
     systemNavigationBarColor: Color(0xFFFFD000),
   );
 
-  static genStyle({@required Color bottom}) {
+  static genStyle({required Color bottom}) {
     return SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
       systemNavigationBarColor: bottom,

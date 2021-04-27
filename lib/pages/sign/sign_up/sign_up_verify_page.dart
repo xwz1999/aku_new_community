@@ -13,7 +13,7 @@ import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class SignUpVerifyPage extends StatefulWidget {
-  SignUpVerifyPage({Key key}) : super(key: key);
+  SignUpVerifyPage({Key? key}) : super(key: key);
 
   @override
   _SignUpVerifyPageState createState() => _SignUpVerifyPageState();
@@ -57,7 +57,7 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
               controller: _idNumberController,
               validator: (value) {
                 if (TextUtil.isEmpty(value)) return '身份证号不能为空';
-                if (!RegexUtil.isIDCard(value))
+                if (!RegexUtil.isIDCard(value!))
                   return '身份证格式错误';
                 else
                   return null;
@@ -82,7 +82,7 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
           final signUpProvider =
               Provider.of<SignUpProvider>(context, listen: false);
 
-          if (_formKey.currentState.validate()) {
+          if (_formKey.currentState!.validate()) {
             bool result = await SignFunc.signUp();
             if (result) Get.offAll(() => TabNavigator());
           }

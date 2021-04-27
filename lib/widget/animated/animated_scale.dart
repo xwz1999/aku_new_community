@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnimatedScale extends ImplicitlyAnimatedWidget {
-  final Widget child;
-  final double scale;
+  final Widget? child;
+  final double? scale;
 
   AnimatedScale({this.child, this.scale})
       : super(
@@ -14,11 +14,11 @@ class AnimatedScale extends ImplicitlyAnimatedWidget {
 }
 
 class _AnimatedScaleState extends AnimatedWidgetBaseState<AnimatedScale> {
-  Tween<double> scaleTween;
+  Tween<double?>? scaleTween;
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: scaleTween.evaluate(animation),
+      scale: scaleTween!.evaluate(animation)!,
       child: widget.child,
     );
   }
@@ -29,6 +29,6 @@ class _AnimatedScaleState extends AnimatedWidgetBaseState<AnimatedScale> {
       scaleTween,
       widget.scale,
       (value) => Tween<double>(begin: value),
-    );
+    ) as Tween<double?>?;
   }
 }

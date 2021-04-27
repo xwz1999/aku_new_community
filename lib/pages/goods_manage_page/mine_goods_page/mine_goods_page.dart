@@ -12,14 +12,14 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class MineGoodsPage extends StatefulWidget {
-  MineGoodsPage({Key key}) : super(key: key);
+  MineGoodsPage({Key? key}) : super(key: key);
 
   @override
   _MineGoodsPageState createState() => _MineGoodsPageState();
 }
 
 class _MineGoodsPageState extends State<MineGoodsPage> {
-  EasyRefreshController _controller;
+  EasyRefreshController? _controller;
 
   @override
   void initState() {
@@ -30,10 +30,10 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _controller!.dispose();
   }
 
-  InkWell _frmLoss(int id) {
+  InkWell _frmLoss(int? id) {
     return InkWell(
       onTap: () async {
         await ManagerFunc.fromLoss(id);
@@ -118,7 +118,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
-                    '借用时长: ${_getDatelength(model.borrowDate)}',
+                    '借用时长: ${_getDatelength(model.borrowDate!)}',
                     style: TextStyle(
                       fontSize: 24.sp,
                       color: Color(0xff999999),
@@ -147,7 +147,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     ? Container(
                         margin: EdgeInsets.only(bottom: 9.w),
                         child: Text(
-                          '温馨提示：您的物品已借用${_getDatelength(model.borrowDate)},如果用完，请及时归还',
+                          '温馨提示：您的物品已借用${_getDatelength(model.borrowDate!)},如果用完，请及时归还',
                           style: TextStyle(
                             fontSize: 22.sp,
                             color: Color(0xff999999),
@@ -187,11 +187,11 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
       //     ),
       //   ),
       // ),
-      body: BeeListView(
+      body: BeeListView<MineGoodsModel>(
           path: API.manager.articleBorrowMylist,
           controller: _controller,
           convert: (model) {
-            return model.tableList
+            return model.tableList!
                 .map((e) => MineGoodsModel.fromJson(e))
                 .toList();
           },

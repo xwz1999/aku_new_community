@@ -14,14 +14,14 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class MessageCenterPage extends StatefulWidget {
-  MessageCenterPage({Key key}) : super(key: key);
+  MessageCenterPage({Key? key}) : super(key: key);
 
   @override
   _MessageCenterPageState createState() => _MessageCenterPageState();
 }
 
 class _MessageCenterPageState extends State<MessageCenterPage> {
-  EasyRefreshController _refreshController;
+  EasyRefreshController? _refreshController;
   @override
   void initState() {
     super.initState();
@@ -35,11 +35,11 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
   }
 
   Widget _buildCard({
-    String path,
-    String title,
-    String content,
-    int count,
-    VoidCallback onTap,
+    required String path,
+    required String title,
+    required String content,
+    int? count,
+    VoidCallback? onTap,
   }) {
     return InkWell(
       onTap: onTap,
@@ -79,8 +79,8 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
         actions: [
           MaterialButton(
             onPressed: () async {
-              await NetUtil().dio.get(API.message.allRead);
-              _refreshController.callRefresh();
+              await NetUtil().dio!.get(API.message.allRead);
+              _refreshController!.callRefresh();
               setState(() {});
             },
             child: '全部已读'.text.size(28.sp).black.make(),
@@ -109,7 +109,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                     appProvider.messageCenterModel.commentTitle ?? '无评论通知消息',
                 count: appProvider.messageCenterModel.commentCount ?? 0,
                 onTap: () async {
-                  await NetUtil().dio.get(API.message.allReadComment);
+                  await NetUtil().dio!.get(API.message.allReadComment);
                   Get.to(() => CommentMessagePage());
                   setState(() {});
                 },

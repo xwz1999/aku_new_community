@@ -15,15 +15,15 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 
 class FixedEvaluatePage extends StatefulWidget {
   final FixedDetailModel model;
-  FixedEvaluatePage(this.model, {Key key}) : super(key: key);
+  FixedEvaluatePage(this.model, {Key? key}) : super(key: key);
 
   @override
   _FixedEvaluatePageState createState() => _FixedEvaluatePageState();
 }
 
 class _FixedEvaluatePageState extends State<FixedEvaluatePage> {
-  int _rating;
-  TextEditingController _textEditingController;
+  int? _rating;
+  TextEditingController? _textEditingController;
   @override
   void initState() {
     super.initState();
@@ -32,7 +32,7 @@ class _FixedEvaluatePageState extends State<FixedEvaluatePage> {
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _textEditingController!.dispose();
     super.dispose();
   }
 
@@ -105,14 +105,14 @@ class _FixedEvaluatePageState extends State<FixedEvaluatePage> {
           100.w.heightBox,
           MaterialButton(
             onPressed: () async {
-              if (_textEditingController.text.isEmpty) {
+              if (_textEditingController!.text.isEmpty) {
                 BotToast.showText(text: '评价内容不能为空！');
               } else {
                 BaseModel baseModel = await ManagerFunc.reportRepairEvaluate(
-                    widget.model.appReportRepairVo.id,
+                    widget.model.appReportRepairVo!.id,
                     _rating,
-                    _textEditingController.text);
-                if (baseModel.status) {
+                    _textEditingController!.text);
+                if (baseModel.status!) {
                   Get.back();
                 }
               }

@@ -20,20 +20,20 @@ import 'package:aku_community/widget/buttons/bee_single_check.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class VotingDetailPage extends StatefulWidget {
-  final int id;
+  final int? id;
 
-  VotingDetailPage({Key key, this.id}) : super(key: key);
+  VotingDetailPage({Key? key, this.id}) : super(key: key);
 
   @override
   _VotingDetailPageState createState() => _VotingDetailPageState();
 }
 
 class _VotingDetailPageState extends State<VotingDetailPage> {
-  VotingDetailModel _model;
-  EasyRefreshController _refreshController;
+  late VotingDetailModel _model;
+  EasyRefreshController? _refreshController;
   bool _isOnload = true;
   // List<int> _select = [];
-  int _selectId;
+  int? _selectId;
   bool _hasVoted = false;
   bool get finishVoted {
     if ((_model.status == 4) || _hasVoted || (_model.status == 3)) {
@@ -78,11 +78,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
     );
   }
 
-  double _getPercent(num numerator, num denominator) {
+  double _getPercent(num? numerator, num? denominator) {
     if (denominator == 0) {
       return 0;
     } else {
-      return (numerator / denominator) * 100;
+      return (numerator! / denominator!) * 100;
     }
   }
 
@@ -147,7 +147,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             children: [
               // '测试'.text.black.size(32.sp).make(),
               // 10.w.heightBox,
-              model.name.text.black.size(32.sp).make(),
+              model.name!.text.black.size(32.sp).make(),
               33.w.heightBox,
               finishVoted
                   ? Row(
@@ -225,7 +225,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   vertical: 26.w,
                 ),
                 children: [
-                  _model.title.text.black.size(32.sp).bold.maxLines(2).make(),
+                  _model.title!.text.black.size(32.sp).bold.maxLines(2).make(),
                   44.w.heightBox,
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.w),
@@ -235,7 +235,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                     ),
                   ),
                   44.w.heightBox,
-                  _model.content.text.black.size(28.sp).make(),
+                  _model.content!.text.black.size(28.sp).make(),
                   44.w.heightBox,
                   Container(
                     padding: EdgeInsets.fromLTRB(32.w, 50.w, 32.w, 0),
@@ -255,7 +255,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                         //     .size(32.sp)
                         //     .make(), //TODO:缺少字段；
                         // 26.w.heightBox,
-                        ..._model.appVoteCandidateVos
+                        ..._model.appVoteCandidateVos!
                             .map((e) => _buildVoteCard(e))
                             .toList()
                             .sepWidget(separate: BeeDivider.horizontal()),
@@ -274,7 +274,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   } else {
                     BaseModel baseModel =
                         await ManagerFunc.vote(widget.id, _selectId);
-                    if (baseModel.status) {
+                    if (baseModel.status!) {
                       await Get.dialog(_shouwVoteDialog());
                       _hasVoted = true;
                       setState(() {});

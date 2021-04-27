@@ -1,7 +1,7 @@
 class ConvenientPhoneModel {
-  int id;
-  String name;
-  String tel;
+  int? id;
+  String? name;
+  String? tel;
 
   ConvenientPhoneModel({this.id, this.name, this.tel});
 

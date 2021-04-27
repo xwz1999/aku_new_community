@@ -48,9 +48,9 @@ class MainInitialize {
     }
 
     jpush.addEventHandler(
-      onReceiveNotification: jPushLogger('onReceiveNotification'),
-      onOpenNotification: jPushLogger('onOpenNotification'),
-      onReceiveMessage: jPushLogger('onReceiveMessage'),
+      onReceiveNotification: jPushLogger('onReceiveNotification') as Future<dynamic> Function(Map<String, dynamic>?)?,
+      onOpenNotification: jPushLogger('onOpenNotification') as Future<dynamic> Function(Map<String, dynamic>?)?,
+      onReceiveMessage: jPushLogger('onReceiveMessage') as Future<dynamic> Function(Map<String, dynamic>?)?,
     );
     jpush.setup(
       appKey: "6a2c6507e3e8b3187ac1c9f9",
@@ -58,7 +58,7 @@ class MainInitialize {
       production: false,
       debug: true,
     );
-    String rID = await jpush.getRegistrationID();
+    String? rID = await jpush.getRegistrationID();
     LoggerData.addData(rID, tag: 'RegistrationID');
   }
 

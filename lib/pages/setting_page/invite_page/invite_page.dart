@@ -7,7 +7,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class InvitePage extends StatelessWidget {
-  const InvitePage({Key key}) : super(key: key);
+  const InvitePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,8 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class RefundShopCard extends StatelessWidget {
-  final String imagePath, content, specs;
-  RefundShopCard({Key key, this.imagePath, this.content, this.specs})
+  final String? imagePath, content, specs;
+  RefundShopCard({Key? key, this.imagePath, this.content, this.specs})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class RefundShopCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
-            imagePath,
+            imagePath!,
             height: 179.w,
             width: 173.w,
             fit: BoxFit.fill,
@@ -35,7 +35,7 @@ class RefundShopCard extends StatelessWidget {
               Container(
                 width: 458.w,
                 child: Text(
-                  content,
+                  content!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
@@ -48,7 +48,7 @@ class RefundShopCard extends StatelessWidget {
               Container(
                 width: 456.w,
                 child: Text(
-                  specs,
+                  specs!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(

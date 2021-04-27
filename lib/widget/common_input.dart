@@ -6,10 +6,10 @@ import 'package:aku_community/utils/headers.dart';
 
 @Deprecated("DO NOT USE THIS WIDGET")
 class CommonInput extends StatefulWidget {
-  final TextEditingController inputController;
-  final String hintText;
-  final FormFieldValidator validator;
-  CommonInput({Key key, this.inputController, this.hintText, this.validator})
+  final TextEditingController? inputController;
+  final String? hintText;
+  final FormFieldValidator? validator;
+  CommonInput({Key? key, this.inputController, this.hintText, this.validator})
       : super(key: key);
 
   @override

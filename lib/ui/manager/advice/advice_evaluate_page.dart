@@ -12,8 +12,8 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AdviceEvaluatePage extends StatefulWidget {
-  final int id;
-  AdviceEvaluatePage({Key key, @required this.id}) : super(key: key);
+  final int? id;
+  AdviceEvaluatePage({Key? key, required this.id}) : super(key: key);
 
   @override
   _AdviceEvaluatePageState createState() => _AdviceEvaluatePageState();
@@ -72,7 +72,7 @@ class _AdviceEvaluatePageState extends State<AdviceEvaluatePage> {
                 params: {'id': widget.id, 'score': _rating},
                 showMessage: true,
               );
-              if (baseModel.status) {
+              if (baseModel.status!) {
                 Get.back();
                 Get.back();
               }

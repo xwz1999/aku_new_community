@@ -15,7 +15,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/stack_avatar.dart';
 
 class QuestionnairePage extends StatefulWidget {
-  QuestionnairePage({Key key}) : super(key: key);
+  QuestionnairePage({Key? key}) : super(key: key);
 
   @override
   _QuestionnairePageState createState() => _QuestionnairePageState();
@@ -28,7 +28,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
     super.initState();
   }
 
-  String _getButtonText(int status) {
+  String _getButtonText(int? status) {
     switch (status) {
       case 1:
       case 2:
@@ -79,9 +79,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    model.title.text.black.size(28.sp).make(),
+                    model.title!.text.black.size(28.sp).make(),
                     6.w.heightBox,
-                    model.description.text
+                    model.description!.text
                         .color(ktextSubColor)
                         .size(28.sp)
                         .maxLines(1)
@@ -101,10 +101,10 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                               color: ktextPrimary,
                               fontSize: 24.sp,
                             ),
-                            text: DateUtil.formatDateStr(model.beginDate,
+                            text: DateUtil.formatDateStr(model.beginDate!,
                                     format: "MM月dd日 HH:mm") +
                                 '至' +
-                                DateUtil.formatDateStr(model.endDate,
+                                DateUtil.formatDateStr(model.endDate!,
                                     format: "MM月dd日 HH:mm"),
                           ),
                         ])),
@@ -116,7 +116,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
             Row(
               children: [
                 StackAvatar(
-                    avatars: model.headImgURls.map((e) => e.url).toList()),
+                    avatars: model.headImgURls!.map((e) => e.url).toList()),
                 26.w.widthBox,
                 '${model.answerNum}人已参加'.text.black.size(20.sp).make(),
                 Spacer(),
@@ -151,7 +151,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
 
   @override
   void dispose() {
-    _easyRefreshController?.dispose();
+    _easyRefreshController.dispose();
     super.dispose();
   }
 
@@ -159,11 +159,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '问卷调查',
-      body: BeeListView(
+      body: BeeListView<QuestionnaireModel>(
           path: API.manager.questionnaireList,
           controller: _easyRefreshController,
           convert: (model) {
-            return model.tableList
+            return model.tableList!
                 .map((e) => QuestionnaireModel.fromJson(e))
                 .toList();
           },

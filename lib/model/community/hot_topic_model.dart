@@ -1,6 +1,6 @@
 class HotTopicModel {
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   HotTopicModel({this.id, this.name});
 

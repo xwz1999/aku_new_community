@@ -10,7 +10,7 @@ import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeHousePicker extends StatelessWidget {
-  const BeeHousePicker({Key key}) : super(key: key);
+  const BeeHousePicker({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,9 @@ class BeeHousePicker extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                S.of(context).tempPlotName.text.black.size(32.sp).bold.make(),
+                S.of(context)!.tempPlotName.text.black.size(32.sp).bold.make(),
                 10.w.heightBox,
-                appProvider.selectedHouse.roomName.text.black
+                appProvider.selectedHouse!.roomName!.text.black
                     .size(32.sp)
                     .bold
                     .make()

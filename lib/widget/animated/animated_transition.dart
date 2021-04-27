@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnimatedTranslate extends ImplicitlyAnimatedWidget {
-  final Widget child;
-  final Offset offset;
+  final Widget? child;
+  final Offset? offset;
 
   AnimatedTranslate({this.child, this.offset})
       : super(
@@ -15,11 +15,11 @@ class AnimatedTranslate extends ImplicitlyAnimatedWidget {
 
 class _AnimatedTranslateState
     extends AnimatedWidgetBaseState<AnimatedTranslate> {
-  Tween<Offset> _offsetTween;
+  Tween<Offset?>? _offsetTween;
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: _offsetTween.evaluate(animation),
+      offset: _offsetTween!.evaluate(animation)!,
       child: widget.child,
     );
   }
@@ -30,6 +30,6 @@ class _AnimatedTranslateState
       _offsetTween,
       widget.offset,
       (value) => Tween<Offset>(begin: value),
-    );
+    ) as Tween<Offset?>?;
   }
 }

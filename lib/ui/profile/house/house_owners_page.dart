@@ -14,7 +14,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class HouseOwnersPage extends StatefulWidget {
-  HouseOwnersPage({Key key}) : super(key: key);
+  HouseOwnersPage({Key? key}) : super(key: key);
 
   @override
   _HouseOwnersPageState createState() => _HouseOwnersPageState();
@@ -31,14 +31,14 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   ///存在已认证的房屋
   bool get _haveAuthedHouse {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
-    return (appProvider?.selectedHouse?.status ?? 0) == 4;
+    return (appProvider.selectedHouse?.status ?? 0) == 4;
   }
 
   Widget get _houseTitle {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     if (_emptyHouse) return Text('还没有绑定房屋');
-    if (appProvider.selectedHouse.status == 1) return Text('您的身份正在审核中，请耐心等待');
-    if (appProvider.selectedHouse.status == 3) return Text('审核未通过');
+    if (appProvider.selectedHouse!.status == 1) return Text('您的身份正在审核中，请耐心等待');
+    if (appProvider.selectedHouse!.status == 3) return Text('审核未通过');
     return SizedBox();
   }
 
@@ -67,7 +67,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 : Padding(
                     padding: EdgeInsets.all(32.w),
                     child: HouseCard(
-                      type: appProvider.selectedHouse.reviewed
+                      type: appProvider.selectedHouse!.reviewed
                           ? CardAuthType.SUCCESS
                           : CardAuthType.FAIL,
                       model: appProvider.selectedHouse,
@@ -104,7 +104,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
 
   ///跳转到添加房屋
   _addHouse() async {
-    bool result = await Get.to(() => AddHousePage());
+    bool? result = await Get.to(() => AddHousePage());
     if (result == true) _refreshController.callRefresh();
   }
 }

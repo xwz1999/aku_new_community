@@ -1,7 +1,3 @@
-// Package imports:
-
-import 'package:flutter/foundation.dart';
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -36,13 +32,13 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<String> shareVisitor({
-    @required int estateId,
-    String name,
-    String tel,
-    int sex,
-    String carNumber,
-    DateTime date,
+  static Future<String?> shareVisitor({
+    required int? estateId,
+    String? name,
+    String? tel,
+    int? sex,
+    String? carNumber,
+    DateTime? date,
   }) async {
     final cancel = BotToast.showLoading();
     Map<String, dynamic> params = {
@@ -54,7 +50,7 @@ class ManagerFunc {
     if (carNumber != null) params.putIfAbsent('carNumber', () => carNumber);
     if (date != null)
       params.putIfAbsent('visitDateStart', () => NetUtil.getDate(date));
-    Response response = await NetUtil().dio.post(
+    Response response = await NetUtil().dio!.post(
           API.manager.shareInvite,
           data: params,
         );
@@ -66,7 +62,7 @@ class ManagerFunc {
   }
 
   static reportRepairInsert(
-      int id, int type, String reportDetail, List<String> fileUrls) async {
+      int? id, int type, String reportDetail, List<String?> fileUrls) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairInsert,
       params: {
@@ -80,7 +76,7 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static reportRepairDelete(List<int> ids) async {
+  static reportRepairDelete(List<int?> ids) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairDelete,
       params: {'ids': ids},
@@ -89,8 +85,8 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<FixedDetailModel> reportRepairFindBYLD(int id) async {
-    Response response = await NetUtil().dio.get(
+  static Future<FixedDetailModel> reportRepairFindBYLD(int? id) async {
+    Response response = await NetUtil().dio!.get(
       API.manager.reportRepairFindBYLD,
       queryParameters: {
         'repairId': id,
@@ -99,7 +95,7 @@ class ManagerFunc {
     return FixedDetailModel.fromJson(response.data);
   }
 
-  static Future<BaseModel> reportRepairCancel(int id) async {
+  static Future<BaseModel> reportRepairCancel(int? id) async {
     BaseModel baseModel = await NetUtil().get(API.manager.reportRepairCancel,
         params: {
           'repairId': id,
@@ -109,7 +105,7 @@ class ManagerFunc {
   }
 
   static Future<BaseModel> reportRepairEvaluate(
-      int id, int rate, String text) async {
+      int? id, int? rate, String text) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.reportRepairEvaluate,
       params: {
@@ -122,7 +118,7 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<BaseModel> reportRepairComplete(int id) async {
+  static Future<BaseModel> reportRepairComplete(int? id) async {
     BaseModel baseModel = await NetUtil().get(
       API.manager.reportRepairComplete,
       params: {
@@ -134,20 +130,20 @@ class ManagerFunc {
   }
 
   static Future<MovingCompanyModel> getMovingCompanyTel() async {
-    Response response = await NetUtil().dio.get(
+    Response response = await NetUtil().dio!.get(
           API.manager.getMovingCompanyTel,
         );
     return MovingCompanyModel.fromJson(response.data);
   }
 
   static Future<BaseModel> articleOutSubmit({
-    int id,
-    String name,
-    int weight,
-    int approach,
-    String tel,
-    String time,
-    List<String> urls,
+    int? id,
+    String? name,
+    int? weight,
+    int? approach,
+    String? tel,
+    required String time,
+    List<String?>? urls,
   }) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.articleOutSubmit,
@@ -166,8 +162,8 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<ArticleQRModel> getQRcode(int id) async {
-    Response response = await NetUtil().dio.get(
+  static Future<ArticleQRModel> getQRcode(int? id) async {
+    Response response = await NetUtil().dio!.get(
       API.manager.getQRcode,
       queryParameters: {
         'articleOutId': id,
@@ -176,7 +172,7 @@ class ManagerFunc {
     return ArticleQRModel.fromJson(response.data);
   }
 
-  static Future<BaseModel> articleOutDelete(List<int> ids) async {
+  static Future<BaseModel> articleOutDelete(List<int?> ids) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.articleOutDelete,
       params: {'ids': ids},
@@ -185,7 +181,7 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<BaseModel> fromLoss(int id) async {
+  static Future<BaseModel> fromLoss(int? id) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.fromLoss,
       params: {'articleBorrowId': id},
@@ -202,7 +198,7 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<VotingDetailModel> voteDetail(int id) async {
+  static Future<VotingDetailModel> voteDetail(int? id) async {
     BaseModel baseModel = await NetUtil().get(
       API.manager.voteDetail,
       params: {'voteId': id},
@@ -211,7 +207,7 @@ class ManagerFunc {
     return VotingDetailModel.fromJson(baseModel.data);
   }
 
-  static Future<BaseModel> vote(int voteId, int candleId) async {
+  static Future<BaseModel> vote(int? voteId, int? candleId) async {
     BaseModel baseModel = await NetUtil().post(API.manager.vote, params: {
       'voteId': voteId,
       'candidateId': candleId,
@@ -219,7 +215,7 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<QuestionnaireDetialModel> questionnairefindById(int id) async {
+  static Future<QuestionnaireDetialModel> questionnairefindById(int? id) async {
     BaseModel baseModel = await NetUtil().get(
       API.manager.questionnairefindById,
       params: {
@@ -231,7 +227,7 @@ class ManagerFunc {
   }
 
   static Future<BaseModel> questionnaireSubmit(
-      int id, List<AppQuestionnaireAnswerSubmits> model) async {
+      int? id, List<AppQuestionnaireAnswerSubmits> model) async {
     BaseModel baseModel = await NetUtil().post(
       API.manager.questionnaireSubmit,
       params: {

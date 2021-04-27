@@ -30,7 +30,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -52,13 +52,13 @@ class _MyAppState extends State<MyApp> {
           FocusScopeNode currentFocus = FocusScope.of(context);
           if (!currentFocus.hasPrimaryFocus &&
               currentFocus.focusedChild != null) {
-            FocusManager.instance.primaryFocus.unfocus();
+            FocusManager.instance.primaryFocus!.unfocus();
           }
         },
         child: ScreenUtilInit(
           designSize: Size(750, 1334),
           builder: () => GetMaterialApp(
-            onGenerateTitle: (context) => S.of(context).appName,
+            onGenerateTitle: (context) => S.of(context)!.appName,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.theme,
             home: SplashPage(),

@@ -1,12 +1,12 @@
 class GoodsOutModel {
-  int id;
-  String name;
-  int weight;
-  String expectedTime;
-  int approach;
-  int status;
-  String movingCompanyTel;
-  List<ImgUrl> imgUrl;
+  int? id;
+  String? name;
+  int? weight;
+  String? expectedTime;
+  int? approach;
+  int? status;
+  String? movingCompanyTel;
+  List<ImgUrl>? imgUrl;
 
   GoodsOutModel(
       {this.id,
@@ -29,7 +29,7 @@ class GoodsOutModel {
     if (json['imgUrl'] != null) {
       imgUrl = [];
       json['imgUrl'].forEach((v) {
-        imgUrl.add(new ImgUrl.fromJson(v));
+        imgUrl!.add(new ImgUrl.fromJson(v));
       });
     }
   }
@@ -44,18 +44,18 @@ class GoodsOutModel {
     data['status'] = this.status;
     data['movingCompanyTel'] = this.movingCompanyTel;
     if (this.imgUrl != null) {
-      data['imgUrl'] = this.imgUrl.map((v) => v.toJson()).toList();
+      data['imgUrl'] = this.imgUrl!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ImgUrl {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgUrl({this.url, this.size, this.longs, this.paragraph, this.sort});
 

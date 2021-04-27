@@ -8,7 +8,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class FinishFixedSubmitPage extends StatelessWidget {
-  const FinishFixedSubmitPage({Key key}) : super(key: key);
+  const FinishFixedSubmitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

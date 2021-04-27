@@ -14,7 +14,7 @@ import 'package:aku_community/utils/login_util.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
 class AllApplicationPage extends StatefulWidget {
-  AllApplicationPage({Key key}) : super(key: key);
+  AllApplicationPage({Key? key}) : super(key: key);
 
   @override
   _AllApplicationPageState createState() => _AllApplicationPageState();

@@ -4,7 +4,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PrivacyPage extends StatefulWidget {
-  PrivacyPage({Key key}) : super(key: key);
+  PrivacyPage({Key? key}) : super(key: key);
   @override
   _PrivacyPageState createState() => _PrivacyPageState();
 }

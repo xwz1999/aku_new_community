@@ -17,17 +17,17 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/radio_button.dart';
 
 class ReturnGoodsDetailPage extends StatefulWidget {
-  ReturnGoodsDetailPage({Key key}) : super(key: key);
+  ReturnGoodsDetailPage({Key? key}) : super(key: key);
 
   @override
   _ReturnGoodsDetailPageState createState() => _ReturnGoodsDetailPageState();
 }
 
 class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
-  EasyRefreshController _easyRefreshController;
-  List<ArticleReturnListModel> _models;
+  EasyRefreshController? _easyRefreshController;
+  late List<ArticleReturnListModel> _models;
   bool _onload = true;
-  List<int> _selectItems = [];
+  List<int?> _selectItems = [];
   bool get allSelect => _selectItems.length == _models.length;
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          List models = await getModels();
+          List models = await (getModels());
           _models =
               models.map((e) => ArticleReturnListModel.fromJson(e)).toList();
           _onload = false;
@@ -140,7 +140,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
                       'ids': _selectItems,
                     },
                     showMessage: true);
-            if (baseModel.status) {
+            if (baseModel.status!) {
               Get.back();
             }
           },
@@ -162,7 +162,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
 
   Future getModels() async {
     BaseModel baseModel = await NetUtil().get(API.manager.articleReturnList);
-    return baseModel.data as List;
+    return baseModel.data as List?;
   }
 
   Widget _goodsCard(ArticleReturnListModel model) {

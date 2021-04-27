@@ -13,7 +13,7 @@ import 'package:aku_community/ui/community/community_views/topic/topic_detail_pa
 import 'package:aku_community/utils/headers.dart';
 
 class TopicCommunityView extends StatefulWidget {
-  TopicCommunityView({Key key}) : super(key: key);
+  TopicCommunityView({Key? key}) : super(key: key);
 
   @override
   TopicCommunityViewState createState() => TopicCommunityViewState();
@@ -23,7 +23,7 @@ class TopicCommunityViewState extends State<TopicCommunityView>
     with AutomaticKeepAliveClientMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
   refresh() {
-    _refreshController?.callRefresh();
+    _refreshController.callRefresh();
   }
 
   _buildItem(CommunityTopicModel model) {
@@ -81,14 +81,14 @@ class TopicCommunityViewState extends State<TopicCommunityView>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              (model?.title ?? '')
+              (model.title ?? '')
                   .text
                   .maxLines(2)
                   .size(28.sp)
                   .bold
                   .overflow(TextOverflow.ellipsis)
                   .make(),
-              (model?.content ?? '')
+              (model.content ?? '')
                   .text
                   .maxLines(1)
                   .size(22.sp)
@@ -104,7 +104,7 @@ class TopicCommunityViewState extends State<TopicCommunityView>
                   width: 24.w,
                 ),
                 12.wb,
-                '${model?.activityNum}'
+                '${model.activityNum}'
                     .text
                     .maxLines(1)
                     .size(22.sp)
@@ -121,11 +121,11 @@ class TopicCommunityViewState extends State<TopicCommunityView>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BeeListView(
+    return BeeListView<CommunityTopicModel>(
       path: API.community.topicList,
       controller: _refreshController,
       convert: (model) {
-        return model.tableList
+        return model.tableList!
             .map((e) => CommunityTopicModel.fromJson(e))
             .toList();
       },

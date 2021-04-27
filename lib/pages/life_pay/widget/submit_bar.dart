@@ -5,8 +5,8 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class SubmitBar extends StatefulWidget {
-  final String title;
-  SubmitBar({Key key, this.title}) : super(key: key);
+  final String? title;
+  SubmitBar({Key? key, this.title}) : super(key: key);
 
   @override
   _SubmitBarState createState() => _SubmitBarState();
@@ -111,7 +111,7 @@ class _SubmitBarState extends State<SubmitBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _selectAll(),
-          _submitOrder(widget.title),
+          _submitOrder(widget.title!),
         ],
       ),
     );

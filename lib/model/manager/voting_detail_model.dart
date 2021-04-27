@@ -1,13 +1,13 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class VotingDetailModel {
-  int id;
-  String title;
-  String content;
-  int status;
-  int totals;
-  List<ImgModel> imgUrls;
-  List<AppVoteCandidateVos> appVoteCandidateVos;
+  int? id;
+  String? title;
+  String? content;
+  int? status;
+  int? totals;
+  List<ImgModel>? imgUrls;
+  List<AppVoteCandidateVos>? appVoteCandidateVos;
 
   VotingDetailModel(
       {this.id,
@@ -27,14 +27,14 @@ class VotingDetailModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['appVoteCandidateVos'] != null) {
       appVoteCandidateVos = [];
       json['appVoteCandidateVos'].forEach((v) {
-        appVoteCandidateVos.add(new AppVoteCandidateVos.fromJson(v));
+        appVoteCandidateVos!.add(new AppVoteCandidateVos.fromJson(v));
       });
     }
   }
@@ -47,22 +47,22 @@ class VotingDetailModel {
     data['status'] = this.status;
     data['totals'] = this.totals;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.appVoteCandidateVos != null) {
       data['appVoteCandidateVos'] =
-          this.appVoteCandidateVos.map((v) => v.toJson()).toList();
+          this.appVoteCandidateVos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ImgUrls {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
 
@@ -86,10 +86,10 @@ class ImgUrls {
 }
 
 class AppVoteCandidateVos {
-  int id;
-  String name;
-  int total;
-  List<ImgModel> imgUrls;
+  int? id;
+  String? name;
+  int? total;
+  List<ImgModel>? imgUrls;
 
   AppVoteCandidateVos({this.id, this.name, this.total, this.imgUrls});
 
@@ -100,7 +100,7 @@ class AppVoteCandidateVos {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
@@ -112,7 +112,7 @@ class AppVoteCandidateVos {
     data['name'] = this.name;
     data['total'] = this.total;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

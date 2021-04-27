@@ -8,7 +8,7 @@ import 'package:aku_community/ui/search/bee_search.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class HomeSearch extends StatefulWidget {
-  HomeSearch({Key key}) : super(key: key);
+  HomeSearch({Key? key}) : super(key: key);
 
   @override
   _HomeSearchState createState() => _HomeSearchState();

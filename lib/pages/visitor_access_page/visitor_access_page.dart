@@ -20,7 +20,7 @@ import 'package:aku_community/widget/common_input.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
 
 class VisitorAccessPage extends StatefulWidget {
-  VisitorAccessPage({Key key}) : super(key: key);
+  VisitorAccessPage({Key? key}) : super(key: key);
 
   @override
   _VisitorAccessPageState createState() => _VisitorAccessPageState();
@@ -29,7 +29,7 @@ class VisitorAccessPage extends StatefulWidget {
 class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userName = new TextEditingController();
   TextEditingController _userCarNum = new TextEditingController();
-  DateTime dateTime;
+  DateTime? dateTime;
   int _selectSex = 1;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -192,7 +192,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   Widget _selectTime() {
     return InkWell(
       onTap: () async {
-        DateTime date = await BeeDatePicker.pick(DateTime.now());
+        DateTime? date = await BeeDatePicker.pick(DateTime.now());
         if (date != null) dateTime = date;
         setState(() {});
       },
@@ -239,15 +239,15 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
   }
 
   Widget _create(
-    int id,
-    int type,
-    String tel,
+    int? id,
+    int? type,
+    String? tel,
   ) {
     final appProvider = Provider.of<AppProvider>(context);
     return MaterialButton(
       onPressed: () async {
-        String result = await ManagerFunc.shareVisitor(
-          estateId: appProvider.selectedHouse.estateId,
+        String? result = await ManagerFunc.shareVisitor(
+          estateId: appProvider.selectedHouse!.estateId,
           name: _userName.text,
           sex: _selectSex,
           carNumber: _userCarNum.text,
@@ -315,8 +315,8 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                 child: Column(
                   children: [
                     _buildHouseCard(
-                      S.of(context).tempPlotName,
-                      appProvider.selectedHouse.roomName,
+                      S.of(context)!.tempPlotName,
+                      appProvider.selectedHouse!.roomName!,
                     ),
                     _input(
                       '访客姓名',
@@ -338,9 +338,9 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
-                      appProvider.selectedHouse.estateId,
-                      userProvider.userDetailModel.type,
-                      userProvider.userDetailModel.tel,
+                      appProvider.selectedHouse!.estateId,
+                      userProvider.userDetailModel!.type,
+                      userProvider.userDetailModel!.tel,
                     ),
                     _tips(),
                   ],

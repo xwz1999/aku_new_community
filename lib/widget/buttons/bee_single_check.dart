@@ -5,9 +5,9 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeSingleCheck<T> extends StatefulWidget {
-  final T value;
-  final T groupValue;
-  BeeSingleCheck({Key key, this.value, this.groupValue}) : super(key: key);
+  final T? value;
+  final T? groupValue;
+  BeeSingleCheck({Key? key, this.value, this.groupValue}) : super(key: key);
 
   @override
   _BeeSingleCheckState createState() => _BeeSingleCheckState();

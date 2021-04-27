@@ -12,8 +12,8 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class AdviceCard extends StatefulWidget {
-  final SuggestionOrComplainModel model;
-  AdviceCard({Key key, this.model}) : super(key: key);
+  final SuggestionOrComplainModel? model;
+  AdviceCard({Key? key, this.model}) : super(key: key);
 
   @override
   _AdviceCardState createState() => _AdviceCardState();
@@ -21,14 +21,14 @@ class AdviceCard extends StatefulWidget {
 
 class _AdviceCardState extends State<AdviceCard> {
   ///1.未反馈，2.反馈中，3.已反馈
-  String get statusValue => {
+  String? get statusValue => {
         1: '未反馈',
         2: '反馈中',
         3: '已反馈',
-      }[widget.model.status];
+      }[widget.model!.status!];
 
   Widget _buildRating() {
-    if (widget.model.score == null)
+    if (widget.model!.score == null)
       return SizedBox();
     else
       return [
@@ -41,7 +41,7 @@ class _AdviceCardState extends State<AdviceCard> {
             Icons.star_rounded,
             color: kPrimaryColor,
           ),
-          rating: widget.model.score / 2,
+          rating: widget.model!.score! / 2,
           itemSize: 40.w,
         ),
         24.wb,
@@ -66,10 +66,10 @@ class _AdviceCardState extends State<AdviceCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DateUtil.formatDate(
-                widget.model.createDate,
+                widget.model!.createDate,
                 format: 'yyyy年MM月dd日',
               ).text.size(32.sp).black.bold.make(),
-              statusValue.text.size(24.sp).color(Color(0xFFFF8200)).make(),
+              statusValue!.text.size(24.sp).color(Color(0xFFFF8200)).make(),
             ],
           ).pSymmetric(h: 28.w),
           Divider(
@@ -79,9 +79,9 @@ class _AdviceCardState extends State<AdviceCard> {
             thickness: 1.w,
             color: Color(0xFFE8E8E8),
           ),
-          widget.model.content.text.size(28.w).black.make().pSymmetric(h: 28.w),
-          HorizontalImageView(widget.model.imgUrls.map((e) => e.url).toList()),
-          widget.model.score == null
+          widget.model!.content!.text.size(28.w).black.make().pSymmetric(h: 28.w),
+          HorizontalImageView(widget.model!.imgUrls!.map((e) => e.url).toList()),
+          widget.model!.score == null
               ? SizedBox()
               : Divider(
                   indent: 32.w,

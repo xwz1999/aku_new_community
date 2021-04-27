@@ -6,7 +6,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'widget/bill_card.dart';
 
 class LifePayBillPage extends StatefulWidget {
-  LifePayBillPage({Key key}) : super(key: key);
+  LifePayBillPage({Key? key}) : super(key: key);
 
   @override
   _LifePayBillPageState createState() => _LifePayBillPageState();

@@ -5,16 +5,16 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/bee_single_check.dart';
 
 class QuestionnaireSingleCheck extends StatefulWidget {
-  final String title;
-  final List<QuestionnaireChoiceVoList> answers;
-  final int selected;
-  final Function(int id) onPressed;
+  final String? title;
+  final List<QuestionnaireChoiceVoList>? answers;
+  final int? selected;
+  final Function(int? id) onPressed;
   QuestionnaireSingleCheck(
-      {Key key,
-      @required this.title,
-      @required this.answers,
-      @required this.selected,
-      @required this.onPressed})
+      {Key? key,
+      required this.title,
+      required this.answers,
+      required this.selected,
+      required this.onPressed})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          widget.title.text.black.size(32.sp).bold.make(),
+          widget.title!.text.black.size(32.sp).bold.make(),
           64.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 96.w),
@@ -40,7 +40,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    ...widget.answers.oddList().map((e) {
+                    ...widget.answers!.oddList().map((e) {
                       return Row(
                         children: [
                           GestureDetector(
@@ -53,7 +53,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                             ),
                           ),
                           16.w.widthBox,
-                          e.answer.text.black.size(28.sp).make(),
+                          e.answer!.text.black.size(28.sp).make(),
                         ],
                       );
                     }).toList(),
@@ -62,7 +62,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    ...widget.answers.evenList().map((e) {
+                    ...widget.answers!.evenList().map((e) {
                       return Row(
                         children: [
                           GestureDetector(
@@ -75,7 +75,7 @@ class _QuestionnaireSingleCheckState extends State<QuestionnaireSingleCheck> {
                             ),
                           ),
                           16.w.widthBox,
-                          e.answer.text.black.size(28.sp).make(),
+                          e.answer!.text.black.size(28.sp).make(),
                         ],
                       );
                     }).toList(),

@@ -9,8 +9,8 @@ import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 
 class BeeImagePreview extends StatefulWidget {
-  static Future<T> toFile<T>({@required File file, String tag}) async {
-    return await navigator.push(
+  static Future<T?> toFile<T>({required File file, String? tag}) async {
+    return await navigator!.push(
       PageRouteBuilder(
         opaque: false,
         fullscreenDialog: true,
@@ -27,8 +27,8 @@ class BeeImagePreview extends StatefulWidget {
     );
   }
 
-  static toPath({@required String path, String tag}) {
-    navigator.push(
+  static toPath({required String? path, String? tag}) {
+    navigator!.push(
       PageRouteBuilder(
         opaque: false,
         fullscreenDialog: true,
@@ -45,14 +45,14 @@ class BeeImagePreview extends StatefulWidget {
     );
   }
 
-  final File file;
-  final String path;
-  final String tag;
-  BeeImagePreview.file({Key key, @required this.file, this.tag})
+  final File? file;
+  final String? path;
+  final String? tag;
+  BeeImagePreview.file({Key? key, required this.file, this.tag})
       : path = null,
         super(key: key);
 
-  BeeImagePreview.path({Key key, @required this.path, this.tag})
+  BeeImagePreview.path({Key? key, required this.path, this.tag})
       : file = null,
         super(key: key);
 
@@ -64,7 +64,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
   Widget get image {
     if (widget.file == null)
       return Hero(
-        tag: widget.tag ?? widget.path,
+        tag: widget.tag ?? widget.path!,
         child: FadeInImage.assetNetwork(
           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
           image: API.image(widget.path),
@@ -73,7 +73,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
     else
       return Hero(
         tag: widget.tag ?? widget.file.hashCode,
-        child: Image.file(widget.file),
+        child: Image.file(widget.file!),
       );
   }
 

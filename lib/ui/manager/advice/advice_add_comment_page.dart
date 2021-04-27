@@ -12,8 +12,8 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class AdviceAddCommentPage extends StatefulWidget {
-  final int id;
-  AdviceAddCommentPage({Key key, @required this.id}) : super(key: key);
+  final int? id;
+  AdviceAddCommentPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _AdviceAddCommentPageState createState() => _AdviceAddCommentPageState();
@@ -25,7 +25,7 @@ class _AdviceAddCommentPageState extends State<AdviceAddCommentPage> {
 
   @override
   void dispose() {
-    _textEditingController?.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
@@ -66,7 +66,7 @@ class _AdviceAddCommentPageState extends State<AdviceAddCommentPage> {
       ),
       bottomNavi: BottomButton(
         onPressed: () async {
-          if (_formKey.currentState.validate()) {
+          if (_formKey.currentState!.validate()) {
             BaseModel baseModel = await NetUtil().post(
               API.manager.adviceQuestion,
               params: {
@@ -76,7 +76,7 @@ class _AdviceAddCommentPageState extends State<AdviceAddCommentPage> {
               },
               showMessage: true,
             );
-            if (baseModel.status) {
+            if (baseModel.status!) {
               Get.back(result: true);
             }
           }

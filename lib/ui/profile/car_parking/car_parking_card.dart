@@ -5,7 +5,7 @@ import 'package:aku_community/utils/headers.dart';
 
 class CarparkingCard extends StatelessWidget {
   final CarParkingModel model;
-  const CarparkingCard({Key key, @required this.model}) : super(key: key);
+  const CarparkingCard({Key? key, required this.model}) : super(key: key);
 
   String get _assetImage {
     return model.outdated
@@ -29,17 +29,17 @@ class CarparkingCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              model.code,
+              model.code!,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 36.sp,
               ),
             ),
             Text(
-              S.of(context).tempPlotName,
+              S.of(context)!.tempPlotName,
               style: Theme.of(context)
                   .textTheme
-                  .subtitle2
+                  .subtitle2!
                   .copyWith(color: Color(0xFF999999)),
             ),
             Spacer(),
@@ -50,13 +50,13 @@ class CarparkingCard extends StatelessWidget {
                   children: [
                     Text(
                       '类型',
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             color: Color(0xFF666666),
                           ),
                     ),
                     Text(
                       model.typeName,
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -67,13 +67,13 @@ class CarparkingCard extends StatelessWidget {
                   children: [
                     Text(
                       '到期时间',
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             color: Color(0xFF666666),
                           ),
                     ),
                     Text(
                       model.dateName,
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                     ),

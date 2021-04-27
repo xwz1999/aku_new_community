@@ -10,10 +10,10 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class EventDetailPage extends StatefulWidget {
-  final int themeId;
+  final int? themeId;
   EventDetailPage({
-    Key key,
-    @required this.themeId,
+    Key? key,
+    required this.themeId,
   }) : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class EventDetailPage extends StatefulWidget {
 
 class _EventDetailPageState extends State<EventDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
-  EventItemModel _model;
+  EventItemModel? _model;
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

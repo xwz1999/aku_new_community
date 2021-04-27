@@ -21,15 +21,15 @@ import 'package:aku_community/widget/others/stack_avatar.dart';
 import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class ActivityDetailPage extends StatefulWidget {
-  final int id;
-  ActivityDetailPage({Key key, @required this.id}) : super(key: key);
+  final int? id;
+  ActivityDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _ActivityDetailPageState createState() => _ActivityDetailPageState();
 }
 
 class _ActivityDetailPageState extends State<ActivityDetailPage> {
-  ActivityDetailModel model;
+  ActivityDetailModel? model;
   EasyRefreshController _refreshController = EasyRefreshController();
   bool get outdate =>
       (model?.registEndDate ?? DateTime(0)).compareTo(DateTime.now()) == -1;
@@ -62,7 +62,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
       );
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -97,19 +97,19 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
             ? SizedBox()
             : ListView(
                 children: [
-                  model.title.text
+                  model!.title!.text
                       .size(32.sp)
                       .bold
                       .make()
                       .pSymmetric(h: 32.w, v: 24.w),
                   48.hb,
-                  ...model.imgUrls
+                  ...model!.imgUrls!
                       .map((e) => GestureDetector(
                             onTap: () {
                               BeeImagePreview.toPath(path: e.url);
                             },
                             child: Hero(
-                              tag: e.url,
+                              tag: e.url!,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.black12,
@@ -126,28 +126,28 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                           ).pSymmetric(h: 32.w))
                       .toList(),
                   44.hb,
-                  model.content.text.size(28.sp).make().pSymmetric(h: 32.w),
+                  model!.content!.text.size(28.sp).make().pSymmetric(h: 32.w),
                   44.hb,
                   _buildTile(
                     '开始时间',
                     DateUtil.formatDate(
-                      model.startDate,
+                      model!.startDate,
                       format: 'yyyy年MM月dd日 HH:mm',
                     ),
                   ),
                   _buildTile(
                     '结束时间',
                     DateUtil.formatDate(
-                      model.endDate,
+                      model!.endDate,
                       format: 'yyyy年MM月dd日 HH:mm',
                     ),
                   ),
-                  _buildTile('地        点', model.location),
+                  _buildTile('地        点', model!.location!),
                   _buildTile('参与人数', '不限'),
                   _buildTile(
                     '报名截止',
                     DateUtil.formatDate(
-                      model.registEndDate,
+                      model!.registEndDate,
                       format: 'yyyy年MM月dd日 HH:mm',
                     ),
                   ),
@@ -163,10 +163,10 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                     child: Row(
                       children: [
                         StackAvatar(
-                          avatars: model.headImgURls.map((e) => e.url).toList(),
+                          avatars: model!.headImgURls!.map((e) => e.url).toList(),
                         ),
                         Spacer(),
-                        '已有${model.countRegistration}人参加'
+                        '已有${model!.countRegistration}人参加'
                             .text
                             .size(28.sp)
                             .make(),

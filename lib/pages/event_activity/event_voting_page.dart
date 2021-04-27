@@ -14,14 +14,14 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/stack_avatar.dart';
 
 class EventVotingPage extends StatefulWidget {
-  EventVotingPage({Key key}) : super(key: key);
+  EventVotingPage({Key? key}) : super(key: key);
 
   @override
   _EventVotingPageState createState() => _EventVotingPageState();
 }
 
 class _EventVotingPageState extends State<EventVotingPage> {
-  EasyRefreshController _controller;
+  EasyRefreshController? _controller;
   @override
   void initState() {
     super.initState();
@@ -34,7 +34,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
     super.dispose();
   }
 
-  String _getButtonText(int status) {
+  String _getButtonText(int? status) {
     switch (status) {
       case 1:
       case 2:
@@ -71,13 +71,13 @@ class _EventVotingPageState extends State<EventVotingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.title.text.black
+                model.title!.text.black
                     .size(28.sp)
                     .bold
                     .overflow(TextOverflow.ellipsis)
                     .make(),
                 16.w.heightBox,
-                model.content.text.color(ktextSubColor).size(24.sp).make(),
+                model.content!.text.color(ktextSubColor).size(24.sp).make(),
                 8.w.heightBox,
                 RichText(
                     text: TextSpan(
@@ -92,14 +92,14 @@ class _EventVotingPageState extends State<EventVotingPage> {
                           color: ktextPrimary,
                           fontSize: 24.sp,
                         ),
-                        text: model.beginDate + '至' + model.endDate,
+                        text: model.beginDate! + '至' + model.endDate!,
                       ),
                     ])),
                 16.w.heightBox,
                 Row(
                   children: [
                     StackAvatar(
-                        avatars: model.headImgURls.map((e) => e.url).toList()),
+                        avatars: model.headImgURls!.map((e) => e.url).toList()),
                     Spacer(),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
@@ -134,11 +134,11 @@ class _EventVotingPageState extends State<EventVotingPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '活动投票',
-      body: BeeListView(
+      body: BeeListView<EventVotingModel>(
           path: API.manager.enventVotingList,
           controller: _controller,
           convert: (model) {
-            return model.tableList
+            return model.tableList!
                 .map((e) => EventVotingModel.fromJson(e))
                 .toList();
           },

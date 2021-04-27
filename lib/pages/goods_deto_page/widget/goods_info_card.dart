@@ -9,9 +9,9 @@ import 'package:aku_community/widget/views/horizontal_image_view.dart';
 import 'goods_info_card_button.dart';
 
 class GoodsInfoCard extends StatelessWidget {
-  final GoodsOutModel model;
+  final GoodsOutModel? model;
   GoodsInfoCard({
-    Key key,
+    Key? key,
     this.model,
   }) : super(key: key);
 
@@ -34,7 +34,7 @@ class GoodsInfoCard extends StatelessWidget {
     );
   }
 
-  Color _getColor(int state) {
+  Color _getColor(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -98,11 +98,11 @@ class GoodsInfoCard extends StatelessWidget {
                             fontSize: 32.sp,
                             color: Color(0xff333333)),
                       ),
-                      Text(BeeMap.fixState[model.status],
+                      Text(BeeMap.fixState[model!.status!]!,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 28.sp,
-                              color: _getColor(model.status))),
+                              color: _getColor(model!.status))),
                     ],
                   ),
                 ),
@@ -117,10 +117,10 @@ class GoodsInfoCard extends StatelessWidget {
                             BorderSide(color: Color(0xffeeeeee), width: 0.5)),
                   ),
                   child: Column(children: [
-                    _builTile('物品重量', BeeMap.goodsOutweight[model.weight]),
-                    _builTile('出户时间', model.expectedTime),
-                    _builTile('物品名称', model.name),
-                    _builTile('搬运方式', BeeMap.goodsOutApproach[model.approach]),
+                    _builTile('物品重量', BeeMap.goodsOutweight[model!.weight!]!),
+                    _builTile('出户时间', model!.expectedTime!),
+                    _builTile('物品名称', model!.name!),
+                    _builTile('搬运方式', BeeMap.goodsOutApproach[model!.approach!]!),
                   ]),
                 ),
                 Container(
@@ -142,7 +142,7 @@ class GoodsInfoCard extends StatelessWidget {
                         ),
                       ),
                       HorizontalImageView(
-                          model.imgUrl.map((e) => e.url).toList()),
+                          model!.imgUrl!.map((e) => e.url).toList()),
                     ],
                   ),
                 ),
@@ -150,8 +150,8 @@ class GoodsInfoCard extends StatelessWidget {
             ),
           ),
           GoodsInfoCardButton(
-            id: model.id,
-            tel: model.movingCompanyTel,
+            id: model!.id,
+            tel: model!.movingCompanyTel,
           )
         ],
       ),

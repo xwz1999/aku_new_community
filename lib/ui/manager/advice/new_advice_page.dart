@@ -25,7 +25,7 @@ import 'package:aku_community/widget/picker/grid_image_picker.dart';
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;
   final int initType;
-  NewAdvicePage({Key key, @required this.type, @required this.initType})
+  NewAdvicePage({Key? key, required this.type, required this.initType})
       : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class NewAdvicePage extends StatefulWidget {
 }
 
 class _NewAdvicePageState extends State<NewAdvicePage> {
-  int _type;
+  int? _type;
   List<File> _files = [];
   TextEditingController _editingController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -99,7 +99,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   ///添加建议咨询/投诉表扬 信息
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
-    List<String> urls =
+    List<String?> urls =
         await NetUtil().uploadFiles(files, API.upload.uploadAdvice);
     BaseModel baseModel = await NetUtil().post(
       API.manager.addAdvice,
@@ -111,7 +111,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
       showMessage: true,
     );
     cancel();
-    if (baseModel.status) {
+    if (baseModel.status!) {
       Get.back(result: true);
     }
   }
@@ -146,7 +146,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
               width: 60.w,
             ),
             40.wb,
-            '${S.of(context).tempPlotName}\n${appProvider.selectedHouse.roomName}'
+            '${S.of(context)!.tempPlotName}\n${appProvider.selectedHouse!.roomName}'
                 .text
                 .size(32.sp)
                 .black
@@ -204,7 +204,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
       bottomNavi: BottomButton(
         onPressed: () {
           VoidCallback cancel = BotToast.showLoading();
-          if (_formKey.currentState.validate()) {
+          if (_formKey.currentState!.validate()) {
             int type = 1;
             switch (widget.type) {
               case AdviceType.SUGGESTION:

@@ -6,7 +6,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class VisitorRecordPage extends StatefulWidget {
-  VisitorRecordPage({Key key}) : super(key: key);
+  VisitorRecordPage({Key? key}) : super(key: key);
 
   @override
   _VisitorRecordPageState createState() => _VisitorRecordPageState();
@@ -14,7 +14,7 @@ class VisitorRecordPage extends StatefulWidget {
 
 class _VisitorRecordPageState extends State<VisitorRecordPage>
     with TickerProviderStateMixin {
-  TabController _controller;
+  TabController? _controller;
 
   //导航标签
   List<String> _tabs = ['未到访客', '已到访客'];
@@ -26,7 +26,7 @@ class _VisitorRecordPageState extends State<VisitorRecordPage>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 

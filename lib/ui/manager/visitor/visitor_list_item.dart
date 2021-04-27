@@ -11,7 +11,7 @@ import 'package:aku_community/utils/headers.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;
-  VisitorListItem({Key key, @required this.model}) : super(key: key);
+  VisitorListItem({Key? key, required this.model}) : super(key: key);
 
   @override
   _VisitorListItemState createState() => _VisitorListItemState();
@@ -28,7 +28,7 @@ class _VisitorListItemState extends State<VisitorListItem> {
     return buffer.toString();
   }
 
-  bool get outDate => DateTime.now().isAfter(widget.model.date);
+  bool get outDate => DateTime.now().isAfter(widget.model.date!);
   _buildSuffix() {
     if (outDate)
       return MaterialButton(

@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flustars/flustars.dart';
 
 class HouseModel {
-  int id;
-  String roomName;
+  int? id;
+  String? roomName;
 
-  int estateId;
+  int? estateId;
 
   ///1.未审核，3.审核失败，4.审核成功
-  int status;
+  int? status;
 
   ///1 审核业主，2审核亲属，3审核租客
-  int type;
-  String effectiveTimeStart;
-  String effectiveTimeEnd;
+  int? type;
+  String? effectiveTimeStart;
+  String? effectiveTimeEnd;
 
-  DateTime get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart);
-  DateTime get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd);
+  DateTime? get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart!);
+  DateTime? get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd!);
 
   //TODO 未通过状态
   bool get reviewed => status == 4;

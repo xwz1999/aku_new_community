@@ -18,7 +18,7 @@ import 'widget/property_card.dart';
 //TODO CLEAN BOTTOM CODES.
 @Deprecated("sh*t property_index need to be cleaned.")
 class PropertyIndex extends StatefulWidget {
-  PropertyIndex({Key key}) : super(key: key);
+  PropertyIndex({Key? key}) : super(key: key);
 
   @override
   _PropertyIndexState createState() => _PropertyIndexState();
@@ -33,7 +33,7 @@ class _PropertyIndexState extends State<PropertyIndex>
 
   EasyRefreshController _refreshController = EasyRefreshController();
   int _page = 1;
-  int _pageCount = 0;
+  int? _pageCount = 0;
   List<BoardItemModel> _models = [];
   Future<List<BoardItemModel>> _getItems() async {
     BaseListModel model = await NetUtil().getList(
@@ -44,7 +44,7 @@ class _PropertyIndexState extends State<PropertyIndex>
       },
     );
     _pageCount = model.pageCount;
-    return model.tableList.map((e) => BoardItemModel.fromJson(e)).toList();
+    return model.tableList!.map((e) => BoardItemModel.fromJson(e)).toList();
   }
 
   @override
@@ -71,7 +71,7 @@ class _PropertyIndexState extends State<PropertyIndex>
         onLoad: () async {
           _page++;
           _models.addAll(await _getItems());
-          if (_page >= _pageCount) _refreshController.finishLoad(noMore: true);
+          if (_page >= _pageCount!) _refreshController.finishLoad(noMore: true);
           setState(() {});
         },
         child: CustomScrollView(
@@ -109,7 +109,7 @@ class _PropertyIndexState extends State<PropertyIndex>
                 delegate: SliverChildBuilderDelegate(
               (context, index) {
                 final BoardItemModel model = _models[index];
-                BoardItemModel preModel;
+                BoardItemModel? preModel;
                 if (index >= 1) preModel = _models[index - 1];
                 return Padding(
                   padding: EdgeInsets.only(bottom: 8.w),

@@ -5,10 +5,10 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class StackAvatar extends StatelessWidget {
-  final List<String> avatars;
-  const StackAvatar({Key key, @required this.avatars}) : super(key: key);
+  final List<String?> avatars;
+  const StackAvatar({Key? key, required this.avatars}) : super(key: key);
   double get offset => 35.w;
-  int get length => avatars?.length ?? 0;
+  int get length => avatars.length;
   @override
   Widget build(BuildContext context) {
     return Stack(

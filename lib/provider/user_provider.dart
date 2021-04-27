@@ -18,12 +18,12 @@ class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
   bool get isLogin => _isLogin;
   bool get isNotLogin => !_isLogin;
-  Future setLogin(int token) async {
-    final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
+  Future setLogin(int? token) async {
+    final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     _isLogin = true;
-    NetUtil().dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
-    HiveStore.appBox.put('token', token);
-    HiveStore.appBox.put('login', true);
+    NetUtil().dio!.options.headers.putIfAbsent('App-Admin-Token', () => token);
+    HiveStore.appBox!.put('token', token);
+    HiveStore.appBox!.put('login', true);
     await updateProfile();
     await updateUserDetail();
     await appProvider.updateHouses(await HouseFunc.houses);
@@ -31,16 +31,16 @@ class UserProvider extends ChangeNotifier {
   }
 
   logout() {
-    final appProvider = Provider.of<AppProvider>(Get.context, listen: false);
+    final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
     _userDetailModel = null;
     NetUtil().get(API.user.logout, showMessage: true);
-    NetUtil().dio.options.headers.remove('App-Admin-Token');
-    HiveStore.appBox.delete('token');
-    HiveStore.appBox.delete('login');
+    NetUtil().dio!.options.headers.remove('App-Admin-Token');
+    HiveStore.appBox!.delete('token');
+    HiveStore.appBox!.delete('login');
     notifyListeners();
   }
 
@@ -54,14 +54,14 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _token;
+  String? _token;
   String get token => _token ?? '';
 
-  UserInfoModel _userInfoModel;
-  UserInfoModel get userInfoModel => _userInfoModel;
+  UserInfoModel? _userInfoModel;
+  UserInfoModel? get userInfoModel => _userInfoModel;
 
-  UserDetailModel _userDetailModel;
-  UserDetailModel get userDetailModel => _userDetailModel;
+  UserDetailModel? _userDetailModel;
+  UserDetailModel? get userDetailModel => _userDetailModel;
 
   ///设置性别
   Future setSex(int sex) async {
@@ -70,8 +70,8 @@ class UserProvider extends ChangeNotifier {
       params: {'sex': sex},
       showMessage: true,
     );
-    if (baseModel.status) {
-      _userInfoModel.sex = sex;
+    if (baseModel.status!) {
+      _userInfoModel!.sex = sex;
       notifyListeners();
     }
   }
@@ -85,8 +85,8 @@ class UserProvider extends ChangeNotifier {
       },
       showMessage: true,
     );
-    if (baseModel.status) {
-      _userInfoModel.birthday =
+    if (baseModel.status!) {
+      _userInfoModel!.birthday =
           DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss");
       notifyListeners();
     }
@@ -99,8 +99,8 @@ class UserProvider extends ChangeNotifier {
       params: {'nickName': name},
       showMessage: true,
     );
-    if (baseModel.status) {
-      _userInfoModel.nickName = name;
+    if (baseModel.status!) {
+      _userInfoModel!.nickName = name;
       notifyListeners();
     }
   }
@@ -112,14 +112,14 @@ class UserProvider extends ChangeNotifier {
       params: {'oldTel': oldTel, 'newTel': newTel, 'code': code},
       showMessage: true,
     );
-    if (baseModel.status) {
-      _userInfoModel.tel = newTel;
+    if (baseModel.status!) {
+      _userInfoModel!.tel = newTel;
       notifyListeners();
     }
   }
 
   ///修改头像
-  Future updateAvatar(String path) async {
+  Future updateAvatar(String? path) async {
     BaseModel model = await NetUtil().post(
       API.user.udpdateAvatar,
       params: {
@@ -127,7 +127,7 @@ class UserProvider extends ChangeNotifier {
       },
       showMessage: true,
     );
-    if (model.status) {
+    if (model.status!) {
       await updateProfile();
     }
   }

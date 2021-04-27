@@ -1,19 +1,19 @@
 class UserDetailModel {
-  int id;
-  String name;
-  int type;
-  String tel;
-  int idType;
-  String idNumber;
-  String pwd;
-  String confuse;
-  String email;
-  int createId;
-  String createDate;
-  String identity;
-  int roomStatus;
-  String nickName;
-  List<String> estateNames;
+  int? id;
+  String? name;
+  int? type;
+  String? tel;
+  int? idType;
+  String? idNumber;
+  String? pwd;
+  String? confuse;
+  String? email;
+  int? createId;
+  String? createDate;
+  String? identity;
+  int? roomStatus;
+  String? nickName;
+  List<String>? estateNames;
 
   UserDetailModel(
       {this.id,

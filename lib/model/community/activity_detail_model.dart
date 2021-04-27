@@ -3,20 +3,20 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class ActivityDetailModel {
-  int id;
-  String title;
-  String content;
-  String location;
-  String activityStartTime;
-  String activityEndTime;
-  String registrationEndTime;
-  int countRegistration;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headImgURls;
+  int? id;
+  String? title;
+  String? content;
+  String? location;
+  String? activityStartTime;
+  String? activityEndTime;
+  String? registrationEndTime;
+  int? countRegistration;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headImgURls;
 
-  DateTime get startDate => DateUtil.getDateTime(activityStartTime);
-  DateTime get endDate => DateUtil.getDateTime(activityEndTime);
-  DateTime get registEndDate => DateUtil.getDateTime(registrationEndTime);
+  DateTime? get startDate => DateUtil.getDateTime(activityStartTime!);
+  DateTime? get endDate => DateUtil.getDateTime(activityEndTime!);
+  DateTime? get registEndDate => DateUtil.getDateTime(registrationEndTime!);
 
   ActivityDetailModel(
       {this.id,
@@ -42,14 +42,14 @@ class ActivityDetailModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headImgURls'] != null) {
       headImgURls = [];
       json['headImgURls'].forEach((v) {
-        headImgURls.add(new ImgModel.fromJson(v));
+        headImgURls!.add(new ImgModel.fromJson(v));
       });
     } else
       headImgURls = [];
@@ -66,10 +66,10 @@ class ActivityDetailModel {
     data['registrationEndTime'] = this.registrationEndTime;
     data['countRegistration'] = this.countRegistration;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headImgURls != null) {
-      data['headImgURls'] = this.headImgURls.map((v) => v.toJson()).toList();
+      data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -13,9 +13,9 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/dotted_line.dart';
 
 class DetoCodePage extends StatelessWidget {
-  final int id;
-  final ArticleQRModel model;
-  const DetoCodePage({Key key, this.id, this.model}) : super(key: key);
+  final int? id;
+  final ArticleQRModel? model;
+  const DetoCodePage({Key? key, this.id, this.model}) : super(key: key);
 
   Widget _header(String estateName) {
     return Container(
@@ -24,7 +24,7 @@ class DetoCodePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            S.of(Get.context).tempPlotName,
+            S.of(Get.context!)!.tempPlotName,
             style: TextStyle(fontSize: 40.sp, color: Color(0xffffffff)),
           ),
           SizedBox(height: 10.w),
@@ -37,7 +37,7 @@ class DetoCodePage extends StatelessWidget {
     );
   }
 
-  Widget _card(String name, String effectiveTime) {
+  Widget _card(String? name, String? effectiveTime) {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffffffff),
@@ -117,7 +117,7 @@ class DetoCodePage extends StatelessWidget {
                 // SizedBox(height: 11.w),
                 QrImage(
                   padding: EdgeInsets.zero,
-                  data: model.appArticleOutQRCodeVo.id.toString(),
+                  data: model!.appArticleOutQRCodeVo!.id.toString(),
                   size: 260.w,
                 ),
               ],
@@ -152,10 +152,10 @@ class DetoCodePage extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 192.w - kToolbarHeight),
-                _header(appProvider.selectedHouse.roomName),
+                _header(appProvider.selectedHouse!.roomName!),
                 SizedBox(height: 32.w),
-                _card(model.appArticleOutQRCodeVo.applicantName,
-                    model.appArticleOutQRCodeVo.effectiveTime),
+                _card(model!.appArticleOutQRCodeVo!.applicantName,
+                    model!.appArticleOutQRCodeVo!.effectiveTime),
               ],
             ),
           ],

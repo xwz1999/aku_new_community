@@ -1,18 +1,18 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class CommitteeItemModel {
-  int id;
-  int positionId;
-  String name;
-  int sexId;
-  int age;
-  int educationId;
-  String roomName;
-  String profession;
-  String roomNumber;
-  int unitNo;
-  int estateNo;
-  List<ImgModel> imgUrls;
+  int? id;
+  int? positionId;
+  String? name;
+  int? sexId;
+  int? age;
+  int? educationId;
+  String? roomName;
+  String? profession;
+  String? roomNumber;
+  int? unitNo;
+  int? estateNo;
+  List<ImgModel>? imgUrls;
 
   String get sexValue {
     if (sexId == 0 || sexId == null) return '未设置';

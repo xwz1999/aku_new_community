@@ -13,7 +13,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class FeedBackPage extends StatefulWidget {
-  FeedBackPage({Key key}) : super(key: key);
+  FeedBackPage({Key? key}) : super(key: key);
 
   @override
   _FeedBackPageState createState() => _FeedBackPageState();
@@ -67,8 +67,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
   Widget _inkWellSubmit() {
     return InkWell(
       onTap: () async {
-        if (_formKey.currentState.validate()) {
-          if (_files?.isNotEmpty ?? false) {
+        if (_formKey.currentState!.validate()) {
+          if (_files.isNotEmpty) {
             //TODO upload file
           }
           var cancelAction = BotToast.showLoading();

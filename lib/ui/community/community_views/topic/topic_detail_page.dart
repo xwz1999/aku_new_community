@@ -16,9 +16,9 @@ import 'package:aku_community/ui/community/community_views/widgets/chat_card.dar
 import 'package:aku_community/utils/login_util.dart';
 
 class TopicDetailPage extends StatefulWidget {
-  final CommunityTopicModel model;
+  final CommunityTopicModel? model;
 
-  TopicDetailPage({Key key, this.model}) : super(key: key);
+  TopicDetailPage({Key? key, this.model}) : super(key: key);
 
   @override
   _TopicDetailPageState createState() => _TopicDetailPageState();
@@ -28,7 +28,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -41,31 +41,31 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
           heroTag: 'event_add',
           onPressed: () async {
             if (LoginUtil.isNotLogin) return;
-            bool result = await Get.to(() => AddNewEventPage.topic(
-                  topicName: widget.model.summary,
-                  initTopic: widget.model.id,
+            bool? result = await Get.to(() => AddNewEventPage.topic(
+                  topicName: widget.model!.summary,
+                  initTopic: widget.model!.id,
                 ));
           },
           child: Icon(Icons.add),
         ),
         body: BeeListView(
           convert: (model) {
-            return model.tableList
+            return model.tableList!
                 .map((e) => EventItemModel.fromJson(e))
                 .toList();
           },
           path: API.community.eventByTopicId,
-          extraParams: {'gambitId': widget.model.id},
+          extraParams: {'gambitId': widget.model!.id},
           controller: _refreshController,
           builder: (items) {
             return CustomScrollView(
               slivers: [
                 SliverPersistentHeader(
                   delegate: TopicSliverHeader(
-                    id: widget.model.id,
-                    title: widget.model.summary,
-                    imgPath: ImgModel.first(widget.model.imgUrl),
-                    subTitle: widget.model.content,
+                    id: widget.model!.id,
+                    title: widget.model!.summary,
+                    imgPath: ImgModel.first(widget.model!.imgUrl),
+                    subTitle: widget.model!.content,
                   ),
                   pinned: true,
                   floating: true,

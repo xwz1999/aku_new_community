@@ -3,7 +3,7 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class AdviceDetailModel {
-  AppAdviceDetailVo appAdviceDetailVo;
+  AppAdviceDetailVo? appAdviceDetailVo;
 
   AdviceDetailModel({this.appAdviceDetailVo});
 
@@ -16,15 +16,15 @@ class AdviceDetailModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.appAdviceDetailVo != null) {
-      data['appAdviceDetailVo'] = this.appAdviceDetailVo.toJson();
+      data['appAdviceDetailVo'] = this.appAdviceDetailVo!.toJson();
     }
     return data;
   }
 }
 
 class AppAdviceDetailVo {
-  AppAdviceVo appAdviceVo;
-  List<AppAdviceContentVos> appAdviceContentVos;
+  AppAdviceVo? appAdviceVo;
+  List<AppAdviceContentVos>? appAdviceContentVos;
 
   AppAdviceDetailVo({this.appAdviceVo, this.appAdviceContentVos});
 
@@ -35,7 +35,7 @@ class AppAdviceDetailVo {
     if (json['appAdviceContentVos'] != null) {
       appAdviceContentVos = [];
       json['appAdviceContentVos'].forEach((v) {
-        appAdviceContentVos.add(new AppAdviceContentVos.fromJson(v));
+        appAdviceContentVos!.add(new AppAdviceContentVos.fromJson(v));
       });
     }
   }
@@ -43,25 +43,25 @@ class AppAdviceDetailVo {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.appAdviceVo != null) {
-      data['appAdviceVo'] = this.appAdviceVo.toJson();
+      data['appAdviceVo'] = this.appAdviceVo!.toJson();
     }
     if (this.appAdviceContentVos != null) {
       data['appAdviceContentVos'] =
-          this.appAdviceContentVos.map((v) => v.toJson()).toList();
+          this.appAdviceContentVos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class AppAdviceVo {
-  int id;
-  int type;
-  int status;
-  String content;
-  String createDate;
-  List<ImgModel> imgUrls;
+  int? id;
+  int? type;
+  int? status;
+  String? content;
+  String? createDate;
+  List<ImgModel>? imgUrls;
 
-  DateTime get date => DateUtil.getDateTime(createDate);
+  DateTime? get date => DateUtil.getDateTime(createDate!);
 
   AppAdviceVo(
       {this.id,
@@ -80,7 +80,7 @@ class AppAdviceVo {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -93,18 +93,18 @@ class AppAdviceVo {
     data['content'] = this.content;
     data['createDate'] = this.createDate;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class AppAdviceContentVos {
-  int id;
-  int createUserType;
-  String content;
-  String createDate;
-  int parentId;
+  int? id;
+  int? createUserType;
+  String? content;
+  String? createDate;
+  int? parentId;
 
   AppAdviceContentVos(
       {this.id,
@@ -113,7 +113,7 @@ class AppAdviceContentVos {
       this.createDate,
       this.parentId});
 
-  DateTime get date => DateUtil.getDateTime(createDate);
+  DateTime? get date => DateUtil.getDateTime(createDate!);
 
   AppAdviceContentVos.fromJson(Map<String, dynamic> json) {
     id = json['id'];

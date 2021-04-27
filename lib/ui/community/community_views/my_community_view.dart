@@ -9,7 +9,7 @@ import 'package:aku_community/ui/community/community_views/widgets/my_event_card
 import 'package:aku_community/utils/headers.dart';
 
 class MyCommunityView extends StatefulWidget {
-  MyCommunityView({Key key}) : super(key: key);
+  MyCommunityView({Key? key}) : super(key: key);
 
   @override
   MyCommunityViewState createState() => MyCommunityViewState();
@@ -20,17 +20,17 @@ class MyCommunityViewState extends State<MyCommunityView>
   EasyRefreshController _refreshController = EasyRefreshController();
 
   refresh() {
-    _refreshController?.callRefresh();
+    _refreshController.callRefresh();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BeeListView(
+    return BeeListView<MyEventItemModel>(
       path: API.community.myEvent,
       controller: _refreshController,
       convert: (model) {
-        return model.tableList
+        return model.tableList!
             .map((e) => MyEventItemModel.fromJson(e))
             .toList();
       },
@@ -39,7 +39,7 @@ class MyCommunityViewState extends State<MyCommunityView>
           padding: EdgeInsets.symmetric(vertical: 10.w),
           itemBuilder: (context, index) {
             final MyEventItemModel model = items[index];
-            MyEventItemModel preModel;
+            MyEventItemModel? preModel;
             if (index >= 1) preModel = items[index - 1];
             return MyEventCard(model: model, preModel: preModel);
           },

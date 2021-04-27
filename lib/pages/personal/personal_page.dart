@@ -18,8 +18,8 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/views/application_view.dart';
 
 class PersonalIndex extends StatefulWidget {
-  final bool isSign;
-  PersonalIndex({Key key, this.isSign}) : super(key: key);
+  final bool? isSign;
+  PersonalIndex({Key? key, this.isSign}) : super(key: key);
 
   @override
   _PersonalIndexState createState() => _PersonalIndexState();
@@ -72,7 +72,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                   image: API.image(
-                                      userProvider?.userInfoModel?.imgUrl ??
+                                      userProvider.userInfoModel?.imgUrl ??
                                           ''),
                                   height: 106.w,
                                   width: 106.w,

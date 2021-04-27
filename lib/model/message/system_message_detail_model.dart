@@ -1,7 +1,7 @@
 class SystemMessageDetailModel {
-  int id;
-  String title;
-  String content;
+  int? id;
+  String? title;
+  String? content;
 
   SystemMessageDetailModel({this.id, this.title, this.content});
 

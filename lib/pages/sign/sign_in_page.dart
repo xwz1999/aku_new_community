@@ -30,7 +30,7 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class SignInPage extends StatefulWidget {
-  SignInPage({Key key}) : super(key: key);
+  SignInPage({Key? key}) : super(key: key);
 
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -40,7 +40,7 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController _phone = new TextEditingController();
   TextEditingController _code = new TextEditingController();
 
-  Timer _timer;
+  Timer? _timer;
   bool get validPhone => RegexUtil.isMobileSimple(_phone.text);
 
   bool get _canGetCode {
@@ -59,7 +59,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Future<bool> _showLoginVerify() async {
+  Future<bool?> _showLoginVerify() async {
     return await showCupertinoDialog(
       barrierDismissible: false,
       context: context,
@@ -84,9 +84,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   _parseLogin(bool result) async {
-    final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     final signUpProvider =
-        Provider.of<SignUpProvider>(Get.context, listen: false);
+        Provider.of<SignUpProvider>(Get.context!, listen: false);
     if (!result) return;
     CancelFunc cancel = BotToast.showLoading();
     Response response = await SignFunc.login(_phone.text, _code.text);
@@ -120,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
           else if (TextUtil.isEmpty(_code.text))
             BotToast.showText(text: '验证码不能为空');
           else {
-            bool result = await _showLoginVerify();
+            bool result = await (_showLoginVerify() as FutureOr<bool>);
             _parseLogin(result);
           }
         },
@@ -137,7 +137,7 @@ class _SignInPageState extends State<SignInPage> {
   startTick() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (timer.tick >= 60) {
-        _timer.cancel();
+        _timer!.cancel();
         _timer = null;
       }
       setState(() {});
@@ -145,11 +145,11 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   _buildTextField({
-    String hint,
-    Widget prefix,
-    Widget suffix,
+    String? hint,
+    Widget? prefix,
+    Widget? suffix,
     TextInputType type = TextInputType.number,
-    TextEditingController controller,
+    TextEditingController? controller,
   }) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 82.w),
@@ -258,7 +258,7 @@ class _SignInPageState extends State<SignInPage> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     child: Text(
                       _timer?.isActive ?? false
-                          ? '${60 - _timer.tick}'
+                          ? '${60 - _timer!.tick}'
                           : '获取验证码',
                       style: TextStyle(
                         color: BaseStyle.color999999,

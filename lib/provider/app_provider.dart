@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -46,8 +47,8 @@ class AppProvider extends ChangeNotifier {
 
   ///初始化我的应用
   initApplications() {
-    if (HiveStore.appBox.containsKey('app'))
-      _myApplications = (HiveStore.appBox.get('app') as List<String>)
+    if (HiveStore.appBox!.containsKey('app'))
+      _myApplications = (HiveStore.appBox!.get('app') as List<String>)
           .map((e) => AO.fromRaw(e))
           .toList();
     notifyListeners();
@@ -61,14 +62,15 @@ class AppProvider extends ChangeNotifier {
       _myApplications.insert(0, app);
       _myApplications.removeLast();
     }
-    HiveStore.appBox.put('app', _myApplications.map((e) => e.title).toList());
+    HiveStore.appBox!.put('app', _myApplications.map((e) => e.title).toList());
     notifyListeners();
   }
 
   ///移除我的应用
   removeApplication(AO obj) {
     if (_myApplications.remove(obj)) {
-      HiveStore.appBox.put('app', _myApplications.map((e) => e.title).toList());
+      HiveStore.appBox!
+          .put('app', _myApplications.map((e) => e.title).toList());
       notifyListeners();
     }
   }
@@ -82,15 +84,15 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  RealTimeWeatherModel _weatherModel;
-  RealTimeWeatherModel get weatherModel => _weatherModel;
+  RealTimeWeatherModel? _weatherModel;
+  RealTimeWeatherModel? get weatherModel => _weatherModel;
 
   String get weatherTemp =>
       _weatherModel?.result?.realtime?.temperature?.toStringAsFixed(0) ?? '';
 
   String get weatherType {
     if (_weatherModel?.result?.realtime?.skycon == null) return '';
-    switch (_weatherModel.result.realtime.skycon) {
+    switch (_weatherModel!.result!.realtime!.skycon) {
       case 'CLEAR_DAY':
       case 'CLEAR_NIGHT':
         return '晴';
@@ -134,9 +136,9 @@ class AppProvider extends ChangeNotifier {
     }
   }
 
-  Map<String, Object> _location;
-  Map<String, Object> get location => _location;
-  AMapFlutterLocation _aMapFlutterLocation;
+  Map<String, Object>? _location;
+  Map<String, Object>? get location => _location;
+  late AMapFlutterLocation _aMapFlutterLocation;
 
   startLocation() {
     _aMapFlutterLocation = AMapFlutterLocation();
@@ -161,7 +163,7 @@ class AppProvider extends ChangeNotifier {
   // Location get location => _location;
   getWeather() async {
     Response response = await Dio().get(
-      'https://api.caiyunapp.com/v2.5/${AppConfig.caiYunAPI}/${_location['longitude']},${_location['latitude']}/realtime.json',
+      'https://api.caiyunapp.com/v2.5/${AppConfig.caiYunAPI}/${_location!['longitude']},${_location!['latitude']}/realtime.json',
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);
@@ -169,11 +171,11 @@ class AppProvider extends ChangeNotifier {
   }
 
   /// 消息中心
-  MessageCenterModel _messageCenterModel;
+  MessageCenterModel? _messageCenterModel;
   MessageCenterModel get messageCenterModel =>
       _messageCenterModel ?? MessageCenterModel.zero();
   getMessageCenter() async {
-    Response response = await NetUtil().dio.get(API.message.center);
+    Response response = await NetUtil().dio!.get(API.message.center);
     _messageCenterModel = MessageCenterModel.fromJson(response.data);
     notifyListeners();
   }
@@ -185,27 +187,25 @@ class AppProvider extends ChangeNotifier {
 
   ///更新房屋列表
   updateHouses(List<HouseModel> items) {
-    if (items == null) return;
     if (items.isEmpty) return;
-    _selectedHouse = items.firstWhere(
+    _selectedHouse = items.firstWhereOrNull(
       (element) => element.id == (_selectedHouse?.id ?? -1),
-      orElse: () => null,
     );
     _houses = items;
     notifyListeners();
   }
 
-  HouseModel _selectedHouse;
+  HouseModel? _selectedHouse;
 
   ///选中的房屋
-  HouseModel get selectedHouse {
-    if (_houses?.isEmpty ?? true) return null;
+  HouseModel? get selectedHouse {
+    if (_houses.isEmpty) return null;
     if (_selectedHouse == null) _selectedHouse = _houses.first;
     return _selectedHouse;
   }
 
   ///设置当前选中的房屋
-  setCurrentHouse(HouseModel model) {
+  setCurrentHouse(HouseModel? model) {
     _selectedHouse = model;
     notifyListeners();
   }
@@ -214,7 +214,7 @@ class AppProvider extends ChangeNotifier {
   List<CarParkingModel> get carParkingModels => _carParkingModels;
   Future updateCarParkingModels() async {
     BaseModel baseModel = await NetUtil().get(API.user.carParkingList);
-    if (baseModel?.data == null) return [];
+    if (baseModel.data == null) return [];
     _carParkingModels = (baseModel.data as List)
         .map((e) => CarParkingModel.fromJson(e))
         .toList();
@@ -225,7 +225,7 @@ class AppProvider extends ChangeNotifier {
   List<CarParkingModel> get carModels => _carModels;
   Future updateCarModels() async {
     BaseModel baseModel = await NetUtil().get(API.user.carList);
-    if (baseModel?.data == null) return [];
+    if (baseModel.data == null) return [];
     _carModels = (baseModel.data as List)
         .map((e) => CarParkingModel.fromJson(e))
         .toList();

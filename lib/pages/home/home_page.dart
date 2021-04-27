@@ -30,7 +30,7 @@ import 'package:aku_community/widget/views/application_view.dart';
 import 'widget/home_search.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -41,15 +41,15 @@ class _HomePageState extends State<HomePage>
   @override
   bool get wantKeepAlive => true;
 
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
-  List<dynamic> data;
+  List<dynamic>? data;
 
   EasyRefreshController _refreshController = EasyRefreshController();
 
   int page = 1;
 
-  ActivityItemModel _activityItemModel;
+  ActivityItemModel? _activityItemModel;
   List<BoardItemModel> _boardItemModels = [];
 
   @override

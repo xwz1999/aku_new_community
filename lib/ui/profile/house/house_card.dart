@@ -13,22 +13,22 @@ enum CardAuthType {
 }
 
 class HouseCard extends StatelessWidget {
-  final HouseModel model;
+  final HouseModel? model;
   final CardAuthType type;
   const HouseCard({
-    Key key,
-    @required this.model,
-    @required this.type,
+    Key? key,
+    required this.model,
+    required this.type,
   }) : super(key: key);
 
   const HouseCard.fail({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
   })  : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
   })  : type = CardAuthType.SUCCESS,
         super(key: key);
 
@@ -43,7 +43,7 @@ class HouseCard extends StatelessWidget {
   }
 
   String get _roleName {
-    switch (model.type) {
+    switch (model!.type) {
       case 1:
         return '业主';
       case 2:
@@ -120,12 +120,12 @@ class HouseCard extends StatelessWidget {
             ),
             12.hb,
             Text(
-              S.of(context).tempPlotName,
+              S.of(context)!.tempPlotName,
               style: Theme.of(context).textTheme.headline3,
             ),
             10.hb,
             Text(
-              model.roomName,
+              model!.roomName!,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             Spacer(),
@@ -136,7 +136,7 @@ class HouseCard extends StatelessWidget {
                   children: [
                     Text(
                       '身份',
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
                             color: Color(0xFF666666),
                           ),
                     ),

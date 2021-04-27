@@ -1,14 +1,14 @@
 class RealTimeWeatherModel {
-  String status;
-  String apiVersion;
-  String apiStatus;
-  String lang;
-  String unit;
-  num tzshift;
-  String timezone;
-  num serverTime;
-  List<num> location;
-  Result result;
+  String? status;
+  String? apiVersion;
+  String? apiStatus;
+  String? lang;
+  String? unit;
+  num? tzshift;
+  String? timezone;
+  num? serverTime;
+  List<num>? location;
+  Result? result;
 
   RealTimeWeatherModel(
       {this.status,
@@ -48,15 +48,15 @@ class RealTimeWeatherModel {
     data['server_time'] = this.serverTime;
     data['location'] = this.location;
     if (this.result != null) {
-      data['result'] = this.result.toJson();
+      data['result'] = this.result!.toJson();
     }
     return data;
   }
 }
 
 class Result {
-  Realtime realtime;
-  num primary;
+  Realtime? realtime;
+  num? primary;
 
   Result({this.realtime, this.primary});
 
@@ -70,7 +70,7 @@ class Result {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.realtime != null) {
-      data['realtime'] = this.realtime.toJson();
+      data['realtime'] = this.realtime!.toJson();
     }
     data['primary'] = this.primary;
     return data;
@@ -78,19 +78,19 @@ class Result {
 }
 
 class Realtime {
-  String status;
-  num temperature;
-  num humidity;
-  num cloudrate;
-  String skycon;
-  num visibility;
-  num dswrf;
-  Wind wind;
-  num pressure;
-  num apparentTemperature;
-  Precipitation precipitation;
-  AirQuality airQuality;
-  LifeIndex lifeIndex;
+  String? status;
+  num? temperature;
+  num? humidity;
+  num? cloudrate;
+  String? skycon;
+  num? visibility;
+  num? dswrf;
+  Wind? wind;
+  num? pressure;
+  num? apparentTemperature;
+  Precipitation? precipitation;
+  AirQuality? airQuality;
+  LifeIndex? lifeIndex;
 
   Realtime(
       {this.status,
@@ -139,26 +139,26 @@ class Realtime {
     data['visibility'] = this.visibility;
     data['dswrf'] = this.dswrf;
     if (this.wind != null) {
-      data['wind'] = this.wind.toJson();
+      data['wind'] = this.wind!.toJson();
     }
     data['pressure'] = this.pressure;
     data['apparent_temperature'] = this.apparentTemperature;
     if (this.precipitation != null) {
-      data['precipitation'] = this.precipitation.toJson();
+      data['precipitation'] = this.precipitation!.toJson();
     }
     if (this.airQuality != null) {
-      data['air_quality'] = this.airQuality.toJson();
+      data['air_quality'] = this.airQuality!.toJson();
     }
     if (this.lifeIndex != null) {
-      data['life_index'] = this.lifeIndex.toJson();
+      data['life_index'] = this.lifeIndex!.toJson();
     }
     return data;
   }
 }
 
 class Wind {
-  num speed;
-  num direction;
+  num? speed;
+  num? direction;
 
   Wind({this.speed, this.direction});
 
@@ -176,8 +176,8 @@ class Wind {
 }
 
 class Precipitation {
-  Local local;
-  Nearest nearest;
+  Local? local;
+  Nearest? nearest;
 
   Precipitation({this.local, this.nearest});
 
@@ -190,19 +190,19 @@ class Precipitation {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.local != null) {
-      data['local'] = this.local.toJson();
+      data['local'] = this.local!.toJson();
     }
     if (this.nearest != null) {
-      data['nearest'] = this.nearest.toJson();
+      data['nearest'] = this.nearest!.toJson();
     }
     return data;
   }
 }
 
 class Local {
-  String status;
-  String datasource;
-  num numensity;
+  String? status;
+  String? datasource;
+  num? numensity;
 
   Local({this.status, this.datasource, this.numensity});
 
@@ -222,9 +222,9 @@ class Local {
 }
 
 class Nearest {
-  String status;
-  num distance;
-  num numensity;
+  String? status;
+  num? distance;
+  num? numensity;
 
   Nearest({this.status, this.distance, this.numensity});
 
@@ -244,14 +244,14 @@ class Nearest {
 }
 
 class AirQuality {
-  num pm25;
-  num pm10;
-  num o3;
-  num so2;
-  num no2;
-  num co;
-  Aqi aqi;
-  Description description;
+  num? pm25;
+  num? pm10;
+  num? o3;
+  num? so2;
+  num? no2;
+  num? co;
+  Aqi? aqi;
+  Description? description;
 
   AirQuality(
       {this.pm25,
@@ -285,18 +285,18 @@ class AirQuality {
     data['no2'] = this.no2;
     data['co'] = this.co;
     if (this.aqi != null) {
-      data['aqi'] = this.aqi.toJson();
+      data['aqi'] = this.aqi!.toJson();
     }
     if (this.description != null) {
-      data['description'] = this.description.toJson();
+      data['description'] = this.description!.toJson();
     }
     return data;
   }
 }
 
 class Aqi {
-  num chn;
-  num usa;
+  num? chn;
+  num? usa;
 
   Aqi({this.chn, this.usa});
 
@@ -314,8 +314,8 @@ class Aqi {
 }
 
 class Description {
-  String usa;
-  String chn;
+  String? usa;
+  String? chn;
 
   Description({this.usa, this.chn});
 
@@ -333,8 +333,8 @@ class Description {
 }
 
 class LifeIndex {
-  Ultraviolet ultraviolet;
-  Ultraviolet comfort;
+  Ultraviolet? ultraviolet;
+  Ultraviolet? comfort;
 
   LifeIndex({this.ultraviolet, this.comfort});
 
@@ -350,18 +350,18 @@ class LifeIndex {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.ultraviolet != null) {
-      data['ultraviolet'] = this.ultraviolet.toJson();
+      data['ultraviolet'] = this.ultraviolet!.toJson();
     }
     if (this.comfort != null) {
-      data['comfort'] = this.comfort.toJson();
+      data['comfort'] = this.comfort!.toJson();
     }
     return data;
   }
 }
 
 class Ultraviolet {
-  num index;
-  String desc;
+  num? index;
+  String? desc;
 
   Ultraviolet({this.index, this.desc});
 

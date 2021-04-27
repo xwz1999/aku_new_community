@@ -1,7 +1,7 @@
 class BaseListModel {
-  int pageCount;
-  int rowCount;
-  List<dynamic> tableList;
+  int? pageCount;
+  int? rowCount;
+  List<dynamic>? tableList;
   BaseListModel({
     this.pageCount,
     this.rowCount,

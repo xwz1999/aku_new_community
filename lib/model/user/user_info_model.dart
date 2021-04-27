@@ -1,15 +1,15 @@
 import 'package:flustars/flustars.dart';
 
 class UserInfoModel {
-  int id;
-  String imgUrl;
-  String name;
-  String nickName;
-  String tel;
+  int? id;
+  String? imgUrl;
+  String? name;
+  String? nickName;
+  String? tel;
 
   /// 性别 1.男 2.女
-  int sex;
-  String birthday;
+  int? sex;
+  String? birthday;
 
   String get sexValue {
     if (sex == null) return '未设置';
@@ -18,7 +18,7 @@ class UserInfoModel {
     return '未设置';
   }
 
-  DateTime get birthdayDate => DateUtil.getDateTime(birthday);
+  DateTime? get birthdayDate => DateUtil.getDateTime(birthday!);
   String get birthdayValue {
     if (TextUtil.isEmpty(birthday))
       return '未设置';

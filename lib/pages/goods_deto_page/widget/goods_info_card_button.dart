@@ -12,9 +12,9 @@ import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
-  final String tel;
-  final int id;
-  GoodsInfoCardButton({Key key, this.tel, this.id}) : super(key: key);
+  final String? tel;
+  final int? id;
+  GoodsInfoCardButton({Key? key, this.tel, this.id}) : super(key: key);
 
   final List<Map<String, dynamic>> _listButton = [
     {'title': '查看二维码', 'icon': MaterialCommunityIcons.qrcode},
@@ -28,13 +28,13 @@ class GoodsInfoCardButton extends StatelessWidget {
     }
   }
 
-  void _showDialog(BuildContext context, String url) {
+  void _showDialog(BuildContext context, String? url) {
     showCupertinoDialog(
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(
-            url,
+            url!,
             style: TextStyle(
               fontSize: 34.sp,
               color: Color(0xff030303),
@@ -96,10 +96,10 @@ class GoodsInfoCardButton extends StatelessWidget {
                         case '查看二维码':
                           ArticleQRModel _model =
                               await ManagerFunc.getQRcode(id);
-                          if (_model.status) {
+                          if (_model.status!) {
                             Get.to(() => DetoCodePage(id: id, model: _model));
                           } else {
-                            BotToast.showText(text: _model.message);
+                            BotToast.showText(text: _model.message!);
                           }
                           break;
                         case '搬家公司':

@@ -1,15 +1,15 @@
 import 'package:flustars/flustars.dart';
 
 class VisitorListItemModel {
-  int id;
-  int accessCode;
-  int visitorStatus;
-  String name;
-  int isDrive;
-  String carNum;
-  String effectiveTime;
+  int? id;
+  int? accessCode;
+  int? visitorStatus;
+  String? name;
+  int? isDrive;
+  String? carNum;
+  String? effectiveTime;
 
-  DateTime get date => DateUtil.getDateTime(effectiveTime);
+  DateTime? get date => DateUtil.getDateTime(effectiveTime!);
   bool get drive => isDrive == 1;
 
   VisitorListItemModel(

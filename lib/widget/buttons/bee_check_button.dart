@@ -4,12 +4,12 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeCheckButton<T> extends StatefulWidget {
-  final Function(T value) onChange;
-  final T value;
-  final T groupValue;
-  final String title;
+  final Function(T value)? onChange;
+  final T? value;
+  final T? groupValue;
+  final String? title;
   BeeCheckButton(
-      {Key key, this.onChange, this.value, this.groupValue, this.title})
+      {Key? key, this.onChange, this.value, this.groupValue, this.title})
       : super(key: key);
 
   @override
@@ -22,9 +22,9 @@ class _BeeCheckButtonState extends State<BeeCheckButton> {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {
-        widget.onChange(widget.value);
+        widget.onChange!(widget.value);
       },
-      child: widget.title.text
+      child: widget.title!.text
           .color(isSelect ? ktextPrimary : Color(0xFF979797))
           .size(32.sp)
           .make(),

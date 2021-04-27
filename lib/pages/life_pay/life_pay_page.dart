@@ -21,20 +21,20 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayPage extends StatefulWidget {
-  LifePayPage({Key key}) : super(key: key);
+  LifePayPage({Key? key}) : super(key: key);
 
   @override
   _LifePayPageState createState() => _LifePayPageState();
 }
 
 class SelectPay {
-  double payTotal;
-  int payCount;
+  double? payTotal;
+  int? payCount;
   SelectPay({this.payCount, this.payTotal});
 }
 
 class _LifePayPageState extends State<LifePayPage> {
-  EasyRefreshController _controller;
+  EasyRefreshController? _controller;
   List<int> _selectYears = [];
   List<LifePayModel> _models = [];
   List<SelectPay> _selectPay = [];
@@ -66,7 +66,7 @@ class _LifePayPageState extends State<LifePayPage> {
             GestureDetector(
               onTap: () {
                 Get.to(() => PickMyHousePage());
-                _controller.callRefresh();
+                _controller!.callRefresh();
               },
               child: Row(
                 children: [
@@ -81,7 +81,7 @@ class _LifePayPageState extends State<LifePayPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         S
-                            .of(context)
+                            .of(context)!
                             .tempPlotName
                             .text
                             .black
@@ -89,7 +89,7 @@ class _LifePayPageState extends State<LifePayPage> {
                             .bold
                             .make(),
                         10.w.heightBox,
-                        appProvider.selectedHouse.roomName.text.black
+                        appProvider.selectedHouse!.roomName!.text.black
                             .size(32.sp)
                             .bold
                             .make()
@@ -153,7 +153,7 @@ class _LifePayPageState extends State<LifePayPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              '${BeeParse.getCustomYears(model.years)}(${model.years})'
+              '${BeeParse.getCustomYears(model.years!)}(${model.years})'
                   .text
                   .color(ktextSubColor)
                   .size(28.sp)
@@ -188,8 +188,8 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  List payMent = await Get.to(
-                      () => LifePayDetailPage(model: _models[index]));
+                  List payMent = await (Get.to(
+                      () => LifePayDetailPage(model: _models[index])));
                   _selectPay[index].payCount = payMent[0];
                   _selectPay[index].payTotal = payMent[1];
                   setState(() {});
@@ -213,11 +213,11 @@ class _LifePayPageState extends State<LifePayPage> {
 
   double getPayTotal(LifePayModel list) {
     num total = 0;
-    for (var item in list.dailyPaymentTypeVos) {
-      total += ((item.detailedVoList[1].paymentPrice ?? 0) +
-          (item.detailedVoList[2].paymentPrice ?? 0));
+    for (var item in list.dailyPaymentTypeVos!) {
+      total += ((item.detailedVoList![1].paymentPrice ?? 0) +
+          (item.detailedVoList![2].paymentPrice ?? 0));
     }
-    return total;
+    return total as double;
   }
 
   @override
@@ -240,20 +240,20 @@ class _LifePayPageState extends State<LifePayPage> {
       body: BeeListView(
           path: API.manager.dailyPaymentList,
           controller: _controller,
-          extraParams: {'estateId': appProvider.selectedHouse.estateId},
+          extraParams: {'estateId': appProvider.selectedHouse!.estateId},
           convert: (model) {
             List<LifePayModel> lifePayModels =
-                model.tableList.map((e) => LifePayModel.fromJson(e)).toList();
+                model.tableList!.map((e) => LifePayModel.fromJson(e)).toList();
             _selectPay.addAll(lifePayModels
                 .map((e) => SelectPay(
-                      payCount: e.dailyPaymentTypeVos.length,
+                      payCount: e.dailyPaymentTypeVos!.length,
                       payTotal: getPayTotal(e),
                     ))
                 .toList());
             return lifePayModels;
           },
           builder: (items) {
-            _models = items;
+            _models = items as List<LifePayModel>;
             return Column(
               children: [
                 _buildHouseCard(),
@@ -297,8 +297,8 @@ class _LifePayPageState extends State<LifePayPage> {
                   _totalCost = 0;
                   _count = 0;
                   for (var item in _selectPay) {
-                    _totalCost += item.payTotal;
-                    _count += item.payCount;
+                    _totalCost += item.payTotal!;
+                    _count += item.payCount!;
                   }
                 }
                 setState(() {});

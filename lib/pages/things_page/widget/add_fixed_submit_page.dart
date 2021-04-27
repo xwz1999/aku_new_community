@@ -26,17 +26,17 @@ import 'package:aku_community/widget/picker/bee_house_picker.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {
-  AddFixedSubmitPage({Key key}) : super(key: key);
+  AddFixedSubmitPage({Key? key}) : super(key: key);
 
   @override
   _AddFixedSubmitPageState createState() => _AddFixedSubmitPageState();
 }
 
 class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
-  TextEditingController _textEditingController;
-  String reportText;
+  TextEditingController? _textEditingController;
+  String? reportText;
   List<String> _buttons = ['公区保修', '家庭维修'];
-  int _selectType;
+  int? _selectType;
   List<File> _files = [];
   @override
   void initState() {
@@ -161,7 +161,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     );
   }
 
-  bool _canSubmit(int seletType, String text) {
+  bool _canSubmit(int? seletType, String text) {
     if (seletType == null) {
       return false;
     } else if (text.isEmpty) {
@@ -187,20 +187,20 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           ],
         ),
         bottomNavi: BottomButton(
-          onPressed: _canSubmit(_selectType, _textEditingController.text)
+          onPressed: _canSubmit(_selectType, _textEditingController!.text)
               ? () async {
                   VoidCallback cancel = BotToast.showLoading();
-                  List<String> urls = await NetUtil()
+                  List<String?> urls = await NetUtil()
                       .uploadFiles(_files, API.upload.uploadRepair);
                   BaseModel baseModel = await ManagerFunc.reportRepairInsert(
-                      appProvider.selectedHouse.estateId,
-                      _selectType + 1,
-                      _textEditingController.text,
+                      appProvider.selectedHouse!.estateId,
+                      _selectType! + 1,
+                      _textEditingController!.text,
                       urls);
-                  if (baseModel.status) {
+                  if (baseModel.status!) {
                     Get.off(FinishFixedSubmitPage());
                   } else
-                    BotToast.showText(text: baseModel.message);
+                    BotToast.showText(text: baseModel.message!);
                   cancel();
                 }
               : () {

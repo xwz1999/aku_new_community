@@ -13,14 +13,14 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class LifePayRecordPage extends StatefulWidget {
-  LifePayRecordPage({Key key}) : super(key: key);
+  LifePayRecordPage({Key? key}) : super(key: key);
 
   @override
   _LifePayRecordPageState createState() => _LifePayRecordPageState();
 }
 
 class _LifePayRecordPageState extends State<LifePayRecordPage> {
-  EasyRefreshController _refreshController;
+  EasyRefreshController? _refreshController;
   Map<int, String> getPayType = {1: '支付宝', 2: '微信', 3: '现金', 4: 'pos'};
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
         path: API.manager.paymentRecord,
         controller: _refreshController,
         convert: (models) {
-          return models.tableList
+          return models.tableList!
               .map((e) => LifePayRecordModel.fromJson(e))
               .toList();
         },
@@ -64,7 +64,9 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                   .color(ktextSubColor)
                   .make(),
               32.w.heightBox,
-              ...items.map((e) => _buildRecordCard(e)).toList()
+              ...items
+                  .map((e) => _buildRecordCard(e as LifePayRecordModel))
+                  .toList()
             ],
           );
         },
@@ -77,13 +79,13 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
       children: [
         Row(
           children: [
-            model.chargesTemplateDetailName.text
+            model.chargesTemplateDetailName!.text
                 .size(30.sp)
                 .color(ktextPrimary)
                 .bold
                 .make(),
             Spacer(),
-            '${S.of(context).tempPlotName} ${model.roomName}'
+            '${S.of(context)!.tempPlotName} ${model.roomName}'
                 .text
                 .size(24.sp)
                 .color(Color(0xFF999999))
@@ -107,7 +109,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
           children: [
             '创建时间'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
-            '${DateUtil.formatDateStr(model.createDate, format: "yyyy/MM/dd HH:mm")}'
+            '${DateUtil.formatDateStr(model.createDate!, format: "yyyy/MM/dd HH:mm")}'
                 .text
                 .color(ktextPrimary)
                 .size(28.sp)
@@ -118,7 +120,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
           children: [
             '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
-            '${getPayType[model.payType]}'
+            '${getPayType[model.payType!]}'
                 .text
                 .color(ktextPrimary)
                 .size(28.sp)

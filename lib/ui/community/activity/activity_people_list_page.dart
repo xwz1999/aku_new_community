@@ -11,8 +11,8 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ActivityPeopleListPage extends StatefulWidget {
-  final int id;
-  ActivityPeopleListPage({Key key, @required this.id}) : super(key: key);
+  final int? id;
+  ActivityPeopleListPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _ActivityPeopleListPageState createState() => _ActivityPeopleListPageState();
@@ -22,7 +22,7 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -30,11 +30,11 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '参与人员',
-      body: BeeListView(
+      body: BeeListView<ActivityPeopleModel>(
         controller: _refreshController,
         path: API.community.activityPeopleList,
         extraParams: {'activityId': widget.id},
-        convert: (model) => model.tableList
+        convert: (model) => model.tableList!
             .map((e) => ActivityPeopleModel.fromJson(e))
             .toList(),
         builder: (items) {
@@ -53,9 +53,9 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
                     width: 60.w,
                   ),
                   18.wb,
-                  model.name.text.size(28.sp).make(),
+                  model.name!.text.size(28.sp).make(),
                   Spacer(),
-                  model.tel.text.size(28.sp).make(),
+                  model.tel!.text.size(28.sp).make(),
                 ],
               );
             },

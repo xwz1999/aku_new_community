@@ -1,5 +1,5 @@
 class MovingCompanyModel {
-  List<AppMovingCompanyVoList> appMovingCompanyVoList;
+  List<AppMovingCompanyVoList>? appMovingCompanyVoList;
 
   MovingCompanyModel({this.appMovingCompanyVoList});
 
@@ -7,7 +7,7 @@ class MovingCompanyModel {
     if (json['appMovingCompanyVoList'] != null) {
       appMovingCompanyVoList = [];
       json['appMovingCompanyVoList'].forEach((v) {
-        appMovingCompanyVoList.add(new AppMovingCompanyVoList.fromJson(v));
+        appMovingCompanyVoList!.add(new AppMovingCompanyVoList.fromJson(v));
       });
     }
   }
@@ -16,15 +16,15 @@ class MovingCompanyModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.appMovingCompanyVoList != null) {
       data['appMovingCompanyVoList'] =
-          this.appMovingCompanyVoList.map((v) => v.toJson()).toList();
+          this.appMovingCompanyVoList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class AppMovingCompanyVoList {
-  String name;
-  String tel;
+  String? name;
+  String? tel;
 
   AppMovingCompanyVoList({this.name, this.tel});
 

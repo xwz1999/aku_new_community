@@ -21,7 +21,7 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class VisitorPassportPage extends StatefulWidget {
   final VisitorListItemModel model;
-  VisitorPassportPage({Key key, @required this.model}) : super(key: key);
+  VisitorPassportPage({Key? key, required this.model}) : super(key: key);
 
   @override
   _VisitorPassportPageState createState() => _VisitorPassportPageState();
@@ -70,7 +70,7 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
                           width: 40.w,
                         ),
                         16.wb,
-                        widget.model.name.text
+                        widget.model.name!.text
                             .size(36.sp)
                             .bold
                             .overflow(TextOverflow.ellipsis)
@@ -85,7 +85,7 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
                           width: 40.w,
                         ),
                         16.wb,
-                        (widget.model.drive ? '无车辆信息' : widget.model.carNum)
+                        (widget.model.drive ? '无车辆信息' : widget.model.carNum)!
                             .text
                             .size(36.sp)
                             .bold
@@ -135,11 +135,11 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
         bottomNavigationBar: BottomButton(
           onPressed: () async {
             VoidCallback cancel = BotToast.showLoading();
-            RenderRepaintBoundary boundary =
-                _repaintKey.currentContext.findRenderObject();
+            RenderRepaintBoundary boundary = _repaintKey.currentContext!
+                .findRenderObject() as RenderRepaintBoundary;
             ui.Image image = await boundary.toImage(pixelRatio: 3);
             ByteData byteData =
-                await image.toByteData(format: ui.ImageByteFormat.png);
+                (await (image.toByteData(format: ui.ImageByteFormat.png)))!;
             Uint8List png = byteData.buffer.asUint8List();
             cancel();
             shareToWeChat(WeChatShareImageModel(

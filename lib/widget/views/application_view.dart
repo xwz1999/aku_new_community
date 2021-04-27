@@ -10,14 +10,14 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
 
 class ApplicationView extends StatefulWidget {
-  final List<AO> items;
+  final List<AO>? items;
   final bool needAllApp;
-  ApplicationView({Key key, this.needAllApp = true})
+  ApplicationView({Key? key, this.needAllApp = true})
       : items = null,
         super(key: key);
 
   ApplicationView.custom(
-      {Key key, @required this.items, this.needAllApp = true})
+      {Key? key, required List<AO> this.items, this.needAllApp = true})
       : assert(items != null),
         super(key: key);
 
@@ -51,7 +51,7 @@ class _ApplicationViewState extends State<ApplicationView> {
   }
 
   bool get _isCustom => widget.items != null;
-  List<AO> get _items {
+  List<AO>? get _items {
     final appProvider = Provider.of<AppProvider>(context);
 
     return _isCustom ? widget.items : appProvider.myApplications;
@@ -65,11 +65,11 @@ class _ApplicationViewState extends State<ApplicationView> {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemBuilder: (context, index) {
-        if (index == _items.length && widget.needAllApp)
+        if (index == _items!.length && widget.needAllApp)
           return _buildTile(allApp);
-        return _buildTile(_items[index]);
+        return _buildTile(_items![index]);
       },
-      itemCount: widget.needAllApp ? _items.length + 1 : _items.length,
+      itemCount: widget.needAllApp ? _items!.length + 1 : _items!.length,
       shrinkWrap: true,
     );
   }

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeeDivider extends StatelessWidget {
-  final double thickness;
-  final double indent;
-  final double endIndent;
-  final Color color;
-  final bool isHorizontal;
+  final double? thickness;
+  final double? indent;
+  final double? endIndent;
+  final Color? color;
+  final bool? isHorizontal;
   BeeDivider(
-      {Key key,
+      {Key? key,
       this.thickness,
       this.indent,
       this.endIndent,
@@ -17,7 +17,7 @@ class BeeDivider extends StatelessWidget {
       this.isHorizontal})
       : super(key: key);
   BeeDivider.horizontal({
-    Key key,
+    Key? key,
     this.indent,
     this.endIndent,
   })  : thickness = 1.w,
@@ -25,7 +25,7 @@ class BeeDivider extends StatelessWidget {
         isHorizontal = true,
         super(key: key);
   BeeDivider.vertical({
-    Key key,
+    Key? key,
     this.indent,
     this.endIndent,
   })  : thickness = 1.w,
@@ -34,7 +34,7 @@ class BeeDivider extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    return isHorizontal
+    return isHorizontal!
         ? Divider(
             height: 0,
             thickness: this.thickness ?? 1.w,

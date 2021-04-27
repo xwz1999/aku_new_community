@@ -1,15 +1,15 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class QuestionnaireModel {
-  int id;
-  String title;
-  String description;
-  String beginDate;
-  String endDate;
-  int status;
-  int answerNum;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headImgURls;
+  int? id;
+  String? title;
+  String? description;
+  String? beginDate;
+  String? endDate;
+  int? status;
+  int? answerNum;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headImgURls;
 
   QuestionnaireModel(
       {this.id,
@@ -33,14 +33,14 @@ class QuestionnaireModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headImgURls'] != null) {
       headImgURls = [];
       json['headImgURls'].forEach((v) {
-        headImgURls.add(new ImgModel.fromJson(v));
+        headImgURls!.add(new ImgModel.fromJson(v));
       });
     } else
       headImgURls = [];
@@ -56,21 +56,21 @@ class QuestionnaireModel {
     data['status'] = this.status;
     data['answerNum'] = this.answerNum;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headImgURls != null) {
-      data['headImgURls'] = this.headImgURls.map((v) => v.toJson()).toList();
+      data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ImgUrls {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
 

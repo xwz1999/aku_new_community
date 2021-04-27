@@ -1,16 +1,15 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class ArticleBorrowDetailModel {
-  int id;
-  String name;
-  String code;
-  int status;
-  List<ImgModel> imgList;
+  int? id;
+  String? name;
+  String? code;
+  int? status;
+  List<ImgModel>? imgList;
   String get borrowStatus {
     switch (this.status) {
       case 1:
-        return '正常';
-        break;
+        return '正常';        
       case 2:
         return '破损';
       case 3:
@@ -31,7 +30,7 @@ class ArticleBorrowDetailModel {
     if (json['imgList'] != null) {
       imgList = [];
       json['imgList'].forEach((v) {
-        imgList.add(new ImgModel.fromJson(v));
+        imgList!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -43,7 +42,7 @@ class ArticleBorrowDetailModel {
     data['code'] = this.code;
     data['status'] = this.status;
     if (this.imgList != null) {
-      data['imgList'] = this.imgList.map((v) => v.toJson()).toList();
+      data['imgList'] = this.imgList!.map((v) => v.toJson()).toList();
     }
     return data;
   }

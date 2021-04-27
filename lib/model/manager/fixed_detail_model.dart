@@ -1,10 +1,10 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class FixedDetailModel {
-  AppReportRepairVo appReportRepairVo;
-  List<AppProcessRecordVo> appProcessRecordVo;
+  AppReportRepairVo? appReportRepairVo;
+  List<AppProcessRecordVo>? appProcessRecordVo;
   Null appMaintenanceResultVo;
-  AppDispatchListVo appDispatchListVo;
+  AppDispatchListVo? appDispatchListVo;
 
   FixedDetailModel(
       {this.appReportRepairVo,
@@ -19,7 +19,7 @@ class FixedDetailModel {
     if (json['appProcessRecordVo'] != null) {
       appProcessRecordVo = [];
       json['appProcessRecordVo'].forEach((v) {
-        appProcessRecordVo.add(new AppProcessRecordVo.fromJson(v));
+        appProcessRecordVo!.add(new AppProcessRecordVo.fromJson(v));
       });
     }
     appMaintenanceResultVo = json['appMaintenanceResultVo'];
@@ -31,26 +31,26 @@ class FixedDetailModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.appReportRepairVo != null) {
-      data['appReportRepairVo'] = this.appReportRepairVo.toJson();
+      data['appReportRepairVo'] = this.appReportRepairVo!.toJson();
     }
     if (this.appProcessRecordVo != null) {
       data['appProcessRecordVo'] =
-          this.appProcessRecordVo.map((v) => v.toJson()).toList();
+          this.appProcessRecordVo!.map((v) => v.toJson()).toList();
     }
     data['appMaintenanceResultVo'] = this.appMaintenanceResultVo;
     if (this.appDispatchListVo != null) {
-      data['appDispatchListVo'] = this.appDispatchListVo.toJson();
+      data['appDispatchListVo'] = this.appDispatchListVo!.toJson();
     }
     return data;
   }
 }
 
 class AppReportRepairVo {
-  int id;
-  int type;
-  int status;
-  String reportDetail;
-  List<ImgModel> imgUrls;
+  int? id;
+  int? type;
+  int? status;
+  String? reportDetail;
+  List<ImgModel>? imgUrls;
 
   AppReportRepairVo(
       {this.id, this.type, this.status, this.reportDetail, this.imgUrls});
@@ -63,7 +63,7 @@ class AppReportRepairVo {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -75,15 +75,15 @@ class AppReportRepairVo {
     data['status'] = this.status;
     data['reportDetail'] = this.reportDetail;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class AppProcessRecordVo {
-  String operationDate;
-  int operationType;
+  String? operationDate;
+  int? operationType;
 
   AppProcessRecordVo({this.operationDate, this.operationType});
 
@@ -101,11 +101,11 @@ class AppProcessRecordVo {
 }
 
 class AppDispatchListVo {
-  String code;
-  String orderDate;
-  int type;
-  String operatorName;
-  String distributorName;
+  String? code;
+  String? orderDate;
+  int? type;
+  String? operatorName;
+  String? distributorName;
 
   AppDispatchListVo(
       {this.code,

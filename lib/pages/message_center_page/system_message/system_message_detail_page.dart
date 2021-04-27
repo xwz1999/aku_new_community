@@ -8,8 +8,8 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SystemMessageDetailPage extends StatefulWidget {
-  final int id;
-  SystemMessageDetailPage({Key key, this.id}) : super(key: key);
+  final int? id;
+  SystemMessageDetailPage({Key? key, this.id}) : super(key: key);
 
   @override
   _SystemMessageDetailPageState createState() =>
@@ -17,7 +17,7 @@ class SystemMessageDetailPage extends StatefulWidget {
 }
 
 class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
-  SystemMessageDetailModel _model;
+  late SystemMessageDetailModel _model;
   bool _onload = true;
 
   Widget _empty() {
@@ -46,9 +46,9 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
                       20.w.heightBox,
                       '系统通知'.text.black.bold.size(32.sp).make(),
                       5.w.heightBox,
-                      _model.title.text.black.size(28.sp).isIntrinsic.make(),
+                      _model.title!.text.black.size(28.sp).isIntrinsic.make(),
                       110.w.heightBox,
-                      _model.content.text.black.size(28.sp).isIntrinsic.make(),
+                      _model.content!.text.black.size(28.sp).isIntrinsic.make(),
                     ],
                   ),
                 ),

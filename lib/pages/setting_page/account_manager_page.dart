@@ -8,7 +8,7 @@ import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AccountManagerPage extends StatefulWidget {
-  AccountManagerPage({Key key}) : super(key: key);
+  AccountManagerPage({Key? key}) : super(key: key);
 
   @override
   _AccountManagerPageState createState() => _AccountManagerPageState();

@@ -7,16 +7,16 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
 class TopicSliverHeader extends SliverPersistentHeaderDelegate {
-  final String imgPath;
-  final String title;
-  final String subTitle;
-  final int id;
+  final String? imgPath;
+  final String? title;
+  final String? subTitle;
+  final int? id;
 
   TopicSliverHeader({
     this.imgPath,
     this.title,
     this.subTitle,
-    @required this.id,
+    required this.id,
   });
 
   _buildOverlay(double shrinkOffset) {
@@ -59,7 +59,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
         opacity: 1 - _offset(shrinkOffset),
         child: SizedBox(
           width: 500.w,
-          child: subTitle.text
+          child: subTitle!.text
               .size(24.sp)
               .maxLines(2)
               .white

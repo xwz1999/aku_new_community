@@ -9,16 +9,16 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 
 class SendAChat extends StatefulWidget {
-  final FocusNode node;
-  SendAChat({Key key, this.node}) : super(key: key);
+  final FocusNode? node;
+  SendAChat({Key? key, this.node}) : super(key: key);
 
   static Future<bool> send({
-    @required int parentId,
-    @required int themeId,
+    required int? parentId,
+    required int? themeId,
   }) async {
     FocusNode node = FocusNode();
     node.requestFocus();
-    String result = await Get.bottomSheet(
+    String? result = await Get.bottomSheet(
       SendAChat(node: node),
       barrierColor: Colors.transparent,
     );
@@ -45,7 +45,7 @@ class _SendAChatState extends State<SendAChat> {
   TextEditingController _textEditingController = TextEditingController();
   @override
   void dispose() {
-    _textEditingController?.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 

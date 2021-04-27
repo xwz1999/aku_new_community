@@ -18,15 +18,15 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class BorrowGoodsPage extends StatefulWidget {
-  BorrowGoodsPage({Key key}) : super(key: key);
+  BorrowGoodsPage({Key? key}) : super(key: key);
 
   @override
   _BorrowGoodsPageState createState() => _BorrowGoodsPageState();
 }
 
 class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
-  EasyRefreshController _easyRefreshController;
-  List<int> _receiveIds = [];
+  EasyRefreshController? _easyRefreshController;
+  List<int>? _receiveIds = [];
   List<int> _submitIds = [];
   List<int> _counts = [];
   @override
@@ -54,11 +54,11 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           padding: EdgeInsets.symmetric(horizontal: 32.w),
         ),
       ],
-      body: BeeListView(
+      body: BeeListView<ArticleBorrowModel>(
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
-            return models.tableList
+            return models.tableList!
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
           },
@@ -194,17 +194,18 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
         .withRounded(value: 6.w)
         .make()
         .onInkTap(() async {
-      _receiveIds.forEach((element) {
+      _receiveIds!.forEach((element) {
         _submitIds.remove(element);
       });
       await Get.to(() => BorrowGoodsDetailPage(
-            articleId: model.id,
-            receiveIds: _receiveIds,
-          )).then((value) {
+                articleId: model.id,
+                receiveIds: _receiveIds,
+              ))!
+          .then((value) {
         _receiveIds = value;
       });
-      _counts[index] = _receiveIds.length;
-      _submitIds.addAll(_receiveIds);
+      _counts[index] = _receiveIds!.length;
+      _submitIds.addAll(_receiveIds!);
       setState(() {});
     });
   }

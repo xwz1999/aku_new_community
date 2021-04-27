@@ -1,13 +1,13 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class QuestionnaireDetialModel {
-  int id;
-  String title;
-  String description;
-  String beginDate;
-  String endDate;
-  List<QuestionnaireTopicVoList> questionnaireTopicVoList;
-  List<ImgModel> voResourcesImgList;
+  int? id;
+  String? title;
+  String? description;
+  String? beginDate;
+  String? endDate;
+  List<QuestionnaireTopicVoList>? questionnaireTopicVoList;
+  List<ImgModel>? voResourcesImgList;
 
   QuestionnaireDetialModel(
       {this.id,
@@ -27,13 +27,13 @@ class QuestionnaireDetialModel {
     if (json['questionnaireTopicVoList'] != null) {
       questionnaireTopicVoList = [];
       json['questionnaireTopicVoList'].forEach((v) {
-        questionnaireTopicVoList.add(new QuestionnaireTopicVoList.fromJson(v));
+        questionnaireTopicVoList!.add(new QuestionnaireTopicVoList.fromJson(v));
       });
     }
     if (json['voResourcesImgList'] != null) {
       voResourcesImgList = [];
       json['voResourcesImgList'].forEach((v) {
-        voResourcesImgList.add(new ImgModel.fromJson(v));
+        voResourcesImgList!.add(new ImgModel.fromJson(v));
       });
     } else
       voResourcesImgList = [];
@@ -48,21 +48,21 @@ class QuestionnaireDetialModel {
     data['endDate'] = this.endDate;
     if (this.questionnaireTopicVoList != null) {
       data['questionnaireTopicVoList'] =
-          this.questionnaireTopicVoList.map((v) => v.toJson()).toList();
+          this.questionnaireTopicVoList!.map((v) => v.toJson()).toList();
     }
     if (this.voResourcesImgList != null) {
       data['voResourcesImgList'] =
-          this.voResourcesImgList.map((v) => v.toJson()).toList();
+          this.voResourcesImgList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class QuestionnaireTopicVoList {
-  int id;
-  int type;
-  String topic;
-  List<QuestionnaireChoiceVoList> questionnaireChoiceVoList;
+  int? id;
+  int? type;
+  String? topic;
+  List<QuestionnaireChoiceVoList>? questionnaireChoiceVoList;
 
   QuestionnaireTopicVoList(
       {this.id, this.type, this.topic, this.questionnaireChoiceVoList});
@@ -74,7 +74,7 @@ class QuestionnaireTopicVoList {
     if (json['questionnaireChoiceVoList'] != null) {
       questionnaireChoiceVoList = [];
       json['questionnaireChoiceVoList'].forEach((v) {
-        questionnaireChoiceVoList
+        questionnaireChoiceVoList!
             .add(new QuestionnaireChoiceVoList.fromJson(v));
       });
     } else
@@ -88,7 +88,7 @@ class QuestionnaireTopicVoList {
     data['topic'] = this.topic;
     if (this.questionnaireChoiceVoList != null) {
       data['questionnaireChoiceVoList'] =
-          this.questionnaireChoiceVoList.map((v) => v.toJson()).toList();
+          this.questionnaireChoiceVoList!.map((v) => v.toJson()).toList();
     } else
       questionnaireChoiceVoList = [];
     return data;
@@ -96,9 +96,9 @@ class QuestionnaireTopicVoList {
 }
 
 class QuestionnaireChoiceVoList {
-  int id;
-  String options;
-  String answer;
+  int? id;
+  String? options;
+  String? answer;
 
   QuestionnaireChoiceVoList({this.id, this.options, this.answer});
 

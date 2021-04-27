@@ -8,7 +8,7 @@ import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
 
 class NewCommunityView extends StatefulWidget {
-  NewCommunityView({Key key}) : super(key: key);
+  NewCommunityView({Key? key}) : super(key: key);
 
   @override
   NewCommunityViewState createState() => NewCommunityViewState();
@@ -19,12 +19,12 @@ class NewCommunityViewState extends State<NewCommunityView>
   EasyRefreshController _refreshController = EasyRefreshController();
 
   refresh() {
-    _refreshController?.callRefresh();
+    _refreshController.callRefresh();
   }
 
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -35,7 +35,7 @@ class NewCommunityViewState extends State<NewCommunityView>
       path: API.community.newEventList,
       controller: _refreshController,
       convert: (model) {
-        return model.tableList.map((e) => EventItemModel.fromJson(e)).toList();
+        return model.tableList!.map((e) => EventItemModel.fromJson(e)).toList();
       },
       builder: (items) {
         return ListView.builder(

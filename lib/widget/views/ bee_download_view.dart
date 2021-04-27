@@ -9,8 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:aku_community/constants/api.dart';
 
 class BeeDownloadView extends StatefulWidget {
-  final String file;
-  BeeDownloadView({Key key, this.file}) : super(key: key);
+  final String? file;
+  BeeDownloadView({Key? key, this.file}) : super(key: key);
 
   @override
   _BeeDownloadViewState createState() => _BeeDownloadViewState();
@@ -18,7 +18,7 @@ class BeeDownloadView extends StatefulWidget {
 
 class _BeeDownloadViewState extends State<BeeDownloadView> {
   Dio dio = Dio();
-  double progress;
+  double? progress;
   Future download() async {
     Directory dir = await getApplicationDocumentsDirectory();
     Directory docPath = Directory('${dir.path}/docs');
@@ -28,7 +28,7 @@ class _BeeDownloadViewState extends State<BeeDownloadView> {
     await Future.delayed(Duration(milliseconds: 500));
     await dio.download(
       API.file(widget.file),
-      '${docPath.path}/${widget.file.split('/').last}',
+      '${docPath.path}/${widget.file!.split('/').last}',
       onReceiveProgress: (start, all) {
         setState(() {
           progress = start / all;
@@ -36,7 +36,7 @@ class _BeeDownloadViewState extends State<BeeDownloadView> {
         print('$start,$all');
       },
     );
-    Get.back(result: '${docPath.path}/${widget.file.split('/').last}');
+    Get.back(result: '${docPath.path}/${widget.file!.split('/').last}');
   }
 
   @override

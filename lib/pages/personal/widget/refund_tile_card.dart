@@ -7,8 +7,8 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class RefundTileCard extends StatefulWidget {
-  final List<Map<String, dynamic>> listTile;
-  RefundTileCard({Key key, this.listTile}) : super(key: key);
+  final List<Map<String, dynamic>>? listTile;
+  RefundTileCard({Key? key, this.listTile}) : super(key: key);
 
   @override
   _RefundTileCardState createState() => _RefundTileCardState();
@@ -51,7 +51,7 @@ class _RefundTileCardState extends State<RefundTileCard> {
     return Container(
       width: double.infinity,
       child: Column(
-        children: widget.listTile
+        children: widget.listTile!
             .map(
               (item) => InkWell(
                 onTap: item['fun'],

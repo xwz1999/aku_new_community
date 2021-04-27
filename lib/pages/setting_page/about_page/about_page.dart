@@ -5,7 +5,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({Key key}) : super(key: key);
+  const AboutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

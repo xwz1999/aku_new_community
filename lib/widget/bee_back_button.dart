@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class BeeBackButton extends StatelessWidget {
   final Color color;
-  const BeeBackButton({Key key, this.color = Colors.black}) : super(key: key);
+  const BeeBackButton({Key? key, this.color = Colors.black}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

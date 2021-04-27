@@ -5,11 +5,11 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/animated/animated_scale.dart';
 
 class CommonRadio<T> extends StatefulWidget {
-  final T value;
-  final T groupValue;
-  final Widget text;
-  final double size;
-  CommonRadio({Key key, this.value, this.groupValue, this.text, this.size})
+  final T? value;
+  final T? groupValue;
+  final Widget? text;
+  final double? size;
+  CommonRadio({Key? key, this.value, this.groupValue, this.text, this.size})
       : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class CommonRadio<T> extends StatefulWidget {
 class _CommonRadioState extends State<CommonRadio> {
   bool get _selected => widget.value == widget.groupValue;
   double get smallSize {
-    return widget.size.isNull ? 24.w : (widget.size * 24 / 40);
+    return widget.size!.isNull! ? 24.w : (widget.size! * 24 / 40);
   }
 
   @override
@@ -60,7 +60,7 @@ class _CommonRadioState extends State<CommonRadio> {
             ? [SizedBox()]
             : [
                 10.w.widthBox,
-                widget.text,
+                widget.text!,
                 10.w.widthBox,
               ]
       ],

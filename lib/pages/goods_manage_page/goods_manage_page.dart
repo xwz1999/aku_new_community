@@ -19,7 +19,7 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class GoodsManagePage extends StatefulWidget {
   final bool isBorrow;
-  GoodsManagePage({Key key, this.isBorrow = true}) : super(key: key);
+  GoodsManagePage({Key? key, this.isBorrow = true}) : super(key: key);
 
   @override
   _GoodsManagePageState createState() => _GoodsManagePageState();
@@ -99,11 +99,11 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
           padding: EdgeInsets.symmetric(horizontal: 32.w),
         ),
       ],
-      body: BeeListView(
+      body: BeeListView<ArticleBorrowModel>(
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
-            return models.tableList
+            return models.tableList!
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
           },

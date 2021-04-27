@@ -16,7 +16,7 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AddHousePage extends StatefulWidget {
-  AddHousePage({Key key}) : super(key: key);
+  AddHousePage({Key? key}) : super(key: key);
 
   @override
   _AddHousePageState createState() => _AddHousePageState();
@@ -26,9 +26,9 @@ class _AddHousePageState extends State<AddHousePage> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _idController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  HouseItem _item;
-  int _roleType;
-  DateTimeRange _range;
+  HouseItem? _item;
+  int? _roleType;
+  DateTimeRange? _range;
 
   TextStyle get _hintStyle => TextStyle(
         fontSize: 36.sp,
@@ -48,8 +48,8 @@ class _AddHousePageState extends State<AddHousePage> {
       _roleType != null &&
       _rentCheck;
   _renderTile({
-    String title,
-    Widget item,
+    required String title,
+    Widget? item,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,9 +65,9 @@ class _AddHousePageState extends State<AddHousePage> {
   }
 
   _renderTextField({
-    String hintText,
-    TextEditingController controller,
-    FormFieldValidator validator,
+    String? hintText,
+    TextEditingController? controller,
+    FormFieldValidator? validator,
   }) {
     return TextFormField(
       controller: controller,
@@ -88,9 +88,9 @@ class _AddHousePageState extends State<AddHousePage> {
   }
 
   _renderPicker({
-    @required String text,
-    @required String hintText,
-    VoidCallback onTap,
+    required String? text,
+    required String hintText,
+    VoidCallback? onTap,
   }) {
     bool showText = text?.isNotEmpty ?? false;
     return MaterialButton(
@@ -100,7 +100,7 @@ class _AddHousePageState extends State<AddHousePage> {
       child: Row(
         children: [
           Text(
-            showText ? text : hintText,
+            showText ? text! : hintText,
             style: showText ? _textStyle : _hintStyle,
           ),
           Spacer(),
@@ -124,12 +124,12 @@ class _AddHousePageState extends State<AddHousePage> {
     return MaterialButton(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 30.w),
       onPressed: () async {
-        DateTimeRange range = await showDateRangePicker(
+        DateTimeRange? range = await showDateRangePicker(
           context: context,
           builder: (context, child) {
             return Theme(
               data: ThemeData(primarySwatch: Colors.yellow),
-              child: child,
+              child: child!,
             );
           },
           firstDate: DateTime.now().subtract(Duration(days: 30)),
@@ -152,8 +152,8 @@ class _AddHousePageState extends State<AddHousePage> {
 
   @override
   void dispose() {
-    _nameController?.dispose();
-    _idController?.dispose();
+    _nameController.dispose();
+    _idController.dispose();
     super.dispose();
   }
 
@@ -170,7 +170,7 @@ class _AddHousePageState extends State<AddHousePage> {
               _renderTile(
                 title: '小区名称',
                 item: _renderPicker(
-                  text: S.of(context).tempPlotName,
+                  text: S.of(context)!.tempPlotName,
                   hintText: '请选择小区',
                   // 跳转到选择小区页面
                   // TODO 小区页面
@@ -185,7 +185,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   text: _item?.houseName,
                   hintText: '请选择楼栋、单元、室',
                   onTap: () async {
-                    HouseItem tempItem = await Get.to(() => PickBuildingPage());
+                    HouseItem? tempItem = await Get.to(() => PickBuildingPage());
                     if (tempItem != null) _item = tempItem;
                     setState(() {});
                   },
@@ -197,7 +197,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   text: PickRolePage.getType(_roleType),
                   hintText: '请选择身份',
                   onTap: () async {
-                    int role =
+                    int? role =
                         await Get.to(() => PickRolePage(init: _roleType));
                     if (role != null) {
                       _roleType = role;
@@ -247,7 +247,7 @@ class _AddHousePageState extends State<AddHousePage> {
         child: Text('提交审核'),
         onPressed: _buttonCanTap
             ? () {
-                if (_formKey.currentState.validate()) {
+                if (_formKey.currentState!.validate()) {
                   _identifyHouse();
                 }
               }
@@ -262,7 +262,7 @@ class _AddHousePageState extends State<AddHousePage> {
 
   _identifyHouse() async {
     Map<String, dynamic> params = {
-      'estateId': _item.house.value,
+      'estateId': _item!.house.value,
       'name': _nameController.text,
       'type': _roleType,
       'idType': 1,
@@ -270,8 +270,8 @@ class _AddHousePageState extends State<AddHousePage> {
     };
     if (_roleType == 3) {
       params.putIfAbsent(
-          'effectiveTimeStart', () => NetUtil.getDate(_range.start));
-      params.putIfAbsent('effectiveTimeEnd', () => NetUtil.getDate(_range.end));
+          'effectiveTimeStart', () => NetUtil.getDate(_range!.start));
+      params.putIfAbsent('effectiveTimeEnd', () => NetUtil.getDate(_range!.end));
     }
     VoidCallback cancel = BotToast.showLoading();
     BaseModel model = await NetUtil().post(
@@ -280,6 +280,6 @@ class _AddHousePageState extends State<AddHousePage> {
       showMessage: true,
     );
     cancel();
-    if (model.status) Get.back(result: true);
+    if (model.status!) Get.back(result: true);
   }
 }

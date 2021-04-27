@@ -6,10 +6,10 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/bee_single_check.dart';
 
 class QuestionnaireTruefalse extends StatefulWidget {
-  final String title;
-  final int selected;
-  final Function(int id) onPressed;
-  QuestionnaireTruefalse({Key key, this.title, this.selected, this.onPressed})
+  final String? title;
+  final int? selected;
+  final Function(int id)? onPressed;
+  QuestionnaireTruefalse({Key? key, this.title, this.selected, this.onPressed})
       : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class _QuestionnaireTruefalseState extends State<QuestionnaireTruefalse> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          widget.title.text.black.size(32.sp).bold.make(),
+          widget.title!.text.black.size(32.sp).bold.make(),
           64.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 96.w),
@@ -35,7 +35,7 @@ class _QuestionnaireTruefalseState extends State<QuestionnaireTruefalse> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        widget.onPressed(1);
+                        widget.onPressed!(1);
                       },
                       child: BeeSingleCheck(
                         value: 1,
@@ -50,7 +50,7 @@ class _QuestionnaireTruefalseState extends State<QuestionnaireTruefalse> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        widget.onPressed(0);
+                        widget.onPressed!(0);
                       },
                       child: BeeSingleCheck(
                         value: 0,

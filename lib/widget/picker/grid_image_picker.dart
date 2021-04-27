@@ -30,8 +30,8 @@ class GridImagePicker extends StatefulWidget {
   ///Padding
   final EdgeInsetsGeometry padding;
   GridImagePicker({
-    Key key,
-    @required this.onChange,
+    Key? key,
+    required this.onChange,
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
@@ -59,7 +59,7 @@ class _GridImagePickerState extends State<GridImagePicker> {
         size: Size(80.w, 80.w),
       ),
       onPressed: () async {
-        File file = await BeeImagePicker.pick(title: '选择图片');
+        File? file = await BeeImagePicker.pick(title: '选择图片');
         if (file != null) _files.insert(0, file);
         setState(() {});
         widget.onChange(_files);
@@ -83,7 +83,7 @@ class _GridImagePickerState extends State<GridImagePicker> {
             Get.to(() => BeeImagePreview.file(file: file), opaque: false);
           },
           onLongPress: () async {
-            bool result = await Get.dialog(CupertinoAlertDialog(
+            bool? result = await Get.dialog(CupertinoAlertDialog(
               title: '删除该图片？'.text.isIntrinsic.make(),
               actions: [
                 CupertinoDialogAction(

@@ -22,9 +22,9 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
-  final int id;
-  final int status;
-  QuestionnaireDetailPage({Key key, this.id, this.status}) : super(key: key);
+  final int? id;
+  final int? status;
+  QuestionnaireDetailPage({Key? key, this.id, this.status}) : super(key: key);
 
   @override
   _QuestionnaireDetailPageState createState() =>
@@ -32,7 +32,7 @@ class QuestionnaireDetailPage extends StatefulWidget {
 }
 
 class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
-  QuestionnaireDetialModel _model;
+  late QuestionnaireDetialModel _model;
   bool _onload = true;
 
   List<AppQuestionnaireAnswerSubmits> _submitModels = [];
@@ -40,7 +40,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
     return Container();
   }
 
-  Widget _expandedCheck(String title, List<QuestionnaireChoiceVoList> answers,
+  Widget _expandedCheck(String title, List<QuestionnaireChoiceVoList>? answers,
       List<AppQuestionnaireAnswerSubmits> submitModels, int index) {
     return Container(
       width: double.infinity,
@@ -60,15 +60,15 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                       Get.back();
                     },
                   ),
-                  actions: answers
+                  actions: answers!
                       .map((e) => CupertinoActionSheetAction(
                           onPressed: () {
-                            submitModels[index].choiceAnswer.first = e.id;
+                            submitModels[index].choiceAnswer!.first = e.id;
                             submitModels[index].shortAnswer = e.answer;
                             Get.back();
                             setState(() {});
                           },
-                          child: e.answer.text.black
+                          child: e.answer!.text.black
                               .size(28.sp)
                               .isIntrinsic
                               .make()))
@@ -150,43 +150,43 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
       case 1:
         return QuestionnaireSingleCheck(
             title: questionModel.topic,
-            selected: submitModels[index].choiceAnswer.first,
+            selected: submitModels[index].choiceAnswer!.first,
             onPressed: (id) {
-              submitModels[index].choiceAnswer.first = id;
+              submitModels[index].choiceAnswer!.first = id;
               setState(() {});
             },
             answers: questionModel.questionnaireChoiceVoList);
 
       case 2:
-        submitModels[index].choiceAnswer.remove(-1);
+        submitModels[index].choiceAnswer!.remove(-1);
         return QuestionnaireRadioCheck(
           title: questionModel.topic,
           selected: submitModels[index].choiceAnswer,
           answers: questionModel.questionnaireChoiceVoList,
           onPressed: (id) {
-            if (submitModels[index].choiceAnswer.contains(id)) {
-              submitModels[index].choiceAnswer.remove(id);
+            if (submitModels[index].choiceAnswer!.contains(id)) {
+              submitModels[index].choiceAnswer!.remove(id);
             } else {
-              submitModels[index].choiceAnswer.add(id);
+              submitModels[index].choiceAnswer!.add(id);
             }
             setState(() {});
           },
         );
 
       case 3:
-        return _expandedCheck(questionModel.topic,
+        return _expandedCheck(questionModel.topic!,
             questionModel.questionnaireChoiceVoList, submitModels, index);
       case 4:
         return QuestionnaireTruefalse(
           title: questionModel.topic,
-          selected: submitModels[index].choiceAnswer.first,
+          selected: submitModels[index].choiceAnswer!.first,
           onPressed: (id) {
-            submitModels[index].choiceAnswer.first = id;
+            submitModels[index].choiceAnswer!.first = id;
             setState(() {});
           },
         );
       case 5:
-        return _shortAnswer(questionModel.topic, submitModels, index);
+        return _shortAnswer(questionModel.topic!, submitModels, index);
 
       default:
         return Container();
@@ -204,7 +204,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
         onRefresh: () async {
           _model = await ManagerFunc.questionnairefindById(widget.id);
           _onload = false;
-          _submitModels = _model.questionnaireTopicVoList
+          _submitModels = _model.questionnaireTopicVoList!
               .map((e) => AppQuestionnaireAnswerSubmits(
                     topicId: e.id,
                     choiceAnswer: [-1],
@@ -235,21 +235,21 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                   Container(
                       width: double.infinity,
                       alignment: Alignment.center,
-                      child: _model.title.text
+                      child: _model.title!.text
                           .color(ktextPrimary)
                           .size(32.sp)
                           .bold
                           .make()),
                   36.w.heightBox,
-                  _model.description.text
+                  _model.description!.text
                       .color(ktextPrimary)
                       .size(28.sp)
                       .make(),
                   130.w.heightBox,
                   ...List.generate(
-                      _model.questionnaireTopicVoList.length,
+                      _model.questionnaireTopicVoList!.length,
                       (index) => _topicWidget(
-                          _model.questionnaireTopicVoList[index],
+                          _model.questionnaireTopicVoList![index],
                           _submitModels,
                           index)).sepWidget(separate: 80.w.heightBox),
                 ],

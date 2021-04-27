@@ -10,7 +10,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ActivityListPage extends StatefulWidget {
-  ActivityListPage({Key key}) : super(key: key);
+  ActivityListPage({Key? key}) : super(key: key);
 
   @override
   _ActivityListPageState createState() => _ActivityListPageState();
@@ -20,7 +20,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -28,11 +28,11 @@ class _ActivityListPageState extends State<ActivityListPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '往期精彩',
-      body: BeeListView(
+      body: BeeListView<ActivityItemModel>(
         controller: _refreshController,
         path: API.community.activityList,
         convert: (model) =>
-            model.tableList.map((e) => ActivityItemModel.fromJson(e)).toList(),
+            model.tableList!.map((e) => ActivityItemModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),

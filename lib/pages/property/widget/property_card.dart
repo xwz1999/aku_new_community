@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class PropertyCard extends StatelessWidget {
-  PropertyCard({Key key}) : super(key: key);
+  PropertyCard({Key? key}) : super(key: key);
 
   final List<Map<String, dynamic>> _listCard = [
     {

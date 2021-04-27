@@ -1,12 +1,12 @@
 class LifePayRecordModel {
-  int id;
-  String chargesTemplateDetailName;
-  String roomName;
-  String years;
-  int paidPrice;
-  String createDate;
-  int payType;
-  String code;
+  int? id;
+  String? chargesTemplateDetailName;
+  String? roomName;
+  String? years;
+  int? paidPrice;
+  String? createDate;
+  int? payType;
+  String? code;
 
   LifePayRecordModel(
       {this.id,

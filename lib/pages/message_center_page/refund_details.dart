@@ -5,8 +5,8 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class RefundDetails extends StatelessWidget {
-  final double statusHeight;
-  const RefundDetails({Key key, this.statusHeight}) : super(key: key);
+  final double? statusHeight;
+  const RefundDetails({Key? key, this.statusHeight}) : super(key: key);
 
   Container _containerHeader() {
     return Container(
@@ -193,7 +193,7 @@ class RefundDetails extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         height:
-            MediaQuery.of(context).size.height - kToolbarHeight - statusHeight,
+            MediaQuery.of(context).size.height - kToolbarHeight - statusHeight!,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

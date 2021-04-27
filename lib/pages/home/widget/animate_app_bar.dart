@@ -7,9 +7,9 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
-  final ScrollController scrollController;
-  final List<Widget> actions;
-  AnimateAppBar({Key key, this.scrollController, this.actions})
+  final ScrollController? scrollController;
+  final List<Widget>? actions;
+  AnimateAppBar({Key? key, this.scrollController, this.actions})
       : super(key: key);
 
   @override
@@ -24,14 +24,14 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   @override
   void initState() {
     super.initState();
-    widget.scrollController.addListener(() {
+    widget.scrollController!.addListener(() {
       setState(() {
-        _bgColor = widget.scrollController.offset > 30
+        _bgColor = widget.scrollController!.offset > 30
             ? Color(0xFFFFBD00)
-            : widget.scrollController.offset < 0
+            : widget.scrollController!.offset < 0
                 ? Colors.transparent
                 : Color(0xFFFFBD00)
-                    .withOpacity((widget.scrollController.offset / 30));
+                    .withOpacity((widget.scrollController!.offset / 30));
       });
     });
   }
@@ -40,7 +40,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return AppBar(
-      title: Text(S.of(context).tempPlotName),
+      title: Text(S.of(context)!.tempPlotName),
       backgroundColor: _bgColor,
       leading: Container(
         margin: EdgeInsets.only(left: 32.w),
@@ -48,9 +48,9 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (appProvider?.location != null)
+              if (appProvider.location != null)
                 Text(
-                  appProvider?.location['city'] ?? '',
+                  appProvider.location!['city'] as String? ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 24.sp,

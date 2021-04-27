@@ -1,7 +1,7 @@
 class EstatePaymentModel {
-  int id;
-  String roomName;
-  int status;
+  int? id;
+  String? roomName;
+  int? status;
 
   EstatePaymentModel({this.id, this.roomName, this.status});
 

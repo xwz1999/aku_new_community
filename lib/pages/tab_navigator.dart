@@ -12,7 +12,7 @@ import 'property/property_index.dart';
 
 class TabNavigator extends StatefulWidget {
   const TabNavigator({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
@@ -20,9 +20,9 @@ class TabNavigator extends StatefulWidget {
 
 class _TabNavigatorState extends State<TabNavigator>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   int _currentIndex = 0;
-  DateTime _lastPressed;
+  DateTime? _lastPressed;
 
   //页面列表
   List<Widget> _pages = <Widget>[];
@@ -81,7 +81,7 @@ class _TabNavigatorState extends State<TabNavigator>
       body: WillPopScope(
         onWillPop: () async {
           if (_lastPressed == null ||
-              DateTime.now().difference(_lastPressed) > Duration(seconds: 1)) {
+              DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
             //两次点击间隔超过1秒重新计算
             _lastPressed = DateTime.now();
             return false;
@@ -103,7 +103,7 @@ class _TabNavigatorState extends State<TabNavigator>
           selectedFontSize: 20.sp,
           unselectedFontSize: 20.sp,
           onTap: (index) {
-            _tabController.animateTo(index, curve: Curves.easeInOutCubic);
+            _tabController!.animateTo(index, curve: Curves.easeInOutCubic);
             setFunc(() => _currentIndex = index);
           },
         );

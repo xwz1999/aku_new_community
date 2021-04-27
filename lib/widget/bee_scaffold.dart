@@ -7,8 +7,8 @@ import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatelessWidget {
-  final String title;
-  final Widget body;
+  final String? title;
+  final Widget? body;
 
   /// appbar background color
   ///
@@ -16,15 +16,15 @@ class BeeScaffold extends StatelessWidget {
   final Color bgColor;
 
   final Color bodyColor;
-  final List<Widget> actions;
-  final Widget leading;
-  final Widget bottomNavi;
-  final PreferredSizeWidget appBarBottom;
-  final FloatingActionButton fab;
+  final List<Widget>? actions;
+  final Widget? leading;
+  final Widget? bottomNavi;
+  final PreferredSizeWidget? appBarBottom;
+  final FloatingActionButton? fab;
 
   final SystemUiOverlayStyle systemStyle;
   BeeScaffold({
-    Key key,
+    Key? key,
     this.title,
     this.body,
     this.actions,
@@ -38,8 +38,8 @@ class BeeScaffold extends StatelessWidget {
   }) : super(key: key);
 
   BeeScaffold.white({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.body,
     this.actions,
     this.leading,
@@ -53,11 +53,11 @@ class BeeScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget appBar;
+    Widget? appBar;
     if (title != null)
       appBar = AppBar(
         backgroundColor: bgColor,
-        title: title.text.make(),
+        title: title!.text.make(),
         leading: leading ?? BeeBackButton(),
         actions: actions,
         bottom: appBarBottom,
@@ -67,7 +67,7 @@ class BeeScaffold extends StatelessWidget {
       value: systemStyle,
       child: Scaffold(
         backgroundColor: bodyColor,
-        appBar: appBar,
+        appBar: appBar as PreferredSizeWidget?,
         body: body,
         bottomNavigationBar: bottomNavi,
         floatingActionButton: fab,

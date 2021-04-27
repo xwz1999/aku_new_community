@@ -5,16 +5,16 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class QuestionnaireRadioCheck extends StatefulWidget {
-  final String title;
-  final List<QuestionnaireChoiceVoList> answers;
-  final List<int> selected;
-  final Function(int id) onPressed;
+  final String? title;
+  final List<QuestionnaireChoiceVoList>? answers;
+  final List<int?>? selected;
+  final Function(int? id) onPressed;
   QuestionnaireRadioCheck(
-      {Key key,
-      @required this.title,
-      @required this.answers,
-      @required this.selected,
-      @required this.onPressed})
+      {Key? key,
+      required this.title,
+      required this.answers,
+      required this.selected,
+      required this.onPressed})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          widget.title.text.black.size(32.sp).bold.make(),
+          widget.title!.text.black.size(32.sp).bold.make(),
           64.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 96.w),
@@ -40,7 +40,7 @@ class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    ...widget.answers.oddList().map((e) {
+                    ...widget.answers!.oddList().map((e) {
                       return Row(
                         children: [
                           GestureDetector(
@@ -53,7 +53,7 @@ class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
                             ),
                           ),
                           16.w.widthBox,
-                          e.answer.text.black.size(28.sp).make(),
+                          e.answer!.text.black.size(28.sp).make(),
                         ],
                       );
                     }).toList(),
@@ -62,7 +62,7 @@ class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    ...widget.answers.evenList().map((e) {
+                    ...widget.answers!.evenList().map((e) {
                       return Row(
                         children: [
                           GestureDetector(
@@ -75,7 +75,7 @@ class _QuestionnaireRadioCheckState extends State<QuestionnaireRadioCheck> {
                             ),
                           ),
                           16.w.widthBox,
-                          e.answer.text.black.size(28.sp).make(),
+                          e.answer!.text.black.size(28.sp).make(),
                         ],
                       );
                     }).toList(),

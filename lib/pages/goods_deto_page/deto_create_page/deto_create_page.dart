@@ -31,7 +31,7 @@ import 'package:aku_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class DetoCreatePage extends StatefulWidget {
-  DetoCreatePage({Key key}) : super(key: key);
+  DetoCreatePage({Key? key}) : super(key: key);
 
   @override
   _DetoCreatePageState createState() => _DetoCreatePageState();
@@ -41,12 +41,12 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   List<File> _files = [];
   UserProvider get userProvider => Provider.of<UserProvider>(context);
 
-  String _itemName;
-  DateTime _date;
+  String? _itemName;
+  DateTime? _date;
   String get datetime =>
       DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
-  int _selectWeight;
-  String _selectTel;
+  int? _selectWeight;
+  String? _selectTel;
   List<String> _listWeight = [
     '< 50kg',
     '50kg-100kg',
@@ -108,7 +108,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      S.of(context).tempPlotName,
+                      S.of(context)!.tempPlotName,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 32.sp,
@@ -214,7 +214,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                         title: e,
                         value: _listWeight.indexOf(e),
                         groupValue: _selectWeight,
-                        onChange: (value) {
+                        onChange: (dynamic value) {
                           _selectWeight = value;
                           setState(() {});
                         },
@@ -242,7 +242,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                         title: e,
                         value: _listMode.indexOf(e),
                         groupValue: _selectApproach,
-                        onChange: (value) {
+                        onChange: (dynamic value) {
                           _selectApproach = value;
                           setState(() {});
                         },
@@ -256,7 +256,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  Widget _itemPicker(String title, String select, VoidCallback onTap) {
+  Widget _itemPicker(String title, String? select, VoidCallback onTap) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -270,7 +270,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
             onTap: onTap,
             child: Row(
               children: [
-                ((select?.isEmptyOrNull ?? true) ? '请选择' : select)
+                ((select?.isEmptyOrNull ?? true) ? '请选择' : select)!
                     .text
                     .color((select?.isEmptyOrNull ?? true)
                         ? ktextSubColor
@@ -368,7 +368,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
               padding: EdgeInsets.symmetric(vertical: 30.w),
               child: Row(
                 children: [
-                  (_selectTel.isEmptyOrNull ? '请选择搬家公司' : _selectTel)
+                  (_selectTel.isEmptyOrNull ? '请选择搬家公司' : _selectTel)!
                       .text
                       .color(ktextSubColor)
                       .size(36.sp)
@@ -386,7 +386,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
     );
   }
 
-  bool _canSubmit(int weight, int approach, DateTime dateTime, String item) {
+  bool _canSubmit(int? weight, int approach, DateTime? dateTime, String? item) {
     if (weight == null) {
       return false;
     } else if (approach == null) {
@@ -410,7 +410,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(appProvider.selectedHouse.roomName),
+          _houseAddress(appProvider.selectedHouse!.roomName!),
           _getWeight(),
           _itemPicker('出户时间', datetime, () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());
@@ -442,22 +442,22 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
         onPressed: _canSubmit(_selectWeight, _selectApproach, _date, _itemName)
             ? () async {
                 VoidCallback cancel = BotToast.showLoading();
-                List<String> urls = await NetUtil()
+                List<String?> urls = await NetUtil()
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.articleOutSubmit(
                   id: BeeParse.getEstateNameId(
-                      userProvider.userDetailModel.estateNames[0]),
+                      userProvider.userDetailModel!.estateNames![0]),
                   name: _itemName,
-                  weight: _selectWeight + 1,
+                  weight: _selectWeight! + 1,
                   approach: _selectApproach + 1,
                   tel: _selectTel,
                   time: datetime,
                   urls: urls,
                 );
-                if (baseModel.status) {
+                if (baseModel.status!) {
                   Get.back();
                 } else
-                  BotToast.showText(text: baseModel.message);
+                  BotToast.showText(text: baseModel.message!);
                 cancel();
               }
             : () {

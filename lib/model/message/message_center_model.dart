@@ -1,8 +1,8 @@
 class MessageCenterModel {
-  String commentTitle;
-  int sysCount;
-  String sysTitle;
-  int commentCount;
+  String? commentTitle;
+  int? sysCount;
+  String? sysTitle;
+  int? commentCount;
 
   MessageCenterModel.zero() {
     commentTitle = '';

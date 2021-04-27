@@ -6,8 +6,8 @@ import 'package:aku_community/widget/animated/animated_scale.dart';
 
 class BeeRadio<T> extends StatefulWidget {
   final T value;
-  final List<T> groupValues;
-  BeeRadio({Key key, @required this.value, @required this.groupValues})
+  final List<T>? groupValues;
+  BeeRadio({Key? key, required this.value, required this.groupValues})
       : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class BeeRadio<T> extends StatefulWidget {
 
 class _BeeRadioState extends State<BeeRadio> {
   bool get _selected {
-    if (widget.groupValues.contains(widget.value)) return true;
+    if (widget.groupValues!.contains(widget.value)) return true;
     return false;
   }
 

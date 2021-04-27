@@ -9,8 +9,8 @@ import 'package:aku_community/pages/sign/sign_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickUnitPage extends StatefulWidget {
-  final int buildingId;
-  PickUnitPage({Key key, this.buildingId}) : super(key: key);
+  final int? buildingId;
+  PickUnitPage({Key? key, this.buildingId}) : super(key: key);
 
   @override
   _PickUnitPageState createState() => _PickUnitPageState();
@@ -20,7 +20,7 @@ class _PickUnitPageState extends State<PickUnitPage> {
   List<PickBuildingModel> _buildingModels = [];
   _buildItem(PickBuildingModel model) {
     return ListTile(
-      title: model.label.text.make(),
+      title: model.label!.text.make(),
       onTap: () {
         Get.back(result: model);
       },

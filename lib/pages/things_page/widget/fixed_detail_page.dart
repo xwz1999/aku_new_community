@@ -20,10 +20,10 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class FixedDetailPage extends StatefulWidget {
-  final int id;
+  final int? id;
   FixedDetailPage(
     this.id, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -40,10 +40,10 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController = EasyRefreshController();
   FixedDetailModel _model = FixedDetailModel();
-  bool get showRepairCard => _model?.appDispatchListVo != null;
-  bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
+  bool get showRepairCard => _model.appDispatchListVo != null;
+  bool get showProcessCard => _model.appProcessRecordVo!.isNotEmpty;
 
-  bool _canComplete(int state) {
+  bool _canComplete(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -59,7 +59,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     }
   }
 
-  Color _getColor(int state) {
+  Color _getColor(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -99,13 +99,13 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     borderRadius: BorderRadius.circular(36.w),
                     color: Colors.transparent,
                   ),
-                  child: BeeMap.fixTag[model.appReportRepairVo.type].text.black
+                  child: BeeMap.fixTag[model.appReportRepairVo!.type!]!.text.black
                       .size(20.sp)
                       .make(),
                 ),
                 Spacer(),
-                BeeMap.fixState[model.appReportRepairVo.status].text
-                    .color(_getColor(_model.appReportRepairVo.status))
+                BeeMap.fixState[model.appReportRepairVo!.status!]!.text
+                    .color(_getColor(_model.appReportRepairVo!.status))
                     .size(24.sp)
                     .bold
                     .make()
@@ -119,7 +119,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           24.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 28.w),
-            child: model.appReportRepairVo.reportDetail.text.black
+            child: model.appReportRepairVo!.reportDetail!.text.black
                 .size(28.sp)
                 .maxLines(8)
                 .overflow(TextOverflow.ellipsis)
@@ -128,7 +128,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
             child: HorizontalImageView(
-                model.appReportRepairVo.imgUrls.map((e) => e.url).toList()),
+                model.appReportRepairVo!.imgUrls!.map((e) => e.url).toList()),
           )
         ],
       ),
@@ -157,14 +157,14 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '订单编号'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo.code.text.black.size(28.sp).make(),
+                  model.appDispatchListVo!.code!.text.black.size(28.sp).make(),
                 ],
               ),
               Row(
                 children: [
                   '下单时间'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo.orderDate.text.black
+                  model.appDispatchListVo!.orderDate!.text.black
                       .size(28.sp)
                       .make()
                 ],
@@ -173,14 +173,14 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '派单类型'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo.type.text.black.size(28.sp).make(),
+                  model.appDispatchListVo!.type!.text.black.size(28.sp).make(),
                 ],
               ),
               Row(
                 children: [
                   '维修人员'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo.operatorName.text.black
+                  model.appDispatchListVo!.operatorName!.text.black
                       .size(28.sp)
                       .make(),
                 ],
@@ -189,7 +189,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '分配人'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo.distributorName.text.black
+                  model.appDispatchListVo!.distributorName!.text.black
                       .size(28.sp)
                       .make(),
                 ],
@@ -215,15 +215,15 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           24.w.heightBox,
           BeeDivider.horizontal(),
           24.w.heightBox,
-          ...model.appProcessRecordVo
+          ...model.appProcessRecordVo!
               .map((e) => Row(
                     children: [
-                      BeeMap.processClass[e.operationType].text
+                      BeeMap.processClass[e.operationType!]!.text
                           .color(ktextSubColor)
                           .size(28.sp)
                           .make(),
                       Spacer(),
-                      e.operationDate.text.black.size(28.sp).make(),
+                      e.operationDate!.text.black.size(28.sp).make(),
                     ],
                   ))
               .toList()
@@ -249,11 +249,11 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             onPressed: () async {
               CancelModel _cancel =
-                  _allowCancel(_model.appReportRepairVo.status);
+                  _allowCancel(_model.appReportRepairVo!.status);
               if (_cancel.cancel) {
                 BotToast.showLoading();
                 await ManagerFunc.reportRepairCancel(
-                    _model.appReportRepairVo.id);
+                    _model.appReportRepairVo!.id);
                 BotToast.closeAllLoading();
                 Get.back();
               } else {
@@ -364,7 +364,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     );
   }
 
-  CancelModel _allowCancel(int state) {
+  CancelModel _allowCancel(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -465,12 +465,12 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     disabledColor: kDarkSubColor,
                     disabledTextColor: ktextPrimary.withOpacity(0.8),
                     minWidth: 375.w,
-                    onPressed: _canComplete(_model.appReportRepairVo.status)
+                    onPressed: _canComplete(_model.appReportRepairVo!.status)
                         ? () async {
                             BaseModel baseModel =
                                 await ManagerFunc.reportRepairComplete(
-                                    _model.appReportRepairVo.id);
-                            if (baseModel.status) {
+                                    _model.appReportRepairVo!.id);
+                            if (baseModel.status!) {
                               Get.back();
                               Get.back();
                             }

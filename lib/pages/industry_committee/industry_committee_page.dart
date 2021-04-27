@@ -16,7 +16,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
-  IndustryCommitteePage({Key key}) : super(key: key);
+  IndustryCommitteePage({Key? key}) : super(key: key);
 
   @override
   _IndustryCommitteePageState createState() => _IndustryCommitteePageState();
@@ -93,7 +93,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               [
-                model.name.text.size(28.sp).color(ktextPrimary).make(),
+                model.name!.text.size(28.sp).color(ktextPrimary).make(),
                 Spacer(),
                 Container(
                   height: 44.w,
@@ -135,10 +135,10 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
     return BeeScaffold(
       title: '业委会',
       systemStyle: SystemStyle.genStyle(bottom: Color(0xFF2A2A2A)),
-      body: BeeListView(
+      body: BeeListView<CommitteeItemModel>(
         path: API.manager.commiteeStaff,
         convert: (model) {
-          return model.tableList
+          return model.tableList!
               .map((e) => CommitteeItemModel.fromJson(e))
               .toList();
         },

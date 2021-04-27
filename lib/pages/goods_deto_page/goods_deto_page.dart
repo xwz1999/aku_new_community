@@ -21,7 +21,7 @@ import 'package:aku_community/widget/buttons/radio_button.dart';
 import 'widget/goods_info_card.dart';
 
 class GoodsDetoPage extends StatefulWidget {
-  GoodsDetoPage({Key key}) : super(key: key);
+  GoodsDetoPage({Key? key}) : super(key: key);
 
   @override
   _GoodsDetoPageState createState() => _GoodsDetoPageState();
@@ -29,9 +29,9 @@ class GoodsDetoPage extends StatefulWidget {
 
 class _GoodsDetoPageState extends State<GoodsDetoPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
-  List<int> _select = [];
+  List<int?> _select = [];
   bool _isEdit = false;
-  bool _canSkew(int state) {
+  bool _canSkew(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -79,11 +79,11 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
       ],
       body: Padding(
         padding: EdgeInsets.only(bottom: 98.w),
-        child: BeeListView(
+        child: BeeListView<GoodsOutModel>(
           controller: _refreshController,
           path: API.manager.articleOut,
           convert: (model) {
-            return model.tableList
+            return model.tableList!
                 .map((e) => GoodsOutModel.fromJson(e))
                 .toList();
           },

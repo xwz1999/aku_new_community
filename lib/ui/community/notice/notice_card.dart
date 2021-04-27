@@ -14,33 +14,33 @@ import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class NoticeCard extends StatelessWidget {
   final BoardItemModel model;
-  final BoardItemModel preModel;
+  final BoardItemModel? preModel;
   const NoticeCard({
-    Key key,
-    @required this.model,
-    @required this.preModel,
+    Key? key,
+    required this.model,
+    required this.preModel,
   }) : super(key: key);
 
   bool get sameDay =>
-      model.releaseDate.year == (preModel?.releaseDate?.year ?? 0) &&
-      model.releaseDate.month == (preModel?.releaseDate?.month ?? 0) &&
-      model.releaseDate.day == (preModel?.releaseDate?.day ?? 0);
+      model.releaseDate!.year == (preModel?.releaseDate?.year ?? 0) &&
+      model.releaseDate!.month == (preModel?.releaseDate?.month ?? 0) &&
+      model.releaseDate!.day == (preModel?.releaseDate?.day ?? 0);
 
   bool get isYesterday {
     DateTime now = DateTime.now();
     DateTime yestoday = DateTime(now.year, now.month, now.day - 1);
-    return yestoday.year == model.releaseDate.year &&
-        yestoday.month == model.releaseDate.month &&
-        yestoday.day == model.releaseDate.day;
+    return yestoday.year == model.releaseDate!.year &&
+        yestoday.month == model.releaseDate!.month &&
+        yestoday.day == model.releaseDate!.day;
   }
 
   bool get isFirst => preModel == null;
 
   bool get notSameYear =>
-      model.releaseDate.year != (preModel?.releaseDate?.year ?? 0);
+      model.releaseDate!.year != (preModel?.releaseDate?.year ?? 0);
 
   Widget title() {
-    if (DateUtil.isToday(model.releaseDate.millisecond))
+    if (DateUtil.isToday(model.releaseDate!.millisecond))
       return '今天'.text.size(52.sp).bold.make();
     if (isYesterday)
       return '昨天'.text.size(52.sp).bold.make();
@@ -48,8 +48,8 @@ class NoticeCard extends StatelessWidget {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          model.releaseDate.day.toString().text.size(52.sp).bold.make(),
-          '${model.releaseDate.month}月'.text.size(36.sp).make(),
+          model.releaseDate!.day.toString().text.size(52.sp).bold.make(),
+          '${model.releaseDate!.month}月'.text.size(36.sp).make(),
         ],
       );
   }
@@ -60,8 +60,8 @@ class NoticeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        (notSameYear && model.releaseDate.year != DateTime.now().year)
-            ? '${model.releaseDate.year}年'
+        (notSameYear && model.releaseDate!.year != DateTime.now().year)
+            ? '${model.releaseDate!.year}年'
                 .text
                 .bold
                 .size(52.sp)
@@ -81,7 +81,7 @@ class NoticeCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: sameDay ? SizedBox() : title(),
               ),
-              model.imgUrls.length == 0
+              model.imgUrls!.length == 0
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
@@ -109,7 +109,7 @@ class NoticeCard extends StatelessWidget {
                       ),
                     ),
               10.wb,
-              model.title.text.make().expand(),
+              model.title!.text.make().expand(),
             ],
           ),
         ),

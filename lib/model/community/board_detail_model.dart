@@ -1,13 +1,13 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class BoardDetailModel {
-  int id;
-  String title;
-  String content;
-  String fileDocUrl;
-  String fileDocName;
-  String releaseTime;
-  List<ImgModel> imgUrls;
+  int? id;
+  String? title;
+  String? content;
+  String? fileDocUrl;
+  String? fileDocName;
+  String? releaseTime;
+  List<ImgModel>? imgUrls;
 
   BoardDetailModel(
       {this.id,
@@ -28,7 +28,7 @@ class BoardDetailModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -42,7 +42,7 @@ class BoardDetailModel {
     data['fileDocName'] = this.fileDocName;
     data['releaseTime'] = this.releaseTime;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

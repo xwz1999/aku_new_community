@@ -32,7 +32,7 @@ class SignFunc {
   }
 
   static Future<Response> login(String phone, String code) async {
-    Response response = await NetUtil().dio.post(
+    Response response = await NetUtil().dio!.post(
       API.login.loginBySMS,
       data: {'tel': phone, 'code': code},
     );
@@ -46,7 +46,7 @@ class SignFunc {
         .toList();
   }
 
-  static Future<List<PickBuildingModel>> getUnitInfo(int id) async {
+  static Future<List<PickBuildingModel>> getUnitInfo(int? id) async {
     BaseModel model = await NetUtil().get(
       API.login.unitInfo,
       params: {"buildingId": id},
@@ -59,9 +59,9 @@ class SignFunc {
   ///注册
   static Future<bool> signUp() async {
     final signUpProvider =
-        Provider.of<SignUpProvider>(Get.context, listen: false);
-    final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
-    Response response = await NetUtil().dio.post(
+        Provider.of<SignUpProvider>(Get.context!, listen: false);
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
+    Response response = await NetUtil().dio!.post(
           API.login.signUp,
           data: signUpProvider.toMap,
         );
@@ -73,13 +73,13 @@ class SignFunc {
       return false;
   }
 
-  static Future<UserInfoModel> getUserInfo() async {
+  static Future<UserInfoModel?> getUserInfo() async {
     BaseModel baseModel = await NetUtil().get(API.user.userProfile);
     if (baseModel.data == null) return null;
     return UserInfoModel.fromJson(baseModel.data);
   }
 
-  static Future<UserDetailModel> getUserDetail() async {
+  static Future<UserDetailModel?> getUserDetail() async {
     BaseModel baseModel = await NetUtil().get(
       API.user.userDetail,
     );

@@ -17,14 +17,14 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CommentMessagePage extends StatefulWidget {
-  CommentMessagePage({Key key}) : super(key: key);
+  CommentMessagePage({Key? key}) : super(key: key);
 
   @override
   _CommentMessagePageState createState() => _CommentMessagePageState();
 }
 
 class _CommentMessagePageState extends State<CommentMessagePage> {
-  EasyRefreshController _easyRefreshController;
+  EasyRefreshController? _easyRefreshController;
   @override
   void initState() {
     super.initState();
@@ -51,7 +51,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
     } else {
       return ((model.respondentName?.isEmptyOrNull ?? true)
               ? model.content
-              : '回复了${model.respondentName}:${model.content}')
+              : '回复了${model.respondentName}:${model.content}')!
           .text
           .black
           .size(28.sp)
@@ -84,11 +84,11 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              model.createName.text.black.size(36.sp).make(),
+              model.createName!.text.black.size(36.sp).make(),
               10.w.heightBox,
               _messageContent(model),
               16.w.heightBox,
-              getTime(model.createDate)
+              getTime(model.createDate!)
                   .text
                   .color(Color(0xFF999999))
                   .size(28.sp)
@@ -114,11 +114,11 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '评论通知',
-      body: BeeListView(
+      body: BeeListView<CommentMessageModel>(
           path: API.message.commentMessageList,
           controller: _easyRefreshController,
           convert: (models) {
-            return models.tableList
+            return models.tableList!
                 .map((e) => CommentMessageModel.fromJson(e))
                 .toList();
           },

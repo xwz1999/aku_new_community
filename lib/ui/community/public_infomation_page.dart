@@ -4,7 +4,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class PublicInfomationPage extends StatefulWidget {
-  PublicInfomationPage({Key key}) : super(key: key);
+  PublicInfomationPage({Key? key}) : super(key: key);
 
   @override
   _PublicInfomationPageState createState() => _PublicInfomationPageState();
@@ -13,7 +13,7 @@ class PublicInfomationPage extends StatefulWidget {
 class _PublicInfomationPageState extends State<PublicInfomationPage>
     with TickerProviderStateMixin {
   static const pubTabs = <String>['全部', '政务', '生活', '医疗', '教育'];
-  TabController _tabController;
+  TabController? _tabController;
   @override
   void initState() {
     super.initState();

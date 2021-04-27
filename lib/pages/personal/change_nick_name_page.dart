@@ -9,20 +9,20 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ChangeNickName extends StatefulWidget {
-  ChangeNickName({Key key}) : super(key: key);
+  ChangeNickName({Key? key}) : super(key: key);
 
   @override
   _ChangeNickNameState createState() => _ChangeNickNameState();
 }
 
 class _ChangeNickNameState extends State<ChangeNickName> {
-  TextEditingController _textEditingController;
+  TextEditingController? _textEditingController;
   @override
   void initState() {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     super.initState();
     _textEditingController =
-        TextEditingController(text: userProvider.userInfoModel.nickName);
+        TextEditingController(text: userProvider.userInfoModel!.nickName);
   }
 
   @override
@@ -49,7 +49,7 @@ class _ChangeNickNameState extends State<ChangeNickName> {
                 controller: _textEditingController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
-                  hintText: '${userProvider.userInfoModel.nickName}',
+                  hintText: '${userProvider.userInfoModel!.nickName}',
                   hintStyle:
                       TextStyle(color: Color(0xFF999999), fontSize: 34.sp),
                   border: UnderlineInputBorder(
@@ -62,7 +62,7 @@ class _ChangeNickNameState extends State<ChangeNickName> {
               150.w.heightBox,
               MaterialButton(
                 onPressed: () {
-                  userProvider.setName(_textEditingController.text);
+                  userProvider.setName(_textEditingController!.text);
                   Get.back();
                 },
                 child: '保存'.text.black.size(32.sp).make(),

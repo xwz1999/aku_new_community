@@ -3,12 +3,12 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class BoardItemModel {
-  int id;
-  String title;
-  String releaseTime;
-  List<ImgModel> imgUrls;
+  int? id;
+  String? title;
+  String? releaseTime;
+  List<ImgModel>? imgUrls;
 
-  DateTime get releaseDate => DateUtil.getDateTime(releaseTime);
+  DateTime? get releaseDate => DateUtil.getDateTime(releaseTime!);
 
   BoardItemModel({this.id, this.title, this.releaseTime, this.imgUrls});
 
@@ -19,7 +19,7 @@ class BoardItemModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -30,7 +30,7 @@ class BoardItemModel {
     data['title'] = this.title;
     data['releaseTime'] = this.releaseTime;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

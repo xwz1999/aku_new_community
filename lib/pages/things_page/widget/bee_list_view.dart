@@ -30,7 +30,7 @@ class BeeListView<T> extends StatefulWidget {
   final String path;
 
   ///same as EasyRefreshController
-  final EasyRefreshController controller;
+  final EasyRefreshController? controller;
 
   ///转换器
   ///
@@ -56,13 +56,13 @@ class BeeListView<T> extends StatefulWidget {
   final int size;
 
   ///额外的参数
-  final Map<String, dynamic> extraParams;
+  final Map<String, dynamic>? extraParams;
   BeeListView({
-    Key key,
-    @required this.path,
-    @required this.controller,
-    @required this.convert,
-    @required this.builder,
+    Key? key,
+    required this.path,
+    required this.controller,
+    required this.convert,
+    required this.builder,
     this.size = 10,
     this.extraParams,
   }) : super(key: key);
@@ -74,7 +74,7 @@ class BeeListView<T> extends StatefulWidget {
 class _BeeListViewState<T> extends State<BeeListView> {
   int _pageNum = 1;
   BaseListModel _model = BaseListModel.zero();
-  List<T> _models = [];
+  List<T?> _models = [];
   Map<String, dynamic> get _params {
     Map<String, dynamic> tempMap = {
       'pageNum': _pageNum,
@@ -96,7 +96,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
           widget.path,
           params: _params,
         );
-        _models = widget.convert(_model);
+        _models = widget.convert(_model) as List<T?>;
         widget.controller?.resetLoadState();
         if (mounted) setState(() {});
       },
@@ -107,9 +107,9 @@ class _BeeListViewState<T> extends State<BeeListView> {
           widget.path,
           params: _params,
         );
-        _models.addAll(widget.convert(_model) as List<T>);
-        if (_pageNum >= _model.pageCount)
-          widget.controller.finishLoad(noMore: true);
+        _models.addAll(widget.convert(_model) as List<T?>);
+        if (_pageNum >= _model.pageCount!)
+          widget.controller!.finishLoad(noMore: true);
         setState(() {});
       },
       child: widget.builder(_models),

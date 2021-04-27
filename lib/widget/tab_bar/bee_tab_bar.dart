@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
-  final TabController controller;
+  final TabController? controller;
   final List<String> tabs;
-  final Function(int index) onTap;
+  final Function(int index)? onTap;
   final bool scrollable;
   BeeTabBar({
-    Key key,
-    @required this.controller,
-    @required this.tabs,
+    Key? key,
+    required this.controller,
+    required this.tabs,
     this.onTap,
     this.scrollable = false,
   }) : super(key: key);
@@ -24,18 +24,18 @@ class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
 
 class _BeeTabBarState extends State<BeeTabBar> {
   update() {
-    if (widget.onTap != null) widget.onTap(widget.controller.index);
+    if (widget.onTap != null) widget.onTap!(widget.controller!.index);
   }
 
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(update);
+    widget.controller!.addListener(update);
   }
 
   @override
   void dispose() {
-    widget.controller.removeListener(update);
+    widget.controller!.removeListener(update);
     super.dispose();
   }
 

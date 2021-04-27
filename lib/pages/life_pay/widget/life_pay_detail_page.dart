@@ -13,9 +13,9 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayDetailPage extends StatefulWidget {
-  final LifePayModel model;
+  final LifePayModel? model;
   LifePayDetailPage({
-    Key key,
+    Key? key,
     this.model,
   }) : super(key: key);
 
@@ -29,8 +29,8 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   int _payNum = 0;
   int get listLength {
     int count = 0;
-    widget.model.dailyPaymentTypeVos.forEach((element) {
-      element.detailedVoList.forEach((element) {
+    widget.model!.dailyPaymentTypeVos!.forEach((element) {
+      element.detailedVoList!.forEach((element) {
         count++;
       });
     });
@@ -44,36 +44,36 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < widget.model.dailyPaymentTypeVos.length; i++) {
+    for (var i = 0; i < widget.model!.dailyPaymentTypeVos!.length; i++) {
       for (var j = 0;
-          j < widget.model.dailyPaymentTypeVos[i].detailedVoList.length;
+          j < widget.model!.dailyPaymentTypeVos![i].detailedVoList!.length;
           j++) {
-        String id = widget.model.dailyPaymentTypeVos[i].id.toString() +
-            widget.model.dailyPaymentTypeVos[i].detailedVoList[j].groupId
+        String id = widget.model!.dailyPaymentTypeVos![i].id.toString() +
+            widget.model!.dailyPaymentTypeVos![i].detailedVoList![j].groupId
                 .toString();
         if (!_selectItems.contains(id)) {
           _selectItems.add(id);
           _payNum += 1;
           _payTotal += widget
-              .model.dailyPaymentTypeVos[i].detailedVoList[j].paymentPrice
+              .model!.dailyPaymentTypeVos![i].detailedVoList![j].paymentPrice!
               .toDouble();
         }
       }
     }
   }
 
-  Widget _buildTile(int groupId, int id, int years, double price) {
+  Widget _buildTile(int? groupId, int? id, int? years, double? price) {
     return GestureDetector(
       onTap: () {
         String item = id.toString() + groupId.toString();
         if (_selectItems.contains(item)) {
           _selectItems.remove(item);
           _payNum -= 1;
-          _payTotal -= price.toDouble();
+          _payTotal -= price!.toDouble();
         } else {
           _selectItems.add(item);
           _payNum += 1;
-          _payTotal += price.toDouble();
+          _payTotal += price!.toDouble();
         }
 
         setState(() {});
@@ -108,9 +108,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
         children: [
           Row(
             children: [
-              model.name.text.black.size(30.sp).bold.make(),
+              model.name!.text.black.size(30.sp).bold.make(),
               Spacer(),
-              '${S.of(context).tempPlotName} ${appProvider.selectedHouse.estateId}'
+              '${S.of(context)!.tempPlotName} ${appProvider.selectedHouse!.estateId}'
                   .text
                   .color(ktextSubColor)
                   .size(24.sp)
@@ -118,9 +118,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             ],
           ),
           50.w.heightBox,
-          ...model.detailedVoList
+          ...model.detailedVoList!
               .map((e) => _buildTile(
-                  e.groupId, model.id, widget.model.years, e.paymentPrice))
+                  e.groupId, model.id, widget.model!.years, e.paymentPrice))
               .toList(),
         ],
       ),
@@ -131,11 +131,11 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title:
-          '${BeeParse.getCustomYears(widget.model.years)}-${widget.model.years}年明细',
+          '${BeeParse.getCustomYears(widget.model!.years!)}-${widget.model!.years}年明细',
       body: ListView(
         padding: EdgeInsets.only(top: 16.w),
         children: [
-          ...widget.model.dailyPaymentTypeVos
+          ...widget.model!.dailyPaymentTypeVos!
               .map((e) => _buildCard(e))
               .toList(),
         ],
@@ -153,23 +153,23 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                   _payTotal = 0;
                 } else {
                   for (var i = 0;
-                      i < widget.model.dailyPaymentTypeVos.length;
+                      i < widget.model!.dailyPaymentTypeVos!.length;
                       i++) {
                     for (var j = 0;
                         j <
-                            widget.model.dailyPaymentTypeVos[i].detailedVoList
+                            widget.model!.dailyPaymentTypeVos![i].detailedVoList!
                                 .length;
                         j++) {
                       String id =
-                          widget.model.dailyPaymentTypeVos[i].id.toString() +
-                              widget.model.dailyPaymentTypeVos[i]
-                                  .detailedVoList[j].groupId
+                          widget.model!.dailyPaymentTypeVos![i].id.toString() +
+                              widget.model!.dailyPaymentTypeVos![i]
+                                  .detailedVoList![j].groupId
                                   .toString();
                       if (!_selectItems.contains(id)) {
                         _selectItems.add(id);
                         _payNum += 1;
-                        _payTotal += widget.model.dailyPaymentTypeVos[i]
-                            .detailedVoList[j].paymentPrice
+                        _payTotal += widget.model!.dailyPaymentTypeVos![i]
+                            .detailedVoList![j].paymentPrice!
                             .toDouble();
                       }
                     }

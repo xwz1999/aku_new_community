@@ -9,7 +9,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CarParkingPage extends StatefulWidget {
-  CarParkingPage({Key key}) : super(key: key);
+  CarParkingPage({Key? key}) : super(key: key);
 
   @override
   _CarParkingPageState createState() => _CarParkingPageState();

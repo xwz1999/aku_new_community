@@ -16,14 +16,14 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SystemMessagePage extends StatefulWidget {
-  SystemMessagePage({Key key}) : super(key: key);
+  SystemMessagePage({Key? key}) : super(key: key);
 
   @override
   _SystemMessagePageState createState() => _SystemMessagePageState();
 }
 
 class _SystemMessagePageState extends State<SystemMessagePage> {
-  EasyRefreshController _refreshController;
+  EasyRefreshController? _refreshController;
   @override
   void initState() {
     super.initState();
@@ -39,7 +39,7 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
   Widget _buildCard(SystemMessageModel model) {
     return InkWell(
       onTap: () async {
-        await NetUtil().dio.get(API.message.readMessage, queryParameters: {
+        await NetUtil().dio!.get(API.message.readMessage, queryParameters: {
           'sysMessageId': model.id,
         });
         Get.to(() => SystemMessageDetailPage(id: model.id));
@@ -58,8 +58,8 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
               children: [
                 '系统通知'.text.black.bold.size(32.sp).make(),
                 Spacer(),
-                BeeMap.messageRead[model.status].text
-                    .color(BeeMap.messageIsRead[model.status]
+                BeeMap.messageRead[model.status!]!.text
+                    .color(BeeMap.messageIsRead[model.status!]!
                         ? Color(0xFF999999)
                         : Colors.red)
                     .size(32.sp)
@@ -67,14 +67,14 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
               ],
             ),
             5.w.heightBox,
-            model.title.text.black
+            model.title!.text.black
                 .size(28.sp)
                 .maxLines(1)
                 .isIntrinsic
                 .ellipsis
                 .make(),
             5.w.heightBox,
-            model.content.text.black
+            model.content!.text.black
                 .size(28.sp)
                 .maxLines(1)
                 .overflow(TextOverflow.ellipsis)
@@ -103,11 +103,11 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '系统通知',
-      body: BeeListView(
+      body: BeeListView<SystemMessageModel>(
           path: API.message.sysMessageList,
           controller: _refreshController,
           convert: (models) {
-            return models.tableList
+            return models.tableList!
                 .map((e) => SystemMessageModel.fromJson(e))
                 .toList();
           },

@@ -16,7 +16,7 @@ import 'package:aku_community/widget/buttons/column_action_button.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class CommunityPage extends StatefulWidget {
-  CommunityPage({Key key}) : super(key: key);
+  CommunityPage({Key? key}) : super(key: key);
 
   @override
   _CommunityPageState createState() => _CommunityPageState();
@@ -24,7 +24,7 @@ class CommunityPage extends StatefulWidget {
 
 class _CommunityPageState extends State<CommunityPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  TabController _tabController;
+  TabController? _tabController;
   List<String> _tabs = [];
   GlobalKey<TopicCommunityViewState> topicKey =
       GlobalKey<TopicCommunityViewState>();
@@ -68,17 +68,17 @@ class _CommunityPageState extends State<CommunityPage>
       fab: FloatingActionButton(
         onPressed: () async {
           if (LoginUtil.isNotLogin) return;
-          bool result = await Get.to(() => AddNewEventPage());
+          bool? result = await Get.to(() => AddNewEventPage());
           if (result == true) {
-            switch (_tabController.index) {
+            switch (_tabController!.index) {
               case 0:
-                newKey.currentState.refresh();
+                newKey.currentState!.refresh();
                 break;
               case 1:
-                topicKey.currentState.refresh();
+                topicKey.currentState!.refresh();
                 break;
               case 2:
-                myKey.currentState.refresh();
+                myKey.currentState!.refresh();
                 break;
             }
           }

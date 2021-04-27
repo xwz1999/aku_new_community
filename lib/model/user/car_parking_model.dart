@@ -4,10 +4,10 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CarParkingModel {
-  String code;
-  int type;
-  int status;
-  String effectiveTimeEnd;
+  String? code;
+  int? type;
+  int? status;
+  String? effectiveTimeEnd;
   String get typeName {
     switch (type) {
       case 1:
@@ -40,9 +40,9 @@ class CarParkingModel {
     return effectiveDateValue;
   }
 
-  DateTime get effectiveDate {
+  DateTime? get effectiveDate {
     if (effectiveTimeEnd == null) return null;
-    return DateUtil.getDateTime(effectiveTimeEnd);
+    return DateUtil.getDateTime(effectiveTimeEnd!);
   }
 
   String get effectiveDateValue =>
@@ -51,7 +51,7 @@ class CarParkingModel {
   bool get outdated {
     if (effectiveDate == null) return false;
     DateTime now = DateTime.now();
-    return effectiveDate.isAfter(now);
+    return effectiveDate!.isAfter(now);
   }
 
   List<BoxShadow> get shadow {

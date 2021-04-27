@@ -26,7 +26,7 @@ enum AdviceType {
 
 class AdvicePage extends StatefulWidget {
   final AdviceType type;
-  AdvicePage({Key key, @required this.type}) : super(key: key);
+  AdvicePage({Key? key, required this.type}) : super(key: key);
 
   @override
   _AdvicePageState createState() => _AdvicePageState();
@@ -34,45 +34,36 @@ class AdvicePage extends StatefulWidget {
 
 class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
-  TabController _tabController;
+  TabController? _tabController;
   bool _selectedMode = false;
 
-  List<int> _selectedItems = [];
+  List<int?> _selectedItems = [];
 
   String get title {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
         return '建议咨询';
-        break;
       case AdviceType.COMPLAIN:
         return '投诉表扬';
-        break;
     }
-    return '';
   }
 
   List<String> get tabs {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
         return ['您的建议', '您的咨询'];
-        break;
       case AdviceType.COMPLAIN:
         return ['您的投诉', '您的表扬'];
-        break;
     }
-    return [];
   }
 
   int adviceValue(int index) {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
         return index == 0 ? 2 : 1;
-        break;
       case AdviceType.COMPLAIN:
         return index == 0 ? 3 : 4;
-        break;
     }
-    return 0;
   }
 
   @override
@@ -108,11 +99,11 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: List.generate(2, (index) {
-          return BeeListView(
+          return BeeListView<SuggestionOrComplainModel>(
             path: API.manager.advice,
             extraParams: {'adviceType': adviceValue(index)},
             controller: _refreshController,
-            convert: (model) => model.tableList
+            convert: (model) => model.tableList!
                 .map((e) => SuggestionOrComplainModel.fromJson(e))
                 .toList(),
             builder: (items) {
@@ -177,10 +168,10 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         ),
         secondChild: BottomButton(
           onPressed: () async {
-            bool needRefresh = await Get.to(
+            bool? needRefresh = await Get.to(
               () => NewAdvicePage(
                 type: widget.type,
-                initType: _tabController.index,
+                initType: _tabController!.index,
               ),
             );
             if (needRefresh == true) {

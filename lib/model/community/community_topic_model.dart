@@ -1,12 +1,12 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class CommunityTopicModel {
-  int id;
-  String title;
-  String summary;
-  String content;
-  List<ImgModel> imgUrl;
-  int activityNum;
+  int? id;
+  String? title;
+  String? summary;
+  String? content;
+  List<ImgModel>? imgUrl;
+  int? activityNum;
 
   CommunityTopicModel(
       {this.id,
@@ -24,7 +24,7 @@ class CommunityTopicModel {
     if (json['imgUrl'] != null) {
       imgUrl = [];
       json['imgUrl'].forEach((v) {
-        imgUrl.add(new ImgModel.fromJson(v));
+        imgUrl!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrl = [];
@@ -38,7 +38,7 @@ class CommunityTopicModel {
     data['summary'] = this.summary;
     data['content'] = this.content;
     if (this.imgUrl != null) {
-      data['imgUrl'] = this.imgUrl.map((v) => v.toJson()).toList();
+      data['imgUrl'] = this.imgUrl!.map((v) => v.toJson()).toList();
     }
     data['activityNum'] = this.activityNum;
     return data;

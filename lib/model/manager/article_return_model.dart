@@ -1,12 +1,12 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class ArticleReturnModel {
-  int id;
-  String name;
-  String code;
-  String beginDate;
-  int borrowTime;
-  List<ImgModel> imgList;
+  int? id;
+  String? name;
+  String? code;
+  String? beginDate;
+  int? borrowTime;
+  List<ImgModel>? imgList;
 
   ArticleReturnModel(
       {this.id,
@@ -25,7 +25,7 @@ class ArticleReturnModel {
     if (json['imgList'] != null) {
       imgList = [];
       json['imgList'].forEach((v) {
-        imgList.add(new ImgModel.fromJson(v));
+        imgList!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -38,18 +38,18 @@ class ArticleReturnModel {
     data['beginDate'] = this.beginDate;
     data['borrowTime'] = this.borrowTime;
     if (this.imgList != null) {
-      data['imgList'] = this.imgList.map((v) => v.toJson()).toList();
+      data['imgList'] = this.imgList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ImgList {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgList({this.url, this.size, this.longs, this.paragraph, this.sort});
 

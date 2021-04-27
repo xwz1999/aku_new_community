@@ -9,7 +9,7 @@ import 'package:aku_community/utils/login_util.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
 class BeeSearch extends StatefulWidget {
-  BeeSearch({Key key}) : super(key: key);
+  BeeSearch({Key? key}) : super(key: key);
 
   @override
   _BeeSearchState createState() => _BeeSearchState();
@@ -24,14 +24,14 @@ class _BeeSearchState extends State<BeeSearch> {
         .toList();
   }
 
-  _renderSearchResultBox(String title, {Widget child, bool visible = true}) {
+  _renderSearchResultBox(String title, {Widget? child, bool visible = true}) {
     if (!visible) return SizedBox().sliverBoxAdapter();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         title.text.size(28.sp).make(),
         Divider(),
-        child,
+        child!,
       ],
     ).p(32.w).material(color: Colors.white).sliverBoxAdapter();
   }

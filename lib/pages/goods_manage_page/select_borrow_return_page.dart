@@ -11,7 +11,7 @@ import 'package:aku_community/pages/goods_manage_page/goods_manage_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SelectBorrowReturnPage extends StatefulWidget {
-  SelectBorrowReturnPage({Key key}) : super(key: key);
+  SelectBorrowReturnPage({Key? key}) : super(key: key);
 
   @override
   _SelectBorrowReturnPageState createState() => _SelectBorrowReturnPageState();

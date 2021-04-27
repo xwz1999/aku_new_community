@@ -3,17 +3,17 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class ActivityItemModel {
-  int id;
-  String title;
-  String location;
-  int status;
-  String registrationStartTime;
-  String registrationEndTime;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headImgURls;
+  int? id;
+  String? title;
+  String? location;
+  int? status;
+  String? registrationStartTime;
+  String? registrationEndTime;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headImgURls;
 
-  DateTime get begin => DateUtil.getDateTime(registrationStartTime);
-  DateTime get end => DateUtil.getDateTime(registrationEndTime);
+  DateTime? get begin => DateUtil.getDateTime(registrationStartTime!);
+  DateTime? get end => DateUtil.getDateTime(registrationEndTime!);
 
   ActivityItemModel(
       {this.id,
@@ -35,7 +35,7 @@ class ActivityItemModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else {
       imgUrls = [];
@@ -43,7 +43,7 @@ class ActivityItemModel {
     if (json['headImgURls'] != null) {
       headImgURls = [];
       json['headImgURls'].forEach((v) {
-        headImgURls.add(new ImgModel.fromJson(v));
+        headImgURls!.add(new ImgModel.fromJson(v));
       });
     } else {
       headImgURls = [];
@@ -59,10 +59,10 @@ class ActivityItemModel {
     data['registrationStartTime'] = this.registrationStartTime;
     data['registrationEndTime'] = this.registrationEndTime;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headImgURls != null) {
-      data['headImgURls'] = this.headImgURls.map((v) => v.toJson()).toList();
+      data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

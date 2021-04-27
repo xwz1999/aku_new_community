@@ -1,11 +1,11 @@
 class MineGoodsModel {
-  int id;
-  String name;
-  int code;
-  String beginDate;
-  String endDate;
-  int borrowDate;
-  int borrowStatus;
+  int? id;
+  String? name;
+  int? code;
+  String? beginDate;
+  String? endDate;
+  int? borrowDate;
+  int? borrowStatus;
 
   MineGoodsModel(
       {this.id,

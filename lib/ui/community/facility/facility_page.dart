@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class FacilityPage extends StatefulWidget {
-  FacilityPage({Key key}) : super(key: key);
+  FacilityPage({Key? key}) : super(key: key);
 
   @override
   _FacilityPageState createState() => _FacilityPageState();

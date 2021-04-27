@@ -12,7 +12,7 @@ import 'package:aku_community/utils/headers.dart';
 
 class HomeNotification extends StatefulWidget {
   final List<BoardItemModel> items;
-  HomeNotification({Key key, @required this.items}) : super(key: key);
+  HomeNotification({Key? key, required this.items}) : super(key: key);
 
   @override
   _HomeNotificationState createState() => _HomeNotificationState();
@@ -40,7 +40,7 @@ class _HomeNotificationState extends State<HomeNotification> {
                   pause: Duration(milliseconds: 2000),
                   animatedTexts: widget.items
                       .map((e) => RotateAnimatedText(
-                            e.title,
+                            e.title!,
                             duration: Duration(milliseconds: 3000),
                           ))
                       .toList(),

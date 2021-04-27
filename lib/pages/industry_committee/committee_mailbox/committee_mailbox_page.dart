@@ -5,7 +5,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CommitteeMailboxPage extends StatefulWidget {
-  CommitteeMailboxPage({Key key}) : super(key: key);
+  CommitteeMailboxPage({Key? key}) : super(key: key);
 
   @override
   _CommitteeMailboxPageState createState() => _CommitteeMailboxPageState();

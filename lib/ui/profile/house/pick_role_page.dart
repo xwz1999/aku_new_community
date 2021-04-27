@@ -10,11 +10,11 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 ///
 ///业主  亲属  租客
 class PickRolePage extends StatefulWidget {
-  final int init;
+  final int? init;
 
-  PickRolePage({Key key, this.init = 0}) : super(key: key);
+  PickRolePage({Key? key, this.init = 0}) : super(key: key);
 
-  static String getType(int index) {
+  static String getType(int? index) {
     switch (index) {
       case 1:
         return '业主';
@@ -37,7 +37,7 @@ class _PickRolePageState extends State<PickRolePage> {
     2: '亲属',
     3: '租客',
   };
-  int _pickedValue;
+  int? _pickedValue;
   Widget _renderTile(int index, String title) {
     return MaterialButton(
       padding: EdgeInsets.symmetric(
@@ -53,7 +53,7 @@ class _PickRolePageState extends State<PickRolePage> {
           Radio(
             value: index,
             groupValue: _pickedValue,
-            onChanged: (value) {
+            onChanged: (dynamic value) {
               setState(() {
                 _pickedValue = value;
               });

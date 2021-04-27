@@ -6,11 +6,11 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class BeeGridImageView extends StatelessWidget {
-  final List<String> urls;
+  final List<String?> urls;
   final EdgeInsetsGeometry padding;
   const BeeGridImageView({
-    Key key,
-    @required this.urls,
+    Key? key,
+    required this.urls,
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
@@ -30,7 +30,7 @@ class BeeGridImageView extends StatelessWidget {
             BeeImagePreview.toPath(path: urls[index], tag: urls[index]);
           },
           child: Hero(
-            tag: urls[index],
+            tag: urls[index]!,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.w),
               child: FadeInImage.assetNetwork(

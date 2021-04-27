@@ -4,7 +4,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class AlarmDetailPage extends StatelessWidget {
-  const AlarmDetailPage({Key key}) : super(key: key);
+  const AlarmDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

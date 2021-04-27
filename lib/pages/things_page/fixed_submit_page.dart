@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -17,23 +16,22 @@ import 'package:aku_community/pages/things_page/widget/add_fixed_submit_page.dar
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/pages/things_page/widget/fixed_check_box.dart';
 import 'package:aku_community/pages/things_page/widget/fixed_detail_page.dart';
-import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/bee_map.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class FixedSubmitPage extends StatefulWidget {
-  FixedSubmitPage({Key key}) : super(key: key);
+  FixedSubmitPage({Key? key}) : super(key: key);
 
   @override
   _FixedSubmitPageState createState() => _FixedSubmitPageState();
 }
 
 class _FixedSubmitPageState extends State<FixedSubmitPage> {
-  EasyRefreshController _easyRefreshController;
+  EasyRefreshController? _easyRefreshController;
   bool _isEdit = false;
-  List<int> _selected = [];
+  List<int?> _selected = [];
   @override
   void initState() {
     super.initState();
@@ -46,7 +44,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
     super.dispose();
   }
 
-  Color _getColor(int state) {
+  Color _getColor(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -62,7 +60,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
     }
   }
 
-  bool _canSkew(int state) {
+  bool _canSkew(int? state) {
     switch (state) {
       case 1:
       case 2:
@@ -101,13 +99,13 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                 padding: EdgeInsets.fromLTRB(24.w, 24.w, 24.w, 0),
                 child: Row(
                   children: [
-                    BeeMap.fixTag[model.type].text
+                    BeeMap.fixTag[model.type!]!.text
                         .color(ktextPrimary)
                         .bold
                         .size(32.sp)
                         .make(),
                     Spacer(),
-                    BeeMap.fixState[model.status].text
+                    BeeMap.fixState[model.status!]!.text
                         .color(_getColor(model.status))
                         .size(24.sp)
                         .make(),
@@ -129,7 +127,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: 24.w,
                 ),
-                child: model.reportDetail.text
+                child: model.reportDetail!.text
                     .color(ktextSubColor)
                     .size(28.sp)
                     .ellipsis
@@ -138,9 +136,9 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               // 16.hb,
               Padding(
                 padding: EdgeInsets.only(left: 8.w),
-                child: model.imgUrls.length != 0
-                    ? HorizontalImageView(List.generate(model.imgUrls.length,
-                        (index) => model.imgUrls[index].url))
+                child: model.imgUrls!.length != 0
+                    ? HorizontalImageView(List.generate(model.imgUrls!.length,
+                        (index) => model.imgUrls![index].url))
                     : SizedBox(),
               ),
             ],
@@ -204,7 +202,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
             await ManagerFunc.reportRepairDelete(_selected);
             Get.back();
             _selected.clear();
-            _easyRefreshController.callRefresh();
+            _easyRefreshController!.callRefresh();
           },
         )
       ],
@@ -213,7 +211,6 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       systemStyle: SystemStyle.yellowBottomBar,
       title: '报事报修',
@@ -227,11 +224,11 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
               setState(() {});
             })
       ],
-      body: BeeListView(
+      body: BeeListView<FixedSubmitModel>(
         controller: _easyRefreshController,
         path: API.manager.fixedSubmit,
         convert: (model) {
-          return model.tableList
+          return model.tableList!
               .map((e) => FixedSubmitModel.fromJson(e))
               .toList();
         },
@@ -260,8 +257,8 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                     Get.dialog(_showDeletDialog());
                   }
             : () async {
-                bool needRefresh = await Get.to(() => AddFixedSubmitPage());
-                if (needRefresh == null) _easyRefreshController.callRefresh();
+                bool? needRefresh = await Get.to(() => AddFixedSubmitPage());
+                if (needRefresh == null) _easyRefreshController!.callRefresh();
               },
         child: _isEdit
             ? '删除订单'.text.bold.size(32.sp).make()

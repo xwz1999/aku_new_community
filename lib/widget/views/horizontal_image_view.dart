@@ -9,10 +9,10 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class HorizontalImageView extends StatelessWidget {
-  final List<String> urls;
+  final List<String?> urls;
   HorizontalImageView(
     this.urls, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class HorizontalImageView extends StatelessWidget {
               BeeImagePreview.toPath(path: urls[index], tag: urls[index]);
             },
             child: Hero(
-              tag: urls[index],
+              tag: urls[index]!,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.w),
                 child: FadeInImage.assetNetwork(

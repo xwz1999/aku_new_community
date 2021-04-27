@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickPlotPage extends StatefulWidget {
-  PickPlotPage({Key key}) : super(key: key);
+  PickPlotPage({Key? key}) : super(key: key);
 
   @override
   _PickPlotPageState createState() => _PickPlotPageState();

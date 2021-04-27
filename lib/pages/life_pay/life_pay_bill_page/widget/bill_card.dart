@@ -5,7 +5,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BillCard extends StatelessWidget {
-  BillCard({Key key}) : super(key: key);
+  BillCard({Key? key}) : super(key: key);
 
   final List<Map<String, dynamic>> _listBill = [
     {'title': '账单月份', 'value': '2020年1月'},

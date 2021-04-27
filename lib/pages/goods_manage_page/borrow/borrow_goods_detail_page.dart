@@ -17,9 +17,9 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/radio_button.dart';
 
 class BorrowGoodsDetailPage extends StatefulWidget {
-  final int articleId;
-  final List<int> receiveIds;
-  BorrowGoodsDetailPage({Key key, this.articleId, this.receiveIds})
+  final int? articleId;
+  final List<int?>? receiveIds;
+  BorrowGoodsDetailPage({Key? key, this.articleId, this.receiveIds})
       : super(key: key);
 
   @override
@@ -27,16 +27,16 @@ class BorrowGoodsDetailPage extends StatefulWidget {
 }
 
 class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
-  EasyRefreshController _easyRefreshController;
-  List<ArticleBorrowDetailModel> _models;
+  EasyRefreshController? _easyRefreshController;
+  late List<ArticleBorrowDetailModel> _models;
   bool _onload = true;
-  List<int> _selectItems = [];
-  bool get allSelect => _selectItems.length == _models.length;
+  List<int?>? _selectItems = [];
+  bool get allSelect => _selectItems!.length == _models.length;
   @override
   void initState() {
     super.initState();
     _easyRefreshController = EasyRefreshController();
-    if (widget.receiveIds != null && widget.receiveIds.isNotEmpty) {
+    if (widget.receiveIds != null && widget.receiveIds!.isNotEmpty) {
       _selectItems = widget.receiveIds;
     }
   }
@@ -55,7 +55,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          List models = await getModels();
+          List models = await (getModels());
           _models =
               models.map((e) => ArticleBorrowDetailModel.fromJson(e)).toList();
           _onload = false;
@@ -75,11 +75,11 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
     return GestureDetector(
       onTap: () {
         if (allSelect) {
-          _selectItems.clear();
+          _selectItems!.clear();
         } else {
-          _selectItems.clear();
+          _selectItems!.clear();
           _models.forEach((element) {
-            _selectItems.add(element.id);
+            _selectItems!.add(element.id);
           });
         }
         setState(() {});
@@ -125,7 +125,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         '全选'.text.color(ktextSubColor).size(24.sp).make(),
         Spacer(),
         '已选择 '.richText.color(ktextPrimary).size(24.sp).withTextSpanChildren([
-          '${_selectItems.length}'
+          '${_selectItems!.length}'
               .textSpan
               .size(32.sp)
               .color(ktextPrimary)
@@ -163,7 +163,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         await NetUtil().get(API.manager.articleBorrowFindDetail, params: {
       "articleId": widget.articleId,
     });
-    return baseModel.data as List;
+    return baseModel.data as List?;
   }
 
   Widget _goodsCard(ArticleBorrowDetailModel model) {
@@ -172,10 +172,10 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
       children: [
         GestureDetector(
           onTap: () {
-            if (_selectItems.contains(model.id)) {
-              _selectItems.remove(model.id);
+            if (_selectItems!.contains(model.id)) {
+              _selectItems!.remove(model.id);
             } else {
-              _selectItems.add(model.id);
+              _selectItems!.add(model.id);
             }
             setState(() {});
           },

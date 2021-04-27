@@ -16,8 +16,8 @@ import 'package:aku_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_community/widget/views/%20bee_download_view.dart';
 
 class NoticeDetailPage extends StatefulWidget {
-  final int id;
-  NoticeDetailPage({Key key, @required this.id}) : super(key: key);
+  final int? id;
+  NoticeDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _NoticeDetailPageState createState() => _NoticeDetailPageState();
@@ -25,13 +25,13 @@ class NoticeDetailPage extends StatefulWidget {
 
 class _NoticeDetailPageState extends State<NoticeDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
-  BoardDetailModel model;
+  BoardDetailModel? model;
 
   Widget get emptyWidget => Column(
         children: [],
       );
 
-  Widget docView(String title, String path) {
+  Widget docView(String? title, String? path) {
     if (title?.isEmpty ?? true) return SizedBox();
     return Container(
       margin: EdgeInsets.only(right: 113.w),
@@ -42,7 +42,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
         padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Row(
           children: [
-            title.text.size(32.sp).make().expand(),
+            title!.text.size(32.sp).make().expand(),
             Image.asset(
               R.ASSETS_ICONS_FILE_PNG,
               height: 52.w,
@@ -51,7 +51,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
           ],
         ),
         onPressed: () async {
-          String result = await Get.dialog(BeeDownloadView(file: path));
+          String? result = await Get.dialog(BeeDownloadView(file: path));
           if (result != null) OpenFile.open(result);
         },
         shape: RoundedRectangleBorder(
@@ -85,16 +85,16 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
             : ListView(
                 padding: EdgeInsets.all(32.w),
                 children: [
-                  model.title.text.size(32.sp).bold.make(),
+                  model!.title!.text.size(32.sp).bold.make(),
                   50.hb,
-                  ...model.imgUrls
+                  ...model!.imgUrls!
                       .map(
                         (e) => GestureDetector(
                           onTap: () {
                             BeeImagePreview.toPath(path: e.url, tag: e.url);
                           },
                           child: Hero(
-                            tag: e.url,
+                            tag: e.url!,
                             child: Container(
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
@@ -112,9 +112,9 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                       )
                       .toList(),
                   44.hb,
-                  model.content.text.size(28.sp).make(),
+                  model!.content!.text.size(28.sp).make(),
                   43.hb,
-                  docView(model.fileDocName, model.fileDocUrl),
+                  docView(model!.fileDocName, model!.fileDocUrl),
                 ],
               ),
       ).material(color: Colors.white),

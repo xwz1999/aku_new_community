@@ -14,15 +14,15 @@ import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ConvenientPhonePage extends StatefulWidget {
-  ConvenientPhonePage({Key key}) : super(key: key);
+  ConvenientPhonePage({Key? key}) : super(key: key);
 
   @override
   _ConvenientPhonePageState createState() => _ConvenientPhonePageState();
 }
 
 class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
-  EasyRefreshController _easyRefreshController;
-  TextEditingController _textEditingController;
+  EasyRefreshController? _easyRefreshController;
+  TextEditingController? _textEditingController;
 
   @override
   void initState() {
@@ -47,9 +47,9 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.name.text.black.size(32.sp).make(),
+                model.name!.text.black.size(32.sp).make(),
                 12.w.heightBox,
-                model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
+                model.tel!.text.color(Color(0xFF999999)).size(28.sp).make(),
               ],
             ).expand(),
             IconButton(
@@ -59,8 +59,8 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
                 height: 40.w,
               ),
               onPressed: () async {
-                bool result = await Get.dialog(CupertinoAlertDialog(
-                  title: model.tel.text.isIntrinsic.make(),
+                bool? result = await Get.dialog(CupertinoAlertDialog(
+                  title: model.tel!.text.isIntrinsic.make(),
                   actions: [
                     CupertinoDialogAction(
                       child: '取消'.text.isIntrinsic.make(),
@@ -102,7 +102,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               child: TextField(
                 controller: _textEditingController,
                 onSubmitted: (value) {
-                  _easyRefreshController.callRefresh();
+                  _easyRefreshController!.callRefresh();
                   setState(() {});
                 },
                 decoration: InputDecoration(
@@ -121,12 +121,12 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
             ),
           ),
           Expanded(
-            child: BeeListView(
-              extraParams: {'name': _textEditingController.text},
+            child: BeeListView<ConvenientPhoneModel>(
+              extraParams: {'name': _textEditingController!.text},
               controller: _easyRefreshController,
               path: API.manager.convenientPhone,
               convert: (model) {
-                return model.tableList
+                return model.tableList!
                     .map((e) => ConvenientPhoneModel.fromJson(e))
                     .toList();
               },

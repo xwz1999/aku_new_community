@@ -24,7 +24,7 @@ import 'package:aku_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_community/widget/picker/bee_image_picker.dart';
 
 class UserProfilePage extends StatefulWidget {
-  UserProfilePage({Key key}) : super(key: key);
+  UserProfilePage({Key? key}) : super(key: key);
 
   @override
   _UserProfilePageState createState() => _UserProfilePageState();
@@ -32,7 +32,7 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   int _sex = 1;
-  Widget _buildTile(String title, Widget suffix, {VoidCallback onPressed}) {
+  Widget _buildTile(String title, Widget suffix, {VoidCallback? onPressed}) {
     return MaterialButton(
       color: Colors.white,
       elevation: 0,
@@ -49,7 +49,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             32.wb,
             title.text.make(),
             Spacer(),
-            suffix ?? SizedBox(),
+            suffix,
             24.wb,
             Icon(
               CupertinoIcons.chevron_forward,
@@ -65,7 +65,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   _pickAvatar() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    File file = await BeeImagePicker.pick(title: '选择头像');
+    File? file = await BeeImagePicker.pick(title: '选择头像');
     if (file == null)
       return;
     else {
@@ -73,10 +73,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
       Function cancel = BotToast.showLoading();
       BaseFileModel model =
           await NetUtil().upload(API.upload.uploadAvatar, file);
-      if (model.status)
+      if (model.status!)
         userProvider.updateAvatar(model.url);
       else
-        BotToast.showText(text: model.message);
+        BotToast.showText(text: model.message!);
       cancel();
     }
   }
@@ -127,9 +127,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '性别',
-            userProvider.userInfoModel.sexValue.text.make(),
+            userProvider.userInfoModel!.sexValue.text.make(),
             onPressed: () async {
-              int result = await Get.bottomSheet(BeeCustomPicker(
+              int? result = await Get.bottomSheet(BeeCustomPicker(
                 onPressed: () => Get.back(result: _sex),
                 body: CupertinoPicker(
                   itemExtent: 50,
@@ -150,9 +150,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '出生日期',
-            userProvider.userInfoModel.birthdayValue.text.make(),
+            userProvider.userInfoModel!.birthdayValue.text.make(),
             onPressed: () async {
-              DateTime date = await BeeDatePicker.pick(DateTime.now());
+              DateTime? date = await BeeDatePicker.pick(DateTime.now());
               if (date != null) userProvider.setBirthday(date);
             },
           ),

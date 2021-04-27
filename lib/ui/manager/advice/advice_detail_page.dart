@@ -21,8 +21,8 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class AdviceDetailPage extends StatefulWidget {
-  final SuggestionOrComplainModel model;
-  AdviceDetailPage({Key key, @required this.model}) : super(key: key);
+  final SuggestionOrComplainModel? model;
+  AdviceDetailPage({Key? key, required this.model}) : super(key: key);
 
   @override
   _AdviceDetailPageState createState() => _AdviceDetailPageState();
@@ -31,9 +31,9 @@ class AdviceDetailPage extends StatefulWidget {
 class _AdviceDetailPageState extends State<AdviceDetailPage> {
   bool _loading = true;
   EasyRefreshController _refreshController = EasyRefreshController();
-  AdviceDetailModel _model;
+  late AdviceDetailModel _model;
   String get adviceValue {
-    switch (widget.model.type) {
+    switch (widget.model!.type) {
       case 1:
         return '咨询';
       case 2:
@@ -78,7 +78,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
             color: Color(0xFFD8D8D8),
           ),
           BeeGridImageView(
-            urls: widget.model.imgUrls.map((e) => e.url).toList(),
+            urls: widget.model!.imgUrls!.map((e) => e.url).toList(),
             padding: EdgeInsets.only(right: 100.w),
           ),
         ],
@@ -104,7 +104,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       children: [
         '$type\的回复'.text.size(38.sp).bold.make(),
         28.hb,
-        item.content.text.size(28.sp).color(ktextSubColor).make(),
+        item.content!.text.size(28.sp).color(ktextSubColor).make(),
         24.hb,
         DateUtil.formatDate(item.date, format: 'yyyy年MM月dd日 HH:mm')
             .text
@@ -122,13 +122,13 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       children: [
         '您的$adviceValue'.text.black.bold.size(38.sp).make(),
         30.hb,
-        _model.appAdviceDetailVo.appAdviceVo.content.text
+        _model.appAdviceDetailVo!.appAdviceVo!.content!.text
             .color(ktextSubColor)
             .size(28.sp)
             .make(),
         24.hb,
         DateUtil.formatDate(
-          _model.appAdviceDetailVo.appAdviceVo.date,
+          _model.appAdviceDetailVo!.appAdviceVo!.date,
           format: 'yyyy年MM月dd日 HH:mm',
         ).text.size(24.sp).color(Color(0xFF999999)).make(),
         Divider(
@@ -137,7 +137,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
           color: Color(0xFFD8D8D8),
         ),
         BeeGridImageView(
-          urls: widget.model.imgUrls.map((e) => e.url).toList(),
+          urls: widget.model!.imgUrls!.map((e) => e.url).toList(),
           padding: EdgeInsets.only(right: 100.w),
         ),
         Divider(
@@ -145,16 +145,16 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
           thickness: 1.w,
           color: Color(0xFFD8D8D8),
         ),
-        ..._model.appAdviceDetailVo.appAdviceContentVos
+        ..._model.appAdviceDetailVo!.appAdviceContentVos!
             .map((e) => _buildAdviceContent(e))
-            .toList(),
+            .toList() as Iterable<Widget>,
       ],
     );
   }
 
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -166,7 +166,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       actions: [
         TextButton(
           onPressed: () =>
-              Get.to(() => AdviceEvaluatePage(id: widget.model.id)),
+              Get.to(() => AdviceEvaluatePage(id: widget.model!.id)),
           child: '评价'.text.make(),
         ),
       ],
@@ -176,9 +176,9 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
         controller: _refreshController,
         header: MaterialHeader(),
         onRefresh: () async {
-          Response res = await NetUtil().dio.get(
+          Response res = await NetUtil().dio!.get(
             API.manager.adviceDetail,
-            queryParameters: {'adviceId': widget.model.id},
+            queryParameters: {'adviceId': widget.model!.id},
           );
           _model = AdviceDetailModel.fromJson(res.data);
           _loading = false;
@@ -188,7 +188,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       bottomNavi: BottomButton(
         onPressed: () async {
           bool result =
-              await Get.to(() => AdviceAddCommentPage(id: widget.model.id));
+              await (Get.to(() => AdviceAddCommentPage(id: widget.model!.id)));
           if (result && mounted) _refreshController.callRefresh();
         },
         child: '继续提问'.text.bold.make(),

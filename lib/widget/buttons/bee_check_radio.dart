@@ -5,9 +5,9 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeCheckRadio<T> extends StatefulWidget {
-  final T value;
-  final List<T> groupValue;
-  BeeCheckRadio({Key key, this.value, this.groupValue}) : super(key: key);
+  final T? value;
+  final List<T>? groupValue;
+  BeeCheckRadio({Key? key, this.value, this.groupValue}) : super(key: key);
 
   @override
   _BeeCheckRadioState createState() => _BeeCheckRadioState();
@@ -15,7 +15,7 @@ class BeeCheckRadio<T> extends StatefulWidget {
 
 class _BeeCheckRadioState extends State<BeeCheckRadio> {
   bool get _selected {
-    if (widget.groupValue.contains(widget.value)) {
+    if (widget.groupValue!.contains(widget.value)) {
       return true;
     } else {
       return false;

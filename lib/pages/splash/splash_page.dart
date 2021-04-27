@@ -20,7 +20,7 @@ import 'package:aku_community/utils/hive_store.dart';
 
 //TODO splashPage
 class SplashPage extends StatefulWidget {
-  SplashPage({Key key}) : super(key: key);
+  SplashPage({Key? key}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -47,8 +47,8 @@ class _SplashPageState extends State<SplashPage> {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     appProvider.initApplications();
     appProvider.startLocation();
-    if (HiveStore.appBox.get('login') ?? false) {
-      await userProvider.setLogin(HiveStore.appBox.get('token'));
+    if (HiveStore.appBox!.get('login') ?? false) {
+      await userProvider.setLogin(HiveStore.appBox!.get('token'));
     }
   }
 

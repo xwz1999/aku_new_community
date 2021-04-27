@@ -11,7 +11,7 @@ import 'package:aku_community/ui/profile/house/pick_unit_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickBuildingPage extends StatefulWidget {
-  PickBuildingPage({Key key}) : super(key: key);
+  PickBuildingPage({Key? key}) : super(key: key);
 
   @override
   _PickBuildingPageState createState() => _PickBuildingPageState();
@@ -21,9 +21,9 @@ class _PickBuildingPageState extends State<PickBuildingPage> {
   List<PickBuildingModel> _buildingModels = [];
   _buildItem(PickBuildingModel model) {
     return ListTile(
-      title: model.label.text.make(),
+      title: model.label!.text.make(),
       onTap: () async {
-        PickBuildingModel houseModel =
+        PickBuildingModel? houseModel =
             await Get.to(() => PickUnitPage(buildingId: model.value));
         if (houseModel != null) {
           HouseItem item = HouseItem(building: model, house: houseModel);

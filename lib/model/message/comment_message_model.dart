@@ -1,17 +1,17 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class CommentMessageModel {
-  int id;
-  int gambitThemeId;
-  String respondentName;
-  int type;
-  String content;
-  int receiverAccount;
-  int sendStatus;
-  String createName;
-  String createDate;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headSculpture;
+  int? id;
+  int? gambitThemeId;
+  String? respondentName;
+  int? type;
+  String? content;
+  int? receiverAccount;
+  int? sendStatus;
+  String? createName;
+  String? createDate;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headSculpture;
 
   CommentMessageModel(
       {this.id,
@@ -39,13 +39,13 @@ class CommentMessageModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
     if (json['headSculpture'] != null) {
       headSculpture = [];
       json['headSculpture'].forEach((v) {
-        headSculpture.add(new ImgModel.fromJson(v));
+        headSculpture!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -62,7 +62,7 @@ class CommentMessageModel {
     data['createName'] = this.createName;
     data['createDate'] = this.createDate;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

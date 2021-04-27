@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aku_community/base/base_style.dart';
 
 class BottomButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
 
   const BottomButton({
-    Key key,
-    @required this.onPressed,
-    @required this.child,
+    Key? key,
+    required this.onPressed,
+    required this.child,
   }) : super(key: key);
 
   @override

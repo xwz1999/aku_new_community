@@ -1,10 +1,10 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class ArticleBorrowModel {
-  int id;
-  String name;
-  int quantity;
-  List<ImgModel> imgUrls;
+  int? id;
+  String? name;
+  int? quantity;
+  List<ImgModel>? imgUrls;
 
   ArticleBorrowModel({this.id, this.name, this.quantity, this.imgUrls});
 
@@ -15,7 +15,7 @@ class ArticleBorrowModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     }
   }
@@ -26,7 +26,7 @@ class ArticleBorrowModel {
     data['name'] = this.name;
     data['quantity'] = this.quantity;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

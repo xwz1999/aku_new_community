@@ -15,7 +15,7 @@ import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
-  SignUpSetNicknamePage({Key key}) : super(key: key);
+  SignUpSetNicknamePage({Key? key}) : super(key: key);
 
   @override
   _SignUpSetNicknamePageState createState() => _SignUpSetNicknamePageState();
@@ -26,7 +26,7 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
   TextEditingController _textEditingController = TextEditingController();
   @override
   void dispose() {
-    _textEditingController?.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
@@ -72,7 +72,7 @@ class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
             shape: StadiumBorder(),
             onPressed: () async {
               final cancel = BotToast.showLoading();
-              if (_globalKey.currentState.validate()) {
+              if (_globalKey.currentState!.validate()) {
                 final signUpProvider =
                     Provider.of<SignUpProvider>(context, listen: false);
                 signUpProvider.setNickName(_textEditingController.text);

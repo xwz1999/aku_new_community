@@ -1,14 +1,14 @@
 import 'package:aku_community/model/common/img_model.dart';
 
 class EventVotingModel {
-  int id;
-  String title;
-  String content;
-  String beginDate;
-  String endDate;
-  int status;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headImgURls;
+  int? id;
+  String? title;
+  String? content;
+  String? beginDate;
+  String? endDate;
+  int? status;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headImgURls;
 
   EventVotingModel(
       {this.id,
@@ -30,14 +30,14 @@ class EventVotingModel {
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headImgURls'] != null) {
       headImgURls = [];
       json['headImgURls'].forEach((v) {
-        headImgURls.add(new ImgModel.fromJson(v));
+        headImgURls!.add(new ImgModel.fromJson(v));
       });
     } else
       headImgURls = [];
@@ -52,21 +52,21 @@ class EventVotingModel {
     data['endDate'] = this.endDate;
     data['status'] = this.status;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headImgURls != null) {
-      data['headImgURls'] = this.headImgURls.map((v) => v.toJson()).toList();
+      data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ImgUrls {
-  String url;
-  String size;
-  int longs;
-  int paragraph;
-  int sort;
+  String? url;
+  String? size;
+  int? longs;
+  int? paragraph;
+  int? sort;
 
   ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
 

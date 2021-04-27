@@ -1,10 +1,10 @@
 class ImgModel {
-  String url;
-  String size;
-  double longs;
-  double paragraph;
-  int sort;
-  double get aspect => paragraph / longs;
+  String? url;
+  String? size;
+  double? longs;
+  double? paragraph;
+  int? sort;
+  double get aspect => paragraph! / longs!;
 
   ImgModel({this.url, this.size, this.longs, this.paragraph, this.sort});
 
@@ -16,14 +16,13 @@ class ImgModel {
     sort = json['sort'];
   }
 
-  static String first(List<ImgModel> models) {
+  static String first(List<ImgModel>? models) {
     if (models == null) return '';
     if (models.isEmpty) return '';
     return models.first.url ?? '';
   }
 
-  static ImgModel firstModel(List<ImgModel> models) {
-    if (models == null) return null;
+  static ImgModel? firstModel(List<ImgModel> models) {
     if (models.isEmpty) return null;
     return models.first;
   }

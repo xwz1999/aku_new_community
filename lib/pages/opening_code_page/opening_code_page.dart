@@ -8,7 +8,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class OpeningCodePage extends StatefulWidget {
-  OpeningCodePage({Key key}) : super(key: key);
+  OpeningCodePage({Key? key}) : super(key: key);
 
   @override
   _OpeningCodePageState createState() => _OpeningCodePageState();

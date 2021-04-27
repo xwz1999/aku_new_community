@@ -3,19 +3,19 @@ import 'package:flustars/flustars.dart';
 import 'package:aku_community/model/common/img_model.dart';
 
 class EventItemModel {
-  int id;
-  int createId;
-  int isComment;
-  int isLike;
-  String createName;
-  String content;
-  String gambitTitle;
-  String createDate;
-  List<LikeNames> likeNames;
-  List<ImgModel> imgUrls;
-  List<ImgModel> headSculptureImgUrl;
-  List<GambitThemeCommentVoList> gambitThemeCommentVoList;
-  DateTime get date => DateUtil.getDateTime(createDate);
+  int? id;
+  int? createId;
+  int? isComment;
+  int? isLike;
+  String? createName;
+  String? content;
+  String? gambitTitle;
+  String? createDate;
+  List<LikeNames>? likeNames;
+  List<ImgModel>? imgUrls;
+  List<ImgModel>? headSculptureImgUrl;
+  List<GambitThemeCommentVoList>? gambitThemeCommentVoList;
+  DateTime? get date => DateUtil.getDateTime(createDate!);
   EventItemModel(
       {this.id,
       this.createId,
@@ -42,28 +42,28 @@ class EventItemModel {
     if (json['likeNames'] != null) {
       likeNames = [];
       json['likeNames'].forEach((v) {
-        likeNames.add(new LikeNames.fromJson(v));
+        likeNames!.add(new LikeNames.fromJson(v));
       });
     } else
       likeNames = [];
     if (json['imgUrls'] != null) {
       imgUrls = [];
       json['imgUrls'].forEach((v) {
-        imgUrls.add(new ImgModel.fromJson(v));
+        imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
     if (json['headSculptureImgUrl'] != null) {
       headSculptureImgUrl = [];
       json['headSculptureImgUrl'].forEach((v) {
-        headSculptureImgUrl.add(new ImgModel.fromJson(v));
+        headSculptureImgUrl!.add(new ImgModel.fromJson(v));
       });
     } else
       headSculptureImgUrl = [];
     if (json['gambitThemeCommentVoList'] != null) {
       gambitThemeCommentVoList = [];
       json['gambitThemeCommentVoList'].forEach((v) {
-        gambitThemeCommentVoList.add(new GambitThemeCommentVoList.fromJson(v));
+        gambitThemeCommentVoList!.add(new GambitThemeCommentVoList.fromJson(v));
       });
     } else
       gambitThemeCommentVoList = [];
@@ -80,26 +80,26 @@ class EventItemModel {
     data['gambitTitle'] = this.gambitTitle;
     data['createDate'] = this.createDate;
     if (this.likeNames != null) {
-      data['likeNames'] = this.likeNames.map((v) => v.toJson()).toList();
+      data['likeNames'] = this.likeNames!.map((v) => v.toJson()).toList();
     }
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls.map((v) => v.toJson()).toList();
+      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headSculptureImgUrl != null) {
       data['headSculptureImgUrl'] =
-          this.headSculptureImgUrl.map((v) => v.toJson()).toList();
+          this.headSculptureImgUrl!.map((v) => v.toJson()).toList();
     }
     if (this.gambitThemeCommentVoList != null) {
       data['gambitThemeCommentVoList'] =
-          this.gambitThemeCommentVoList.map((v) => v.toJson()).toList();
+          this.gambitThemeCommentVoList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class LikeNames {
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   LikeNames({this.id, this.name});
 
@@ -117,11 +117,11 @@ class LikeNames {
 }
 
 class GambitThemeCommentVoList {
-  int id;
-  String parentName;
-  String content;
-  String createName;
-  String createDate;
+  int? id;
+  String? parentName;
+  String? content;
+  String? createName;
+  String? createDate;
 
   GambitThemeCommentVoList(
       {this.id,

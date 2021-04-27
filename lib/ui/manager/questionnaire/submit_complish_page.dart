@@ -9,9 +9,9 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SubmitComplishPage extends StatelessWidget {
-  final bool status;
-  final String message;
-  const SubmitComplishPage({Key key, this.status, this.message})
+  final bool? status;
+  final String? message;
+  const SubmitComplishPage({Key? key, this.status, this.message})
       : super(key: key);
 
   @override
@@ -28,19 +28,19 @@ class SubmitComplishPage extends StatelessWidget {
               height: 110.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(55.w),
-                color: this.status ? kPrimaryColor : kDangerColor,
+                color: this.status! ? kPrimaryColor : kDangerColor,
               ),
               child: Icon(
-                this.status
+                this.status!
                     ? CupertinoIcons.checkmark
                     : CupertinoIcons.multiply,
                 size: 100.w,
               ),
             ),
             48.w.heightBox,
-            (this.status ? '提交成功' : '提交失败').text.size(36.sp).black.bold.make(),
+            (this.status! ? '提交成功' : '提交失败').text.size(36.sp).black.bold.make(),
             16.w.heightBox,
-            (this.status ? '您的建议我们已经收到，感谢填写' : this.message)
+            (this.status! ? '您的建议我们已经收到，感谢填写' : this.message)!
                 .text
                 .color(ktextSubColor)
                 .size(26.sp)
@@ -56,7 +56,7 @@ class SubmitComplishPage extends StatelessWidget {
               onPressed: () {
                 Get.back();
               },
-              child: (this.status ? '返回' : '重新提交')
+              child: (this.status! ? '返回' : '重新提交')
                   .text
                   .color(ktextPrimary)
                   .size(36.sp)

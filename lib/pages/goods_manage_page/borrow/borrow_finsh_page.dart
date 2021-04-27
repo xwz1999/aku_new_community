@@ -10,9 +10,9 @@ import 'package:aku_community/pages/tab_navigator.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class BorrowFinshPage extends StatefulWidget {
-  final bool isSuccess;
-  final String failText;
-  BorrowFinshPage({Key key, this.isSuccess, this.failText}) : super(key: key);
+  final bool? isSuccess;
+  final String? failText;
+  BorrowFinshPage({Key? key, this.isSuccess, this.failText}) : super(key: key);
 
   @override
   _BorrowFinshPageState createState() => _BorrowFinshPageState();
@@ -30,19 +30,19 @@ class _BorrowFinshPageState extends State<BorrowFinshPage> {
             SizedBox(
               width: 110.w,
               height: 110.w,
-              child: Image.asset(widget.isSuccess
+              child: Image.asset(widget.isSuccess!
                   ? R.ASSETS_ICONS_BORROW_SUCCESS_PNG
                   : R.ASSETS_ICONS_BORROW_FAILURE_PNG),
             ),
             48.w.heightBox,
-            '${widget.isSuccess ? '出借成功' : '出借失败'}'
+            '${widget.isSuccess! ? '出借成功' : '出借失败'}'
                 .text
                 .color(ktextPrimary)
                 .size(36.sp)
                 .bold
                 .make(),
             16.w.heightBox,
-            '${widget.isSuccess ? '使用后请记得归还' : widget.failText}'
+            '${widget.isSuccess! ? '使用后请记得归还' : widget.failText}'
                 .text
                 .color(ktextSubColor)
                 .size(26.sp)
@@ -59,16 +59,16 @@ class _BorrowFinshPageState extends State<BorrowFinshPage> {
               disabledElevation: 0,
               padding: EdgeInsets.symmetric(vertical: 24.w),
               minWidth: double.infinity,
-              onPressed: widget.isSuccess
+              onPressed: widget.isSuccess!
                   ? () {
                       Get.offAll(TabNavigator());
                     }
                   : () {
                       Get.back();
                     },
-              child: '${widget.isSuccess ? '返回首页' : '重新提交'}'
+              child: '${widget.isSuccess! ? '返回首页' : '重新提交'}'
                   .text
-                  .color(widget.isSuccess ? ktextPrimary : Colors.white)
+                  .color(widget.isSuccess! ? ktextPrimary : Colors.white)
                   .size(36.sp)
                   .make(),
             )

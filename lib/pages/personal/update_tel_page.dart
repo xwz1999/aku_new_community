@@ -16,18 +16,18 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class UpdateTelPage extends StatefulWidget {
-  UpdateTelPage({Key key}) : super(key: key);
+  UpdateTelPage({Key? key}) : super(key: key);
 
   @override
   _UpdateTelPageState createState() => _UpdateTelPageState();
 }
 
 class _UpdateTelPageState extends State<UpdateTelPage> {
-  TextEditingController _oldTelController;
-  TextEditingController _newTelController;
-  TextEditingController _codeController;
-  Timer _timer;
-  bool get validPhone => RegexUtil.isMobileSimple(_newTelController.text);
+  TextEditingController? _oldTelController;
+  TextEditingController? _newTelController;
+  TextEditingController? _codeController;
+  Timer? _timer;
+  bool get validPhone => RegexUtil.isMobileSimple(_newTelController!.text);
   bool get _canGetCode {
     bool timeActive = _timer?.isActive ?? false;
     return (!timeActive) && validPhone;
@@ -51,9 +51,9 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
   }
 
   startTick() {
-    _timer = Timer.periodic(Duration(seconds: 1), (_timer) {
-      if (_timer.tick >= 60) {
-        _timer.cancel();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (timer.tick >= 60) {
+        _timer!.cancel();
         _timer = null;
       }
       setState(() {});
@@ -107,12 +107,13 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
                   suffixIcon: MaterialButton(
                     onPressed: _canGetCode
                         ? () {
-                            SignFunc.sendNewMessageCode(_newTelController.text);
+                            SignFunc.sendNewMessageCode(
+                                _newTelController!.text);
                             startTick();
                           }
                         : () {},
                     child: _timer?.isActive ?? false
-                        ? '${60 - _timer.tick}'
+                        ? '${60 - _timer!.tick}'
                             .text
                             .color(kPrimaryColor)
                             .size(28.sp)
@@ -168,15 +169,15 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
               64.w.heightBox,
               MaterialButton(
                 onPressed: () {
-                  if (TextUtil.isEmpty(_oldTelController.text)) {
+                  if (TextUtil.isEmpty(_oldTelController!.text)) {
                     BotToast.showText(text: '旧手机号不能为空');
-                  } else if (TextUtil.isEmpty(_newTelController.text)) {
+                  } else if (TextUtil.isEmpty(_newTelController!.text)) {
                     BotToast.showText(text: '新手机号不能为空');
-                  } else if (TextUtil.isEmpty(_codeController.text)) {
+                  } else if (TextUtil.isEmpty(_codeController!.text)) {
                     BotToast.showText(text: '验证码不能为空');
                   } else {
-                    userProvider.updateTel(_oldTelController.text,
-                        _newTelController.text, _codeController.text);
+                    userProvider.updateTel(_oldTelController!.text,
+                        _newTelController!.text, _codeController!.text);
                     Get.back();
                   }
                 },

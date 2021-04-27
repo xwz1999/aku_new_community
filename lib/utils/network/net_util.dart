@@ -15,12 +15,12 @@ import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 
 class NetUtil {
-  Dio _dio;
+  Dio? _dio;
   static final NetUtil _netUtil = NetUtil._internal();
 
   factory NetUtil() => _netUtil;
 
-  Dio get dio => _dio;
+  Dio? get dio => _dio;
 
   NetUtil._internal() {
     BaseOptions options = BaseOptions(
@@ -31,7 +31,7 @@ class NetUtil {
       headers: {},
     );
     if (_dio == null) _dio = Dio(options);
-    dio.interceptors.add(InterceptorsWrapper(
+    dio!.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async => handler.next(options),
       onResponse: (response, handler) async {
         LoggerData.addData(response);
@@ -46,7 +46,7 @@ class NetUtil {
 
   ///call auth after login
   auth(String token) {
-    _dio.options.headers.putIfAbsent('App-Admin-Token', () => token);
+    _dio!.options.headers.putIfAbsent('App-Admin-Token', () => token);
   }
 
   static String getDate(DateTime date) =>
@@ -57,11 +57,11 @@ class NetUtil {
   /// GET method
   Future<BaseModel> get(
     String path, {
-    Map<String, dynamic> params,
+    Map<String, dynamic>? params,
     bool showMessage = false,
   }) async {
     try {
-      Response res = await _dio.get(path, queryParameters: params);
+      Response res = await _dio!.get(path, queryParameters: params);
       BaseModel baseModel = BaseModel.fromJson(res.data);
       _parseRequestError(baseModel, showMessage: showMessage);
       return baseModel;
@@ -78,11 +78,11 @@ class NetUtil {
   /// only work with JSON.
   Future<BaseModel> post(
     String path, {
-    Map<String, dynamic> params,
+    Map<String, dynamic>? params,
     bool showMessage = false,
   }) async {
     try {
-      Response res = await _dio.post(path, data: params);
+      Response res = await _dio!.post(path, data: params);
 
       BaseModel baseModel = BaseModel.fromJson(res.data);
       _parseRequestError(baseModel, showMessage: showMessage);
@@ -96,10 +96,10 @@ class NetUtil {
 
   Future<BaseListModel> getList(
     String path, {
-    Map<String, dynamic> params,
+    Map<String, dynamic>? params,
   }) async {
     try {
-      Response res = await _dio.get(path, queryParameters: params);
+      Response res = await _dio!.get(path, queryParameters: params);
       BaseListModel baseListModel = BaseListModel.fromJson(res.data);
       return baseListModel;
     } on DioError catch (e) {
@@ -110,7 +110,7 @@ class NetUtil {
 
   Future<BaseFileModel> upload(String path, File file) async {
     try {
-      Response res = await _dio.post(path,
+      Response res = await _dio!.post(path,
           data: FormData.fromMap({
             'file': await MultipartFile.fromFile(file.path),
           }));
@@ -122,8 +122,8 @@ class NetUtil {
     return BaseFileModel.err();
   }
 
-  Future<List<String>> uploadFiles(List<File> files, String api) async {
-    List<String> urls = [];
+  Future<List<String?>> uploadFiles(List<File> files, String api) async {
+    List<String?> urls = [];
     if (files.isEmpty) {
       return [];
     } else {
@@ -139,7 +139,7 @@ class NetUtil {
   _parseErr(DioError err) {
     LoggerData.addData(err);
     _makeToast(String message) {
-      BotToast.showText(text: '$message\_${err?.response?.statusCode ?? ''}');
+      BotToast.showText(text: '$message\_${err.response?.statusCode ?? ''}');
     }
 
     switch (err.type) {
@@ -160,13 +160,13 @@ class NetUtil {
   }
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
-    final userProvider = Provider.of<UserProvider>(Get.context, listen: false);
-    if (!model.status && model.message == '登录失效，请登录' && userProvider.isLogin) {
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
+    if (!model.status! && model.message == '登录失效，请登录' && userProvider.isLogin) {
       userProvider.logout();
       Get.offAll(SignInPage());
     }
-    if (!model.status || showMessage) {
-      BotToast.showText(text: model.message);
+    if (!model.status! || showMessage) {
+      BotToast.showText(text: model.message!);
     }
   }
 }

@@ -12,10 +12,10 @@ class HomeTitle extends StatelessWidget {
   final VoidCallback onTap;
 
   const HomeTitle({
-    Key key,
-    @required this.title,
-    @required this.suffixTitle,
-    @required this.onTap,
+    Key? key,
+    required this.title,
+    required this.suffixTitle,
+    required this.onTap,
   }) : super(key: key);
 
   @override

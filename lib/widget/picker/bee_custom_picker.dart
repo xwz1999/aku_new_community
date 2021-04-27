@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeCustomPicker extends StatefulWidget {
-  final Widget body;
-  final VoidCallback onPressed;
-  BeeCustomPicker({Key key, this.body, this.onPressed}) : super(key: key);
+  final Widget? body;
+  final VoidCallback? onPressed;
+  BeeCustomPicker({Key? key, this.body, this.onPressed}) : super(key: key);
 
   @override
   _BeeCustomPickerState createState() => _BeeCustomPickerState();
@@ -34,7 +34,7 @@ class _BeeCustomPickerState extends State<BeeCustomPicker> {
                 ),
               ),
             ),
-            widget.body,
+            widget.body!,
           ],
         ),
       ),

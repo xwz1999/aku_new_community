@@ -1,6 +1,6 @@
 class QuestionnaireSubmitModel {
-  int id;
-  List<AppQuestionnaireAnswerSubmits> appQuestionnaireAnswerSubmits;
+  int? id;
+  List<AppQuestionnaireAnswerSubmits>? appQuestionnaireAnswerSubmits;
 
   QuestionnaireSubmitModel({this.id, this.appQuestionnaireAnswerSubmits});
 
@@ -9,7 +9,7 @@ class QuestionnaireSubmitModel {
     if (json['appQuestionnaireAnswerSubmits'] != null) {
       appQuestionnaireAnswerSubmits = [];
       json['appQuestionnaireAnswerSubmits'].forEach((v) {
-        appQuestionnaireAnswerSubmits
+        appQuestionnaireAnswerSubmits!
             .add(new AppQuestionnaireAnswerSubmits.fromJson(v));
       });
     }
@@ -20,16 +20,16 @@ class QuestionnaireSubmitModel {
     data['id'] = this.id;
     if (this.appQuestionnaireAnswerSubmits != null) {
       data['appQuestionnaireAnswerSubmits'] =
-          this.appQuestionnaireAnswerSubmits.map((v) => v.toJson()).toList();
+          this.appQuestionnaireAnswerSubmits!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class AppQuestionnaireAnswerSubmits {
-  int topicId;
-  List<int> choiceAnswer;
-  String shortAnswer;
+  int? topicId;
+  List<int?>? choiceAnswer;
+  String? shortAnswer;
 
   AppQuestionnaireAnswerSubmits(
       {this.topicId, this.choiceAnswer, this.shortAnswer});

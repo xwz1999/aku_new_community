@@ -18,7 +18,7 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PickMyHousePage extends StatefulWidget {
-  PickMyHousePage({Key key}) : super(key: key);
+  PickMyHousePage({Key? key}) : super(key: key);
 
   @override
   _PickMyHousePageState createState() => _PickMyHousePageState();
@@ -41,7 +41,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     List<HouseModel> models = List.from(appProvider.houses);
     models.removeWhere(
-      (element) => element.id == (appProvider?.selectedHouse?.id ?? -1),
+      (element) => element.id == (appProvider.selectedHouse?.id ?? -1),
     );
     if (models == null || models.isEmpty) return [];
     return models;
@@ -100,7 +100,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
       bottomNavi: ElevatedButton(
         child: Text('新增房屋'),
         onPressed: () async {
-          bool result = await Get.to(() => AddHousePage());
+          bool? result = await Get.to(() => AddHousePage());
           if (result == true) _refreshController.callRefresh();
         },
         style: ButtonStyle(
@@ -113,18 +113,18 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
 }
 
 class _HouseCard extends StatelessWidget {
-  final HouseModel model;
+  final HouseModel? model;
   final bool highlight;
   final EasyRefreshController controller;
   const _HouseCard({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
     this.highlight = false,
-    @required this.controller,
+    required this.controller,
   }) : super(key: key);
   bool get canTapSlide {
     if (model == null) return false;
-    return model.status == 4 || model.status == 3 && !highlight;
+    return model!.status == 4 || model!.status == 3 && !highlight;
   }
 
   @override
@@ -137,7 +137,7 @@ class _HouseCard extends StatelessWidget {
         SlideAction(
           onTap: canTapSlide
               ? () async {
-                  bool result = await Get.dialog(CupertinoAlertDialog(
+                  bool? result = await Get.dialog(CupertinoAlertDialog(
                     title: Text('删除房屋'),
                     content: Text('删除房屋后，可以再次验证添加'),
                     actions: [
@@ -156,7 +156,7 @@ class _HouseCard extends StatelessWidget {
                     await NetUtil().post(
                       API.user.deleteHouse,
                       params: {
-                        'ids': [model.id]
+                        'ids': [model!.id]
                       },
                     );
                     // if(controller.)
@@ -185,7 +185,7 @@ class _HouseCard extends StatelessWidget {
             Container(
               child: Text(
                 model?.houseStatus ?? '',
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: model?.houseStatusColor ?? Colors.white,
                     ),
@@ -197,7 +197,7 @@ class _HouseCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4.w),
                 gradient: LinearGradient(
-                  colors: model.backgroundColor,
+                  colors: model!.backgroundColor,
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -210,8 +210,8 @@ class _HouseCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    S.of(context).tempPlotName,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    S.of(context)!.tempPlotName,
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
                           color:
                               highlight ? Color(0xFFFF8200) : Color(0xFF333333),
                           fontWeight: FontWeight.bold,
@@ -219,8 +219,8 @@ class _HouseCard extends StatelessWidget {
                   ),
                   8.hb,
                   Text(
-                    model.roomName,
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                    model!.roomName!,
+                    style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           color: Color(0xFF999999),
                         ),
                   ),
@@ -234,7 +234,7 @@ class _HouseCard extends StatelessWidget {
           appProvider.setCurrentHouse(model);
           //我的房屋：修改选中的房产审核id
           await NetUtil().get(API.user.changeSelectExanmineId,
-              params: {"examineId": model.estateId});
+              params: {"examineId": model!.estateId});
           Get.back();
         },
       ),

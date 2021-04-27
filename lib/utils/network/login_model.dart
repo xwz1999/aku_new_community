@@ -1,7 +1,7 @@
 class LoginModel {
-  String message;
-  String token;
-  bool status;
+  String? message;
+  String? token;
+  bool? status;
 
   LoginModel({this.message, this.token, this.status});
 

@@ -9,9 +9,9 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class BeeImagePicker {
-  static Future<File> pick(
-      {String title, double maxWidth = 1000, double maxHeight = 1000}) async {
-    PickedFile file = await Get.bottomSheet(CupertinoActionSheet(
+  static Future<File?> pick(
+      {required String title, double maxWidth = 1000, double maxHeight = 1000}) async {
+    PickedFile? file = await Get.bottomSheet(CupertinoActionSheet(
       title: title.text.isIntrinsic.make(),
       actions: [
         CupertinoDialogAction(

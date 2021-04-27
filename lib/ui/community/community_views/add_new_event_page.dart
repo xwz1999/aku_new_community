@@ -18,16 +18,16 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class AddNewEventPage extends StatefulWidget {
-  final int initTopic;
-  final String topicName;
-  AddNewEventPage({Key key})
+  final int? initTopic;
+  final String? topicName;
+  AddNewEventPage({Key? key})
       : initTopic = null,
         topicName = null,
         super(key: key);
   AddNewEventPage.topic({
-    Key key,
-    @required this.initTopic,
-    @required this.topicName,
+    Key? key,
+    required this.initTopic,
+    required this.topicName,
   }) : super(key: key);
 
   @override
@@ -38,13 +38,13 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
   bool _commentable = true;
   List<File> _files = [];
   TextEditingController _textEditingController = TextEditingController();
-  HotTopicModel _hotTopicModel;
+  HotTopicModel? _hotTopicModel;
 
   ///发表动态
   _addEvent() async {
     VoidCallback cancel = BotToast.showLoading();
     final String content = _textEditingController.text;
-    List<String> imgs;
+    List<String?>? imgs;
     if (_files.isNotEmpty) {
       imgs = await NetUtil().uploadFiles(_files, API.upload.uploadEvent);
     }
@@ -59,7 +59,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
       params.putIfAbsent('gambitId', () => widget.initTopic);
     } else {
       params.putIfAbsent(
-          'gambitId', () => _hotTopicModel == null ? -1 : _hotTopicModel.id);
+          'gambitId', () => _hotTopicModel == null ? -1 : _hotTopicModel!.id);
     }
 
     BaseModel baseModel = await NetUtil().post(
@@ -68,7 +68,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
       showMessage: true,
     );
     cancel();
-    if (baseModel.status) {
+    if (baseModel.status!) {
       Get.back(result: true);
     }
   }
@@ -122,7 +122,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
   }
 
   Widget _renderTopic(HotTopicModel model) {
-    bool sameModel = model.id == _hotTopicModel?.id ?? -1;
+    bool sameModel = model.id == (_hotTopicModel?.id ?? -1);
     return MaterialButton(
       elevation: 0,
       color: sameModel ? kPrimaryColor : Colors.white,
@@ -130,7 +130,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
         _hotTopicModel = model;
         setState(() {});
       },
-      child: model.name.text.size(34.sp).black.make(),
+      child: model.name!.text.size(34.sp).black.make(),
       shape: StadiumBorder(
         side: BorderSide(
           color: Color(0xFF999999),
