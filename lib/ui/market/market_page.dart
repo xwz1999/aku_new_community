@@ -24,10 +24,6 @@ class _MarketPageState extends State<MarketPage>
   Widget build(BuildContext context) {
     super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
-    print({
-      'height': MediaQuery.of(context).size.height,
-      'width': MediaQuery.of(context).size.width,
-    });
     return BeeScaffold(
       title: '商城',
       body: NestedScrollView(

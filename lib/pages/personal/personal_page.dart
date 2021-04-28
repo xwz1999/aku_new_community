@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -72,8 +73,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                                   image: API.image(
-                                      userProvider.userInfoModel?.imgUrl ??
-                                          ''),
+                                      userProvider.userInfoModel?.imgUrl ?? ''),
                                   height: 106.w,
                                   width: 106.w,
                                   fit: BoxFit.cover,
@@ -161,6 +161,32 @@ class _PersonalIndexState extends State<PersonalIndex>
     );
   }
 
+  Widget _orderButton({
+    required String name,
+    required String path,
+    required int index,
+  }) {
+    return MaterialButton(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(path, height: 50.w, width: 50.w),
+          10.hb,
+          Text(
+            name,
+            style: TextStyle(
+              color: Color(0xFF333333),
+              fontSize: 22.sp,
+            ),
+          ),
+        ],
+      ),
+      onPressed: () {
+        Get.to(() => OrderPage(initIndex: index));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double _statusHeight = MediaQuery.of(context).padding.top;
@@ -175,6 +201,42 @@ class _PersonalIndexState extends State<PersonalIndex>
         child: CustomScrollView(
           slivers: <Widget>[
             _sliverAppBar(_statusHeight),
+            SliverToBoxAdapter(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _containerBar('我的订单'),
+                  GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                    ),
+                    shrinkWrap: true,
+                    children: [
+                      _orderButton(
+                        name: '待付款',
+                        path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
+                        index: 1,
+                      ),
+                      _orderButton(
+                        name: '待收货',
+                        path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
+                        index: 2,
+                      ),
+                      _orderButton(
+                        name: '待评价',
+                        path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
+                        index: 3,
+                      ),
+                      _orderButton(
+                        name: '售后',
+                        path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
+                        index: 4,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             SliverToBoxAdapter(
               child: Container(
                 decoration: BoxDecoration(

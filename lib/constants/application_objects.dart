@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -74,6 +75,31 @@ List<AO> appObjects = [
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => PickFacilityPage()),
+  AO(
+    '小区教育',
+    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+    () => BeeScaffold(title: '小区教育'),
+  ),
+  AO(
+    '健康运动',
+    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+    () => BeeScaffold(title: '健康运动'),
+  ),
+  AO(
+    '家政服务',
+    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+    () => BeeScaffold(title: '家政服务'),
+  ),
+  AO(
+    '居家养老',
+    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+    () => BeeScaffold(title: '居家养老'),
+  ),
+  AO(
+    '物业租赁',
+    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+    () => BeeScaffold(title: '物业租赁'),
+  ),
 ];
 
 List<AO> userAppObjects = [
@@ -123,6 +149,11 @@ List<String> _smartManagerApp = [
   '借还管理',
   '一键报警',
   '设施预约',
+  '小区教育',
+  '健康运动',
+  '家政服务',
+  '居家养老',
+  '物业租赁',
 ];
 
 ///智慧管家

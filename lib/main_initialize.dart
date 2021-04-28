@@ -38,8 +38,9 @@ class MainInitialize {
   static Future initJPush() async {
     if (kIsWeb || Platform.isMacOS) return;
     JPush jpush = new JPush();
-    Function(Map<String, dynamic> message) jPushLogger(String type) {
-      return (Map<String, dynamic> message) async {
+    Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
+        String type) {
+      return (Map<String, dynamic>? message) async {
         LoggerData.addData({
           'type': type,
           'message': message,
@@ -48,9 +49,9 @@ class MainInitialize {
     }
 
     jpush.addEventHandler(
-      onReceiveNotification: jPushLogger('onReceiveNotification') as Future<dynamic> Function(Map<String, dynamic>?)?,
-      onOpenNotification: jPushLogger('onOpenNotification') as Future<dynamic> Function(Map<String, dynamic>?)?,
-      onReceiveMessage: jPushLogger('onReceiveMessage') as Future<dynamic> Function(Map<String, dynamic>?)?,
+      onReceiveNotification: jPushLogger('onReceiveNotification'),
+      onOpenNotification: jPushLogger('onOpenNotification'),
+      onReceiveMessage: jPushLogger('onReceiveMessage'),
     );
     jpush.setup(
       appKey: "6a2c6507e3e8b3187ac1c9f9",
