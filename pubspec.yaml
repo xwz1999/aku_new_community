@@ -20,19 +20,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   url_launcher: ^6.0.2
   flustars: ^2.0.1
-  # icons
-  # TODO need remove
   flutter_icons:
     git:
       url: git@git.oa00.com:flutter_third/flutter-icons.git
   #弹窗
   bot_toast: ^4.0.1
   #滑块
-  flutter_slidable: ^0.6.0-nullsafety.0
+  flutter_slidable: ^0.6.0
   #http
   dio: ^4.0.0
   #骨架
-  shimmer: ^2.0.0-nullsafety.0
+  shimmer: ^2.0.0
   #随机二维码
   qr_flutter: ^4.0.0
 
@@ -40,7 +38,7 @@ dependencies:
   path_provider: ^2.0.1
 
   fluwx: ^3.3.0
-  get: ^4.0.0-nullsafety.2
+  get: ^4.1.4
   velocity_x: ^3.0.0
   hive: ^2.0.3
   hive_flutter: ^1.0.0
@@ -51,13 +49,13 @@ dependencies:
       url: git@git.oa00.com:flutter_pub/random_character.git
       ref: null-safety
 
-  image_picker: ^0.7.3
+  image_picker: ^0.7.4
   power_logger: ^1.2.0
   flutter_rating_bar: ^4.0.0
   jpush_flutter:
     git:
       url: https://git.oa00.com/flutter_third/jpush-flutter-plugin
-  open_file: ^3.1.0
+  open_file: ^3.2.0
   badges: ^2.0.0-nullsafety.1
   amap_flutter_map: ^2.0.1
   amap_flutter_location: ^2.0.0
@@ -66,7 +64,7 @@ dependencies:
   firebase_core: ^1.0.3
   firebase_crashlytics: ^2.0.0
   share: ^2.0.1
-  collection: ^1.15.0-nullsafety.4
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:
