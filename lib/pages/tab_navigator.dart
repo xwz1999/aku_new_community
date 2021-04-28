@@ -1,3 +1,5 @@
+import 'package:aku_community/ui/market/market_page.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,9 +35,8 @@ class _TabNavigatorState extends State<TabNavigator>
 
     _pages = [
       HomePage(),
-      // MarketPage(),
+      MarketPage(),
       PropertyIndex(),
-      // CommunityIndex(),
       CommunityPage(),
       PersonalIndex()
     ];
@@ -68,14 +69,31 @@ class _TabNavigatorState extends State<TabNavigator>
   Widget build(BuildContext context) {
     //底部导航来
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
-      _buildBottomBar('首页', R.ASSETS_ICONS_TABBAR_HOME_NO_PNG,
-          R.ASSETS_ICONS_TABBAR_HOME_PNG),
-      _buildBottomBar('物业', R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
-          R.ASSETS_ICONS_TABBAR_HOUSE_PNG),
-      _buildBottomBar('社区', R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,
-          R.ASSETS_ICONS_TABBAR_MESSAGE_PNG),
-      _buildBottomBar('我的', R.ASSETS_ICONS_TABBAR_USER_NO_PNG,
-          R.ASSETS_ICONS_TABBAR_USER_PNG),
+      _buildBottomBar(
+        '首页',
+        R.ASSETS_ICONS_TABBAR_HOME_NO_PNG,
+        R.ASSETS_ICONS_TABBAR_HOME_PNG,
+      ),
+      _buildBottomBar(
+        '商城',
+        R.ASSETS_ICONS_TABBAR_MARKET_NO_PNG,
+        R.ASSETS_ICONS_TABBAR_MARKET_PNG,
+      ),
+      _buildBottomBar(
+        '物业',
+        R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
+        R.ASSETS_ICONS_TABBAR_HOUSE_PNG,
+      ),
+      _buildBottomBar(
+        '社区',
+        R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,
+        R.ASSETS_ICONS_TABBAR_MESSAGE_PNG,
+      ),
+      _buildBottomBar(
+        '我的',
+        R.ASSETS_ICONS_TABBAR_USER_NO_PNG,
+        R.ASSETS_ICONS_TABBAR_USER_PNG,
+      ),
     ];
     return BeeScaffold(
       body: WillPopScope(
@@ -84,6 +102,7 @@ class _TabNavigatorState extends State<TabNavigator>
               DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
             //两次点击间隔超过1秒重新计算
             _lastPressed = DateTime.now();
+            BotToast.showText(text: '再点击一次返回退出');
             return false;
           }
           //否则关闭app
