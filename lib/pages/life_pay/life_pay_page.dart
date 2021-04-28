@@ -36,7 +36,7 @@ class SelectPay {
 class _LifePayPageState extends State<LifePayPage> {
   EasyRefreshController? _controller;
   List<int> _selectYears = [];
-  List<LifePayModel> _models = [];
+  List<LifePayModel?> _models = [];
   List<SelectPay> _selectPay = [];
   double _totalCost = 0;
   int _count = 0;
@@ -237,7 +237,7 @@ class _LifePayPageState extends State<LifePayPage> {
           ),
         ),
       ],
-      body: BeeListView(
+      body: BeeListView<LifePayModel>(
           path: API.manager.dailyPaymentList,
           controller: _controller,
           extraParams: {'estateId': appProvider.selectedHouse!.estateId},
@@ -253,7 +253,7 @@ class _LifePayPageState extends State<LifePayPage> {
             return lifePayModels;
           },
           builder: (items) {
-            _models = items as List<LifePayModel>;
+            if (items != null) _models = items as List<LifePayModel?>;
             return Column(
               children: [
                 _buildHouseCard(),

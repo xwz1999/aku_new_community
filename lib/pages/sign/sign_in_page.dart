@@ -120,8 +120,8 @@ class _SignInPageState extends State<SignInPage> {
           else if (TextUtil.isEmpty(_code.text))
             BotToast.showText(text: '验证码不能为空');
           else {
-            bool result = await (_showLoginVerify() as FutureOr<bool>);
-            _parseLogin(result);
+            bool? result = await _showLoginVerify();
+            if (result != null) _parseLogin(result);
           }
         },
         height: 89.w,

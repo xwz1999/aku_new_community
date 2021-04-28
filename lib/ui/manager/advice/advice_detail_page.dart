@@ -147,7 +147,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
         ),
         ..._model.appAdviceDetailVo!.appAdviceContentVos!
             .map((e) => _buildAdviceContent(e))
-            .toList() as Iterable<Widget>,
+            .toList(),
       ],
     );
   }

@@ -50,7 +50,7 @@ class BeeListView<T> extends StatefulWidget {
   final List<T> Function(BaseListModel model) convert;
 
   ///子组件构造器
-  final Widget Function(List<T> items) builder;
+  final Widget Function(dynamic items) builder;
 
   ///每页记录数
   final int size;
