@@ -79,8 +79,13 @@ class _AdviceCardState extends State<AdviceCard> {
             thickness: 1.w,
             color: Color(0xFFE8E8E8),
           ),
-          widget.model!.content!.text.size(28.w).black.make().pSymmetric(h: 28.w),
-          HorizontalImageView(widget.model!.imgUrls!.map((e) => e.url).toList()),
+          widget.model!.content!.text
+              .size(28.w)
+              .black
+              .make()
+              .pSymmetric(h: 28.w),
+          HorizontalImageView(
+              widget.model!.imgUrls!.map((e) => e.url).toList()),
           widget.model!.score == null
               ? SizedBox()
               : Divider(

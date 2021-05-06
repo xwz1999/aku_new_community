@@ -133,9 +133,10 @@ class _ChatCardState extends State<ChatCard> {
                                   ),
                                 );
                               } else {
-                                widget.model!.likeNames!.removeWhere((element) =>
-                                    element.name ==
-                                    userProvider.userInfoModel!.nickName);
+                                widget.model!.likeNames!.removeWhere(
+                                    (element) =>
+                                        element.name ==
+                                        userProvider.userInfoModel!.nickName);
                               }
                               widget.model!.isLike =
                                   (widget.model!.isLike == 1) ? 0 : 1;
@@ -298,8 +299,8 @@ class _ChatCardState extends State<ChatCard> {
               clipBehavior: Clip.antiAlias,
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image:
-                    API.image(ImgModel.first(widget.model!.headSculptureImgUrl)),
+                image: API
+                    .image(ImgModel.first(widget.model!.headSculptureImgUrl)),
                 height: 86.w,
                 width: 86.w,
                 fit: BoxFit.cover,

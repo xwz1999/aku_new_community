@@ -163,7 +163,8 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                     child: Row(
                       children: [
                         StackAvatar(
-                          avatars: model!.headImgURls!.map((e) => e.url).toList(),
+                          avatars:
+                              model!.headImgURls!.map((e) => e.url).toList(),
                         ),
                         Spacer(),
                         '已有${model!.countRegistration}人参加'

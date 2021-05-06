@@ -1,4 +1,3 @@
-import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ import 'package:aku_community/pages/personal/user_profile_page.dart';
 import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/painters/user_bottom_bar_painter.dart';
 import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/views/application_view.dart';
 

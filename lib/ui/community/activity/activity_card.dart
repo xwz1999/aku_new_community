@@ -77,7 +77,8 @@ class ActivityCard extends StatelessWidget {
                 .make(),
           ].row().pSymmetric(h: 24.w),
           [
-            StackAvatar(avatars: model!.headImgURls!.map((e) => e.url).toList()),
+            StackAvatar(
+                avatars: model!.headImgURls!.map((e) => e.url).toList()),
             Spacer(),
             MaterialButton(
               elevation: 0,

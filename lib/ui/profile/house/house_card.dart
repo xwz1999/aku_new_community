@@ -24,12 +24,12 @@ class HouseCard extends StatelessWidget {
   const HouseCard.fail({
     Key? key,
     required this.model,
-  })  : type = CardAuthType.FAIL,
+  })   : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
     Key? key,
     required this.model,
-  })  : type = CardAuthType.SUCCESS,
+  })   : type = CardAuthType.SUCCESS,
         super(key: key);
 
   String get _assetPath {

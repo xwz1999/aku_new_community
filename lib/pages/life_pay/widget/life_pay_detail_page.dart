@@ -157,8 +157,8 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                       i++) {
                     for (var j = 0;
                         j <
-                            widget.model!.dailyPaymentTypeVos![i].detailedVoList!
-                                .length;
+                            widget.model!.dailyPaymentTypeVos![i]
+                                .detailedVoList!.length;
                         j++) {
                       String id =
                           widget.model!.dailyPaymentTypeVos![i].id.toString() +

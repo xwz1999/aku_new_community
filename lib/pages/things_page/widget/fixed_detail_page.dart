@@ -99,7 +99,8 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     borderRadius: BorderRadius.circular(36.w),
                     color: Colors.transparent,
                   ),
-                  child: BeeMap.fixTag[model.appReportRepairVo!.type!]!.text.black
+                  child: BeeMap
+                      .fixTag[model.appReportRepairVo!.type!]!.text.black
                       .size(20.sp)
                       .make(),
                 ),

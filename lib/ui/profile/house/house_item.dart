@@ -1,4 +1,3 @@
-
 import 'package:aku_community/model/user/pick_building_model.dart';
 
 class HouseItem {

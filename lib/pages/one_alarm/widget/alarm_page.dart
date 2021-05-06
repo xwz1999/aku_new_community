@@ -125,7 +125,8 @@ class _AlarmPageState extends State<AlarmPage> {
                               child: Text(
                                 (appProvider.location == null)
                                     ? '加载中……'
-                                    : appProvider.location!['address'] as String,
+                                    : appProvider.location!['address']
+                                        as String,
                                 style: TextStyle(
                                   color: Color(0xff666666),
                                   fontSize: 28.sp,

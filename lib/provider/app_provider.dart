@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:amap_flutter_location/amap_location_option.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dio/dio.dart';
 import 'package:power_logger/power_logger.dart';
 

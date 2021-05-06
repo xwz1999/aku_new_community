@@ -185,7 +185,8 @@ class _AddHousePageState extends State<AddHousePage> {
                   text: _item?.houseName,
                   hintText: '请选择楼栋、单元、室',
                   onTap: () async {
-                    HouseItem? tempItem = await Get.to(() => PickBuildingPage());
+                    HouseItem? tempItem =
+                        await Get.to(() => PickBuildingPage());
                     if (tempItem != null) _item = tempItem;
                     setState(() {});
                   },
@@ -271,7 +272,8 @@ class _AddHousePageState extends State<AddHousePage> {
     if (_roleType == 3) {
       params.putIfAbsent(
           'effectiveTimeStart', () => NetUtil.getDate(_range!.start));
-      params.putIfAbsent('effectiveTimeEnd', () => NetUtil.getDate(_range!.end));
+      params.putIfAbsent(
+          'effectiveTimeEnd', () => NetUtil.getDate(_range!.end));
     }
     VoidCallback cancel = BotToast.showLoading();
     BaseModel model = await NetUtil().post(

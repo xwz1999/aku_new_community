@@ -9,7 +9,7 @@ class ArticleBorrowDetailModel {
   String get borrowStatus {
     switch (this.status) {
       case 1:
-        return '正常';        
+        return '正常';
       case 2:
         return '破损';
       case 3:

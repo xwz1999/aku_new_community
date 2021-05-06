@@ -1,8 +1,10 @@
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 @Deprecated('NO NEED THIS CLASS IN FUTURE')
 class MarketData {
