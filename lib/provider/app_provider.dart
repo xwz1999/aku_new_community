@@ -224,7 +224,10 @@ class AppProvider extends ChangeNotifier {
   List<CarParkingModel> _carModels = [];
   List<CarParkingModel> get carModels => _carModels;
   Future updateCarModels() async {
-    BaseModel baseModel = await NetUtil().get(API.user.carList);
+    BaseModel baseModel = await NetUtil().get(
+      API.user.carList,
+      params: {'estateId': selectedHouse?.estateId ?? 0},
+    );
     if (baseModel.data == null) return [];
     _carModels = (baseModel.data as List)
         .map((e) => CarParkingModel.fromJson(e))

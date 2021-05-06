@@ -83,7 +83,7 @@ class _BeeSearchState extends State<BeeSearch> {
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.w, horizontal: 10.w),
                 border: InputBorder.none,
-                hintText: '搜索商品、活动、帖子、应用',
+                hintText: '搜索应用',
                 hintStyle: TextStyle(
                   color: Color(0xFF999999),
                   fontSize: 28.sp,

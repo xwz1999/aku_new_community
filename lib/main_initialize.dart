@@ -44,10 +44,7 @@ class MainInitialize {
     Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
         String type) {
       return (Map<String, dynamic>? message) async {
-        LoggerData.addData({
-          'type': type,
-          'message': message,
-        });
+        LoggerData.addData(message, tag: type);
       };
     }
 
