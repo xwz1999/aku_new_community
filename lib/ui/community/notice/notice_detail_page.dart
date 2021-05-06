@@ -75,7 +75,9 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
             API.community.boardDetail,
             params: {'announcementId': widget.id},
           );
-          model = BoardDetailModel.fromJson(baseModel.data);
+          if (baseModel.data != null) {
+            model = BoardDetailModel.fromJson(baseModel.data);
+          }
           setState(() {});
         },
         firstRefresh: true,
@@ -91,10 +93,13 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                       .map(
                         (e) => GestureDetector(
                           onTap: () {
-                            BeeImagePreview.toPath(path: e.url, tag: e.url);
+                            BeeImagePreview.toPath(
+                              path: e.url,
+                              tag: '${e.url!}${e.hashCode}',
+                            );
                           },
                           child: Hero(
-                            tag: e.url!,
+                            tag: '${e.url!}${e.hashCode}',
                             child: Container(
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(

@@ -87,7 +87,8 @@ class NoticeCard extends StatelessWidget {
                       onTap: () {
                         BeeImagePreview.toPath(
                           path: ImgModel.first(model.imgUrls),
-                          tag: ImgModel.first(model.imgUrls),
+                          tag:
+                              '${ImgModel.first(model.imgUrls)}${model.hashCode}',
                         );
                       },
                       child: Container(
@@ -97,7 +98,8 @@ class NoticeCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.w),
                         ),
                         child: Hero(
-                          tag: ImgModel.first(model.imgUrls),
+                          tag:
+                              '${ImgModel.first(model.imgUrls)}${model.hashCode}',
                           child: FadeInImage.assetNetwork(
                             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                             image: API.image(ImgModel.first(model.imgUrls)),

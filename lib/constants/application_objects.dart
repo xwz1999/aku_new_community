@@ -1,4 +1,5 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -14,7 +15,6 @@ import 'package:aku_community/pages/setting_page/settings_page.dart';
 import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
-import 'package:aku_community/ui/community/facility/pick_facility_page.dart';
 import 'package:aku_community/ui/home/application/all_application.dart';
 import 'package:aku_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_community/ui/manager/questionnaire/questionnaire_page.dart';
@@ -74,7 +74,7 @@ List<AO> appObjects = [
   // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
-  AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => PickFacilityPage()),
+  AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

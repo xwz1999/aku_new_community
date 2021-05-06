@@ -88,6 +88,8 @@ class _User {
 }
 
 class _Manager {
+  _Facility facility = _Facility();
+
   ///获取业委会列表
   String get commiteeStaff => '/ownersCommittee/findAll';
 
@@ -287,4 +289,8 @@ class _Message {
 
   ///消息中心：评论通知全部已读(进入评论通知列表后调用)
   String get allReadComment => '/user/message/allReadComment';
+}
+
+class _Facility {
+  String get type => '/user/facilitiesAppointment/findCategoryList';
 }
