@@ -293,4 +293,7 @@ class _Message {
 
 class _Facility {
   String get type => '/user/facilitiesAppointment/findCategoryList';
+
+  ///设施预约：查询所有的设施预约 （包含搜索条件）
+  String get appointment => '/user/facilitiesAppointment/list';
 }

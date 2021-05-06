@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:aku_community/utils/message_parser.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +40,7 @@ class MainInitialize {
   static Future initJPush() async {
     if (kIsWeb || Platform.isMacOS) return;
     JPush jpush = new JPush();
+
     Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
         String type) {
       return (Map<String, dynamic>? message) async {
@@ -49,7 +52,10 @@ class MainInitialize {
     }
 
     jpush.addEventHandler(
-      onReceiveNotification: jPushLogger('onReceiveNotification'),
+      onReceiveNotification: (message) async {
+        LoggerData.addData(message, tag: 'onReceiveNotification');
+        await MessageParser(message).shot();
+      },
       onOpenNotification: jPushLogger('onOpenNotification'),
       onReceiveMessage: jPushLogger('onReceiveMessage'),
     );

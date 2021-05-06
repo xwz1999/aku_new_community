@@ -14,7 +14,7 @@ class BeeDivider extends StatelessWidget {
       this.indent,
       this.endIndent,
       this.color,
-      this.isHorizontal})
+      this.isHorizontal =true})
       : super(key: key);
   BeeDivider.horizontal({
     Key? key,

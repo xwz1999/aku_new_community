@@ -116,6 +116,18 @@ class R {
   static const String ASSETS_ICONS_APP_REDUCE_PNG =
       'assets/icons/app_reduce.png';
 
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/appointment-address.png)
+  static const String ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG =
+      'assets/icons/appointment-address.png';
+
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/appointment-code.png)
+  static const String ASSETS_ICONS_APPOINTMENT_CODE_PNG =
+      'assets/icons/appointment-code.png';
+
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/appointment_date.png)
+  static const String ASSETS_ICONS_APPOINTMENT_DATE_PNG =
+      'assets/icons/appointment_date.png';
+
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/article_count.png)
   static const String ASSETS_ICONS_ARTICLE_COUNT_PNG =
       'assets/icons/article_count.png';

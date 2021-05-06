@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/community/facility/facility_appointment_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -34,7 +35,13 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
         controller: _tabController,
         tabs: ['我的预约', '历史预约'],
       ),
-      body: SizedBox(),
+      body: TabBarView(
+        children: [
+          FacilityAppointmentView(type: FacilityAppointmentType.MY),
+          FacilityAppointmentView(type: FacilityAppointmentType.HISTORY),
+        ],
+        controller: _tabController,
+      ),
     );
   }
 }
