@@ -11,6 +11,7 @@ class MessageParser {
   String type = '0';
 
   MessageParser(rawMessage) : message = Map<String, dynamic>.from(rawMessage);
+  //TODO 只支持Android端显示消息，需要适配iOS
   Future shot() async {
     ///副标题
     subTitle = message['alert'];
