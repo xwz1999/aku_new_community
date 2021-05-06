@@ -29,7 +29,7 @@ class VotingDetailPage extends StatefulWidget {
 }
 
 class _VotingDetailPageState extends State<VotingDetailPage> {
-  late VotingDetailModel _model;
+  VotingDetailModel _model = VotingDetailModel();
   EasyRefreshController? _refreshController;
   bool _isOnload = true;
   // List<int> _select = [];
