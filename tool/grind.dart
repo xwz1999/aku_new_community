@@ -13,6 +13,8 @@ buildApk() async {
       'build',
       'apk',
       '--target-platform=android-arm64',
+      '--dart-define',
+      'BUILD_TYPE=PRODUCT',
     ],
   );
 }
@@ -24,6 +26,8 @@ buildIos() async {
     arguments: [
       'build',
       'ios',
+      '--dart-define',
+      'BUILD_TYPE=PRODUCT',
     ],
   );
 }
