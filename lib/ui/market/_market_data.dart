@@ -1,12 +1,12 @@
-import 'package:aku_community/ui/market/goods/goods_card.dart';
-import 'package:aku_community/ui/market/goods/goods_list_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/utils/headers.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
+
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/ui/market/goods/goods_list_view.dart';
+import 'package:aku_community/utils/headers.dart';
 
 @Deprecated('NO NEED THIS CLASS IN FUTURE')
 class MarketData {

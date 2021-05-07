@@ -1,13 +1,13 @@
-import 'package:aku_community/ui/market/category/category_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import 'package:aku_community/ui/market/_market_data.dart';
+import 'package:aku_community/ui/market/category/category_page.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:get/get.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key? key}) : super(key: key);

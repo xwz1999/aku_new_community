@@ -49,12 +49,7 @@ class _HomeSearchState extends State<HomeSearch> {
               color: Color(0xFF666666),
             ),
             10.wb,
-            '搜索应用'
-                .text
-                .size(28.sp)
-                .color(ktextSubColor)
-                .make()
-                .expand(),
+            '搜索应用'.text.size(28.sp).color(ktextSubColor).make().expand(),
           ],
         ),
       ),

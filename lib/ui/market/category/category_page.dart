@@ -1,7 +1,8 @@
-import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key? key}) : super(key: key);

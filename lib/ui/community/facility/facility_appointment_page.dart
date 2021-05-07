@@ -1,11 +1,12 @@
-import 'package:aku_community/ui/community/facility/facility_appointment_view.dart';
-import 'package:aku_community/ui/community/facility/facility_preview_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
+import 'package:aku_community/ui/community/facility/facility_appointment_view.dart';
+import 'package:aku_community/ui/community/facility/facility_preview_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:get/get.dart';
 
 class FacilityAppointmentPage extends StatefulWidget {
   FacilityAppointmentPage({Key? key}) : super(key: key);

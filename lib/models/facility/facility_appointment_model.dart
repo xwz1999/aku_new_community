@@ -1,7 +1,9 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_community/base/base_style.dart';
 
 part 'facility_appointment_model.g.dart';
 

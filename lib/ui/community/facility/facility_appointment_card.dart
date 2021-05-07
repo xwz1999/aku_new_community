@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/facility/facility_appointment_model.dart';
 import 'package:aku_community/ui/common/qr_scan.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:get/get.dart';
 
 class FacilityAppointmentCard extends StatelessWidget {
   final FacilityAppointmentModel model;
