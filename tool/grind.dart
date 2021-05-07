@@ -1,61 +1,28 @@
+import 'dart:io';
+
 import 'package:grinder/grinder.dart';
+import 'package:path/path.dart';
+import 'package:pub_semver/pub_semver.dart';
+import 'package:yaml/yaml.dart';
+
+import 'version_tool.dart';
+
+part '_build.dart';
+part '_project_manage.dart';
 
 main(args) => grind(args);
 
-@Task()
-test() => new TestRunner().testAsync();
+@Task('add version number')
+void addVersion() async {
+  String projectPath = Directory('.').absolute.path;
+  String yamlPath = join(projectPath, 'pubspec.yaml');
+  String yamlContent = await File(yamlPath).readAsString();
+  dynamic content = loadYaml(yamlContent);
+  String version = content['version'];
+  //rename version
 
-@Task()
-buildApk() async {
-  await runAsync(
-    'flutter',
-    arguments: [
-      'build',
-      'apk',
-      '--target-platform=android-arm64',
-      '--dart-define',
-      'BUILD_TYPE=PRODUCT',
-    ],
-  );
-}
+  Version resultVersion = VersionTool.fromText(version).nextMinorTag('dev');
 
-@Task('build ios')
-buildIos() async {
-  await runAsync(
-    'flutter',
-    arguments: [
-      'build',
-      'ios',
-      '--dart-define',
-      'BUILD_TYPE=PRODUCT',
-    ],
-  );
-}
-
-@Task()
-clean() => defaultClean();
-
-@Task()
-void sort() {
-  Pub.run('import_sorter:main');
-}
-
-@Task()
-void format() {
-  DartFmt.format(libDir);
-}
-
-@Task('auto sort and format code')
-@Depends(sort, format)
-void git() {
-  log(' commit to git');
-  run(
-    'git',
-    arguments: [
-      'commit',
-      '-a',
-      '-m',
-      '[auto task] sort & format',
-    ],
-  );
+  String result = yamlContent.replaceFirst(version, resultVersion.toString());
+  await File(yamlPath).writeAsString(result);
 }

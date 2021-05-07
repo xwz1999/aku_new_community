@@ -838,7 +838,7 @@ packages:
     source: hosted
     version: "5.0.0"
   pub_semver:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: pub_semver
       url: "https://pub.flutter-io.cn"
@@ -1174,7 +1174,7 @@ packages:
     source: hosted
     version: "5.1.0"
   yaml:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: yaml
       url: "https://pub.flutter-io.cn"
