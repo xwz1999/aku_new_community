@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
@@ -51,13 +49,20 @@ class BeeScaffold extends StatelessWidget {
   })  : this.bodyColor = Colors.white,
         super(key: key);
 
+  Widget? get _titleWidget {
+    if (title == null) return null;
+    if (title is String) return Text(title!);
+    if (title is Widget) return title as Widget;
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget? appBar;
     if (title != null)
       appBar = AppBar(
         backgroundColor: bgColor,
-        title: title!.text.make(),
+        title: _titleWidget,
         leading: leading ?? BeeBackButton(),
         actions: actions,
         bottom: appBarBottom,

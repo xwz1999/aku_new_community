@@ -34,6 +34,9 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
         brightness: Brightness.light,
+        iconTheme: IconThemeData(
+          color: Color(0xFF333333),
+        ),
         textTheme: TextTheme(
           headline6: TextStyle(
             color: Color(0xFF333333),

@@ -1,4 +1,5 @@
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aku_community/utils/headers.dart';
 
@@ -15,7 +16,13 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '',
+      title: '分类',
+      actions: [
+        IconButton(
+          icon: Icon(CupertinoIcons.search),
+          onPressed: () {},
+        ),
+      ],
       bgColor: Colors.white,
       appBarBottom: PreferredSize(
         child: Divider(height: 1),
