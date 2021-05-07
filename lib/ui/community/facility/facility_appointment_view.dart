@@ -50,7 +50,12 @@ class _FacilityAppointmentViewState extends State<FacilityAppointmentView> {
         return ListView.separated(
           padding: EdgeInsets.all(32.w),
           itemBuilder: (context, index) {
-            return FacilityAppointmentCard(model: items[index]);
+            return FacilityAppointmentCard(
+              model: items[index],
+              onUpdate: () {
+                _refreshController.callRefresh();
+              },
+            );
           },
           separatorBuilder: (_, __) => 32.hb,
           itemCount: items.length,

@@ -1,8 +1,11 @@
 import 'package:aku_community/ui/community/facility/facility_appointment_view.dart';
+import 'package:aku_community/ui/community/facility/facility_preview_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:get/get.dart';
 
 class FacilityAppointmentPage extends StatefulWidget {
   FacilityAppointmentPage({Key? key}) : super(key: key);
@@ -31,6 +34,12 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '设施预约',
+      actions: [
+        IconButton(
+          icon: Icon(CupertinoIcons.add_circled),
+          onPressed: () => Get.to(() => FacilityPreorderPage()),
+        ),
+      ],
       appBarBottom: BeeTabBar(
         controller: _tabController,
         tabs: ['我的预约', '历史预约'],

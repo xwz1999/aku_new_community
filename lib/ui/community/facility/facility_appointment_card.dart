@@ -1,11 +1,20 @@
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/facility/facility_appointment_model.dart';
+import 'package:aku_community/ui/common/qr_scan.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:get/get.dart';
 
 class FacilityAppointmentCard extends StatelessWidget {
   final FacilityAppointmentModel model;
-  const FacilityAppointmentCard({Key? key, required this.model})
+  final VoidCallback onUpdate;
+  const FacilityAppointmentCard(
+      {Key? key, required this.model, required this.onUpdate})
       : super(key: key);
 
   Widget _renderTile({
@@ -21,7 +30,12 @@ class FacilityAppointmentCard extends StatelessWidget {
           width: 40.w,
         ),
         12.wb,
-        Text(name),
+        Text(
+          name,
+          style: TextStyle(
+            color: ktextSubColor,
+          ),
+        ),
         Spacer(),
         Text(subTitle),
       ],
@@ -30,9 +44,95 @@ class FacilityAppointmentCard extends StatelessWidget {
 
   Widget _renderButton() {
     var showTip = model.status == 1 || model.status == 2;
+    late Widget button;
+    switch (model.status) {
+      case 1:
+        //1.未签到(预约时间前30分钟显示扫码签到，之前为取消预约)，
+        if (model.appointmentStart == null) button = SizedBox();
+        int diffTime =
+            model.appointmentStart!.difference(DateTime.now()).inMinutes;
+        bool inTime = diffTime >= 0 && diffTime <= 30;
+        if (inTime)
+          button = _FacilityButton(
+            onPressed: () async {
+              var result = await BeeQR.scan();
+              if (result != null) {
+                final cancel = BotToast.showLoading();
+                await NetUtil().get(
+                  API.manager.facility.scan,
+                  params: {'appointmentCode': result},
+                  showMessage: true,
+                );
+                cancel();
+                onUpdate();
+              }
+            },
+            text: '扫码签到',
+          );
+        else
+          button = _FacilityButton(
+            onPressed: () async {
+              bool? result = await Get.dialog(
+                CupertinoAlertDialog(
+                  title: Text('取消预约'),
+                  content: Text('您确定要取消预约吗？'),
+                  actions: [
+                    CupertinoDialogAction(
+                      child: Text('先等等'),
+                      onPressed: () => Get.back(),
+                    ),
+                    CupertinoDialogAction(
+                      child: Text('取消预约'),
+                      onPressed: () => Get.back(result: true),
+                    ),
+                  ],
+                ),
+              );
+              if (result == true) {
+                final cancel = BotToast.showLoading();
+                await NetUtil().get(
+                  API.manager.facility.cancel,
+                  params: {'facilitiesAppointmentId': model.id},
+                  showMessage: true,
+                );
+                cancel();
+                onUpdate();
+              }
+            },
+            text: '取消预约',
+          );
+        break;
+      case 2:
+        button = _FacilityButton(
+          onPressed: () async {
+            final cancel = BotToast.showLoading();
+            await NetUtil().get(
+              API.manager.facility.stop,
+              params: {'facilitiesAppointmentId': model.id},
+              showMessage: true,
+            );
+            cancel();
+            onUpdate();
+          },
+          text: '使用结束',
+        );
+        break;
+
+      default:
+        button = SizedBox();
+    }
     return Row(
       children: [
-        if (showTip) Text('请在预约时间前30分钟内到场扫码'),
+        if (showTip)
+          Text(
+            '请在预约时间前30分钟内到场扫码',
+            style: TextStyle(
+              color: ktextSubColor,
+              fontSize: 24.sp,
+            ),
+          ),
+        Spacer(),
+        button,
       ],
     );
   }
@@ -88,6 +188,42 @@ class FacilityAppointmentCard extends StatelessWidget {
           24.hb,
           _renderButton(),
         ],
+      ),
+    );
+  }
+}
+
+class _FacilityButton extends StatelessWidget {
+  final Color color;
+  final Color textColor;
+  final VoidCallback onPressed;
+  final String text;
+  final bool outline;
+  const _FacilityButton({
+    Key? key,
+    this.color = kPrimaryColor,
+    required this.onPressed,
+    required this.text,
+    this.outline = false,
+    this.textColor = ktextPrimary,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      color: outline ? null : color,
+      shape: StadiumBorder(),
+      elevation: 0,
+      height: 60.w,
+      minWidth: 168.w,
+      padding: EdgeInsets.zero,
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          color: textColor,
+          fontSize: 26.sp,
+        ),
       ),
     );
   }

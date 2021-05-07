@@ -67,6 +67,7 @@ dependencies:
   collection: ^1.15.0
   json_annotation: ^4.0.1
   waterfall_flow: ^3.0.1
+  qr_code_scanner: ^0.4.0
 
 dev_dependencies:
   flutter_test:
