@@ -76,6 +76,7 @@ List<AO> appObjects = [
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
+  AO('设施预约', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => FacilityAppointmentPage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -150,6 +151,7 @@ List<String> _smartManagerApp = [
   '借还管理',
   '一键报警',
   '设施预约',
+  '快递包裹'
   // '小区教育',
   // '健康运动',
   // '家政服务',
