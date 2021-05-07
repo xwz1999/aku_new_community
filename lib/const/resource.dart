@@ -158,6 +158,9 @@ class R {
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/consult.png)
   static const String ASSETS_ICONS_CONSULT_PNG = 'assets/icons/consult.png';
 
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/facility.png)
+  static const String ASSETS_ICONS_FACILITY_PNG = 'assets/icons/facility.png';
+
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/file.png)
   static const String ASSETS_ICONS_FILE_PNG = 'assets/icons/file.png';
 

@@ -17,7 +17,8 @@ import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/headers.dart';
 
 void main() async {
-  DeveloperUtil.setDev(true);
+  const buildType = const String.fromEnvironment('BUILD_TYPE');
+  DeveloperUtil.setDev(!(buildType.contains('PRODUCT')));
   WidgetsFlutterBinding.ensureInitialized();
 
   ///firebase crashlytics initalize

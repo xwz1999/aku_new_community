@@ -10,11 +10,14 @@ class BeeDatePicker {
   static Future<DateTime?> pick(
     DateTime initDate, {
     CupertinoDatePickerMode mode = CupertinoDatePickerMode.date,
+    DateTime? min,
+    DateTime? max,
   }) async {
     return await Get.bottomSheet(_BeeDatePicker(
       date: initDate,
       mode: mode,
-      min: DateTime.now().subtract(Duration(days: 1)),
+      min: min ?? DateTime.now().subtract(Duration(days: 1)),
+      max: max,
     ));
   }
 

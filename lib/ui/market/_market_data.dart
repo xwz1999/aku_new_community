@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/ui/market/goods/goods_list_view.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 @Deprecated('NO NEED THIS CLASS IN FUTURE')
 class MarketData {
@@ -57,9 +59,7 @@ class MockableMarketWidget extends StatelessWidget {
       ),
       onPressed: () {
         Get.to(
-          () => BeeScaffold(
-            title: data.name,
-          ),
+          () => GoodsListView(),
         );
       },
     );
@@ -80,7 +80,21 @@ class _MockableMarketListState extends State<MockableMarketList> {
     return EasyRefresh(
       header: MaterialHeader(completeDuration: Duration(milliseconds: 300)),
       onRefresh: () async {},
-      child: ListView(),
+      child: WaterfallFlow(
+        padding: EdgeInsets.all(32.w),
+        gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 20.w,
+          crossAxisSpacing: 20.w,
+        ),
+        children: [
+          GoodsCard(),
+          GoodsCard(),
+          GoodsCard(),
+          GoodsCard(),
+          GoodsCard(),
+        ],
+      ),
     );
   }
 }

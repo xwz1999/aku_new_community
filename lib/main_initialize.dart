@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_community/utils/message_parser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import 'package:power_logger/power_logger.dart';
 
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/constants/config.dart';
+import 'package:aku_community/utils/message_parser.dart';
 
 class MainInitialize {
   ///初始化firebase
@@ -44,10 +44,7 @@ class MainInitialize {
     Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
         String type) {
       return (Map<String, dynamic>? message) async {
-        LoggerData.addData({
-          'type': type,
-          'message': message,
-        });
+        LoggerData.addData(message, tag: type);
       };
     }
 

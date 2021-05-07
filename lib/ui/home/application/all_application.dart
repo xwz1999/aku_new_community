@@ -250,12 +250,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
                 color: Color(0xFF666666),
               ),
               10.wb,
-              '搜索商品、活动、帖子、应用'
-                  .text
-                  .size(28.sp)
-                  .color(ktextSubColor)
-                  .make()
-                  .expand(),
+              '搜索应用'.text.size(28.sp).color(ktextSubColor).make().expand(),
             ],
           ),
         ),

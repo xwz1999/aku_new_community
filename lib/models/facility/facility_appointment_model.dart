@@ -1,6 +1,9 @@
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_community/base/base_style.dart';
 
 part 'facility_appointment_model.g.dart';
 
@@ -39,7 +42,7 @@ class FacilityAppointmentModel {
   Color get statusColor {
     switch (status) {
       case 1:
-        return Colors.blue;
+        return kPrimaryColor;
       case 2:
         return Color(0xFF2576E5);
       case 3:
@@ -56,7 +59,7 @@ class FacilityAppointmentModel {
   String get statusValue {
     switch (status) {
       case 1:
-        return '未签到';
+        return '预约成功';
       case 2:
         return '签到成功';
       case 3:

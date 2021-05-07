@@ -1,6 +1,6 @@
 class API {
   ///HOST
-  static const String host = 'http://test.akuhotel.com:8804';
+  static const String host = 'http://39.103.177.88:8804';
 
   ///接口基础地址
   static const String baseURL = '$host/IntelligentCommunity/app';
@@ -296,4 +296,16 @@ class _Facility {
 
   ///设施预约：查询所有的设施预约 （包含搜索条件）
   String get appointment => '/user/facilitiesAppointment/list';
+
+  ///设施预约：添加设施预约
+  String get add => '/user/facilitiesAppointment/insert';
+
+  ///设施预约：扫码签到
+  String get scan => '/user/facilitiesAppointment/signIn';
+
+  ///设施预约：取消预约
+  String get cancel => '/user/facilitiesAppointment/cancel';
+
+  ///设施预约：结束使用
+  String get stop => '/user/facilitiesAppointment/useStop';
 }

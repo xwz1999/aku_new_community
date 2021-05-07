@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
@@ -13,6 +15,8 @@ class FacilityTypeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      color: Colors.white,
+      elevation: 0,
       padding: EdgeInsets.zero,
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
@@ -64,29 +68,13 @@ class FacilityTypeCard extends StatelessWidget {
                   ],
                 ),
               ),
-              MaterialButton(
-                height: 52.w,
-                minWidth: 168.w,
-                padding: EdgeInsets.zero,
-                elevation: 0,
-                shape: StadiumBorder(),
-                color: kPrimaryColor,
-                onPressed: () {},
-                child: Text(
-                  '填写预约',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26.sp,
-                  ),
-                ),
-              ),
               32.wb,
             ],
           ),
           24.hb,
         ],
       ),
-      onPressed: () {},
+      onPressed: () => Get.back(result: model),
     );
   }
 }
