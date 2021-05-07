@@ -11,7 +11,7 @@ void format() {
 }
 
 @Task('自动提交修改')
-@Depends(sort, format)
+@Depends(sort, format, gitPush)
 void git() {
   log(' commit to git');
   run(
@@ -22,5 +22,14 @@ void git() {
       '-m',
       '[auto task] sort & format',
     ],
+  );
+}
+
+@Task('推送代码')
+void gitPush() {
+  log(' push to git');
+  run(
+    'git',
+    arguments: ['push'],
   );
 }
