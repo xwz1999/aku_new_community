@@ -103,7 +103,7 @@ class _CategoryPageState extends State<CategoryPage>
             controller: _tabController,
             physics: NeverScrollableScrollPhysics(),
             children:
-                widget.models.map((e) => CategorySubView(id: e.id)).toList(),
+                widget.models.map((e) => CategorySubView(model: e)).toList(),
           ).expand(),
         ],
       ),

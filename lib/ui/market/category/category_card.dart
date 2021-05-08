@@ -35,7 +35,10 @@ class CategoryCard extends StatelessWidget {
       ),
       onPressed: () {
         Get.to(
-          () => GoodsListView(),
+          () => GoodsListView(
+            model: model,
+            subModels: [],
+          ),
         );
       },
     );

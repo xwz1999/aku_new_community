@@ -7,8 +7,15 @@ import 'package:get/get.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class CategorySubCard extends StatelessWidget {
+  final List<MarketCategoryModel> subModels;
+  final MarketCategoryModel selectModel;
   final MarketCategoryModel model;
-  const CategorySubCard({Key? key, required this.model}) : super(key: key);
+  const CategorySubCard({
+    Key? key,
+    required this.model,
+    required this.subModels,
+    required this.selectModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +24,14 @@ class CategorySubCard extends StatelessWidget {
         children: [
           Spacer(),
           FadeInImage.assetNetwork(
-            image: API.image(ImgModel.first(model.imgList)),
+            image: API.image(ImgModel.first(selectModel.imgList)),
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
             height: 75.w,
             width: 75.w,
           ),
           12.hb,
           Text(
-            model.name,
+            selectModel.name,
             style: TextStyle(
               fontSize: 24.sp,
               color: Color(0xFF4A4B51),
@@ -33,9 +40,13 @@ class CategorySubCard extends StatelessWidget {
           Spacer(),
         ],
       ),
-      onPressed: () {
-        Get.to(
-          () => GoodsListView(),
+      onPressed: () async {
+        await Get.to(
+          () => GoodsListView(
+            model: model,
+            subModels: subModels,
+            selectSubModel: selectModel,
+          ),
         );
       },
     );

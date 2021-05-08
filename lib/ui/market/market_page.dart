@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:aku_community/ui/market/_market_data.dart';
 import 'package:aku_community/ui/market/category/category_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
@@ -131,8 +130,8 @@ class _MarketPageState extends State<MarketPage>
         },
         body: TabBarView(
           children: [
-            MockableMarketList(),
-            MockableMarketList(),
+            SizedBox(),
+            SizedBox(),
           ],
           controller: _tabController,
         ),
