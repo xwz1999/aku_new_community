@@ -18,6 +18,7 @@ class API {
   static _Upload upload = _Upload();
   static _Community community = _Community();
   static _Message message = _Message();
+  static _Market market = _Market();
 }
 
 class _Login {
@@ -253,6 +254,10 @@ class _Community {
 
   ///社区活动：报名
   String get signUpActivity => '/user/activity/signUp';
+}
+
+class _Market {
+  String get category => '/user/shop/findAllCategory';
 }
 
 class _Upload {

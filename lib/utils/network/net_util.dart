@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_community/utils/developer_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -139,7 +140,10 @@ class NetUtil {
   _parseErr(DioError err) {
     LoggerData.addData(err);
     _makeToast(String message) {
-      BotToast.showText(text: '$message\_${err.response?.statusCode ?? ''}');
+      if (DeveloperUtil.dev)
+        BotToast.showText(text: '$message\_${err.response?.statusCode ?? ''}');
+      else
+        BotToast.showText(text: '网络出现问题');
     }
 
     switch (err.type) {
