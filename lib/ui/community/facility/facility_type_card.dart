@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/community/facility/facility_preorder_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -74,7 +75,9 @@ class FacilityTypeCard extends StatelessWidget {
           24.hb,
         ],
       ),
-      onPressed: () => Get.back(result: model),
+      onPressed: () {
+        Get.off(() => FacilityPreorderPage(id: model.id));
+      },
     );
   }
 }

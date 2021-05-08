@@ -308,4 +308,8 @@ class _Facility {
 
   ///设施预约：结束使用
   String get stop => '/user/facilitiesAppointment/useStop';
+
+  ///设施预约：根据设施分类主键id查询设施信息
+  String get detailType =>
+      '/user/facilitiesAppointment/findFacilitiesByCategoryId';
 }
