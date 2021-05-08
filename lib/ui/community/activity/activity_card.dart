@@ -37,21 +37,19 @@ class ActivityCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ImgModel.first(model!.imgUrls) == null
-              ? SizedBox()
-              : Hero(
-                  tag: ImgModel.first(model!.imgUrls),
-                  child: Material(
-                    color: Colors.grey,
-                    child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: API.image(ImgModel.first(model!.imgUrls)),
-                      height: 210.w,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+          Hero(
+            tag: ImgModel.first(model!.imgUrls),
+            child: Material(
+              color: Colors.grey,
+              child: FadeInImage.assetNetwork(
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API.image(ImgModel.first(model!.imgUrls)),
+                height: 210.w,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           model!.title!.text
               .size(28.sp)
               .black

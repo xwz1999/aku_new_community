@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/pages/sign/sign_func.dart';
 import 'package:aku_community/pages/sign/sign_up/sign_up_common_widget.dart';
 import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class SignUpVerifyPage extends StatefulWidget {
@@ -79,9 +77,6 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
         disabledColor: kPrimaryColor.withOpacity(0.3),
         child: '登录'.text.bold.make(),
         onPressed: () async {
-          final signUpProvider =
-              Provider.of<SignUpProvider>(context, listen: false);
-
           if (_formKey.currentState!.validate()) {
             bool result = await SignFunc.signUp();
             if (result) Get.offAll(() => TabNavigator());

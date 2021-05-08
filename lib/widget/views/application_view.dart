@@ -18,8 +18,7 @@ class ApplicationView extends StatefulWidget {
 
   ApplicationView.custom(
       {Key? key, required List<AO> this.items, this.needAllApp = true})
-      : assert(items != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _ApplicationViewState createState() => _ApplicationViewState();
