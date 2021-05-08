@@ -1,5 +1,3 @@
-import 'package:aku_community/models/facility/facility_type_detail_model.dart';
-import 'package:aku_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/models/facility/facility_type_detail_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -69,8 +69,8 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               width: 60.w,
             ),
             onTap: () async {
-              FacilityTypeDetailModel? model =
-                  await Get.to(() => FacilityTypeDetailPage(model: typeModel, id: widget.id));
+              FacilityTypeDetailModel? model = await Get.to(() =>
+                  FacilityTypeDetailPage(model: typeModel, id: widget.id));
               if (model != null) typeModel = model;
               setState(() {});
             },

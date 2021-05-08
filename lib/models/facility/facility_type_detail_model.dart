@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'facility_type_detail_model.g.dart';
 
 @JsonSerializable()

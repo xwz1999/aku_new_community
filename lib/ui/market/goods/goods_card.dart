@@ -1,9 +1,10 @@
-import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 import 'package:flutter/material.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 import 'package:get/get.dart';
+
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
 
 class GoodsCard extends StatelessWidget {
   const GoodsCard({Key? key}) : super(key: key);
