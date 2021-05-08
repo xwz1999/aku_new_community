@@ -14,10 +14,12 @@ class CategorySubView extends StatefulWidget {
   _CategorySubViewState createState() => _CategorySubViewState();
 }
 
-class _CategorySubViewState extends State<CategorySubView> {
+class _CategorySubViewState extends State<CategorySubView>
+    with AutomaticKeepAliveClientMixin {
   List<MarketCategoryModel> _models = [];
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return EasyRefresh(
       header: MaterialHeader(),
       firstRefresh: true,
@@ -41,4 +43,7 @@ class _CategorySubViewState extends State<CategorySubView> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
