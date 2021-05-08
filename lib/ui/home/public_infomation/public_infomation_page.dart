@@ -1,6 +1,6 @@
-import 'package:aku_community/ui/home/public_infomation/public_infomation_view.dart';
 import 'package:flutter/material.dart';
 
+import 'package:aku_community/ui/home/public_infomation/public_infomation_view.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 

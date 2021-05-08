@@ -1,11 +1,11 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
-import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:aku_community/pages/event_activity/event_voting_page.dart';
+import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';

@@ -1,5 +1,6 @@
-import 'package:aku_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aku_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class PublicInfomationView extends StatefulWidget {

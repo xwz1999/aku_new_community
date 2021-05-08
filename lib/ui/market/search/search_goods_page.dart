@@ -1,10 +1,12 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/ui/market/goods/goods_card.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
+
 import 'package:waterfall_flow/waterfall_flow.dart';
+
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
 
 enum OrderType {
   NORMAL,
