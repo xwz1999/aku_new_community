@@ -258,6 +258,9 @@ class _Community {
 
 class _Market {
   String get category => '/user/shop/findAllCategory';
+
+  ///app商城中心：根据分类主键id查询商品信息列表
+  String get list => '/user/shop/findGoodsByCategoryId';
 }
 
 class _Upload {
