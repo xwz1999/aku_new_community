@@ -1,3 +1,5 @@
+import 'package:aku_community/ui/market/search/search_goods_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +32,12 @@ class _MarketPageState extends State<MarketPage>
     super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
     return BeeScaffold(
+      leading: IconButton(
+        icon: Icon(CupertinoIcons.search),
+        onPressed: () {
+          Get.to(() => SearchGoodsPage());
+        },
+      ),
       title: '商城',
       actions: [
         MaterialButton(
