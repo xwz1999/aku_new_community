@@ -67,6 +67,36 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
                     .color(ktextSubColor)
                     .make()),
           ].sepWidget(separate: 12.w.heightBox),
+          ...widget.index == 1
+              ? [SizedBox()]
+              : [
+                  40.w.heightBox,
+                  Row(
+                    children: [
+                      Spacer(),
+                      MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(74.w)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 8.w, horizontal: 24.w),
+                        height: 50.w,
+                        color: kPrimaryColor,
+                        elevation: 0,
+                        focusElevation: 0,
+                        hoverElevation: 0,
+                        disabledElevation: 0,
+                        highlightElevation: 0,
+                        onPressed: () {},
+                        child: '确认领取'
+                            .text
+                            .size(24.sp)
+                            .bold
+                            .color(ktextPrimary)
+                            .make(),
+                      )
+                    ],
+                  ),
+                ],
           40.w.heightBox,
           Row(
             children: [
