@@ -1,3 +1,4 @@
+import 'package:aku_community/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,12 +44,25 @@ class _CategoryPageState extends State<CategoryPage> {
                       minWidth: double.infinity,
                       onPressed: () {
                         _index = index;
-
                         setState(() {});
                       },
                       child: Text(
                         'TEST',
-                        style: TextStyle(),
+                        style: TextStyle(
+                          color: sameIndex ? kPrimaryColor : ktextPrimary,
+                        ),
+                      ),
+                    ),
+                    AnimatedPositioned(
+                      left: sameIndex ? 0 : -8.w,
+                      top: sameIndex ? 20.w : 10.w,
+                      bottom: sameIndex ? 20.w : 10.w,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOutCubic,
+                      child: Container(
+                        color: kPrimaryColor,
+                        width: 8.w,
+                        height: 40.w,
                       ),
                     ),
                   ],
