@@ -1,5 +1,6 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
+import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -76,6 +77,7 @@ List<AO> appObjects = [
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
+  AO('快递包裹', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ExpressPackagePage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -150,6 +152,7 @@ List<String> _smartManagerApp = [
   '借还管理',
   '一键报警',
   '设施预约',
+  '快递包裹'
   // '小区教育',
   // '健康运动',
   // '家政服务',
