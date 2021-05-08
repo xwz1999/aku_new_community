@@ -18,6 +18,7 @@ class API {
   static _Upload upload = _Upload();
   static _Community community = _Community();
   static _Message message = _Message();
+  static _Market market = _Market();
 }
 
 class _Login {
@@ -255,6 +256,10 @@ class _Community {
   String get signUpActivity => '/user/activity/signUp';
 }
 
+class _Market {
+  String get category => '/user/shop/findAllCategory';
+}
+
 class _Upload {
   ///上传咨询建议照片
   String get uploadAdvice => '/user/upload/uploadAdvice';
@@ -308,4 +313,8 @@ class _Facility {
 
   ///设施预约：结束使用
   String get stop => '/user/facilitiesAppointment/useStop';
+
+  ///设施预约：根据设施分类主键id查询设施信息
+  String get detailType =>
+      '/user/facilitiesAppointment/findFacilitiesByCategoryId';
 }

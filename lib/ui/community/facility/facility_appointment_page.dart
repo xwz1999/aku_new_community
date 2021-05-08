@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_community/ui/community/facility/facility_appointment_view.dart';
-import 'package:aku_community/ui/community/facility/facility_preview_page.dart';
+import 'package:aku_community/ui/community/facility/pick_facility_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
@@ -38,7 +38,7 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
       actions: [
         IconButton(
           icon: Icon(CupertinoIcons.add_circled),
-          onPressed: () => Get.to(() => FacilityPreorderPage()),
+          onPressed: () => Get.to(() => PickFacilityPage()),
         ),
       ],
       appBarBottom: BeeTabBar(

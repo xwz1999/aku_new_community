@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/models/facility/facility_type_model.dart';
+import 'package:aku_community/models/facility/facility_type_detail_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/community/facility/pick_facility_page.dart';
+import 'package:aku_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -21,14 +21,15 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
 
 class FacilityPreorderPage extends StatefulWidget {
-  FacilityPreorderPage({Key? key}) : super(key: key);
+  final int id;
+  FacilityPreorderPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _FacilityPreorderPageState createState() => _FacilityPreorderPageState();
 }
 
 class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
-  FacilityTypeModel? typeModel;
+  FacilityTypeDetailModel? typeModel;
   DateTime? startDate;
   DateTime? endDate;
 
@@ -68,7 +69,8 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               width: 60.w,
             ),
             onTap: () async {
-              FacilityTypeModel? model = await Get.to(() => PickFacilityPage());
+              FacilityTypeDetailModel? model = await Get.to(() =>
+                  FacilityTypeDetailPage(model: typeModel, id: widget.id));
               if (model != null) typeModel = model;
               setState(() {});
             },

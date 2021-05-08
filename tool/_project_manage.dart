@@ -33,3 +33,11 @@ void gitPush() {
     arguments: ['push'],
   );
 }
+
+@Task('build runner')
+void gen() async {
+  await Pub.runAsync(
+    'build_runner',
+    arguments: ['build'],
+  );
+}

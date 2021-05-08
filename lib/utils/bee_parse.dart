@@ -22,7 +22,6 @@ class BeeParse {
     switch (dif) {
       case -1:
         return '去年';
-        break;
       case 0:
         return '今年';
       case 1:

@@ -6,6 +6,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/facility/facility_type_model.dart';
+import 'package:aku_community/ui/community/facility/facility_preorder_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class FacilityTypeCard extends StatelessWidget {
@@ -74,7 +75,9 @@ class FacilityTypeCard extends StatelessWidget {
           24.hb,
         ],
       ),
-      onPressed: () => Get.back(result: model),
+      onPressed: () {
+        Get.off(() => FacilityPreorderPage(id: model.id));
+      },
     );
   }
 }

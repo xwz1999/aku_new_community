@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class GoodsCard extends StatelessWidget {
@@ -12,7 +15,7 @@ class GoodsCard extends StatelessWidget {
       color: Colors.white,
       elevation: 0,
       padding: EdgeInsets.zero,
-      onPressed: () {},
+      onPressed: () => Get.to(() => GoodsDetailPage()),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

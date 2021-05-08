@@ -389,8 +389,6 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
   bool _canSubmit(int? weight, int approach, DateTime? dateTime, String? item) {
     if (weight == null) {
       return false;
-    } else if (approach == null) {
-      return false;
     } else if (dateTime == null) {
       return false;
     } else if (item.isEmptyOrNull) {

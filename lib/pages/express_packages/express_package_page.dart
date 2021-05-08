@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:aku_community/pages/express_packages/express_package_view.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
 
 class ExpressPackagePage extends StatefulWidget {
   ExpressPackagePage({Key? key}) : super(key: key);
@@ -26,10 +27,9 @@ class _ExpressPackagePageState extends State<ExpressPackagePage>
       title: '快递包裹',
       appBarBottom: BeeTabBar(controller: _tabController, tabs: _tabs),
       body: TabBarView(
-        controller: _tabController,
-        children:List.generate(_tabs.length, (index) => ExpressPackageView(index:index)) ),
+          controller: _tabController,
+          children: List.generate(
+              _tabs.length, (index) => ExpressPackageView(index: index))),
     );
   }
-
-
 }

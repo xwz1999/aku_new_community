@@ -1,3 +1,8 @@
+import 'package:aku_community/models/market/display_category_model.dart';
+import 'package:aku_community/models/market/market_category_model.dart';
+import 'package:aku_community/ui/market/category/category_card.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +10,7 @@ import 'package:get/get.dart';
 
 import 'package:aku_community/ui/market/_market_data.dart';
 import 'package:aku_community/ui/market/category/category_page.dart';
+import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
@@ -19,10 +25,15 @@ class MarketPage extends StatefulWidget {
 class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   late TabController _tabController;
+  List<MarketCategoryModel> _marketModels = [];
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    DisplayCategoryModel.top8.then((value) {
+      _marketModels = value;
+      setState(() {});
+    });
   }
 
   @override
@@ -30,12 +41,24 @@ class _MarketPageState extends State<MarketPage>
     super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
     return BeeScaffold(
+      leading: IconButton(
+        icon: Icon(CupertinoIcons.search),
+        onPressed: () {
+          Get.to(() => SearchGoodsPage());
+        },
+      ),
       title: '商城',
       actions: [
         MaterialButton(
           minWidth: 108.w,
           padding: EdgeInsets.zero,
-          onPressed: () => Get.to(() => CategoryPage()),
+          onPressed: () async {
+            final cancel = BotToast.showLoading();
+            List<MarketCategoryModel> models =
+                await DisplayCategoryModel.fetchCategory(0);
+            cancel();
+            Get.to(() => CategoryPage(models: models));
+          },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -80,8 +103,8 @@ class _MarketPageState extends State<MarketPage>
                         childAspectRatio: 1,
                       ),
                       shrinkWrap: true,
-                      children: mockableMarketData
-                          .map((e) => MockableMarketWidget(data: e))
+                      children: _marketModels
+                          .map((e) => CategoryCard(model: e))
                           .toList(),
                     ),
                   ),

@@ -41,7 +41,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
           heroTag: 'event_add',
           onPressed: () async {
             if (LoginUtil.isNotLogin) return;
-            bool? result = await Get.to(() => AddNewEventPage.topic(
+            await Get.to(() => AddNewEventPage.topic(
                   topicName: widget.model!.summary,
                   initTopic: widget.model!.id,
                 ));

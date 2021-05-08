@@ -41,24 +41,18 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
         return '建议咨询';
-        break;
       case AdviceType.COMPLAIN:
         return '投诉表扬';
-        break;
     }
-    return '';
   }
 
   List<String> get tabs {
     switch (widget.type) {
       case AdviceType.SUGGESTION:
         return ['您的建议', '您的咨询'];
-        break;
       case AdviceType.COMPLAIN:
         return ['您的投诉', '您的表扬'];
-        break;
     }
-    return [];
   }
 
   _buildType(int index, String asset, String title) {
