@@ -1,13 +1,14 @@
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/category/category_sub_view.dart';
-import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/models/market/market_category_model.dart';
+import 'package:aku_community/ui/market/category/category_sub_view.dart';
+import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:get/get.dart';
 
 class CategoryPage extends StatefulWidget {
   final List<MarketCategoryModel> models;

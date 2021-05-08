@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'package:aku_community/model/common/img_model.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'market_category_model.g.dart';
 

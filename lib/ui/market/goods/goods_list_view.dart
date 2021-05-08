@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/market_category_model.dart';
 import 'package:aku_community/ui/market/goods/goods_tab_list_view.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
@@ -92,7 +93,8 @@ class _GoodsListViewState extends State<GoodsListView>
         preferredSize: Size.fromHeight(220.w),
       ),
       body: TabBarView(
-        children: widget.subModels.map((e) => GoodsTabListView(model: e)).toList(),
+        children:
+            widget.subModels.map((e) => GoodsTabListView(model: e)).toList(),
         controller: _tabController,
         physics: NeverScrollableScrollPhysics(),
       ),

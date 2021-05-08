@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_community/models/market/display_category_model.dart';
 import 'package:aku_community/models/market/market_category_model.dart';
 import 'package:aku_community/ui/market/category/category_sub_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class CategorySubView extends StatefulWidget {
   final MarketCategoryModel model;

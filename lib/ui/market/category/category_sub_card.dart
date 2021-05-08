@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/market_category_model.dart';
 import 'package:aku_community/ui/market/goods/goods_list_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class CategorySubCard extends StatelessWidget {
