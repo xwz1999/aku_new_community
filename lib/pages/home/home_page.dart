@@ -19,7 +19,7 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/activity/activity_card.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/community_func.dart';
-import 'package:aku_community/ui/community/public_infomation_page.dart';
+import 'package:aku_community/ui/home/public_infomation/public_infomation_page.dart';
 import 'package:aku_community/ui/home/home_notification.dart';
 import 'package:aku_community/ui/home/home_title.dart';
 import 'package:aku_community/utils/headers.dart';

@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/home/public_infomation/public_infomation_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -25,6 +26,7 @@ class _PublicInfomationPageState extends State<PublicInfomationPage>
     return BeeScaffold(
       title: '公共资讯',
       appBarBottom: BeeTabBar(controller: _tabController, tabs: pubTabs),
+      body: PublicInfomationView(),
     );
   }
 }
