@@ -1,5 +1,9 @@
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'package:waterfall_flow/waterfall_flow.dart';
 
@@ -26,6 +30,14 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
   TextEditingController _editingController = TextEditingController();
   OrderType _orderType = OrderType.NORMAL;
   IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
+  EasyRefreshController _refreshController = EasyRefreshController();
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final normalTypeButton = MaterialButton(
@@ -108,6 +120,10 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
       title: Padding(
         padding: EdgeInsets.symmetric(vertical: 12.w),
         child: TextField(
+          onEditingComplete: () {
+            setState(() {});
+            _refreshController.callRefresh();
+          },
           controller: _editingController,
           decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -131,17 +147,27 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
       //   ),
       //   preferredSize: Size.fromHeight(80.w),
       // ),
-      body: WaterfallFlow.builder(
-        padding: EdgeInsets.all(32.w),
-        gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 20.w,
-          crossAxisSpacing: 20.w,
-        ),
-        itemBuilder: (context, index) {
-          return GoodsCard();
+      body: BeeListView(
+        path: API.market.search,
+        controller: _refreshController,
+        extraParams: {'searchName': _editingController.text},
+        convert: (model) =>
+            model.tableList!.map((e) => GoodsItem.fromJson(e)).toList(),
+        builder: (items) {
+          return WaterfallFlow.builder(
+            padding: EdgeInsets.all(32.w),
+            gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20.w,
+              crossAxisSpacing: 20.w,
+            ),
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return GoodsCard(item: item);
+            },
+            itemCount: items.length,
+          );
         },
-        itemCount: 10,
       ),
     );
   }
