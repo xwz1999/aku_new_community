@@ -264,6 +264,9 @@ class _Market {
 
   ///app商场中心：查询订阅量最高的4件商品（首页显示）
   String get hotTop => '/user/shop/findTopGoods';
+
+  ///app商城中心：商品搜索
+  String get search => '/user/shop/goodsSearch';
 }
 
 class _Upload {

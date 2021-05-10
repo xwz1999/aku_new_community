@@ -1,3 +1,4 @@
+import 'package:aku_community/models/market/goods_item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,7 +8,8 @@ import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class GoodsCard extends StatelessWidget {
-  const GoodsCard({Key? key}) : super(key: key);
+  final GoodsItem item;
+  const GoodsCard({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class GoodsCard extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
                     child: Text(
-                      '分别是紫色烦恼则妇女色泽封闭周四鹅u部分紫色部分',
+                      item.recommend,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.white,
@@ -55,7 +57,7 @@ class GoodsCard extends StatelessWidget {
               vertical: 20.w,
             ),
             child: Text(
-              '袁隆平水稻大米精选 56kg唇齿流香 无常有机稻花 无常有机稻花',
+              item.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -71,17 +73,18 @@ class GoodsCard extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '¥123.45 ',
+                    text: '¥${item.sellingPrice} ',
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 28.sp,
                     ),
                   ),
                   TextSpan(
-                    text: '123已付款',
+                    text: '${item.markingPrice}',
                     style: TextStyle(
                       color: ktextSubColor,
                       fontSize: 20.sp,
+                      decoration: TextDecoration.lineThrough,
                     ),
                   ),
                 ],
