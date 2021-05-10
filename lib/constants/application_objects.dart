@@ -56,8 +56,8 @@ class AO extends Equatable {
 ///所有应用
 List<AO> appObjects = [
   if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
-  if (false)
-    AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
+
+  AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
       () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, () => FixedSubmitPage()),
@@ -76,7 +76,7 @@ List<AO> appObjects = [
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
-  AO('快递包裹', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ExpressPackagePage()),
+  AO('快递包裹', R.ASSETS_APPLICATIONS_TRANSFER_PNG, () => ExpressPackagePage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -136,7 +136,7 @@ List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
 ///智慧管家 original value
 List<String> _smartManagerApp = [
   if (false) '一键开门',
-  if (false) '开门码',
+  '开门码',
   '访客邀请',
   '报事报修',
   '生活缴费',
