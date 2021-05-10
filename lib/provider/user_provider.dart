@@ -32,6 +32,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   logout() {
+    JPush().deleteAlias();
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
     _isLogin = false;
@@ -47,7 +48,9 @@ class UserProvider extends ChangeNotifier {
 
   Future updateProfile() async {
     _userInfoModel = await SignFunc.getUserInfo();
-    await JPush().setAlias(_userInfoModel!.id.toString());
+    if (_userInfoModel != null) {
+      await JPush().setAlias(_userInfoModel!.id.toString());
+    }
     notifyListeners();
   }
 
