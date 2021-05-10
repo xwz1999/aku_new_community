@@ -135,8 +135,8 @@ List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
 
 ///智慧管家 original value
 List<String> _smartManagerApp = [
-  '一键开门',
-  '开门码',
+  if (false) '一键开门',
+  if (false) '开门码',
   '访客邀请',
   '报事报修',
   '生活缴费',
