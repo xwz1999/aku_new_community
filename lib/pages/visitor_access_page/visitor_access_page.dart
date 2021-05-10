@@ -1,3 +1,4 @@
+import 'package:aku_community/constants/api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -255,8 +256,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           tel: tel,
         );
         if (result != null)
-          Share.share(
-              'http://test.akuhotel.com:8804/static/dist/index.html#/visitor?$result');
+          Share.share('${API.host}/static/dist/index.html#/visitor?$result');
       },
       minWidth: double.infinity,
       height: 96.w,
