@@ -261,6 +261,9 @@ class _Market {
 
   ///app商城中心：根据分类主键id查询商品信息列表
   String get list => '/user/shop/findGoodsByCategoryId';
+
+  ///app商场中心：查询订阅量最高的4件商品（首页显示）
+  String get hotTop => '/user/shop/findTopGoods';
 }
 
 class _Upload {

@@ -1,4 +1,9 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,17 +31,22 @@ class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   late TabController _tabController;
   List<MarketCategoryModel> _marketModels = [];
+  List<GoodsItem> _hotItems = [];
 
   Future updateMarketInfo() async {
-    // List<Market>
+    _marketModels = await DisplayCategoryModel.top8;
+    BaseModel baseModel = await NetUtil().get(API.market.hotTop);
+    if (baseModel.status == true && baseModel.data != null) {
+      _hotItems =
+          (baseModel.data as List).map((e) => GoodsItem.fromJson(e)).toList();
+    }
   }
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    DisplayCategoryModel.top8.then((value) {
-      _marketModels = value;
+    updateMarketInfo().then((_) {
       setState(() {});
     });
   }
@@ -86,6 +96,7 @@ class _MarketPageState extends State<MarketPage>
             clipBehavior: Clip.antiAlias,
             borderRadius: BorderRadius.circular(8.w),
             child: GridView(
+              physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 childAspectRatio: 1,
@@ -125,10 +136,12 @@ class _MarketPageState extends State<MarketPage>
                                 fontSize: 20.sp,
                               ),
                             ),
+                            20.wb,
                             ListView.separated(
                               scrollDirection: Axis.horizontal,
                               separatorBuilder: (_, __) => 20.wb,
                               itemBuilder: (context, index) {
+                                final item = _hotItems[index];
                                 return MaterialButton(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 40.w),
@@ -136,15 +149,23 @@ class _MarketPageState extends State<MarketPage>
                                   shape: StadiumBorder(
                                     side: BorderSide(
                                       color: ktextSubColor,
+                                      width: 1,
                                     ),
                                   ),
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
-                                  onPressed: () {},
-                                  child: Text('123'),
+                                  onPressed: () {
+                                    Get.to(() => GoodsDetailPage(id: item.id));
+                                  },
+                                  child: Text(
+                                    item.title,
+                                    style: TextStyle(
+                                      color: ktextSubColor,
+                                    ),
+                                  ),
                                 );
                               },
-                              itemCount: 10,
+                              itemCount: _hotItems.length,
                             ).expand(),
                           ],
                         ),
