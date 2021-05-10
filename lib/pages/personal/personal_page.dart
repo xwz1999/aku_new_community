@@ -191,6 +191,42 @@ class _PersonalIndexState extends State<PersonalIndex>
   Widget build(BuildContext context) {
     final double _statusHeight = MediaQuery.of(context).padding.top;
     final userProvider = Provider.of<UserProvider>(context);
+    var orderWidget = SliverToBoxAdapter(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _containerBar('我的订单'),
+          GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 5,
+            ),
+            shrinkWrap: true,
+            children: [
+              _orderButton(
+                name: '待付款',
+                path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
+                index: 1,
+              ),
+              _orderButton(
+                name: '待收货',
+                path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
+                index: 2,
+              ),
+              _orderButton(
+                name: '待评价',
+                path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
+                index: 3,
+              ),
+              _orderButton(
+                name: '售后',
+                path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
+                index: 4,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
     return Scaffold(
       body: EasyRefresh(
         header: MaterialHeader(),
@@ -201,42 +237,7 @@ class _PersonalIndexState extends State<PersonalIndex>
         child: CustomScrollView(
           slivers: <Widget>[
             _sliverAppBar(_statusHeight),
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _containerBar('我的订单'),
-                  GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                    ),
-                    shrinkWrap: true,
-                    children: [
-                      _orderButton(
-                        name: '待付款',
-                        path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
-                        index: 1,
-                      ),
-                      _orderButton(
-                        name: '待收货',
-                        path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
-                        index: 2,
-                      ),
-                      _orderButton(
-                        name: '待评价',
-                        path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
-                        index: 3,
-                      ),
-                      _orderButton(
-                        name: '售后',
-                        path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
-                        index: 4,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // orderWidget,
             SliverToBoxAdapter(
               child: Container(
                 decoration: BoxDecoration(

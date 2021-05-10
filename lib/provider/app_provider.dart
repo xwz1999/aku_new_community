@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -31,7 +34,7 @@ class AppProvider extends ChangeNotifier {
   /// '便民电话',
   ///```
   List<AO> _myApplications = [
-    '一键开门',
+    // '一键开门',
     '访客邀请',
     '报事报修',
     '生活缴费',
@@ -141,6 +144,7 @@ class AppProvider extends ChangeNotifier {
   late AMapFlutterLocation _aMapFlutterLocation;
 
   startLocation() {
+    if (kIsWeb || Platform.isMacOS) return;
     _aMapFlutterLocation = AMapFlutterLocation();
     _aMapFlutterLocation.onLocationChanged().listen((event) {
       _location = event;
@@ -155,6 +159,7 @@ class AppProvider extends ChangeNotifier {
   }
 
   stopLocation() {
+    if (kIsWeb || Platform.isMacOS) return;
     _aMapFlutterLocation.stopLocation();
     _aMapFlutterLocation.destroy();
   }

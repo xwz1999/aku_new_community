@@ -96,3 +96,5 @@ flutter:
 import_sorter:
   emojis: true
   comments: false
+  ignored_files:
+    - \*\/generated_plugin_registrant.dart

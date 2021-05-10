@@ -1,3 +1,4 @@
+import 'package:aku_community/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,11 @@ class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   late TabController _tabController;
   List<MarketCategoryModel> _marketModels = [];
+
+  Future updateMarketInfo() async {
+    // List<Market>
+  }
+
   @override
   void initState() {
     super.initState();
@@ -75,12 +81,27 @@ class _MarketPageState extends State<MarketPage>
       ],
       body: NestedScrollView(
         headerSliverBuilder: (context, value) {
+          var gridItems = Material(
+            color: Colors.white,
+            clipBehavior: Clip.antiAlias,
+            borderRadius: BorderRadius.circular(8.w),
+            child: GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                childAspectRatio: 1,
+              ),
+              shrinkWrap: true,
+              children:
+                  _marketModels.map((e) => CategoryCard(model: e)).toList(),
+            ),
+          );
           return [
             SliverAppBar(
               //AppBar top Widget height
               //bottom height: 48
-              // flexibleSpace的高为 (设备宽 - 边距)/4*2 + 外边距 + bottom高
-              expandedHeight: (mediaWidth - 32.w * 2) / 4 * 2 + 16.w * 2 + 48,
+              // flexibleSpace的高为 (设备宽 - 边距)/4*2 + 外边距 + bottom高 + top热搜栏
+              expandedHeight:
+                  (mediaWidth - 32.w * 2) / 4 * 2 + 16.w * 2 + 48 + 68.w,
               backgroundColor: Colors.transparent,
               elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
@@ -92,20 +113,45 @@ class _MarketPageState extends State<MarketPage>
                     right: 32.w,
                     bottom: 16.w + 48, //底部边距需要加上bottom高
                   ),
-                  child: Material(
-                    color: Colors.white,
-                    clipBehavior: Clip.antiAlias,
-                    borderRadius: BorderRadius.circular(8.w),
-                    child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        childAspectRatio: 1,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 58.w,
+                        child: Row(
+                          children: [
+                            Text(
+                              '热搜:',
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                              ),
+                            ),
+                            ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              separatorBuilder: (_, __) => 20.wb,
+                              itemBuilder: (context, index) {
+                                return MaterialButton(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 40.w),
+                                  minWidth: 0,
+                                  shape: StadiumBorder(
+                                    side: BorderSide(
+                                      color: ktextSubColor,
+                                    ),
+                                  ),
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  onPressed: () {},
+                                  child: Text('123'),
+                                );
+                              },
+                              itemCount: 10,
+                            ).expand(),
+                          ],
+                        ),
                       ),
-                      shrinkWrap: true,
-                      children: _marketModels
-                          .map((e) => CategoryCard(model: e))
-                          .toList(),
-                    ),
+                      10.hb,
+                      gridItems.expand(),
+                    ],
                   ),
                 ),
               ),
