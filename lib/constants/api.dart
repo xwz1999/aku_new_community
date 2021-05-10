@@ -267,6 +267,9 @@ class _Market {
 
   ///app商城中心：商品搜索
   String get search => '/user/shop/goodsSearch';
+
+  ///app商城中心：根据商品主键id查询商品详情
+  String get goodsDetail => '/user/shop/findDetailByGoodsId';
 }
 
 class _Upload {

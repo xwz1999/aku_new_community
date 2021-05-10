@@ -1,6 +1,26 @@
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/models/market/goods_detail_model.dart';
+import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/ui/market/search/search_goods_page.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/widget/bee_back_button.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
 ///商品详情页面
 class GoodsDetailPage extends StatefulWidget {
@@ -14,8 +34,258 @@ class GoodsDetailPage extends StatefulWidget {
 }
 
 class _GoodsDetailPageState extends State<GoodsDetailPage> {
+  late EasyRefreshController _refreshController;
+  late GoodsDetailModel _goodsModel;
+  bool _onload = true;
+  List<GoodsItem> _topGoods = [];
+  late PageController _pageController;
+  int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _refreshController = EasyRefreshController();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BeeScaffold();
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    return BeeScaffold(
+      leading: BeeBackButton(),
+      title: '商品详情',
+      actions: [
+        IconButton(
+          icon: Icon(CupertinoIcons.search),
+          onPressed: () {
+            Get.to(() => SearchGoodsPage());
+          },
+        ),
+      ],
+      body: EasyRefresh(
+        firstRefresh: true,
+        header: MaterialHeader(),
+        onRefresh: () async {
+          BaseModel baseModel = await NetUtil().get(API.market.goodsDetail,
+              params: {
+                "goodsId": widget.id,
+                "id": userProvider.userDetailModel!.id
+              });
+          if (baseModel.status ?? false) {
+            _goodsModel = GoodsDetailModel.fromJson(baseModel.data);
+          } else {
+            BotToast.showText(text: baseModel.message ?? '未知错误');
+          }
+          baseModel = await NetUtil().get(API.market.hotTop);
+          if (baseModel.status == true && baseModel.data != null) {
+            _topGoods = (baseModel.data as List)
+                .map((e) => GoodsItem.fromJson(e))
+                .toList();
+          }
+          _onload = false;
+          setState(() {});
+        },
+        child: _onload
+            ? _emptyWidget()
+            : ListView(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _imageView(_goodsModel.goodsImgList),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 32.w),
+                          child: _goodsModel.title.text
+                              .size(40.sp)
+                              .bold
+                              .color(ktextPrimary)
+                              .make(),
+                        ),
+                        24.w.heightBox,
+                        Row(
+                          children: [
+                            32.w.widthBox,
+                            _goodsModel.categoryName.text
+                                .size(24.sp)
+                                .color(ktextSubColor)
+                                .make(),
+                            24.w.widthBox,
+                            '${_goodsModel.subscribeNum}人已订阅'
+                                .text
+                                .size(24.sp)
+                                .color(ktextPrimary)
+                                .make()
+                          ],
+                        ),
+                        24.w.heightBox,
+                      ],
+                    ),
+                  ),
+                  24.w.heightBox,
+                  _goodsItemDescrible(),
+                  24.w.heightBox,
+                  _supplierWidget(),
+                  24.w.heightBox,
+                  _extraWidget(_topGoods),
+                ],
+              ),
+        controller: _refreshController,
+      ),
+    );
+  }
+
+  Widget _imageView(List<ImgModel> imgList) {
+    return Stack(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 500.w,
+          child: PageView.builder(
+              itemCount: imgList.length,
+              onPageChanged: (value) {
+                _pageController.jumpToPage(value);
+                _currentIndex = value;
+                setState(() {});
+              },
+              controller: _pageController,
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  width: double.infinity,
+                  height: 500.w,
+                  child: FadeInImage.assetNetwork(
+                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      image: API.image(imgList[index].url)),
+                );
+              }),
+        ),
+        Positioned(
+          bottom: 24.w,
+          right: 5.w,
+          child: Container(
+            alignment: Alignment.center,
+            width: 69.w,
+            height: 39.w,
+            decoration: BoxDecoration(
+                color: Color(0x80000000),
+                borderRadius: BorderRadius.circular(40.w)),
+            child: '${_currentIndex + 1}/3'
+                .text
+                .size(24.sp)
+                .color(Colors.white)
+                .make(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _extraWidget(List<GoodsItem> models) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              '其他（${models.length}）'
+                  .text
+                  .size(24.sp)
+                  .color(ktextPrimary)
+                  .bold
+                  .make(),
+            ],
+          ),
+          24.w.heightBox,
+          SizedBox(
+            height: 614.w,
+            child: WaterfallFlow.count(
+              crossAxisCount: 2,
+              physics: NeverScrollableScrollPhysics(),
+              children: List.generate(
+                models.length,
+                (index) => GoodsCard(item: models[index]),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _supplierWidget() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.w),
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: API.image(
+                ImgModel.first(_goodsModel.supplierImgList),
+              ),
+              width: 160.w,
+              height: 160.w,
+            ),
+          ),
+          20.w.widthBox,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _goodsModel.supplierName.text
+                  .size(28.sp)
+                  .color(ktextPrimary)
+                  .bold
+                  .make(),
+              54.w.heightBox,
+              '地址：${_goodsModel.supplierAddress}'
+                  .text
+                  .size(24.sp)
+                  .color(ktextPrimary)
+                  .make()
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _goodsItemDescrible() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(color: Colors.white),
+      padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '商品详情'.text.size(32.sp).color(ktextPrimary).bold.make(),
+          24.w.heightBox,
+          _goodsModel.detail.text.size(24.sp).color(ktextPrimary).make(),
+        ],
+      ),
+    );
+  }
+
+  Widget _emptyWidget() {
+    return Container();
   }
 }
