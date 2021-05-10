@@ -15,7 +15,7 @@ class GoodsCard extends StatelessWidget {
       color: Colors.white,
       elevation: 0,
       padding: EdgeInsets.zero,
-      onPressed: () => Get.to(() => GoodsDetailPage()),
+      onPressed: () => Get.to(() => GoodsDetailPage(id: 0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

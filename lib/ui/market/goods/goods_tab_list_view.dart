@@ -1,6 +1,8 @@
+import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'package:aku_community/constants/api.dart';
@@ -35,7 +37,12 @@ class _GoodsTabListViewState extends State<GoodsTabListView>
           ),
           itemBuilder: (context, index) {
             final GoodsItem item = items[index];
-            return Text(item.title);
+            return MaterialButton(
+              onPressed: () {
+                Get.to(() => GoodsDetailPage(id: widget.model.id));
+              },
+              child: Text(item.title),
+            );
           },
           itemCount: items.length,
         );
