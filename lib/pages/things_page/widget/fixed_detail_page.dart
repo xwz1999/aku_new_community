@@ -5,6 +5,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -305,7 +306,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             height: double.infinity,
             padding: EdgeInsets.zero,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            onPressed: showProcessCard ? () {} : null,
+            onPressed: showProcessCard ? () async{
+             await launch('tel:0574-87760023');
+            } : null,
             disabledColor: kDarkSubColor.withOpacity(0.1),
             disabledTextColor: ktextSubColor.withOpacity(0.3),
             textColor: ktextPrimary,
@@ -332,7 +335,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           ).expand(),
           BeeDivider.vertical(),
           MaterialButton(
-            height: 96.w,
+            height: double.infinity,
             padding: EdgeInsets.zero,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             onPressed: showRepairCard ? () {} : null,
