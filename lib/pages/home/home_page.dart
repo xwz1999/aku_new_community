@@ -69,8 +69,12 @@ class _HomePageState extends State<HomePage>
         actions: [
           Badge(
             elevation: 0,
-            showBadge: appProvider.messageCenterModel.sysCount == 0,
-            position: BadgePosition.topEnd(),
+            showBadge: appProvider.messageCenterModel.commentCount != 0 ||
+                appProvider.messageCenterModel.sysCount != 0,
+            position: BadgePosition.topEnd(
+              top: 8,
+              end: 8,
+            ),
             child: ColumnActionButton(
               onPressed: () {
                 if (LoginUtil.isNotLogin) return;
@@ -79,7 +83,7 @@ class _HomePageState extends State<HomePage>
               title: '消息',
               path: R.ASSETS_ICONS_ALARM_PNG,
             ),
-          )
+          ),
         ],
       ),
       body: EasyRefresh(

@@ -1,3 +1,5 @@
+import 'package:aku_community/provider/app_provider.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -53,16 +55,26 @@ class _CommunityPageState extends State<CommunityPage>
   Widget build(BuildContext context) {
     super.build(context);
     final userProvider = Provider.of<UserProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
       title: '社区',
       actions: [
-        ColumnActionButton(
-          onPressed: () {
-            if (LoginUtil.isNotLogin) return;
-            Get.to(() => MessageCenterPage());
-          },
-          title: '消息',
-          path: R.ASSETS_ICONS_ALARM_PNG,
+        Badge(
+          elevation: 0,
+          showBadge: appProvider.messageCenterModel.commentCount != 0 ||
+              appProvider.messageCenterModel.sysCount != 0,
+          position: BadgePosition.topEnd(
+            top: 8,
+            end: 8,
+          ),
+          child: ColumnActionButton(
+            onPressed: () {
+              if (LoginUtil.isNotLogin) return;
+              Get.to(() => MessageCenterPage());
+            },
+            title: '消息',
+            path: R.ASSETS_ICONS_ALARM_PNG,
+          ),
         ),
       ],
       fab: FloatingActionButton(
