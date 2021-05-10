@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_community/constants/api.dart';
@@ -31,6 +32,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   logout() {
+    JPush().deleteAlias();
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
     _isLogin = false;
@@ -46,6 +48,9 @@ class UserProvider extends ChangeNotifier {
 
   Future updateProfile() async {
     _userInfoModel = await SignFunc.getUserInfo();
+    if (_userInfoModel != null) {
+      await JPush().setAlias(_userInfoModel!.id.toString());
+    }
     notifyListeners();
   }
 

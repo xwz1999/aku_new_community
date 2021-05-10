@@ -91,6 +91,10 @@ class R {
   static const String ASSETS_APPLICATIONS_TOY_PNG =
       'assets/applications/toy.png';
 
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/applications/transfer.png)
+  static const String ASSETS_APPLICATIONS_TRANSFER_PNG =
+      'assets/applications/transfer.png';
+
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/applications/visitor_invite.png)
   static const String ASSETS_APPLICATIONS_VISITOR_INVITE_PNG =
       'assets/applications/visitor_invite.png';

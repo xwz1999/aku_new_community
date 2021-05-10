@@ -139,12 +139,15 @@ class AppProvider extends ChangeNotifier {
     }
   }
 
-  Map<String, Object>? _location;
-  Map<String, Object>? get location => _location;
+  Map<String, dynamic>? _location;
+  Map<String, dynamic>? get location => _location;
   late AMapFlutterLocation _aMapFlutterLocation;
 
   startLocation() {
-    if (kIsWeb || Platform.isMacOS) return;
+    if (kIsWeb || Platform.isMacOS) {
+      getWeather();
+      return;
+    }
     _aMapFlutterLocation = AMapFlutterLocation();
     _aMapFlutterLocation.onLocationChanged().listen((event) {
       _location = event;
@@ -164,11 +167,19 @@ class AppProvider extends ChangeNotifier {
     _aMapFlutterLocation.destroy();
   }
 
-  // Location _location;
-  // Location get location => _location;
   getWeather() async {
+    late num longitude;
+    late num latitude;
+    if (kIsWeb || Platform.isMacOS) {
+      longitude = 116.46;
+      latitude = 39.92;
+    } else {
+      longitude = _location!['longitude'];
+      latitude = _location!['latitude'];
+    }
+
     Response response = await Dio().get(
-      'https://api.caiyunapp.com/v2.5/${AppConfig.caiYunAPI}/${_location!['longitude']},${_location!['latitude']}/realtime.json',
+      'https://api.caiyunapp.com/v2.5/${AppConfig.caiYunAPI}/$longitude,$latitude/realtime.json',
     );
     LoggerData.addData(response);
     _weatherModel = RealTimeWeatherModel.fromJson(response.data);

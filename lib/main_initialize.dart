@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_community/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,14 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fluwx/fluwx.dart';
+import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:power_logger/power_logger.dart';
 
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/constants/config.dart';
 import 'package:aku_community/utils/message_parser.dart';
+import 'package:provider/provider.dart';
 
 class MainInitialize {
   ///初始化firebase
@@ -52,6 +55,9 @@ class MainInitialize {
       onReceiveNotification: (message) async {
         LoggerData.addData(message, tag: 'onReceiveNotification');
         await MessageParser(message).shot();
+        final appProvider =
+            Provider.of<AppProvider>(Get.context!, listen: false);
+        appProvider.getMessageCenter();
       },
       onOpenNotification: jPushLogger('onOpenNotification'),
       onReceiveMessage: jPushLogger('onReceiveMessage'),

@@ -1,7 +1,8 @@
-import 'package:aku_community/base/base_style.dart';
+// import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+// import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,8 @@ import 'package:aku_community/ui/market/category/category_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+// import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key? key}) : super(key: key);
@@ -28,8 +30,7 @@ class MarketPage extends StatefulWidget {
 }
 
 class _MarketPageState extends State<MarketPage>
-    with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  late TabController _tabController;
+    with AutomaticKeepAliveClientMixin {
   List<MarketCategoryModel> _marketModels = [];
   List<GoodsItem> _hotItems = [];
 
@@ -45,7 +46,6 @@ class _MarketPageState extends State<MarketPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     updateMarketInfo().then((_) {
       setState(() {});
     });
@@ -111,8 +111,11 @@ class _MarketPageState extends State<MarketPage>
               //AppBar top Widget height
               //bottom height: 48
               // flexibleSpace的高为 (设备宽 - 边距)/4*2 + 外边距 + bottom高 + top热搜栏
-              expandedHeight:
-                  (mediaWidth - 32.w * 2) / 4 * 2 + 16.w * 2 + 48 + 68.w,
+              // * 热搜栏
+              //expandedHeight:
+              //(mediaWidth - 32.w * 2) / 4 * 2 + 16.w * 2 + 48 + 68.w,
+              //
+              expandedHeight: (mediaWidth - 32.w * 2) / 4 * 2 + 16.w * 2,
               backgroundColor: Colors.transparent,
               elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
@@ -122,55 +125,55 @@ class _MarketPageState extends State<MarketPage>
                     top: 16.w,
                     left: 32.w,
                     right: 32.w,
-                    bottom: 16.w + 48, //底部边距需要加上bottom高
+                    bottom: 16.w, //底部边距需要加上bottom高
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 58.w,
-                        child: Row(
-                          children: [
-                            Text(
-                              '热搜:',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            20.wb,
-                            ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              separatorBuilder: (_, __) => 20.wb,
-                              itemBuilder: (context, index) {
-                                final item = _hotItems[index];
-                                return MaterialButton(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 40.w),
-                                  minWidth: 0,
-                                  shape: StadiumBorder(
-                                    side: BorderSide(
-                                      color: ktextSubColor,
-                                      width: 1,
-                                    ),
-                                  ),
-                                  materialTapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                  onPressed: () {
-                                    Get.to(() => GoodsDetailPage(id: item.id));
-                                  },
-                                  child: Text(
-                                    item.title,
-                                    style: TextStyle(
-                                      color: ktextSubColor,
-                                    ),
-                                  ),
-                                );
-                              },
-                              itemCount: _hotItems.length,
-                            ).expand(),
-                          ],
-                        ),
-                      ),
-                      10.hb,
+                      // SizedBox(
+                      //   height: 58.w,
+                      //   child: Row(
+                      //     children: [
+                      //       Text(
+                      //         '热搜:',
+                      //         style: TextStyle(
+                      //           fontSize: 20.sp,
+                      //         ),
+                      //       ),
+                      //       20.wb,
+                      //       ListView.separated(
+                      //         scrollDirection: Axis.horizontal,
+                      //         separatorBuilder: (_, __) => 20.wb,
+                      //         itemBuilder: (context, index) {
+                      //           final item = _hotItems[index];
+                      //           return MaterialButton(
+                      //             padding:
+                      //                 EdgeInsets.symmetric(horizontal: 40.w),
+                      //             minWidth: 0,
+                      //             shape: StadiumBorder(
+                      //               side: BorderSide(
+                      //                 color: ktextSubColor,
+                      //                 width: 1,
+                      //               ),
+                      //             ),
+                      //             materialTapTargetSize:
+                      //                 MaterialTapTargetSize.shrinkWrap,
+                      //             onPressed: () {
+                      //               Get.to(() => GoodsDetailPage(id: item.id));
+                      //             },
+                      //             child: Text(
+                      //               item.title,
+                      //               style: TextStyle(
+                      //                 color: ktextSubColor,
+                      //               ),
+                      //             ),
+                      //           );
+                      //         },
+                      //         itemCount: _hotItems.length,
+                      //       ).expand(),
+                      //     ],
+                      //   ),
+                      // ),
+                      // 10.hb,
                       gridItems.expand(),
                     ],
                   ),
@@ -178,29 +181,35 @@ class _MarketPageState extends State<MarketPage>
               ),
               pinned: true,
               toolbarHeight: 0,
-              bottom: PreferredSize(
-                child: Material(
-                  color: Color(0xFFF9F9F9),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: BeeTabBar(
-                      scrollable: true,
-                      controller: _tabController,
-                      tabs: ['社区商城', '二手市场'],
-                    ),
-                  ),
-                ),
-                preferredSize: Size.fromHeight(48),
-              ),
+              // bottom: PreferredSize(
+              //   child: Material(
+              //     color: Color(0xFFF9F9F9),
+              //     child: Align(
+              //       alignment: Alignment.centerLeft,
+              //       child: BeeTabBar(
+              //         scrollable: true,
+              //         controller: _tabController,
+              //         tabs: ['社区商城', '二手市场'],
+              //       ),
+              //     ),
+              //   ),
+              //   preferredSize: Size.fromHeight(48),
+              // ),
             ),
           ];
         },
-        body: TabBarView(
-          children: [
-            SizedBox(),
-            SizedBox(),
-          ],
-          controller: _tabController,
+        body: WaterfallFlow.builder(
+          gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 20.w,
+            crossAxisSpacing: 20.w,
+          ),
+          padding: EdgeInsets.all(32.w),
+          itemBuilder: (context, index) {
+            final item = _hotItems[index];
+            return GoodsCard(item: item);
+          },
+          itemCount: _hotItems.length,
         ),
       ),
     );

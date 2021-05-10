@@ -21,16 +21,11 @@ class MessageCenterPage extends StatefulWidget {
 }
 
 class _MessageCenterPageState extends State<MessageCenterPage> {
-  EasyRefreshController? _refreshController;
-  @override
-  void initState() {
-    super.initState();
-    _refreshController = EasyRefreshController();
-  }
+  EasyRefreshController _refreshController = EasyRefreshController();
 
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -80,7 +75,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
           MaterialButton(
             onPressed: () async {
               await NetUtil().dio!.get(API.message.allRead);
-              _refreshController!.callRefresh();
+              _refreshController.callRefresh();
               setState(() {});
             },
             child: '全部已读'.text.size(28.sp).black.make(),
@@ -90,6 +85,7 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
         body: EasyRefresh(
           header: MaterialHeader(),
           firstRefresh: true,
+          controller: _refreshController,
           onRefresh: () async {
             appProvider.getMessageCenter();
           },
@@ -100,7 +96,12 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 title: '系统通知',
                 content: appProvider.messageCenterModel.sysTitle ?? '无系统通知消息',
                 count: appProvider.messageCenterModel.sysCount ?? 0,
-                onTap: () => Get.to(() => SystemMessagePage()),
+                onTap: () async {
+                  await NetUtil().dio!.get(API.message.allReadComment);
+                  await Get.to(() => SystemMessagePage());
+                  _refreshController.callRefresh();
+                  setState(() {});
+                },
               ),
               _buildCard(
                 path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
@@ -110,7 +111,8 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 count: appProvider.messageCenterModel.commentCount ?? 0,
                 onTap: () async {
                   await NetUtil().dio!.get(API.message.allReadComment);
-                  Get.to(() => CommentMessagePage());
+                  await Get.to(() => CommentMessagePage());
+                  _refreshController.callRefresh();
                   setState(() {});
                 },
               ),
