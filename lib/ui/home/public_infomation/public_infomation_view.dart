@@ -25,6 +25,7 @@ class _PublicInfomationViewState extends State<PublicInfomationView>
     return BeeListView(
       path: API.news.list,
       controller: _refreshController,
+      extraParams: {'newsCategoryId': widget.model.id},
       convert: (model) =>
           model.tableList!.map((e) => NewsItemModel.fromJson(e)).toList(),
       builder: (items) {
