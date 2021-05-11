@@ -43,6 +43,25 @@ class GoodsDetailModel extends Equatable {
   @override
   List<Object?> get props => throw UnimplementedError();
 
+  factory GoodsDetailModel.fail() => GoodsDetailModel(
+        0,
+        '',
+        '',
+        0.0,
+        0.0,
+        '',
+        0,
+        '',
+        '',
+        [],
+        0,
+        '',
+        '',
+        '',
+        [],
+        0,
+      );
+
   factory GoodsDetailModel.fromJson(Map<String, dynamic> json) =>
       _$GoodsDetailModelFromJson(json);
 }

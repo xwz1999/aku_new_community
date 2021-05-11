@@ -72,14 +72,14 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          BaseModel baseModel = await NetUtil().get(API.market.goodsDetail,
-              params: {
-                "goodsId": widget.id,
-                "id": userProvider.userDetailModel!.id
-              });
-          if (baseModel.status ?? false) {
+          BaseModel baseModel = await NetUtil().get(
+            API.market.goodsDetail,
+            params: {"goodsId": widget.id},
+          );
+          if (baseModel.status == true && baseModel.data != null) {
             _goodsModel = GoodsDetailModel.fromJson(baseModel.data);
           } else {
+            _goodsModel = GoodsDetailModel.fail();
             BotToast.showText(text: baseModel.message ?? '未知错误');
           }
           baseModel = await NetUtil().get(API.market.hotTop);
