@@ -28,7 +28,7 @@ class BorrowGoodsDetailPage extends StatefulWidget {
 
 class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   EasyRefreshController? _easyRefreshController;
-  late List<ArticleBorrowDetailModel> _models;
+  List<ArticleBorrowDetailModel> _models = [];
   bool _onload = true;
   List<int?>? _selectItems = [];
   bool get allSelect => _selectItems!.length == _models.length;
@@ -54,13 +54,13 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),
-        onRefresh: () async {
-          List models = await (getModels());
-          _models =
-              models.map((e) => ArticleBorrowDetailModel.fromJson(e)).toList();
-          _onload = false;
-          setState(() {});
-        },
+        // onRefresh: () async {
+        //   List<dynamic> models = await (getModels());
+        //   _models =
+        //       models.map((e) => ArticleBorrowDetailModel.fromJson(e)).toList();
+        //   _onload = false;
+        //   setState(() {});
+        // },
         child: _onload
             ? _empty()
             : ListView(
@@ -155,7 +155,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   }
 
   Widget _empty() {
-    return Container();
+    return ListView();
   }
 
   Future getModels() async {

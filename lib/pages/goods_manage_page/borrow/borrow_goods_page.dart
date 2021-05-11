@@ -194,7 +194,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
         .withRounded(value: 6.w)
         .make()
         .onInkTap(() async {
-      _receiveIds!.forEach((element) {
+      _receiveIds?.forEach((element) {
         _submitIds.remove(element);
       });
       await Get.to(() => BorrowGoodsDetailPage(
@@ -204,8 +204,8 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           .then((value) {
         _receiveIds = value;
       });
-      _counts[index] = _receiveIds!.length;
-      _submitIds.addAll(_receiveIds!);
+      _counts[index] = _receiveIds?.length ?? 0;
+      _submitIds.addAll(_receiveIds ?? []);
       setState(() {});
     });
   }
