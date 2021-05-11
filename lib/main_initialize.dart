@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_community/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,12 @@ import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/constants/config.dart';
+import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/message_parser.dart';
-import 'package:provider/provider.dart';
 
 class MainInitialize {
   ///初始化firebase

@@ -306,9 +306,11 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             height: double.infinity,
             padding: EdgeInsets.zero,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            onPressed: showProcessCard ? () async{
-             await launch('tel:0574-87760023');
-            } : null,
+            onPressed: showProcessCard
+                ? () async {
+                    await launch('tel:0574-87760023');
+                  }
+                : null,
             disabledColor: kDarkSubColor.withOpacity(0.1),
             disabledTextColor: ktextSubColor.withOpacity(0.3),
             textColor: ktextPrimary,

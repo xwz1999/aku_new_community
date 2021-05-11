@@ -1,25 +1,28 @@
 // import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/ui/market/goods/goods_card.dart';
-// import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/market/display_category_model.dart';
+import 'package:aku_community/models/market/goods_item.dart';
 import 'package:aku_community/models/market/market_category_model.dart';
 import 'package:aku_community/ui/market/category/category_card.dart';
 import 'package:aku_community/ui/market/category/category_page.dart';
+import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
+
+// import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
+
 // import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class MarketPage extends StatefulWidget {

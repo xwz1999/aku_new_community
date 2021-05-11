@@ -1,13 +1,13 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';

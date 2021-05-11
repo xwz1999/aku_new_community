@@ -1,4 +1,3 @@
-import 'package:aku_community/constants/api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';

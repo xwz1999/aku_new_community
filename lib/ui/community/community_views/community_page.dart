@@ -1,11 +1,11 @@
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
+import 'package:badges/badges.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_community/pages/message_center_page/message_center_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/ui/community/community_views/add_new_event_page.dart';
 import 'package:aku_community/ui/community/community_views/my_community_view.dart';

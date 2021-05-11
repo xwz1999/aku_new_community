@@ -19,6 +19,7 @@ class API {
   static _Community community = _Community();
   static _Message message = _Message();
   static _Market market = _Market();
+  static _News news = _News();
 }
 
 class _Login {
@@ -86,6 +87,14 @@ class _User {
 
   ///我的车辆：查询所有的车辆
   String get carList => '/user/myCar/list';
+}
+
+class _News {
+  ///app公共资讯：查询所有的资讯分类(【全部】是默认显示的值)
+  String get category => '/user/news/categoryList';
+
+  ///app公共资讯：根据资讯分类主键id查询资讯信息
+  String get list => '/user/news/newsList';
 }
 
 class _Manager {

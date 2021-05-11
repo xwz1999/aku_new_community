@@ -1,5 +1,10 @@
 // Dart imports:
 
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/news/news_category_model.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -117,7 +122,19 @@ class _HomePageState extends State<HomePage>
                   HomeTitle(
                     title: '公共资讯',
                     suffixTitle: '更多资讯',
-                    onTap: () => Get.to(() => PublicInfomationPage()),
+                    onTap: () async {
+                      final cancel = BotToast.showLoading();
+                      BaseModel model = await NetUtil().get(API.news.category);
+                      List<NewsCategoryModel>? category;
+                      if (model.status == true && model.data != null) {
+                        category = (model.data as List)
+                            .map((e) => NewsCategoryModel.fromJson(e))
+                            .toList();
+                      }
+                      cancel();
+                      Get.to(
+                          () => PublicInfomationPage(models: category ?? []));
+                    },
                   ),
                   HomeTitle(
                     title: '社区活动',

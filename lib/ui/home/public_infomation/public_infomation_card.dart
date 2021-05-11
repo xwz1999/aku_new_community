@@ -1,10 +1,15 @@
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/models/news/news_item_model.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class PublicInfomationCard extends StatelessWidget {
-  const PublicInfomationCard({Key? key}) : super(key: key);
+  final NewsItemModel model;
+  const PublicInfomationCard({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class PublicInfomationCard extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  Text('今日快讯｜日本决定将核污水拍入海中，中方对此强势喊话日本考虑需谨慎'),
+                  Text(model.title),
                   Spacer(),
                   DefaultTextStyle(
                     style: TextStyle(
@@ -31,9 +36,12 @@ class PublicInfomationCard extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Text('测试'),
+                        // Text('测试'),
                         Spacer(),
-                        Text('发布于 4-11 10:11'),
+                        Text('发布于 ${DateUtil.formatDate(
+                          model.create,
+                          format: 'yyyy-MM-dd HH:mm',
+                        )}'),
                       ],
                     ),
                   ),
@@ -41,10 +49,12 @@ class PublicInfomationCard extends StatelessWidget {
               ),
             ),
             32.wb,
-            SizedBox(
+            FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               width: 240.w,
               height: 200.w,
-              child: Placeholder(),
+              fit: BoxFit.cover,
+              image: API.image(ImgModel.first(model.imgList)),
             ),
           ],
         ),
