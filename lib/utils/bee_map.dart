@@ -16,6 +16,7 @@ class BeeMap {
   };
 
   static Map<int, String> processClass = {
+    0: '未知',
     1: '报修时间',
     2: '管家分派',
     3: '师傅接单',
