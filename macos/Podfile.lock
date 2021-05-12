@@ -6,10 +6,10 @@ PODS:
   - Firebase/Crashlytics (7.11.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 7.11.0)
-  - firebase_core (1.1.0):
+  - firebase_core (1.1.1):
     - Firebase/CoreOnly (~> 7.11.0)
     - FlutterMacOS
-  - firebase_crashlytics (2.0.2):
+  - firebase_crashlytics (2.0.3):
     - Firebase/CoreOnly (~> 7.11.0)
     - Firebase/Crashlytics (~> 7.11.0)
     - firebase_core
@@ -108,8 +108,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   device_info_plus_macos: 1ad388a1ef433505c4038e7dd9605aadd1e2e9c7
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
-  firebase_core: 9e45a9c5ba9dbcb8973b3a68e6ff43ecf2dcf206
-  firebase_crashlytics: 4ab08e6b22a4f6ec909cc1f0a046eac2d1b2925c
+  firebase_core: 6db6207b18525075f0d6b639045f6752722836e9
+  firebase_crashlytics: 82416d5f310a4c1576e71797f653520af2da26a7
   FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
   FirebaseCoreDiagnostics: 68ad972f99206cef818230f3f3179d52ccfb7f8c
   FirebaseCrashlytics: 272b675aa9d1e9bae1f9e1449fcc1f2cf6042806
