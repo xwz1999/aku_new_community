@@ -351,15 +351,15 @@ class _LifePayPageState extends State<LifePayPage> {
               ],
             ),
             24.w.widthBox,
-            MaterialButton(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(37.w)),
-              color: kPrimaryColor,
-              padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
-              onPressed: () {},
-              child: '去缴费'.text.black.size(32.sp).bold.make(),
-            ),
+            // MaterialButton(
+            //   elevation: 0,
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(37.w)),
+            //   color: kPrimaryColor,
+            //   padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
+            //   onPressed: () {},
+            //   child: '去缴费'.text.black.size(32.sp).bold.make(),
+            // ),
           ],
         ),
       ),
