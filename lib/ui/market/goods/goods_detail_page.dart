@@ -180,7 +180,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
             decoration: BoxDecoration(
                 color: Color(0x80000000),
                 borderRadius: BorderRadius.circular(40.w)),
-            child: '${_currentIndex + 1}/3'
+            child: '${_currentIndex + 1}/${imgList.length}'
                 .text
                 .size(24.sp)
                 .color(Colors.white)
