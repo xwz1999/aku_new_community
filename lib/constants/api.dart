@@ -215,6 +215,9 @@ class _Manager {
 
   ///生活缴费：缴费记录
   String get paymentRecord => '/user/dailyPayment/paymentRecord';
+
+  ///app 包裹代收：查询所有的快递包裹（包含条件搜索）
+  String get expressPackageList => '/user/packageCollection/list';
 }
 
 class _Community {

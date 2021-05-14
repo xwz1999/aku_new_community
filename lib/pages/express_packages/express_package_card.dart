@@ -1,3 +1,4 @@
+import 'package:aku_community/models/express_package/express_package_list_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,9 @@ import 'package:aku_community/widget/bee_divider.dart';
 
 class ExpressPackageCard extends StatefulWidget {
   final int index;
-  ExpressPackageCard({Key? key, required this.index}) : super(key: key);
+  final ExpressPackageListModel model;
+  ExpressPackageCard({Key? key, required this.index, required this.model})
+      : super(key: key);
 
   @override
   _ExpressPackageCardState createState() => _ExpressPackageCardState();
@@ -30,7 +33,7 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
           Row(
             children: [
               Text(
-                '3号柜7号箱',
+                widget.model.placePosition,
                 style: TextStyle(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.bold,
@@ -51,17 +54,25 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
           24.w.heightBox,
           ...<Widget>[
             _rowTile(R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG, '包裹单号',
-                '131891726735'.text.size(24.sp).color(ktextSubColor).make()),
-            _rowTile(R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG, '收件人',
-                '小蒋'.text.size(24.sp).color(ktextSubColor).make()),
-            _rowTile(R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG, '联系方式',
-                '131891726735'.text.size(24.sp).color(ktextSubColor).make()),
-            _rowTile(R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG, '配送公司',
-                '顺丰速递'.text.size(24.sp).color(ktextSubColor).make()),
+                widget.model.code.text.size(24.sp).color(ktextSubColor).make()),
+            _rowTile(
+                R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG,
+                '收件人',
+                widget.model.addresseeName.text
+                    .size(24.sp)
+                    .color(ktextSubColor)
+                    .make()),
+            _rowTile(
+                R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG,
+                '联系方式',
+                widget.model.addresseeTel.text
+                    .size(24.sp)
+                    .color(ktextSubColor)
+                    .make()),
             _rowTile(
                 R.ASSETS_ICONS_APPOINTMENT_DATE_PNG,
                 '送达时间',
-                '2020-04-13 11:21'
+                widget.model.createDateString
                     .text
                     .size(24.sp)
                     .color(ktextSubColor)
@@ -86,7 +97,9 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
                         hoverElevation: 0,
                         disabledElevation: 0,
                         highlightElevation: 0,
-                        onPressed: () {},
+                        onPressed: () {
+                          
+                        },
                         child: '确认领取'
                             .text
                             .size(24.sp)
