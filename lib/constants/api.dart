@@ -279,6 +279,9 @@ class _Market {
 
   ///app商城中心：根据商品主键id查询商品详情
   String get goodsDetail => '/user/shop/findDetailByGoodsId';
+
+  ///app商城中心：商品预约
+  String get appointment => '/user/shop/goodsAppointment';
 }
 
 class _Upload {

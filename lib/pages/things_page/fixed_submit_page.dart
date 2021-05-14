@@ -85,7 +85,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
       curve: Curves.easeInOutCubic,
       child: GestureDetector(
         onTap: () {
-          Get.to(() => FixedDetailPage(model.id));
+          Get.to(() => FixedDetailPage(model.id ?? 0));
         },
         child: Container(
           width: 686.w,

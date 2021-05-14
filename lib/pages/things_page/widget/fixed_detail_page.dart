@@ -21,7 +21,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/views/horizontal_image_view.dart';
 
 class FixedDetailPage extends StatefulWidget {
-  final int? id;
+  final int id;
   FixedDetailPage(
     this.id, {
     Key? key,
@@ -220,7 +220,8 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           ...model.appProcessRecordVo!
               .map((e) => Row(
                     children: [
-                      BeeMap.processClass[e.operationType!]!.text
+                      (BeeMap.processClass[e.operationType ?? 0] ?? '')
+                          .text
                           .color(ktextSubColor)
                           .size(28.sp)
                           .make(),

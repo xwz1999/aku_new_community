@@ -1,5 +1,6 @@
 // import 'package:aku_community/base/base_style.dart';
 
+import 'package:aku_community/ui/market/second_hand/second_hand_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -71,6 +72,26 @@ class _MarketPageState extends State<MarketPage>
           minWidth: 108.w,
           padding: EdgeInsets.zero,
           onPressed: () async {
+            Get.to(() => SecondHandPage());
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Image.asset(
+                R.ASSETS_ICONS_SECOND_HAND_PNG,
+                width: 48.w,
+                height: 48.w,
+              ),
+              4.hb,
+              '二手'.text.size(20.sp).black.make(),
+            ],
+          ),
+        ),
+        MaterialButton(
+          minWidth: 108.w,
+          padding: EdgeInsets.zero,
+          onPressed: () async {
             final cancel = BotToast.showLoading();
             List<MarketCategoryModel> models =
                 await DisplayCategoryModel.fetchCategory(0);
@@ -81,10 +102,10 @@ class _MarketPageState extends State<MarketPage>
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Icon(
-                Icons.grid_view,
-                color: Color(0xFF333333),
-                size: 48.w,
+              Image.asset(
+                R.ASSETS_ICONS_CATEGORY_PNG,
+                width: 48.w,
+                height: 48.w,
               ),
               4.hb,
               '分类'.text.size(20.sp).black.make(),

@@ -152,6 +152,9 @@ class R {
   static const String ASSETS_ICONS_BORROW_SUCCESS_PNG =
       'assets/icons/borrow_success.png';
 
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/category.png)
+  static const String ASSETS_ICONS_CATEGORY_PNG = 'assets/icons/category.png';
+
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/comment_notice.png)
   static const String ASSETS_ICONS_COMMENT_NOTICE_PNG =
       'assets/icons/comment_notice.png';
@@ -230,6 +233,10 @@ class R {
 
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/report.png)
   static const String ASSETS_ICONS_REPORT_PNG = 'assets/icons/report.png';
+
+  /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/second_hand.png)
+  static const String ASSETS_ICONS_SECOND_HAND_PNG =
+      'assets/icons/second_hand.png';
 
   /// ![preview](file:///Users/akufe/Documents/aku_community/assets/icons/shield_content.png)
   static const String ASSETS_ICONS_SHIELD_CONTENT_PNG =

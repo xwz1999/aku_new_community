@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/utils/headers.dart';
 
 ///商品详情页面
 class GoodsDetailPage extends StatefulWidget {
@@ -41,11 +43,17 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
   List<GoodsItem> _topGoods = [];
   late PageController _pageController;
   int _currentIndex = 0;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     _refreshController = EasyRefreshController();
     _pageController = PageController();
+    _nameController.text = userProvider.userInfoModel?.name ?? '';
+    _phoneController.text = userProvider.userInfoModel?.tel ?? '';
   }
 
   @override
@@ -57,7 +65,6 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       leading: BeeBackButton(),
       title: '商品详情',
@@ -142,6 +149,84 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                 ],
               ),
         controller: _refreshController,
+      ),
+      bottomNavi: BottomButton(
+        onPressed: () {
+          Get.bottomSheet(Material(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(24.w),
+              ),
+            ),
+            child: Container(
+              padding: EdgeInsets.all(32.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '预约后商户将通过电话联系您',
+                    style: TextStyle(
+                      fontSize: 28.sp,
+                    ),
+                  ),
+                  40.hb,
+                  TextField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(48),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: Color(0xFFEEEEEE),
+                      filled: true,
+                    ),
+                  ),
+                  32.hb,
+                  TextField(
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(48),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: Color(0xFFEEEEEE),
+                      filled: true,
+                    ),
+                  ),
+                  80.hb,
+                  MaterialButton(
+                    elevation: 0,
+                    minWidth: double.infinity,
+                    shape: StadiumBorder(),
+                    color: kPrimaryColor,
+                    height: 80.w,
+                    onPressed: () async {
+                      final cancel = BotToast.showLoading();
+                      BaseModel baseModel = await NetUtil().post(
+                        API.market.appointment,
+                        params: {
+                          'goodsId': widget.id,
+                          'userName': _nameController.text,
+                          'userTel': _phoneController.text,
+                          'num': 1,
+                        },
+                        showMessage: true,
+                      );
+                      cancel();
+                      if (baseModel.status == true) {
+                        Get.back();
+                        Get.back();
+                      }
+                    },
+                    child: Text('确认报名'),
+                  ),
+                ],
+              ),
+            ),
+          ));
+        },
+        child: Text('立即报名'),
       ),
     );
   }

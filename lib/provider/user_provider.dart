@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -32,7 +35,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   logout() {
-    JPush().deleteAlias();
+    if (!kIsWeb && !Platform.isMacOS) JPush().deleteAlias();
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
     _isLogin = false;
@@ -48,7 +51,7 @@ class UserProvider extends ChangeNotifier {
 
   Future updateProfile() async {
     _userInfoModel = await SignFunc.getUserInfo();
-    if (_userInfoModel != null) {
+    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
       await JPush().setAlias(_userInfoModel!.id.toString());
     }
     notifyListeners();
