@@ -48,7 +48,13 @@ class _ExpressPackageViewState extends State<ExpressPackageView> {
           return ListView.separated(
               padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
               itemBuilder: (context, index) {
-                return ExpressPackageCard(index: widget.index,model: items[index],);
+                return ExpressPackageCard(
+                  index: widget.index,
+                  model: items[index],
+                  callFresh: () {
+                    _refreshController.callRefresh();
+                  },
+                );
               },
               separatorBuilder: (_, __) {
                 return 16.w.heightBox;

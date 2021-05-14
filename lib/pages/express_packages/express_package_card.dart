@@ -1,4 +1,8 @@
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/express_package/express_package_list_model.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +16,12 @@ import 'package:aku_community/widget/bee_divider.dart';
 class ExpressPackageCard extends StatefulWidget {
   final int index;
   final ExpressPackageListModel model;
-  ExpressPackageCard({Key? key, required this.index, required this.model})
+  final VoidCallback callFresh;
+  ExpressPackageCard(
+      {Key? key,
+      required this.index,
+      required this.model,
+      required this.callFresh})
       : super(key: key);
 
   @override
@@ -72,8 +81,7 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
             _rowTile(
                 R.ASSETS_ICONS_APPOINTMENT_DATE_PNG,
                 '送达时间',
-                widget.model.createDateString
-                    .text
+                widget.model.createDateString.text
                     .size(24.sp)
                     .color(ktextSubColor)
                     .make()),
@@ -97,8 +105,13 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
                         hoverElevation: 0,
                         disabledElevation: 0,
                         highlightElevation: 0,
-                        onPressed: () {
-                          
+                        onPressed: () async {
+                          bool confirm = false;
+                          confirm =
+                              await _cofirmReceivePackage(widget.model.id);
+                          if (confirm) {
+                            widget.callFresh();
+                          }
                         },
                         child: '确认领取'
                             .text
@@ -113,6 +126,19 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
         ],
       ),
     );
+  }
+
+  Future _cofirmReceivePackage(int id) async {
+    BaseModel baseModel = await NetUtil().get(
+      API.manager.packageConfirm,
+      params: {
+        "packageCollectionId": id,
+      },
+    );
+    if (baseModel.status ?? false) {
+      BotToast.showText(text: baseModel.message ?? '未知错误');
+    }
+    return baseModel.status;
   }
 
   Widget _rowTile(String assetPath, String titile, Widget content) {

@@ -218,6 +218,9 @@ class _Manager {
 
   ///app 包裹代收：查询所有的快递包裹（包含条件搜索）
   String get expressPackageList => '/user/packageCollection/list';
+
+  ///app 包裹代收：确认领取
+  String get packageConfirm => '/user/packageCollection/confirmCollection';
 }
 
 class _Community {
