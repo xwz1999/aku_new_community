@@ -131,20 +131,24 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
           _model.appAdviceDetailVo!.appAdviceVo!.date,
           format: 'yyyy年MM月dd日 HH:mm',
         ).text.size(24.sp).color(Color(0xFF999999)).make(),
-        Divider(
-          height: 50.w,
-          thickness: 1.w,
-          color: Color(0xFFD8D8D8),
-        ),
-        BeeGridImageView(
-          urls: widget.model!.imgUrls!.map((e) => e.url).toList(),
-          padding: EdgeInsets.only(right: 100.w),
-        ),
-        Divider(
-          height: 50.w,
-          thickness: 1.w,
-          color: Color(0xFFD8D8D8),
-        ),
+        ...widget.model!.imgUrls!.isEmpty
+            ? []
+            : [
+                Divider(
+                  height: 50.w,
+                  thickness: 1.w,
+                  color: Color(0xFFD8D8D8),
+                ),
+                BeeGridImageView(
+                  urls: widget.model!.imgUrls!.map((e) => e.url).toList(),
+                  padding: EdgeInsets.only(right: 100.w),
+                ),
+                Divider(
+                  height: 50.w,
+                  thickness: 1.w,
+                  color: Color(0xFFD8D8D8),
+                )
+              ],
         ..._model.appAdviceDetailVo!.appAdviceContentVos!
             .map((e) => _buildAdviceContent(e))
             .toList(),

@@ -37,13 +37,10 @@ class GoodsInfoCard extends StatelessWidget {
   Color _getColor(int? state) {
     switch (state) {
       case 1:
-      case 2:
-      case 3:
+
         return kDarkPrimaryColor;
-      case 4:
-      case 5:
-      case 6:
-      case 7:
+      case 2:
+
         return ktextSubColor;
       default:
         return kDangerColor;
@@ -98,7 +95,7 @@ class GoodsInfoCard extends StatelessWidget {
                             fontSize: 32.sp,
                             color: Color(0xff333333)),
                       ),
-                      Text(BeeMap.fixState[model!.status!]!,
+                      Text(BeeMap.goodsOutStatus[model!.status!]!,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 28.sp,

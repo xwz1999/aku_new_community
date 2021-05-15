@@ -54,13 +54,13 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),
-        // onRefresh: () async {
-        //   List<dynamic> models = await (getModels());
-        //   _models =
-        //       models.map((e) => ArticleBorrowDetailModel.fromJson(e)).toList();
-        //   _onload = false;
-        //   setState(() {});
-        // },
+        onRefresh: () async {
+          List<dynamic> models = await (getModels());
+          _models =
+              models.map((e) => ArticleBorrowDetailModel.fromJson(e)).toList();
+          _onload = false;
+          setState(() {});
+        },
         child: _onload
             ? _empty()
             : ListView(

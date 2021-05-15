@@ -34,13 +34,10 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
   bool _canSkew(int? state) {
     switch (state) {
       case 1:
+
+        return false;
       case 2:
       case 3:
-        return false;
-      case 4:
-      case 5:
-      case 6:
-      case 7:
         return true;
       default:
         return true;
