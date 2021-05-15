@@ -23,6 +23,15 @@ class GoodsItem extends Equatable {
     required this.subscribeNum,
     required this.imgList,
   });
+
+  factory GoodsItem.example() => GoodsItem(
+      id: 0,
+      title: '华为mate30',
+      recommend: '九成新，无磨损',
+      sellingPrice: 1000,
+      markingPrice: 2000,
+      subscribeNum: 0,
+      imgList: []);
   @override
   List<Object?> get props => throw UnimplementedError();
 

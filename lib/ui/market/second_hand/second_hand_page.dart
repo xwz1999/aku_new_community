@@ -1,6 +1,12 @@
+import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/ui/market/second_hand/add_second_hand_goods_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondHandPage extends StatefulWidget {
   SecondHandPage({Key? key}) : super(key: key);
@@ -19,9 +25,18 @@ class _SecondHandPageState extends State<SecondHandPage> {
           icon: Icon(
             CupertinoIcons.add_circled,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => AddSecondGoodsPage());
+          },
         ),
       ],
+      body: WaterfallFlow.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 20.w,
+        crossAxisSpacing: 20.w,
+        padding: EdgeInsets.all(32.w),
+        children: [GoodsCard(item: GoodsItem.example())],
+      ),
     );
   }
 }
