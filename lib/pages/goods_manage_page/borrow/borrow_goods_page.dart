@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -17,6 +16,14 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
+class BorrowGoodsSubmitModel {
+  List<int> selectIds;
+  BorrowGoodsSubmitModel(
+    this.selectIds,
+  );
+  BorrowGoodsSubmitModel.init({List<int>? selectIds}) : this(selectIds = []);
+}
+
 class BorrowGoodsPage extends StatefulWidget {
   BorrowGoodsPage({Key? key}) : super(key: key);
 
@@ -26,9 +33,15 @@ class BorrowGoodsPage extends StatefulWidget {
 
 class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   EasyRefreshController? _easyRefreshController;
-  List<int>? _receiveIds = [];
-  List<int> _submitIds = [];
-  List<int> _counts = [];
+  List<BorrowGoodsSubmitModel> _receiveIds = [];
+  List<int> get _submitIds {
+    List<int> _list = [];
+    _receiveIds.forEach((element) {
+      _list.addAll(element.selectIds);
+    });
+    return _list;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,27 +58,30 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '全部物品',
-      actions: [
-        MaterialButton(
-          onPressed: () {
-            // Get.to(() => MineGoodsPage());
-          },
-          child: '我的借还物品'.text.black.size(28.sp).make(),
-          padding: EdgeInsets.symmetric(horizontal: 32.w),
-        ),
-      ],
+      // actions: [
+      //   MaterialButton(
+      //     onPressed: () {
+      //       // Get.to(() => MineGoodsPage());
+      //     },
+      //     child: '我的借还物品'.text.black.size(28.sp).make(),
+      //     padding: EdgeInsets.symmetric(horizontal: 32.w),
+      //   ),
+      // ],
       body: BeeListView<ArticleBorrowModel>(
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
+            _receiveIds = List.generate(models.tableList?.length ?? 0,
+                (index) => BorrowGoodsSubmitModel.init());
+            print(_submitIds);
+            setState(() {
+              
+            });
             return models.tableList!
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
           },
           builder: (items) {
-            if (_counts.isEmpty) {
-              _counts = List.filled(items.length, 0);
-            }
             return ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
                 itemBuilder: (context, index) {
@@ -162,7 +178,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             ),
           ],
         ),
-        _counts[index] == 0
+        _receiveIds[index].selectIds.length == 0
             ? SizedBox()
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -175,7 +191,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
                       borderRadius: BorderRadius.circular(20.w),
                       color: kPrimaryColor,
                     ),
-                    child: '${_counts[index]}'
+                    child: '${_receiveIds[index].selectIds.length}'
                         .text
                         .color(ktextPrimary)
                         .size(24.sp)
@@ -194,18 +210,10 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
         .withRounded(value: 6.w)
         .make()
         .onInkTap(() async {
-      _receiveIds?.forEach((element) {
-        _submitIds.remove(element);
-      });
-      await Get.to(() => BorrowGoodsDetailPage(
-                articleId: model.id,
-                receiveIds: _receiveIds,
-              ))!
-          .then((value) {
-        _receiveIds = value;
-      });
-      _counts[index] = _receiveIds?.length ?? 0;
-      _submitIds.addAll(_receiveIds ?? []);
+      _receiveIds[index].selectIds = await Get.to(() => BorrowGoodsDetailPage(
+            articleId: model.id!,
+            receiveIds: _receiveIds[index].selectIds,
+          ));
       setState(() {});
     });
   }

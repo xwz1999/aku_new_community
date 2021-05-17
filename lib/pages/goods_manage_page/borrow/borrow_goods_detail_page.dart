@@ -17,9 +17,10 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/radio_button.dart';
 
 class BorrowGoodsDetailPage extends StatefulWidget {
-  final int? articleId;
-  final List<int?>? receiveIds;
-  BorrowGoodsDetailPage({Key? key, this.articleId, this.receiveIds})
+  final int articleId;
+  final List<int>? receiveIds;
+  BorrowGoodsDetailPage(
+      {Key? key, required this.articleId,  this.receiveIds})
       : super(key: key);
 
   @override
@@ -30,14 +31,14 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   EasyRefreshController? _easyRefreshController;
   List<ArticleBorrowDetailModel> _models = [];
   bool _onload = true;
-  List<int?>? _selectItems = [];
-  bool get allSelect => _selectItems!.length == _models.length;
+  List<int> _selectItems = [];
+  bool get allSelect => _selectItems.length == _models.length;
   @override
   void initState() {
     super.initState();
     _easyRefreshController = EasyRefreshController();
     if (widget.receiveIds != null && widget.receiveIds!.isNotEmpty) {
-      _selectItems = widget.receiveIds;
+      _selectItems = widget.receiveIds!;
     }
   }
 
@@ -54,6 +55,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),
+        controller: _easyRefreshController,
         onRefresh: () async {
           List<dynamic> models = await (getModels());
           _models =
@@ -64,7 +66,8 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         child: _onload
             ? _empty()
             : ListView(
-                children: [..._models.map((e) => _goodsCard(e)).toList()],
+              padding: EdgeInsets.symmetric(vertical: 12.w),
+                children: [..._models.map((e) => _goodsCard(e)).toList()]
               ),
       ),
       bottomNavi: _onload ? _empty() : _bottomButton(),
@@ -75,11 +78,11 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
     return GestureDetector(
       onTap: () {
         if (allSelect) {
-          _selectItems!.clear();
+          _selectItems.clear();
         } else {
-          _selectItems!.clear();
+          _selectItems.clear();
           _models.forEach((element) {
-            _selectItems!.add(element.id);
+            _selectItems.add(element.id!);
           });
         }
         setState(() {});
@@ -125,7 +128,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         '全选'.text.color(ktextSubColor).size(24.sp).make(),
         Spacer(),
         '已选择 '.richText.color(ktextPrimary).size(24.sp).withTextSpanChildren([
-          '${_selectItems!.length}'
+          '${_selectItems.length}'
               .textSpan
               .size(32.sp)
               .color(ktextPrimary)
@@ -167,19 +170,19 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
   }
 
   Widget _goodsCard(ArticleBorrowDetailModel model) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            if (_selectItems!.contains(model.id)) {
-              _selectItems!.remove(model.id);
-            } else {
-              _selectItems!.add(model.id);
-            }
-            setState(() {});
-          },
-          child: Container(
+    return GestureDetector(
+      onTap: () {
+        if (_selectItems.contains(model.id)) {
+          _selectItems.remove(model.id);
+        } else {
+          _selectItems.add(model.id!);
+        }
+        setState(() {});
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
             height: 232.w - 48.w,
             alignment: Alignment.center,
             child: BeeRadio(
@@ -187,72 +190,72 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
               groupValues: _selectItems,
             ),
           ),
-        ).material(color: Colors.transparent),
-        24.w.widthBox,
-        SizedBox(
-          width: 184.w,
-          height: 184.w,
-          child: ClipRRect(
-            child: FadeInImage.assetNetwork(
-              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(ImgModel.first(model.imgList)),
+          24.w.widthBox,
+          SizedBox(
+            width: 184.w,
+            height: 184.w,
+            child: ClipRRect(
+              child: FadeInImage.assetNetwork(
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API.image(ImgModel.first(model.imgList)),
+              ),
             ),
           ),
-        ),
-        24.w.widthBox,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Image.asset(
-                  R.ASSETS_ICONS_ARTICLE_NAME_PNG,
-                  width: 40.w,
-                  height: 40.w,
-                ),
-                4.w.widthBox,
-                '物品名称：'.text.color(ktextSubColor).size(28.sp).make(),
-                '${model.name}'.text.color(ktextPrimary).size(28.sp).make(),
-              ],
-            ),
-            12.w.heightBox,
-            Row(
-              children: [
-                Image.asset(
-                  R.ASSETS_ICONS_ARTICLE_COUNT_PNG,
-                  width: 40.w,
-                  height: 40.w,
-                ),
-                4.w.widthBox,
-                '物品单号：'.text.color(ktextSubColor).size(28.sp).make(),
-                '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
-              ],
-            ),
-            12.w.heightBox,
-            Row(
-              children: [
-                Image.asset(
-                  R.ASSETS_ICONS_BORROW_STATUS_PNG,
-                  width: 40.w,
-                  height: 40.w,
-                ),
-                4.w.widthBox,
-                '出借状态：'.text.color(ktextSubColor).size(28.sp).make(),
-                '${model.borrowStatus}'
-                    .text
-                    .color(ktextPrimary)
-                    .size(28.sp)
-                    .make(),
-              ],
-            ),
-          ],
-        )
-      ],
-    )
-        .box
-        .color(Colors.white)
-        .padding(EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w))
-        .withRounded(value: 6.w)
-        .make();
+          24.w.widthBox,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_ARTICLE_NAME_PNG,
+                    width: 40.w,
+                    height: 40.w,
+                  ),
+                  4.w.widthBox,
+                  '物品名称：'.text.color(ktextSubColor).size(28.sp).make(),
+                  '${model.name}'.text.color(ktextPrimary).size(28.sp).make(),
+                ],
+              ),
+              12.w.heightBox,
+              Row(
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_ARTICLE_COUNT_PNG,
+                    width: 40.w,
+                    height: 40.w,
+                  ),
+                  4.w.widthBox,
+                  '物品单号：'.text.color(ktextSubColor).size(28.sp).make(),
+                  '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+                ],
+              ),
+              12.w.heightBox,
+              Row(
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_BORROW_STATUS_PNG,
+                    width: 40.w,
+                    height: 40.w,
+                  ),
+                  4.w.widthBox,
+                  '出借状态：'.text.color(ktextSubColor).size(28.sp).make(),
+                  '${model.borrowStatus}'
+                      .text
+                      .color(ktextPrimary)
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+            ],
+          )
+        ],
+      )
+          .box
+          .color(Colors.white)
+          .padding(EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w))
+          .withRounded(value: 6.w)
+          .make(),
+    );
   }
 }
