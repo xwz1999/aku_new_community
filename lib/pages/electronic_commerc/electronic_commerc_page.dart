@@ -1,7 +1,15 @@
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/electronic_commerc/electronic_commerc_view.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aku_community/extensions/num_ext.dart';
+import 'package:aku_community/models/electronic_commerc/electronic_commerc_category_model.dart';
 
 class ElectronicCommercPage extends StatefulWidget {
   ElectronicCommercPage({Key? key}) : super(key: key);
@@ -12,25 +20,30 @@ class ElectronicCommercPage extends StatefulWidget {
 
 class _ElectronicCommercPageState extends State<ElectronicCommercPage>
     with TickerProviderStateMixin {
-  List<String> _tabs = [
-    '小区教育',
-    '健康运动',
-    '家政服务',
-    '居家养老',
-    '装修服务',
-    '物业租售',
-    '网上商城',
-    '代购代送',
-    '网上询价',
-    '网上采购',
-    '商品退换',
-    '质量投诉'
-  ];
+  List<String> _tabs = [''];
   late TabController _tabController;
+  bool _onloading = true;
+  late List<ElectronicCommercCategoryModel> _models;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
+    Future.delayed(
+        Duration(
+          milliseconds: 0,
+        ), () async {
+      BaseModel baseModel =
+          await NetUtil().get(API.manager.electronicCommercCategory);
+      if (baseModel.status == true && baseModel.data != null) {
+        _models = (baseModel.data as List)
+            .map((e) => ElectronicCommercCategoryModel.fromJson(e))
+            .toList();
+        _tabs = List.generate(_models.length, (index) => _models[index].name);
+        _onloading = false;
+        _tabController = TabController(length: _tabs.length, vsync: this);
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -52,10 +65,57 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
         controller: _tabController,
         children: List.generate(
           _tabs.length,
-          (index) => ElectronicCommercView(
-            index: index,
-          ),
+          (index) => _onloading
+              ? ListView(
+                  children: [_buildShimmer()],
+                )
+              : ElectronicCommercView(
+                  index: index,
+                ),
         ),
+      ),
+    );
+  }
+
+  _buildShimmer() {
+    return Padding(
+      padding: EdgeInsets.all(32.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Shimmer.fromColors(
+            baseColor: Colors.black12,
+            highlightColor: Colors.white10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                VxBox().height(53.w).width(152.w).color(Colors.white).make(),
+                30.hb,
+                VxBox().height(40.w).width(600.w).color(Colors.white).make(),
+                24.hb,
+                VxBox().height(33.w).width(263.w).color(Colors.white).make(),
+                50.hb,
+                VxBox().height(53.w).width(152.w).color(Colors.white).make(),
+                30.hb,
+                VxBox().height(40.w).width(600.w).color(Colors.white).make(),
+                24.hb,
+                VxBox().height(33.w).width(263.w).color(Colors.white).make(),
+              ],
+            ),
+          ),
+          // Divider(
+          //   height: 50.w,
+          //   thickness: 1.w,
+          //   color: Color(0xFFD8D8D8),
+          // ),
+          // GridView.count(
+          //   crossAxisCount: 2,
+          //   children: [
+          //     VxBox().height(53.w).width(53.w).color(Colors.white).make(),
+
+          //   ],
+          // )
+        ],
       ),
     );
   }

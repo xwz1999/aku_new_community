@@ -236,6 +236,18 @@ class _Manager {
 
   ///一键报警：记录一键报警信息
   String get recordAlarmInfo => '/user/alarm/insertAlarmRecord';
+
+  ///app电子商务：查询所有的电子商务分类(【全部】是app页面默认显示的值)
+  String get electronicCommercCategory =>
+      '/user/electronicCommerce/categoryList';
+
+  ///app电子商务：根据电子商务分类主键id查询电子商务信息
+  String get electronicCommercList =>
+      '/user/electronicCommerce/electronicCommerceList';
+
+  ///app电子商务：根据电子商务主键id 查询电子商务信息详情
+  String get electronicCommercDetail =>
+      '/user/electronicCommerce/findElectronicCommerceById';
 }
 
 class _Community {

@@ -18,7 +18,6 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/hive_store.dart';
 
-//TODO splashPage
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
 
