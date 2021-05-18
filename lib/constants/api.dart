@@ -224,6 +224,12 @@ class _Manager {
 
   ///app公共资讯：根据资讯主键id 查询资讯信息详情
   String get getPublicInformationDetail => '/user/news/findNewsByNewsId';
+
+  ///app服务浏览：查询所有的app服务浏览信息
+  String get serviceBrowseList => '/user/serviceBrowsing/list';
+
+  ///app社区介绍：查询开启的社区介绍模版
+  String get communityIntroduceInfo => '/user/communityIntroduction/findEnable';
 }
 
 class _Community {
