@@ -43,7 +43,7 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
           },
           builder: (items) {
             return ListView.separated(
-              padding: EdgeInsets.symmetric(vertical: 24.w),
+                padding: EdgeInsets.symmetric(vertical: 24.w),
                 itemBuilder: (context, index) {
                   return _buildCard(items[index]);
                 },
@@ -58,39 +58,39 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
   Widget _buildCard(ServiceBrowseListModel model) {
     return Container(
       color: Colors.white,
-
-        padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            model.name.text
-                .size(32.sp)
-                .color(ktextPrimary)
-                .maxLines(1)
-                .overflow(TextOverflow.ellipsis)
-                .bold
-                .make(),
-            32.w.heightBox,
-            model.content.text
-                .size(24.sp)
-                .color(ktextSubColor)
-                .maxLines(3)
-                .overflow(TextOverflow.ellipsis)
-                .make(),
-            32.w.heightBox,
-            Row(
-              children: [
-                '南宁人才公寓'.text.size(20.sp).color(ktextSubColor).make(),
-                Spacer(),
-                '发布于 ${DateUtil.formatDateStr(model.createDate, format: 'MM-dd HH:mm')}'
-                    .text
-                    .size(20.sp)
-                    .color(ktextSubColor)
-                    .make(),
-              ],
-            ),
-          ],
-        ));
+      padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          model.name.text
+              .size(32.sp)
+              .color(ktextPrimary)
+              .maxLines(1)
+              .overflow(TextOverflow.ellipsis)
+              .bold
+              .make(),
+          32.w.heightBox,
+          model.content.text
+              .size(24.sp)
+              .color(ktextSubColor)
+              .maxLines(3)
+              .overflow(TextOverflow.ellipsis)
+              .make(),
+          32.w.heightBox,
+          Row(
+            children: [
+              '南宁人才公寓'.text.size(20.sp).color(ktextSubColor).make(),
+              Spacer(),
+              '发布于 ${DateUtil.formatDateStr(model.createDate, format: 'MM-dd HH:mm')}'
+                  .text
+                  .size(20.sp)
+                  .color(ktextSubColor)
+                  .make(),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

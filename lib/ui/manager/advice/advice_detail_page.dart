@@ -1,3 +1,5 @@
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
@@ -165,38 +167,67 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '查看详情',
-      systemStyle: SystemStyle.yellowBottomBar,
-      actions: [
-        TextButton(
-          onPressed: () =>
-              Get.to(() => AdviceEvaluatePage(id: widget.model!.id)),
-          child: '评价'.text.make(),
+        title: '查看详情',
+        systemStyle: SystemStyle.yellowBottomBar,
+        // actions: [
+        //   TextButton(
+        //     onPressed: () =>
+        //         Get.to(() => AdviceEvaluatePage(id: widget.model!.id)),
+        //     child: '评价'.text.make(),
+        //   ),
+        // ],
+        body: EasyRefresh(
+          firstRefresh: true,
+          child: _loading ? _buildShimmer() : _buildChild(),
+          controller: _refreshController,
+          header: MaterialHeader(),
+          onRefresh: () async {
+            Response res = await NetUtil().dio!.get(
+              API.manager.adviceDetail,
+              queryParameters: {'adviceId': widget.model!.id},
+            );
+            _model = AdviceDetailModel.fromJson(res.data);
+            _loading = false;
+            if (mounted) setState(() {});
+          },
         ),
+        bottomNavi: _bottomButtons());
+  }
+
+  Widget _bottomButtons() {
+    return Row(
+      children: [
+        widget.model?.status == 3
+            ? SizedBox()
+            : SizedBox(
+                width: 290.w,
+                child: BottomButton(
+                  bgColor: Colors.black,
+                  textColor: Colors.white,
+                  onPressed: () async {
+                    bool result = await (Get.to(
+                        () => AdviceAddCommentPage(id: widget.model!.id)));
+                    if (result && mounted) _refreshController.callRefresh();
+                  },
+                  child: '继续提问'.text.bold.make(),
+                ),
+              ),
+        Expanded(
+          child: BottomButton(
+            onPressed: () async {
+              BaseModel baseModel =
+                  await NetUtil().get(API.manager.completeFeedBack, params: {
+                "adviceId": widget.model!.id,
+              });
+              if (baseModel.status ?? false) {
+                Get.to(() => AdviceEvaluatePage(id: widget.model!.id));
+              }
+              BotToast.showText(text: baseModel.message ?? '未知错误');
+            },
+            child: '完成沟通'.text.bold.make(),
+          ),
+        )
       ],
-      body: EasyRefresh(
-        firstRefresh: true,
-        child: _loading ? _buildShimmer() : _buildChild(),
-        controller: _refreshController,
-        header: MaterialHeader(),
-        onRefresh: () async {
-          Response res = await NetUtil().dio!.get(
-            API.manager.adviceDetail,
-            queryParameters: {'adviceId': widget.model!.id},
-          );
-          _model = AdviceDetailModel.fromJson(res.data);
-          _loading = false;
-          if (mounted) setState(() {});
-        },
-      ),
-      bottomNavi: BottomButton(
-        onPressed: () async {
-          bool result =
-              await (Get.to(() => AdviceAddCommentPage(id: widget.model!.id)));
-          if (result && mounted) _refreshController.callRefresh();
-        },
-        child: '继续提问'.text.bold.make(),
-      ),
     );
   }
 }

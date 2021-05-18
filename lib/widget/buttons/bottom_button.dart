@@ -7,11 +7,14 @@ import 'package:aku_community/base/base_style.dart';
 class BottomButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget child;
-
+  final Color bgColor;
+  final Color textColor;
   const BottomButton({
     Key? key,
     required this.onPressed,
     required this.child,
+    this.bgColor = kPrimaryColor,
+    this.textColor = ktextPrimary,
   }) : super(key: key);
 
   @override
@@ -23,10 +26,10 @@ class BottomButton extends StatelessWidget {
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         disabledColor: Colors.white.withOpacity(0.5),
         disabledTextColor: ktextSubColor.withOpacity(0.8),
-        textColor: ktextPrimary,
+        textColor: textColor,
         child: child,
         onPressed: onPressed,
-        color: kPrimaryColor,
+        color: bgColor,
         height: 98.w,
         minWidth: double.infinity,
       ),

@@ -230,6 +230,9 @@ class _Manager {
 
   ///app社区介绍：查询开启的社区介绍模版
   String get communityIntroduceInfo => '/user/communityIntroduction/findEnable';
+
+  ///咨询建议/投诉表扬：完成反馈
+  String get completeFeedBack => '/user/advice/completeFeedback';
 }
 
 class _Community {
