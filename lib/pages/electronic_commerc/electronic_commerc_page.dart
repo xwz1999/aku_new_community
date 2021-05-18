@@ -4,6 +4,7 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -32,12 +33,14 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
         Duration(
           milliseconds: 0,
         ), () async {
+      final cancel = BotToast.showLoading();
       BaseModel baseModel =
           await NetUtil().get(API.manager.electronicCommercCategory);
       if (baseModel.status == true && baseModel.data != null) {
         _models = (baseModel.data as List)
             .map((e) => ElectronicCommercCategoryModel.fromJson(e))
             .toList();
+        cancel();
         _tabs = List.generate(_models.length, (index) => _models[index].name);
         _onloading = false;
         _tabController = TabController(length: _tabs.length, vsync: this);
@@ -70,7 +73,7 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
                   children: [_buildShimmer()],
                 )
               : ElectronicCommercView(
-                  index: index,
+                  id: _models[index].id,
                 ),
         ),
       ),
@@ -103,18 +106,20 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
               ],
             ),
           ),
-          // Divider(
-          //   height: 50.w,
-          //   thickness: 1.w,
-          //   color: Color(0xFFD8D8D8),
-          // ),
-          // GridView.count(
-          //   crossAxisCount: 2,
-          //   children: [
-          //     VxBox().height(53.w).width(53.w).color(Colors.white).make(),
-
-          //   ],
-          // )
+          Divider(
+            height: 50.w,
+            thickness: 1.w,
+            color: Color(0xFFD8D8D8),
+          ),
+          GridView.count(
+            crossAxisCount: 2,
+            children: [
+              VxBox().height(53.w).width(53.w).color(Colors.white).make(),
+              VxBox().height(53.w).width(53.w).color(Colors.white).make(),
+              VxBox().height(53.w).width(53.w).color(Colors.white).make(),
+              VxBox().height(53.w).width(53.w).color(Colors.white).make(),
+            ],
+          )
         ],
       ),
     );
