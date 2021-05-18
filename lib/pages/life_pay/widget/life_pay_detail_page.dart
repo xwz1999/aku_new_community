@@ -121,7 +121,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           ...model.detailedVoList!
               .map((e) => _buildTile(
                   e.groupId, model.id, widget.model!.years, e.paymentPrice))
-              .toList(),
+              .toList().sepWidget(separate: 24.w.heightBox),
         ],
       ),
     );

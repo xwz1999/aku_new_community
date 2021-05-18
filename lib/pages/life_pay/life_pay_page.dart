@@ -40,6 +40,8 @@ class _LifePayPageState extends State<LifePayPage> {
   List<SelectPay> _selectPay = [];
   double _totalCost = 0;
   int _count = 0;
+
+  bool get allSelect => ((_models.length == _selectYears.length)&&(_models.length!=0));
   @override
   void initState() {
     super.initState();
@@ -213,9 +215,12 @@ class _LifePayPageState extends State<LifePayPage> {
 
   double getPayTotal(LifePayModel list) {
     num total = 0;
-    for (var item in list.dailyPaymentTypeVos!) {
-      total += ((item.detailedVoList![1].paymentPrice ?? 0) +
-          (item.detailedVoList![2].paymentPrice ?? 0));
+    if (list.dailyPaymentTypeVos != null) {
+      for (var item in list.dailyPaymentTypeVos!) {
+        for (var v in item.detailedVoList!) {
+          total += v.paymentPrice ?? 0;
+        }
+      }
     }
     return total as double;
   }
@@ -308,17 +313,17 @@ class _LifePayPageState extends State<LifePayPage> {
                 decoration: BoxDecoration(
                     border: Border.all(
                         width: 1.w,
-                        color: _models.length == _selectYears.length
+                        color: allSelect
                             ? kPrimaryColor
                             : kDarkSubColor),
-                    color: _models.length == _selectYears.length
+                    color:allSelect
                         ? kPrimaryColor
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(20.w)),
                 curve: Curves.easeInOutCubic,
                 width: 40.w,
                 height: 40.w,
-                child: _models.length == _selectYears.length
+                child: allSelect
                     ? Icon(
                         CupertinoIcons.check_mark,
                         size: 25.w,
