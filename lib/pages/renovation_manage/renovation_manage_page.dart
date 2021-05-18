@@ -26,7 +26,7 @@ class _RenovationManagePageState extends State<RenovationManagePage> with Ticker
   @override
   Widget build(BuildContext context) {
     return  BeeScaffold(
-      title: '电子商务',
+      title: '装修管理',
       appBarBottom: BeeTabBar(controller: _tabController, tabs: _tabs,scrollable: true,),
       body: TabBarView(
         controller: _tabController,

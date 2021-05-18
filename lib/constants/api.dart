@@ -233,6 +233,9 @@ class _Manager {
 
   ///咨询建议/投诉表扬：完成反馈
   String get completeFeedBack => '/user/advice/completeFeedback';
+
+  ///一键报警：记录一键报警信息
+  String get recordAlarmInfo => '/user/alarm/insertAlarmRecord';
 }
 
 class _Community {
