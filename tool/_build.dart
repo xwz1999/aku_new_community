@@ -14,6 +14,20 @@ buildApk() async {
   );
 }
 
+@Task('打包Android项目')
+buildApkDev() async {
+  await runAsync(
+    'flutter',
+    arguments: [
+      'build',
+      'apk',
+      '--target-platform=android-arm64',
+      '--dart-define',
+      'BUILD_TYPE=Dev',
+    ],
+  );
+}
+
 @Task('打包iOS项目')
 buildIos() async {
   await runAsync(

@@ -14,7 +14,7 @@ class UserDetailModel {
   int? roomStatus;
   String? nickName;
   List<String>? estateNames;
-
+  int? nowEstateExamineId;
   UserDetailModel(
       {this.id,
       this.name,
@@ -30,7 +30,8 @@ class UserDetailModel {
       this.identity,
       this.roomStatus,
       this.nickName,
-      this.estateNames});
+      this.estateNames,
+      this.nowEstateExamineId});
 
   UserDetailModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -54,6 +55,7 @@ class UserDetailModel {
     if (json['estateNames'] == null) {
       estateNames = [];
     }
+    nowEstateExamineId = json['nowEstateExamineId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,6 +75,7 @@ class UserDetailModel {
     data['roomStatus'] = this.roomStatus;
     data['nickName'] = this.nickName;
     data['estateNames'] = this.estateNames;
+    data['nowEstateExamineId'] = this.nowEstateExamineId;
     return data;
   }
 }

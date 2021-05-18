@@ -58,7 +58,10 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future updateUserDetail() async {
-    _userDetailModel = await SignFunc.getUserDetail();
+    UserDetailModel? _model = await SignFunc.getUserDetail();
+    if (_model != null) {
+      _userDetailModel = _model;
+    }
     notifyListeners();
   }
 

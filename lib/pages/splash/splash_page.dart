@@ -35,7 +35,7 @@ class _SplashPageState extends State<SplashPage> {
 
     //初始化AMap
     // await AmapLocation.instance.init(iosKey: 'ios key');
-    if (!kIsWeb && !Platform.isMacOS) {
+    if (Platform.isAndroid || Platform.isIOS) {
       await Permission.locationWhenInUse.request();
     }
   }

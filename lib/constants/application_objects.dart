@@ -1,5 +1,7 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
+import 'package:aku_community/pages/electronic_commerc/electronic_commerc_page.dart';
+import 'package:aku_community/pages/renovation_manage/renovation_manage_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:equatable/equatable.dart';
@@ -72,11 +74,12 @@ List<AO> appObjects = [
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
       () => AdvicePage(type: AdviceType.COMPLAIN)),
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, () => QuestionnairePage()),
-  // AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, FitupManagePage()),
+  AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, RenovationManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
   AO('快递包裹', R.ASSETS_APPLICATIONS_TRANSFER_PNG, () => ExpressPackagePage()),
+   AO('电子商务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ElectronicCommercPage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -147,11 +150,12 @@ List<String> _smartManagerApp = [
   '物品出门',
   '投诉表扬',
   '问卷调查',
-  // '装修管理',
+  '装修管理',
   '借还管理',
   '一键报警',
   '设施预约',
-  '快递包裹'
+  '快递包裹',
+  '电子商务',
   // '小区教育',
   // '健康运动',
   // '家政服务',
