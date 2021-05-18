@@ -1,13 +1,11 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_page.dart';
-import 'package:aku_community/pages/renovation_manage/renovation_manage_page.dart';
 import 'package:flutter/material.dart';
 
-import 'package:equatable/equatable.dart';
-
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/community_introduce/community_introduce_page.dart';
 import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:aku_community/pages/electronic_commerc/electronic_commerc_page.dart';
 import 'package:aku_community/pages/event_activity/event_voting_page.dart';
 import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
@@ -16,6 +14,8 @@ import 'package:aku_community/pages/industry_committee/industry_committee_page.d
 import 'package:aku_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
+import 'package:aku_community/pages/renovation_manage/renovation_manage_page.dart';
+import 'package:aku_community/pages/service_browse/service_browse_page.dart';
 import 'package:aku_community/pages/setting_page/settings_page.dart';
 import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
@@ -30,7 +30,7 @@ import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 
 ///应用对象
 ///Application Object
-class AO extends Equatable {
+class AO {
   String title = '';
   String path = '';
   dynamic page = () => Scaffold();
@@ -52,7 +52,16 @@ class AO extends Equatable {
   }
 
   @override
-  List<Object?> get props => [title];
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+  
+    return other is AO &&
+      other.title == title &&
+      other.path == path;
+  }
+
+  @override
+  int get hashCode => title.hashCode ^ path.hashCode;
 }
 
 ///所有应用
@@ -79,7 +88,9 @@ List<AO> appObjects = [
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
   AO('快递包裹', R.ASSETS_APPLICATIONS_TRANSFER_PNG, () => ExpressPackagePage()),
-   AO('电子商务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ElectronicCommercPage()),
+  AO('电子商务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ElectronicCommercPage()),
+  AO('服务浏览', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ServiceBrowsePage()),
+  AO('社区介绍', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => CommunityIntroducePage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -156,6 +167,8 @@ List<String> _smartManagerApp = [
   '设施预约',
   '快递包裹',
   '电子商务',
+  '服务浏览',
+  '社区介绍',
   // '小区教育',
   // '健康运动',
   // '家政服务',

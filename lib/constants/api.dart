@@ -221,6 +221,9 @@ class _Manager {
 
   ///app 包裹代收：确认领取
   String get packageConfirm => '/user/packageCollection/confirmCollection';
+
+  ///app公共资讯：根据资讯主键id 查询资讯信息详情
+  String get getPublicInformationDetail => '/user/news/findNewsByNewsId';
 }
 
 class _Community {
