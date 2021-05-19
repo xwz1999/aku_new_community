@@ -54,10 +54,8 @@ class AO {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is AO &&
-      other.title == title &&
-      other.path == path;
+
+    return other is AO && other.title == title && other.path == path;
   }
 
   @override
@@ -88,9 +86,9 @@ List<AO> appObjects = [
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
   AO('快递包裹', R.ASSETS_APPLICATIONS_TRANSFER_PNG, () => ExpressPackagePage()),
-  AO('电子商务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ElectronicCommercPage()),
-  AO('服务浏览', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => ServiceBrowsePage()),
-  AO('社区介绍', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => CommunityIntroducePage()),
+  AO('电子商务', R.ASSETS_ICONS_COMMERC_PNG, () => ElectronicCommercPage()),
+  AO('服务浏览', R.ASSETS_ICONS_SERVICE_PNG, () => ServiceBrowsePage()),
+  AO('社区介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

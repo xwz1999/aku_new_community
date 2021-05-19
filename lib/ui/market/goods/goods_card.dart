@@ -1,3 +1,5 @@
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -28,10 +30,9 @@ class GoodsCard extends StatelessWidget {
             aspectRatio: 1,
             child: Stack(
               children: [
-                Image.asset(
-                  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  fit: BoxFit.cover,
-                ),
+                FadeInImage.assetNetwork(
+                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                    image: API.image(ImgModel.first(item.imgList))),
                 Positioned(
                   left: 0,
                   right: 0,
