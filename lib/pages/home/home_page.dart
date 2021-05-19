@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage>
 
   List<dynamic>? data;
 
-  EasyRefreshController _refreshController = EasyRefreshController();
+  late EasyRefreshController _refreshController;
 
   int page = 1;
 
@@ -61,6 +61,14 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    _refreshController = EasyRefreshController();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    _scrollController?.dispose();
+    super.dispose();
   }
 
   @override

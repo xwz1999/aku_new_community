@@ -22,7 +22,7 @@ class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
   bool get isLogin => _isLogin;
   bool get isNotLogin => !_isLogin;
-  Future setLogin(int? token) async {
+  Future setLogin(int token) async {
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     _isLogin = true;
     NetUtil().dio!.options.headers.putIfAbsent('App-Admin-Token', () => token);
@@ -52,7 +52,7 @@ class UserProvider extends ChangeNotifier {
   Future updateProfile() async {
     _userInfoModel = await SignFunc.getUserInfo();
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
-      await JPush().setAlias(_userInfoModel!.id.toString());
+      await JPush().setAlias(_userInfoModel?.id.toString()??'');
     }
     notifyListeners();
   }

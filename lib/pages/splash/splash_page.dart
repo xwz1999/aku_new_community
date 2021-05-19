@@ -58,7 +58,11 @@ class _SplashPageState extends State<SplashPage> {
       context,
       debug: DeveloperUtil.dev,
     );
-    _initOp().then((value) => Get.offAll(() => TabNavigator()));
+    Future.delayed(Duration(milliseconds: 1000), () async {
+      await _initOp();
+      Get.offAll(() => TabNavigator());
+    });
+    // _initOp().then((value) => Get.offAll(() => TabNavigator()));
   }
 
   @override
