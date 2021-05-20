@@ -30,7 +30,7 @@ class VotingDetailPage extends StatefulWidget {
 
 class _VotingDetailPageState extends State<VotingDetailPage> {
   VotingDetailModel _model = VotingDetailModel();
-  EasyRefreshController? _refreshController;
+  late EasyRefreshController _refreshController;
   bool _isOnload = true;
   // List<int> _select = [];
   int? _selectId;
@@ -50,7 +50,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
 
   @override
   void dispose() {
-    _refreshController?.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -183,6 +183,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
           child: '取消'.text.black.size(34.sp).isIntrinsic.make(),
           onPressed: () {
             Get.back();
+            Get.back();
           },
         ),
         CupertinoDialogAction(
@@ -195,6 +196,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               .make(),
           onPressed: () {
             Get.back();
+            _refreshController.callRefresh();
           },
         )
       ],

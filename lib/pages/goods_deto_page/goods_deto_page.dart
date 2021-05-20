@@ -34,7 +34,6 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
   bool _canSkew(int? state) {
     switch (state) {
       case 1:
-
         return false;
       case 2:
       case 3:
@@ -123,11 +122,14 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
                     _select.clear();
                     _refreshController.callRefresh();
                   }
-            : () {
-                userProvider.isLogin
-                    ? Get.to(() => DetoCreatePage())
-                    : BotToast.showText(text: '请先登录！');
-              },
+            : userProvider.isLogin
+                ? () async {
+                    await Get.to(() => DetoCreatePage());
+                    _refreshController.callRefresh();
+                  }
+                : () {
+                    BotToast.showText(text: '请先登录！');
+                  },
         child: _isEdit
             ? '删除'.text.size(32.sp).bold.make()
             : '新增'.text.size(32.sp).bold.make(),

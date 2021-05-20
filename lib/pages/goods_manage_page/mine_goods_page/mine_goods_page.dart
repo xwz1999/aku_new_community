@@ -19,7 +19,7 @@ class MineGoodsPage extends StatefulWidget {
 }
 
 class _MineGoodsPageState extends State<MineGoodsPage> {
-  EasyRefreshController? _controller;
+ late EasyRefreshController _controller;
 
   @override
   void initState() {
@@ -30,13 +30,14 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
   @override
   void dispose() {
     super.dispose();
-    _controller!.dispose();
+    _controller.dispose();
   }
 
   InkWell _frmLoss(int? id) {
     return InkWell(
       onTap: () async {
         await ManagerFunc.fromLoss(id);
+        _controller.callRefresh();
       },
       child: Container(
         width: 120.w,
@@ -95,16 +96,16 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     color: Color(0xff4a4b51),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 16.w),
-                  child: Text(
-                    '借还数量：10个',
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      color: Color(0xff333333),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.only(top: 16.w),
+                //   child: Text(
+                //     '借还数量：10个',
+                //     style: TextStyle(
+                //       fontSize: 24.sp,
+                //       color: Color(0xff333333),
+                //     ),
+                //   ),
+                // ),
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Text(
@@ -131,7 +132,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '借用状态: ${BeeMap.borrowStatus}',
+                        '借用状态: ${BeeMap.borrowStatus[model.borrowStatus]}',
                         style: TextStyle(
                           fontSize: 24.sp,
                           color: Color(0xff999999),
@@ -167,26 +168,6 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '我的借还物品',
-      // body: RefreshConfiguration(
-      //   child: SmartRefresher(
-      //     controller: _refreshController,
-      //     header: WaterDropHeader(),
-      //     footer: ClassicFooter(),
-      //     onRefresh: _onRefresh,
-      //     onLoading: _onLoading,
-      //     enablePullUp: true,
-      //     child: ListView.builder(
-      //       itemBuilder: (BuildContext context, int index) => _goodsCard(
-      //         _listGoods[index]['title'],
-      //         _listGoods[index]['borrowTime'],
-      //         _listGoods[index]['timeLength'],
-      //         _listGoods[index]['status'],
-      //         _listGoods[index]['goodsNum'],
-      //       ),
-      //       itemCount: _listGoods.length,
-      //     ),
-      //   ),
-      // ),
       body: BeeListView<MineGoodsModel>(
           path: API.manager.articleBorrowMylist,
           controller: _controller,

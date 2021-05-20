@@ -130,9 +130,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                   //     EdgeInsets.symmetric(horizontal: 30.w, vertical: 8.w),
                   elevation: 0,
                   onPressed: () {
-                    Get.to(() => QuestionnaireDetailPage(
-                          id: model.id,
-                        ));
+                    if (model.status == 2) {
+                      Get.to(() => QuestionnaireDetailPage(
+                            id: model.id,
+                          ));
+                    }
                   },
                   child: (_getButtonText(model.status))
                       .text
