@@ -13,7 +13,6 @@ import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.
 import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
 import 'package:aku_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_community/pages/renovation_manage/renovation_manage_page.dart';
 import 'package:aku_community/pages/service_browse/service_browse_page.dart';
 import 'package:aku_community/pages/setting_page/settings_page.dart';
@@ -64,9 +63,9 @@ class AO {
 
 ///所有应用
 List<AO> appObjects = [
-  if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
+  // if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
 
-  AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
+  // AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
       () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, () => FixedSubmitPage()),
@@ -135,7 +134,7 @@ AO allApp =
 
 ///为您推荐 original value
 List<String> _recommendApp = [
-  if (false) '一键开门',
+  // if (false) '一键开门',
   '访客邀请',
   '报事报修',
   '建议咨询',
@@ -147,8 +146,8 @@ List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
 
 ///智慧管家 original value
 List<String> _smartManagerApp = [
-  if (false) '一键开门',
-  '开门码',
+  // if (false) '一键开门',
+  // '开门码',
   '访客邀请',
   '报事报修',
   '生活缴费',
