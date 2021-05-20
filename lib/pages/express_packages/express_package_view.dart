@@ -31,13 +31,12 @@ class _ExpressPackageViewState extends State<ExpressPackageView> {
 
   @override
   Widget build(BuildContext context) {
-    // return ListView(
-    //   padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
-    //   children: [ExpressPackageCard(index: widget.index)],
-    // );
     return BeeListView(
         path: API.manager.expressPackageList,
         controller: _refreshController,
+        extraParams: {
+          "packageCollectionStatus": widget.index + 1,
+        },
         convert: (models) {
           return models.tableList
                   ?.map((e) => ExpressPackageListModel.fromJson(e))

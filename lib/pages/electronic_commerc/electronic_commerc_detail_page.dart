@@ -61,6 +61,13 @@ class _ElectronicCommercDetailPageState extends State<ElectronicCommercDetailPag
             : ListView(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
                 children: [
+                  //  SizedBox(
+                  //   width: double.infinity,
+                  //   child: FadeInImage.assetNetwork(
+                  //       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  //       image: API.image(ImgModel.first(_detailModel.imgList))),
+                  // ),
+                  // 24.w.heightBox,
                   _detailModel.title.text
                       .size(32.sp)
                       .color(ktextPrimary)

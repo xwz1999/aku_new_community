@@ -1,13 +1,16 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/news/news_detail_model.dart';
+import 'package:aku_community/utils/link_text_parase.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,15 +28,19 @@ class _PublicInformationDetailPageState
   late EasyRefreshController _easyRefreshController;
   bool _onload = true;
   late NewsDetailModel _detailModel;
+  late List<String> _parasedText;
+  late TapGestureRecognizer _tapLinkUrlLancher; //设置单击手势识别器
   @override
   void initState() {
     super.initState();
     _easyRefreshController = EasyRefreshController();
+    _tapLinkUrlLancher = TapGestureRecognizer();
   }
 
   @override
   void dispose() {
     _easyRefreshController.dispose();
+    _tapLinkUrlLancher.dispose(); //释放手势识别器资源
     super.dispose();
   }
 
@@ -52,6 +59,7 @@ class _PublicInformationDetailPageState
           });
           if (baseModel.status! && baseModel.data != null) {
             _detailModel = NewsDetailModel.fromJson(baseModel.data);
+            _parasedText = LinkTextParase.stringParase(_detailModel.content);
           } else {
             BotToast.showText(text: '无法获取信息');
           }
@@ -72,10 +80,29 @@ class _PublicInformationDetailPageState
                   24.w.heightBox,
                   SizedBox(
                     width: double.infinity,
-                    child: _detailModel.content.text
-                        .size(28.sp)
-                        .color(ktextPrimary)
-                        .make(),
+                    child: RichText(
+                      text: TextSpan(
+                          children: List.generate(_parasedText.length, (index) {
+                        if (index.isEven) {
+                          return TextSpan(
+                            text: _parasedText[index],
+                            style:
+                                TextStyle(fontSize: 28.sp, color: ktextPrimary),
+                          );
+                        } else {
+                          return TextSpan(
+                              text: _parasedText[index],
+                              style: TextStyle(
+                                fontSize: 28.sp,
+                                color: Colors.lightBlue,
+                              ),
+                              recognizer: _tapLinkUrlLancher
+                                ..onTap = () {
+                                  launch(_parasedText[index]);
+                                });
+                        }
+                      })),
+                    ),
                   ),
                   40.w.heightBox,
                   Row(

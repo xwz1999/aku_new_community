@@ -13,8 +13,7 @@ import 'package:aku_community/const/resource.dart';
 
 class ElectronicCommercCard extends StatefulWidget {
   final ElectronicCommercListModel model;
-  ElectronicCommercCard({Key? key, required this.model})
-      : super(key: key);
+  ElectronicCommercCard({Key? key, required this.model}) : super(key: key);
 
   @override
   _ElectronicCommercCardState createState() => _ElectronicCommercCardState();
