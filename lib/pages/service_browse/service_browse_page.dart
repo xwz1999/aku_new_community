@@ -56,10 +56,14 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
   }
 
   Widget _buildCard(ServiceBrowseListModel model) {
-    return Container(
+    return MaterialButton(
+      onPressed: () {
+        
+      },
+      elevation: 0,
       color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-      width: double.infinity,
+      minWidth: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
