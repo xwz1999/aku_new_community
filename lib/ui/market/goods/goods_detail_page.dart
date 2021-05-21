@@ -278,9 +278,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
 
   Widget _extraWidget(List<GoodsItem> models) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: BoxDecoration(color: Colors.white),
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
       child: Column(
@@ -297,13 +295,18 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
           ),
           24.w.heightBox,
           SizedBox(
-            height: 614.w,
+            height: 1000.w,
             child: WaterfallFlow.count(
               crossAxisCount: 2,
+              mainAxisSpacing: 20.w,
+              crossAxisSpacing: 24.w,
               physics: NeverScrollableScrollPhysics(),
               children: List.generate(
                 models.length,
-                (index) => GoodsCard(item: models[index]),
+                (index) => GoodsCard(
+                  item: models[index],
+                  border: true,
+                ),
               ),
             ),
           ),

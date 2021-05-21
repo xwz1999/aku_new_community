@@ -11,13 +11,20 @@ import 'package:aku_community/utils/headers.dart';
 
 class GoodsCard extends StatelessWidget {
   final GoodsItem item;
-  const GoodsCard({Key? key, required this.item}) : super(key: key);
+  final bool? border;
+  const GoodsCard({Key? key, required this.item, this.border})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       color: Colors.white,
       elevation: 0,
+      shape: !(border ?? false)
+          ? null
+          : RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.w),
+              side: BorderSide(color: Color(0xFFC4C4C4))),
       padding: EdgeInsets.zero,
       onPressed: () => Get.to(
         () => GoodsDetailPage(id: item.id),
