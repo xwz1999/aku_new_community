@@ -1,6 +1,6 @@
 // import 'package:aku_community/base/base_style.dart';
 
-import 'package:aku_community/ui/market/second_hand/second_hand_page.dart';
+import 'package:aku_community/ui/market/order/my_order_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +72,8 @@ class _MarketPageState extends State<MarketPage>
           minWidth: 108.w,
           padding: EdgeInsets.zero,
           onPressed: () async {
-            Get.to(() => SecondHandPage());
+            // Get.to(() => SecondHandPage());
+            Get.to(() => MyOrderPage());
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +85,8 @@ class _MarketPageState extends State<MarketPage>
                 height: 48.w,
               ),
               4.hb,
-              '二手'.text.size(20.sp).black.make(),
+              // '二手'.text.size(20.sp).black.make(),
+              '订单'.text.size(20.sp).black.make(),
             ],
           ),
         ),

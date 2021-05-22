@@ -315,6 +315,18 @@ class _Market {
 
   ///app商城中心：商品预约
   String get appointment => '/user/shop/goodsAppointment';
+
+  ///app商场中心：我的订单
+  String get myOrderList => '/user/shop/myOrder';
+
+  ///app商场中心：取消预约
+  String get cancleOrder => '/user/shop/cancel';
+
+  ///app商场中心：申请退换
+  String get refundOrder => '/user/shop/applicationRefund';
+
+  ///app商场中心：确认收货
+  String get confirmReceive => '/user/shop/confirmReceipt';
 }
 
 class _Upload {
