@@ -114,11 +114,33 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                         _imageView(_goodsModel.goodsImgList),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 32.w),
-                          child: _goodsModel.title.text
-                              .size(40.sp)
-                              .bold
-                              .color(ktextPrimary)
-                              .make(),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              _goodsModel.title.text
+                                  .size(40.sp)
+                                  .bold
+                                  .color(ktextPrimary)
+                                  .make(),
+                              Spacer(),
+                              '¥${_goodsModel.sellingPrice}'
+                                  .text
+                                  .size(36.sp)
+                                  .bold
+                                  .color(Colors.red)
+                                  
+                                  .make(),
+                                8.w.widthBox,
+                              '¥${_goodsModel.markingPrice}'
+                                  .text
+                                  .size(18.sp)
+                                  .bold
+                                  .textBaseLine(TextBaseline.ideographic)
+                                  .color(Colors.black)
+                                  .lineThrough
+                                  .make(),
+                            ],
+                          ),
                         ),
                         24.w.heightBox,
                         Row(
