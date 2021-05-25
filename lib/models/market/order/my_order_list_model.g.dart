@@ -19,6 +19,9 @@ MyOrderListModel _$MyOrderListModelFromJson(Map<String, dynamic> json) {
     sellingPrice: (json['sellingPrice'] as num).toDouble(),
     markingPrice: (json['markingPrice'] as num?)?.toDouble(),
     num: json['num'] as int,
+    supplierName: json['supplierName'] as String,
+    levelOneCategory: json['levelOneCategory'] as String,
+    levelTwoCategory: json['levelTwoCategory'] as String,
     status: json['status'] as int,
     arrivalTime: json['arrivalTime'] as String,
   );

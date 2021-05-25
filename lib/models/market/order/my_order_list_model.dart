@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_community/model/common/img_model.dart';
+
 part 'my_order_list_model.g.dart';
 
 @JsonSerializable()
@@ -17,6 +18,9 @@ class MyOrderListModel extends Equatable {
   final double sellingPrice;
   final double? markingPrice;
   final int num;
+  final String supplierName;
+  final String levelOneCategory;
+  final String levelTwoCategory;
   final int status;
   final String arrivalTime;
   MyOrderListModel({
@@ -24,11 +28,14 @@ class MyOrderListModel extends Equatable {
     required this.code,
     required this.goodsId,
     required this.goodsName,
-     this.backType,
+    this.backType,
     required this.goodsImgList,
     required this.sellingPrice,
-     this.markingPrice,
+    this.markingPrice,
     required this.num,
+    required this.supplierName,
+    required this.levelOneCategory,
+    required this.levelTwoCategory,
     required this.status,
     required this.arrivalTime,
   });
@@ -89,6 +96,9 @@ class MyOrderListModel extends Equatable {
       sellingPrice,
       markingPrice,
       num,
+      supplierName,
+      levelOneCategory,
+      levelTwoCategory,
       status,
       arrivalTime,
     ];

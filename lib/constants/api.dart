@@ -327,6 +327,9 @@ class _Market {
 
   ///app商场中心：确认收货
   String get confirmReceive => '/user/shop/confirmReceipt';
+
+  ///app商场中心：评价
+  String get goodsEvaluation => '/user/shop/evaluation';
 }
 
 class _Upload {
