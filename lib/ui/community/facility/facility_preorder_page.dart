@@ -180,7 +180,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   BotToast.showText(text: '预约成功');
                   Get.back(result: true);
                 } else if (model.message == '该时段已被预约') {
-                  Get.dialog(_hasBeenOrder());
+                 await Get.dialog(_hasBeenOrder());
                 } else {
                   BotToast.showText(text: '预约失败');
                 }
@@ -209,19 +209,19 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
 
   Widget _hasBeenOrder() {
     return CupertinoAlertDialog(
-      title: '此设施已被预约'.text.size(32.sp).bold.color(ktextPrimary).make(),
-      content: '是否查看此设施已被预约时段？'.text.size(28.sp).color(ktextPrimary).make(),
+      title: '此设施已被预约'.text.size(32.sp).bold.color(ktextPrimary).isIntrinsic.make(),
+      content: '是否查看此设施已被预约时段？'.text.size(28.sp).color(ktextPrimary).isIntrinsic.make(),
       actions: [
         CupertinoActionSheetAction(
             onPressed: () {
               Get.back();
             },
-            child: '取消'.text.size(26.sp).color(ktextPrimary).make()),
+            child: '取消'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make()),
         CupertinoActionSheetAction(
             onPressed: () {
-              Get.to(() => FacilityOrderDateListPage(facilitiesId: widget.id));
+              Get.off(() => FacilityOrderDateListPage(facilitiesId: typeModel!.id));
             },
-            child: '查看'.text.size(26.sp).color(kPrimaryColor).make()),
+            child: '查看'.text.size(30.sp).color(kPrimaryColor).isIntrinsic.make()),
       ],
     );
   }

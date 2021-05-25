@@ -51,6 +51,7 @@ class _FacilityOrderDateListPageState extends State<FacilityOrderDateListPage> {
             },
             builder: (items) {
               return ListView.separated(
+                padding: EdgeInsets.all(32.w),
                   itemBuilder: (context, index) {
                     return _buildCard(items[index]);
                   },
