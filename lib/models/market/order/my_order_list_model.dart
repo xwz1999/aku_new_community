@@ -53,12 +53,18 @@ class MyOrderListModel extends Equatable {
       case 2:
         return '已发货';
       case 3:
-        return '已收货';
+        return '已到货';
       case 4:
-        return '申请退换货';
+        return '已收货';
       case 5:
-        return '申请通过';
+        return '未知';
       case 6:
+        return '已评价';
+      case 8:
+        return '申请退换';
+      case 9:
+        return '申请通过';
+      case 10:
         return '申请驳回';
       default:
         return '未知';
@@ -74,11 +80,15 @@ class MyOrderListModel extends Equatable {
       case 3:
         return Color(0xFF999999);
       case 4:
-        return Color(0xFFFB4702);
-      case 5:
         return Color(0xFF999999);
       case 6:
         return Color(0xFF999999);
+      case 8:
+        return Color(0xFFFB4702);
+      case 9:
+        return Color(0xFF3F8FFE);
+      case 10:
+        return Color(0xFFE60E0E);
       default:
         return Colors.black;
     }

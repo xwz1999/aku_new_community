@@ -69,17 +69,17 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
         children: [
           Row(
             children: [
-              widget.model.goodsName.text
+              '商品信息'.text
                   .size(32.sp)
                   .bold
                   .color(ktextPrimary)
                   .make(),
               Spacer(),
-              widget.model.statusString.text
-                  .size(30.sp)
-                  .bold
-                  .color(widget.model.statusColor)
-                  .make(),
+              // widget.model.statusString.text
+              //     .size(30.sp)
+              //     .bold
+              //     .color(widget.model.statusColor)
+              //     .make(),
             ],
           ),
           16.w.heightBox,
@@ -99,6 +99,7 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
                     image:
                         API.image(ImgModel.first(widget.model.goodsImgList))),
               ),
+              24.w.widthBox,
               SizedBox(
                 height: 160.w,
                 child: Column(

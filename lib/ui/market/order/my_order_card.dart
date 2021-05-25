@@ -2,6 +2,8 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
+import 'package:aku_community/ui/market/order/my_order_detail_page.dart';
+import 'package:aku_community/ui/market/order/my_order_evaluation_page.dart';
 import 'package:aku_community/ui/market/order/my_order_func.dart';
 import 'package:aku_community/ui/market/order/my_order_refund_page.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
@@ -27,7 +29,9 @@ class _MyOrderCardState extends State<MyOrderCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(() => MyOrderDetailPage(model: widget.model,));
+      },
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -69,6 +73,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
                       image:
                           API.image(ImgModel.first(widget.model.goodsImgList))),
                 ),
+                24.w.widthBox,
                 SizedBox(
                   height: 160.w,
                   child: Column(
@@ -172,6 +177,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
           CardBottomButton.white(
               text: '评价商品',
               onPressed: () async {
+                await Get.to(() => MyOrderEvaluationPage(model: widget.model));
                 widget.callRefresh();
               }),
           CardBottomButton.white(

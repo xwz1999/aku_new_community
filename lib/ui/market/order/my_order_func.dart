@@ -1,4 +1,5 @@
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/market/goods_item.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 
@@ -32,5 +33,16 @@ class MyOrderFunc {
           "evaluationReason": evaluationReason
         },
         showMessage: true);
+  }
+
+  /// 获取热度最高的商品
+  static Future<List<GoodsItem>> getHotTops() async {
+    BaseModel baseModel = await NetUtil().get(API.market.hotTop);
+    if (baseModel.status == true && baseModel.data != null) {
+      return (baseModel.data as List)
+          .map((e) => GoodsItem.fromJson(e))
+          .toList();
+    }
+    return [];
   }
 }
