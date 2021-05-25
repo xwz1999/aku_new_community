@@ -24,7 +24,7 @@ class ReturnGoodsDetailPage extends StatefulWidget {
 }
 
 class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
-  EasyRefreshController? _easyRefreshController;
+  late EasyRefreshController _easyRefreshController;
   late List<ArticleReturnListModel> _models;
   bool _onload = true;
   List<int?> _selectItems = [];
@@ -37,7 +37,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
 
   @override
   void dispose() {
-    _easyRefreshController?.dispose();
+    _easyRefreshController.dispose();
     super.dispose();
   }
 
@@ -48,10 +48,9 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),
+        controller: _easyRefreshController,
         onRefresh: () async {
-          List models = await (getModels());
-          _models =
-              models.map((e) => ArticleReturnListModel.fromJson(e)).toList();
+          _models = await (getModels());
           _onload = false;
           setState(() {});
         },
@@ -162,7 +161,12 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
 
   Future getModels() async {
     BaseModel baseModel = await NetUtil().get(API.manager.articleReturnList);
-    return baseModel.data as List?;
+    if (baseModel.status! && baseModel.data != null) {
+      return (baseModel.data as List)
+          .map((e) => ArticleReturnListModel.fromJson(e))
+          .toList();
+    }
+    return [ArticleReturnListModel.fail()];
   }
 
   Widget _goodsCard(ArticleReturnListModel model) {
