@@ -124,9 +124,9 @@ class _MyOrderCardState extends State<MyOrderCard> {
             ),
             40.w.heightBox,
             ...[
-              _rowTile('下单时间', widget.model.arrivlaTimeString),
+              _rowTile('下单时间', widget.model.arrivalDateString),
               _rowTile('到达地点', '人才公寓小区北侧门口'),
-              _rowTile('发货时间', widget.model.arrivlaTimeString),
+              _rowTile('发货时间', widget.model.sendDateString),
             ].sepWidget(separate: 16.w.heightBox),
             ..._bottomWidget(),
           ],

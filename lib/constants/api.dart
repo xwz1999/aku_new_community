@@ -248,6 +248,10 @@ class _Manager {
   ///app电子商务：根据电子商务主键id 查询电子商务信息详情
   String get electronicCommercDetail =>
       '/user/electronicCommerce/findElectronicCommerceById';
+
+  ///设施预约：查询当前设施当前时间之后的预约时段
+  String get facilityOrderDateList =>
+      '/user/facilitiesAppointment/findFacilitiesAppointmentDate';
 }
 
 class _Community {

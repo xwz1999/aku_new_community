@@ -42,7 +42,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
         padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Row(
           children: [
-            title!.text.size(32.sp).make().expand(),
+            title.text.size(32.sp).make().expand(),
             Image.asset(
               R.ASSETS_ICONS_FILE_PNG,
               height: 52.w,

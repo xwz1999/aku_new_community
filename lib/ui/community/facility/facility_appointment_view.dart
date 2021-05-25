@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -12,6 +13,7 @@ enum FacilityAppointmentType {
   MY,
   HISTORY,
 }
+GlobalKey<_FacilityAppointmentViewState> childKey = GlobalKey();
 
 class FacilityAppointmentView extends StatefulWidget {
   final FacilityAppointmentType type;
@@ -37,6 +39,10 @@ class _FacilityAppointmentViewState extends State<FacilityAppointmentView> {
   void dispose() {
     _refreshController.dispose();
     super.dispose();
+  }
+
+  void callRefresh() {
+    return _refreshController.callRefresh();
   }
 
   @override

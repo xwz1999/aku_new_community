@@ -23,6 +23,17 @@ MyOrderListModel _$MyOrderListModelFromJson(Map<String, dynamic> json) {
     levelOneCategory: json['levelOneCategory'] as String,
     levelTwoCategory: json['levelTwoCategory'] as String,
     status: json['status'] as int,
+    sendDate: json['sendDate'] as String?,
+    sendDetail: json['sendDetail'] as String?,
+    arrivalDate: json['arrivalDate'] as String?,
+    receivingDate: json['receivingDate'] as String?,
+    backDate: json['backDate'] as String?,
+    backReason: json['backReason'] as String?,
+    reason: json['reason'] as String?,
+    score: json['score'] as int?,
+    evaluationDate: json['evaluationDate'] as String?,
+    evaluationReason: json['evaluationReason'] as String?,
+    createDate: json['createDate'] as String?,
     arrivalTime: json['arrivalTime'] as String,
   );
 }

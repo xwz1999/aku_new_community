@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/community/facility/fcility_order_date_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -92,11 +93,12 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   height: 120.w,
                   onPressed: () async {
+                    DateTime _currentTime = DateTime.now();
                     DateTime? date = await BeeDatePicker.pick(
-                      DateTime.now(),
+                      _currentTime.add(Duration(minutes: 60)),
                       mode: CupertinoDatePickerMode.dateAndTime,
-                      min: DateTime.now().subtract(Duration(seconds: 1)),
-                      max: DateTime.now().add(Duration(days: 30)),
+                      min: _currentTime.add(Duration(minutes: 30)),
+                      max: _currentTime.add(Duration(days: 30)),
                     );
                     if (date != null) {
                       startDate = date;
@@ -120,14 +122,17 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   height: 120.w,
                   onPressed: () async {
+
                     DateTime? date = await BeeDatePicker.pick(
-                      startDate == null ? DateTime.now() : startDate!,
+                      startDate == null
+                          ? DateTime.now().add(Duration(minutes: 90))
+                          : startDate!.add(Duration(minutes: 30)),
                       min: startDate == null
-                          ? DateTime.now().subtract(Duration(seconds: 1))
-                          : startDate!,
+                          ? DateTime.now().add(Duration(minutes: 60))
+                          : startDate!.add(Duration(minutes: 30)),
                       max: startDate == null
-                          ? DateTime.now().add(Duration(days: 1))
-                          : (startDate!).add(Duration(days: 1)),
+                          ? DateTime.now().add(Duration(days: 2))
+                          : (startDate!).add(Duration(days: 2)),
                       mode: CupertinoDatePickerMode.dateAndTime,
                     );
                     if (date != null) {
@@ -159,6 +164,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
       bottomNavi: BottomButton(
         onPressed: canTap
             ? () async {
+                // if (dateDifferenceIsTrue) {
                 final cancel = BotToast.showLoading();
                 var model = await NetUtil().post(
                   API.manager.facility.add,
@@ -168,14 +174,55 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                     'appointmentStartDate': NetUtil.getDate(startDate!),
                     'appointmentEndDate': NetUtil.getDate(endDate!),
                   },
-                  showMessage: true,
                 );
                 cancel();
-                if (model.status == true) Get.back(result: true);
+                if (model.status == true) {
+                  BotToast.showText(text: '预约成功');
+                  Get.back(result: true);
+                } else if (model.message == '该时段已被预约') {
+                  Get.dialog(_hasBeenOrder());
+                } else {
+                  BotToast.showText(text: '预约失败');
+                }
+                // } else {
+                //   BotToast.showText(text: '预约时间必须为半小时的整数倍');
+                // }
               }
             : null,
         child: Text('确认提交'),
       ),
+    );
+  }
+
+  bool get dateDifferenceIsTrue {
+    if (startDate != null && endDate != null) {
+      int _diff = endDate!.difference(startDate!).inMinutes;
+      if (_diff < 30) {
+        return false;
+      } else if (_diff % 30 != 0) {
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  Widget _hasBeenOrder() {
+    return CupertinoAlertDialog(
+      title: '此设施已被预约'.text.size(32.sp).bold.color(ktextPrimary).make(),
+      content: '是否查看此设施已被预约时段？'.text.size(28.sp).color(ktextPrimary).make(),
+      actions: [
+        CupertinoActionSheetAction(
+            onPressed: () {
+              Get.back();
+            },
+            child: '取消'.text.size(26.sp).color(ktextPrimary).make()),
+        CupertinoActionSheetAction(
+            onPressed: () {
+              Get.to(() => FacilityOrderDateListPage(facilitiesId: widget.id));
+            },
+            child: '查看'.text.size(26.sp).color(kPrimaryColor).make()),
+      ],
     );
   }
 }

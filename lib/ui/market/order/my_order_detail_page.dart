@@ -50,16 +50,18 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
         onRefresh: () async {
           _topGoods = await MyOrderFunc.getHotTops();
           _onload = false;
-          setState(() {
-            
-          });
+          setState(() {});
         },
         child: _onload
             ? Container()
             : ListView(
                 padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
-                children: [
+                children: <Widget>[
                   _statusInfo(),
+                  ..._refunReason(widget.model.backReason ?? '',
+                      widget.model.backDateString),
+                  ..._evaluationContent(widget.model.evaluationReason ?? '',
+                      widget.model.evaluateDateString),
                   _goodsInfoWidget(),
                   _orderInfo(),
                   _extraWidget(_topGoods),
@@ -115,31 +117,68 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
     );
   }
 
-  Widget _extraInfo(String reason, String text) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(8.w)),
-      padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              reason.text.size(32.sp).bold.color(ktextPrimary).make(),
-            ],
-          ),
-          20.w.heightBox,
-          text.text.size(28.sp).color(ktextSubColor).make(),
-          20.w.heightBox,
-          '2020-05-14 14:22:11'
-              .text
-              .size(28.sp)
-              .bold
-              .color(ktextPrimary.withOpacity(0.8))
-              .make()
-        ],
-      ),
-    );
+  _refunReason(String text, String date) {
+    return widget.model.backReason == null
+        ? []
+        : [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.w)),
+              padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      '退换理由'.text.size(32.sp).bold.color(ktextPrimary).make(),
+                    ],
+                  ),
+                  20.w.heightBox,
+                  text.text.size(28.sp).color(ktextSubColor).make(),
+                  20.w.heightBox,
+                  date.text
+                      .size(24.sp)
+                      .bold
+                      .color(ktextPrimary.withOpacity(0.8))
+                      .make()
+                ],
+              ),
+            )
+          ];
+  }
+
+  _evaluationContent(String text, String date) {
+    return widget.model.evaluationReason == null
+        ? []
+        : [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.w)),
+              padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      '评价内容'.text.size(32.sp).bold.color(ktextPrimary).make(),
+                    ],
+                  ),
+                  20.w.heightBox,
+                  text.text.size(28.sp).color(ktextSubColor).make(),
+                  20.w.heightBox,
+                  date.text
+                      .size(24.sp)
+                      .bold
+                      .color(ktextPrimary.withOpacity(0.8))
+                      .make()
+                ],
+              ),
+            )
+          ];
   }
 
   IconData get _icondata {
@@ -176,10 +215,15 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
             ],
           ),
           24.w.heightBox,
-          ...[
+          ...<Widget>[
             _rowTile('订单编号', widget.model.code),
-            _rowTile('预约时间', ''),
-            _rowTile('交易时间', ''),
+            _rowTile('创建时间', widget.model.createDateString),
+            ...widget.model.sendDate == null
+                ? []
+                : [_rowTile('发货时间', widget.model.sendDateString)],
+            ...widget.model.arrivalDate == null
+                ? []
+                : [_rowTile('到货时间', widget.model.arrivalDateString)],
           ].sepWidget(
             separate: 20.w.heightBox,
           )
@@ -306,7 +350,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
         children: [
           Row(
             children: [
-              '其他（${models.length}）'
+              '其他热门（${models.length}）'
                   .text
                   .size(24.sp)
                   .color(ktextPrimary)

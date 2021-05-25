@@ -38,7 +38,10 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
       actions: [
         IconButton(
           icon: Icon(CupertinoIcons.add_circled),
-          onPressed: () => Get.to(() => PickFacilityPage()),
+          onPressed: () async{
+           await Get.to(() => PickFacilityPage());
+            childKey.currentState!.callRefresh();
+          },
         ),
       ],
       appBarBottom: BeeTabBar(
@@ -47,8 +50,11 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
       ),
       body: TabBarView(
         children: [
-          FacilityAppointmentView(type: FacilityAppointmentType.MY),
-          FacilityAppointmentView(type: FacilityAppointmentType.HISTORY),
+          FacilityAppointmentView(
+            type: FacilityAppointmentType.MY,
+            key: childKey,
+          ),
+          FacilityAppointmentView(type: FacilityAppointmentType.HISTORY,),
         ],
         controller: _tabController,
       ),

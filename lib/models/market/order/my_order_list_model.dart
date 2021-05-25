@@ -22,6 +22,17 @@ class MyOrderListModel extends Equatable {
   final String levelOneCategory;
   final String levelTwoCategory;
   final int status;
+  final String? sendDate;
+  final String? sendDetail;
+  final String? arrivalDate;
+  final String? receivingDate;
+  final String? backDate;
+  final String? backReason;
+  final String? reason;
+  final int? score;
+  final String? evaluationDate;
+  final String? evaluationReason;
+  final String? createDate;
   final String arrivalTime;
   MyOrderListModel({
     required this.id,
@@ -37,15 +48,37 @@ class MyOrderListModel extends Equatable {
     required this.levelOneCategory,
     required this.levelTwoCategory,
     required this.status,
+    this.sendDate,
+    this.sendDetail,
+    this.arrivalDate,
+    this.receivingDate,
+    this.backDate,
+    this.backReason,
+    this.reason,
+    this.score,
+    this.evaluationDate,
+    this.evaluationReason,
+    this.createDate,
     required this.arrivalTime,
   });
 
   factory MyOrderListModel.fromJson(Map<String, dynamic> json) =>
       _$MyOrderListModelFromJson(json);
 
-  String get arrivlaTimeString =>
-      DateUtil.formatDateStr(this.arrivalTime, format: 'yyyy-MM-dd HH:mm');
-
+  String get sendDateString =>
+      DateUtil.formatDateStr(this.sendDate ?? '', format: 'yyyy-MM-dd HH:mm');
+  String get arrivalDateString => DateUtil.formatDateStr(this.arrivalDate ?? '',
+      format: 'yyyy-MM-dd HH:mm');
+  String get receiveDateString =>
+      DateUtil.formatDateStr(this.receivingDate ?? '',
+          format: 'yyyy-MM-dd HH:mm');
+  String get backDateString =>
+      DateUtil.formatDateStr(this.backDate ?? '', format: 'yyyy-MM-dd HH:mm');
+  String get evaluateDateString =>
+      DateUtil.formatDateStr(this.evaluationDate ?? '',
+          format: 'yyyy-MM-dd HH:mm');
+  String get createDateString =>
+      DateUtil.formatDateStr(this.createDate ?? '', format: 'yyyy-MM-dd HH:mm');
   String get statusString {
     switch (this.status) {
       case 1:
@@ -110,6 +143,17 @@ class MyOrderListModel extends Equatable {
       levelOneCategory,
       levelTwoCategory,
       status,
+      sendDate,
+      sendDetail,
+      arrivalDate,
+      receivingDate,
+      backDate,
+      backReason,
+      reason,
+      score,
+      evaluationDate,
+      evaluationReason,
+      createDate,
       arrivalTime,
     ];
   }
