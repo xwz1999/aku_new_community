@@ -31,8 +31,8 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
         children: [],
       );
 
-  Widget docView(String? title, String? path) {
-    if (title?.isEmpty ?? true) return SizedBox();
+  Widget docView(String title, String? path) {
+    // if (title?.isEmpty ?? true) return SizedBox();
     return Container(
       margin: EdgeInsets.only(right: 113.w),
       alignment: Alignment.centerLeft,
@@ -119,7 +119,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                   44.hb,
                   model!.content!.text.size(28.sp).make(),
                   43.hb,
-                  docView(model!.fileDocName, model!.fileDocUrl),
+                  docView(model?.fileDocName ?? '', model!.fileDocUrl),
                 ],
               ),
       ).material(color: Colors.white),
