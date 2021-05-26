@@ -80,7 +80,7 @@ List<AO> appObjects = [
   AO('投诉表扬', R.ASSETS_APPLICATIONS_COMPLAINT_PNG,
       () => AdvicePage(type: AdviceType.COMPLAIN)),
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, () => QuestionnairePage()),
-  AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG, RenovationManagePage()),
+  AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG,()=> RenovationManagePage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),

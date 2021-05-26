@@ -10,29 +10,38 @@ class RenovationManagePage extends StatefulWidget {
   _RenovationManagePageState createState() => _RenovationManagePageState();
 }
 
-class _RenovationManagePageState extends State<RenovationManagePage> with TickerProviderStateMixin {
-  List<String> _tabs = [
-  '待处理',
-  '处理中',
-  '已完成',
-  '全部'
-  ];
+class _RenovationManagePageState extends State<RenovationManagePage>
+    with TickerProviderStateMixin {
+  List<String> _tabs = ['待处理', '处理中', '已完成', '全部'];
   late TabController _tabController;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
   }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  BeeScaffold(
+    return BeeScaffold(
       title: '装修管理',
-      appBarBottom: BeeTabBar(controller: _tabController, tabs: _tabs,scrollable: true,),
+      appBarBottom: BeeTabBar(
+        controller: _tabController,
+        tabs: _tabs,
+        scrollable: true,
+      ),
       body: TabBarView(
         controller: _tabController,
         children: List.generate(
           _tabs.length,
-          (index) => RenovationManageView(index: index,),
+          (index) => RenovationManageView(
+            index: index,
+          ),
         ),
       ),
     );

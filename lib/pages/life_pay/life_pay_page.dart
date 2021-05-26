@@ -1,3 +1,4 @@
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,8 @@ class _LifePayPageState extends State<LifePayPage> {
   double _totalCost = 0;
   int _count = 0;
 
-  bool get allSelect => ((_models.length == _selectYears.length)&&(_models.length!=0));
+  bool get allSelect =>
+      ((_models.length == _selectYears.length) && (_models.length != 0));
   @override
   void initState() {
     super.initState();
@@ -313,12 +315,8 @@ class _LifePayPageState extends State<LifePayPage> {
                 decoration: BoxDecoration(
                     border: Border.all(
                         width: 1.w,
-                        color: allSelect
-                            ? kPrimaryColor
-                            : kDarkSubColor),
-                    color:allSelect
-                        ? kPrimaryColor
-                        : Colors.transparent,
+                        color: allSelect ? kPrimaryColor : kDarkSubColor),
+                    color: allSelect ? kPrimaryColor : Colors.transparent,
                     borderRadius: BorderRadius.circular(20.w)),
                 curve: Curves.easeInOutCubic,
                 width: 40.w,
@@ -356,15 +354,17 @@ class _LifePayPageState extends State<LifePayPage> {
               ],
             ),
             24.w.widthBox,
-            // MaterialButton(
-            //   elevation: 0,
-            //   shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(37.w)),
-            //   color: kPrimaryColor,
-            //   padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
-            //   onPressed: () {},
-            //   child: '去缴费'.text.black.size(32.sp).bold.make(),
-            // ),
+            MaterialButton(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(37.w)),
+              color: kPrimaryColor,
+              padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
+              onPressed: () {
+                Get.off(() => PayFinishPage());
+              },
+              child: '去缴费'.text.black.size(32.sp).bold.make(),
+            ),
           ],
         ),
       ),
