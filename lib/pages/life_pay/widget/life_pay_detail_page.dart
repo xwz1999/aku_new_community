@@ -25,6 +25,7 @@ class LifePayDetailPage extends StatefulWidget {
 
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
   List<String> _selectItems = [];
+  List<int> _ids = [];
   double _payTotal = 0;
   int _payNum = 0;
   int get listLength {
@@ -53,6 +54,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                 .toString();
         if (!_selectItems.contains(id)) {
           _selectItems.add(id);
+          _ids.addAll(_findIds(widget.model!.dailyPaymentTypeVos![i]
+                  .detailedVoList![j].detailsVoList ??
+              []));
           _payNum += 1;
           _payTotal += widget
               .model!.dailyPaymentTypeVos![i].detailedVoList![j].paymentPrice!
@@ -62,7 +66,16 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
     }
   }
 
-  Widget _buildTile(int? groupId, int? id, int? years, double? price) {
+  List<int> _findIds(List<DetailsVoList> list) {
+    List<int> _list = [];
+    list.forEach((element) {
+      _list.add(element.id!);
+    });
+    return _list;
+  }
+
+  Widget _buildTile(
+      int? groupId, int? id, int? years, double? price, List<int> list) {
     return GestureDetector(
       onTap: () {
         String item = id.toString() + groupId.toString();
@@ -70,8 +83,12 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           _selectItems.remove(item);
           _payNum -= 1;
           _payTotal -= price!.toDouble();
+          list.forEach((element) {
+            _ids.remove(element);
+          });
         } else {
           _selectItems.add(item);
+          _ids.addAll(list);
           _payNum += 1;
           _payTotal += price!.toDouble();
         }
@@ -119,9 +136,10 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           ),
           50.w.heightBox,
           ...model.detailedVoList!
-              .map((e) => _buildTile(
-                  e.groupId, model.id, widget.model!.years, e.paymentPrice))
-              .toList().sepWidget(separate: 24.w.heightBox),
+              .map((e) => _buildTile(e.groupId, model.id, widget.model!.years,
+                  e.paymentPrice, _findIds(e.detailsVoList ?? [])))
+              .toList()
+              .sepWidget(separate: 24.w.heightBox),
         ],
       ),
     );
@@ -149,6 +167,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               onTap: () {
                 if (isAllSelect) {
                   _selectItems.clear();
+                  _ids.clear();
                   _payNum = 0;
                   _payTotal = 0;
                 } else {
@@ -167,6 +186,12 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                                   .toString();
                       if (!_selectItems.contains(id)) {
                         _selectItems.add(id);
+                        _ids.addAll(_findIds(widget
+                                .model!
+                                .dailyPaymentTypeVos![i]
+                                .detailedVoList![j]
+                                .detailsVoList ??
+                            []));
                         _payNum += 1;
                         _payTotal += widget.model!.dailyPaymentTypeVos![i]
                             .detailedVoList![j].paymentPrice!
@@ -228,7 +253,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               color: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
               onPressed: () {
-                Get.back(result: [_payNum, _payTotal]);
+                Get.back(result: [_payNum, _payTotal,_ids]);
               },
               child: '选好了'.text.black.size(32.sp).bold.make(),
             ),
