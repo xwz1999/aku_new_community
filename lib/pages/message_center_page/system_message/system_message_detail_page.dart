@@ -26,7 +26,7 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BeeScaffold.white(
+    return BeeScaffold(
       title: '查看详情',
       body: EasyRefresh(
         firstRefresh: true,
@@ -37,10 +37,13 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
           setState(() {});
         },
         child: _onload
-            ? _empty()
-            : Center(
-                child: Padding(
+            ? _empty():Container(
+              margin: EdgeInsets.all(32.w),
                   padding: EdgeInsets.all(32.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -53,7 +56,6 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
                     ],
                   ),
                 ),
-              ),
       ),
     );
   }
