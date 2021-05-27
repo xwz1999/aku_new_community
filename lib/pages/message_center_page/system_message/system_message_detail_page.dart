@@ -34,6 +34,7 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
         onRefresh: () async {
           _model = await MessageFunc.getSystemMessageDetial(widget.id);
           _onload = false;
+          setState(() {});
         },
         child: _onload
             ? _empty()

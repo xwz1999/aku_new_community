@@ -63,6 +63,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
   Widget buildCard(CommentMessageModel model) {
     return Container(
       width: double.infinity,
+      constraints: BoxConstraints(maxWidth: 750.w),
       padding: EdgeInsets.fromLTRB(32.w, 32.w, 32.w, 16.w),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +85,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              model.createName!.text.black.size(36.sp).make(),
+              model.createName!.text.black.size(36.sp).ellipsis.make(),
               10.w.heightBox,
               _messageContent(model),
               16.w.heightBox,
@@ -94,8 +95,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
                   .size(28.sp)
                   .make(),
             ],
-          ),
-          Spacer(),
+          ).expand(),
           Container(
             width: 160.w,
             height: 160.w,

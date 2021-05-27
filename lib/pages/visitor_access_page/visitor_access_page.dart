@@ -256,7 +256,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
           tel: tel,
         );
         if (result != null)
-          Share.share('${API.host}/static/dist/index.html#/visitor?$result');
+          Share.share('${API.host}/static/dist/index.html#/visitor?code=$result');
       },
       minWidth: double.infinity,
       height: 96.w,

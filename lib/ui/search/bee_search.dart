@@ -1,3 +1,5 @@
+import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -93,9 +95,12 @@ class _BeeSearchState extends State<BeeSearch> {
     );
   }
 
+  ///社区活动卡片
   Widget _activityCardButton(ActivityItemModel model) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Get.to(() => ActivityDetailPage(id: model.id));
+      },
       shape: StadiumBorder(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,9 +144,14 @@ class _BeeSearchState extends State<BeeSearch> {
     );
   }
 
+  ///话题卡片
   Widget _communityCardButton(CommunityTopicModel model) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Get.to(() => TopicDetailPage(
+              model: model,
+            ));
+      },
       shape: StadiumBorder(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
