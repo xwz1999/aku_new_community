@@ -1,6 +1,8 @@
+import 'package:aku_community/base/base_style.dart';
 import 'package:flustars/flustars.dart';
 
 import 'package:aku_community/model/common/img_model.dart';
+import 'package:flutter/material.dart';
 
 class ActivityItemModel {
   int? id;
@@ -65,5 +67,35 @@ class ActivityItemModel {
       data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  String get statusString {
+    switch (this.status) {
+      case 1:
+        return '未开始';
+      case 2:
+        return '进行中';
+      case 3:
+        return '已结束';
+      case 4:
+        return '已投票';
+      default:
+        return '未知';
+    }
+  }
+
+  Color get statusColor {
+    switch (this.status) {
+      case 1:
+        return kPrimaryColor;
+      case 2:
+        return Colors.black;
+      case 3:
+        return ktextSubColor;
+      case 4:
+        return ktextSubColor;
+      default:
+        return Colors.red;
+    }
   }
 }

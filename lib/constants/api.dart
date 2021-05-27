@@ -20,6 +20,7 @@ class API {
   static _Message message = _Message();
   static _Market market = _Market();
   static _News news = _News();
+  static _Search search = _Search();
 }
 
 class _Login {
@@ -95,6 +96,11 @@ class _News {
 
   ///app公共资讯：根据资讯分类主键id查询资讯信息
   String get list => '/user/news/newsList';
+}
+
+class _Search {
+  ///首页 全局搜索
+  String get homeSearch => "/user/search/search";
 }
 
 class _Manager {
