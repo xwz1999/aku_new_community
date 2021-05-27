@@ -1,14 +1,10 @@
 // Dart imports:
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/news/news_category_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,8 +12,10 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/board_model.dart';
+import 'package:aku_community/models/news/news_category_model.dart';
 import 'package:aku_community/pages/home/widget/animate_app_bar.dart';
 import 'package:aku_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
@@ -29,6 +27,8 @@ import 'package:aku_community/ui/home/home_title.dart';
 import 'package:aku_community/ui/home/public_infomation/public_infomation_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/buttons/column_action_button.dart';
 import 'package:aku_community/widget/views/application_box.dart';
 import 'package:aku_community/widget/views/application_view.dart';

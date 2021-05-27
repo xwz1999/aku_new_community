@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/ui/market/order/my_order_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class MyOrderView extends StatefulWidget {
   final int index;
@@ -34,9 +36,7 @@ class _MyOrderViewState extends State<MyOrderView> {
     return BeeListView(
         path: API.market.myOrderList,
         controller: _refreshController,
-        extraParams: {
-          "orderStart":widget.index
-        },
+        extraParams: {"orderStart": widget.index},
         convert: (models) {
           return models.tableList!
               .map((e) => MyOrderListModel.fromJson(e))
@@ -44,7 +44,7 @@ class _MyOrderViewState extends State<MyOrderView> {
         },
         builder: (items) {
           return ListView.separated(
-            padding: EdgeInsets.symmetric(vertical: 24.w,horizontal: 32.w),
+              padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
               itemBuilder: (context, index) {
                 return MyOrderCard(
                   model: items[index],

@@ -1,5 +1,3 @@
-
-
 class LinkTextParase {
   static List<String> stringParase(String text, {Pattern? pattern}) {
     List<String> _listString = [];

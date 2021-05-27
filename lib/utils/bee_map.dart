@@ -37,11 +37,7 @@ class BeeMap {
     1: '自己搬运',
     2: '搬家公司',
   };
-  static Map<int, String> goodsOutStatus = {
-    1:'审核中',
-    2:'审核通过',
-    3:'审核失败'
-  };
+  static Map<int, String> goodsOutStatus = {1: '审核中', 2: '审核通过', 3: '审核失败'};
 
   static Map<int, String> borrowStatus = {1: '出借中', 2: '已归还'};
 

@@ -1,7 +1,8 @@
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_back_button.dart';
 
 class PayFinishPage extends StatelessWidget {
   const PayFinishPage({Key? key}) : super(key: key);
@@ -36,7 +37,11 @@ class PayFinishPage extends StatelessWidget {
                     end: Alignment.bottomCenter),
               ),
               alignment: Alignment.center,
-              child: Icon(CupertinoIcons.checkmark_alt,size:150.w ,color: Colors.white,),
+              child: Icon(
+                CupertinoIcons.checkmark_alt,
+                size: 150.w,
+                color: Colors.white,
+              ),
             ),
             70.w.heightBox,
             '支付成功'.text.size(48.sp).color(Colors.white).bold.make(),

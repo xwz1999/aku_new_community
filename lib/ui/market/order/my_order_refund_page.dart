@@ -1,4 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
@@ -8,15 +14,10 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/aku_single_check_button.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_text_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/const/resource.dart';
 
 class MyOrderRefundPage extends StatefulWidget {
   final MyOrderListModel model;
-  MyOrderRefundPage({Key? key, required this.model})
-      : super(key: key);
+  MyOrderRefundPage({Key? key, required this.model}) : super(key: key);
 
   @override
   _MyOrderRefundPageState createState() => _MyOrderRefundPageState();
@@ -51,7 +52,8 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            await MyOrderFunc.refundOrder(widget.model.id, _editingController.text);
+            await MyOrderFunc.refundOrder(
+                widget.model.id, _editingController.text);
           },
           child: '确认提交'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
@@ -69,11 +71,7 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
         children: [
           Row(
             children: [
-              '商品信息'.text
-                  .size(32.sp)
-                  .bold
-                  .color(ktextPrimary)
-                  .make(),
+              '商品信息'.text.size(32.sp).bold.color(ktextPrimary).make(),
               Spacer(),
               // widget.model.statusString.text
               //     .size(30.sp)

@@ -1,7 +1,9 @@
-import 'package:aku_community/base/base_style.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_community/base/base_style.dart';
 
 class CardBottomButton extends StatelessWidget {
   final String text;
@@ -17,16 +19,16 @@ class CardBottomButton extends StatelessWidget {
       this.hasBorder = false,
       required this.onPressed})
       : super(key: key);
-  CardBottomButton.white(
-    {Key? key, 
+  CardBottomButton.white({
+    Key? key,
     required this.text,
     required this.onPressed,
   })   : this.bgColor = Colors.white,
         this.textColor = ktextPrimary,
         this.hasBorder = true,
         super(key: key);
-  CardBottomButton.yellow(
-    {Key? key, 
+  CardBottomButton.yellow({
+    Key? key,
     required this.text,
     required this.onPressed,
   })   : this.bgColor = Color(0xFFFFC40C),

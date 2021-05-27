@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'service_browse_list_mode.g.dart';
 
 @JsonSerializable()

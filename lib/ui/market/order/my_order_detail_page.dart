@@ -1,5 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_item.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
@@ -7,14 +17,6 @@ import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/order/my_order_func.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class MyOrderDetailPage extends StatefulWidget {
   final MyOrderListModel model;

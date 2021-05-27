@@ -4,14 +4,14 @@ class RenovationMap {
   static String getTagName(int operationStatus, int status, {int? tracker}) {
     switch (operationStatus) {
       case 0:
-          return '待指派';
-        
+        return '待指派';
+
       case 1:
-          return '待执行';
-        
+        return '待执行';
+
       case 2:
-          return '已完成';
-        
+        return '已完成';
+
       default:
         return '已完成';
     }
@@ -33,7 +33,7 @@ class RenovationMap {
     -1: '申请中',
     -2: '申请未通过',
     -3: '申请通过',
-    0:'待处理',
+    0: '待处理',
     1: '已付押金',
     2: '装修中',
     3: '完工检查申请中',

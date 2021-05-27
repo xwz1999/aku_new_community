@@ -19,8 +19,7 @@ import 'package:aku_community/widget/buttons/radio_button.dart';
 class BorrowGoodsDetailPage extends StatefulWidget {
   final int articleId;
   final List<int>? receiveIds;
-  BorrowGoodsDetailPage(
-      {Key? key, required this.articleId,  this.receiveIds})
+  BorrowGoodsDetailPage({Key? key, required this.articleId, this.receiveIds})
       : super(key: key);
 
   @override
@@ -66,9 +65,8 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
         child: _onload
             ? _empty()
             : ListView(
-              padding: EdgeInsets.symmetric(vertical: 12.w),
-                children: [..._models.map((e) => _goodsCard(e)).toList()]
-              ),
+                padding: EdgeInsets.symmetric(vertical: 12.w),
+                children: [..._models.map((e) => _goodsCard(e)).toList()]),
       ),
       bottomNavi: _onload ? _empty() : _bottomButton(),
     );

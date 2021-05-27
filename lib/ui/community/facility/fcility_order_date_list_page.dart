@@ -1,13 +1,15 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/facility/facility_order_date_list_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FacilityOrderDateListPage extends StatefulWidget {
   final int facilitiesId;
@@ -51,7 +53,7 @@ class _FacilityOrderDateListPageState extends State<FacilityOrderDateListPage> {
             },
             builder: (items) {
               return ListView.separated(
-                padding: EdgeInsets.all(32.w),
+                  padding: EdgeInsets.all(32.w),
                   itemBuilder: (context, index) {
                     return _buildCard(items[index]);
                   },

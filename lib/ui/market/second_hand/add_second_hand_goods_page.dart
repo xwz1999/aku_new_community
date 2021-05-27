@@ -1,12 +1,14 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AddSecondGoodsPage extends StatefulWidget {
   AddSecondGoodsPage({Key? key}) : super(key: key);

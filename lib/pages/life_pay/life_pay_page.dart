@@ -1,6 +1,3 @@
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +10,15 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/life_pay_model.dart';
 import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
@@ -396,11 +396,11 @@ class _LifePayPageState extends State<LifePayPage> {
               color: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
               onPressed: () async {
-                BaseModel baseModel = await NetUtil()
-                    .post('/user/dailyPayment/pay', params: {
+                BaseModel baseModel =
+                    await NetUtil().post('/user/dailyPayment/pay', params: {
                   "ids": _ids,
-                  "payType":1,  //暂时写死 等待后续补充
-                  "payPrice":_totalCost
+                  "payType": 1, //暂时写死 等待后续补充
+                  "payPrice": _totalCost
                 });
                 if (baseModel.status ?? false) {
                   Get.off(() => PayFinishPage());

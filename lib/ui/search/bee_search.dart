@@ -1,21 +1,21 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/activity_item_model.dart';
-import 'package:aku_community/model/community/community_topic_model.dart';
-import 'package:aku_community/models/search/search_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/activity_item_model.dart';
+import 'package:aku_community/model/community/community_topic_model.dart';
+import 'package:aku_community/models/search/search_model.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class BeeSearch extends StatefulWidget {
   BeeSearch({Key? key}) : super(key: key);
@@ -154,7 +154,7 @@ class _BeeSearchState extends State<BeeSearch> {
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(ImgModel.first(model.imgUrl)),
-                 fit: BoxFit.cover,
+                  fit: BoxFit.cover,
                 )),
           ),
           12.w.widthBox,
@@ -167,7 +167,8 @@ class _BeeSearchState extends State<BeeSearch> {
                     .size(28.sp)
                     .color(ktextPrimary)
                     .maxLines(2)
-                    .bold.overflow(TextOverflow.ellipsis)
+                    .bold
+                    .overflow(TextOverflow.ellipsis)
                     .isIntrinsic
                     .make()
                     .expand(),
@@ -189,11 +190,7 @@ class _BeeSearchState extends State<BeeSearch> {
                         width: 24.w,
                       ),
                       12.wb,
-                      '${model.activityNum}'
-                          .text
-                          .maxLines(1)
-                          .size(22.sp)
-                          .make()
+                      '${model.activityNum}'.text.maxLines(1).size(22.sp).make()
                     ],
                   ),
                 )
@@ -279,7 +276,7 @@ class _BeeSearchState extends State<BeeSearch> {
                 child: GridView.count(
                   crossAxisCount: 1,
                   shrinkWrap: true,
-                  childAspectRatio: 4/1,
+                  childAspectRatio: 4 / 1,
                   mainAxisSpacing: 20.w,
                   physics: NeverScrollableScrollPhysics(),
                   children: _getNullSafeObjects(_searchModel.activityVoList)
@@ -293,9 +290,8 @@ class _BeeSearchState extends State<BeeSearch> {
               child: GridView.count(
                 crossAxisCount: 1,
                 shrinkWrap: true,
-                childAspectRatio: 4/1,
-
-              mainAxisSpacing: 20.w,
+                childAspectRatio: 4 / 1,
+                mainAxisSpacing: 20.w,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   ..._getNullSafeObjects(_searchModel.gambitVoList)

@@ -253,7 +253,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               color: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
               onPressed: () {
-                Get.back(result: [_payNum, _payTotal,_ids]);
+                Get.back(result: [_payNum, _payTotal, _ids]);
               },
               child: '选好了'.text.black.size(32.sp).bold.make(),
             ),

@@ -1,11 +1,13 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_card.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_list_model.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/electronic_commerc/electronic_commerc_list_model.dart';
+import 'package:aku_community/pages/electronic_commerc/electronic_commerc_card.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 
 class ElectronicCommercView extends StatefulWidget {
   final int id;
@@ -40,9 +42,7 @@ class _ElectronicCommercViewState extends State<ElectronicCommercView> {
     return BeeListView(
         path: API.manager.electronicCommercList,
         controller: _refreshController,
-        extraParams: {
-          "electronicCommerceCategoryId":widget.id
-        },
+        extraParams: {"electronicCommerceCategoryId": widget.id},
         convert: (models) {
           return models.tableList!
               .map((e) => ElectronicCommercListModel.fromJson(e))
@@ -50,7 +50,7 @@ class _ElectronicCommercViewState extends State<ElectronicCommercView> {
         },
         builder: (items) {
           return ListView.separated(
-            padding: EdgeInsets.symmetric(vertical: 24.w),
+              padding: EdgeInsets.symmetric(vertical: 24.w),
               itemBuilder: (context, index) {
                 return ElectronicCommercCard(
                   model: items[index],

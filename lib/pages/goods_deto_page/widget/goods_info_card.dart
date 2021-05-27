@@ -37,10 +37,8 @@ class GoodsInfoCard extends StatelessWidget {
   Color _getColor(int? state) {
     switch (state) {
       case 1:
-
         return kDarkPrimaryColor;
       case 2:
-
         return ktextSubColor;
       default:
         return kDangerColor;

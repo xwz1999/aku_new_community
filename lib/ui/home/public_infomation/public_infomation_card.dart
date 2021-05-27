@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
+
+import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/news/news_item_model.dart';
 import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:get/get.dart';
 
 class PublicInfomationCard extends StatelessWidget {
   final NewsItemModel model;
@@ -20,7 +21,7 @@ class PublicInfomationCard extends StatelessWidget {
       elevation: 0,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: () {
-        Get.to(() => PublicInformationDetailPage(id:this.model.id));
+        Get.to(() => PublicInformationDetailPage(id: this.model.id));
       },
       padding: EdgeInsets.zero,
       child: Container(

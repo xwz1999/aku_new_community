@@ -28,10 +28,9 @@ class ExpressPackageListModel extends Equatable {
   });
   factory ExpressPackageListModel.fromJson(Map<String, dynamic> json) =>
       _$ExpressPackageListModelFromJson(json);
-  String get createDateString => DateUtil.formatDateStr(this.createDate,
-      format: 'yyyy-MM-dd HH:mm');
+  String get createDateString =>
+      DateUtil.formatDateStr(this.createDate, format: 'yyyy-MM-dd HH:mm');
 
   @override
   List<Object?> get props => throw UnimplementedError();
- 
 }

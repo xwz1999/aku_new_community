@@ -1,13 +1,15 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/pages/renovation_manage/renovation_map.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aku_community/const/resource.dart';
 
 class RenovationManageDetailPage extends StatefulWidget {
   RenovationManageDetailPage({Key? key}) : super(key: key);
@@ -25,7 +27,11 @@ class _RenovationManageDetailPageState
       title: '装修详情',
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 24.w),
-        children: [_buildInfo(), _buildFinishWorkCheck(),_buildCycleCheck(),],
+        children: [
+          _buildInfo(),
+          _buildFinishWorkCheck(),
+          _buildCycleCheck(),
+        ],
       ),
     );
   }
@@ -213,11 +219,10 @@ class _RenovationManageDetailPageState
     );
   }
 
-
   _buildFinishWorkCheck() {
     return _akuTitleBox(
-       '完工检查',
-       SizedBox(),
+      '完工检查',
+      SizedBox(),
       24,
       [
         _buildRow(
@@ -246,7 +251,7 @@ class _RenovationManageDetailPageState
           child: Text(
             '检查内容',
             style: TextStyle(
-              color:ktextPrimary,
+              color: ktextPrimary,
               fontSize: 28.w,
             ),
           ),
@@ -263,8 +268,8 @@ class _RenovationManageDetailPageState
     return _akuTitleBox(
       '周期检查',
       SizedBox(),
-       24,
-       [
+      24,
+      [
         _buildRow(
           title: '开始装修时间',
           subTitle: DateUtil.formatDateStr(
@@ -272,12 +277,7 @@ class _RenovationManageDetailPageState
             format: 'yyyy-MM-dd',
           ),
         ),
-        _buildRow(
-          title: '接受人',
-          subTitle: '黄鑫',
-          onTap: () {
-                }
-        ),
+        _buildRow(title: '接受人', subTitle: '黄鑫', onTap: () {}),
         _buildRow(title: '所属项目', subTitle: '装修管理'),
         _buildRow(
           title: '开始日期',
@@ -285,143 +285,142 @@ class _RenovationManageDetailPageState
             '2020-10-23 10:24:56',
             format: 'yyyy-MM-dd',
           ),
-          onTap:() {
-                  // showBottomSheet(
-                  //   child: Column(
-                  //     mainAxisSize: MainAxisSize.min,
-                  //     children: [
-                  //       Row(
-                  //         children: [
-                  //           AkuBox.h(96),
-                  //           AkuBackButton.text(),
-                  //           Spacer(),
-                  //           Text(
-                  //             '开始日期',
-                  //             style: TextStyle(
-                  //               color: AppStyle.primaryTextColor,
-                  //               fontSize: 32.sp,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Spacer(),
-                  //           AkuMaterialButton(
-                  //             minWidth: (64 + 56).w,
-                  //             onPressed: () {
-                  //               Get.back();
-                  //             },
-                  //             child: Text(
-                  //               '确定',
-                  //               style: TextStyle(
-                  //                 color: AppStyle.secondaryColor,
-                  //                 fontSize: 28.sp,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       Container(
-                  //         height: 500.w,
-                  //         child: CupertinoDatePicker(
-                  //           onDateTimeChanged: (dateTime) {
-                  //             widget.model.cycleCheck.startDate = dateTime;
-                  //           },
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ).then((value) {
-                  //   setState(() {});
-                  // });
-                },
+          onTap: () {
+            // showBottomSheet(
+            //   child: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       Row(
+            //         children: [
+            //           AkuBox.h(96),
+            //           AkuBackButton.text(),
+            //           Spacer(),
+            //           Text(
+            //             '开始日期',
+            //             style: TextStyle(
+            //               color: AppStyle.primaryTextColor,
+            //               fontSize: 32.sp,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //           Spacer(),
+            //           AkuMaterialButton(
+            //             minWidth: (64 + 56).w,
+            //             onPressed: () {
+            //               Get.back();
+            //             },
+            //             child: Text(
+            //               '确定',
+            //               style: TextStyle(
+            //                 color: AppStyle.secondaryColor,
+            //                 fontSize: 28.sp,
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Container(
+            //         height: 500.w,
+            //         child: CupertinoDatePicker(
+            //           onDateTimeChanged: (dateTime) {
+            //             widget.model.cycleCheck.startDate = dateTime;
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ).then((value) {
+            //   setState(() {});
+            // });
+          },
         ),
         _buildRow(
-          title: '检查周期',
-          subTitle:'2020-10-23 10:24:56',
-          onTap: () {
-                  // showAkuSheet(
-                  //   child: Column(
-                  //     mainAxisSize: MainAxisSize.min,
-                  //     children: [
-                  //       Row(
-                  //         children: [
-                  //           AkuBox.h(96),
-                  //           AkuBackButton.text(),
-                  //           Spacer(),
-                  //           Text(
-                  //             '检查周期',
-                  //             style: TextStyle(
-                  //               color: AppStyle.primaryTextColor,
-                  //               fontSize: 32.sp,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           Spacer(),
-                  //           AkuMaterialButton(
-                  //             minWidth: (64 + 56).w,
-                  //             onPressed: () {
-                  //               Get.back();
-                  //             },
-                  //             child: Text(
-                  //               '确定',
-                  //               style: TextStyle(
-                  //                 color: AppStyle.secondaryColor,
-                  //                 fontSize: 28.sp,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       Container(
-                  //         height: 500.w,
-                  //         child: CupertinoPicker(
-                  //           children: [
-                  //             Center(
-                  //               child: Text('1天'),
-                  //             ),
-                  //             Center(
-                  //               child: Text('3天'),
-                  //             ),
-                  //             Center(
-                  //               child: Text('7天'),
-                  //             ),
-                  //             Center(
-                  //               child: Text('14天'),
-                  //             ),
-                  //             Center(
-                  //               child: Text('30天'),
-                  //             ),
-                  //           ],
-                  //           itemExtent: 88.w,
-                  //           onSelectedItemChanged: (int value) {
-                  //             int realValue = 0;
-                  //             switch (value) {
-                  //               case 0:
-                  //                 realValue = 1;
-                  //                 break;
-                  //               case 1:
-                  //                 realValue = 3;
-                  //                 break;
-                  //               case 2:
-                  //                 realValue = 7;
-                  //                 break;
-                  //               case 3:
-                  //                 realValue = 14;
-                  //                 break;
-                  //               case 4:
-                  //                 realValue = 30;
-                  //                 break;
-                  //             }
-                  //             widget.model.cycleCheck.checkCycle = realValue;
-                  //           },
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ).then((value) {
-                  //   setState(() {});
-                  // });
-                }
-        ),
+            title: '检查周期',
+            subTitle: '2020-10-23 10:24:56',
+            onTap: () {
+              // showAkuSheet(
+              //   child: Column(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       Row(
+              //         children: [
+              //           AkuBox.h(96),
+              //           AkuBackButton.text(),
+              //           Spacer(),
+              //           Text(
+              //             '检查周期',
+              //             style: TextStyle(
+              //               color: AppStyle.primaryTextColor,
+              //               fontSize: 32.sp,
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //           Spacer(),
+              //           AkuMaterialButton(
+              //             minWidth: (64 + 56).w,
+              //             onPressed: () {
+              //               Get.back();
+              //             },
+              //             child: Text(
+              //               '确定',
+              //               style: TextStyle(
+              //                 color: AppStyle.secondaryColor,
+              //                 fontSize: 28.sp,
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //       Container(
+              //         height: 500.w,
+              //         child: CupertinoPicker(
+              //           children: [
+              //             Center(
+              //               child: Text('1天'),
+              //             ),
+              //             Center(
+              //               child: Text('3天'),
+              //             ),
+              //             Center(
+              //               child: Text('7天'),
+              //             ),
+              //             Center(
+              //               child: Text('14天'),
+              //             ),
+              //             Center(
+              //               child: Text('30天'),
+              //             ),
+              //           ],
+              //           itemExtent: 88.w,
+              //           onSelectedItemChanged: (int value) {
+              //             int realValue = 0;
+              //             switch (value) {
+              //               case 0:
+              //                 realValue = 1;
+              //                 break;
+              //               case 1:
+              //                 realValue = 3;
+              //                 break;
+              //               case 2:
+              //                 realValue = 7;
+              //                 break;
+              //               case 3:
+              //                 realValue = 14;
+              //                 break;
+              //               case 4:
+              //                 realValue = 30;
+              //                 break;
+              //             }
+              //             widget.model.cycleCheck.checkCycle = realValue;
+              //           },
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ).then((value) {
+              //   setState(() {});
+              // });
+            }),
         Padding(
           padding: EdgeInsets.symmetric(
             vertical: 28.w,
@@ -450,8 +449,6 @@ class _RenovationManageDetailPageState
       ],
     );
   }
-
-  
 
   _buildRow({
     String? title,

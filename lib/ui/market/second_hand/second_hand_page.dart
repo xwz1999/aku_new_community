@@ -1,12 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import 'package:aku_community/models/market/goods_item.dart';
 import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/second_hand/add_second_hand_goods_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondHandPage extends StatefulWidget {
   SecondHandPage({Key? key}) : super(key: key);

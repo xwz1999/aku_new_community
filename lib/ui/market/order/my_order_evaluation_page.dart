@@ -1,4 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
@@ -7,11 +14,6 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_text_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/const/resource.dart';
 
 class MyOrderEvaluationPage extends StatefulWidget {
   final MyOrderListModel model;
@@ -69,11 +71,7 @@ class _MyOrderEvaluationPageState extends State<MyOrderEvaluationPage> {
         children: [
           Row(
             children: [
-              '商品信息'.text
-                  .size(32.sp)
-                  .bold
-                  .color(ktextPrimary)
-                  .make(),
+              '商品信息'.text.size(32.sp).bold.color(ktextPrimary).make(),
               Spacer(),
               // widget.model.statusString.text
               //     .size(30.sp)

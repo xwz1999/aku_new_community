@@ -1,25 +1,29 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/electronic_commerc/electronic_commerc_detail_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_detail_model.dart';
-import 'package:velocity_x/velocity_x.dart';
+
 class ElectronicCommercDetailPage extends StatefulWidget {
   final int id;
   ElectronicCommercDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
-  _ElectronicCommercDetailPageState createState() => _ElectronicCommercDetailPageState();
+  _ElectronicCommercDetailPageState createState() =>
+      _ElectronicCommercDetailPageState();
 }
 
-class _ElectronicCommercDetailPageState extends State<ElectronicCommercDetailPage> {
-
+class _ElectronicCommercDetailPageState
+    extends State<ElectronicCommercDetailPage> {
   late EasyRefreshController _easyRefreshController;
   bool _onload = true;
   late ElectronicCommercDetailModel _detailModel;
@@ -38,18 +42,19 @@ class _ElectronicCommercDetailPageState extends State<ElectronicCommercDetailPag
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: _onload?'':_detailModel.electronicCommerceCategoryName,
+      title: _onload ? '' : _detailModel.electronicCommerceCategoryName,
       bodyColor: Colors.white,
       body: EasyRefresh(
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          BaseModel baseModel = await NetUtil()
-              .get(API.manager.electronicCommercDetail, params: {
+          BaseModel baseModel =
+              await NetUtil().get(API.manager.electronicCommercDetail, params: {
             "electronicCommerceId": widget.id,
           });
           if (baseModel.status! && baseModel.data != null) {
-            _detailModel = ElectronicCommercDetailModel.fromJson(baseModel.data);
+            _detailModel =
+                ElectronicCommercDetailModel.fromJson(baseModel.data);
           } else {
             BotToast.showText(text: '无法获取信息');
           }
@@ -102,4 +107,4 @@ class _ElectronicCommercDetailPageState extends State<ElectronicCommercDetailPag
   Widget _emptyWidget() {
     return Container();
   }
-  }
+}

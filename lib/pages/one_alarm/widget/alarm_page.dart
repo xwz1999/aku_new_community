@@ -1,5 +1,3 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_base/amap_flutter_base.dart';
@@ -12,9 +10,11 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/one_alarm/alarm_detail_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PermissionUtil {
@@ -221,18 +221,18 @@ class _AlarmPageState extends State<AlarmPage> {
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(172.w)),
-                            onPressed: () async{
-                            
+                            onPressed: () async {
                               setState(() {
                                 _makephonenum('tel:110');
                               });
 
-                              if (appProvider.selectedHouse?.status==4) {
-                                await NetUtil().post(API.manager.recordAlarmInfo,params: {
-                                "estateId":appProvider.selectedHouse?.estateId,
-                              });
+                              if (appProvider.selectedHouse?.status == 4) {
+                                await NetUtil()
+                                    .post(API.manager.recordAlarmInfo, params: {
+                                  "estateId":
+                                      appProvider.selectedHouse?.estateId,
+                                });
                               }
-                              
                             },
                             child: Icon(
                               Feather.phone_call,

@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/news/news_category_model.dart';
 import 'package:aku_community/models/news/news_item_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:flutter/material.dart';
-
 import 'package:aku_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class PublicInfomationView extends StatefulWidget {
   final NewsCategoryModel model;

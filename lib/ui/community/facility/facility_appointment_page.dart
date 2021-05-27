@@ -38,8 +38,8 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
       actions: [
         IconButton(
           icon: Icon(CupertinoIcons.add_circled),
-          onPressed: () async{
-           await Get.to(() => PickFacilityPage());
+          onPressed: () async {
+            await Get.to(() => PickFacilityPage());
             childKey.currentState!.callRefresh();
           },
         ),
@@ -54,7 +54,9 @@ class _FacilityAppointmentPageState extends State<FacilityAppointmentPage>
             type: FacilityAppointmentType.MY,
             key: childKey,
           ),
-          FacilityAppointmentView(type: FacilityAppointmentType.HISTORY,),
+          FacilityAppointmentView(
+            type: FacilityAppointmentType.HISTORY,
+          ),
         ],
         controller: _tabController,
       ),

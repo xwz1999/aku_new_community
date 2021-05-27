@@ -1,7 +1,6 @@
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -17,6 +16,7 @@ import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
 import 'package:aku_community/ui/manager/advice/advice_add_comment_page.dart';
 import 'package:aku_community/ui/manager/advice/advice_evaluate_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';

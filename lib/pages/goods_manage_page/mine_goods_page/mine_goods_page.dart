@@ -19,7 +19,7 @@ class MineGoodsPage extends StatefulWidget {
 }
 
 class _MineGoodsPageState extends State<MineGoodsPage> {
- late EasyRefreshController _controller;
+  late EasyRefreshController _controller;
 
   @override
   void initState() {

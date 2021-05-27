@@ -1,12 +1,14 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/pages/renovation_manage/renovation_manage_detail_page.dart';
-import 'package:aku_community/pages/renovation_manage/renovation_map.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/renovation_manage/renovation_manage_detail_page.dart';
+import 'package:aku_community/pages/renovation_manage/renovation_map.dart';
 
 class RenovationManageCard extends StatefulWidget {
   final int index;
@@ -21,7 +23,7 @@ class _RenovationManageCardState extends State<RenovationManageCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>RenovationManageDetailPage());
+        Get.to(() => RenovationManageDetailPage());
       },
       child: Container(
         margin: EdgeInsets.only(top: 16.w),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -74,9 +75,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             _receiveIds = List.generate(models.tableList?.length ?? 0,
                 (index) => BorrowGoodsSubmitModel.init());
             print(_submitIds);
-            setState(() {
-              
-            });
+            setState(() {});
             return models.tableList!
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/community_topic_model.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'search_model.g.dart';
 
