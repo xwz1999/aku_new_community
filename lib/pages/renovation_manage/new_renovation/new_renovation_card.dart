@@ -96,6 +96,14 @@ class _NewRenovationCardState extends State<NewRenovationCard> {
                   widget.model.actualSlot.text
                       .size(24.sp)
                       .color(ktextSubColor)
+                      .make()),
+              ..._nullableRowTile(
+                  widget.model.isQualified == null,
+                  R.ASSETS_ICONS_APPOINTMENT_CODE_PNG,
+                  '检查情况',
+                  widget.model.qualitfied.text
+                      .size(24.sp)
+                      .color(ktextSubColor)
                       .make())
             ].sepWidget(separate: 12.w.heightBox),
             ..._bottomWidgets(),
