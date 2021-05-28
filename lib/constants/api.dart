@@ -258,6 +258,16 @@ class _Manager {
   ///设施预约：查询当前设施当前时间之后的预约时段
   String get facilityOrderDateList =>
       '/user/facilitiesAppointment/findFacilitiesAppointmentDate';
+
+  ///新版装修管理：查询所有的新版装修信息
+  String get newRenovationList => '/user/userDecorationNew/list';
+
+  ///新版装修管理：添加新版装修信息（申请装修）
+  String get insertNewRenovation => '/user/userDecorationNew/insert';
+
+  ///app 新版装修：申请完工检查
+  String get applyCompleteRenovation =>
+      '/user/userDecorationNew/applicationCompletion';
 }
 
 class _Community {

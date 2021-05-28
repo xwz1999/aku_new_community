@@ -1,5 +1,6 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
+import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -13,7 +14,6 @@ import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.
 import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
 import 'package:aku_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_community/pages/renovation_manage/renovation_manage_page.dart';
 import 'package:aku_community/pages/service_browse/service_browse_page.dart';
 import 'package:aku_community/pages/setting_page/settings_page.dart';
 import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
@@ -81,7 +81,7 @@ List<AO> appObjects = [
       () => AdvicePage(type: AdviceType.COMPLAIN)),
   AO('问卷调查', R.ASSETS_APPLICATIONS_QUESTION_PNG, () => QuestionnairePage()),
   AO('装修管理', R.ASSETS_APPLICATIONS_DECORATION_PNG,
-      () => RenovationManagePage()),
+      () => NewRenovationPage()),
   AO('借还管理', R.ASSETS_APPLICATIONS_BORROW_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_APPLICATIONS_POLICE_PNG, () => AlarmPage()),
   AO('设施预约', R.ASSETS_ICONS_TOOL_FACILITY_PNG, () => FacilityAppointmentPage()),
