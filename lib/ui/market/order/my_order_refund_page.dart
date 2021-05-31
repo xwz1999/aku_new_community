@@ -1,6 +1,8 @@
+import 'package:aku_community/utils/network/base_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -52,8 +54,11 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            await MyOrderFunc.refundOrder(
+            BaseModel baseModel = await MyOrderFunc.refundOrder(
                 widget.model.id, _editingController.text);
+            if (baseModel.status ?? false) {
+              Get.back();
+            }
           },
           child: '确认提交'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
@@ -167,7 +172,7 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
           Row(
             children: [
               AkuSingleCheckButton(
-                text: '正常',
+                text: '退款',
                 value: 1,
                 gropValue: _type,
                 onPressed: () {
@@ -177,7 +182,7 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
               ),
               80.w.widthBox,
               AkuSingleCheckButton(
-                text: '异常',
+                text: '换货',
                 value: 2,
                 gropValue: _type,
                 onPressed: () {
