@@ -98,7 +98,7 @@ class _LifePayPageState extends State<LifePayPage> {
                             .bold
                             .make(),
                         10.w.heightBox,
-                        appProvider.selectedHouse!.roomName!.text.black
+                        appProvider.selectedHouse!.roomName.text.black
                             .size(32.sp)
                             .bold
                             .make()

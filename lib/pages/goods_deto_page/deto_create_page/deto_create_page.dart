@@ -408,7 +408,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          _houseAddress(appProvider.selectedHouse!.roomName!),
+          _houseAddress(appProvider.selectedHouse!.roomName),
           _getWeight(),
           _itemPicker('出户时间', datetime, () async {
             _date = await BeeDatePicker.timePicker(DateTime.now());

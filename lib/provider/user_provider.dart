@@ -30,7 +30,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox!.put('login', true);
     await updateProfile();
     await updateUserDetail();
-    await appProvider.updateHouses(await HouseFunc.houses);
+    await appProvider.updateHouses(await HouseFunc.passedHouses);
     notifyListeners();
   }
 

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,6 @@ import 'package:aku_community/model/common/real_time_weather_model.dart';
 import 'package:aku_community/model/community/hot_topic_model.dart';
 import 'package:aku_community/model/message/message_center_model.dart';
 import 'package:aku_community/model/user/car_parking_model.dart';
-import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/utils/hive_store.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -196,13 +196,13 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<HouseModel> _houses = [];
+  List<PassedHouseListModel> _houses = [];
 
   ///我的房屋列表
-  List<HouseModel> get houses => _houses;
+  List<PassedHouseListModel> get houses => _houses;
 
   ///更新房屋列表
-  updateHouses(List<HouseModel> items) {
+  updateHouses(List<PassedHouseListModel> items) {
     if (items.isEmpty) return;
     _selectedHouse = items.firstWhereOrNull(
       (element) => element.id == (_selectedHouse?.id ?? -1),
@@ -211,17 +211,17 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  HouseModel? _selectedHouse;
+  PassedHouseListModel? _selectedHouse;
 
   ///选中的房屋
-  HouseModel? get selectedHouse {
+  PassedHouseListModel? get selectedHouse {
     if (_houses.isEmpty) return null;
     if (_selectedHouse == null) _selectedHouse = _houses.first;
     return _selectedHouse;
   }
 
   ///设置当前选中的房屋
-  setCurrentHouse(HouseModel? model) {
+  setCurrentHouse(PassedHouseListModel? model) {
     _selectedHouse = model;
     notifyListeners();
   }

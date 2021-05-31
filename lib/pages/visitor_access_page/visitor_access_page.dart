@@ -316,7 +316,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                   children: [
                     _buildHouseCard(
                       S.of(context)!.tempPlotName,
-                      appProvider.selectedHouse!.roomName!,
+                      appProvider.selectedHouse!.roomName,
                     ),
                     _input(
                       '访客姓名',

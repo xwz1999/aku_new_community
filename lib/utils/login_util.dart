@@ -40,7 +40,7 @@ class LoginUtil {
       Get.to(() => AddHousePage());
       return false;
     }
-    if (appProvider.selectedHouse!.status != 4) {
+    if (appProvider.selectedHouse == null) {
       BotToast.showText(text: '房屋审核中或审核失败');
       Get.to(() => HouseOwnersPage());
       return false;

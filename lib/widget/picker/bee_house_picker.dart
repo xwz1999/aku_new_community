@@ -34,7 +34,7 @@ class BeeHousePicker extends StatelessWidget {
               children: [
                 S.of(context)!.tempPlotName.text.black.size(32.sp).bold.make(),
                 10.w.heightBox,
-                appProvider.selectedHouse!.roomName!.text.black
+                appProvider.selectedHouse!.roomName.text.black
                     .size(32.sp)
                     .bold
                     .make()

@@ -226,11 +226,11 @@ class _AlarmPageState extends State<AlarmPage> {
                                 _makephonenum('tel:110');
                               });
 
-                              if (appProvider.selectedHouse?.status == 4) {
+                              if (appProvider.selectedHouse!=null) {
                                 await NetUtil()
                                     .post(API.manager.recordAlarmInfo, params: {
                                   "estateId":
-                                      appProvider.selectedHouse?.estateId,
+                                      appProvider.selectedHouse!.estateId,
                                 });
                               }
                             },

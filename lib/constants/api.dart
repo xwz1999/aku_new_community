@@ -75,7 +75,10 @@ class _User {
   String get authHouse => '/user/myHouse/authentication';
 
   ///我的房屋：查询所有的房屋审核信息
-  String get houseList => '/user/myHouse/list';
+  String get examineHouseList => '/user/myHouse/examineList';
+
+  ///我的房屋：查询用户所有拥有的房屋信息
+  String get passedHouseList => '/user/myHouse/houseList';
 
   ///我的房屋：假删除审核信息
   String get deleteHouse => '/user/myHouse/falseDelete';

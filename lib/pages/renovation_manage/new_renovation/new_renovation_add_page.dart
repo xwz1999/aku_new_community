@@ -59,7 +59,7 @@ class _NewRenovationAddPageState extends State<NewRenovationAddPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            if (UserTool.appProveider.selectedHouse?.status == 4) {
+            if (UserTool.appProveider.selectedHouse!=null) {
               BaseModel baseModel =
                   await NetUtil().post(API.manager.insertNewRenovation,
                       params: {

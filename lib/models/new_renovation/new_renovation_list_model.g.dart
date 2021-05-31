@@ -28,7 +28,8 @@ NewRenovationListModel _$NewRenovationListModelFromJson(
     createName: json['createName'] as String,
     createDate: json['createDate'] as String,
     checkVoList: (json['checkVoList'] as List<dynamic>)
-        .map((e) => CheckVoList.fromJson(e as Map<String, dynamic>))
+        .map((e) =>
+            e == null ? null : CheckVoList.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

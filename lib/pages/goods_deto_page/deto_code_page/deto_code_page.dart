@@ -152,7 +152,7 @@ class DetoCodePage extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 192.w - kToolbarHeight),
-                _header(appProvider.selectedHouse!.roomName!),
+                _header(appProvider.selectedHouse!.roomName),
                 SizedBox(height: 32.w),
                 _card(model!.appArticleOutQRCodeVo!.applicantName,
                     model!.appArticleOutQRCodeVo!.effectiveTime),

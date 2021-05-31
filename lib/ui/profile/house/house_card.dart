@@ -1,9 +1,9 @@
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
@@ -13,7 +13,7 @@ enum CardAuthType {
 }
 
 class HouseCard extends StatelessWidget {
-  final HouseModel? model;
+  final PassedHouseListModel? model;
   final CardAuthType type;
   const HouseCard({
     Key? key,
@@ -39,7 +39,7 @@ class HouseCard extends StatelessWidget {
       case CardAuthType.SUCCESS:
         return R.ASSETS_STATIC_HOUSE_AUTH_SUCCESS_WEBP;
     }
-    return '';
+    // return '';
   }
 
   String get _roleName {
@@ -74,7 +74,7 @@ class HouseCard extends StatelessWidget {
           ),
         ];
     }
-    return [];
+    // return [];
   }
 
   @override
@@ -125,7 +125,7 @@ class HouseCard extends StatelessWidget {
             ),
             10.hb,
             Text(
-              model!.roomName!,
+              model!.roomName,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             Spacer(),

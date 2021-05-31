@@ -1,3 +1,6 @@
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/profile/house/my_house_list.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -31,14 +34,15 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   ///存在已认证的房屋
   bool get _haveAuthedHouse {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
-    return (appProvider.selectedHouse?.status ?? 0) == 4;
+    // return (appProvider.selectedHouse?.status ?? 0) == 4;
+    return appProvider.selectedHouse != null;
   }
 
   Widget get _houseTitle {
-    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    // final appProvider = Provider.of<AppProvider>(context, listen: false);
     if (_emptyHouse) return Text('还没有绑定房屋');
-    if (appProvider.selectedHouse!.status == 1) return Text('您的身份正在审核中，请耐心等待');
-    if (appProvider.selectedHouse!.status == 3) return Text('审核未通过');
+    // if (appProvider.selectedHouse!.status == 1) return Text('您的身份正在审核中，请耐心等待');
+    // if (appProvider.selectedHouse!.status == 3) return Text('审核未通过');
     return SizedBox();
   }
 
@@ -49,8 +53,10 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
       title: '我的房屋',
       actions: [
         TextButton(
-          onPressed: _addHouse,
-          child: Text('新增房屋'),
+          onPressed: () {
+            Get.to(MyHouseList());
+          },
+          child: Text('审核记录'),
         ),
       ],
       body: EasyRefresh(
@@ -58,7 +64,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         controller: _refreshController,
         firstRefresh: true,
         onRefresh: () async {
-          appProvider.updateHouses(await HouseFunc.houses);
+          appProvider.updateHouses(await HouseFunc.passedHouses);
         },
         child: ListView(
           children: [
@@ -67,7 +73,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 : Padding(
                     padding: EdgeInsets.all(32.w),
                     child: HouseCard(
-                      type: appProvider.selectedHouse!.reviewed
+                      type: appProvider.selectedHouse!=null
                           ? CardAuthType.SUCCESS
                           : CardAuthType.FAIL,
                       model: appProvider.selectedHouse,
@@ -99,6 +105,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           ],
         ),
       ),
+      bottomNavi: BottomButton(
+          onPressed: _addHouse,
+          child: '新增房屋'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
   }
 

@@ -28,7 +28,7 @@ class HouseModel {
       case 2:
         return '租客';
       case 3:
-        return '情书';
+        return '亲属';
     }
     return '';
   }

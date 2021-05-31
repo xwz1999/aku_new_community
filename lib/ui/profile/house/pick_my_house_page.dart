@@ -1,3 +1,4 @@
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,6 @@ import 'package:provider/provider.dart';
 
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
@@ -37,13 +37,13 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
 
   Widget get _renderSep => SliverToBoxAdapter(child: 24.hb);
 
-  List<HouseModel> get housesWithoutSelected {
+  List<PassedHouseListModel> get housesWithoutSelected {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
-    List<HouseModel> models = List.from(appProvider.houses);
+    List<PassedHouseListModel> models = List.from(appProvider.houses);
     models.removeWhere(
       (element) => element.id == (appProvider.selectedHouse?.id ?? -1),
     );
-    if (models == null || models.isEmpty) return [];
+    if ( models.isEmpty) return [];
     return models;
   }
 
@@ -77,7 +77,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
         controller: _refreshController,
         onRefresh: () async {
           final appProvider = Provider.of<AppProvider>(context, listen: false);
-          appProvider.updateHouses(await HouseFunc.houses);
+          appProvider.updateHouses(await HouseFunc.passedHouses);
         },
         firstRefresh: true,
         child: CustomScrollView(
@@ -113,7 +113,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
 }
 
 class _HouseCard extends StatelessWidget {
-  final HouseModel? model;
+  final PassedHouseListModel? model;
   final bool highlight;
   final EasyRefreshController controller;
   const _HouseCard({
@@ -124,7 +124,8 @@ class _HouseCard extends StatelessWidget {
   }) : super(key: key);
   bool get canTapSlide {
     if (model == null) return false;
-    return model!.status == 4 || model!.status == 3 && !highlight;
+    return true;
+    // return model!.status == 4 || model!.status == 3 && !highlight;
   }
 
   @override
@@ -219,7 +220,7 @@ class _HouseCard extends StatelessWidget {
                   ),
                   8.hb,
                   Text(
-                    model!.roomName!,
+                    model!.roomName,
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           color: Color(0xFF999999),
                         ),
