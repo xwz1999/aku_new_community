@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/market/goods/goods_order_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -223,31 +224,19 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                     color: kPrimaryColor,
                     height: 80.w,
                     onPressed: () async {
-                      final cancel = BotToast.showLoading();
-                      BaseModel baseModel = await NetUtil().post(
-                        API.market.appointment,
-                        params: {
-                          'goodsId': widget.id,
-                          'userName': _nameController.text,
-                          'userTel': _phoneController.text,
-                          'num': 1,
-                        },
-                        showMessage: true,
-                      );
-                      cancel();
-                      if (baseModel.status == true) {
-                        Get.back();
-                        Get.back();
-                      }
+                      Get.to(GoodsOrderDetailPage(
+                          model: _goodsModel,
+                          name: _nameController.text,
+                          phone: _phoneController.text));
                     },
-                    child: Text('确认报名'),
+                    child: Text('确认购买'),
                   ),
                 ],
               ),
             ),
           ));
         },
-        child: Text('立即报名'),
+        child: Text('立即购买'),
       ),
     );
   }
