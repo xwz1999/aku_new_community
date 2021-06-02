@@ -3,7 +3,6 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_detail_model.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -11,7 +10,6 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_numberic_button.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -83,9 +81,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            if (!UserTool.userProvider.isLogin) {
-              Get.offAll(SignInPage());
-            }
+            
             final cancel = BotToast.showLoading();
             BaseModel baseModel = await NetUtil().post(
               API.market.appointment,
@@ -95,7 +91,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
                 'userTel': widget.phone,
                 'num': _num,
               },
-              showMessage: true,
+              showMessage: false,
             );
             cancel();
             if (baseModel.status == true) {

@@ -1,4 +1,6 @@
+import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/ui/market/goods/goods_order_detail_page.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -174,6 +176,11 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
       ),
       bottomNavi: BottomButton(
         onPressed: () {
+          if (!UserTool.userProvider.isLogin) {
+            BotToast.showText(text: '请先登录！');
+            Get.offAll(SignInPage());
+            return;
+          }
           Get.bottomSheet(Material(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
