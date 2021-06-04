@@ -196,7 +196,7 @@ class _Manager {
   String get articleReturnGoods => '/user/articleBorrow/articleReturn';
 
   ///借还管理：根据用户主键id查询需要归还物品信息（归还界面）
-  String get articleReturnList => '/articleBorrow/findBorrowByUserId';
+  String get articleReturnList => '/user/articleBorrow/articleReturn';
 
   ///生活缴费：查询生活缴费信息list
   String get dailyPaymentList => '/user/dailyPayment/list';
