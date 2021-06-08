@@ -35,6 +35,8 @@ class _GoodsTabListViewState extends State<GoodsTabListView>
           padding: EdgeInsets.all(32.w),
           gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
+            crossAxisSpacing: 24.w,
+            mainAxisSpacing: 24.w
           ),
           itemBuilder: (context, index) {
             final GoodsItem item = items[index];

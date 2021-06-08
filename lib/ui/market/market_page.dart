@@ -1,9 +1,11 @@
 // import 'package:aku_community/base/base_style.dart';
 
+import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
@@ -18,7 +20,6 @@ import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/order/my_order_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
@@ -37,22 +38,53 @@ class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin {
   List<MarketCategoryModel> _marketModels = [];
   List<GoodsItem> _hotItems = [];
+  late EasyRefreshController _refreshController;
+  int _pageNum = 1;
+  int _size = 4;
 
   Future updateMarketInfo() async {
-    _marketModels = await DisplayCategoryModel.top8;
-    BaseModel baseModel = await NetUtil().get(API.market.hotTop);
-    if (baseModel.status == true && baseModel.data != null) {
-      _hotItems =
-          (baseModel.data as List).map((e) => GoodsItem.fromJson(e)).toList();
+    BaseListModel baseListModel =
+        await NetUtil().getList(API.market.hotTop, params: {
+      "pageNum": _pageNum,
+      "size": _size,
+    });
+    if (baseListModel.tableList!.isNotEmpty) {
+      _hotItems = (baseListModel.tableList as List)
+          .map((e) => GoodsItem.fromJson(e))
+          .toList();
     }
+    return baseListModel.pageCount;
+  }
+
+  Future loadMarketInfo() async {
+    BaseListModel baseListModel =
+        await NetUtil().getList(API.market.hotTop, params: {
+      "pageNum": _pageNum,
+      "size": _size,
+    });
+    if (baseListModel.tableList!.isNotEmpty) {
+      _hotItems.addAll((baseListModel.tableList as List)
+          .map((e) => GoodsItem.fromJson(e))
+          .toList());
+    }
+    return baseListModel.pageCount;
   }
 
   @override
   void initState() {
     super.initState();
-    updateMarketInfo().then((_) {
-      setState(() {});
+    _refreshController = EasyRefreshController();
+    DisplayCategoryModel.top8.then((value) {
+      setState(() {
+        _marketModels = value;
+      });
     });
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
   }
 
   @override
@@ -224,18 +256,38 @@ class _MarketPageState extends State<MarketPage>
             ),
           ];
         },
-        body: WaterfallFlow.builder(
-          gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20.w,
-            crossAxisSpacing: 20.w,
-          ),
-          padding: EdgeInsets.all(32.w),
-          itemBuilder: (context, index) {
-            final item = _hotItems[index];
-            return GoodsCard(item: item);
+        body: EasyRefresh(
+          firstRefresh: true,
+          enableControlFinishLoad: true,
+          header: MaterialHeader(),
+          footer: MaterialFooter(),
+          controller: _refreshController,
+          onRefresh: () async {
+            _pageNum = 1;
+            updateMarketInfo();
+            setState(() {});
           },
-          itemCount: _hotItems.length,
+          onLoad: () async {
+            _pageNum++;
+            int _pageCount = await loadMarketInfo();
+            if (_pageCount !=_pageNum) {
+              _refreshController.finishLoad();
+            }
+            setState(() {});
+          },
+          child: WaterfallFlow.builder(
+            gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20.w,
+              crossAxisSpacing: 20.w,
+            ),
+            padding: EdgeInsets.all(32.w),
+            itemBuilder: (context, index) {
+              final item = _hotItems[index];
+              return GoodsCard(item: item);
+            },
+            itemCount: _hotItems.length,
+          ),
         ),
       ),
     );

@@ -167,7 +167,7 @@ class NetUtil {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (!model.status! && model.message == '登录失效，请登录' && userProvider.isLogin) {
       userProvider.logout();
-      Get.offAll(SignInPage());
+      Get.offAll(()=>SignInPage());
     }
     if (!model.status! || showMessage) {
       BotToast.showText(text: model.message!);

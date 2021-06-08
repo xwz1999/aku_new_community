@@ -196,7 +196,7 @@ class _Manager {
   String get articleReturnGoods => '/user/articleBorrow/articleReturn';
 
   ///借还管理：根据用户主键id查询需要归还物品信息（归还界面）
-  String get articleReturnList => '/user/articleBorrow/articleReturn';
+  String get articleReturnList => '/user/articleBorrow/findBorrowByUserId';
 
   ///生活缴费：查询生活缴费信息list
   String get dailyPaymentList => '/user/dailyPayment/list';
@@ -329,6 +329,9 @@ class _Market {
 
   ///app商场中心：查询订阅量最高的4件商品（首页显示）
   String get hotTop => '/user/shop/findTopGoods';
+
+  ///app商城中心：根据供应商主键id 查询预约量最高的4个商品信息(其他【4个】)
+  String get suppliyerHotTop => '/user/shop/findTopGoodsBySupplierId';
 
   ///app商城中心：商品搜索
   String get search => '/user/shop/goodsSearch';

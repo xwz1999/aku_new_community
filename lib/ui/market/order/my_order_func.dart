@@ -38,9 +38,9 @@ class MyOrderFunc {
     return baseModel;
   }
 
-  /// 获取热度最高的商品
+  /// 获取此供应商热度最高的商品
   static Future<List<GoodsItem>> getHotTops() async {
-    BaseModel baseModel = await NetUtil().get(API.market.hotTop);
+    BaseModel baseModel = await NetUtil().get(API.market.suppliyerHotTop);
     if (baseModel.status == true && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => GoodsItem.fromJson(e))

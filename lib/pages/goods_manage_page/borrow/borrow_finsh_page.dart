@@ -61,7 +61,7 @@ class _BorrowFinshPageState extends State<BorrowFinshPage> {
               minWidth: double.infinity,
               onPressed: widget.isSuccess!
                   ? () {
-                      Get.offAll(TabNavigator());
+                      Get.offAll(()=>TabNavigator());
                     }
                   : () {
                       Get.back();
