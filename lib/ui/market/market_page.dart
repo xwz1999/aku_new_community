@@ -41,6 +41,7 @@ class _MarketPageState extends State<MarketPage>
   late EasyRefreshController _refreshController;
   int _pageNum = 1;
   int _size = 4;
+  int _pageCount=0;
 
   Future updateMarketInfo() async {
     BaseListModel baseListModel =
@@ -53,7 +54,7 @@ class _MarketPageState extends State<MarketPage>
           .map((e) => GoodsItem.fromJson(e))
           .toList();
     }
-    return baseListModel.pageCount;
+    _pageCount= baseListModel.pageCount!;
   }
 
   Future loadMarketInfo() async {
@@ -67,17 +68,17 @@ class _MarketPageState extends State<MarketPage>
           .map((e) => GoodsItem.fromJson(e))
           .toList());
     }
-    return baseListModel.pageCount;
+    _pageCount= baseListModel.pageCount!;
   }
 
   @override
   void initState() {
     super.initState();
     _refreshController = EasyRefreshController();
-    DisplayCategoryModel.top8.then((value) {
-      setState(() {
-        _marketModels = value;
-      });
+    Future.delayed(Duration(milliseconds: 0), () async {
+      _marketModels = await DisplayCategoryModel.top8;
+      await updateMarketInfo();
+      setState(() {});
     });
   }
 
@@ -257,21 +258,21 @@ class _MarketPageState extends State<MarketPage>
           ];
         },
         body: EasyRefresh(
-          firstRefresh: true,
-          enableControlFinishLoad: true,
+          firstRefresh: false,
+          enableControlFinishLoad: false,
           header: MaterialHeader(),
           footer: MaterialFooter(),
           controller: _refreshController,
           onRefresh: () async {
             _pageNum = 1;
-            updateMarketInfo();
+           await updateMarketInfo();
             setState(() {});
           },
           onLoad: () async {
             _pageNum++;
-            int _pageCount = await loadMarketInfo();
-            if (_pageCount !=_pageNum) {
-              _refreshController.finishLoad();
+             await loadMarketInfo();
+            if (_pageCount <= _pageNum) {
+              _refreshController.finishLoad(noMore: true);
             }
             setState(() {});
           },

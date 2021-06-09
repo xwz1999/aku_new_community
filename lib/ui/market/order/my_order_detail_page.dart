@@ -1,7 +1,9 @@
+import 'package:aku_community/models/market/order/order_detail_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
@@ -29,6 +31,7 @@ class MyOrderDetailPage extends StatefulWidget {
 class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
   late EasyRefreshController _refreshController;
   late List<GoodsItem> _topGoods;
+  late OrderDetailModel _detailModel;
   bool _onload = true;
   @override
   void initState() {
@@ -50,7 +53,8 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          _topGoods = await MyOrderFunc.getHotTops();
+          _detailModel = await MyOrderFunc.getOrderDetail(widget.model.id);
+          _topGoods = await MyOrderFunc.getHotTops(_detailModel.supplierId!);
           _onload = false;
           setState(() {});
         },
@@ -108,8 +112,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
             ],
           ),
           20.w.heightBox,
-          '2020-05-14 14:22:11'
-              .text
+          _detailModel.statusTime.text
               .size(28.sp)
               .bold
               .color(ktextPrimary.withOpacity(0.8))
@@ -170,6 +173,23 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                     ],
                   ),
                   20.w.heightBox,
+                  RatingBar.builder(
+                    initialRating: double.parse(_detailModel.score!),
+                    minRating: 0,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    // itemPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star_border_rounded,
+                      color: kPrimaryColor,
+                    ),
+                    itemSize: 64.w,
+                    onRatingUpdate: (rating) {},
+
+                    glow: false,
+                  ),
+                  20.w.heightBox,
                   text.text.size(28.sp).color(ktextSubColor).make(),
                   20.w.heightBox,
                   date.text
@@ -226,6 +246,15 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
             ...widget.model.arrivalDate == null
                 ? []
                 : [_rowTile('到货时间', widget.model.arrivalDateString)],
+            ...widget.model.receivingDate == null
+                ? []
+                : [_rowTile('收货时间', widget.model.receiveDateString)],
+            ..._detailModel.sendDetail == null
+                ? []
+                : [_rowTile('发货详情', _detailModel.sendDetail!)],
+            ..._detailModel.arrivalTime == null
+                ? []
+                : [_rowTile('到货说明', _detailModel.arrivalTime!)],
           ].sepWidget(
             separate: 20.w.heightBox,
           )

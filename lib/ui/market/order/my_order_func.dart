@@ -1,5 +1,6 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/models/market/order/order_detail_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 
@@ -39,13 +40,25 @@ class MyOrderFunc {
   }
 
   /// 获取此供应商热度最高的商品
-  static Future<List<GoodsItem>> getHotTops() async {
-    BaseModel baseModel = await NetUtil().get(API.market.suppliyerHotTop);
+  static Future<List<GoodsItem>> getHotTops(int supplierId) async {
+    BaseModel baseModel =
+        await NetUtil().get(API.market.suppliyerHotTop, params: {
+      "supplierId": supplierId,
+    });
     if (baseModel.status == true && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => GoodsItem.fromJson(e))
           .toList();
     }
     return [];
+  }
+
+  ///获取商品详情
+  static Future getOrderDetail(int goodsAppointmentId) async {
+    BaseModel baseModel = await NetUtil().get(API.market.orderDetail,
+        params: {"goodsAppointmentId": goodsAppointmentId});
+    if (baseModel.status! && baseModel.data != null) {
+      return OrderDetailModel.fromJson(baseModel.data);
+    }
   }
 }

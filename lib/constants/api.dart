@@ -356,6 +356,9 @@ class _Market {
 
   ///app商场中心：评价
   String get goodsEvaluation => '/user/shop/evaluation';
+
+  ///app商场中心：根据订单主键id查询订单详情
+  String get orderDetail => '/user/shop/findOrderDetailByOrderId';
 }
 
 class _Upload {

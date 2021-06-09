@@ -93,7 +93,9 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
             _goodsModel = GoodsDetailModel.fail();
             BotToast.showText(text: baseModel.message ?? '未知错误');
           }
-          baseModel = await NetUtil().get(API.market.suppliyerHotTop);
+          baseModel = await NetUtil().get(API.market.suppliyerHotTop, params: {
+            "supplierId": _goodsModel.supplierId,
+          });
           if (baseModel.status == true && baseModel.data != null) {
             _topGoods = (baseModel.data as List)
                 .map((e) => GoodsItem.fromJson(e))
@@ -178,7 +180,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
         onPressed: () {
           if (!UserTool.userProvider.isLogin) {
             BotToast.showText(text: '请先登录！');
-            Get.offAll(()=>SignInPage());
+            Get.offAll(() => SignInPage());
             return;
           }
           Get.bottomSheet(Material(
