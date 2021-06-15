@@ -3,6 +3,7 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_detail_model.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -36,7 +37,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
   bool _onload = true;
 
   ///商品数量
-  int _num = 0;
+  int _num = 1;
   @override
   void initState() {
     super.initState();
@@ -83,19 +84,28 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
           onPressed: () async {
             final cancel = BotToast.showLoading();
             BaseModel baseModel = await NetUtil().post(
-              API.market.appointment,
+              API.pay.shoppingAlipay,
               params: {
                 'goodsId': widget.model.id,
                 'userName': widget.name,
                 'userTel': widget.phone,
                 'num': _num,
+                'payType': 1,
+                'payPrice': widget.model.sellingPrice,
               },
               showMessage: false,
             );
-            cancel();
-            if (baseModel.status == true) {
-              Get.off(() => PayFinishPage());
+            if ((baseModel.status ?? false) &&
+                !baseModel.message.isEmptyOrNull) {
+              bool result = await PayUtil()
+                  .callAliPay(baseModel.message!, API.pay.shoppingCheck);
+              if (result) {
+                Get.off(PayFinishPage());
+              }
+            } else {
+              BotToast.showText(text: '未能生成订单');
             }
+            cancel();
           },
           child: '立即支付'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
@@ -178,7 +188,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
                 child: Column(
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         widget.model.title.text
                             .size(28.sp)
@@ -186,8 +196,10 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
                             .maxLines(2)
                             .overflow(TextOverflow.ellipsis)
                             .bold
-                            .make(),
-                        Spacer(),
+                            .maxLines(2)
+                            .ellipsis
+                            .make()
+                            .expand(),
                         '¥${widget.model.sellingPrice}'
                             .text
                             .size(28.sp)
@@ -239,7 +251,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
               ],
             ),
             _rowTile('配送方式', '商家配送'),
-            _rowTile('订单备注', widget.model.arrivalTime),
+            _rowTile('订单备注', widget.model.arrivalTime ?? ''),
           ].sepWidget(
             separate: 20.w.heightBox,
           ),

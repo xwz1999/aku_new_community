@@ -16,7 +16,7 @@ GoodsDetailModel _$GoodsDetailModelFromJson(Map<String, dynamic> json) {
     json['categoryName'] as String,
     json['subscribeNum'] as int,
     json['detail'] as String,
-    json['arrivalTime'] as String,
+    json['arrivalTime'] as String?,
     (json['goodsImgList'] as List<dynamic>)
         .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
         .toList(),

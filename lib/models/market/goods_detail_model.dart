@@ -15,7 +15,7 @@ class GoodsDetailModel extends Equatable {
   final String categoryName;
   final int subscribeNum;
   final String detail;
-  final String arrivalTime;
+  final String? arrivalTime;
   final List<ImgModel> goodsImgList;
   final int supplierId;
   final String supplierName;

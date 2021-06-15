@@ -337,6 +337,8 @@ class _LifePayPageState extends State<LifePayPage> {
           ),
         ),
       ],
+
+      //TODO:重构listview;
       body: BeeListView<LifePayModel>(
           path: API.manager.dailyPaymentList,
           controller: _controller,

@@ -126,8 +126,8 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                                   .size(40.sp)
                                   .bold
                                   .color(ktextPrimary)
-                                  .make(),
-                              Spacer(),
+                                  .make()
+                                  .expand(),
                               '¥${_goodsModel.sellingPrice}'
                                   .text
                                   .size(36.sp)
@@ -233,7 +233,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                     color: kPrimaryColor,
                     height: 80.w,
                     onPressed: () async {
-                      Get.to(GoodsOrderDetailPage(
+                      Get.off(GoodsOrderDetailPage(
                           model: _goodsModel,
                           name: _nameController.text,
                           phone: _phoneController.text));

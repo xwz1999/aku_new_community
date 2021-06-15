@@ -427,4 +427,16 @@ class _Pay {
 
   ///日常缴费 查询支付宝订单状态
   String get dailPayMentCheck => '/user/alipay/dailyPaymentCheckAlipay';
+
+  ///支付宝支付：app 商城购物完成订单支付宝支付(生成 APP 支付订单信息)
+  String get shoppingAlipay => '/user/alipay/shoppingAlipay';
+
+  ///支付宝支付：商城购物 向支付宝发起订单查询请求
+  String get shoppingCheck => '/user/alipay/shoppingCheckAlipay';
+
+  ///支付宝支付：app 报事报修完成订单支付宝支付
+  String get reportRepairAlipay => '/user/alipay/reportRepairAlipay';
+
+  ///支付宝支付：报事报修 向支付宝发起订单查询请求
+  String get reportReapirCheck => '/user/alipay/reportRepairCheckAlipay';
 }
