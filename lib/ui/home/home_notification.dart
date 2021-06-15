@@ -46,8 +46,7 @@ class _HomeNotificationState extends State<HomeNotification> {
                       .toList(),
                   repeatForever: true,
                 ),
-              ),
-        Spacer(),
+              ).expand(),
         MaterialButton(
           shape: StadiumBorder(),
           padding: EdgeInsets.symmetric(horizontal: 12.w),

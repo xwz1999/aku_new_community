@@ -1,3 +1,6 @@
+import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,6 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -49,6 +51,7 @@ class _LifePayPageState extends State<LifePayPage> {
 
   bool get allSelect =>
       ((_models.length == _selectYears.length) && (_models.length != 0));
+
   @override
   void initState() {
     super.initState();
@@ -58,6 +61,7 @@ class _LifePayPageState extends State<LifePayPage> {
   @override
   void dispose() {
     _controller?.dispose();
+    BotToast.closeAllLoading();
     super.dispose();
   }
 
@@ -140,12 +144,6 @@ class _LifePayPageState extends State<LifePayPage> {
                       _selectPay[index].ids.forEach((element) {
                         _ids.remove(element);
                       });
-                      if (_count < 0) {
-                        _count = 0;
-                      }
-                      if (_totalCost < 0) {
-                        _totalCost = 0;
-                      }
                     } else {
                       _selectYears.add(index);
                       _totalCost += (_selectPay[index].payTotal);
@@ -187,7 +185,8 @@ class _LifePayPageState extends State<LifePayPage> {
                           fontWeight: FontWeight.bold),
                       children: [
                     TextSpan(
-                        text: '¥ ${_selectPay[index].payTotal}',
+                        text:
+                            '¥ ${_selectPay[index].payTotal.toStringAsFixed(2)}',
                         style: TextStyle(
                             color: kDangerColor,
                             fontSize: 28.sp,
@@ -201,11 +200,23 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               GestureDetector(
                 onTap: () async {
+                  if (_selectYears.contains(index)) {
+                    _totalCost -= _selectPay[index].payTotal;
+                    _count -= _selectPay[index].payCount;
+                    _selectPay[index].ids.forEach((element) {
+                      _ids.remove(element);
+                    });
+                  }
+
                   List payMent = await (Get.to(
                       () => LifePayDetailPage(model: _models[index])));
                   _selectPay[index].payCount = payMent[0];
                   _selectPay[index].payTotal = payMent[1];
                   _selectPay[index].ids = payMent[2];
+                  if (_selectYears.contains(index)) {
+                    _totalCost += _selectPay[index].payTotal;
+                    _count += _selectPay[index].payCount;
+                  }
                   setState(() {});
                 },
                 child: Container(
@@ -255,6 +266,58 @@ class _LifePayPageState extends State<LifePayPage> {
       _list.add(element.id!);
     });
     return _list;
+  }
+
+  _allSelectOption() {
+    //若已全选则清空已选年份数组
+    if (_models.length == _selectYears.length) {
+      _selectYears.clear();
+      _ids.clear();
+      _totalCost = 0;
+      _count = 0;
+    } else {
+      for (var i = 0; i < _models.length; i++) {
+        if (!_selectYears.contains(i)) {
+          _selectYears.add(i);
+        }
+      }
+      _totalCost = 0;
+      _count = 0;
+      _ids.clear();
+      for (var item in _selectPay) {
+        _totalCost += item.payTotal;
+        _count += item.payCount;
+        _ids.addAll(item.ids);
+      }
+    }
+    setState(() {});
+  }
+
+  Widget _payButton() {
+    return MaterialButton(
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(37.w)),
+      color: kPrimaryColor,
+      padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
+      onPressed: () async {
+        Function cancel = BotToast.showLoading();
+        BaseModel baseModel =
+            await NetUtil().post('/user/alipay/dailyPaymentAlipay', params: {
+          "ids": _ids,
+          "payType": 1, //暂时写死 等待后续补充
+          "payPrice": _totalCost.toStringAsFixed(2)
+        });
+        if (baseModel.status ?? false) {
+          bool result = await PayUtil()
+              .callAliPay(baseModel.message!, API.pay.dailPayMentCheck);
+          if (result) {
+            Get.off(PayFinishPage());
+          }
+        }
+        cancel();
+      },
+      child: '去缴费'.text.black.size(32.sp).bold.make(),
+    );
   }
 
   @override
@@ -322,28 +385,7 @@ class _LifePayPageState extends State<LifePayPage> {
           children: [
             GestureDetector(
               onTap: () {
-                //若已全选则清空已选年份数组
-                if (_models.length == _selectYears.length) {
-                  _selectYears.clear();
-                  _ids.clear();
-                  _totalCost = 0;
-                  _count = 0;
-                } else {
-                  for (var i = 0; i < _models.length; i++) {
-                    if (!_selectYears.contains(i)) {
-                      _selectYears.add(i);
-                    }
-                  }
-                  _totalCost = 0;
-                  _count = 0;
-                  _ids.clear();
-                  for (var item in _selectPay) {
-                    _totalCost += item.payTotal;
-                    _count += item.payCount;
-                    _ids.addAll(item.ids);
-                  }
-                }
-                setState(() {});
+                _allSelectOption();
               },
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
@@ -379,7 +421,7 @@ class _LifePayPageState extends State<LifePayPage> {
                             fontWeight: FontWeight.bold),
                         children: [
                       TextSpan(
-                          text: '$_totalCost',
+                          text: _totalCost.toStringAsFixed(2),
                           style: TextStyle(
                               color: kDangerColor,
                               fontSize: 32.sp,
@@ -389,25 +431,7 @@ class _LifePayPageState extends State<LifePayPage> {
               ],
             ),
             24.w.widthBox,
-            MaterialButton(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(37.w)),
-              color: kPrimaryColor,
-              padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
-              onPressed: () async {
-                BaseModel baseModel =
-                    await NetUtil().post('/user/dailyPayment/pay', params: {
-                  "ids": _ids,
-                  "payType": 1, //暂时写死 等待后续补充
-                  "payPrice": _totalCost
-                });
-                if (baseModel.status ?? false) {
-                  Get.off(() => PayFinishPage());
-                }
-              },
-              child: '去缴费'.text.black.size(32.sp).bold.make(),
-            ),
+            _payButton(),
           ],
         ),
       ),

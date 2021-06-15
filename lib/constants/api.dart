@@ -21,6 +21,7 @@ class API {
   static _Market market = _Market();
   static _News news = _News();
   static _Search search = _Search();
+  static _Pay pay = _Pay();
 }
 
 class _Login {
@@ -418,4 +419,12 @@ class _Facility {
   ///设施预约：根据设施分类主键id查询设施信息
   String get detailType =>
       '/user/facilitiesAppointment/findFacilitiesByCategoryId';
+}
+
+class _Pay {
+  ///日常缴费 支付宝支付
+  String get dailyPayMentAliPay => '/user/alipay/dailyPaymentAlipay';
+
+  ///日常缴费 查询支付宝订单状态
+  String get dailPayMentCheck => '/user/alipay/dailyPaymentCheckAlipay';
 }

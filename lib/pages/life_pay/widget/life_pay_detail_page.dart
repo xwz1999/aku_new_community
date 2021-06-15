@@ -236,7 +236,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                             fontWeight: FontWeight.bold),
                         children: [
                       TextSpan(
-                          text: '$_payTotal',
+                          text: '${_payTotal.toStringAsFixed(2)}',
                           style: TextStyle(
                               color: kDangerColor,
                               fontSize: 32.sp,

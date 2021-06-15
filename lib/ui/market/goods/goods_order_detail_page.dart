@@ -81,7 +81,6 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            
             final cancel = BotToast.showLoading();
             BaseModel baseModel = await NetUtil().post(
               API.market.appointment,

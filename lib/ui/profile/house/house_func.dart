@@ -13,7 +13,7 @@ class HouseFunc {
   }
 
   ///查询用户所拥有的房屋信息
-  static Future get passedHouses async{
+  static Future<List<PassedHouseListModel>> get passedHouses async{
       BaseModel model = await NetUtil().get(API.user.passedHouseList);
     if (!model.status!) return [];
     return (model.data as List).map((e) => PassedHouseListModel.fromJson(e)).toList();

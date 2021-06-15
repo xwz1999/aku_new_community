@@ -41,3 +41,9 @@ void gen() async {
     arguments: ['build'],
   );
 }
+
+@Task('build runner clean')
+void genClean() async {
+  await Pub.runAsync('build_runner',
+      arguments: ['build', '--delete-conflicting-outputs']);
+}
