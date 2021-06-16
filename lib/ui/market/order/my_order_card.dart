@@ -165,7 +165,11 @@ class _MyOrderCardState extends State<MyOrderCard> {
         ].sepWidget(separate: 24.w.widthBox);
       case 2:
         return <Widget>[
-          CardBottomButton.yellow(text: '查看详情', onPressed: () {}),
+          CardBottomButton.yellow(
+              text: '查看详情',
+              onPressed: () {
+                Get.to(MyOrderDetailPage(model: widget.model));
+              }),
         ].sepWidget(separate: 24.w.widthBox);
       case 3:
         return [

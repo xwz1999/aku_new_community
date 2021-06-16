@@ -70,7 +70,7 @@ class _MyOrderDetailPageState extends State<MyOrderDetailPage> {
                       widget.model.evaluateDateString),
                   _goodsInfoWidget(),
                   _orderInfo(),
-                  _extraWidget(_topGoods),
+                  _onload ? SizedBox() : _extraWidget(_topGoods),
                 ].sepWidget(
                   separate: 24.w.heightBox,
                 ),
