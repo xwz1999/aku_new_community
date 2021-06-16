@@ -411,6 +411,20 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     cancel();
   }
 
+  Future _comPleteWithoutPay() async {
+    Function cancel = BotToast.showLoading();
+    BaseModel baseModel =
+        await ManagerFunc.reportRepairComplete(_model.appReportRepairVo.id);
+    if ((baseModel.status ?? false)) {
+      Get.back();
+      Get.back();
+    } else {
+      Get.back();
+      BotToast.showText(text: baseModel.message!);
+    }
+    cancel();
+  }
+
   Widget _showBottomSheet(FixDetailModel model) {
     return BottomSheet(
       builder: (BuildContext context) {
@@ -495,10 +509,17 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     minWidth: 375.w,
                     onPressed: _canComplete(_model.appReportRepairVo.status)
                         ? () async {
-                            await _payOnAliy();
+                            _model.appDispatchListVo!.type == 1
+                                ? await _comPleteWithoutPay()
+                                : await _payOnAliy();
                           }
                         : null,
-                    child: '立即付款'.text.size(32.sp).bold.make(),
+                    child:
+                        (_model.appDispatchListVo!.type == 1 ? '确认完成' : '立即付款')
+                            .text
+                            .size(32.sp)
+                            .bold
+                            .make(),
                     padding: EdgeInsets.symmetric(vertical: 26.w),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     elevation: 0,

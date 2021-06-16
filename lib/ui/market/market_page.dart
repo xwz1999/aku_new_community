@@ -272,7 +272,7 @@ class _MarketPageState extends State<MarketPage>
             _pageNum++;
              await loadMarketInfo();
             if (_pageCount <= _pageNum) {
-              _refreshController.finishLoad(noMore: true);
+              _refreshController.finishLoad(noMore: false);
             }
             setState(() {});
           },

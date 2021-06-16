@@ -103,7 +103,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
                 Get.off(PayFinishPage());
               }
             } else {
-              BotToast.showText(text: '未能生成订单');
+              BotToast.showText(text: baseModel.message!);
             }
             cancel();
           },
