@@ -1,3 +1,7 @@
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +14,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/model/manager/fixed_detail_model.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/pages/things_page/widget/fixed_evaluate_page.dart';
 import 'package:aku_community/utils/bee_map.dart';
@@ -40,9 +43,9 @@ class CancelModel {
 class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController = EasyRefreshController();
-  FixedDetailModel _model = FixedDetailModel();
+  late FixDetailModel _model;
   bool get showRepairCard => _model.appDispatchListVo != null;
-  bool get showProcessCard => _model.appProcessRecordVo!.isNotEmpty;
+  bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
 
   bool _canComplete(int? state) {
     switch (state) {
@@ -76,7 +79,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     }
   }
 
-  Widget _buildHead(FixedDetailModel model) {
+  Widget _buildHead(FixDetailModel model) {
     return Container(
       decoration: BoxDecoration(
           color: kForeGroundColor, borderRadius: BorderRadius.circular(8.w)),
@@ -100,14 +103,13 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     borderRadius: BorderRadius.circular(36.w),
                     color: Colors.transparent,
                   ),
-                  child: BeeMap
-                      .fixTag[model.appReportRepairVo!.type!]!.text.black
+                  child: BeeMap.fixTag[model.appReportRepairVo.type]!.text.black
                       .size(20.sp)
                       .make(),
                 ),
                 Spacer(),
-                BeeMap.fixState[model.appReportRepairVo!.status!]!.text
-                    .color(_getColor(_model.appReportRepairVo!.status))
+                BeeMap.fixState[model.appReportRepairVo.status]!.text
+                    .color(_getColor(_model.appReportRepairVo.status))
                     .size(24.sp)
                     .bold
                     .make()
@@ -121,7 +123,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           24.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 28.w),
-            child: model.appReportRepairVo!.reportDetail!.text.black
+            child: model.appReportRepairVo.reportDetail.text.black
                 .size(28.sp)
                 .maxLines(8)
                 .overflow(TextOverflow.ellipsis)
@@ -130,7 +132,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
             child: HorizontalImageView(
-                model.appReportRepairVo!.imgUrls!.map((e) => e.url).toList()),
+                model.appReportRepairVo.imgUrls.map((e) => e.url).toList()),
           )
         ],
       ),
@@ -141,7 +143,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     return Container();
   }
 
-  Widget _reparCard(FixedDetailModel model) {
+  Widget _reparCard(FixDetailModel model) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
       decoration: BoxDecoration(
@@ -159,14 +161,14 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '订单编号'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo!.code!.text.black.size(28.sp).make(),
+                  model.appDispatchListVo!.code.text.black.size(28.sp).make(),
                 ],
               ),
               Row(
                 children: [
                   '下单时间'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo!.orderDate!.text.black
+                  model.appDispatchListVo!.orderDate.text.black
                       .size(28.sp)
                       .make()
                 ],
@@ -175,14 +177,14 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '派单类型'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo!.type!.text.black.size(28.sp).make(),
+                  model.appDispatchListVo!.type.text.black.size(28.sp).make(),
                 ],
               ),
               Row(
                 children: [
                   '维修人员'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo!.operatorName!.text.black
+                  model.appDispatchListVo!.operatorName.text.black
                       .size(28.sp)
                       .make(),
                 ],
@@ -191,7 +193,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '分配人'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appDispatchListVo!.distributorName!.text.black
+                  model.appDispatchListVo!.distributorName.text.black
                       .size(28.sp)
                       .make(),
                 ],
@@ -203,7 +205,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     );
   }
 
-  Widget _buildProcessCard(FixedDetailModel model) {
+  Widget _buildProcessCard(FixDetailModel model) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.w),
       decoration: BoxDecoration(
@@ -217,16 +219,16 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           24.w.heightBox,
           BeeDivider.horizontal(),
           24.w.heightBox,
-          ...model.appProcessRecordVo!
+          ...model.appProcessRecordVo
               .map((e) => Row(
                     children: [
-                      (BeeMap.processClass[e.operationType ?? 0] ?? '')
+                      (BeeMap.processClass[e.operationType] ?? '')
                           .text
                           .color(ktextSubColor)
                           .size(28.sp)
                           .make(),
                       Spacer(),
-                      e.operationDate!.text.black.size(28.sp).make(),
+                      e.operationDate.text.black.size(28.sp).make(),
                     ],
                   ))
               .toList()
@@ -236,7 +238,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     );
   }
 
-  Widget _buttons(FixedDetailModel model) {
+  Widget _buttons(FixDetailModel model) {
     return Container(
       width: 228.w * 3,
       height: 96.w,
@@ -252,11 +254,11 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             onPressed: () async {
               CancelModel _cancel =
-                  _allowCancel(_model.appReportRepairVo!.status);
+                  _allowCancel(_model.appReportRepairVo.status);
               if (_cancel.cancel) {
                 BotToast.showLoading();
                 await ManagerFunc.reportRepairCancel(
-                    _model.appReportRepairVo!.id);
+                    _model.appReportRepairVo.id);
                 BotToast.closeAllLoading();
                 Get.back();
               } else {
@@ -390,7 +392,26 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     }
   }
 
-  Widget _showBottomSheet(FixedDetailModel model) {
+  Future _payOnAliy() async {
+    Function cancel = BotToast.showLoading();
+    BaseModel baseModel = await ManagerFunc.reportRepairAlipay(
+        _model.appReportRepairVo.id,
+        (_model.appMaintenanceResultVo!.totalCost ?? 0).toDouble());
+    if ((baseModel.status ?? false) && !baseModel.message.isEmptyOrNull) {
+      bool result = await PayUtil()
+          .callAliPay(baseModel.message!, API.pay.reportReapirCheck);
+      if (result) {
+        Get.back();
+        Get.off(PayFinishPage());
+      }
+    } else {
+      Get.back();
+      BotToast.showText(text: '订单生成失败');
+    }
+    cancel();
+  }
+
+  Widget _showBottomSheet(FixDetailModel model) {
     return BottomSheet(
       builder: (BuildContext context) {
         return Container(
@@ -423,7 +444,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                       children: [
                         '维修费用总计'.text.black.size(28.sp).isIntrinsic.make(),
                         Spacer(),
-                        '¥300'
+                        '¥${model.appMaintenanceResultVo!.totalCost ?? 0}'
                             .text
                             .color(kDangerColor)
                             .size(42.sp)
@@ -437,7 +458,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                       children: [
                         '维修人工费'.text.black.size(28.sp).isIntrinsic.make(),
                         Spacer(),
-                        '¥300'
+                        '¥${model.appMaintenanceResultVo!.laborCost ?? 0}'
                             .text
                             .color(ktextPrimary)
                             .size(32.sp)
@@ -451,7 +472,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                       children: [
                         '维修材料费'.text.black.size(28.sp).isIntrinsic.make(),
                         Spacer(),
-                        '¥0'
+                        '¥${model.appMaintenanceResultVo!.materialCost ?? 0}'
                             .text
                             .color(ktextPrimary)
                             .size(32.sp)
@@ -472,18 +493,12 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                     disabledColor: kDarkSubColor,
                     disabledTextColor: ktextPrimary.withOpacity(0.8),
                     minWidth: 375.w,
-                    onPressed: _canComplete(_model.appReportRepairVo!.status)
+                    onPressed: _canComplete(_model.appReportRepairVo.status)
                         ? () async {
-                            BaseModel baseModel =
-                                await ManagerFunc.reportRepairComplete(
-                                    _model.appReportRepairVo!.id);
-                            if (baseModel.status!) {
-                              Get.back();
-                              Get.back();
-                            }
+                            await _payOnAliy();
                           }
                         : null,
-                    child: '完成维修'.text.size(32.sp).bold.make(),
+                    child: '立即付款'.text.size(32.sp).bold.make(),
                     padding: EdgeInsets.symmetric(vertical: 26.w),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     elevation: 0,

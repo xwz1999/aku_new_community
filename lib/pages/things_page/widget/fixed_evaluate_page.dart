@@ -1,3 +1,4 @@
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +8,13 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/manager/fixed_detail_model.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class FixedEvaluatePage extends StatefulWidget {
-  final FixedDetailModel model;
+  final FixDetailModel model;
   FixedEvaluatePage(this.model, {Key? key}) : super(key: key);
 
   @override
@@ -109,7 +109,7 @@ class _FixedEvaluatePageState extends State<FixedEvaluatePage> {
                 BotToast.showText(text: '评价内容不能为空！');
               } else {
                 BaseModel baseModel = await ManagerFunc.reportRepairEvaluate(
-                    widget.model.appReportRepairVo!.id,
+                    widget.model.appReportRepairVo.id,
                     _rating,
                     _textEditingController!.text);
                 if (baseModel.status!) {

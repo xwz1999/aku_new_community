@@ -1,10 +1,10 @@
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/article_QR_code_model.dart';
-import 'package:aku_community/model/manager/fixed_detail_model.dart';
 import 'package:aku_community/model/manager/moving_company_model.dart';
 import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
 import 'package:aku_community/model/manager/quetionnaire_submit_model.dart';
@@ -85,14 +85,14 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<FixedDetailModel> reportRepairFindBYLD(int? id) async {
+  static Future<FixDetailModel> reportRepairFindBYLD(int? id) async {
     Response response = await NetUtil().dio!.get(
       API.manager.reportRepairFindBYLD,
       queryParameters: {
         'repairId': id,
       },
     );
-    return FixedDetailModel.fromJson(response.data);
+    return FixDetailModel.fromJson(response.data);
   }
 
   static Future<BaseModel> reportRepairCancel(int? id) async {
@@ -125,6 +125,19 @@ class ManagerFunc {
         'repairId': id,
       },
       showMessage: true,
+    );
+    return baseModel;
+  }
+
+  static Future<BaseModel> reportRepairAlipay(int? id,double total) async {
+    BaseModel baseModel = await NetUtil().post(
+      API.pay.reportRepairAlipay,
+      params: {
+        'repairId': id,
+        'payType':1,
+        'payPrice':total,
+      },
+      showMessage: false,
     );
     return baseModel;
   }
