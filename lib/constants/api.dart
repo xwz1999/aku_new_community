@@ -272,6 +272,10 @@ class _Manager {
   ///app 新版装修：申请完工检查
   String get applyCompleteRenovation =>
       '/user/userDecorationNew/applicationCompletion';
+
+  ///门禁二维码：app获取设备二维码
+  String get getDoorQrCode => '/user/doorQRCode/getQrCode';
+
 }
 
 class _Community {

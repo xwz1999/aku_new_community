@@ -1,5 +1,6 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
+import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,7 @@ class AO {
 List<AO> appObjects = [
   // if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
 
-  // AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
+  AO('开门码', R.ASSETS_APPLICATIONS_DOOR_CODE_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
       () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, () => FixedSubmitPage()),
@@ -148,7 +149,7 @@ List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
 ///智慧管家 original value
 List<String> _smartManagerApp = [
   // if (false) '一键开门',
-  // '开门码',
+  '开门码',
   '访客邀请',
   '报事报修',
   '生活缴费',
