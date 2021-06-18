@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:aku_community/utils/websocket/fire_dialog.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -75,5 +77,17 @@ class MainInitialize {
   static initWechat() {
     if (kIsWeb || Platform.isMacOS) return;
     registerWxApi(appId: AppConfig.wechatAppId);
+  }
+
+  static initWebSocket() {
+    WebSocketUtil().initWebSocket(
+      consolePrint: false,
+      onReceiveMes: (message) async {
+        await FireDialog.fireAlarm(message);
+      },
+      onError: (e) {
+        LoggerData.addData(e);
+      },
+    );
   }
 }

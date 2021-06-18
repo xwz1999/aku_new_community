@@ -36,6 +36,8 @@ dependencies:
 
   #用户存储路径
   path_provider: ^2.0.1
+  #webscoket
+  web_socket_channel: ^2.1.0
 
   #支付宝支付功能
   tobias: ^2.1.0

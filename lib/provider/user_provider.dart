@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,8 @@ class UserProvider extends ChangeNotifier {
     await updateProfile();
     await updateUserDetail();
     await appProvider.updateHouses(await HouseFunc.passedHouses);
+    WebSocketUtil().setUser(userInfoModel!.id.toString());
+    WebSocketUtil().startWebSocket();
     notifyListeners();
   }
 
@@ -47,6 +50,7 @@ class UserProvider extends ChangeNotifier {
     NetUtil().dio!.options.headers.remove('App-Admin-Token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
+    WebSocketUtil().closeWebSocket();
     notifyListeners();
   }
 

@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:aku_community/utils/websocket/fire_dialog.dart';
 
-import 'package:get/get.dart';
 
-import 'package:aku_community/utils/headers.dart';
 
 class MessageParser {
   final Map<String, dynamic> message;
@@ -27,34 +24,7 @@ class MessageParser {
 
     switch (type) {
       case '1':
-        await fireAlarm(subTitle);
+        await FireDialog.fireAlarm(subTitle);
     }
-  }
-
-  ///火警
-  fireAlarm(String content) async {
-    await Get.dialog(
-      CupertinoAlertDialog(
-        title: Text('发生火灾'),
-        content: Column(
-          children: [
-            Text(subTitle),
-            10.hb,
-            Icon(
-              CupertinoIcons.bell_fill,
-              color: Colors.red,
-              size: 48.w,
-            ),
-          ],
-        ),
-        actions: [
-          CupertinoDialogAction(
-            child: Text('确认'),
-            onPressed: () => Get.back(),
-          ),
-        ],
-      ),
-      barrierDismissible: false,
-    );
   }
 }

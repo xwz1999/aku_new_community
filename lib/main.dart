@@ -26,6 +26,7 @@ void main() async {
   MainInitialize.initTheme();
   await MainInitialize.initJPush();
   MainInitialize.initWechat();
+  MainInitialize.initWebSocket();
 
   runApp(MyApp());
 }

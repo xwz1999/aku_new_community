@@ -27,6 +27,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
   late String _qrCode;
   late bool _overDate;
   late EasyRefreshController _refreshController;
+  static const int seconds = 300; //有效时间
   Timer? _overDateTimer;
   @override
   void initState() {
@@ -46,7 +47,8 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
         await NetUtil().get(API.manager.getDoorQrCode, params: {
       "startTime":
           DateUtil.formatDate(_currentTime, format: 'yyyy/MM/dd HH:mm:ss'),
-      "endTime": DateUtil.formatDate(_currentTime.add(Duration(minutes: 30)),
+      "endTime": DateUtil.formatDate(
+          _currentTime.add(Duration(seconds: seconds)),
           format: 'yyyy/MM/dd HH:mm:ss'),
     });
     if ((baseModel.status ?? false) && baseModel.data != null) {
@@ -62,12 +64,10 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
   }
 
   startTimer() {
-    _overDateTimer = Timer.periodic(Duration(minutes: 1), (timer) {
-      if (timer.tick >= 5) {
-        _overDate = true;
-        endTimer();
-        setState(() {});
-      }
+    _overDateTimer = Timer.periodic(Duration(seconds: seconds), (timer) {
+      _overDate = true;
+      endTimer();
+      setState(() {});
     });
   }
 

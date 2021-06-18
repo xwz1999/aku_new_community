@@ -1,3 +1,4 @@
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -106,6 +107,7 @@ class _TabNavigatorState extends State<TabNavigator>
             return false;
           }
           //否则关闭app
+          WebSocketUtil().closeWebSocket();
           return true;
         },
         child: TabBarView(
