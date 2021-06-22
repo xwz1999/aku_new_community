@@ -2,6 +2,7 @@
 
 import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -118,7 +119,7 @@ List<AO> appObjects = [
 ];
 
 List<AO> userAppObjects = [
-  AO('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () => HouseOwnersPage()),
+  AO('我的房屋', R.ASSETS_ICONS_USER_ICON_WDFW_PNG, () => HouseOwnersPage(identify: UserTool.userProvider.userDetailModel!.type??4,)),
   AO('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () => CarParkingPage()),
   AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () => CarManagePage()),
   AO('社区活动', R.ASSETS_ICONS_USER_ICON_WDSQHD_PNG, () => ActivityListPage()),

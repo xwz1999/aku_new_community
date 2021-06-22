@@ -15,20 +15,24 @@ enum CardAuthType {
 class HouseCard extends StatelessWidget {
   final PassedHouseListModel? model;
   final CardAuthType type;
+  final bool isOwner;
   const HouseCard({
     Key? key,
     required this.model,
     required this.type,
+    required this.isOwner,
   }) : super(key: key);
 
   const HouseCard.fail({
     Key? key,
     required this.model,
+    required this.isOwner,
   })   : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
     Key? key,
     required this.model,
+    required this.isOwner,
   })   : type = CardAuthType.SUCCESS,
         super(key: key);
 
@@ -49,7 +53,7 @@ class HouseCard extends StatelessWidget {
       case 2:
         return '';
       case 3:
-        return '';
+        return '租户';
       default:
         return '';
     }
@@ -146,22 +150,25 @@ class HouseCard extends StatelessWidget {
                     ),
                   ],
                 ).expand(),
-                //TODO
-                // Column(
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     Text(
-                //       '到期时间',
-                //       style: Theme.of(context).textTheme.subtitle2.copyWith(
-                //             color: Color(0xFF666666),
-                //           ),
-                //     ),
-                //     Text(
-                //       _roleName,
-                //       style: Theme.of(context).textTheme.subtitle1,
-                //     ),
-                //   ],
-                // ).expand(),
+                //
+                isOwner
+                    ? SizedBox()
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '到期时间',
+                            style:
+                                Theme.of(context).textTheme.subtitle2!.copyWith(
+                                      color: Color(0xFF666666),
+                                    ),
+                          ),
+                          Text(
+                            _roleName,
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                        ],
+                      ).expand(),
               ],
             ),
             40.hb,
@@ -174,5 +181,9 @@ class HouseCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _isOverDate(DateTime date) {
+    return DateTime.now().isAfter(date);
   }
 }

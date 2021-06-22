@@ -1,21 +1,39 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/widget/bee_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:flutter/services.dart';
 
 class BeeInputRow extends StatefulWidget {
   final String title;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final List<TextInputFormatter>? formatters;
   final String? hintText;
-  BeeInputRow(
+  final bool isRequire;
+  //输入框还是按钮（点击弹窗选择
+  final bool isButton;
+  //是按钮时的回调
+  final VoidCallback? onPressed;
+  BeeInputRow({
+    Key? key,
+    required this.title,
+    required this.controller,
+    this.formatters,
+    required this.hintText,
+    this.isRequire = false,
+  })  : this.isButton = false,
+        this.onPressed = null,
+        super(key: key);
+  BeeInputRow.button(
       {Key? key,
       required this.title,
-      required this.controller,
-      this.formatters,
-      required this.hintText})
-      : super(key: key);
-
+      required this.hintText,
+      this.isRequire = false,
+      required this.onPressed})
+      : this.isButton = true,
+        this.formatters = null,
+        this.controller = null,
+        super(key: key);
   @override
   _BeeInputRowState createState() => _BeeInputRowState();
 }
@@ -23,14 +41,26 @@ class BeeInputRow extends StatefulWidget {
 class _BeeInputRowState extends State<BeeInputRow> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          widget.title.text.size(28.sp).color(ktextPrimary).make(),
-          32.w.heightBox,
-          TextField(
+    var bottom = widget.isButton
+        ? GestureDetector(
+            onTap: widget.onPressed,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  // padding: EdgeInsets.only(top: 4.w),
+                  child: widget.hintText!.text
+                      .size(36.sp)
+                      .color(ktextSubColor)
+                      .bold
+                      .make(),
+                ),
+                BeeDivider.horizontal()
+              ],
+            ),
+          )
+        : TextField(
             inputFormatters: widget.formatters,
             controller: widget.controller,
             textAlign: TextAlign.start,
@@ -50,7 +80,25 @@ class _BeeInputRowState extends State<BeeInputRow> {
               fontWeight: FontWeight.bold,
               color: ktextPrimary,
             ),
+          );
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              widget.title.text.size(28.sp).color(ktextPrimary).make(),
+              10.w.widthBox,
+              (widget.isRequire ? '*' : '')
+                  .text
+                  .size(28.sp)
+                  .color(Colors.red)
+                  .make()
+            ],
           ),
+          24.w.heightBox,
+          bottom,
         ],
       ),
     );

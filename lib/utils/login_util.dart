@@ -1,3 +1,5 @@
+import 'package:aku_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +8,6 @@ import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 
 /// | 名称 | 函数 |
 /// |-----|------|
@@ -42,7 +43,7 @@ class LoginUtil {
     }
     if (appProvider.selectedHouse == null) {
       BotToast.showText(text: '房屋审核中或审核失败');
-      Get.to(() => HouseOwnersPage());
+      Get.to(() => HouseOwnersPage(identify: UserTool.userProvider.userDetailModel!.type??4,));
       return false;
     }
     return true;
