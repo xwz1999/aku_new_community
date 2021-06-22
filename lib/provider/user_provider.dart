@@ -25,17 +25,25 @@ class UserProvider extends ChangeNotifier {
   bool get isLogin => _isLogin;
   bool get isNotLogin => !_isLogin;
   Future setLogin(int token) async {
-    final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
-    _isLogin = true;
-    NetUtil().dio!.options.headers.putIfAbsent('App-Admin-Token', () => token);
-    HiveStore.appBox!.put('token', token);
-    HiveStore.appBox!.put('login', true);
-    await updateProfile();
-    await updateUserDetail();
-    await appProvider.updateHouses(await HouseFunc.passedHouses);
-    WebSocketUtil().setUser(userInfoModel!.id.toString());
-    WebSocketUtil().startWebSocket();
-    notifyListeners();
+    try {
+      final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
+      _isLogin = true;
+      NetUtil()
+          .dio!
+          .options
+          .headers
+          .putIfAbsent('App-Admin-Token', () => token);
+      HiveStore.appBox!.put('token', token);
+      HiveStore.appBox!.put('login', true);
+      await updateProfile();
+      await updateUserDetail();
+      await appProvider.updateHouses(await HouseFunc.passedHouses);
+      WebSocketUtil().setUser(userInfoModel!.id.toString());
+      WebSocketUtil().startWebSocket();
+      notifyListeners();
+    } catch (e) {
+      LoggerData.addData(e);
+    }
   }
 
   logout() {

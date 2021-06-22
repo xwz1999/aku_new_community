@@ -19,7 +19,7 @@ class HouseModel {
   DateTime? get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart!);
   DateTime? get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd!);
 
-  //TODO 未通过状态
+  //
   bool get reviewed => status == 4;
   String get typeValue {
     switch (type) {
@@ -51,7 +51,7 @@ class HouseModel {
   ///我的房屋页面背景颜色
   ///
   List<Color> get backgroundColor {
-    //TODO 未通过状态
+    
     if (status != 4)
       return [
         Color(0xFFF5F5F5),

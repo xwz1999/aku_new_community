@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
-
+//各种卡片下方的button组
 class CardBottomButton extends StatelessWidget {
   final String text;
   final Color textColor;

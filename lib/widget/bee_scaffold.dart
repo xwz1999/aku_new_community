@@ -5,7 +5,7 @@ import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatelessWidget {
-  final dynamic? title;
+  final dynamic title;
   final Widget? body;
 
   /// appbar background color

@@ -41,13 +41,17 @@ class _SplashPageState extends State<SplashPage> {
 
   Future _initOp() async {
     //ensure call _originOp first.
-    await _originOp();
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    final appProvider = Provider.of<AppProvider>(context, listen: false);
-    appProvider.initApplications();
-    appProvider.startLocation();
-    if (HiveStore.appBox!.get('login') ?? false) {
-      await userProvider.setLogin(HiveStore.appBox!.get('token'));
+    try {
+      await _originOp();
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      final appProvider = Provider.of<AppProvider>(context, listen: false);
+      appProvider.initApplications();
+      appProvider.startLocation();
+      if (HiveStore.appBox!.get('login') ?? false) {
+        await userProvider.setLogin(HiveStore.appBox!.get('token'));
+      }
+    } catch (e) {
+      LoggerData.addData(e);
     }
   }
 

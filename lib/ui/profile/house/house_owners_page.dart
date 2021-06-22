@@ -1,6 +1,7 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
+import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -92,8 +93,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Get.to(() => MyHouseList());
-                  //TODO:租客跳转选房
+                  isOwner
+                      ? Get.to(() => MyHouseList())
+                      : Get.to(TenantHouseListPage());
                 },
                 child: Text(isOwner ? '审核记录' : '我的选房'),
               ),

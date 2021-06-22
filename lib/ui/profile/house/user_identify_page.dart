@@ -1,4 +1,5 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
@@ -157,7 +158,7 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
                 '返回'.text.size(34.sp).isIntrinsic.color(ktextPrimary).make()),
         CupertinoDialogAction(
             onPressed: () {
-              Get.back();
+              Get.off(()=>TenantHouseListPage());
             },
             child: '修改信息'
                 .text
