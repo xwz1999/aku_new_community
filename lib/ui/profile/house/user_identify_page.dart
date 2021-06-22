@@ -23,10 +23,20 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
   TextEditingController _indentifyCodeController = TextEditingController();
   String _sex = '请选择性别';
   String _identify = '请选择身份';
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _indentifyCodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '用户认证',
+      bodyColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
@@ -71,7 +81,9 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
         ].sepWidget(separate: 32.w.heightBox),
       ),
       bottomNavi: BottomButton(
-          onPressed: () {},
+          onPressed: () async {
+            await Get.dialog(_errorDialog());
+          },
           child: '提交'.text.size(32.sp).bold.color(ktextPrimary).make()),
     );
   }
@@ -121,6 +133,38 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
               Get.back();
             },
             child: '租户'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make())
+      ],
+    );
+  }
+
+  Widget _errorDialog() {
+    return CupertinoAlertDialog(
+      title:
+          '账户不存在'.text.size(34.sp).color(ktextPrimary).bold.isIntrinsic.make(),
+      content: '原因:用户未具备相关资格'
+          .text
+          .size(26.sp)
+          .color(ktextPrimary)
+          .bold
+          .isIntrinsic
+          .make(),
+      actions: [
+        CupertinoDialogAction(
+            onPressed: () {
+              Get.back();
+            },
+            child:
+                '返回'.text.size(34.sp).isIntrinsic.color(ktextPrimary).make()),
+        CupertinoDialogAction(
+            onPressed: () {
+              Get.back();
+            },
+            child: '修改信息'
+                .text
+                .size(34.sp)
+                .isIntrinsic
+                .color(Color(0xFFFF8200))
+                .make()),
       ],
     );
   }

@@ -77,6 +77,12 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return isTourist
@@ -202,6 +208,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
       ),
     );
   }
+
 //游客身份页面显示
   Widget _touristBody() {
     var center = Center(
