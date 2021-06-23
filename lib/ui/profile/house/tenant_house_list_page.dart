@@ -1,10 +1,12 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/ui/profile/house/supplement_information_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class TenantHouseListPage extends StatefulWidget {
@@ -70,7 +72,13 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
 
   Widget houseCard() {
     var buttons = Row(
-      children: [CardBottomButton.yellow(text: '填写信息', onPressed: () {})],
+      children: [
+        CardBottomButton.yellow(
+            text: '填写信息',
+            onPressed: () {
+              Get.to(() => SupplementInformationPage());
+            })
+      ],
     );
     var bottom = Row(
       children: [
