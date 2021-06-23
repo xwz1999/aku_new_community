@@ -1,5 +1,6 @@
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/widget/others/house_head_card.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -63,64 +63,6 @@ class _LifePayPageState extends State<LifePayPage> {
     _controller?.dispose();
     BotToast.closeAllLoading();
     super.dispose();
-  }
-
-  Widget _buildHouseCard() {
-    AppProvider appProvider = Provider.of<AppProvider>(context);
-    return Material(
-      color: kForeGroundColor,
-      child: Padding(
-        padding: EdgeInsets.all(32.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            '当前房屋'.text.black.size(28.sp).make(),
-            32.w.heightBox,
-            GestureDetector(
-              onTap: () {
-                Get.to(() => PickMyHousePage());
-                _controller!.callRefresh();
-              },
-              child: Row(
-                children: [
-                  Image.asset(
-                    R.ASSETS_ICONS_HOUSE_PNG,
-                    width: 60.w,
-                    height: 60.w,
-                  ),
-                  40.w.widthBox,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        S
-                            .of(context)!
-                            .tempPlotName
-                            .text
-                            .black
-                            .size(32.sp)
-                            .bold
-                            .make(),
-                        10.w.heightBox,
-                        appProvider.selectedHouse!.roomName.text.black
-                            .size(32.sp)
-                            .bold
-                            .make()
-                      ],
-                    ),
-                  ),
-                  Icon(
-                    CupertinoIcons.chevron_forward,
-                    size: 40.w,
-                  ),
-                ],
-              ).material(color: Colors.transparent),
-            ),
-            24.w.heightBox,
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _buildCard(LifePayModel model, int index) {
@@ -359,7 +301,7 @@ class _LifePayPageState extends State<LifePayPage> {
             if (items != null) _models = items as List<LifePayModel?>;
             return Column(
               children: [
-                _buildHouseCard(),
+                HouseHeadCard( controller: _controller, context: context),
                 16.w.heightBox,
                 Container(
                   padding: EdgeInsets.all(32.w),
@@ -440,3 +382,5 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 }
+
+

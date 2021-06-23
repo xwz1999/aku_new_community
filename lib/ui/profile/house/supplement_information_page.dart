@@ -1,4 +1,5 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/profile/house/house_information_check_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
@@ -88,7 +89,9 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
         ].sepWidget(separate: 24.w.heightBox),
       ),
       bottomNavi: BottomButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => HouseInformationCheckPage());
+          },
           child: '下一步'.text.size(32.sp).bold.color(ktextPrimary).make()),
     );
   }
