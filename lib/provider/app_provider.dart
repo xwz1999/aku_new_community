@@ -250,4 +250,11 @@ class AppProvider extends ChangeNotifier {
         .toList();
     notifyListeners();
   }
+  //设置火灾报警开关
+  bool _fireAlert = true;
+  bool get fireAlert => _fireAlert;
+  void setFireAlert(bool value) {
+    _fireAlert = value;
+    notifyListeners();
+  }
 }

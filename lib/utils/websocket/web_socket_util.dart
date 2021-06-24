@@ -205,4 +205,9 @@ class WebSocketUtil {
       print(data);
     }
   }
+
+  ///控制台输出心跳连接
+  void setPrintHeart(bool value) {
+    this._consolePrint = value;
+  }
 }

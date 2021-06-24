@@ -1,3 +1,6 @@
+import 'package:aku_community/utils/developer_util.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -160,7 +163,33 @@ class _SettingsPageState extends State<SettingsPage> {
             height: 1.w,
           )),
           53.hb,
+          if (DeveloperUtil.dev) _closeFireAlert(),
+          if (DeveloperUtil.dev) 53.hb,
           _quitButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget _closeFireAlert() {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 64.w),
+      child: Row(
+        children: [
+          '开启火灾报警'.text.size(28.sp).color(ktextPrimary).bold.make().expand(),
+          CupertinoSwitch(
+              value: UserTool.appProveider.fireAlert,
+              onChanged: (value) {
+                UserTool.appProveider.setFireAlert(value);
+                if (UserTool.appProveider.fireAlert) {
+                  WebSocketUtil().startWebSocket();
+                  WebSocketUtil().setPrintHeart(value);
+                } else {
+                  WebSocketUtil().closeWebSocket();
+                }
+                setState(() {});
+              })
         ],
       ),
     );
