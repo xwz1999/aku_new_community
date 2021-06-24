@@ -1,3 +1,5 @@
+import 'package:aku_community/pages/tab_navigator.dart';
+import 'package:aku_community/utils/developer_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,13 @@ class FireDialog {
             child: Text('确认'),
             onPressed: () => Get.back(),
           ),
+          if (DeveloperUtil.dev)
+            CupertinoDialogAction(
+              child: Text('清除所有弹窗'),
+              onPressed: () => Get.offAll(
+                () => TabNavigator(),
+              ),
+            ),
         ],
       ),
       barrierDismissible: false,

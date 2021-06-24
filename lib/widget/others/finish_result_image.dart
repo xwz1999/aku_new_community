@@ -25,7 +25,8 @@ class FinishResultImage extends StatelessWidget {
         this.status!
             ? CupertinoIcons.checkmark
             : CupertinoIcons.multiply,
-        size: 100.w,
+        size: 70.w,
+        color: Colors.white,
       ),
     );
   }

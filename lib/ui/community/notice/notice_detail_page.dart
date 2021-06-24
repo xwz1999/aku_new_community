@@ -1,3 +1,5 @@
+import 'package:aku_community/widget/views/%20bee_download_view.dart';
+import 'package:aku_community/widget/views/doc_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -13,7 +15,6 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/picker/bee_image_preview.dart';
-import 'package:aku_community/widget/views/%20bee_download_view.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int? id;
@@ -30,38 +31,6 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
   Widget get emptyWidget => Column(
         children: [],
       );
-
-  Widget docView(String title, String? path) {
-    // if (title?.isEmpty ?? true) return SizedBox();
-    return Container(
-      margin: EdgeInsets.only(right: 113.w),
-      alignment: Alignment.centerLeft,
-      child: MaterialButton(
-        minWidth: 606.w,
-        height: 154.w,
-        padding: EdgeInsets.symmetric(horizontal: 32.w),
-        child: Row(
-          children: [
-            title.text.size(32.sp).make().expand(),
-            Image.asset(
-              R.ASSETS_ICONS_FILE_PNG,
-              height: 52.w,
-              width: 52.w,
-            ),
-          ],
-        ),
-        onPressed: () async {
-          String? result = await Get.dialog(BeeDownloadView(file: path));
-          if (result != null) OpenFile.open(result);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.w),
-          side: BorderSide(color: Color(0xFFD4CFBE)),
-        ),
-        color: Colors.white,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +88,16 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                   44.hb,
                   model!.content!.text.size(28.sp).make(),
                   43.hb,
-                  docView(model?.fileDocName ?? '', model!.fileDocUrl),
+                  DocViw(
+                    title: model?.fileDocName ?? '',
+                    onPressed: () async {
+                        String? result = await Get.dialog(BeeDownloadView(
+                          file: model!.fileDocUrl,
+                        ));
+                        if (result != null) OpenFile.open(result);
+                      
+                    },
+                  ),
                 ],
               ),
       ).material(color: Colors.white),
