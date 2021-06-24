@@ -177,7 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 64.w),
       child: Row(
         children: [
-          '开启火灾报警'.text.size(28.sp).color(ktextPrimary).bold.make().expand(),
+          '接收火灾报警通知'.text.size(28.sp).color(ktextPrimary).bold.make().expand(),
           CupertinoSwitch(
               value: UserTool.appProveider.fireAlert,
               onChanged: (value) {

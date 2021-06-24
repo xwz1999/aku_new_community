@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/others/finish_result_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,21 +23,7 @@ class SubmitComplishPage extends StatelessWidget {
         child: Column(
           children: [
             76.w.heightBox,
-            Container(
-              alignment: Alignment.center,
-              width: 110.w,
-              height: 110.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(55.w),
-                color: this.status! ? kPrimaryColor : kDangerColor,
-              ),
-              child: Icon(
-                this.status!
-                    ? CupertinoIcons.checkmark
-                    : CupertinoIcons.multiply,
-                size: 100.w,
-              ),
-            ),
+            FinishResultImage(status: status),
             48.w.heightBox,
             (this.status! ? '提交成功' : '提交失败').text.size(36.sp).black.bold.make(),
             16.w.heightBox,

@@ -10,15 +10,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #国际化支持
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
   permission_handler: ^7.1.0
+  #包信息
   package_info: ^2.0.0
+  #状态管理
   provider: ^5.0.0
+  #屏幕适配
   flutter_screenutil: ^5.0.0+2
+  #图标集合
   cupertino_icons: ^1.0.3
+  #超链接 跳转拨号等
   url_launcher: ^6.0.3
+  #常用工具类
   flustars: ^2.0.1
   flutter_icons:
     git:
@@ -38,49 +45,75 @@ dependencies:
   path_provider: ^2.0.1
   #webscoket
   web_socket_channel: ^2.1.0
+  #虚线边框
+  dotted_border: ^2.0.0
+  #手写签字板
+  signature: ^4.1.1
 
   #支付宝支付功能
   tobias: ^2.1.0
   #微信支付
   fluwx: ^3.4.2
+  #路由相关
   get: ^4.1.4
+  #各种扩展
   velocity_x: ^3.0.0
+  #本地化存储
   hive: ^2.0.4
   hive_flutter: ^1.0.0
+  #调试信息
   logger: ^1.0.0
+  #刷新组件
   flutter_easyrefresh: ^2.2.1
+  #随机昵称
   random_character:
     git:
       url: git@git.oa00.com:flutter_pub/random_character.git
       ref: null-safety
-
+  #图片选择
   image_picker: ^0.7.4
+  #调试信息输出
   power_logger: ^1.2.1
+  #评分组件
   flutter_rating_bar: ^4.0.0
+  #极光推送
   jpush_flutter:
     git:
       url: https://git.oa00.com/flutter_third/jpush-flutter-plugin
+  #打开文件
   open_file: ^3.2.1
+  #角标
   badges: ^2.0.0-nullsafety.1
+  #高德地图相关
   amap_flutter_map: ^2.0.1
   amap_flutter_location: ^2.0.0
   amap_flutter_base: ^2.0.0
+  #动态文字
   animated_text_kit: ^4.2.1
+  #谷歌崩溃记录分析
   firebase_core: ^1.1.1
   firebase_crashlytics: ^2.0.3
+  #分享功能
   share: ^2.0.1
   collection: ^1.15.0
+  #model 自动生成注释插件
   json_annotation: ^4.0.1
+  #瀑布流
   waterfall_flow: ^3.0.1
+  #扫码组件
   qr_code_scanner: ^0.4.0
+  #model 插件
   equatable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  #导入包整理
   import_sorter: ^4.5.1
+  #脚本工具
   grinder: ^0.9.0
   flutter_native_splash: ^1.1.8+4
+  #model自动生成
   json_serializable: ^4.1.1
   build_runner: ^2.0.2
   yaml: ^3.1.0

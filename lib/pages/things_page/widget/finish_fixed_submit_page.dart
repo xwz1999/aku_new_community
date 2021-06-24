@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/others/finish_result_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,21 +20,7 @@ class FinishFixedSubmitPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             76.w.heightBox,
-            SizedBox(
-                width: 128.w,
-                height: 128.w,
-                child: Container(
-                  width: 110.w,
-                  height: 110.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(110.w),
-                      color: kPrimaryColor),
-                  child: Icon(
-                    CupertinoIcons.check_mark,
-                    color: Colors.white,
-                    size: 70.w,
-                  ),
-                )),
+            FinishResultImage(status: true),
             48.w.heightBox,
             '提交成功'.text.black.size(36.sp).make(),
             16.w.heightBox,
