@@ -7,7 +7,7 @@ import 'package:aku_community/utils/network/net_util.dart';
 class MyOrderFunc {
   ///确认收货
   static Future confirmReceive(int goodsAppointmentId) async {
-    BaseModel baseModel = await NetUtil().get(API.market.confirmReceive,
+    await NetUtil().get(API.market.confirmReceive,
         params: {"goodsAppointmentId": goodsAppointmentId}, showMessage: true);
   }
 

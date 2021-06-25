@@ -1,6 +1,12 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/house/lease_list_model.dart';
+import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
+import 'package:aku_community/ui/profile/house/download_contract_page.dart';
 import 'package:aku_community/ui/profile/house/supplement_information_page.dart';
+import 'package:aku_community/ui/profile/house/upload_contracts_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
 import 'package:flutter/material.dart';
@@ -35,21 +41,40 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '可选房屋',
-      body: EasyRefresh(
-        firstRefresh: true,
-        header: MaterialHeader(),
-        controller: _refreshController,
-        onRefresh: () async {
-          _onload = false;
-          setState(() {});
-        },
-        child: _onload
-            ? Container()
-            : ListView(
+      // body: EasyRefresh(
+      //   firstRefresh: true,
+      //   header: MaterialHeader(),
+      //   controller: _refreshController,
+      //   onRefresh: () async {
+      //     _onload = false;
+      //     setState(() {});
+      //   },
+      //   child: _onload
+      //       ? Container()
+      //       : ListView(
+      //           padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+      //           children: [houseCard()],
+      //         ),
+      // ),
+      body: BeeListView(
+          path: API.house.leaseList,
+          controller: _refreshController,
+          convert: (models) {
+            return models.tableList!
+                .map((e) => LeaseListModel.fromJson(e))
+                .toList();
+          },
+          builder: (items) {
+            return ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-                children: [houseCard()],
-              ),
-      ),
+                itemBuilder: (context, index) {
+                  return houseCard(items[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return 24.w.heightBox;
+                },
+                itemCount: items.length);
+          }),
     );
   }
 
@@ -65,30 +90,42 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
           Color(0xFFFFEEBB),
           Color(0xFFFFF4D2),
         ];
+      case 3:
+        return [
+          Color(0xFFFFEEBB),
+          Color(0xFFFFF4D2),
+        ];
+      case 4:
+        return [
+          Color(0xFFFFEEBB),
+          Color(0xFFFFF4D2),
+        ];
+      case 5:
+        return [
+          Color(0xFFFFEEBB),
+          Color(0xFFFFF4D2),
+        ];
+      case 6:
+        return [
+          Color(0xFFFFEEBB),
+          Color(0xFFFFF4D2),
+        ];
       default:
         return [Colors.white, Colors.white];
     }
   }
 
-  Widget houseCard() {
-    var buttons = Row(
-      children: [
-        CardBottomButton.yellow(
-            text: '填写信息',
-            onPressed: () {
-              Get.to(() => SupplementInformationPage());
-            })
-      ],
-    );
+  Widget houseCard(LeaseListModel model) {
+    var buttons = getButtons(model.status);
     var bottom = Row(
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            '二类人才'.text.size(28.sp).color(ktextSubColor).make(),
+            model.getTypeString.text.size(28.sp).color(ktextSubColor).make(),
             8.w.heightBox,
-            'B座C1户型'.text.size(28.sp).color(ktextSubColor).make(),
+            model.estateType.text.size(28.sp).color(ktextSubColor).make(),
           ],
         ).expand(),
         buttons
@@ -116,14 +153,17 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
               ),
               16.w.widthBox,
               '南宁金融人才公寓'.text.size(32.sp).color(ktextPrimary).make().expand(),
-              '待签署'.text.size(32.sp).color(ktextPrimary).bold.make(),
+              model.statusString.text
+                  .size(32.sp)
+                  .color(ktextPrimary)
+                  .bold
+                  .make(),
             ],
           ),
           12.w.heightBox,
           Row(
             children: [
-              '1幢-1单元-702室'
-                  .text
+              model.roomName.text
                   .size(40.sp)
                   .color(ktextPrimary)
                   .bold
@@ -136,5 +176,77 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
         ],
       ),
     );
+  }
+
+  Row getButtons(int status) {
+    switch (status) {
+      case 1:
+        return Row(
+          children: [
+            CardBottomButton.yellow(
+                text: '填写信息',
+                onPressed: () {
+                  Get.to(() => SupplementInformationPage());
+                })
+          ],
+        );
+      case 2:
+        return Row(
+          children: [
+            CardBottomButton.yellow(
+                text: '上传合同',
+                onPressed: () {
+                  Get.to(() => UploadContractsPage());
+                }),
+            CardBottomButton.white(
+                text: '下载合同',
+                onPressed: () {
+                  Get.to(() => DownLoadContractPage(firstRoute: false));
+                }),
+          ],
+        );
+
+      case 3:
+        return Row(
+          children: [],
+        );
+      case 4:
+        return Row(
+          children: [
+            CardBottomButton.yellow(
+                text: '重新上传',
+                onPressed: () {
+                  Get.to(() => UploadContractsPage());
+                }),
+            CardBottomButton.white(
+                text: '修改信息',
+                onPressed: () {
+                  Get.to(() => SupplementInformationPage());
+                }),
+          ],
+        );
+      case 5:
+        return Row(
+          children: [
+            CardBottomButton.yellow(
+                text: '去支付',
+                onPressed: () {
+                  Get.to(() => ContractPayPage());
+                })
+          ],
+        );
+      case 6:
+        return Row(
+          children: [
+            CardBottomButton.yellow(
+                text: '租户页面',
+                onPressed: () {
+                  Get.back();
+                })
+          ],
+        );
+      default:
+        return Row();
+    }
   }
 }

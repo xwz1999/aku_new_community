@@ -54,6 +54,7 @@ class HouseFunc {
     }
   }
 
+
   Map<String, int> getSex = {
     '男': 1,
     '女': 2,

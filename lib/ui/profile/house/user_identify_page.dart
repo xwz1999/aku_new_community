@@ -233,8 +233,9 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
                 '返回'.text.size(34.sp).isIntrinsic.color(ktextPrimary).make()),
         CupertinoDialogAction(
             onPressed: () {
-              Get.back();
-              Get.back();
+              // Get.back();
+              // Get.back();
+              Get.to(() => TenantHouseListPage());
             },
             child: '回到首页'
                 .text

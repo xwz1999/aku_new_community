@@ -69,7 +69,6 @@ class _FeedBackPageState extends State<FeedBackPage> {
       onTap: () async {
         if (_formKey.currentState!.validate()) {
           if (_files.isNotEmpty) {
-            //TODO upload file
           }
           var cancelAction = BotToast.showLoading();
           await NetUtil().post(
