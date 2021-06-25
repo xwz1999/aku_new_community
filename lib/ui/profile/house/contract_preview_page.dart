@@ -68,7 +68,7 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () {
-            Get.to(() => DownLoadContractPage(firstRoute: true));
+            Get.off(() => DownLoadContractPage(firstRoute: true));
           },
           child: '生成合同'.text.size(32.sp).color(ktextPrimary).make()),
     );

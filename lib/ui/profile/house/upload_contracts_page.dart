@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/painters/upload_painter.dart';
+import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/picker/bee_image_picker.dart';
@@ -85,7 +86,9 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
         ],
       ),
       bottomNavi: BottomButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => ContractPayPage());
+          },
           child: '提交审核'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
   }

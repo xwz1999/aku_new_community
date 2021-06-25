@@ -47,7 +47,7 @@ class IdentifySelectionPage extends StatelessWidget {
         .padding(EdgeInsets.symmetric(vertical: 40.w, horizontal: 32.w))
         .make()
         .onInkTap(() {
-      Get.to(() => isOwner ? MyHouseList() : UserIdentifyPage());
+      Get.off(() => isOwner ? MyHouseList() : UserIdentifyPage());
     }).material(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8.w),

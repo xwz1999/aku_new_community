@@ -38,7 +38,8 @@ class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
       ),
       bottomNavi: BottomButton(
         onPressed: () {
-          Get.to(()=>ContractPreviewPage());
+          Get.back();
+          Get.off(() => ContractPreviewPage());
         },
         child: '确认'.text.size(32.sp).bold.color(ktextPrimary).make(),
       ),
