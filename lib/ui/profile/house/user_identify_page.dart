@@ -1,4 +1,5 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/models/house/lease_echo_model.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -22,15 +23,43 @@ class UserIdentifyPage extends StatefulWidget {
 
 class _UserIdentifyPageState extends State<UserIdentifyPage> {
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
   TextEditingController _indentifyCodeController = TextEditingController();
   String _sex = '请选择性别';
   String _identify = '请选择身份';
+  String _tel = '';
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 300), () async {
+      LeaseEchoModel _model = await HouseFunc.leaseEcho();
+      if (!_model.name.isEmptyOrNull) {
+        _nameController.text = _model.name!;
+      }
+      if (_model.sex != null) {
+        switch (_model.sex) {
+          case 1:
+            _sex = '男';
+            break;
+          case 2:
+            _sex = '女';
+            break;
+          default:
+            break;
+        }
+      }
+      if (_model.tel.isNotEmpty) {
+        _tel = _model.tel;
+      }
+      if (!_model.idNumber.isEmptyOrNull) {
+        _indentifyCodeController.text = _model.idNumber!;
+      }
+      setState(() {});
+    });
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _phoneController.dispose();
     _indentifyCodeController.dispose();
     super.dispose();
   }
@@ -58,12 +87,11 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
               setState(() {});
             },
           ),
-          BeeInputRow(
+          BeeInputRow.button(
             title: '手机号码',
-            controller: _phoneController,
-            formatters: [FilteringTextInputFormatter.digitsOnly],
-            hintText: '请输入手机号',
+            onPressed: () {},
             isRequire: true,
+            hintText: _tel,
           ),
           BeeInputRow(
             title: '身份证号码',
@@ -89,7 +117,7 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
               bool result = await HouseFunc().leaseCertification(
                   _nameController.text,
                   _sex,
-                  _phoneController.text,
+                  _tel,
                   _indentifyCodeController.text);
               if (result) {
                 Get.off(() => TenantHouseListPage());
@@ -105,10 +133,6 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
   bool get canSubmit {
     if (_nameController.text.isEmpty) {
       BotToast.showText(text: '姓名不能为空！');
-      return false;
-    }
-    if (_phoneController.text.isEmpty) {
-      BotToast.showText(text: '手机号码不能为空！');
       return false;
     }
     if (_indentifyCodeController.text.isEmpty) {
@@ -179,15 +203,27 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
     return CupertinoAlertDialog(
       title:
           '账户不存在'.text.size(34.sp).color(ktextPrimary).bold.isIntrinsic.make(),
-      content: '''原因:
-      1.用户未具备相关资格
-      2.用户填写的姓名及身份证号与登记在册的姓名及身份证号并不一致'''
-          .text
-          .size(26.sp)
-          .color(ktextPrimary)
-          .bold
-          .isIntrinsic
-          .make(),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '原因:'.text.size(26.sp).color(ktextPrimary).bold.isIntrinsic.make(),
+          '1.用户未具备相关资格'
+              .text
+              .size(26.sp)
+              .color(ktextPrimary)
+              .bold
+              .isIntrinsic
+              .make(),
+          '2.用户填写的姓名及身份证号与登记在册的姓名及身份证号并不一致'
+              .text
+              .size(26.sp)
+              .color(ktextPrimary)
+              .align(TextAlign.left)
+              .bold
+              .isIntrinsic
+              .make(),
+        ],
+      ),
       actions: [
         CupertinoDialogAction(
             onPressed: () {

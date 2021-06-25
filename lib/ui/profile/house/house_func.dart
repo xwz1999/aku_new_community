@@ -1,5 +1,6 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/house_model.dart';
+import 'package:aku_community/models/house/lease_echo_model.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -23,7 +24,7 @@ class HouseFunc {
   }
 
   ///我的房屋 租赁认证
-   Future leaseCertification(
+  Future leaseCertification(
     String name,
     String sex,
     String tel,
@@ -41,6 +42,16 @@ class HouseFunc {
       return true;
     }
     return false;
+  }
+
+  ///租赁认证信息回显
+  static Future leaseEcho() async {
+    BaseModel baseModel = await NetUtil().get(API.house.leaseEcho);
+    if (baseModel.status ?? false) {
+      return LeaseEchoModel.fromJson(baseModel.data);
+    } else {
+      return LeaseEchoModel.fail();
+    }
   }
 
   Map<String, int> getSex = {
