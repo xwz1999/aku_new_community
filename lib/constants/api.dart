@@ -22,6 +22,7 @@ class API {
   static _News news = _News();
   static _Search search = _Search();
   static _Pay pay = _Pay();
+  static _House house = _House();
 }
 
 class _Login {
@@ -275,7 +276,6 @@ class _Manager {
 
   ///门禁二维码：app获取设备二维码
   String get getDoorQrCode => '/user/doorQRCode/getQrCode';
-
 }
 
 class _Community {
@@ -377,6 +377,12 @@ class _Upload {
   String get uploadRepair => '/user/upload/uploadRepair';
 
   String get uploadEvent => '/user/upload/uploadGambit';
+
+  ///上传身份证照片正面
+  String get uploadCardFront => '/user/upload/uploadAppIdCardFront';
+
+  ///上传身份证背面照片
+  String get uploadCardBack => '/user/upload/uploadAppIdCardBack';
 }
 
 class _Message {
@@ -443,4 +449,21 @@ class _Pay {
 
   ///支付宝支付：报事报修 向支付宝发起订单查询请求
   String get reportReapirCheck => '/user/alipay/reportRepairCheckAlipay';
+}
+
+class _House {
+  ///我的房屋：租赁认证
+  String get leaseCertification => '/user/myHouse/leaseCertification';
+
+  ///我的房屋：租赁认证信息回显
+  String get leaseEcho => '/user/myHouse/leaseEcho';
+
+  ///我的房屋：查询所有的租赁信息
+  String get leaseList => '/user/myHouse/leaseList';
+
+  ///我的房屋：根据租赁主键id查询租赁信息
+  String get leaseFindByld => '/user/myHouse/leaseFindById';
+
+  ///我的房屋：提交个人租赁信息
+  String get submitLeaseInfo => '/user/myHouse/submitPersonalLeaseInfo';
 }

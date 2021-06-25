@@ -1,8 +1,10 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -83,10 +85,45 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            await Get.dialog(_errorDialog());
+            if (canSubmit) {
+              bool result = await HouseFunc().leaseCertification(
+                  _nameController.text,
+                  _sex,
+                  _phoneController.text,
+                  _indentifyCodeController.text);
+              if (result) {
+                Get.off(() => TenantHouseListPage());
+              } else {
+                await Get.dialog(_errorDialog());
+              }
+            }
           },
           child: '提交'.text.size(32.sp).bold.color(ktextPrimary).make()),
     );
+  }
+
+  bool get canSubmit {
+    if (_nameController.text.isEmpty) {
+      BotToast.showText(text: '姓名不能为空！');
+      return false;
+    }
+    if (_phoneController.text.isEmpty) {
+      BotToast.showText(text: '手机号码不能为空！');
+      return false;
+    }
+    if (_indentifyCodeController.text.isEmpty) {
+      BotToast.showText(text: '身份证号码不能为空！');
+      return false;
+    }
+    if (_sex == '请选择性别') {
+      BotToast.showText(text: '请先选择性别');
+      return false;
+    }
+    if (_identify == '请选择身份') {
+      BotToast.showText(text: '请先选择身份');
+      return false;
+    }
+    return true;
   }
 
   Widget _sexBottomSheet() {
@@ -142,7 +179,9 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
     return CupertinoAlertDialog(
       title:
           '账户不存在'.text.size(34.sp).color(ktextPrimary).bold.isIntrinsic.make(),
-      content: '原因:用户未具备相关资格'
+      content: '''原因:
+      1.用户未具备相关资格
+      2.用户填写的姓名及身份证号与登记在册的姓名及身份证号并不一致'''
           .text
           .size(26.sp)
           .color(ktextPrimary)
@@ -159,9 +198,9 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
         CupertinoDialogAction(
             onPressed: () {
               Get.back();
-              Get.off(() => TenantHouseListPage());
+              Get.back();
             },
-            child: '修改信息'
+            child: '回到首页'
                 .text
                 .size(34.sp)
                 .isIntrinsic
