@@ -16,7 +16,7 @@ class IdentifyCardPicker extends StatefulWidget {
         24.w.heightBox,
         IdentifyCardPicker(
           onChange: onChange,
-          path: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+          path: R.ASSETS_STATIC_ID_CARD_FRONT_PNG,
         )
       ],
     );
@@ -29,7 +29,7 @@ class IdentifyCardPicker extends StatefulWidget {
         '上传身份证背面'.text.size(28.sp).color(ktextPrimary).make(),
         24.w.heightBox,
         IdentifyCardPicker(
-            onChange: onChange, path: R.ASSETS_IMAGES_PLACEHOLDER_WEBP)
+            onChange: onChange, path: R.ASSETS_STATIC_ID_CARD_BACK_PNG)
       ],
     );
   }
@@ -50,8 +50,10 @@ class _IdentifyCardPickerState extends State<IdentifyCardPicker> {
     return GestureDetector(
       onTap: () async {
         _file = await BeeImagePicker.pick(title: '选择身份证照片');
-        setState(() {});
-        widget.onChange(_file);
+        if (_file != null) {
+          setState(() {});
+          widget.onChange(_file);
+        }
       },
       child: Container(
         width: 350.w,

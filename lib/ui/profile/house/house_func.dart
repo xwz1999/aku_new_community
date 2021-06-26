@@ -1,5 +1,6 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/house_model.dart';
+import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/models/house/lease_echo_model.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
@@ -54,9 +55,25 @@ class HouseFunc {
     }
   }
 
+  ///获得租赁详情信息
+  Future<LeaseDetailModel?> leaseDetail(int leaseId) async {
+    BaseModel baseModel = await NetUtil().get(API.house.leaseFindByld, params: {
+      "leaseId": leaseId,
+    });
+    if (baseModel.status ?? false) {
+      return LeaseDetailModel.fromJson(baseModel.data);
+    } else {
+      return null;
+    }
+  }
 
-  Map<String, int> getSex = {
+ static Map<String, int> getSex = {
     '男': 1,
     '女': 2,
+  };
+
+ static Map<int, String> toSex = {
+    1: '男',
+    2: '女',
   };
 }

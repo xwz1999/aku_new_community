@@ -10,7 +10,7 @@ class SignNameBoard extends StatefulWidget {
     SignatureController _signatureController = SignatureController(
       penColor: Colors.black,
       penStrokeWidth: 5.w,
-      exportBackgroundColor: Colors.white,
+      exportBackgroundColor: Colors.transparent,
     );
     return await navigator!.push(
       PageRouteBuilder(

@@ -36,16 +36,7 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
         _nameController.text = _model.name!;
       }
       if (_model.sex != null) {
-        switch (_model.sex) {
-          case 1:
-            _sex = '男';
-            break;
-          case 2:
-            _sex = '女';
-            break;
-          default:
-            break;
-        }
+        HouseFunc.toSex[_model.sex];
       }
       if (_model.tel.isNotEmpty) {
         _tel = _model.tel;
