@@ -206,6 +206,10 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/introduce.png)
   static const String ASSETS_ICONS_INTRODUCE_PNG = 'assets/icons/introduce.png';
 
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/lease_house.png)
+  static const String ASSETS_ICONS_LEASE_HOUSE_PNG =
+      'assets/icons/lease_house.png';
+
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/like.png)
   static const String ASSETS_ICONS_LIKE_PNG = 'assets/icons/like.png';
 
@@ -530,6 +534,14 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/static/house_auth_success.webp)
   static const String ASSETS_STATIC_HOUSE_AUTH_SUCCESS_WEBP =
       'assets/static/house_auth_success.webp';
+
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/static/id_card_back.png)
+  static const String ASSETS_STATIC_ID_CARD_BACK_PNG =
+      'assets/static/id_card_back.png';
+
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/static/id_card_front.png)
+  static const String ASSETS_STATIC_ID_CARD_FRONT_PNG =
+      'assets/static/id_card_front.png';
 
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/static/parking_grey.webp)
   static const String ASSETS_STATIC_PARKING_GREY_WEBP =
