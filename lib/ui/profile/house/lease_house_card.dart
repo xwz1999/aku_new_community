@@ -2,9 +2,9 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/models/house/lease_list_model.dart';
 import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
-import 'package:aku_community/ui/profile/house/download_contract_page.dart';
 import 'package:aku_community/ui/profile/house/supplement_information_page.dart';
 import 'package:aku_community/ui/profile/house/upload_contracts_page.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,7 +55,7 @@ class LeaseHouseCard extends StatelessWidget {
                 height: 40.w,
               ),
               16.w.widthBox,
-              '南宁金融人才公寓'.text.size(32.sp).color(ktextPrimary).make().expand(),
+              S.of(context)!.tempPlotName.text.size(32.sp).color(ktextPrimary).make().expand(),
               model.statusString.text
                   .size(32.sp)
                   .color(ktextPrimary)
@@ -108,8 +108,13 @@ class LeaseHouseCard extends StatelessWidget {
                 }),
             CardBottomButton.white(
                 text: '下载合同',
-                onPressed: () {
-                  Get.to(() => DownLoadContractPage(firstRoute: false));
+                onPressed: () async{
+                  //TODO:待接口中添加完合同路径字段后取消注释
+                  //  String? result = await Get.dialog(BeeDownloadView(
+                  //         file:
+                  //       ));
+                  //       if (result != null) OpenFile.open(result);
+                      
                 }),
           ],
         );

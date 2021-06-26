@@ -383,6 +383,9 @@ class _Upload {
 
   ///上传身份证背面照片
   String get uploadCardBack => '/user/upload/uploadAppIdCardBack';
+
+  ///上传签名
+  String get uploadSignName => '/user/upload/uploadLeaseContractSignaturePhoto';
 }
 
 class _Message {

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/models/house/lease_echo_model.dart';
+import 'package:aku_community/models/house/submit_model.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
+import 'package:aku_community/utils/network/base_file_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -67,13 +71,70 @@ class HouseFunc {
     }
   }
 
- static Map<String, int> getSex = {
+  ///上传身份证照片正面
+  Future<String> uploadIdCardFront(File file) async {
+    BaseFileModel baseFileModel =
+        await NetUtil().upload(API.upload.uploadCardFront, file);
+    if (baseFileModel.status ?? false) {
+      return baseFileModel.url!;
+    } else {
+      return '';
+    }
+  }
+
+  ///上传身份证照片背面
+  Future<String> uploadIdCardBack(File file) async {
+    BaseFileModel baseFileModel =
+        await NetUtil().upload(API.upload.uploadCardBack, file);
+    if (baseFileModel.status ?? false) {
+      return baseFileModel.url!;
+    } else {
+      return '';
+    }
+  }
+
+  ///提交个人租赁信息
+  Future<String> submitLeaseInfo(SubmitModel model) async {
+    BaseModel baseModel =
+        await NetUtil().get(API.house.submitLeaseInfo, params: {
+      "id": model.id,
+      "emergencyContact": model.emergencyContact,
+      "emergencyContactNumber": model.emergencyContactNumber,
+      "correspondenceAddress": model.correspondenceAddress,
+      "workUnits": model.workUnits,
+      "payBank": model.payBank,
+      "bankAccountName": model.bankAccountName,
+      "bankAccount": model.bankAccount,
+      "idCardFrontImgUrl": model.idCardFrontImgUrl,
+      "idCardBackImgUrl": model.idCardBackImgUrl,
+    });
+    if (baseModel.status ?? false) {
+      return baseModel.data;
+    } else {
+      return '';
+    }
+  }
+
+  ///上传合同签名
+  Future<String> uploadSignName(File file) async {
+    BaseFileModel baseFileModel =
+        await NetUtil().upload(API.upload.uploadSignName, file);
+    if (baseFileModel.status ?? false) {
+      return baseFileModel.url!;
+    } else {
+      return '';
+    }
+  }
+
+  static Map<String, int> getSex = {
     '男': 1,
     '女': 2,
   };
 
- static Map<int, String> toSex = {
+  static Map<int, String> toSex = {
     1: '男',
     2: '女',
   };
+
+  static Map<int, String> toType = {1: '一类人才', 2: '二类人才', 3: '三类人才'};
 }

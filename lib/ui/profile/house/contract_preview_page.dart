@@ -3,10 +3,13 @@ import 'dart:typed_data';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/ui/profile/house/download_contract_page.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/sign_name_board.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +17,8 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ContractPreviewPage extends StatefulWidget {
-  ContractPreviewPage({Key? key}) : super(key: key);
+  final String url;
+  ContractPreviewPage({Key? key, required this.url}) : super(key: key);
 
   @override
   _ContractPreviewPageState createState() => _ContractPreviewPageState();
@@ -56,7 +60,7 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
             children: [
               FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: 'image'),
+                  image: API.image(widget.url)),
               Positioned(
                 right: 70.w,
                 bottom: 200.w,
@@ -67,8 +71,17 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
         ],
       ),
       bottomNavi: BottomButton(
-          onPressed: () {
-            Get.off(() => DownLoadContractPage(firstRoute: true));
+          onPressed: () async {
+            if (_signFile != null) {
+              Function cancel = BotToast.showLoading();
+              String result = await HouseFunc().uploadSignName(_signFile!);
+              Get.off(() => DownLoadContractPage(
+                    path: result,
+                  ));
+              cancel();
+            } else {
+              BotToast.showText(text: '请先签名！');
+            }
           },
           child: '生成合同'.text.size(32.sp).color(ktextPrimary).make()),
     );

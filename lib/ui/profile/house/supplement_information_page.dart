@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
+import 'package:aku_community/models/house/submit_model.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/house_information_check_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -58,16 +59,17 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
 
   ///身份证照片正面
   File? _idCardFront;
+
   ///身份证照片反面
   File? _idCardBack;
+  SubmitModel _submitModel = SubmitModel.init();
+  LeaseDetailModel? _model;
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 300), () async {
-      LeaseDetailModel? model = await HouseFunc().leaseDetail(widget.leaseId);
-      if (model != null) {
-        initModel(model);
-        setState(() {});
-      }
+      _model = await HouseFunc().leaseDetail(widget.leaseId);
+      initHinText(_model);
+      setState(() {});
     });
     super.initState();
   }
@@ -153,17 +155,34 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
       bottomNavi: BottomButton(
           onPressed: () {
             if (canSubmit) {
-
-              Get.to(() => HouseInformationCheckPage());
+              updateSubmitModel();
+              Get.to(() => HouseInformationCheckPage(
+                    submitModel: _submitModel,
+                    detailModel: _model!,
+                  ));
             }
           },
           child: '下一步'.text.size(32.sp).bold.color(ktextPrimary).make()),
     );
   }
 
+  //更新要提交的model信息
+  updateSubmitModel() {
+    _submitModel.bankAccountName = _nameController.text;
+    _submitModel.emergencyContact = _emergencyContactController.text;
+    _submitModel.emergencyContactNumber = _emergencyPhoneController.text;
+    _submitModel.correspondenceAddress = _addressController.text;
+    _submitModel.workUnits = _workUnitController.text;
+    _submitModel.payBank = _bankNameController.text;
+    _submitModel.bankAccount = _bankCodeController.text;
+    _submitModel.idCardFrontFile = _idCardFront;
+    _submitModel.idCardBackFile = _idCardBack;
+  }
+
   //初始化model,基本信息回显
-  initModel(LeaseDetailModel? model) {
+  initHinText(LeaseDetailModel? model) {
     if (model != null) {
+      _submitModel.id = model.id;
       _nameController.text = model.name;
       _sex = HouseFunc.toSex[model.sex]!;
       _codeController.text = model.idCard;
@@ -187,8 +206,6 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
       }
     }
   }
-
-
 
   Widget _sexBottomSheet() {
     return CupertinoActionSheet(
