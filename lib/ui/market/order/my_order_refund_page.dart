@@ -55,7 +55,7 @@ class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
       bottomNavi: BottomButton(
           onPressed: () async {
             BaseModel baseModel = await MyOrderFunc.refundOrder(
-                widget.model.id, _editingController.text);
+                widget.model.id, _editingController.text, _type);
             if (baseModel.status ?? false) {
               Get.back();
             }

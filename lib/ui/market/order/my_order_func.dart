@@ -12,9 +12,9 @@ class MyOrderFunc {
   }
 
   ///申请退换
-  static Future refundOrder(int goodsAppointmentId, String reson) async {
+  static Future refundOrder(int goodsAppointmentId, String reson,int type) async {
     BaseModel baseModel = await NetUtil().get(API.market.refundOrder,
-        params: {"goodsAppointmentId": goodsAppointmentId, "backReason": reson},
+        params: {"goodsAppointmentId": goodsAppointmentId, "backReason": reson,"backType":type},
         showMessage: true);
     return baseModel;
   }
