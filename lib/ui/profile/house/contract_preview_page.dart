@@ -14,6 +14,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ContractPreviewPage extends StatefulWidget {
@@ -76,13 +77,17 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
           onPressed: () async {
             if (_signFile != null) {
               Function cancel = BotToast.showLoading();
-              String result = await HouseFunc().uploadSignName(_signFile!);
-              String path = await HouseFunc()
-                  .generateContract(widget.id, widget.url, result);
-              Get.off(() => DownLoadContractPage(
-                    path: path,
-                    id: widget.id,
-                  ));
+              try {
+                String result = await HouseFunc().uploadSignName(_signFile!);
+                String path = await HouseFunc()
+                    .generateContract(widget.id, widget.url, result);
+                Get.off(() => DownLoadContractPage(
+                      path: path,
+                      id: widget.id,
+                    ));
+              } catch (e) {
+                LoggerData.addData(e);
+              }
               cancel();
             } else {
               BotToast.showText(text: '请先签名！');

@@ -1,5 +1,6 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
@@ -23,20 +24,25 @@ class ContractPayPage extends StatefulWidget {
 }
 
 class _ContractPayPageState extends State<ContractPayPage> {
-  late TextEditingController _contractCodeController;
-  late TextEditingController _payTotalController;
+  String _contractCode = '';
+  num _payTotal = 0;
+  LeaseDetailModel? _model;
   String _payMethod = '选择支付方式';
   @override
   void initState() {
     super.initState();
-    _contractCodeController = TextEditingController();
-    _payTotalController = TextEditingController();
+    Future.delayed(Duration(milliseconds: 300), () async {
+      _model = (await HouseFunc().leaseDetail(widget.id));
+      if (_model != null) {
+        _contractCode = _model!.code;
+        _payTotal = _model!.margin;
+      }
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
-    _contractCodeController.dispose();
-    _payTotalController.dispose();
     super.dispose();
   }
 
@@ -47,16 +53,16 @@ class _ContractPayPageState extends State<ContractPayPage> {
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
         children: [
-          BeeInputRow(
-            controller: _contractCodeController,
-            hintText: '请填写合同编号',
+          BeeInputRow.button(
+            onPressed: () {},
+            hintText: _contractCode,
             title: '合同编号',
             isRequire: true,
           ),
-          BeeInputRow(
+          BeeInputRow.button(
               title: '保证金金额(元)',
-              controller: _payTotalController,
-              hintText: '填写保证金金额'),
+              onPressed: () {},
+              hintText: _payTotal.toStringAsFixed(2)),
           BeeInputRow.button(
               title: '支付方式',
               hintText: _payMethod,

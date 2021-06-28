@@ -101,8 +101,11 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
             bool result =
                 await HouseFunc().submitFormalContract(widget.id, _urls);
             if (result) {
-              Get.to(() => ContractPayPage(id: widget.id,));
+              Get.to(() => ContractPayPage(
+                    id: widget.id,
+                  ));
             }
+            cancel();
           },
           child: '提交审核'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );
