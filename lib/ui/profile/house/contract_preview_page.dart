@@ -18,7 +18,9 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ContractPreviewPage extends StatefulWidget {
   final String url;
-  ContractPreviewPage({Key? key, required this.url}) : super(key: key);
+  final int id;
+  ContractPreviewPage({Key? key, required this.url, required this.id})
+      : super(key: key);
 
   @override
   _ContractPreviewPageState createState() => _ContractPreviewPageState();
@@ -75,8 +77,10 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
             if (_signFile != null) {
               Function cancel = BotToast.showLoading();
               String result = await HouseFunc().uploadSignName(_signFile!);
+              String path = await HouseFunc()
+                  .generateContract(widget.id, widget.url, result);
               Get.off(() => DownLoadContractPage(
-                    path: result,
+                    path: path,
                   ));
               cancel();
             } else {

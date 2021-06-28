@@ -65,6 +65,7 @@ class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
             if (result.isNotEmpty) {
               Get.back();
               Get.off(() => ContractPreviewPage(
+                id: widget.detailModel.id,
                     url: result,
                   ));
             }

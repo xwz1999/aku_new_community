@@ -469,4 +469,8 @@ class _House {
 
   ///我的房屋：提交个人租赁信息
   String get submitLeaseInfo => '/user/myHouse/submitPersonalLeaseInfo';
+
+  ///我的房屋：生成合同
+  String get generateContract => '/user/myHouse/generateValidContract';
+  
 }

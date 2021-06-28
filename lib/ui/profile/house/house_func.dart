@@ -126,6 +126,22 @@ class HouseFunc {
     }
   }
 
+  ///生成正式合同
+  Future<String> generateContract(int id, String pUrl, String url) async {
+    BaseModel baseModel =
+        await NetUtil().post(API.house.generateContract, params: {
+      "id": id,
+      "ContractPreviewImgUrl": pUrl,
+      "contractSignatureImgUrl": url,
+    });
+
+    if (baseModel.status ?? false) {
+      return baseModel.data;
+    } else {
+      return '';
+    }
+  }
+
   static Map<String, int> getSex = {
     '男': 1,
     '女': 2,
