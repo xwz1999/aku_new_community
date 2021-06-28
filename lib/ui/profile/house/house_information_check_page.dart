@@ -69,6 +69,11 @@ class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
                     id: widget.detailModel.id,
                     url: result,
                   ));
+            } else {
+              Get.off(() => ContractPreviewPage(
+                    id: widget.detailModel.id,
+                    url: '',
+                  ));
             }
           } catch (e) {
             LoggerData.addData(e);

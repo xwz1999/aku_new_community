@@ -36,7 +36,7 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
         child: Container(
           alignment: Alignment.center,
           width: 300.w,
-          height: 300.w,
+          height: 200.w,
           color: Colors.white,
           child: _signName != null
               ? Image.memory(
