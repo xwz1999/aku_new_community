@@ -104,6 +104,9 @@ dependencies:
   qr_code_scanner: ^0.4.0
   #model 插件
   equatable: ^2.0.0
+  #pdf文件预览
+  syncfusion_flutter_pdfviewer: ^19.1.69-beta
+
 
 dev_dependencies:
   flutter_test:
