@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/painters/upload_painter.dart';
 import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/picker/bee_image_picker.dart';
 import 'package:aku_community/widget/views/doc_view.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,8 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class UploadContractsPage extends StatefulWidget {
-  UploadContractsPage({Key? key}) : super(key: key);
+  final int id;
+  UploadContractsPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _UploadContractsPageState createState() => _UploadContractsPageState();
@@ -25,6 +28,7 @@ class UploadContractsPage extends StatefulWidget {
 
 class _UploadContractsPageState extends State<UploadContractsPage> {
   List<File> _files = [];
+  List<String> _urls = [];
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -86,8 +90,19 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
         ],
       ),
       bottomNavi: BottomButton(
-          onPressed: () {
-            Get.to(() => ContractPayPage());
+          onPressed: () async {
+            Function cancel = BotToast.showLoading();
+            await _files.map((e) async {
+              String result = await HouseFunc().uploadFormalContract(e);
+              if (result.isNotEmpty) {
+                _urls.add(result);
+              }
+            });
+            bool result =
+                await HouseFunc().submitFormalContract(widget.id, _urls);
+            if (result) {
+              Get.to(() => ContractPayPage(id: widget.id,));
+            }
           },
           child: '提交审核'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );

@@ -51,14 +51,14 @@ class PayUtil {
   String _resultStatus = '';
 
   ///传入订单信息和确认订单请求地址
-  Future<bool> callAliPay(String order, String path) async {
+  Future<bool> callAliPay(String order, String apiPath) async {
     Map<dynamic, dynamic> result = await aliPay(order);
     _resultStatus = result['resultStatus'];
     if (_resultStatus == '9000') {
       String _res = result['result'];
       PayModel _model = PayModel.fromJson(jsonDecode(_res));
       bool _confirmResult = await _confirmPayResult(
-          path, _model.aliPayTradeAppPayResponse.outTradeNo);
+          apiPath, _model.aliPayTradeAppPayResponse.outTradeNo);
       return _confirmResult;
     } else {
       resultSatus(_resultStatus);

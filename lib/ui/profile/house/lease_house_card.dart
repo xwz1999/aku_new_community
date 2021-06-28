@@ -104,7 +104,7 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '上传合同',
                 onPressed: () {
-                  Get.to(() => UploadContractsPage());
+                  Get.to(() => UploadContractsPage(id: model.id,));
                 }),
             CardBottomButton.white(
                 text: '下载合同',
@@ -129,7 +129,7 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '重新上传',
                 onPressed: () {
-                  Get.to(() => UploadContractsPage());
+                  Get.to(() => UploadContractsPage(id: model.id,));
                 }),
             CardBottomButton.white(
                 text: '修改信息',
@@ -144,7 +144,7 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '去支付',
                 onPressed: () {
-                  Get.to(() => ContractPayPage());
+                  Get.to(() => ContractPayPage(id: model.id,));
                 })
           ],
         );

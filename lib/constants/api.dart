@@ -386,6 +386,9 @@ class _Upload {
 
   ///上传签名
   String get uploadSignName => '/user/upload/uploadLeaseContractSignaturePhoto';
+
+  ///上传租赁有效（正式）合同pdf
+  String get uploadFormalContract => '/user/upload/uploadLeaseContractValidPdf';
 }
 
 class _Message {
@@ -452,6 +455,12 @@ class _Pay {
 
   ///支付宝支付：报事报修 向支付宝发起订单查询请求
   String get reportReapirCheck => '/user/alipay/reportRepairCheckAlipay';
+
+  ///支付宝支付：app 房屋租赁完成订单支付宝支付(异步通知有可能会有问题)
+  String get leaseAlipay => '/user/alipay/leaseAlipay';
+
+  ///支付宝支付：房屋租赁 向支付宝发起订单查询请求
+  String get leaseCheckAlipay => '/user/alipay/leaseCheckAlipay';
 }
 
 class _House {
@@ -472,5 +481,7 @@ class _House {
 
   ///我的房屋：生成合同
   String get generateContract => '/user/myHouse/generateValidContract';
-  
+
+  ///我的房屋：提交租赁审核信息
+  String get submitFormalContract => '/user/myHouse/submitAudit';
 }

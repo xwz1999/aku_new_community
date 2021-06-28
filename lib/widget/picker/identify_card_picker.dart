@@ -51,7 +51,6 @@ class _IdentifyCardPickerState extends State<IdentifyCardPicker> {
       onTap: () async {
         _file = await BeeImagePicker.pick(title: '选择身份证照片');
         if (_file != null) {
-          setState(() {});
           widget.onChange(_file);
         }
       },

@@ -96,7 +96,7 @@ class HouseFunc {
   ///提交个人租赁信息
   Future<String> submitLeaseInfo(SubmitModel model) async {
     BaseModel baseModel =
-        await NetUtil().get(API.house.submitLeaseInfo, params: {
+        await NetUtil().post(API.house.submitLeaseInfo, params: {
       "id": model.id,
       "emergencyContact": model.emergencyContact,
       "emergencyContactNumber": model.emergencyContactNumber,
@@ -126,7 +126,7 @@ class HouseFunc {
     }
   }
 
-  ///生成正式合同
+  ///生成正式合同（未盖章
   Future<String> generateContract(int id, String pUrl, String url) async {
     BaseModel baseModel =
         await NetUtil().post(API.house.generateContract, params: {
@@ -137,6 +137,43 @@ class HouseFunc {
 
     if (baseModel.status ?? false) {
       return baseModel.data;
+    } else {
+      return '';
+    }
+  }
+
+  ///上传盖章后正式有效合同
+  Future<String> uploadFormalContract(File file) async {
+    BaseFileModel baseModel =
+        await NetUtil().upload(API.upload.uploadFormalContract, file);
+    if (baseModel.status ?? false) {
+      return baseModel.url!;
+    } else {
+      return '';
+    }
+  }
+
+  ///提交盖章后正式有效合同
+  Future<bool> submitFormalContract(int id, List<String> urls) async {
+    BaseModel baseModel =
+        await NetUtil().post(API.house.submitFormalContract, params: {
+      "id": id,
+      "leaseContractValidPdfUrl": urls,
+    });
+    return baseModel.status!;
+  }
+
+  ///支付宝生成订单
+  ///支付方式暂时写死为1，只支持支付宝支付
+  ///1支付，2微信 3现金 4pos
+  Future<String> leaseAlipay(int id, int type, double price) async {
+    BaseModel baseModel = await NetUtil().post(API.pay.leaseAlipay, params: {
+      "sysLeaseId": id,
+      "payType": 1,
+      "payPrice": price,
+    });
+    if (baseModel.status ?? false) {
+      return baseModel.message!;
     } else {
       return '';
     }

@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:aku_community/model/common/img_model.dart';
+
 part 'lease_detail_model.g.dart';
 
 @JsonSerializable()
@@ -13,6 +15,9 @@ class LeaseDetailModel extends Equatable {
   final String roomName;
   final int type;
   final String estateType;
+  final String estateStructure;
+  final num constructionArea;
+  final num indoorArea;
   final num rentStandard;
   final num margin;
   final String leaseDateStart;
@@ -38,6 +43,9 @@ class LeaseDetailModel extends Equatable {
     required this.roomName,
     required this.type,
     required this.estateType,
+    required this.estateStructure,
+    required this.constructionArea,
+    required this.indoorArea,
     required this.rentStandard,
     required this.margin,
     required this.leaseDateStart,
@@ -87,5 +95,4 @@ class LeaseDetailModel extends Equatable {
       bankAccount,
     ];
   }
-  
 }

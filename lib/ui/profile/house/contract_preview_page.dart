@@ -81,6 +81,7 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
                   .generateContract(widget.id, widget.url, result);
               Get.off(() => DownLoadContractPage(
                     path: path,
+                    id: widget.id,
                   ));
               cancel();
             } else {

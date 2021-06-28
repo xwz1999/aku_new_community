@@ -11,9 +11,11 @@ import 'package:velocity_x/velocity_x.dart';
 
 class DownLoadContractPage extends StatefulWidget {
   final String path;
+  final int id;
   DownLoadContractPage({
     Key? key,
     required this.path,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -66,7 +68,9 @@ class _DownLoadContractPageState extends State<DownLoadContractPage> {
                     elevation: 0,
                     color: kPrimaryColor,
                     onPressed: () {
-                      Get.to(() => UploadContractsPage());
+                      Get.to(() => UploadContractsPage(
+                            id: widget.id,
+                          ));
                     },
                     child:
                         '上传文件'.text.size(32.sp).bold.color(ktextPrimary).make(),

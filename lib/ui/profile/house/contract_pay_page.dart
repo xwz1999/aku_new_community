@@ -1,5 +1,8 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
@@ -11,7 +14,9 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class ContractPayPage extends StatefulWidget {
-  ContractPayPage({Key? key}) : super(key: key);
+  final int id;
+
+  ContractPayPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _ContractPayPageState createState() => _ContractPayPageState();
@@ -64,8 +69,13 @@ class _ContractPayPageState extends State<ContractPayPage> {
       ),
       bottomNavi: BottomButton(
         child: '点击支付'.text.size(32.sp).bold.color(ktextPrimary).make(),
-        onPressed: () {
-          Get.off(() => PayFinishPage());
+        onPressed: () async {
+          String code = await HouseFunc().leaseAlipay(widget.id, 1, 0.01);
+          bool result =
+              await PayUtil().callAliPay(code, API.pay.leaseCheckAlipay);
+          if (result) {
+            Get.off(() => PayFinishPage());
+          }
         },
       ),
     );

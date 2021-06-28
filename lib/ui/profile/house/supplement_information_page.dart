@@ -144,12 +144,14 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
               title: '代缴银行账户',
               controller: _bankCodeController,
               hintText: '填写代缴银行账户'),
-          IdentifyCardPicker.front((file) => () {
-                _idCardFront = file;
-              }),
-          IdentifyCardPicker.back((file) => () {
-                _idCardBack = file;
-              }),
+          IdentifyCardPicker.front((file) {
+            _idCardFront = file;
+            setState(() {});
+          }),
+          IdentifyCardPicker.back((file) {
+            _idCardBack = file;
+            setState(() {});
+          }),
         ].sepWidget(separate: 24.w.heightBox),
       ),
       bottomNavi: BottomButton(
