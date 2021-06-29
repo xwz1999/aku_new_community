@@ -105,8 +105,8 @@ dependencies:
   #model 插件
   equatable: ^2.0.0
   #pdf文件预览
-  syncfusion_flutter_pdfviewer: ^19.1.69-beta
-
+  # flutter_cached_pdfview: ^0.4.0-nullsafety
+  advance_pdf_viewer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

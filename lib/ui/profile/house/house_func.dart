@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/house_model.dart';
@@ -116,23 +117,27 @@ class HouseFunc {
   }
 
   ///上传合同签名
-  Future<String> uploadSignName(File file) async {
-    BaseFileModel baseFileModel =
-        await NetUtil().upload(API.upload.uploadSignName, file);
+  Future<String> uploadSignName(Uint8List bytes) async {
+    BaseFileModel baseFileModel = await NetUtil().uploadUnit8List(
+      API.upload.uploadSignName,
+      bytes,
+    );
     if (baseFileModel.status ?? false) {
+      BotToast.showText(text: baseFileModel.message!);
       return baseFileModel.url!;
     } else {
+      BotToast.showText(text: baseFileModel.message!);
       return '';
     }
   }
 
   ///生成正式合同（未盖章
-  Future<String> generateContract(int id, String pUrl, String url) async {
+  Future<String> generateContract(int id, String pUrl, String sUrl) async {
     BaseModel baseModel =
         await NetUtil().post(API.house.generateContract, params: {
       "id": id,
-      "ContractPreviewImgUrl": pUrl,
-      "contractSignatureImgUrl": url,
+      "contractPreviewImgUrl": pUrl,
+      "contractSignatureImgUrl": sUrl,
     });
 
     if (baseModel.status ?? false) {

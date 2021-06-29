@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/ui/profile/house/download_contract_page.dart';
@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:power_logger/power_logger.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ContractPreviewPage extends StatefulWidget {
@@ -29,16 +28,34 @@ class ContractPreviewPage extends StatefulWidget {
 
 class _ContractPreviewPageState extends State<ContractPreviewPage> {
   Uint8List? _signName;
-  File? _signFile;
+  PDFDocument? doc;
+  int _currentPage = -1;
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 300), () async {
+      Function cancel = BotToast.showLoading();
+      doc = await PDFDocument.fromURL(API.image(widget.url));
+      cancel();
+      _currentPage = 0;
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var signName = GestureDetector(
       child: DottedBorder(
         child: Container(
           alignment: Alignment.center,
-          width: 300.w,
-          height: 200.w,
-          color: Colors.white,
+          width: 200.w,
+          height: 100.w,
+          color: Colors.white.withOpacity(0.7),
           child: _signName != null
               ? Image.memory(
                   _signName!,
@@ -49,38 +66,49 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
       ),
       onTap: () async {
         _signName = await SignNameBoard.defalutBoard();
-        if (_signName != null) {
-          _signFile = File.fromRawPath(_signName!);
-        }
         setState(() {});
       },
     );
     return BeeScaffold(
       title: '合同预览',
-      body: ListView(
+      body: Stack(
         children: [
-          SfPdfViewer.network(API.image(widget.url)),
+          Center(
+            child: doc == null
+                ? SizedBox()
+                : PDFViewer(
+                    showPicker: false,
+                    onPageChanged: (value) {
+                      _currentPage = value;
+                      setState(() {});
+                    },
+                    document: doc!),
+          ),
+          Positioned(
+              right: 70.w,
+              bottom: 200.w,
+              child: _currentPage != 0 ? SizedBox() : signName),
         ],
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
-            if (_signFile != null) {
-              Function cancel = BotToast.showLoading();
+            Function cancel = BotToast.showLoading();
+            if (_signName != null) {
               try {
-                String result = await HouseFunc().uploadSignName(_signFile!);
+                String result = await HouseFunc().uploadSignName(_signName!);
                 String path = await HouseFunc()
                     .generateContract(widget.id, widget.url, result);
-                Get.off(() => DownLoadContractPage(
-                      path: path,
-                      id: widget.id,
-                    ));
+                if (path.isNotEmpty)
+                  Get.off(
+                      () => DownLoadContractPage(path: path, id: widget.id));
               } catch (e) {
                 LoggerData.addData(e);
+                print(e);
               }
-              cancel();
             } else {
               BotToast.showText(text: '请先签名！');
             }
+            cancel();
           },
           child: '生成合同'.text.size(32.sp).color(ktextPrimary).make()),
     );
