@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
@@ -105,9 +104,7 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
             bool result =
                 await HouseFunc().submitFormalContract(widget.id, _urls);
             if (result) {
-              Get.to(() => ContractPayPage(
-                    id: widget.id,
-                  ));
+              Get.back();
             }
             cancel();
           },

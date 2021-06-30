@@ -1,3 +1,4 @@
+import 'package:aku_community/painters/contact_manager_painter.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,9 @@ class _UploadEmptyFormPageState extends State<UploadEmptyFormPage> {
       body: Center(
         child: Column(
           children: [
-            
+            CustomPaint(
+              painter: ContactManagerPainter(),
+            )
           ],
         ),
       ),

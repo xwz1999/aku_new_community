@@ -64,17 +64,11 @@ class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
                 .uploadIdCardBack(_submitModel.idCardBackFile!));
             String result = await HouseFunc().submitLeaseInfo(_submitModel);
             if (result.isNotEmpty) {
-              Get.back();
-              Get.off(() => ContractPreviewPage(
+              Get.to(() => ContractPreviewPage(
                     id: widget.detailModel.id,
                     url: result,
                   ));
-            } else {
-              Get.off(() => ContractPreviewPage(
-                    id: widget.detailModel.id,
-                    url: '',
-                  ));
-            }
+            } 
           } catch (e) {
             LoggerData.addData(e);
           }

@@ -98,9 +98,12 @@ class _ContractPreviewPageState extends State<ContractPreviewPage> {
                 String result = await HouseFunc().uploadSignName(_signName!);
                 String path = await HouseFunc()
                     .generateContract(widget.id, widget.url, result);
-                if (path.isNotEmpty)
+                if (path.isNotEmpty) {
+                  Get.back();
+                  Get.back();
                   Get.off(
                       () => DownLoadContractPage(path: path, id: widget.id));
+                }
               } catch (e) {
                 LoggerData.addData(e);
                 print(e);

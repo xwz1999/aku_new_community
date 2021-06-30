@@ -68,7 +68,7 @@ class _DownLoadContractPageState extends State<DownLoadContractPage> {
                     elevation: 0,
                     color: kPrimaryColor,
                     onPressed: () {
-                      Get.to(() => UploadContractsPage(
+                      Get.off(() => UploadContractsPage(
                             id: widget.id,
                           ));
                     },
