@@ -155,6 +155,9 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/category.png)
   static const String ASSETS_ICONS_CATEGORY_PNG = 'assets/icons/category.png';
 
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/change.png)
+  static const String ASSETS_ICONS_CHANGE_PNG = 'assets/icons/change.png';
+
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/comment_notice.png)
   static const String ASSETS_ICONS_COMMENT_NOTICE_PNG =
       'assets/icons/comment_notice.png';
@@ -168,11 +171,17 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/consult.png)
   static const String ASSETS_ICONS_CONSULT_PNG = 'assets/icons/consult.png';
 
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/contract.png)
+  static const String ASSETS_ICONS_CONTRACT_PNG = 'assets/icons/contract.png';
+
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/facility.png)
   static const String ASSETS_ICONS_FACILITY_PNG = 'assets/icons/facility.png';
 
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/file.png)
   static const String ASSETS_ICONS_FILE_PNG = 'assets/icons/file.png';
+
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/finish.png)
+  static const String ASSETS_ICONS_FINISH_PNG = 'assets/icons/finish.png';
 
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/goods_borrow.png)
   static const String ASSETS_ICONS_GOODS_BORROW_PNG =
@@ -231,6 +240,9 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/market_tab_unselected.png)
   static const String ASSETS_ICONS_MARKET_TAB_UNSELECTED_PNG =
       'assets/icons/market_tab_unselected.png';
+
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/pay.png)
+  static const String ASSETS_ICONS_PAY_PNG = 'assets/icons/pay.png';
 
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/phone.png)
   static const String ASSETS_ICONS_PHONE_PNG = 'assets/icons/phone.png';
