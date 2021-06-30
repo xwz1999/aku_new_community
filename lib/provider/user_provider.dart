@@ -40,6 +40,7 @@ class UserProvider extends ChangeNotifier {
       await appProvider.updateHouses(await HouseFunc.passedHouses);
       WebSocketUtil().setUser(userInfoModel!.id.toString());
       WebSocketUtil().startWebSocket();
+      AppProvider().setFireAlert(true);
       notifyListeners();
     } catch (e) {
       LoggerData.addData(e);

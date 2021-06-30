@@ -77,7 +77,7 @@ class HouseFunc {
     BaseFileModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardFront, file);
     if (baseFileModel.status ?? false) {
-      return baseFileModel.url!;
+      return baseFileModel.url??'';
     } else {
       return '';
     }
@@ -88,7 +88,7 @@ class HouseFunc {
     BaseFileModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardBack, file);
     if (baseFileModel.status ?? false) {
-      return baseFileModel.url!;
+      return baseFileModel.url??'';
     } else {
       return '';
     }
@@ -124,7 +124,7 @@ class HouseFunc {
     );
     if (baseFileModel.status ?? false) {
       BotToast.showText(text: baseFileModel.message!);
-      return baseFileModel.url!;
+      return baseFileModel.url??'';
     } else {
       BotToast.showText(text: baseFileModel.message!);
       return '';
@@ -152,7 +152,7 @@ class HouseFunc {
     BaseFileModel baseModel =
         await NetUtil().upload(API.upload.uploadFormalContract, file);
     if (baseModel.status ?? false) {
-      return baseModel.url!;
+      return baseModel.url??'';
     } else {
       return '';
     }
@@ -178,7 +178,7 @@ class HouseFunc {
       "payPrice": price,
     });
     if (baseModel.status ?? false) {
-      return baseModel.message!;
+      return baseModel.message??'';
     } else {
       return '';
     }

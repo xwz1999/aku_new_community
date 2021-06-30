@@ -1,15 +1,13 @@
 import 'dart:io';
 
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/painters/upload_painter.dart';
 import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/picker/bee_image_picker.dart';
+import 'package:aku_community/widget/others/upload_widget.dart';
 import 'package:aku_community/widget/views/doc_view.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +35,12 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
         padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
         children: [
           100.w.heightBox,
-          _uploadWidget(),
+          UploadWidget(
+              sheetTitle: '选择合同照片',
+              onPressed: (file) {
+                _files.add(file);
+                setState(() {});
+              }),
           64.w.heightBox,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 60.w),
@@ -92,12 +95,13 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
       bottomNavi: BottomButton(
           onPressed: () async {
             Function cancel = BotToast.showLoading();
-            await _files.map((e) async {
-              String result = await HouseFunc().uploadFormalContract(e);
+            _urls.clear();
+            for (var item in _files) {
+              String result = await HouseFunc().uploadFormalContract(item);
               if (result.isNotEmpty) {
                 _urls.add(result);
               }
-            });
+            }
             bool result =
                 await HouseFunc().submitFormalContract(widget.id, _urls);
             if (result) {
@@ -108,55 +112,6 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
             cancel();
           },
           child: '提交审核'.text.size(32.sp).color(ktextPrimary).bold.make()),
-    );
-  }
-
-  Widget _uploadWidget() {
-    return GestureDetector(
-      onTap: () async {
-        File? _file = await BeeImagePicker.pick(title: '选择合同照片');
-        if (_file != null) {
-          _files.add(_file);
-          setState(() {});
-        }
-      },
-      child: Center(
-        child: DottedBorder(
-            dashPattern: [6, 4],
-            child: Container(
-              width: 500.w,
-              height: 500.w,
-              color: Color(0x19C4C4C4),
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  87.w.heightBox,
-                  SizedBox(
-                    width: 200.w,
-                    height: 200.w,
-                    child: CustomPaint(
-                      painter: UploadPainter(),
-                    ),
-                  ),
-                  43.w.heightBox,
-                  '点击上传文件'
-                      .text
-                      .size(32.sp)
-                      .color(Color(0xFFADB2C4))
-                      .bold
-                      .make(),
-                  43.w.heightBox,
-                  '仅支持PDF、PNG、JPG格式的文件'
-                      .text
-                      .size(28.sp)
-                      .color(Color(0x999999))
-                      .make(),
-                ],
-              ),
-            )),
-      ),
     );
   }
 }

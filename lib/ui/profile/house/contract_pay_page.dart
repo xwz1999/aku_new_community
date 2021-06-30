@@ -76,11 +76,14 @@ class _ContractPayPageState extends State<ContractPayPage> {
       bottomNavi: BottomButton(
         child: '点击支付'.text.size(32.sp).bold.color(ktextPrimary).make(),
         onPressed: () async {
-          String code = await HouseFunc().leaseAlipay(widget.id, 1, 0.01);
-          bool result =
-              await PayUtil().callAliPay(code, API.pay.leaseCheckAlipay);
-          if (result) {
-            Get.off(() => PayFinishPage());
+          String code = await HouseFunc()
+              .leaseAlipay(widget.id, 1, _model!.margin.toDouble());
+          if (code.isNotEmpty) {
+            bool result =
+                await PayUtil().callAliPay(code, API.pay.leaseCheckAlipay);
+            if (result) {
+              Get.off(() => PayFinishPage());
+            }
           }
         },
       ),
