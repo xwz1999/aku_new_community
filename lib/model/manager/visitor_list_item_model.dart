@@ -2,44 +2,65 @@ import 'package:flustars/flustars.dart';
 
 class VisitorListItemModel {
   int? id;
-  int? accessCode;
-  int? visitorStatus;
+  int? estateId;
+  String? roomName;
   String? name;
-  int? isDrive;
-  String? carNum;
-  String? effectiveTime;
+  String? tel;
+  int? sex;
+  String? carNumber;
+  String? visitDateStart;
+  String? visitDateEnd;
+  int? status;
+  int? createId;
+  String? createDate;
 
-  DateTime? get date => DateUtil.getDateTime(effectiveTime!);
-  bool get drive => isDrive == 1;
+  DateTime? get date => DateUtil.getDateTime(createDate ?? '');
+
+  bool get drive => carNumber != null;
 
   VisitorListItemModel(
       {this.id,
-      this.accessCode,
-      this.visitorStatus,
+      this.estateId,
+      this.roomName,
       this.name,
-      this.isDrive,
-      this.carNum,
-      this.effectiveTime});
+      this.tel,
+      this.sex,
+      this.carNumber,
+      this.visitDateStart,
+      this.visitDateEnd,
+      this.status,
+      this.createId,
+      this.createDate});
 
   VisitorListItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    accessCode = json['accessCode'];
-    visitorStatus = json['visitorStatus'];
+    estateId = json['estateId'];
+    roomName = json['roomName'];
     name = json['name'];
-    isDrive = json['isDrive'];
-    carNum = json['carNum'];
-    effectiveTime = json['effectiveTime'];
+    tel = json['tel'];
+    sex = json['sex'];
+    carNumber = json['carNumber'];
+    visitDateStart = json['visitDateStart'];
+    visitDateEnd = json['visitDateEnd'];
+    status = json['status'];
+    createId = json['createId'];
+    createDate = json['createDate'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['accessCode'] = this.accessCode;
-    data['visitorStatus'] = this.visitorStatus;
+    data['estateId'] = this.estateId;
+    data['roomName'] = this.roomName;
     data['name'] = this.name;
-    data['isDrive'] = this.isDrive;
-    data['carNum'] = this.carNum;
-    data['effectiveTime'] = this.effectiveTime;
+    data['tel'] = this.tel;
+    data['sex'] = this.sex;
+    data['carNumber'] = this.carNumber;
+    data['visitDateStart'] = this.visitDateStart;
+    data['visitDateEnd'] = this.visitDateEnd;
+    data['status'] = this.status;
+    data['createId'] = this.createId;
+    data['createDate'] = this.createDate;
     return data;
   }
 }

@@ -126,7 +126,10 @@ class _Manager {
   String get shareInvite => '/user/visitorInvite/share';
 
   ///访客通行：查询访客记录信息（包含条件搜索）
-  String get visitorAccessList => '/user/visitorAccess/list';
+  String get visitorAccessList => '/user/visitorInvite/list';
+
+  ///访客通行：获取访客设备二维码
+  String get getInviteCode => '/user/doorQRCode/getVisitorsQrCode';
 
   ///物品出户：查询当前用户所有的物品出户信息
   String get articleOut => '/user/articleOut/list';

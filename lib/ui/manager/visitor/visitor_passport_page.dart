@@ -9,6 +9,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+// import 'package:qr_flutter/qr_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -21,7 +22,9 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class VisitorPassportPage extends StatefulWidget {
   final VisitorListItemModel model;
-  VisitorPassportPage({Key? key, required this.model}) : super(key: key);
+  final String? code;
+  VisitorPassportPage({Key? key, required this.model, this.code})
+      : super(key: key);
 
   @override
   _VisitorPassportPageState createState() => _VisitorPassportPageState();
@@ -29,6 +32,7 @@ class VisitorPassportPage extends StatefulWidget {
 
 class _VisitorPassportPageState extends State<VisitorPassportPage> {
   GlobalKey _repaintKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -85,7 +89,9 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
                           width: 40.w,
                         ),
                         16.wb,
-                        (widget.model.drive ? '无车辆信息' : widget.model.carNum)!
+                        (!widget.model.drive
+                                ? '无车辆信息'
+                                : widget.model.carNumber!)
                             .text
                             .size(36.sp)
                             .bold
@@ -112,7 +118,7 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
                       height: 260.w,
                       width: 260.w,
                       child: QrImage(
-                        data: widget.model.accessCode.toString(),
+                        data: widget.code!,
                       ),
                     ).centered(),
                     32.hb,

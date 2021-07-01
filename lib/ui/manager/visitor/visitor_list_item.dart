@@ -1,3 +1,7 @@
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +15,9 @@ import 'package:aku_community/utils/headers.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;
-  VisitorListItem({Key? key, required this.model}) : super(key: key);
+  final int type;
+  VisitorListItem({Key? key, required this.model, required this.type})
+      : super(key: key);
 
   @override
   _VisitorListItemState createState() => _VisitorListItemState();
@@ -22,17 +28,20 @@ class _VisitorListItemState extends State<VisitorListItem> {
     StringBuffer buffer = StringBuffer();
     var name = widget.model.name;
     buffer.write(name);
-    var car = widget.model.carNum;
+    var car = widget.model.carNumber;
     if (TextUtil.isEmpty(car)) return buffer.toString();
     buffer.write('($car)');
     return buffer.toString();
   }
 
-  bool get outDate => DateTime.now().isAfter(widget.model.date!);
+  // bool get outDate =>
+  //     DateTime.now().isAfter(widget.model.date ?? DateTime.now());
   _buildSuffix() {
-    if (outDate)
+    if (widget.type == 1 || widget.type == 3)
       return MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.back();
+        },
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.w),
         height: 56.w,
@@ -44,24 +53,51 @@ class _VisitorListItemState extends State<VisitorListItem> {
           ),
         ),
       );
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.qr_code_rounded),
-        16.wb,
-        Icon(CupertinoIcons.chevron_forward),
-      ],
-    );
+    else
+      //二维码按钮
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.qr_code_rounded),
+          16.wb,
+          Icon(CupertinoIcons.chevron_forward),
+        ],
+      );
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {
-        if (!outDate) {
-          Get.to(() => VisitorPassportPage(model: widget.model));
+      onPressed: () async {
+        if (widget.type == 2) {
+          BaseModel baseModel = await NetUtil().get(API.manager.getInviteCode,
+              params: {
+                "startTime": DateUtil.formatDateStr(
+                    widget.model.visitDateStart ?? '',
+                    format: 'yyyy/MM/dd HH:mm:ss'),
+                "endTime": DateUtil.formatDateStr(
+                    widget.model.visitDateEnd ?? '',
+                    format: 'yyyy/MM/dd HH:mm:ss'),
+                "visitorsTel": widget.model.tel
+              },
+              showMessage: false);
+
+          if (baseModel.data != null) {
+            Get.to(VisitorPassportPage(
+              model: widget.model,
+              code: baseModel.data,
+            ));
+          } else {
+            BotToast.showText(text: '访客码获取出错！');
+          }
         }
       },
+
+      // onPressed: () {
+      //   if (widget.model.status != 1) {
+      //     Get.to(() => VisitorPassportPage(model: widget.model));
+      //   }
+      // },
       color: Colors.white,
       elevation: 0,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

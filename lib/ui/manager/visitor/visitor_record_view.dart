@@ -9,7 +9,7 @@ import 'package:aku_community/ui/manager/visitor/visitor_list_item.dart';
 import 'package:aku_community/utils/headers.dart';
 
 class VisitorRecordView extends StatefulWidget {
-  ///访客状态（1.未到，2.已到）
+  ///访客状态（1.已分享，2.已提交，3.已到期）
   final int type;
   VisitorRecordView({Key? key, required this.type}) : super(key: key);
 
@@ -45,7 +45,7 @@ class _VisitorRecordViewState extends State<VisitorRecordView> {
             height: 1.w,
           ),
           itemBuilder: (context, index) {
-            return VisitorListItem(model: items[index]);
+            return VisitorListItem(model: items[index], type: widget.type);
           },
           itemCount: items.length,
         );

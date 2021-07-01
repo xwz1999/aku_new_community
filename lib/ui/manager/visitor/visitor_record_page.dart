@@ -17,7 +17,7 @@ class _VisitorRecordPageState extends State<VisitorRecordPage>
   TabController? _controller;
 
   //导航标签
-  List<String> _tabs = ['未到访客', '已到访客'];
+  List<String> _tabs = ['已分享', '已提交', '已过期'];
   @override
   void initState() {
     _controller = TabController(length: _tabs.length, vsync: this);
@@ -42,6 +42,7 @@ class _VisitorRecordPageState extends State<VisitorRecordPage>
         children: [
           VisitorRecordView(type: 1),
           VisitorRecordView(type: 2),
+          VisitorRecordView(type: 3),
         ],
       ),
     );
