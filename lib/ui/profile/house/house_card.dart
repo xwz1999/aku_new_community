@@ -1,4 +1,5 @@
 import 'package:aku_community/models/user/passed_house_list_model.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -151,20 +152,21 @@ class HouseCard extends StatelessWidget {
                   ],
                 ).expand(),
                 //
-                isOwner
+                !isOwner
                     ? SizedBox()
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '到期时间',
+                            '到期时间${_isOverDate(DateUtil.getDateTime(model!.effectiveTimeEnd!)!)}',
                             style:
                                 Theme.of(context).textTheme.subtitle2!.copyWith(
                                       color: Color(0xFF666666),
                                     ),
                           ),
                           Text(
-                            _roleName,
+                            DateUtil.formatDateStr(model!.effectiveTimeEnd!,
+                                format: 'yyyy-MM-dd'),
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ],
@@ -183,7 +185,11 @@ class HouseCard extends StatelessWidget {
     );
   }
 
-  _isOverDate(DateTime date) {
-    return DateTime.now().isAfter(date);
+  String _isOverDate(DateTime date) {
+    if (DateTime.now().isAfter(date)) {
+      return '已过期';
+    } else {
+      return '未过期';
+    }
   }
 }
