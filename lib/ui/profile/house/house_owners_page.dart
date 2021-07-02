@@ -3,11 +3,14 @@ import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -51,7 +54,8 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   bool get isOwner {
-    switch (widget.identify) {
+
+    switch (UserTool.userProvider.userDetailModel!.type) {
       case 1:
         return true;
       case 3:
@@ -63,7 +67,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   bool get isTourist {
-    switch (widget.identify) {
+    switch (UserTool.userProvider.userDetailModel!.type) {
       case 1:
         return false;
       case 2:
@@ -77,6 +81,8 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
     }
   }
 
+  bool _onload = true;
+
   @override
   void dispose() {
     _refreshController.dispose();
@@ -84,70 +90,90 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   @override
+  void initState() {
+    Function cancel = BotToast.showLoading();
+    try {
+      Future.delayed(Duration(milliseconds: 300), () async {
+        await UserTool.userProvider.updateUserDetail();
+      });
+    } catch (e) {
+      LoggerData.addData(e);
+    }
+    _onload = false;
+    cancel();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
-    return isTourist
-        ? _touristBody()
+    return _onload
+        ? BeeScaffold(title: '我的房屋')
         : BeeScaffold(
             title: '我的房屋',
             actions: [
-              TextButton(
-                onPressed: () {
-                  isOwner
-                      ? Get.to(() => MyHouseList())
-                      : Get.to(TenantHouseListPage());
-                },
-                child: Text(isOwner ? '审核记录' : '我的选房'),
-              ),
+              isTourist
+                  ? SizedBox()
+                  : TextButton(
+                      onPressed: () {
+                        isOwner
+                            ? Get.to(() => MyHouseList())
+                            : Get.to(() => TenantHouseListPage());
+                      },
+                      child: Text(isOwner ? '审核记录' : '我的选房'),
+                    ),
             ],
-            body: EasyRefresh(
-              header: MaterialHeader(),
-              controller: _refreshController,
-              firstRefresh: true,
-              onRefresh: () async {
-                appProvider.updateHouses(await HouseFunc.passedHouses);
-              },
-              child: ListView(
-                children: [
-                  _emptyHouse
-                      ? 280.hb
-                      : Padding(
-                          padding: EdgeInsets.all(32.w),
-                          child: HouseCard(
-                            isOwner: isOwner,
-                            type: appProvider.selectedHouse != null
-                                ? CardAuthType.SUCCESS
-                                : CardAuthType.FAIL,
-                            model: appProvider.selectedHouse,
-                          ),
-                        ),
-                  if (!_emptyHouse) 88.hb,
-                  if (!_haveAuthedHouse)
-                    Stack(
+            body: isTourist
+                ? _touristBody()
+                : EasyRefresh(
+                    header: MaterialHeader(),
+                    controller: _refreshController,
+                    firstRefresh: true,
+                    onRefresh: () async {
+                      appProvider.updateHouses(await HouseFunc.passedHouses);
+                    },
+                    child: ListView(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 75.w),
-                          child: Image.asset(R.ASSETS_STATIC_REVIEWING_WEBP),
-                        ),
-                        Positioned(
-                          bottom: 100.w,
-                          left: 0,
-                          right: 0,
-                          child: _houseTitle.centered(),
-                        ),
+                        _emptyHouse
+                            ? 280.hb
+                            : Padding(
+                                padding: EdgeInsets.all(32.w),
+                                child: HouseCard(
+                                  isOwner: isOwner,
+                                  type: appProvider.selectedHouse != null
+                                      ? CardAuthType.SUCCESS
+                                      : CardAuthType.FAIL,
+                                  model: appProvider.selectedHouse,
+                                ),
+                              ),
+                        if (!_emptyHouse) 88.hb,
+                        if (!_haveAuthedHouse)
+                          Stack(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 75.w),
+                                child:
+                                    Image.asset(R.ASSETS_STATIC_REVIEWING_WEBP),
+                              ),
+                              Positioned(
+                                bottom: 100.w,
+                                left: 0,
+                                right: 0,
+                                child: _houseTitle.centered(),
+                              ),
+                            ],
+                          ),
+                        if (_emptyHouse)
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: _addHouse,
+                              child: Text('添加房屋'),
+                            ),
+                          ),
+                        if (!isOwner && !_emptyHouse) _contractRelevant(),
                       ],
                     ),
-                  if (_emptyHouse)
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: _addHouse,
-                        child: Text('添加房屋'),
-                      ),
-                    ),
-                  if (!isOwner && !_emptyHouse) _contractRelevant(),
-                ],
-              ),
-            ),
+                  ),
             bottomNavi: BottomButton(
                 onPressed: _addHouse,
                 child: '新增房屋'.text.size(32.sp).color(ktextPrimary).bold.make()),
@@ -168,15 +194,10 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
       mainAxisSpacing: 32.w,
       crossAxisSpacing: 32.w,
       children: [
-        _cardBuild(
-            R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
-        _cardBuild(
-            R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
-        _cardBuild(
-            R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
-        _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () {
-          
-        })
+        _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
+        _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
+        _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
+        _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () {})
       ],
     );
   }
@@ -236,9 +257,6 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         ],
       ),
     );
-    return BeeScaffold(
-      title: '我的房屋',
-      body: center,
-    );
+    return center;
   }
 }

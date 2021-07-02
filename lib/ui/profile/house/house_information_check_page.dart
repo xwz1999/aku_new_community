@@ -68,7 +68,7 @@ class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
                     id: widget.detailModel.id,
                     url: result,
                   ));
-            } 
+            }
           } catch (e) {
             LoggerData.addData(e);
           }
