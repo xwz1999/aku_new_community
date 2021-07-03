@@ -60,6 +60,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
     WebSocketUtil().closeWebSocket();
+    
     notifyListeners();
   }
 

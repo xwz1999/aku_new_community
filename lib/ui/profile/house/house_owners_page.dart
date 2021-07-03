@@ -2,6 +2,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
+import 'package:aku_community/ui/profile/house/upload_empty_form_page.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -54,7 +55,6 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   bool get isOwner {
-
     switch (UserTool.userProvider.userDetailModel!.type) {
       case 1:
         return true;
@@ -91,16 +91,19 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
 
   @override
   void initState() {
-    Function cancel = BotToast.showLoading();
-    try {
-      Future.delayed(Duration(milliseconds: 300), () async {
+    Future.delayed(Duration(milliseconds: 300), () async {
+      Function cancel = BotToast.showLoading();
+      try {
         await UserTool.userProvider.updateUserDetail();
-      });
-    } catch (e) {
-      LoggerData.addData(e);
-    }
-    _onload = false;
-    cancel();
+        UserTool.appProveider.updateHouses(await HouseFunc.passedHouses);
+      } catch (e) {
+        LoggerData.addData(e);
+      }
+      _onload = false;
+      cancel();
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -128,7 +131,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 : EasyRefresh(
                     header: MaterialHeader(),
                     controller: _refreshController,
-                    firstRefresh: true,
+                    firstRefresh: false,
                     onRefresh: () async {
                       appProvider.updateHouses(await HouseFunc.passedHouses);
                     },
@@ -170,7 +173,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                               child: Text('添加房屋'),
                             ),
                           ),
-                        if (!isOwner && !_emptyHouse) _contractRelevant(),
+                        if (!isOwner && !_emptyHouse) _contractRelevant().expand()
                       ],
                     ),
                   ),
@@ -186,7 +189,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
     if (result == true) _refreshController.callRefresh();
   }
 
-  //租客身份才会显示合同相关入口
+  ///租客身份才会显示合同相关入口
   Widget _contractRelevant() {
     return GridView.count(
       crossAxisCount: 2,
@@ -197,7 +200,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
         _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
         _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
-        _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () {})
+        _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () {
+          Get.to(() => UploadEmptyFormPage());
+        })
       ],
     );
   }

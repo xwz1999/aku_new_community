@@ -181,10 +181,8 @@ class _SettingsPageState extends State<SettingsPage> {
           CupertinoSwitch(
               value: UserTool.appProveider.fireAlert,
               onChanged: (value) {
-                UserTool.appProveider.setFireAlert(value);
-                if (UserTool.appProveider.fireAlert) {
+                if (value) {
                   WebSocketUtil().startWebSocket();
-                  WebSocketUtil().setPrintHeart(value);
                 } else {
                   WebSocketUtil().closeWebSocket();
                 }

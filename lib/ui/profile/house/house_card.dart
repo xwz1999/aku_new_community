@@ -152,20 +152,21 @@ class HouseCard extends StatelessWidget {
                   ],
                 ).expand(),
                 //
-                !isOwner
+                isOwner
                     ? SizedBox()
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '到期时间${_isOverDate(DateUtil.getDateTime(model!.effectiveTimeEnd!)!)}',
+                            '到期时间：${_isOverDate(DateUtil.getDateTime(model!.effectiveTimeEnd ?? ''))}',
                             style:
                                 Theme.of(context).textTheme.subtitle2!.copyWith(
                                       color: Color(0xFF666666),
                                     ),
                           ),
                           Text(
-                            DateUtil.formatDateStr(model!.effectiveTimeEnd!,
+                            DateUtil.formatDateStr(
+                                model!.effectiveTimeEnd ?? '',
                                 format: 'yyyy-MM-dd'),
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
@@ -185,7 +186,10 @@ class HouseCard extends StatelessWidget {
     );
   }
 
-  String _isOverDate(DateTime date) {
+  String _isOverDate(DateTime? date) {
+    if (date == null) {
+      return '未知';
+    }
     if (DateTime.now().isAfter(date)) {
       return '已过期';
     } else {

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:web_socket_channel/io.dart';
@@ -102,6 +103,8 @@ class WebSocketUtil {
       onError?.call(e);
       LoggerData.addData(e);
     }
+
+    WebSocketUtil().setPrintHeart(true);
   }
 
   //接收消息回调
@@ -176,6 +179,7 @@ class WebSocketUtil {
     }
     endReconnect();
     destoryHeart();
+    UserTool.appProveider.setFireAlert(false);
     _socketStatus = SOCKETSTATUS.CLOSED;
   }
 
