@@ -51,7 +51,6 @@ class HouseModel {
   ///我的房屋页面背景颜色
   ///
   List<Color> get backgroundColor {
-    
     if (status != 4)
       return [
         Color(0xFFF5F5F5),

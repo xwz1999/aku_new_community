@@ -198,7 +198,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                       _textEditingController!.text,
                       urls);
                   if (baseModel.status!) {
-                    Get.off(()=>FinishFixedSubmitPage());
+                    Get.off(() => FinishFixedSubmitPage());
                   } else
                     BotToast.showText(text: baseModel.message!);
                   cancel();

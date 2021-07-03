@@ -68,8 +68,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
     return InkWell(
       onTap: () async {
         if (_formKey.currentState!.validate()) {
-          if (_files.isNotEmpty) {
-          }
+          if (_files.isNotEmpty) {}
           var cancelAction = BotToast.showLoading();
           await NetUtil().post(
             API.user.feedback,

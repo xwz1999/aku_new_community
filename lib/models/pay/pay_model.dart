@@ -46,7 +46,7 @@ class AliPayTradeAppPayResponse extends Equatable {
     required this.totalAmount,
     required this.sellerId,
     required this.charset,
-   required  this.timestamp,
+    required this.timestamp,
   });
 
   factory AliPayTradeAppPayResponse.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,15 @@
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/ui/profile/house/download_contract_page.dart';
@@ -8,13 +17,6 @@ import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/sign_name_board.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ContractPreviewPage extends StatefulWidget {
   final String url;

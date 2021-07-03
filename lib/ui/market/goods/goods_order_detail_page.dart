@@ -1,5 +1,15 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_detail_model.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
@@ -12,14 +22,6 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_numberic_button.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class GoodsOrderDetailPage extends StatefulWidget {
   final GoodsDetailModel model;
@@ -58,7 +60,9 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
       actions: [
         TextButton(
             onPressed: () {
-              Get.to(() => HouseOwnersPage(identify: UserTool.userProvider.userDetailModel!.type??4,));
+              Get.to(() => HouseOwnersPage(
+                    identify: UserTool.userProvider.userDetailModel!.type ?? 4,
+                  ));
             },
             child: '切换房屋'.text.size(28.sp).color(ktextPrimary).make())
       ],

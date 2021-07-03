@@ -1,17 +1,17 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/models/house/lease_list_model.dart';
 import 'package:aku_community/ui/profile/house/contract_pay_page.dart';
 import 'package:aku_community/ui/profile/house/supplement_information_page.dart';
 import 'package:aku_community/ui/profile/house/upload_contracts_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/const/resource.dart';
-
 
 class LeaseHouseCard extends StatelessWidget {
   final LeaseListModel model;
@@ -19,7 +19,7 @@ class LeaseHouseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      var buttons = getButtons(model.status);
+    var buttons = getButtons(model.status);
     var bottom = Row(
       children: [
         Column(
@@ -55,7 +55,14 @@ class LeaseHouseCard extends StatelessWidget {
                 height: 40.w,
               ),
               16.w.widthBox,
-              S.of(context)!.tempPlotName.text.size(32.sp).color(ktextPrimary).make().expand(),
+              S
+                  .of(context)!
+                  .tempPlotName
+                  .text
+                  .size(32.sp)
+                  .color(ktextPrimary)
+                  .make()
+                  .expand(),
               model.statusString.text
                   .size(32.sp)
                   .color(ktextPrimary)
@@ -89,7 +96,9 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '填写信息',
                 onPressed: () {
-                  Get.to(() => SupplementInformationPage(leaseId: model.id,));
+                  Get.to(() => SupplementInformationPage(
+                        leaseId: model.id,
+                      ));
                 })
           ],
         );
@@ -99,22 +108,25 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '重新填写',
                 onPressed: () {
-                  Get.to(() => SupplementInformationPage(leaseId: model.id,));
+                  Get.to(() => SupplementInformationPage(
+                        leaseId: model.id,
+                      ));
                 }),
             CardBottomButton.yellow(
                 text: '上传合同',
                 onPressed: () {
-                  Get.to(() => UploadContractsPage(id: model.id,));
+                  Get.to(() => UploadContractsPage(
+                        id: model.id,
+                      ));
                 }),
             CardBottomButton.white(
                 text: '下载合同',
-                onPressed: () async{
+                onPressed: () async {
                   //TODO:待接口中添加完合同路径字段后取消注释
                   //  String? result = await Get.dialog(BeeDownloadView(
                   //         file:
                   //       ));
                   //       if (result != null) OpenFile.open(result);
-                      
                 }),
           ],
         );
@@ -129,12 +141,16 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '重新上传',
                 onPressed: () {
-                  Get.to(() => UploadContractsPage(id: model.id,));
+                  Get.to(() => UploadContractsPage(
+                        id: model.id,
+                      ));
                 }),
             CardBottomButton.white(
                 text: '修改信息',
                 onPressed: () {
-                  Get.to(() => SupplementInformationPage(leaseId: model.id,));
+                  Get.to(() => SupplementInformationPage(
+                        leaseId: model.id,
+                      ));
                 }),
           ],
         );
@@ -144,7 +160,9 @@ class LeaseHouseCard extends StatelessWidget {
             CardBottomButton.yellow(
                 text: '去支付',
                 onPressed: () {
-                  Get.to(() => ContractPayPage(id: model.id,));
+                  Get.to(() => ContractPayPage(
+                        id: model.id,
+                      ));
                 })
           ],
         );
@@ -162,6 +180,7 @@ class LeaseHouseCard extends StatelessWidget {
         return Row();
     }
   }
+
   List<Color> _getColors(int type) {
     switch (type) {
       case 1:

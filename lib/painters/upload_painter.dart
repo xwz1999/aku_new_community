@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadPainter extends CustomPainter {
@@ -13,12 +14,12 @@ class UploadPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     Path path = Path();
     Rect rect = Rect.fromCircle(center: Offset(50.w, 100.w), radius: 40.w);
-    path.arcTo(rect, pi / 2,  pi, true);
+    path.arcTo(rect, pi / 2, pi, true);
     Rect rect2 = Rect.fromCircle(center: Offset(100.w, 60.w), radius: 50.w);
-    path.arcTo(rect2, pi, pi ,true);
+    path.arcTo(rect2, pi, pi, true);
 
-     Rect rect3= Rect.fromCircle(center: Offset(150.w, 100.w), radius: 40.w);
-      path.arcTo(rect3, 1.5 * pi, pi , true);
+    Rect rect3 = Rect.fromCircle(center: Offset(150.w, 100.w), radius: 40.w);
+    path.arcTo(rect3, 1.5 * pi, pi, true);
     canvas.drawPath(path, paint);
     Paint spaint = Paint()
       ..strokeWidth = 15.w

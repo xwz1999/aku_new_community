@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:bot_toast/bot_toast.dart';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
@@ -10,7 +12,6 @@ import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/network/base_file_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 
 class HouseFunc {
   ///查询所有的房屋审核信息
@@ -77,7 +78,7 @@ class HouseFunc {
     BaseFileModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardFront, file);
     if (baseFileModel.status ?? false) {
-      return baseFileModel.url??'';
+      return baseFileModel.url ?? '';
     } else {
       return '';
     }
@@ -88,7 +89,7 @@ class HouseFunc {
     BaseFileModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardBack, file);
     if (baseFileModel.status ?? false) {
-      return baseFileModel.url??'';
+      return baseFileModel.url ?? '';
     } else {
       return '';
     }
@@ -124,7 +125,7 @@ class HouseFunc {
     );
     if (baseFileModel.status ?? false) {
       BotToast.showText(text: baseFileModel.message!);
-      return baseFileModel.url??'';
+      return baseFileModel.url ?? '';
     } else {
       BotToast.showText(text: baseFileModel.message!);
       return '';
@@ -152,7 +153,7 @@ class HouseFunc {
     BaseFileModel baseModel =
         await NetUtil().upload(API.upload.uploadFormalContract, file);
     if (baseModel.status ?? false) {
-      return baseModel.url??'';
+      return baseModel.url ?? '';
     } else {
       return '';
     }
@@ -178,7 +179,7 @@ class HouseFunc {
       "payPrice": price,
     });
     if (baseModel.status ?? false) {
-      return baseModel.message??'';
+      return baseModel.message ?? '';
     } else {
       return '';
     }

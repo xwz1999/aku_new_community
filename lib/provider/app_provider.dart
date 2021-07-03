@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,7 @@ import 'package:aku_community/model/common/real_time_weather_model.dart';
 import 'package:aku_community/model/community/hot_topic_model.dart';
 import 'package:aku_community/model/message/message_center_model.dart';
 import 'package:aku_community/model/user/car_parking_model.dart';
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/hive_store.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -250,6 +250,7 @@ class AppProvider extends ChangeNotifier {
         .toList();
     notifyListeners();
   }
+
   //设置火灾报警开关
   bool _fireAlert = true;
   bool get fireAlert => _fireAlert;

@@ -1,17 +1,17 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/visitor_list_item_model.dart';
 import 'package:aku_community/ui/manager/visitor/visitor_passport_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;

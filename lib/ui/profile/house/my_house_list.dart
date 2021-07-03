@@ -1,17 +1,19 @@
+import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/bee_row_tile.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/const/resource.dart';
 
 class MyHouseList extends StatefulWidget {
   MyHouseList({Key? key}) : super(key: key);

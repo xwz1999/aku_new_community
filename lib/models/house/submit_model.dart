@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 class SubmitModel {
@@ -40,5 +38,7 @@ class SubmitModel {
       bankAccountName: '',
       bankAccount: '',
       idCardFrontImgUrl: [],
-      idCardBackImgUrl: [], idCardBackFile: null, idCardFrontFile: null);
+      idCardBackImgUrl: [],
+      idCardBackFile: null,
+      idCardFrontFile: null);
 }

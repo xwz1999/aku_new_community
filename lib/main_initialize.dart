@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_community/utils/websocket/fire_dialog.dart';
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +17,8 @@ import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/constants/config.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/message_parser.dart';
+import 'package:aku_community/utils/websocket/fire_dialog.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 
 class MainInitialize {
   ///初始化firebase

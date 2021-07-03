@@ -34,10 +34,7 @@ class _GoodsTabListViewState extends State<GoodsTabListView>
         return WaterfallFlow.builder(
           padding: EdgeInsets.all(32.w),
           gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 24.w,
-            mainAxisSpacing: 24.w
-          ),
+              crossAxisCount: 2, crossAxisSpacing: 24.w, mainAxisSpacing: 24.w),
           itemBuilder: (context, index) {
             final GoodsItem item = items[index];
             return GoodsCard(item: item);

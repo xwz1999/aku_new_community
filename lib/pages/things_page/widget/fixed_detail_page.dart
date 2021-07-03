@@ -1,7 +1,3 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +10,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/pages/things_page/widget/fixed_evaluate_page.dart';
 import 'package:aku_community/utils/bee_map.dart';

@@ -1,4 +1,3 @@
-import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
@@ -43,7 +43,7 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
     models.removeWhere(
       (element) => element.id == (appProvider.selectedHouse?.id ?? -1),
     );
-    if ( models.isEmpty) return [];
+    if (models.isEmpty) return [];
     return models;
   }
 

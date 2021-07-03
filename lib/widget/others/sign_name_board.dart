@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:signature/signature.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignNameBoard extends StatefulWidget {
@@ -39,7 +40,8 @@ class SignNameBoard extends StatefulWidget {
       {Key? key,
       required this.signatureController,
       this.forceToHorizontal = true,
-      required this.width, required this.height})
+      required this.width,
+      required this.height})
       : super(key: key);
 
   @override
@@ -76,7 +78,7 @@ class _SignNameBoardState extends State<SignNameBoard> {
       backgroundColor: Colors.white,
       controller: widget.signatureController,
       width: widget.width,
-      height:widget.height,
+      height: widget.height,
     );
     IconButton finishButton = IconButton(
       iconSize: 50.w,

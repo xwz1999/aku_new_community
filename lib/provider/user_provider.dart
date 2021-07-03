@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +18,7 @@ import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/utils/hive_store.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 
 class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
@@ -60,7 +60,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
     WebSocketUtil().closeWebSocket();
-    
+
     notifyListeners();
   }
 

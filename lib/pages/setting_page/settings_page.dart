@@ -1,6 +1,3 @@
-import 'package:aku_community/utils/developer_util.dart';
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +16,10 @@ import 'package:aku_community/pages/setting_page/agreement_page/privacy_page.dar
 import 'package:aku_community/pages/setting_page/feedback_page/feedback_page.dart';
 import 'package:aku_community/pages/tab_navigator.dart';
 import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/utils/developer_util.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);

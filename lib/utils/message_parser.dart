@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:aku_community/utils/websocket/fire_dialog.dart';
 
-
-
 class MessageParser {
   final Map<String, dynamic> message;
   String subTitle = '';

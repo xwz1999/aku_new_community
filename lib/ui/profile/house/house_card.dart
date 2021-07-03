@@ -1,10 +1,10 @@
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flustars/flustars.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
@@ -28,13 +28,13 @@ class HouseCard extends StatelessWidget {
     Key? key,
     required this.model,
     required this.isOwner,
-  })   : type = CardAuthType.FAIL,
+  })  : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
     Key? key,
     required this.model,
     required this.isOwner,
-  })   : type = CardAuthType.SUCCESS,
+  })  : type = CardAuthType.SUCCESS,
         super(key: key);
 
   String get _assetPath {

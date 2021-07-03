@@ -1,5 +1,3 @@
-import 'package:aku_community/widget/views/%20bee_download_view.dart';
-import 'package:aku_community/widget/views/doc_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -15,6 +13,8 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/picker/bee_image_preview.dart';
+import 'package:aku_community/widget/views/%20bee_download_view.dart';
+import 'package:aku_community/widget/views/doc_view.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int? id;
@@ -91,11 +91,10 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                   DocViw(
                     title: model?.fileDocName ?? '',
                     onPressed: () async {
-                        String? result = await Get.dialog(BeeDownloadView(
-                          file: model!.fileDocUrl,
-                        ));
-                        if (result != null) OpenFile.open(result);
-                      
+                      String? result = await Get.dialog(BeeDownloadView(
+                        file: model!.fileDocUrl,
+                      ));
+                      if (result != null) OpenFile.open(result);
                     },
                   ),
                 ],

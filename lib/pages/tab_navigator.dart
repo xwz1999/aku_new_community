@@ -1,4 +1,3 @@
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/ui/community/community_views/community_page.dart';
 import 'package:aku_community/ui/market/market_page.dart';
+import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';

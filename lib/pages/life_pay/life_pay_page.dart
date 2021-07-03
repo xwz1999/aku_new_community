@@ -1,10 +1,7 @@
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/widget/others/house_head_card.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
@@ -15,15 +12,18 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/life_pay_model.dart';
 import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
+import 'package:aku_community/widget/others/house_head_card.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key? key}) : super(key: key);
@@ -301,7 +301,7 @@ class _LifePayPageState extends State<LifePayPage> {
             if (items != null) _models = items as List<LifePayModel?>;
             return Column(
               children: [
-                HouseHeadCard( controller: _controller, context: context),
+                HouseHeadCard(controller: _controller, context: context),
                 16.w.heightBox,
                 Container(
                   padding: EdgeInsets.all(32.w),
@@ -382,5 +382,3 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 }
-
-

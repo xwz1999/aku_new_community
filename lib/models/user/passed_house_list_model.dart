@@ -1,6 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'passed_house_list_model.g.dart';
 
 @JsonSerializable()
@@ -35,12 +37,13 @@ class PassedHouseListModel extends Equatable {
   factory PassedHouseListModel.fromJson(Map<String, dynamic> json) =>
       _$PassedHouseListModelFromJson(json);
 
-      String get houseStatus {
+  String get houseStatus {
     if (type == 1) return '业主';
     if (type == 2) return '亲属';
     if (type == 3) return '租客';
     return '';
   }
+
   Color get houseStatusColor {
     // if (status != 4) return Color(0xFF666666);
     if (type == 1) return Color(0xFF333333);
@@ -50,7 +53,6 @@ class PassedHouseListModel extends Equatable {
   ///我的房屋页面背景颜色
   ///
   List<Color> get backgroundColor {
-    
     // if (status != 4)
     //   return [
     //     Color(0xFFF5F5F5),

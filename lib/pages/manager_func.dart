@@ -1,4 +1,3 @@
-import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -9,6 +8,7 @@ import 'package:aku_community/model/manager/moving_company_model.dart';
 import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
 import 'package:aku_community/model/manager/quetionnaire_submit_model.dart';
 import 'package:aku_community/model/manager/voting_detail_model.dart';
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 
@@ -129,13 +129,13 @@ class ManagerFunc {
     return baseModel;
   }
 
-  static Future<BaseModel> reportRepairAlipay(int? id,double total) async {
+  static Future<BaseModel> reportRepairAlipay(int? id, double total) async {
     BaseModel baseModel = await NetUtil().post(
       API.pay.reportRepairAlipay,
       params: {
         'repairId': id,
-        'payType':1,
-        'payPrice':total,
+        'payType': 1,
+        'payPrice': total,
       },
       showMessage: false,
     );

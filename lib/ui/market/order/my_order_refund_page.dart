@@ -1,4 +1,3 @@
-import 'package:aku_community/utils/network/base_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +10,7 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
 import 'package:aku_community/ui/market/order/my_order_func.dart';
+import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/aku_single_check_button.dart';

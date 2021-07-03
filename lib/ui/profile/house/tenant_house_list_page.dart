@@ -1,12 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/house/lease_list_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/ui/profile/house/lease_house_card.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class TenantHouseListPage extends StatefulWidget {
   TenantHouseListPage({Key? key}) : super(key: key);
@@ -45,7 +47,7 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
             return ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
                 itemBuilder: (context, index) {
-                  return LeaseHouseCard(model:items[index]);
+                  return LeaseHouseCard(model: items[index]);
                 },
                 separatorBuilder: (_, __) {
                   return 24.w.heightBox;
@@ -54,6 +56,4 @@ class _TenantHouseListPageState extends State<TenantHouseListPage> {
           }),
     );
   }
-
-
 }

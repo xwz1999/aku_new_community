@@ -255,7 +255,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                         //     .text
                         //     .color(Color(0xFF999999))
                         //     .size(32.sp)
-                        //     .make(), 
+                        //     .make(),
                         // 26.w.heightBox,
                         ..._model.appVoteCandidateVos!
                             .map((e) => _buildVoteCard(e))

@@ -1,4 +1,3 @@
-import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';

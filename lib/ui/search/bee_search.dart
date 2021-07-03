@@ -1,5 +1,3 @@
-import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
-import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -13,6 +11,8 @@ import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/community_topic_model.dart';
 import 'package:aku_community/models/search/search_model.dart';
+import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
 import 'package:aku_community/utils/network/base_model.dart';

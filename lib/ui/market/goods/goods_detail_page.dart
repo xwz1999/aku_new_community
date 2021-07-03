@@ -1,6 +1,3 @@
-import 'package:aku_community/pages/sign/sign_in_page.dart';
-import 'package:aku_community/ui/market/goods/goods_order_detail_page.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +15,10 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_detail_model.dart';
 import 'package:aku_community/models/market/goods_item.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/ui/market/goods/goods_card.dart';
+import 'package:aku_community/ui/market/goods/goods_order_detail_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
@@ -27,6 +26,7 @@ import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 
 ///商品详情页面
 class GoodsDetailPage extends StatefulWidget {

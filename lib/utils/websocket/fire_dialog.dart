@@ -1,10 +1,12 @@
-import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/utils/developer_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_community/extensions/num_ext.dart';
+import 'package:aku_community/pages/tab_navigator.dart';
+import 'package:aku_community/utils/developer_util.dart';
 
 class FireDialog {
   static fireAlarm(String content) async {

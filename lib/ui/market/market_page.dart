@@ -1,6 +1,5 @@
 // import 'package:aku_community/base/base_style.dart';
 
-import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +19,7 @@ import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/order/my_order_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
@@ -41,7 +41,7 @@ class _MarketPageState extends State<MarketPage>
   late EasyRefreshController _refreshController;
   int _pageNum = 1;
   int _size = 4;
-  int _pageCount=0;
+  int _pageCount = 0;
 
   Future updateMarketInfo() async {
     BaseListModel baseListModel =
@@ -54,7 +54,7 @@ class _MarketPageState extends State<MarketPage>
           .map((e) => GoodsItem.fromJson(e))
           .toList();
     }
-    _pageCount= baseListModel.pageCount!;
+    _pageCount = baseListModel.pageCount!;
   }
 
   Future loadMarketInfo() async {
@@ -68,7 +68,7 @@ class _MarketPageState extends State<MarketPage>
           .map((e) => GoodsItem.fromJson(e))
           .toList());
     }
-    _pageCount= baseListModel.pageCount!;
+    _pageCount = baseListModel.pageCount!;
   }
 
   @override
@@ -265,12 +265,12 @@ class _MarketPageState extends State<MarketPage>
           controller: _refreshController,
           onRefresh: () async {
             _pageNum = 1;
-           await updateMarketInfo();
+            await updateMarketInfo();
             setState(() {});
           },
           onLoad: () async {
             _pageNum++;
-             await loadMarketInfo();
+            await loadMarketInfo();
             if (_pageCount <= _pageNum) {
               _refreshController.finishLoad(noMore: false);
             }

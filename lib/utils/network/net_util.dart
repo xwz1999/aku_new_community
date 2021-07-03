@@ -128,7 +128,8 @@ class NetUtil {
     try {
       Response res = await _dio!.post(path,
           data: FormData.fromMap({
-            'file': await MultipartFile.fromBytes(bytes,filename: 'signName.png'),
+            'file':
+                await MultipartFile.fromBytes(bytes, filename: 'signName.png'),
           }));
       BaseFileModel baseListModel = BaseFileModel.fromJson(res.data);
       return baseListModel;

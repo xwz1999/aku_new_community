@@ -1,7 +1,9 @@
-import 'package:aku_community/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:aku_community/base/base_style.dart';
 
 class FinishResultImage extends StatelessWidget {
   const FinishResultImage({
@@ -22,9 +24,7 @@ class FinishResultImage extends StatelessWidget {
         color: this.status! ? kPrimaryColor : kDangerColor,
       ),
       child: Icon(
-        this.status!
-            ? CupertinoIcons.checkmark
-            : CupertinoIcons.multiply,
+        this.status! ? CupertinoIcons.checkmark : CupertinoIcons.multiply,
         size: 70.w,
         color: Colors.white,
       ),

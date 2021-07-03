@@ -1,8 +1,10 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/painters/as_numberic_painter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/painters/as_numberic_painter.dart';
 
 ///## 数量选择组件
 class BeeNumberPickerButton extends StatefulWidget {
@@ -46,7 +48,7 @@ class BeeNumberPickerButton extends StatefulWidget {
     this.reachMax,
     this.reachMin,
     required this.onChange,
-  })   : this.circle = false,
+  })  : this.circle = false,
         super(key: key);
 
   BeeNumberPickerButton.circle({
@@ -58,7 +60,7 @@ class BeeNumberPickerButton extends StatefulWidget {
     this.reachMin,
     this.suffix,
     required this.onChange,
-  })   : this.circle = true,
+  })  : this.circle = true,
         super(key: key);
 
   @override
@@ -136,7 +138,8 @@ class _ASNumericButtonState extends State<BeeNumberPickerButton> {
                 ? CustomPaint(
                     painter: ASNUmericPainter.minus(),
                   )
-                : Icon(CupertinoIcons.minus,size: 20.w, color: Color(0xFFC4C4C4)),
+                : Icon(CupertinoIcons.minus,
+                    size: 20.w, color: Color(0xFFC4C4C4)),
             onPressed: () {
               _focusNode.unfocus();
               if (_displayValue > widget.minValue) {

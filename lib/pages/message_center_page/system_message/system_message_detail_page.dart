@@ -37,25 +37,25 @@ class _SystemMessageDetailPageState extends State<SystemMessageDetailPage> {
           setState(() {});
         },
         child: _onload
-            ? _empty():Container(
-              margin: EdgeInsets.all(32.w),
-                  padding: EdgeInsets.all(32.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      20.w.heightBox,
-                      '系统通知'.text.black.bold.size(32.sp).make(),
-                      5.w.heightBox,
-                      _model.title!.text.black.size(28.sp).isIntrinsic.make(),
-                      110.w.heightBox,
-                      _model.content!.text.black.size(28.sp).isIntrinsic.make(),
-                    ],
-                  ),
+            ? _empty()
+            : Container(
+                margin: EdgeInsets.all(32.w),
+                padding: EdgeInsets.all(32.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
                 ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    20.w.heightBox,
+                    '系统通知'.text.black.bold.size(32.sp).make(),
+                    5.w.heightBox,
+                    _model.title!.text.black.size(28.sp).isIntrinsic.make(),
+                    110.w.heightBox,
+                    _model.content!.text.black.size(28.sp).isIntrinsic.make(),
+                  ],
+                ),
+              ),
       ),
     );
   }

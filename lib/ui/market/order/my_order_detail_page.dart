@@ -1,4 +1,3 @@
-import 'package:aku_community/models/market/order/order_detail_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/market/goods_item.dart';
 import 'package:aku_community/models/market/order/my_order_list_model.dart';
+import 'package:aku_community/models/market/order/order_detail_model.dart';
 import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/ui/market/order/my_order_func.dart';
 import 'package:aku_community/widget/bee_divider.dart';

@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/models/new_renovation/new_renovation_list_model.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class NewRenovationDetailPage extends StatefulWidget {
   final NewRenovationListModel model;

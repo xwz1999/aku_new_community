@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
+
 ///图片点击放大预览
 class BeeImagePreview extends StatefulWidget {
   static Future<T?> toFile<T>({required File file, String? tag}) async {

@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class OpeningCodePage extends StatefulWidget {
