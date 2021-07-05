@@ -301,7 +301,11 @@ class _LifePayPageState extends State<LifePayPage> {
             if (items != null) _models = items as List<LifePayModel?>;
             return Column(
               children: [
-                HouseHeadCard(controller: _controller, context: context),
+                HouseHeadCard(
+                    onChanged: () {
+                      _controller!.callRefresh();
+                    },
+                    context: context),
                 16.w.heightBox,
                 Container(
                   padding: EdgeInsets.all(32.w),

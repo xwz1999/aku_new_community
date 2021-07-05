@@ -478,6 +478,10 @@ class R {
   static const String ASSETS_IMAGES_COMMITMENT_PNG =
       'assets/images/commitment.png';
 
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/images/contact_manager.png)
+  static const String ASSETS_IMAGES_CONTACT_MANAGER_PNG =
+      'assets/images/contact_manager.png';
+
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/images/drawings.png)
   static const String ASSETS_IMAGES_DRAWINGS_PNG = 'assets/images/drawings.png';
 

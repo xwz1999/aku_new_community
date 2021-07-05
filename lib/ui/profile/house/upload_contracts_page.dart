@@ -38,7 +38,7 @@ class _UploadContractsPageState extends State<UploadContractsPage> {
           100.w.heightBox,
           UploadWidget(
               sheetTitle: '选择合同照片',
-              onPressed: (file) {
+              onPicked: (file) {
                 _files.add(file);
                 setState(() {});
               }),

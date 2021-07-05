@@ -34,6 +34,10 @@ class LeaseDetailModel extends Equatable {
   final String? payBank;
   final String? bankAccountName;
   final String? bankAccount;
+  final String? takeDate;
+  final String? notMeterRentDate;
+  final num? requiredRent;
+  final String? depositRefundReviewRemake;
   LeaseDetailModel({
     required this.id,
     required this.code,
@@ -62,6 +66,10 @@ class LeaseDetailModel extends Equatable {
     required this.payBank,
     required this.bankAccountName,
     required this.bankAccount,
+    this.takeDate,
+    this.notMeterRentDate,
+    this.requiredRent,
+    this.depositRefundReviewRemake,
   });
 
   factory LeaseDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -94,5 +102,38 @@ class LeaseDetailModel extends Equatable {
       bankAccountName,
       bankAccount,
     ];
+  }
+
+  String get statusString {
+    switch (this.status) {
+      case 1:
+        return '待签署';
+      case 2:
+        return '待提交';
+      case 3:
+        return '审核中';
+      case 4:
+        return '已驳回';
+      case 5:
+        return '待支付';
+      case 6:
+        return '已完成';
+      case 11:
+        return '申请终止合同';
+      case 12:
+        return '申请终止失败';
+      case 13:
+        return '申请终止成功';
+      case 14:
+        return '已支付剩余租金';
+      case 15:
+        return '申请退还保证金';
+      case 16:
+        return '申请保证金退回';
+      case 17:
+        return '申请退换保证金成功';
+      default:
+        return '未知';
+    }
   }
 }

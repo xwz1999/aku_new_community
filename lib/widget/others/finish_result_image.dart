@@ -9,10 +9,11 @@ class FinishResultImage extends StatelessWidget {
   const FinishResultImage({
     Key? key,
     required this.status,
+    this.haveInHandStatus = false,
   }) : super(key: key);
 
-  final bool? status;
-
+  final bool status;
+  final bool haveInHandStatus;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,10 +22,18 @@ class FinishResultImage extends StatelessWidget {
       height: 110.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(55.w),
-        color: this.status! ? kPrimaryColor : kDangerColor,
+        color: this.haveInHandStatus
+            ? Colors.yellow.shade900
+            : this.status
+                ? kPrimaryColor
+                : kDangerColor,
       ),
       child: Icon(
-        this.status! ? CupertinoIcons.checkmark : CupertinoIcons.multiply,
+        this.haveInHandStatus
+            ? CupertinoIcons.exclamationmark
+            : this.status
+                ? CupertinoIcons.checkmark
+                : CupertinoIcons.multiply,
         size: 70.w,
         color: Colors.white,
       ),

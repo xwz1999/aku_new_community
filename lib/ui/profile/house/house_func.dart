@@ -185,6 +185,33 @@ class HouseFunc {
     }
   }
 
+  ///上传腾空单
+  Future<String> uploadClearingSingle(File file) async {
+    BaseFileModel baseFileModel =
+        await NetUtil().upload(API.upload.uploadClearingSingle, file);
+    if (baseFileModel.status ?? false) {
+      return baseFileModel.url!;
+    } else {
+      return '';
+    }
+  }
+
+  ///我的房屋终止合同：提交终止申请
+  Future<bool> submitTerminationApplication(
+    int id,
+    String takeDate,
+    List<String> urls,
+  ) async {
+    BaseModel baseModel = await NetUtil().post(
+        API.house.submitTerminateApplication,
+        params: {"id": id, "takeDate": takeDate, "clearingSingleImgUrl": urls});
+    if (baseModel.status ?? false) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   static Map<String, int> getSex = {
     '男': 1,
     '女': 2,

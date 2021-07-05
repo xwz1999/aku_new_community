@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +16,11 @@ class HouseHeadCard extends StatelessWidget {
   const HouseHeadCard({
     Key? key,
     required this.context,
-    required EasyRefreshController? controller,
-  })  : controller = controller,
-        super(key: key);
+    this.onChanged,
+  }) : super(key: key);
 
   final BuildContext context;
-  final EasyRefreshController? controller;
+  final VoidCallback? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class HouseHeadCard extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Get.to(() => PickMyHousePage());
-                controller!.callRefresh();
+                if (onChanged != null) onChanged!();
               },
               child: Row(
                 children: [

@@ -1,3 +1,6 @@
+import 'package:aku_community/models/house/lease_detail_model.dart';
+import 'package:aku_community/ui/profile/house/contract_stop_page.dart';
+import 'package:aku_community/ui/profile/house/submit_finish_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -16,7 +19,6 @@ import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
-import 'package:aku_community/ui/profile/house/upload_empty_form_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
@@ -173,8 +175,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                               child: Text('添加房屋'),
                             ),
                           ),
-                        if (!isOwner && !_emptyHouse)
-                          _contractRelevant().expand()
+                        if (!isOwner && !_emptyHouse) _contractRelevant()
                       ],
                     ),
                   ),
@@ -192,50 +193,77 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
 
   ///租客身份才会显示合同相关入口
   Widget _contractRelevant() {
-    return GridView.count(
-      crossAxisCount: 2,
-      childAspectRatio: 326 / 241,
-      mainAxisSpacing: 32.w,
-      crossAxisSpacing: 32.w,
-      children: [
-        _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
-        _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
-        _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
-        _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () {
-          Get.to(() => UploadEmptyFormPage());
-        })
-      ],
+    return Container(
+      width: double.infinity,
+      height: 550.w,
+      padding: EdgeInsets.symmetric(horizontal: 32.w),
+      child: GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 330 / 250,
+        mainAxisSpacing: 32.w,
+        crossAxisSpacing: 32.w,
+        children: [
+          _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
+          _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
+          _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
+          _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {})
+        ],
+      ),
     );
+  }
+
+  Future stopContract() async {
+    LeaseDetailModel? model = await HouseFunc()
+        .leaseDetail(UserTool.appProveider.selectedHouse!.sysLeaseId!);
+    if (model != null) {
+      switch (model.status) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+          Get.to(() => ContractStopPage());
+          break;
+        case 11:
+        case 12:
+        case 13:
+          Get.to(
+              () => SubmitFinishPage(status: model.status, leaseId: model.id));
+          break;
+        default:
+      }
+    }
   }
 
   Widget _cardBuild(
       String assetPath, String title, String subTitle, VoidCallback onPressed) {
-    return MaterialButton(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
-      color: Colors.white,
-      elevation: 0,
-      minWidth: 326.w,
-      height: 241.w,
-      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-      onPressed: onPressed,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(
-            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            width: 88.w,
-            height: 88.w,
-          ),
-          16.w.heightBox,
-          title.text.size(28.sp).color(ktextPrimary).bold.make(),
-          16.w.heightBox,
-          subTitle.text
-              .size(24.sp)
-              .color(ktextSubColor)
-              .maxLines(2)
-              .ellipsis
-              .make()
-        ],
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(16.w)),
+        padding: EdgeInsets.only(left: 30.w, top: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              fit: BoxFit.fill,
+              width: 88.w,
+              height: 88.w,
+            ),
+            16.w.heightBox,
+            title.text.size(28.sp).color(ktextPrimary).bold.make(),
+            16.w.heightBox,
+            subTitle.text
+                .size(24.sp)
+                .color(ktextSubColor)
+                .maxLines(2)
+                .ellipsis
+                .make()
+          ],
+        ),
       ),
     );
   }

@@ -11,9 +11,9 @@ import 'package:aku_community/widget/picker/bee_image_picker.dart';
 
 class UploadWidget extends StatelessWidget {
   final String sheetTitle;
-  final Function(File file) onPressed;
+  final Function(File file) onPicked;
   const UploadWidget(
-      {Key? key, required this.sheetTitle, required this.onPressed})
+      {Key? key, required this.sheetTitle, required this.onPicked})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class UploadWidget extends StatelessWidget {
       onTap: () async {
         File? _file = await BeeImagePicker.pick(title: sheetTitle);
         if (_file != null) {
-          onPressed(_file);
+          onPicked(_file);
         }
       },
       child: Center(

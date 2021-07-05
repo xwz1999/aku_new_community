@@ -107,6 +107,7 @@ class WebSocketUtil {
     }
 
     WebSocketUtil().setPrintHeart(true);
+    UserTool.appProveider.setFireAlert(true);
   }
 
   //接收消息回调

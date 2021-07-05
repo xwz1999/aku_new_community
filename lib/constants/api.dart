@@ -392,6 +392,9 @@ class _Upload {
 
   ///上传租赁有效（正式）合同pdf
   String get uploadFormalContract => '/user/upload/uploadLeaseContractValidPdf';
+
+  ///上传腾空单
+  String get uploadClearingSingle => '/user/upload/uploadAppClearingSingle';
 }
 
 class _Message {
@@ -487,4 +490,8 @@ class _House {
 
   ///我的房屋：提交租赁审核信息
   String get submitFormalContract => '/user/myHouse/submitAudit';
+
+  ///我的房屋-终止合同：提交终止申请
+  String get submitTerminateApplication =>
+      '/user/myHouse/submitTerminateApplication';
 }

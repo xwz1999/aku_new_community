@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'passed_house_list_model.g.dart';
@@ -13,6 +12,7 @@ class PassedHouseListModel extends Equatable {
   final int type;
   final String? effectiveTimeStart;
   final String? effectiveTimeEnd;
+  final int? sysLeaseId;
   PassedHouseListModel({
     required this.id,
     required this.estateId,
@@ -20,6 +20,7 @@ class PassedHouseListModel extends Equatable {
     required this.type,
     this.effectiveTimeStart,
     this.effectiveTimeEnd,
+    this.sysLeaseId,
   });
 
   @override

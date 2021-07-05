@@ -23,7 +23,7 @@ class SubmitComplishPage extends StatelessWidget {
         child: Column(
           children: [
             76.w.heightBox,
-            FinishResultImage(status: status),
+            FinishResultImage(status: status!),
             48.w.heightBox,
             (this.status! ? '提交成功' : '提交失败').text.size(36.sp).black.bold.make(),
             16.w.heightBox,

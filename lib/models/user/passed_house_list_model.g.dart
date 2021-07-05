@@ -14,5 +14,6 @@ PassedHouseListModel _$PassedHouseListModelFromJson(Map<String, dynamic> json) {
     type: json['type'] as int,
     effectiveTimeStart: json['effectiveTimeStart'] as String?,
     effectiveTimeEnd: json['effectiveTimeEnd'] as String?,
+    sysLeaseId: json['sysLeaseId'] as int?,
   );
 }

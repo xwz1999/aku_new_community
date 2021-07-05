@@ -37,5 +37,9 @@ LeaseDetailModel _$LeaseDetailModelFromJson(Map<String, dynamic> json) {
     payBank: json['payBank'] as String?,
     bankAccountName: json['bankAccountName'] as String?,
     bankAccount: json['bankAccount'] as String?,
+    takeDate: json['takeDate'] as String?,
+    notMeterRentDate: json['notMeterRentDate'] as String?,
+    requiredRent: json['requiredRent'] as num?,
+    depositRefundReviewRemake: json['depositRefundReviewRemake'] as String?,
   );
 }
