@@ -34,7 +34,7 @@ class _RefundBondResultPageState extends State<RefundBondResultPage> {
       body: Center(
         child: Column(
           children: [
-            76.w.heightBox,
+            276.w.heightBox,
             FinishResultImage(
               status: widget.status == 16 ? false : true,
               haveInHandStatus: widget.status == 15 ? true : false,

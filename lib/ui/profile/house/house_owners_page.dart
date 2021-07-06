@@ -1,6 +1,7 @@
 import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/contract_stop_page.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/pay_result_page.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/refund_bond_result_page.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/submit_finish_page.dart';
 import 'package:flutter/material.dart';
 
@@ -207,7 +208,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
           _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
           _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
-          _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {})
+          _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {
+            await stopContract();
+          })
         ],
       ),
     );
@@ -235,6 +238,11 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         case 14:
           Get.to(() => PayResultPage());
           break;
+        case 15:
+        case 16:
+        case 17:
+          Get.to(() => RefundBondResultPage(status: model.status));
+          break;
         default:
       }
     }
@@ -252,7 +260,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              assetPath,
               fit: BoxFit.fill,
               width: 88.w,
               height: 88.w,

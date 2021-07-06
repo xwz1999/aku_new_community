@@ -20,7 +20,7 @@ class _PayResultPageState extends State<PayResultPage> {
       body: Center(
         child: Column(
           children: [
-            76.w.heightBox,
+            276.w.heightBox,
             FinishResultImage(
               status: true,
             ),
@@ -35,7 +35,7 @@ class _PayResultPageState extends State<PayResultPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.w)),
               onPressed: () async {
-                
+                  
               },
               child: '申请保证金退还'.text.color(ktextPrimary).size(36.sp).make(),
             ),

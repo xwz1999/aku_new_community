@@ -34,14 +34,18 @@ class _RefundBondPageState extends State<RefundBondPage> {
       body: ListView(
         children: [
           HouseHeadCard(context: context),
-          BeeInputRow.button(
-              title: '承租人姓名', hintText: widget.name, onPressed: () {}),
-          BeeInputRow.button(
-              title: '保证金',
-              hintText: widget.bond.toStringAsFixed(2),
-              onPressed: () {}),
-          BeeInputRow.button(
-              title: '保证金缴纳时间', hintText: widget.date, onPressed: () {}),
+          Column(
+            children: [
+              BeeInputRow.button(
+                  title: '承租人姓名', hintText: widget.name, onPressed: () {}),
+              BeeInputRow.button(
+                  title: '保证金',
+                  hintText: widget.bond.toStringAsFixed(2),
+                  onPressed: () {}),
+              BeeInputRow.button(
+                  title: '保证金缴纳时间', hintText: widget.date, onPressed: () {}),
+            ],
+          ).paddingSymmetric(horizontal: 32.w)
         ],
       ),
       bottomNavi: BottomButton(

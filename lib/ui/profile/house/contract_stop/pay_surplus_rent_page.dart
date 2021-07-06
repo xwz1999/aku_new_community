@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class PaySuerplusRentPage extends StatefulWidget {
   ///不再计租时间
@@ -38,28 +39,33 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '核对信息',
+      bodyColor: Colors.white,
       body: ListView(
         children: [
           HouseHeadCard(context: context),
-          BeeInputRow.button(
-              title: '不再计租时间',
-              hintText:
-                  DateUtil.formatDateStr(widget.time, format: 'yyyy-MM-dd'),
-              onPressed: () {}),
-          BeeInputRow.button(
-              title: '剩余需结清房租（元）',
-              hintText: widget.amount.toStringAsFixed(2),
-              onPressed: () {}),
-          BeeInputRow.button(
-              title: '支付方式',
-              hintText: _payMethod,
-              onPressed: () {
-                Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
-                  _payMethod = value;
-                  Get.back();
-                  setState(() {});
-                }));
-              })
+          Column(
+            children: [
+              BeeInputRow.button(
+                  title: '不再计租时间',
+                  hintText:
+                      DateUtil.formatDateStr(widget.time, format: 'yyyy-MM-dd'),
+                  onPressed: () {}),
+              BeeInputRow.button(
+                  title: '剩余需结清房租（元）',
+                  hintText: widget.amount.toStringAsFixed(2),
+                  onPressed: () {}),
+              BeeInputRow.button(
+                  title: '支付方式',
+                  hintText: _payMethod,
+                  onPressed: () {
+                    Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
+                      _payMethod = value;
+                      Get.back();
+                      setState(() {});
+                    }));
+                  })
+            ].sepWidget(separate: 24.w.heightBox),
+          ).paddingSymmetric(horizontal: 32.w)
         ],
       ),
       bottomNavi: BottomButton(

@@ -32,6 +32,18 @@ class _SubmitFinishPageState extends State<SubmitFinishPage> {
         return '未知';
     }
   }
+    String get contentString {
+    switch (widget.status) {
+      case 11:
+        return '您提交的申请正在人工审核中，请耐心等待';
+      case 12:
+        return '您提交的申请审核未通过，详情情况请联系物业';
+      case 13:
+        return '您的提交的申请审核成功！';
+      default:
+        return '未知';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +51,15 @@ class _SubmitFinishPageState extends State<SubmitFinishPage> {
       body: Center(
         child: Column(
           children: [
-            76.w.heightBox,
+            276.w.heightBox,
             FinishResultImage(
               status: widget.status == 12 ? false : true,
               haveInHandStatus: widget.status == 11 ? true : false,
             ),
             48.w.heightBox,
             statusString.text.black.size(36.sp).make(),
+            48.w.heightBox,
+            contentString.text.black.size(28.sp).make(),
             96.w.heightBox,
             widget.status != 13
                 ? SizedBox()
