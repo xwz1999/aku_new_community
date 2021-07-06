@@ -500,4 +500,7 @@ class _House {
   ///我的房屋-终止合同：提交终止申请
   String get submitTerminateApplication =>
       '/user/myHouse/submitTerminateApplication';
+
+  ///我的房屋-合同终止：保证金退还申请
+  String get refundApplication => '/user/myHouse/depositRefundApplication';
 }

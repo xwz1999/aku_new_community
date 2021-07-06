@@ -1,5 +1,6 @@
 import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/contract_stop_page.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/pay_result_page.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/submit_finish_page.dart';
 import 'package:flutter/material.dart';
 
@@ -230,6 +231,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         case 13:
           Get.to(
               () => SubmitFinishPage(status: model.status, leaseId: model.id));
+          break;
+        case 14:
+          Get.to(() => PayResultPage());
           break;
         default:
       }

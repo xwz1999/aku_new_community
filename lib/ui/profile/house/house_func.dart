@@ -225,6 +225,19 @@ class HouseFunc {
     }
   }
 
+  ///我的房屋-合同终止：保证金退还申请
+  Future<bool> refundBond(int id) async {
+    BaseModel baseModel =
+        await NetUtil().get(API.house.refundApplication, params: {
+      "sysLeaseId": id,
+    });
+    if (baseModel.status ?? false) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   static Map<String, int> getSex = {
     '男': 1,
     '女': 2,
