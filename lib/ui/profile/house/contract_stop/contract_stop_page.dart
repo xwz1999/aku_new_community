@@ -1,5 +1,5 @@
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/ui/profile/house/upload_empty_list_page.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/upload_empty_list_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/bottom_sheets/sex_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +12,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/models/house/lease_echo_model.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
+import 'package:aku_community/ui/profile/house/lease_relevation/tenant_house_list_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
@@ -76,7 +77,15 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
             hintText: _sex,
             isRequire: true,
             onPressed: () async {
-              await Get.bottomSheet(_sexBottomSheet());
+              await Get.bottomSheet(
+                SexBottomSheet(
+                  onChoose: (String value) {
+                    _sex = value;
+                    Get.back();
+                    setState(() {});
+                  },
+                ),
+              );
               setState(() {});
             },
           ),
@@ -141,30 +150,6 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
       return false;
     }
     return true;
-  }
-
-  Widget _sexBottomSheet() {
-    return CupertinoActionSheet(
-      title:
-          '选择性别'.text.size(32.sp).bold.color(ktextPrimary).isIntrinsic.make(),
-      cancelButton: TextButton(
-          onPressed: () => Get.back(),
-          child: '取消'.text.size(28.sp).color(ktextSubColor).isIntrinsic.make()),
-      actions: [
-        CupertinoActionSheetAction(
-            onPressed: () {
-              _sex = '男';
-              Get.back();
-            },
-            child: '男'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make()),
-        CupertinoActionSheetAction(
-            onPressed: () {
-              _sex = '女';
-              Get.back();
-            },
-            child: '女'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make())
-      ],
-    );
   }
 
   Widget _identifyBottomSheet() {

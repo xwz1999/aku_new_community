@@ -1,3 +1,4 @@
+import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -69,9 +70,11 @@ class _ContractPayPageState extends State<ContractPayPage> {
               title: '支付方式',
               hintText: _payMethod,
               onPressed: () async {
-                Get.bottomSheet(
-                  _payMethodSheet(),
-                );
+                Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
+                  _payMethod = value;
+                  Get.back();
+                  setState(() {});
+                }));
               }),
         ].sepWidget(separate: 24.w.heightBox),
       ),
@@ -89,23 +92,6 @@ class _ContractPayPageState extends State<ContractPayPage> {
           }
         },
       ),
-    );
-  }
-
-  Widget _payMethodSheet() {
-    return CupertinoActionSheet(
-      title:
-          '支付方式'.text.size(32.sp).bold.color(ktextPrimary).isIntrinsic.make(),
-      actions: [
-        CupertinoActionSheetAction(
-            onPressed: () {
-              _payMethod = '支付宝';
-              Get.back();
-              setState(() {});
-            },
-            child:
-                '支付宝'.text.size(32.sp).color(ktextPrimary).isIntrinsic.make())
-      ],
     );
   }
 }

@@ -1,0 +1,84 @@
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/ui/profile/house/house_func.dart';
+import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_community/widget/others/bee_input_row.dart';
+import 'package:aku_community/widget/others/house_head_card.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class PaySuerplusRentPage extends StatefulWidget {
+  ///不再计租时间
+  final String time;
+
+  ///剩余需结清房租
+  final num amount;
+
+  final int id;
+  PaySuerplusRentPage(
+      {Key? key, required this.time, required this.amount, required this.id})
+      : super(key: key);
+
+  @override
+  _PaySuerplusRentPageState createState() => _PaySuerplusRentPageState();
+}
+
+class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
+  String _payMethod = '支付宝';
+  @override
+  Widget build(BuildContext context) {
+    return BeeScaffold(
+      title: '核对信息',
+      body: ListView(
+        children: [
+          HouseHeadCard(context: context),
+          BeeInputRow.button(
+              title: '不再计租时间',
+              hintText:
+                  DateUtil.formatDateStr(widget.time, format: 'yyyy-MM-dd'),
+              onPressed: () {}),
+          BeeInputRow.button(
+              title: '剩余需结清房租（元）',
+              hintText: widget.amount.toStringAsFixed(2),
+              onPressed: () {}),
+          BeeInputRow.button(
+              title: '支付方式',
+              hintText: _payMethod,
+              onPressed: () {
+                Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
+                  _payMethod = value;
+                  Get.back();
+                  setState(() {});
+                }));
+              })
+        ],
+      ),
+      bottomNavi: BottomButton(
+          onPressed: () async {
+            Function cancel = BotToast.showLoading();
+            try {
+              String code = await HouseFunc()
+                  .leaseRentOrder(widget.id, 1, widget.amount.toDouble());
+              bool result =
+                  await PayUtil().callAliPay(code, API.pay.leaseRentCheck);
+              if (result) {
+                Get.to(() => PayFinishPage());
+              }
+            } catch (e) {
+              LoggerData.addData(e);
+            }
+            cancel();
+          },
+          child: '点击支付'.text.size(32.sp).color(ktextPrimary).bold.make()),
+    );
+  }
+}

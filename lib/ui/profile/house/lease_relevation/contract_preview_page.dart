@@ -12,7 +12,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/ui/profile/house/download_contract_page.dart';
+import 'package:aku_community/ui/profile/house/lease_relevation/download_contract_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';

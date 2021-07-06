@@ -1,6 +1,6 @@
 import 'package:aku_community/models/house/lease_detail_model.dart';
-import 'package:aku_community/ui/profile/house/contract_stop_page.dart';
-import 'package:aku_community/ui/profile/house/submit_finish_page.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/contract_stop_page.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/submit_finish_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -18,7 +18,7 @@ import 'package:aku_community/ui/profile/house/house_card.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
-import 'package:aku_community/ui/profile/house/tenant_house_list_page.dart';
+import 'package:aku_community/ui/profile/house/lease_relevation/tenant_house_list_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';

@@ -1,6 +1,7 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/pay_surplus_rent_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/finish_result_image.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,13 @@ class _SubmitFinishPageState extends State<SubmitFinishPage> {
                     onPressed: () async {
                       LeaseDetailModel? model =
                           await HouseFunc().leaseDetail(widget.leaseId);
-                      Get.back();
+                      if (model != null) {
+                        Get.to(() => PaySuerplusRentPage(
+                          id:widget.leaseId,
+                              time: model.notMeterRentDate ?? '',
+                              amount: model.requiredRent ?? 0,
+                            ));
+                      }
                     },
                     child: '去支付'.text.color(ktextPrimary).size(36.sp).make(),
                   ),

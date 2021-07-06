@@ -6,7 +6,7 @@ import 'package:open_file/open_file.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/ui/profile/house/upload_contracts_page.dart';
+import 'package:aku_community/ui/profile/house/lease_relevation/upload_contracts_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/finish_result_image.dart';
 import 'package:aku_community/widget/views/%20bee_download_view.dart';
