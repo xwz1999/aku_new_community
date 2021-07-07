@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class RefundBondResultPage extends StatefulWidget {
-  ///也可以从```UserTool.appProveider.selectedHouse```中获取
   final int status;
   final String name;
   final double bond;

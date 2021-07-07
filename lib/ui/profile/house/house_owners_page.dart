@@ -3,6 +3,7 @@ import 'package:aku_community/ui/profile/house/contract_stop/contract_stop_page.
 import 'package:aku_community/ui/profile/house/contract_stop/pay_result_page.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/refund_bond_result_page.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/submit_finish_page.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -239,7 +240,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           Get.to(() => PayResultPage(
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateTime.now().toString(),
+                date: DateUtil.formatDateStr(model.marginPayDate!),
                 id: model.id,
               ));
           break;
@@ -250,7 +251,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 status: model.status,
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateTime.now().toString(),
+                date: DateUtil.formatDateStr(model.marginPayDate!),
                 id: model.id,
               ));
           break;

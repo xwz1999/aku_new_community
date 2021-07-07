@@ -59,6 +59,20 @@ class LeaseListModel extends Equatable {
         return '待支付';
       case 6:
         return '已完成';
+      case 11:
+        return '申请终止合同';
+      case 12:
+        return '申请终止失败';
+      case 13:
+        return '申请终止成功';
+      case 14:
+        return '已支付剩余租金';
+      case 15:
+        return '申请退还保证金';
+      case 16:
+        return '申请退还保证金驳回';
+      case 17:
+        return '申请退还保证金成功';
       default:
         return '未知';
     }

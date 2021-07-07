@@ -20,6 +20,7 @@ class LeaseDetailModel extends Equatable {
   final num indoorArea;
   final num rentStandard;
   final num margin;
+  final String? marginPayDate;
   final String leaseDateStart;
   final String leaseDateEnd;
   final List<ImgModel>? imgUrls;
@@ -52,6 +53,7 @@ class LeaseDetailModel extends Equatable {
     required this.indoorArea,
     required this.rentStandard,
     required this.margin,
+    required this.marginPayDate,
     required this.leaseDateStart,
     required this.leaseDateEnd,
     required this.imgUrls,
@@ -85,8 +87,12 @@ class LeaseDetailModel extends Equatable {
       roomName,
       type,
       estateType,
+      estateStructure,
+      constructionArea,
+      indoorArea,
       rentStandard,
       margin,
+      marginPayDate,
       leaseDateStart,
       leaseDateEnd,
       imgUrls,
@@ -101,6 +107,10 @@ class LeaseDetailModel extends Equatable {
       payBank,
       bankAccountName,
       bankAccount,
+      takeDate,
+      notMeterRentDate,
+      requiredRent,
+      depositRefundReviewRemake,
     ];
   }
 

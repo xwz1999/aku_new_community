@@ -21,6 +21,7 @@ LeaseDetailModel _$LeaseDetailModelFromJson(Map<String, dynamic> json) {
     indoorArea: json['indoorArea'] as num,
     rentStandard: json['rentStandard'] as num,
     margin: json['margin'] as num,
+    marginPayDate: json['marginPayDate'] as String?,
     leaseDateStart: json['leaseDateStart'] as String,
     leaseDateEnd: json['leaseDateEnd'] as String,
     imgUrls: (json['imgUrls'] as List<dynamic>?)
