@@ -236,12 +236,23 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
               () => SubmitFinishPage(status: model.status, leaseId: model.id));
           break;
         case 14:
-          Get.to(() => PayResultPage());
+          Get.to(() => PayResultPage(
+                name: model.name,
+                bond: model.margin.toDouble(),
+                date: DateTime.now().toString(),
+                id: model.id,
+              ));
           break;
         case 15:
         case 16:
         case 17:
-          Get.to(() => RefundBondResultPage(status: model.status));
+          Get.to(() => RefundBondResultPage(
+                status: model.status,
+                name: model.name,
+                bond: model.margin.toDouble(),
+                date: DateTime.now().toString(),
+                id: model.id,
+              ));
           break;
         default:
       }

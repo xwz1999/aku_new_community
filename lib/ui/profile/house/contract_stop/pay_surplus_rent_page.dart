@@ -77,7 +77,8 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
               bool result =
                   await PayUtil().callAliPay(code, API.pay.leaseRentCheck);
               if (result) {
-                Get.to(() => PayFinishPage());
+                Get.back();
+                Get.off(() => PayFinishPage());
               }
             } catch (e) {
               LoggerData.addData(e);

@@ -4,6 +4,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ class _RefundBondPageState extends State<RefundBondPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
+      bgColor: Colors.white,
       title: '保证金信息',
       body: ListView(
         children: [
@@ -50,11 +52,13 @@ class _RefundBondPageState extends State<RefundBondPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: () async {
+            Function cancel = BotToast.showLoading();
             bool result = await HouseFunc().refundBond(widget.id);
             if (result) {
               Get.back();
               Get.back();
             }
+            cancel();
           },
           child: '提交退款申请'.text.size(32.sp).color(ktextPrimary).bold.make()),
     );

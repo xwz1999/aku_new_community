@@ -1,12 +1,24 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/refund_bond_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/finish_result_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PayResultPage extends StatefulWidget {
-  PayResultPage({Key? key}) : super(key: key);
+  final String name;
+  final double bond;
+  final String date;
+  final int id;
+  PayResultPage(
+      {Key? key,
+      required this.name,
+      required this.bond,
+      required this.date,
+      required this.id})
+      : super(key: key);
 
   @override
   _PayResultPageState createState() => _PayResultPageState();
@@ -35,7 +47,11 @@ class _PayResultPageState extends State<PayResultPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.w)),
               onPressed: () async {
-                  
+                Get.to(() => RefundBondPage(
+                    name: widget.name,
+                    bond: widget.bond,
+                    date: widget.date,
+                    id: widget.id));
               },
               child: '申请保证金退还'.text.color(ktextPrimary).size(36.sp).make(),
             ),

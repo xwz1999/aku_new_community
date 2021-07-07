@@ -1,5 +1,6 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
+import 'package:aku_community/ui/profile/house/contract_stop/contract_stop_page.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/pay_surplus_rent_page.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -32,7 +33,8 @@ class _SubmitFinishPageState extends State<SubmitFinishPage> {
         return '未知';
     }
   }
-    String get contentString {
+
+  String get contentString {
     switch (widget.status) {
       case 11:
         return '您提交的申请正在人工审核中，请耐心等待';
@@ -61,31 +63,55 @@ class _SubmitFinishPageState extends State<SubmitFinishPage> {
             48.w.heightBox,
             contentString.text.black.size(28.sp).make(),
             96.w.heightBox,
-            widget.status != 13
-                ? SizedBox()
-                : MaterialButton(
-                    elevation: 0,
-                    minWidth: 702.w,
-                    height: 98.w,
-                    color: kPrimaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.w)),
-                    onPressed: () async {
-                      LeaseDetailModel? model =
-                          await HouseFunc().leaseDetail(widget.leaseId);
-                      if (model != null) {
-                        Get.to(() => PaySuerplusRentPage(
-                          id:widget.leaseId,
-                              time: model.notMeterRentDate ?? '',
-                              amount: model.requiredRent ?? 0,
-                            ));
-                      }
-                    },
-                    child: '去支付'.text.color(ktextPrimary).size(36.sp).make(),
-                  ),
+            butttons(),
           ],
         ),
       ),
     );
+  }
+
+  Widget butttons() {
+    switch (widget.status) {
+      case 11:
+        return SizedBox();
+
+      case 12:
+        return MaterialButton(
+          elevation: 0,
+          minWidth: 702.w,
+          height: 98.w,
+          color: kPrimaryColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
+          onPressed: () async {
+            Get.to(() => ContractStopPage());
+          },
+          child: '重新申请'.text.color(ktextPrimary).size(36.sp).make(),
+        );
+      case 13:
+        return MaterialButton(
+          elevation: 0,
+          minWidth: 702.w,
+          height: 98.w,
+          color: kPrimaryColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
+          onPressed: () async {
+            LeaseDetailModel? model =
+                await HouseFunc().leaseDetail(widget.leaseId);
+            if (model != null) {
+              Get.to(() => PaySuerplusRentPage(
+                    id: widget.leaseId,
+                    time: model.notMeterRentDate ?? '',
+                    amount: model.requiredRent ?? 0,
+                  ));
+            }
+          },
+          child: '结清剩余租金'.text.color(ktextPrimary).size(36.sp).make(),
+        );
+
+      default:
+        return SizedBox();
+    }
   }
 }
