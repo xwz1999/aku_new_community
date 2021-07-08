@@ -1,3 +1,6 @@
+import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,18 +12,15 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/manager/life_pay_model.dart';
 import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
@@ -43,14 +43,46 @@ class SelectPay {
 class _LifePayPageState extends State<LifePayPage> {
   EasyRefreshController? _controller;
   List<int> _selectYears = []; //选择的年份，存储其数组下标
-  List<LifePayModel?> _models = [];
-  List<SelectPay> _selectPay = []; //辅助计算总费用数组 储存下级页面传递出来的已选费用参数
-  double _totalCost = 0; //总费用
-  int _count = 0; //费用项数
-  List _ids = []; //存储选中的主键id数组
+  List<LifePayListModel> _models = [];
+  // List<SelectPay> _selectPay = []; //辅助计算总费用数组 储存下级页面传递出来的已选费用参数
+  // double _totalCost = 0; //总费用
+  // // int _count = 0; //费用项数
+  // List _ids = []; //存储选中的主键id数组
+  int _page = 0;
+  int _size = 10;
+
+  List<LifePayListModel> _selectModels = []; //选中的models
 
   bool get allSelect =>
       ((_models.length == _selectYears.length) && (_models.length != 0));
+  SelectPay get total {
+    int count = 0;
+    double price = 0;
+    List<int> ids = [];
+    for (var i in _selectYears) {
+      SelectPay _select = selectCount(_selectModels[i]);
+      count += _select.payCount;
+      price += _select.payTotal;
+      ids.addAll(_select.ids);
+    }
+    return SelectPay(payCount: count, payTotal: price, ids: ids);
+  }
+
+  SelectPay selectCount(LifePayListModel model) {
+    int count = 0;
+    double price = 0;
+    List<int> ids = [];
+    model.dailyPaymentTypeVos.forEach((element) {
+      element.detailedVoList.forEach((element) {
+        element.detailsVoList.forEach((element) {
+          count++;
+          price += element.costPrice;
+          ids.add(element.id);
+        });
+      });
+    });
+    return SelectPay(payCount: count, payTotal: price, ids: ids);
+  }
 
   @override
   void initState() {
@@ -65,7 +97,8 @@ class _LifePayPageState extends State<LifePayPage> {
     super.dispose();
   }
 
-  Widget _buildCard(LifePayModel model, int index) {
+  Widget _buildCard(LifePayListModel model, int index) {
+    SelectPay _select = selectCount(_selectModels[index]);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.w),
       decoration: BoxDecoration(
@@ -81,16 +114,17 @@ class _LifePayPageState extends State<LifePayPage> {
                   setState(() {
                     if (_selectYears.contains(index)) {
                       _selectYears.remove(index);
-                      _totalCost -= (_selectPay[index].payTotal);
-                      _count -= (_selectPay[index].payCount);
-                      _selectPay[index].ids.forEach((element) {
-                        _ids.remove(element);
-                      });
+                      // _totalCost -= (_selectPay[index].payTotal);
+                      // _count -= (_selectPay[index].payCount);
+                      // _selectPay[index].ids.forEach((element) {
+                      //   _ids.remove(element);
+                      // });
+
                     } else {
                       _selectYears.add(index);
-                      _totalCost += (_selectPay[index].payTotal);
-                      _count += (_selectPay[index].payCount);
-                      _ids.addAll(_selectPay[index].ids);
+                      // _totalCost += (_selectPay[index].payTotal);
+                      // _count += (_selectPay[index].payCount);
+                      // _ids.addAll(_selectPay[index].ids);
                     }
                   });
                 },
@@ -106,13 +140,13 @@ class _LifePayPageState extends State<LifePayPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              '${BeeParse.getCustomYears(model.years!)}(${model.years})'
+              '${BeeParse.getCustomYears(model.years)}(${model.years})'
                   .text
                   .color(ktextSubColor)
                   .size(28.sp)
                   .make(),
               24.w.heightBox,
-              '待缴：${model.paymentNum}项  已选${_selectPay[index].payCount}项'
+              '待缴：${model.paymentNum}项  已选${_select.payCount}项'
                   .text
                   .color(ktextPrimary)
                   .size(28.sp)
@@ -127,8 +161,7 @@ class _LifePayPageState extends State<LifePayPage> {
                           fontWeight: FontWeight.bold),
                       children: [
                     TextSpan(
-                        text:
-                            '¥ ${_selectPay[index].payTotal.toStringAsFixed(2)}',
+                        text: '¥ ${_select.payTotal.toStringAsFixed(2)}',
                         style: TextStyle(
                             color: kDangerColor,
                             fontSize: 28.sp,
@@ -143,22 +176,28 @@ class _LifePayPageState extends State<LifePayPage> {
               GestureDetector(
                 onTap: () async {
                   if (_selectYears.contains(index)) {
-                    _totalCost -= _selectPay[index].payTotal;
-                    _count -= _selectPay[index].payCount;
-                    _selectPay[index].ids.forEach((element) {
-                      _ids.remove(element);
-                    });
+                    // _totalCost -= _selectPay[index].payTotal;
+                    // _count -= _selectPay[index].payCount;
+                    // _selectPay[index].ids.forEach((element) {
+                    //   _ids.remove(element);
+                    // });
                   }
 
-                  List payMent = await (Get.to(
-                      () => LifePayDetailPage(model: _models[index])));
-                  _selectPay[index].payCount = payMent[0];
-                  _selectPay[index].payTotal = payMent[1];
-                  _selectPay[index].ids = payMent[2];
-                  if (_selectYears.contains(index)) {
-                    _totalCost += _selectPay[index].payTotal;
-                    _count += _selectPay[index].payCount;
+                  dynamic payMent = await (Get.to(() => LifePayDetailPage(
+                        model: _models[index],
+                        selectModel: _selectModels[index],
+                        year: model.years,
+                      )));
+                  if (payMent.runtimeType == LifePayListModel) {
+                    _selectModels[index] = payMent;
                   }
+                  // _selectPay[index].payCount = payMent[0];
+                  // _selectPay[index].payTotal = payMent[1];
+                  // _selectPay[index].ids = payMent[2];
+                  // if (_selectYears.contains(index)) {
+                  //   _totalCost += _selectPay[index].payTotal;
+                  //   _count += _selectPay[index].payCount;
+                  // }
                   setState(() {});
                 },
                 child: Container(
@@ -178,62 +217,62 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 
-  double getPayTotal(LifePayModel list) {
-    num total = 0;
-    if (list.dailyPaymentTypeVos != null) {
-      for (var item in list.dailyPaymentTypeVos!) {
-        for (var v in item.detailedVoList!) {
-          total += v.paymentPrice ?? 0;
-        }
-      }
-    }
-    return total as double;
-  }
+  // double getPayTotal(LifePayListModel list) {
+  //   num total = 0;
+  //   if (list.dailyPaymentTypeVos != null) {
+  //     for (var item in list.dailyPaymentTypeVos!) {
+  //       for (var v in item.detailedVoList!) {
+  //         total += v.paymentPrice ?? 0;
+  //       }
+  //     }
+  //   }
+  //   return total as double;
+  // }
 
-  List<int> getIds(LifePayModel list) {
-    List<int> _list = [];
-    if (list.dailyPaymentTypeVos != null) {
-      for (var item in list.dailyPaymentTypeVos!) {
-        for (var v in item.detailedVoList!) {
-          _list.addAll(_findIds(v.detailsVoList ?? []));
-        }
-      }
-    }
-    return _list;
-  }
+  // List<int> getIds(LifePayListModel list) {
+  //   List<int> _list = [];
+  //   if (list.dailyPaymentTypeVos != null) {
+  //     for (var item in list.dailyPaymentTypeVos!) {
+  //       for (var v in item.detailedVoList!) {
+  //         _list.addAll(_findIds(v.detailsVoList ?? []));
+  //       }
+  //     }
+  //   }
+  //   return _list;
+  // }
 
-  List<int> _findIds(List<DetailsVoList> list) {
-    List<int> _list = [];
-    list.forEach((element) {
-      _list.add(element.id!);
-    });
-    return _list;
-  }
+  // List<int> _findIds(List<DetailsVoList> list) {
+  //   List<int> _list = [];
+  //   list.forEach((element) {
+  //     _list.add(element.id!);
+  //   });
+  //   return _list;
+  // }
 
-  _allSelectOption() {
-    //若已全选则清空已选年份数组
-    if (_models.length == _selectYears.length) {
-      _selectYears.clear();
-      _ids.clear();
-      _totalCost = 0;
-      _count = 0;
-    } else {
-      for (var i = 0; i < _models.length; i++) {
-        if (!_selectYears.contains(i)) {
-          _selectYears.add(i);
-        }
-      }
-      _totalCost = 0;
-      _count = 0;
-      _ids.clear();
-      for (var item in _selectPay) {
-        _totalCost += item.payTotal;
-        _count += item.payCount;
-        _ids.addAll(item.ids);
-      }
-    }
-    setState(() {});
-  }
+  // _allSelectOption() {
+  //   //若已全选则清空已选年份数组
+  //   if (_models.length == _selectYears.length) {
+  //     _selectYears.clear();
+  //     _ids.clear();
+  //     _totalCost = 0;
+  //     _count = 0;
+  //   } else {
+  //     for (var i = 0; i < _models.length; i++) {
+  //       if (!_selectYears.contains(i)) {
+  //         _selectYears.add(i);
+  //       }
+  //     }
+  //     _totalCost = 0;
+  //     _count = 0;
+  //     _ids.clear();
+  //     for (var item in _selectPay) {
+  //       _totalCost += item.payTotal;
+  //       _count += item.payCount;
+  //       _ids.addAll(item.ids);
+  //     }
+  //   }
+  //   setState(() {});
+  // }
 
   Widget _payButton() {
     return MaterialButton(
@@ -245,9 +284,9 @@ class _LifePayPageState extends State<LifePayPage> {
         Function cancel = BotToast.showLoading();
         BaseModel baseModel =
             await NetUtil().post('/user/alipay/dailyPaymentAlipay', params: {
-          "ids": _ids,
+          "ids": total.ids,
           "payType": 1, //暂时写死 等待后续补充
-          "payPrice": _totalCost.toStringAsFixed(2)
+          "payPrice": total.payTotal
         });
         if (baseModel.status ?? false) {
           bool result = await PayUtil()
@@ -279,52 +318,66 @@ class _LifePayPageState extends State<LifePayPage> {
           ),
         ),
       ],
-
-      //TODO:重构listview;
-      body: BeeListView<LifePayModel>(
-          path: API.manager.dailyPaymentList,
-          controller: _controller,
-          extraParams: {'estateId': appProvider.selectedHouse!.estateId},
-          convert: (model) {
-            List<LifePayModel> lifePayModels =
-                model.tableList!.map((e) => LifePayModel.fromJson(e)).toList();
-            _selectPay.clear();
-            _selectPay.addAll(lifePayModels
-                .map((e) => SelectPay(
-                    payCount: e.dailyPaymentTypeVos!.length,
-                    payTotal: getPayTotal(e),
-                    ids: getIds(e)))
-                .toList());
-            return lifePayModels;
-          },
-          builder: (items) {
-            if (items != null) _models = items as List<LifePayModel?>;
-            return Column(
-              children: [
-                HouseHeadCard(
-                    onChanged: () {
-                      _controller!.callRefresh();
-                    },
-                    context: context),
-                16.w.heightBox,
-                Container(
-                  padding: EdgeInsets.all(32.w),
-                  width: double.infinity,
-                  color: kForeGroundColor,
-                  constraints: BoxConstraints(minHeight: 20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
-                      ...List.generate(items.length,
-                              (index) => _buildCard(items[index], index))
-                          .sepWidget(separate: BeeDivider.horizontal()),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }),
+      body: EasyRefresh(
+        firstRefresh: true,
+        header: MaterialHeader(),
+        controller: _controller,
+        onRefresh: () async {
+          _page = 1;
+          _size = 10;
+          BaseListModel baseListModel = await NetUtil()
+              .getList(API.manager.dailyPaymentList, params: {
+            "pageNum": _page,
+            "size": _size,
+            'estateId': appProvider.selectedHouse!.estateId
+          });
+          _models = baseListModel.tableList!
+              .map((e) => LifePayListModel.fromJson(e))
+              .toList();
+          // _selectPay.clear();
+          _selectYears.clear();
+          _selectModels = _models
+              .map((e) => LifePayListModel.fromJson(e.toJson()))
+              .toList();
+          for (var i = 0; i < _selectModels.length; i++) {
+            _selectYears.add(i);
+          }
+          // _totalCost = 0;
+          // _count = 0;
+          // _selectPay.addAll(_models
+          //     .map((e) => SelectPay(
+          //         payCount: e.dailyPaymentTypeVos!.length,
+          //         payTotal: getPayTotal(e),
+          //         ids: getIds(e)))
+          //     .toList());
+          if (mounted) setState(() {});
+        },
+        child: Column(
+          children: [
+            HouseHeadCard(
+                onChanged: () {
+                  _controller!.callRefresh();
+                },
+                context: context),
+            16.w.heightBox,
+            Container(
+              padding: EdgeInsets.all(32.w),
+              width: double.infinity,
+              color: kForeGroundColor,
+              constraints: BoxConstraints(minHeight: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
+                  ...List.generate(_models.length,
+                          (index) => _buildCard(_models[index], index))
+                      .sepWidget(separate: BeeDivider.horizontal()),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       bottomNavi: Container(
         color: kForeGroundColor,
         padding: EdgeInsets.fromLTRB(
@@ -333,7 +386,17 @@ class _LifePayPageState extends State<LifePayPage> {
           children: [
             GestureDetector(
               onTap: () {
-                _allSelectOption();
+                // _allSelectOption();
+                if (allSelect) {
+                  _selectYears.clear();
+                  setState(() {});
+                } else {
+                  _selectYears.clear();
+                  for (var i = 0; i < _selectModels.length; i++) {
+                    _selectYears.add(i);
+                  }
+                  setState(() {});
+                }
               },
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 300),
@@ -369,13 +432,17 @@ class _LifePayPageState extends State<LifePayPage> {
                             fontWeight: FontWeight.bold),
                         children: [
                       TextSpan(
-                          text: _totalCost.toStringAsFixed(2),
+                          text: '¥${total.payTotal.toStringAsFixed(2)}',
                           style: TextStyle(
                               color: kDangerColor,
                               fontSize: 32.sp,
                               fontWeight: FontWeight.bold)),
                     ])),
-                '已选$_count项'.text.color(ktextSubColor).size(20.sp).make(),
+                '已选${total.payCount}项'
+                    .text
+                    .color(ktextSubColor)
+                    .size(20.sp)
+                    .make(),
               ],
             ),
             24.w.widthBox,

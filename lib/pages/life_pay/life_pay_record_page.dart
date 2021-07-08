@@ -11,6 +11,7 @@ import 'package:aku_community/model/manager/life_pay_record_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class LifePayRecordPage extends StatefulWidget {
   LifePayRecordPage({Key? key}) : super(key: key);
@@ -64,9 +65,11 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                   .color(ktextSubColor)
                   .make(),
               32.w.heightBox,
-              ...items
-                  .map((e) => _buildRecordCard(e as LifePayRecordModel))
-                  .toList()
+              ...<Widget>[
+                ...items
+                    .map((e) => _buildRecordCard(e as LifePayRecordModel))
+                    .toList()
+              ].sepWidget(separate: 24.w.heightBox)
             ],
           );
         },

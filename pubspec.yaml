@@ -105,8 +105,9 @@ dependencies:
   #model 插件
   equatable: ^2.0.0
   #pdf文件预览
-  # flutter_cached_pdfview: ^0.4.0-nullsafety
   advance_pdf_viewer: ^2.0.0
+  #扩展组件
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

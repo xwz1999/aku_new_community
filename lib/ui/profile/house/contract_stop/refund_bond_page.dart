@@ -31,7 +31,7 @@ class _RefundBondPageState extends State<RefundBondPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      bgColor: Colors.white,
+      bodyColor: Colors.white,
       title: '保证金信息',
       body: ListView(
         children: [

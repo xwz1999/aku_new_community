@@ -1,3 +1,6 @@
+import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
+import 'package:aku_community/pages/life_pay/life_pay_page.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/manager/life_pay_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
@@ -13,10 +15,14 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayDetailPage extends StatefulWidget {
-  final LifePayModel? model;
+  final LifePayListModel model;
+  final LifePayListModel selectModel;
+  final int year;
   LifePayDetailPage({
     Key? key,
-    this.model,
+    required this.model,
+    required this.selectModel,
+    required this.year,
   }) : super(key: key);
 
   @override
@@ -24,88 +30,140 @@ class LifePayDetailPage extends StatefulWidget {
 }
 
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
-  List<String> _selectItems = [];
-  List<int> _ids = [];
-  double _payTotal = 0;
-  int _payNum = 0;
-  int get listLength {
+  // List<String> _selectItems = [];
+  // List<int> _ids = [];
+  // double _payTotal = 0;
+  // int _payNum = 0;
+  // int get listLength {
+  //   int count = 0;
+  //   widget.model.dailyPaymentTypeVos!.forEach((element) {
+  //     element.detailedVoList!.forEach((element) {
+  //       count++;
+  //     });
+  //   });
+  //   return count;
+  // }
+
+  // bool get isAllSelect {
+  //   return listLength == _selectItems.length;
+  // }
+  late LifePayListModel _selectModel;
+  late LifePayListModel _model;
+  SelectPay get total {
     int count = 0;
-    widget.model!.dailyPaymentTypeVos!.forEach((element) {
-      element.detailedVoList!.forEach((element) {
-        count++;
+    double price = 0;
+    List<int> ids = [];
+    _selectModel.dailyPaymentTypeVos.forEach((element) {
+      element.detailedVoList.forEach((element) {
+        element.detailsVoList.forEach((element) {
+          count++;
+          price += element.costPrice;
+          ids.add(element.id);
+        });
       });
     });
-    return count;
+    return SelectPay(payCount: count, payTotal: price, ids: ids);
   }
 
   bool get isAllSelect {
-    return listLength == _selectItems.length;
+    return total.payCount == widget.model.paymentNum && total.payCount != 0;
   }
 
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < widget.model!.dailyPaymentTypeVos!.length; i++) {
-      for (var j = 0;
-          j < widget.model!.dailyPaymentTypeVos![i].detailedVoList!.length;
-          j++) {
-        String id = widget.model!.dailyPaymentTypeVos![i].id.toString() +
-            widget.model!.dailyPaymentTypeVos![i].detailedVoList![j].groupId
-                .toString();
-        if (!_selectItems.contains(id)) {
-          _selectItems.add(id);
-          _ids.addAll(_findIds(widget.model!.dailyPaymentTypeVos![i]
-                  .detailedVoList![j].detailsVoList ??
-              []));
-          _payNum += 1;
-          _payTotal += widget
-              .model!.dailyPaymentTypeVos![i].detailedVoList![j].paymentPrice!
-              .toDouble();
-        }
-      }
-    }
+    // for (var i = 0; i < widget.model!.dailyPaymentTypeVos!.length; i++) {
+    //   for (var j = 0;
+    //       j < widget.model!.dailyPaymentTypeVos![i].detailedVoList!.length;
+    //       j++) {
+    //     String id = widget.model!.dailyPaymentTypeVos![i].id.toString() +
+    //         widget.model!.dailyPaymentTypeVos![i].detailedVoList![j].groupId
+    //             .toString();
+    //     if (!_selectItems.contains(id)) {
+    //       _selectItems.add(id);
+    //       _ids.addAll(_findIds(widget.model!.dailyPaymentTypeVos![i]
+    //               .detailedVoList![j].detailsVoList ??
+    //           []));
+    //       _payNum += 1;
+    //       _payTotal += widget
+    //           .model!.dailyPaymentTypeVos![i].detailedVoList![j].paymentPrice!
+    //           .toDouble();
+    //     }
+    //   }
+    // }
+    _selectModel = widget.selectModel;
+    _model = widget.model;
   }
 
-  List<int> _findIds(List<DetailsVoList> list) {
-    List<int> _list = [];
-    list.forEach((element) {
-      _list.add(element.id!);
-    });
-    return _list;
-  }
+  // List<int> _findIds(List<DetailsVoList> list) {
+  //   List<int> _list = [];
+  //   list.forEach((element) {
+  //     _list.add(element.id!);
+  //   });
+  //   return _list;
+  // }
 
-  Widget _buildTile(
-      int? groupId, int? id, int? years, double? price, List<int> list) {
-    return GestureDetector(
-      onTap: () {
-        String item = id.toString() + groupId.toString();
-        if (_selectItems.contains(item)) {
-          _selectItems.remove(item);
-          _payNum -= 1;
-          _payTotal -= price!.toDouble();
-          list.forEach((element) {
-            _ids.remove(element);
-          });
-        } else {
-          _selectItems.add(item);
-          _ids.addAll(list);
-          _payNum += 1;
-          _payTotal += price!.toDouble();
-        }
+  // Widget _buildTile(
+  //     // int? groupId, int? id, int? years, double? price, List<int> list
+  //     DetailedVoList model,int index,int id,
+  //     ) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // String item = id.toString() + model.groupId.toString();
+  //       // if (_selectItems.contains(item)) {
+  //       //   _selectItems.remove(item);
+  //       //   _payNum -= 1;
+  //       //   _payTotal -= price!.toDouble();
+  //       //   list.forEach((element) {
+  //       //     _ids.remove(element);
+  //       //   });
+  //       // } else {
+  //       //   _selectItems.add(item);
+  //       //   _ids.addAll(list);
+  //       //   _payNum += 1;
+  //       //   _payTotal += price!.toDouble();
+  //       // }
+  //       setState(() {});
+  //     },
+  //     child: Row(
+  //       children: [
+  //         BeeCheckRadio(
+  //             value: id.toString() + groupId.toString(),
+  //             groupValue: _selectItems),
+  //         24.w.widthBox,
+  //         groupId == 1
+  //             ? '$years上半年'.text.black.size(28.sp).make()
+  //             : '$years下半年'.text.black.size(28.sp).make(),
+  //         Spacer(),
+  //         '¥${price.toString()}'
+  //             .text
+  //             .color(kDangerColor)
+  //             .size(28.sp)
+  //             .bold
+  //             .make(),
+  //         24.w.widthBox,
+  //       ],
+  //     ).material(color: Colors.transparent),
+  //   );
+  // }
 
-        setState(() {});
-      },
-      child: Row(
+  Widget _expandedTile(DetailedVoList model, int index1, int index2) {
+    return ExpandablePanel(
+      theme: ExpandableThemeData.combine(
+          ExpandableThemeData(
+              headerAlignment: ExpandablePanelHeaderAlignment.center),
+          ExpandableThemeData.defaults),
+      header: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BeeCheckRadio(
-              value: id.toString() + groupId.toString(),
-              groupValue: _selectItems),
-          24.w.widthBox,
-          groupId == 1
-              ? '$years上半年'.text.black.size(28.sp).make()
-              : '$years下半年'.text.black.size(28.sp).make(),
+          
+          12.w.widthBox,
+          model.groupId == 1
+              ? '${widget.year}上半年'.text.black.size(28.sp).make()
+              : '${widget.year}下半年'.text.black.size(28.sp).make(),
           Spacer(),
-          '¥${price.toString()}'
+          '¥${model.paymentPrice.toStringAsFixed(2)}'
               .text
               .color(kDangerColor)
               .size(28.sp)
@@ -114,10 +172,57 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
           24.w.widthBox,
         ],
       ).material(color: Colors.transparent),
+      collapsed: SizedBox(),
+      expanded: Column(
+          children: model.detailsVoList
+              .map((e) => _expandedChild(e, index1, index2))
+              .toList()
+          // .sepWidget(separate: 12.w.heightBox),
+          ),
     );
   }
 
-  Widget _buildCard(DailyPaymentTypeVos model) {
+  Widget _expandedChild(DetailsVoList model, int index1, int index2) {
+    return GestureDetector(
+      onTap: () {
+        if (_selectModel
+            .dailyPaymentTypeVos[index1].detailedVoList[index2].detailsVoList
+            .contains(model)) {
+          _selectModel
+              .dailyPaymentTypeVos[index1].detailedVoList[index2].detailsVoList
+              .remove(model);
+          setState(() {});
+        } else {
+          _selectModel
+              .dailyPaymentTypeVos[index1].detailedVoList[index2].detailsVoList
+              .add(model);
+          setState(() {});
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: Row(
+          children: [
+            BeeCheckRadio(
+              value: model.id,
+              groupValue: total.ids,
+            ),
+            12.w.widthBox,
+            model.month.toString().text.size(26.sp).black.make(),
+            Spacer(),
+            '¥${model.totalPrice.toStringAsFixed(2)}'
+                .text
+                .size(26.sp)
+                .black
+                .make(),
+            40.w.widthBox,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCard(DailyPaymentTypeVos model, int index1) {
     final appProvider = Provider.of<AppProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
@@ -125,7 +230,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
         children: [
           Row(
             children: [
-              model.name!.text.black.size(30.sp).bold.make(),
+              model.name.text.black.size(30.sp).bold.make(),
               Spacer(),
               '${S.of(context)!.tempPlotName} ${appProvider.selectedHouse!.estateId}'
                   .text
@@ -134,93 +239,99 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                   .make(),
             ],
           ),
-          50.w.heightBox,
-          ...model.detailedVoList!
-              .map((e) => _buildTile(e.groupId, model.id, widget.model!.years,
-                  e.paymentPrice, _findIds(e.detailsVoList ?? [])))
-              .toList()
-              .sepWidget(separate: 24.w.heightBox),
+          ...List.generate(
+              model.detailedVoList.length,
+              (index) =>
+                  _expandedTile(model.detailedVoList[index], index1, index)),
         ],
       ),
     );
   }
 
+  LifePayListModel clearModel(LifePayListModel model) {
+    model.dailyPaymentTypeVos.forEach((element) {
+      element.detailedVoList.forEach((element) {
+        element.detailsVoList.clear();
+      });
+    });
+    return model;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BeeScaffold(
-      title:
-          '${BeeParse.getCustomYears(widget.model!.years!)}-${widget.model!.years}年明细',
-      body: ListView(
-        padding: EdgeInsets.only(top: 16.w),
-        children: [
-          ...widget.model!.dailyPaymentTypeVos!
-              .map((e) => _buildCard(e))
-              .toList(),
-        ],
-      ),
-      bottomNavi: Container(
-        padding: EdgeInsets.fromLTRB(
-            32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                if (isAllSelect) {
-                  _selectItems.clear();
-                  _ids.clear();
-                  _payNum = 0;
-                  _payTotal = 0;
-                } else {
-                  for (var i = 0;
-                      i < widget.model!.dailyPaymentTypeVos!.length;
-                      i++) {
-                    for (var j = 0;
-                        j <
-                            widget.model!.dailyPaymentTypeVos![i]
-                                .detailedVoList!.length;
-                        j++) {
-                      String id =
-                          widget.model!.dailyPaymentTypeVos![i].id.toString() +
-                              widget.model!.dailyPaymentTypeVos![i]
-                                  .detailedVoList![j].groupId
-                                  .toString();
-                      if (!_selectItems.contains(id)) {
-                        _selectItems.add(id);
-                        _ids.addAll(_findIds(widget
-                                .model!
-                                .dailyPaymentTypeVos![i]
-                                .detailedVoList![j]
-                                .detailsVoList ??
-                            []));
-                        _payNum += 1;
-                        _payTotal += widget.model!.dailyPaymentTypeVos![i]
-                            .detailedVoList![j].paymentPrice!
-                            .toDouble();
-                      }
+    var animatedContainer = AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 1.w,
+                            color: isAllSelect ? kPrimaryColor : kDarkSubColor),
+                        color: isAllSelect ? kPrimaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.circular(20.w)),
+                    curve: Curves.easeInOutCubic,
+                    width: 40.w,
+                    height: 40.w,
+                    child: isAllSelect
+                        ? Icon(
+                            CupertinoIcons.check_mark,
+                            size: 25.w,
+                            color: Colors.white,
+                          )
+                        : SizedBox(),
+                  );
+        return BeeScaffold(
+          title:
+              '${BeeParse.getCustomYears(widget.model.years)}-${widget.model.years}年明细',
+          body: ListView(
+              padding: EdgeInsets.only(top: 16.w),
+              children: List.generate(_model.dailyPaymentTypeVos.length,
+                  (index) => _buildCard(_model.dailyPaymentTypeVos[index], index))),
+          bottomNavi: Container(
+            padding: EdgeInsets.fromLTRB(
+                32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (isAllSelect) {
+                      // _selectItems.clear();
+                      // _ids.clear();
+                      // _payNum = 0;
+                      // _payTotal = 0;
+                      clearModel(_selectModel);
+                    } else {
+                      // for (var i = 0;
+                      //     i < widget.model.dailyPaymentTypeVos!.length;
+                      //     i++) {
+                      //   for (var j = 0;
+                      //       j <
+                      //           widget.model.dailyPaymentTypeVos![i]
+                      //               .detailedVoList!.length;
+                      //       j++) {
+                      //     String id =
+                      //         widget.model.dailyPaymentTypeVos![i].id.toString() +
+                      //             widget.model.dailyPaymentTypeVos![i]
+                      //                 .detailedVoList![j].groupId
+                      //                 .toString();
+                      //     if (!_selectItems.contains(id)) {
+                      //       _selectItems.add(id);
+                      //       _ids.addAll(_findIds(widget
+                      //               .model!
+                      //               .dailyPaymentTypeVos![i]
+                      //               .detailedVoList![j]
+                      //               .detailsVoList ??
+                      //           []));
+                      //       _payNum += 1;
+                      //       _payTotal += widget.model!.dailyPaymentTypeVos![i]
+                      //           .detailedVoList![j].paymentPrice!
+                      //           .toDouble();
+                      //     }
+                      //   }
+                      // }
+                      _selectModel = LifePayListModel.fromJson(_model.toJson());
                     }
-                  }
-                }
-                setState(() {});
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1.w,
-                        color: isAllSelect ? kPrimaryColor : kDarkSubColor),
-                    color: isAllSelect ? kPrimaryColor : Colors.transparent,
-                    borderRadius: BorderRadius.circular(20.w)),
-                curve: Curves.easeInOutCubic,
-                width: 40.w,
-                height: 40.w,
-                child: isAllSelect
-                    ? Icon(
-                        CupertinoIcons.check_mark,
-                        size: 25.w,
-                        color: Colors.white,
-                      )
-                    : SizedBox(),
-              ),
+                    setState(() {});
+                  },
+                  child: animatedContainer,
             ),
             Spacer(),
             Column(
@@ -236,13 +347,17 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
                             fontWeight: FontWeight.bold),
                         children: [
                       TextSpan(
-                          text: '${_payTotal.toStringAsFixed(2)}',
+                          text: '${total.payTotal.toStringAsFixed(2)}',
                           style: TextStyle(
                               color: kDangerColor,
                               fontSize: 32.sp,
                               fontWeight: FontWeight.bold)),
                     ])),
-                '已选$_payNum项'.text.color(ktextSubColor).size(20.sp).make(),
+                '已选${total.payCount}'
+                    .text
+                    .color(ktextSubColor)
+                    .size(20.sp)
+                    .make(),
               ],
             ),
             8.w.widthBox,
@@ -253,7 +368,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               color: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
               onPressed: () {
-                Get.back(result: [_payNum, _payTotal, _ids]);
+                Get.back(result: _selectModel);
               },
               child: '选好了'.text.black.size(32.sp).bold.make(),
             ),

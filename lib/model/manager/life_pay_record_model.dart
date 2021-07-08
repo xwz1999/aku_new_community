@@ -3,7 +3,7 @@ class LifePayRecordModel {
   String? chargesTemplateDetailName;
   String? roomName;
   String? years;
-  int? paidPrice;
+  num? paidPrice;
   String? createDate;
   int? payType;
   String? code;

@@ -50,10 +50,15 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
                   hintText:
                       DateUtil.formatDateStr(widget.time, format: 'yyyy-MM-dd'),
                   onPressed: () {}),
-              BeeInputRow.button(
-                  title: '剩余需结清房租（元）',
-                  hintText: widget.amount.toStringAsFixed(2),
-                  onPressed: () {}),
+              widget.amount <= 0
+                  ? BeeInputRow.button(
+                      title: '房租余额（请联系物业退款）',
+                      hintText: widget.amount.abs().toStringAsFixed(2),
+                      onPressed: () {})
+                  : BeeInputRow.button(
+                      title: '剩余需结清房租（元）',
+                      hintText: widget.amount.toStringAsFixed(2),
+                      onPressed: () {}),
               BeeInputRow.button(
                   title: '支付方式',
                   hintText: _payMethod,
@@ -72,14 +77,16 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
           onPressed: () async {
             Function cancel = BotToast.showLoading();
             try {
-              String code = await HouseFunc()
-                  .leaseRentOrder(widget.id, 1, widget.amount.toDouble());
-              bool result =
-                  await PayUtil().callAliPay(code, API.pay.leaseRentCheck);
-              if (result) {
-                Get.back();
-                Get.off(() => PayFinishPage());
-              }
+              if (widget.amount <= 0) {
+                String code = await HouseFunc()
+                    .leaseRentOrder(widget.id, 1, widget.amount.toDouble());
+                bool result =
+                    await PayUtil().callAliPay(code, API.pay.leaseRentCheck);
+                if (result) {
+                  Get.back();
+                  Get.off(() => PayFinishPage());
+                }
+              } else {}
             } catch (e) {
               LoggerData.addData(e);
             }
