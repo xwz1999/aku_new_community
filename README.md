@@ -22,13 +22,25 @@ fgen
 
 ```shell
 flutter pub run import_sorter:main
+grind sort
 ```
 
 #### format code
 
 ```shell
 flutter format
+grind format
 ```
+### 打包(自动命名安装包仅安卓有效)
+```shell
+grind build-apk-dev//测试环境
+grind build-apk //正式环境
+grind build-ios //打包ios--Xcode打开--archive
+```
+### json序列化
+```shell
+grind gen
+grind gen-clean//生成新model
 
 ## Widget Guide Book
 
