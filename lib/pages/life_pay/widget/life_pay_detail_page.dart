@@ -55,7 +55,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   @override
   void initState() {
     super.initState();
-    _selectModel = widget.selectModel;
+    _selectModel = LifePayListModel.fromJson(widget.selectModel.toJson());
     _model = widget.model;
   }
 
