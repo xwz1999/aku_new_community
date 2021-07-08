@@ -1,4 +1,3 @@
-import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +13,7 @@ import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
 

@@ -1,13 +1,13 @@
-import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
+import 'package:aku_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/bee_parse.dart';
 import 'package:aku_community/utils/headers.dart';
@@ -30,24 +30,7 @@ class LifePayDetailPage extends StatefulWidget {
 }
 
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
-  // List<String> _selectItems = [];
-  // List<int> _ids = [];
-  // double _payTotal = 0;
-  // int _payNum = 0;
-  // int get listLength {
-  //   int count = 0;
-  //   widget.model.dailyPaymentTypeVos!.forEach((element) {
-  //     element.detailedVoList!.forEach((element) {
-  //       count++;
-  //     });
-  //   });
-  //   return count;
-  // }
-
-  // bool get isAllSelect {
-  //   return listLength == _selectItems.length;
-  // }
-  late LifePayListModel _selectModel;
+  late LifePayListModel _selectModel; //已选择的model
   late LifePayListModel _model;
   SelectPay get total {
     int count = 0;
@@ -72,80 +55,9 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   @override
   void initState() {
     super.initState();
-    // for (var i = 0; i < widget.model!.dailyPaymentTypeVos!.length; i++) {
-    //   for (var j = 0;
-    //       j < widget.model!.dailyPaymentTypeVos![i].detailedVoList!.length;
-    //       j++) {
-    //     String id = widget.model!.dailyPaymentTypeVos![i].id.toString() +
-    //         widget.model!.dailyPaymentTypeVos![i].detailedVoList![j].groupId
-    //             .toString();
-    //     if (!_selectItems.contains(id)) {
-    //       _selectItems.add(id);
-    //       _ids.addAll(_findIds(widget.model!.dailyPaymentTypeVos![i]
-    //               .detailedVoList![j].detailsVoList ??
-    //           []));
-    //       _payNum += 1;
-    //       _payTotal += widget
-    //           .model!.dailyPaymentTypeVos![i].detailedVoList![j].paymentPrice!
-    //           .toDouble();
-    //     }
-    //   }
-    // }
     _selectModel = widget.selectModel;
     _model = widget.model;
   }
-
-  // List<int> _findIds(List<DetailsVoList> list) {
-  //   List<int> _list = [];
-  //   list.forEach((element) {
-  //     _list.add(element.id!);
-  //   });
-  //   return _list;
-  // }
-
-  // Widget _buildTile(
-  //     // int? groupId, int? id, int? years, double? price, List<int> list
-  //     DetailedVoList model,int index,int id,
-  //     ) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // String item = id.toString() + model.groupId.toString();
-  //       // if (_selectItems.contains(item)) {
-  //       //   _selectItems.remove(item);
-  //       //   _payNum -= 1;
-  //       //   _payTotal -= price!.toDouble();
-  //       //   list.forEach((element) {
-  //       //     _ids.remove(element);
-  //       //   });
-  //       // } else {
-  //       //   _selectItems.add(item);
-  //       //   _ids.addAll(list);
-  //       //   _payNum += 1;
-  //       //   _payTotal += price!.toDouble();
-  //       // }
-  //       setState(() {});
-  //     },
-  //     child: Row(
-  //       children: [
-  //         BeeCheckRadio(
-  //             value: id.toString() + groupId.toString(),
-  //             groupValue: _selectItems),
-  //         24.w.widthBox,
-  //         groupId == 1
-  //             ? '$years上半年'.text.black.size(28.sp).make()
-  //             : '$years下半年'.text.black.size(28.sp).make(),
-  //         Spacer(),
-  //         '¥${price.toString()}'
-  //             .text
-  //             .color(kDangerColor)
-  //             .size(28.sp)
-  //             .bold
-  //             .make(),
-  //         24.w.widthBox,
-  //       ],
-  //     ).material(color: Colors.transparent),
-  //   );
-  // }
 
   Widget _expandedTile(DetailedVoList model, int index1, int index2) {
     return ExpandablePanel(
@@ -157,7 +69,6 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          
           12.w.widthBox,
           model.groupId == 1
               ? '${widget.year}上半年'.text.black.size(28.sp).make()
@@ -176,9 +87,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
       expanded: Column(
           children: model.detailsVoList
               .map((e) => _expandedChild(e, index1, index2))
-              .toList()
-          // .sepWidget(separate: 12.w.heightBox),
-          ),
+              .toList()),
     );
   }
 
@@ -260,78 +169,45 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
   @override
   Widget build(BuildContext context) {
     var animatedContainer = AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 1.w,
-                            color: isAllSelect ? kPrimaryColor : kDarkSubColor),
-                        color: isAllSelect ? kPrimaryColor : Colors.transparent,
-                        borderRadius: BorderRadius.circular(20.w)),
-                    curve: Curves.easeInOutCubic,
-                    width: 40.w,
-                    height: 40.w,
-                    child: isAllSelect
-                        ? Icon(
-                            CupertinoIcons.check_mark,
-                            size: 25.w,
-                            color: Colors.white,
-                          )
-                        : SizedBox(),
-                  );
-        return BeeScaffold(
-          title:
-              '${BeeParse.getCustomYears(widget.model.years)}-${widget.model.years}年明细',
-          body: ListView(
-              padding: EdgeInsets.only(top: 16.w),
-              children: List.generate(_model.dailyPaymentTypeVos.length,
-                  (index) => _buildCard(_model.dailyPaymentTypeVos[index], index))),
-          bottomNavi: Container(
-            padding: EdgeInsets.fromLTRB(
-                32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    if (isAllSelect) {
-                      // _selectItems.clear();
-                      // _ids.clear();
-                      // _payNum = 0;
-                      // _payTotal = 0;
-                      clearModel(_selectModel);
-                    } else {
-                      // for (var i = 0;
-                      //     i < widget.model.dailyPaymentTypeVos!.length;
-                      //     i++) {
-                      //   for (var j = 0;
-                      //       j <
-                      //           widget.model.dailyPaymentTypeVos![i]
-                      //               .detailedVoList!.length;
-                      //       j++) {
-                      //     String id =
-                      //         widget.model.dailyPaymentTypeVos![i].id.toString() +
-                      //             widget.model.dailyPaymentTypeVos![i]
-                      //                 .detailedVoList![j].groupId
-                      //                 .toString();
-                      //     if (!_selectItems.contains(id)) {
-                      //       _selectItems.add(id);
-                      //       _ids.addAll(_findIds(widget
-                      //               .model!
-                      //               .dailyPaymentTypeVos![i]
-                      //               .detailedVoList![j]
-                      //               .detailsVoList ??
-                      //           []));
-                      //       _payNum += 1;
-                      //       _payTotal += widget.model!.dailyPaymentTypeVos![i]
-                      //           .detailedVoList![j].paymentPrice!
-                      //           .toDouble();
-                      //     }
-                      //   }
-                      // }
-                      _selectModel = LifePayListModel.fromJson(_model.toJson());
-                    }
-                    setState(() {});
-                  },
-                  child: animatedContainer,
+      duration: Duration(milliseconds: 300),
+      decoration: BoxDecoration(
+          border: Border.all(
+              width: 1.w, color: isAllSelect ? kPrimaryColor : kDarkSubColor),
+          color: isAllSelect ? kPrimaryColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(20.w)),
+      curve: Curves.easeInOutCubic,
+      width: 40.w,
+      height: 40.w,
+      child: isAllSelect
+          ? Icon(
+              CupertinoIcons.check_mark,
+              size: 25.w,
+              color: Colors.white,
+            )
+          : SizedBox(),
+    );
+    return BeeScaffold(
+      title:
+          '${BeeParse.getCustomYears(widget.model.years)}-${widget.model.years}年明细',
+      body: ListView(
+          padding: EdgeInsets.only(top: 16.w),
+          children: List.generate(_model.dailyPaymentTypeVos.length,
+              (index) => _buildCard(_model.dailyPaymentTypeVos[index], index))),
+      bottomNavi: Container(
+        padding: EdgeInsets.fromLTRB(
+            32.w, 16.w, 32.w, 12.w + MediaQuery.of(context).padding.bottom),
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                if (isAllSelect) {
+                  clearModel(_selectModel);
+                } else {
+                  _selectModel = LifePayListModel.fromJson(_model.toJson());
+                }
+                setState(() {});
+              },
+              child: animatedContainer,
             ),
             Spacer(),
             Column(

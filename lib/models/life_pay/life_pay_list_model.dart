@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'life_pay_list_model.g.dart';
 
 @JsonSerializable(createToJson: true, explicitToJson: true)

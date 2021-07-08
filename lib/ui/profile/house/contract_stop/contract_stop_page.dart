@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/ui/profile/house/contract_stop/upload_empty_list_page.dart';
 import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:flutter/material.dart';
-
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:get/get.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class ContractStopPage extends StatefulWidget {
-  ContractStopPage({Key? key,}) : super(key: key);
+  ContractStopPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ContractStopPageState createState() => _ContractStopPageState();
