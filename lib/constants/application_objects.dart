@@ -1,5 +1,6 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -90,6 +91,7 @@ List<AO> appObjects = [
   AO('电子商务', R.ASSETS_ICONS_COMMERC_PNG, () => ElectronicCommercPage()),
   AO('服务浏览', R.ASSETS_ICONS_SERVICE_PNG, () => ServiceBrowsePage()),
   AO('社区介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
+  AO('家政服务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => HouseKeepingPage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -173,6 +175,7 @@ List<String> _smartManagerApp = [
   '电子商务',
   '服务浏览',
   '社区介绍',
+  '家政服务'
   // '小区教育',
   // '健康运动',
   // '家政服务',
