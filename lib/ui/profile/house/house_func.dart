@@ -186,14 +186,10 @@ class HouseFunc {
   }
 
   ///上传腾空单
-  Future<String> uploadClearingSingle(File file) async {
-    BaseFileModel baseFileModel =
-        await NetUtil().upload(API.upload.uploadClearingSingle, file);
-    if (baseFileModel.status ?? false) {
-      return baseFileModel.url!;
-    } else {
-      return '';
-    }
+  Future<List<String>> uploadClearingSingle(List<File> files) async {
+    List<String> urls =
+        await NetUtil().uploadFiles(files, API.upload.uploadClearingSingle);
+    return urls;
   }
 
   ///我的房屋终止合同：提交终止申请

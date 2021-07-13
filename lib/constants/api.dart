@@ -503,4 +503,7 @@ class _House {
 
   ///我的房屋-合同终止：保证金退还申请
   String get refundApplication => '/user/myHouse/depositRefundApplication';
+
+  ///我的房屋-缴费查询：查询所有的缴费查询（包含搜索条件）
+  String get leaseFeesQuery => '/user/myHouse/findLeaseRentList';
 }

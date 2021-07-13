@@ -1,3 +1,4 @@
+import 'package:aku_community/ui/profile/house/lease_pay_query/lease_pay_query_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -206,7 +207,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         mainAxisSpacing: 32.w,
         crossAxisSpacing: 32.w,
         children: [
-          _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {}),
+          _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {
+            Get.to(() => LeasePayQueryPage(id:UserTool.appProveider.selectedHouse!.sysLeaseId!,));
+          }),
           _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
           _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
           _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {

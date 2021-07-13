@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:aku_community/widget/views/doc_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -17,6 +20,7 @@ import 'package:aku_community/widget/others/house_head_card.dart';
 import 'package:aku_community/widget/others/upload_widget.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class UploadEmptyListPage extends StatefulWidget {
   UploadEmptyListPage({Key? key}) : super(key: key);
@@ -26,7 +30,7 @@ class UploadEmptyListPage extends StatefulWidget {
 }
 
 class _UploadEmptyListPageState extends State<UploadEmptyListPage> {
-  File? _file;
+  List<File> _files = [];
   List<String> _urls = [];
   int get sysLeaseId => UserTool.appProveider.selectedHouse!.sysLeaseId ?? 0;
   DateTime? _date = DateTime.now();
@@ -64,19 +68,39 @@ class _UploadEmptyListPageState extends State<UploadEmptyListPage> {
                 40.w.heightBox,
                 '上传腾空单'.text.size(28.sp).color(ktextPrimary).make(),
                 24.w.heightBox,
-                _file != null
-                    ? Image.file(
-                        _file!,
-                        width: 480.w,
-                        height: 480.w,
-                        fit: BoxFit.cover,
-                      )
-                    : UploadWidget(
-                        sheetTitle: '上传腾空单',
-                        onPicked: (file) {
-                          _file = file;
-                          setState(() {});
-                        }),
+                UploadWidget(
+                    sheetTitle: '上传腾空单',
+                    onPicked: (file) {
+                      _files.add(file);
+                      setState(() {});
+                    }),
+                64.w.heightBox,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 60.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      ..._files
+                          .map(
+                            (e) => DocViw(
+                              title: e.path.split('/').last,
+                              margin: EdgeInsets.zero,
+                              onLongPress: () async {
+                                await Get.bottomSheet(_deleteSheet(() {
+                                  _files.remove(e);
+                                  Get.back();
+                                  setState(() {});
+                                }));
+                              },
+                              onPressed: () async {
+                                await OpenFile.open(e.path);
+                              },
+                            ),
+                          )
+                          .toList()
+                    ].sepWidget(separate: 12.w.heightBox),
+                  ),
+                )
               ],
             ),
           )
@@ -85,8 +109,8 @@ class _UploadEmptyListPageState extends State<UploadEmptyListPage> {
       bottomNavi: BottomButton(
           onPressed: () async {
             Function cancel = BotToast.showLoading();
-            if (_file != null) {
-              _urls.add(await HouseFunc().uploadClearingSingle(_file!));
+            if (_files.isNotEmpty) {
+              _urls.addAll(await HouseFunc().uploadClearingSingle(_files));
             } else {
               BotToast.showText(text: '请先选择腾空单');
             }
@@ -102,6 +126,24 @@ class _UploadEmptyListPageState extends State<UploadEmptyListPage> {
             cancel();
           },
           child: '提交审核'.text.size(32.sp).bold.color(ktextPrimary).make()),
+    );
+  }
+
+  Widget _deleteSheet(VoidCallback onTap) {
+    return CupertinoActionSheet(
+      title:
+          '删除文件'.text.size(28.sp).bold.isIntrinsic.color(ktextPrimary).make(),
+      actions: [
+        CupertinoActionSheetAction(
+            onPressed: onTap,
+            child: '删除'
+                .text
+                .size(32.sp)
+                .isIntrinsic
+                .bold
+                .color(kDangerColor)
+                .make())
+      ],
     );
   }
 }
