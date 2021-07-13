@@ -279,6 +279,13 @@ class _Manager {
 
   ///门禁二维码：app获取设备二维码
   String get getDoorQrCode => '/user/doorQRCode/getQrCode';
+
+  ///app新版家政服务：查询所有的家政服务信息(包含条件搜索)
+  String get houseKeepingList => '/user/housekeepingService/list';
+
+  ///app新版家政服务：确认提交家政
+  String get submitHouseKeeping =>
+      '/user/housekeepingService/submitHousekeeping';
 }
 
 class _Community {
@@ -395,6 +402,10 @@ class _Upload {
 
   ///上传腾空单
   String get uploadClearingSingle => '/user/upload/uploadAppClearingSingle';
+
+  ///家政服务上传提交照片
+  String get uploadHouseKeepingPhotos =>
+      '/user/upload/uploadAppHousekeepingServiceSubmitPhone';
 }
 
 class _Message {

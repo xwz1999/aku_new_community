@@ -72,7 +72,7 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
           _tabs.length,
           (index) => _onloading
               ? ListView(
-                  children: [_buildShimmer()],
+                  children: [SizedBox()],
                 )
               : ElectronicCommercView(
                   id: _models[index].id,
@@ -106,7 +106,7 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
                 24.hb,
                 VxBox().height(33.w).width(263.w).color(Colors.white).make(),
               ],
-            ),
+            ).expand(),
           ),
           Divider(
             height: 50.w,

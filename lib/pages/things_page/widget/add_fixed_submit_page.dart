@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:aku_community/widget/buttons/bee_check_button.dart';
+import 'package:aku_community/widget/others/house_head_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +21,8 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/picker/bee_house_picker.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {
@@ -50,42 +50,29 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     super.dispose();
   }
 
-  Widget _buildHouseCard() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        '报修房屋'.text.black.size(28.sp).make().pSymmetric(h: 32.w),
-        8.w.heightBox,
-        BeeHousePicker(),
-        BeeDivider.horizontal(indent: 32.w, endIndent: 32.w),
-      ],
-    );
-  }
+  // Widget _buildHouseCard() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       '报修房屋'.text.black.size(28.sp).make().pSymmetric(h: 32.w),
+  //       8.w.heightBox,
+  //       BeeHousePicker(),
+  //       BeeDivider.horizontal(indent: 32.w, endIndent: 32.w),
+  //     ],
+  //   );
+  // }
 
-  Widget _selectButton(
-    String title,
-    int value,
-  ) {
-    return FlatButton(
-      // minWidth: 200.w,
-      // height: 72.w,
-      onPressed: () {
-        setState(() {
-          _selectType = value;
-        });
-      },
-      child: title.text
-          .color(_selectType == value ? ktextPrimary : Color(0xFF979797))
-          .size(32.sp)
-          .make(),
-      padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 14.w),
-      shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: _selectType == value ? kPrimaryColor : ktextSubColor,
-              width: 3.w),
-          borderRadius: BorderRadius.circular(36.w)),
-    );
-  }
+  // Widget _selectButton(
+  //   String title,
+  //   int value,
+  // ) {
+  //   return BeeCheckButton(
+  //     title: '',
+  //     onChange: (value) {},
+  //     value: 1,
+  //     groupValue: 1,
+  //   );
+  // }
 
   Widget _getType() {
     return Padding(
@@ -97,8 +84,17 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
           24.w.heightBox,
           Row(
             children: <Widget>[
-              ...List.generate(_buttons.length,
-                  (index) => _selectButton(_buttons[index], index)),
+              ...List.generate(
+                  _buttons.length,
+                  (index) => BeeCheckButton(
+                        groupValue: _selectType,
+                        onChange: (value) {
+                          _selectType = index;
+                          setState(() {});
+                        },
+                        title: _buttons[index],
+                        value: index,
+                      )),
             ].sepWidget(separate: 20.w.widthBox),
           ),
           16.w.heightBox,
@@ -176,11 +172,14 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
     return WillPopScope(
       child: BeeScaffold(
+        bodyColor: Colors.white,
         systemStyle: SystemStyle.yellowBottomBar,
         title: '报事报修',
         body: ListView(
           children: [
-            _buildHouseCard(),
+            HouseHeadCard(
+              context: context,
+            ),
             _getType(),
             _buildReportCard(),
             _addImages(),
