@@ -15,12 +15,12 @@ class LifePayListModel extends Equatable {
   });
   factory LifePayListModel.fromJson(Map<String, dynamic> json) =>
       _$LifePayListModelFromJson(json);
-  factory LifePayListModel.zero() =>
-      LifePayListModel(years: 0, paymentNum: 0, dailyPaymentTypeVos: [
-        DailyPaymentTypeVos(id: 0, name: '', detailedVoList: [
-          DetailedVoList(groupId: 0, paymentPrice: 0, detailsVoList: [])
-        ])
-      ]);
+  // factory LifePayListModel.zero() =>
+  //     LifePayListModel(years: 0, paymentNum: 0, dailyPaymentTypeVos: [
+  //       DailyPaymentTypeVos(id: 0, name: '', detailedVoList: [
+  //         DetailedVoList(groupId: 0, paymentPrice: 0, detailsVoList: [])
+  //       ])
+  //     ]);
   Map<String, dynamic> toJson() => _$LifePayListModelToJson(this);
   @override
   List<Object?> get props => [years, paymentNum, dailyPaymentTypeVos];
@@ -47,17 +47,19 @@ class DailyPaymentTypeVos extends Equatable {
 class DetailedVoList extends Equatable {
   final int groupId;
   final num paymentPrice;
+  final num overdueFine;
   final List<DetailsVoList> detailsVoList;
   DetailedVoList({
     required this.groupId,
     required this.paymentPrice,
+    required this.overdueFine,
     required this.detailsVoList,
   });
   factory DetailedVoList.fromJson(Map<String, dynamic> json) =>
       _$DetailedVoListFromJson(json);
   Map<String, dynamic> toJson() => _$DetailedVoListToJson(this);
   @override
-  List<Object> get props => [groupId, paymentPrice, detailsVoList];
+  List<Object> get props => [groupId, paymentPrice, overdueFine, detailsVoList];
 }
 
 @JsonSerializable(createToJson: true, explicitToJson: true)
@@ -72,6 +74,11 @@ class DetailsVoList extends Equatable {
   final String unitPriceType;
   @JsonKey(name: 'num')
   final int number;
+  final num paymentPrice;
+  final int status;
+  final num rate;
+  final String paymentTerm;
+  final num overdueFine;
   DetailsVoList({
     required this.id,
     required this.month,
@@ -82,6 +89,11 @@ class DetailsVoList extends Equatable {
     required this.endDate,
     required this.unitPriceType,
     required this.number,
+    required this.paymentPrice,
+    required this.status,
+    required this.rate,
+    required this.paymentTerm,
+    required this.overdueFine,
   });
   factory DetailsVoList.fromJson(Map<String, dynamic> json) =>
       _$DetailsVoListFromJson(json);
@@ -98,6 +110,11 @@ class DetailsVoList extends Equatable {
       endDate,
       unitPriceType,
       number,
+      paymentPrice,
+      status,
+      rate,
+      paymentTerm,
+      overdueFine,
     ];
   }
 }

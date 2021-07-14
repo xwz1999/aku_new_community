@@ -72,7 +72,7 @@ class _LifePayPageState extends State<LifePayPage> {
       element.detailedVoList.forEach((element) {
         element.detailsVoList.forEach((element) {
           count++;
-          price += element.costPrice;
+          price += (element.paymentPrice+element.overdueFine);
           ids.add(element.id);
         });
       });

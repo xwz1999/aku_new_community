@@ -46,6 +46,7 @@ DetailedVoList _$DetailedVoListFromJson(Map<String, dynamic> json) {
   return DetailedVoList(
     groupId: json['groupId'] as int,
     paymentPrice: json['paymentPrice'] as num,
+    overdueFine: json['overdueFine'] as num,
     detailsVoList: (json['detailsVoList'] as List<dynamic>)
         .map((e) => DetailsVoList.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -56,6 +57,7 @@ Map<String, dynamic> _$DetailedVoListToJson(DetailedVoList instance) =>
     <String, dynamic>{
       'groupId': instance.groupId,
       'paymentPrice': instance.paymentPrice,
+      'overdueFine': instance.overdueFine,
       'detailsVoList': instance.detailsVoList.map((e) => e.toJson()).toList(),
     };
 
@@ -70,6 +72,11 @@ DetailsVoList _$DetailsVoListFromJson(Map<String, dynamic> json) {
     endDate: json['endDate'] as String,
     unitPriceType: json['unitPriceType'] as String,
     number: json['num'] as int,
+    paymentPrice: json['paymentPrice'] as num,
+    status: json['status'] as int,
+    rate: json['rate'] as num,
+    paymentTerm: json['paymentTerm'] as String,
+    overdueFine: json['overdueFine'] as num,
   );
 }
 
@@ -84,4 +91,9 @@ Map<String, dynamic> _$DetailsVoListToJson(DetailsVoList instance) =>
       'endDate': instance.endDate,
       'unitPriceType': instance.unitPriceType,
       'num': instance.number,
+      'paymentPrice': instance.paymentPrice,
+      'status': instance.status,
+      'rate': instance.rate,
+      'paymentTerm': instance.paymentTerm,
+      'overdueFine': instance.overdueFine,
     };
