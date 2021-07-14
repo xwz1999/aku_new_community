@@ -72,7 +72,7 @@ class _LifePayPageState extends State<LifePayPage> {
       element.detailedVoList.forEach((element) {
         element.detailsVoList.forEach((element) {
           count++;
-          price += (element.paymentPrice+element.overdueFine);
+          price += (element.paymentPrice + element.overdueFine);
           ids.add(element.id);
         });
       });
@@ -203,13 +203,13 @@ class _LifePayPageState extends State<LifePayPage> {
             await NetUtil().post('/user/alipay/dailyPaymentAlipay', params: {
           "ids": total.ids,
           "payType": 1, //暂时写死 等待后续补充
-          "payPrice": total.payTotal
+          "payPrice": total.payTotal.toDoubleStringAsFixed()
         });
         if (baseModel.status ?? false) {
           bool result = await PayUtil()
               .callAliPay(baseModel.message!, API.pay.dailPayMentCheck);
           if (result) {
-            Get.off(PayFinishPage());
+            Get.off(()=>PayFinishPage());
           }
         }
         cancel();
