@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'lease_fee_list_model.g.dart';
 
@@ -54,4 +55,6 @@ class LeaseFeeListModel extends Equatable {
         return '未知';
     }
   }
+
+  DateTime get createDateTime => DateUtil.getDateTime(this.createDate)!;
 }

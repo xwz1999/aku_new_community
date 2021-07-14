@@ -1,6 +1,7 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/house/lease_fee_list_model.dart';
+import 'package:aku_community/ui/profile/house/lease_pay_query/lease_pay_query_detail_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
@@ -170,27 +171,29 @@ class _LeasePayQueryPageState extends State<LeasePayQueryPage> {
   }
 
   Widget _buildCard(LeaseFeeListModel model) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            model.typeString.text.size(28.sp).black.bold.make(),
-            Spacer(),
-            '${S.of(context)!.tempPlotName} ${UserTool.appProveider.selectedHouse!.roomName}'
-                .text
-                .size(24.sp)
-                .color(ktextSubColor)
-                .bold
-                .make(),
-          ],
-        ),
-        12.w.heightBox,
-        GestureDetector(
-          onTap: () {
-            model.payStatus == 0 ? null : null;
-          },
-          child: Row(
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => LeasePayQueryDetailPage(
+              model: model,
+            ));
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              model.typeString.text.size(28.sp).black.bold.make(),
+              Spacer(),
+              '${S.of(context)!.tempPlotName} ${UserTool.appProveider.selectedHouse!.roomName}'
+                  .text
+                  .size(24.sp)
+                  .color(ktextSubColor)
+                  .bold
+                  .make(),
+            ],
+          ),
+          12.w.heightBox,
+          Row(
             children: [
               '${DateUtil.formatDateStr(model.createDate, format: 'MM/dd HH:mm')}'
                   .text
@@ -209,10 +212,10 @@ class _LeasePayQueryPageState extends State<LeasePayQueryPage> {
                   .make(),
             ],
           ),
-        ),
-        32.w.heightBox,
-        BeeDivider.horizontal(),
-      ],
+          32.w.heightBox,
+          BeeDivider.horizontal(),
+        ],
+      ),
     );
   }
 }

@@ -484,6 +484,13 @@ class _Pay {
 
   ///支付宝支付：房屋租赁-剩余需结清房租支付 向支付宝发起订单查询请求
   String get leaseRentCheck => '/user/alipay/leaseRentOrderCheckAlipay';
+
+  ///支付宝支付：app 房屋租赁-租金账单支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  String get leaseRentBillorder => '/user/alipay/leaseRentBillOrderAlipay';
+
+  ///支付宝支付：房屋租赁-租金账单支付 向支付宝发起订单查询请求
+  String get leaseRentBillOrderCheck =>
+      '/user/alipay/leaseRentBillOrderCheckAlipay';
 }
 
 class _House {

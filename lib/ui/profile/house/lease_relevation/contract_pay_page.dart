@@ -1,8 +1,10 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -81,15 +83,21 @@ class _ContractPayPageState extends State<ContractPayPage> {
       bottomNavi: BottomButton(
         child: '点击支付'.text.size(32.sp).bold.color(ktextPrimary).make(),
         onPressed: () async {
-          String code = await HouseFunc()
-              .leaseAlipay(widget.id, 1, _model!.margin.toDouble());
-          if (code.isNotEmpty) {
-            bool result =
-                await PayUtil().callAliPay(code, API.pay.leaseCheckAlipay);
-            if (result) {
-              Get.off(() => PayFinishPage());
+          Function cancel = BotToast.showLoading();
+          try {
+            String code = await HouseFunc()
+                .leaseAlipay(widget.id, 1, _model!.margin.toDouble());
+            if (code.isNotEmpty) {
+              bool result =
+                  await PayUtil().callAliPay(code, API.pay.leaseCheckAlipay);
+              if (result) {
+                Get.off(() => PayFinishPage());
+              }
             }
+          } catch (e) {
+            LoggerData.addData(e);
           }
+          cancel();
         },
       ),
     );

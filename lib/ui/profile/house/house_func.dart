@@ -234,6 +234,19 @@ class HouseFunc {
     }
   }
 
+  ///支付宝支付：app 房屋租赁-租金账单支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  ///支付方式暂写死为1
+  ///支付方式：1.支付宝 2.微信 3.现金 4.pos
+  Future<String> leaseRentBillOrder(int id, int type, double price) async {
+    BaseModel baseModel = await NetUtil().post(API.pay.leaseRentBillorder,
+        params: {"sysLeaseRentId": id, "payType": type, "payPrice": price});
+    if (baseModel.status ?? false) {
+      return baseModel.message!;
+    } else {
+      return '';
+    }
+  }
+
   static Map<String, int> getSex = {
     '男': 1,
     '女': 2,
