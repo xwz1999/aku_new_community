@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:aku_community/model/common/img_model.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'house_keeping_list_model.g.dart';
 
@@ -42,6 +43,59 @@ class HouseKeepingListModel extends Equatable {
   });
   factory HouseKeepingListModel.fromJson(Map<String, dynamic> json) =>
       _$HouseKeepingListModelFromJson(json);
+  String get typeString {
+    switch (this.type) {
+      case 1:
+        return '室内清洁';
+      case 2:
+        return '洗涤护理';
+      default:
+        return '未知';
+    }
+  }
+
+  String get statusString {
+    switch (this.status) {
+      case 1:
+        return '待派单';
+      case 2:
+        return '已派单';
+      case 3:
+        return '处理中';
+      case 4:
+        return '待支付';
+      case 5:
+        return '待评价';
+      case 6:
+        return '已完成';
+      case 9:
+        return '已取消';
+      default:
+        return '未知';
+    }
+  }
+
+  Color get statusColor {
+    switch (this.status) {
+      case 1:
+        return Color(0xFFFF4501);
+      case 2:
+        return Color(0xFFFF4501);
+      case 3:
+        return Color(0xFFFF4501);
+      case 4:
+        return Color(0xFFFF4501);
+      case 5:
+        return Color(0xFFFF4501);
+      case 6:
+        return Color(0xFFFF4501);
+      case 9:
+        return Color(0xFFFF4501);
+      default:
+        return Color(0xFFFF4501);
+    }
+  }
+
   @override
   List<Object?> get props {
     return [
