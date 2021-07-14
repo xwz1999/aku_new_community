@@ -2,11 +2,14 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_detail_page.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_community/widget/others/aku_chip_box.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HouseKeepingCard extends StatelessWidget {
@@ -18,9 +21,12 @@ class HouseKeepingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {},
+      onTap: () async {
+        Get.to(() => HouseKeepingDetailPage(model: model));
+      },
       child: Container(
         padding: EdgeInsets.all(24.w),
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -40,9 +46,7 @@ class HouseKeepingCard extends StatelessWidget {
                 ),
                 Text(
                   model.statusString,
-                  style: TextStyle(
-                      color:
-                          model.statusColor),
+                  style: TextStyle(color: model.statusColor),
                 ),
               ],
             ),
@@ -58,6 +62,21 @@ class HouseKeepingCard extends StatelessWidget {
             ),
             16.w.heightBox,
             _buildImgs(),
+            Row(
+              children: [
+                Image.asset(
+                  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                12.w.widthBox,
+                '${S.of(context)!.tempPlotName}·${model.roomName}'
+                    .text
+                    .size(28.sp)
+                    .color(ktextSubColor)
+                    .make()
+              ],
+            ),
             _getBottomCard(),
           ],
         ),
@@ -120,7 +139,11 @@ class HouseKeepingCard extends StatelessWidget {
         ];
       case 3:
         return [
-          CardBottomButton.white(onPressed: () async {}, text: ('查看详情')),
+          CardBottomButton.white(
+              onPressed: () async {
+                Get.to(() => HouseKeepingDetailPage(model: model));
+              },
+              text: ('查看详情')),
         ];
       case 4:
         return [
