@@ -74,7 +74,7 @@ class _RefundBondResultPageState extends State<RefundBondResultPage> {
                           id: widget.id));
                     },
                     child:
-                        '申请保证金退还'.text.color(ktextPrimary).size(36.sp).make(),
+                        '重新申请'.text.color(ktextPrimary).size(36.sp).make(),
                   )
                 : SizedBox(),
           ],

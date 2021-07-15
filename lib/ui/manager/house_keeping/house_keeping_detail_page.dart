@@ -72,7 +72,9 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
                 _buildEvaluate(),
               ],
             ),
-          )
+          ),
+          // 40.w.heightBox,
+          // _background(),
         ],
       ),
       bottomNavi: _getBottomButton(),
@@ -290,4 +292,92 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
       ),
     );
   }
+
+  // int _airPlane = 1;
+  // int _train = 2;
+  // int _xxx = 3;
+  // int _select = 1;
+
+  // Widget _background() {
+  //   return Center(
+  //     child: Container(
+  //       width: 600.w,
+  //       height: 600.w,
+  //       decoration: BoxDecoration(
+  //           color: Colors.transparent,
+  //           borderRadius: BorderRadius.circular(16.w)),
+  //       child: Column(
+  //         children: [
+  //           Row(
+  //             children: [
+  //               _header(
+  //                 _airPlane,
+  //                 _select,
+  //                 'aaa',
+  //                 'left'
+  //               ).expand(),
+  //               _header(_train, _select, 'bbb', 'mid').expand(),
+  //               _header(_xxx, _select, 'ccc', 'right').expand(),
+  //             ],
+  //           ),
+  //           Container(
+  //             width: double.infinity,
+  //             alignment: Alignment.center,
+  //             child: 'xxxxxxxx'.text.size(36.sp).black.make(),
+  //             color: Colors.white,
+  //           ).expand(),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // Widget _header(int value, int selectValue, String title, String position) {
+  //   bool isSelect = value == selectValue;
+  //   return Column(
+  //     children: [
+  //       isSelect
+  //           ? Container(
+  //               height: 40.w,
+  //               decoration: BoxDecoration(
+  //                   color: Colors.white,
+  //                   borderRadius: BorderRadius.only(
+  //                       topLeft: position == 'left'
+  //                           ? Radius.zero
+  //                           : Radius.circular(20.w),
+  //                       topRight: position == 'right'
+  //                           ? Radius.zero
+  //                           : Radius.circular(20.w))),
+  //             )
+  //           : Container(height: 40.w, color: Colors.transparent),
+  //       isSelect
+  //           ? Container(
+  //               height: 120.w,
+  //               alignment: Alignment.center,
+  //               width: double.infinity,
+  //               child: title.text.size(32.sp).red500.make(),
+  //               color: Colors.white,
+  //             )
+  //           : GestureDetector(
+  //               onTap: () {
+  //                 _select = value;
+  //                 setState(() {});
+  //               },
+  //               child: Container(
+  //                 height: 120.w,
+  //                 width: double.infinity,
+  //                 alignment: Alignment.center,
+  //                 child: title.text.size(30.sp).black.make(),
+  //                 decoration: BoxDecoration(
+  //                     color: Colors.pinkAccent,
+  //                     borderRadius: BorderRadius.only(
+  //                         topLeft:!(position=='right')? Radius.circular(16.w):Radius.zero,
+  //                         topRight: !(position=='left')?Radius.circular(16.w):Radius.zero,
+  //                         bottomLeft: !(position=='left')?Radius.circular(16.w):Radius.zero,
+  //                         bottomRight:!(position=='right')?Radius.circular(16.w):Radius.zero)),
+  //               ),
+  //             ),
+  //     ],
+  //   );
+  // }
 }

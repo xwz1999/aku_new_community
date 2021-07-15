@@ -11,6 +11,7 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
 
 class RefundBondPage extends StatefulWidget {
   final String name;
@@ -48,7 +49,7 @@ class _RefundBondPageState extends State<RefundBondPage> {
                   onPressed: () {}),
               BeeInputRow.button(
                   title: '保证金缴纳时间', hintText: widget.date, onPressed: () {}),
-            ],
+            ].sepWidget(separate: 24.w.heightBox),
           ).paddingSymmetric(horizontal: 32.w)
         ],
       ),

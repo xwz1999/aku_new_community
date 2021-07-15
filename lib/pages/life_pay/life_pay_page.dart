@@ -1,3 +1,4 @@
+import 'package:aku_community/pages/life_pay/life_pre_pay_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -163,7 +164,6 @@ class _LifePayPageState extends State<LifePayPage> {
               GestureDetector(
                 onTap: () async {
                   if (_selectYears.contains(index)) {}
-
                   dynamic payMent = await (Get.to(() => LifePayDetailPage(
                         model: _models[index],
                         selectModel: _selectModels[index],
@@ -209,12 +209,48 @@ class _LifePayPageState extends State<LifePayPage> {
           bool result = await PayUtil()
               .callAliPay(baseModel.message!, API.pay.dailPayMentCheck);
           if (result) {
-            Get.off(()=>PayFinishPage());
+            Get.off(() => PayFinishPage());
           }
         }
         cancel();
       },
       child: '去缴费'.text.black.size(32.sp).bold.make(),
+    );
+  }
+
+  Widget _buildPrePayment() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+      width: double.infinity,
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '当前预缴'.text.size(28.sp).color(ktextSubColor).make(),
+          30.w.heightBox,
+          Row(
+            children: [
+              '¥'.text.size(28.sp).black.make(),
+              16.w.widthBox,
+              '2300'.text.size(40.sp).black.bold.make(),
+              Spacer(),
+              MaterialButton(
+                elevation: 0,
+                height: 50.w,
+                padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 25.w),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.w),
+                    side: BorderSide(color: Color(0xFF979797), width: 1.w)),
+                color: Colors.white,
+                onPressed: () {
+                  Get.to(() => LifePrePayPage());
+                },
+                child: '预缴充值'.text.size(28.sp).black.make(),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -268,6 +304,8 @@ class _LifePayPageState extends State<LifePayPage> {
                   _controller!.callRefresh();
                 },
                 context: context),
+            16.w.heightBox,
+            _buildPrePayment(),
             16.w.heightBox,
             Container(
               padding: EdgeInsets.all(32.w),

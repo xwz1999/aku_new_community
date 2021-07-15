@@ -221,6 +221,16 @@ class HouseFunc {
     }
   }
 
+  ///我的房屋-合同终止：app 房屋租赁-剩余需结清租金支付(当剩余需结清租金 小于等于 0 时调用)：
+  Future<bool> leaseRentOrderNegative(int id, double price) async {
+    BaseModel baseModel =
+        await NetUtil().post(API.pay.leaseRentOrderNegative, params: {
+      "sysLeaseId": id,
+      "payPrice": price,
+    });
+    return baseModel.status ?? false;
+  }
+
   ///我的房屋-合同终止：保证金退还申请
   Future<bool> refundBond(int id) async {
     BaseModel baseModel =

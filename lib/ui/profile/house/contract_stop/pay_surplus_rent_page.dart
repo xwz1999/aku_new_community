@@ -79,7 +79,7 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
           onPressed: () async {
             Function cancel = BotToast.showLoading();
             try {
-              if (widget.amount <= 0) {
+              if (widget.amount > 0) {
                 String code = await HouseFunc()
                     .leaseRentOrder(widget.id, 1, widget.amount.toDouble());
                 bool result =
@@ -88,13 +88,26 @@ class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
                   Get.back();
                   Get.off(() => PayFinishPage());
                 }
-              } else {}
+              } else {
+                bool result = await HouseFunc().leaseRentOrderNegative(
+                    widget.id, widget.amount.toDouble());
+                if (result) {
+                  Get.back();
+                  Get.back();
+                  BotToast.showText(text: '退款成功');
+                }
+              }
             } catch (e) {
               LoggerData.addData(e);
             }
             cancel();
           },
-          child: '点击支付'.text.size(32.sp).color(ktextPrimary).bold.make()),
+          child: '${widget.amount > 0 ? '点击支付' : '点击退款'}'
+              .text
+              .size(32.sp)
+              .color(ktextPrimary)
+              .bold
+              .make()),
     );
   }
 }

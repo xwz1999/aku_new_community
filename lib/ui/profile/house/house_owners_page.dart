@@ -243,7 +243,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           Get.to(() => PayResultPage(
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateUtil.formatDateStr(model.marginPayDate!),
+                date: DateUtil.formatDateStr(model.marginPayDate??''),
                 id: model.id,
               ));
           break;
@@ -254,7 +254,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 status: model.status,
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateUtil.formatDateStr(model.marginPayDate!),
+                date: DateUtil.formatDateStr(model.marginPayDate??''),
                 id: model.id,
               ));
           break;
