@@ -96,6 +96,17 @@ class HouseKeepingListModel extends Equatable {
     }
   }
 
+  String get completionString {
+    switch (this.completion) {
+      case 1:
+        return '未完成';
+      case 2:
+      return '已完成';
+      default:
+      return '未知';
+    }
+  }
+
   @override
   List<Object?> get props {
     return [

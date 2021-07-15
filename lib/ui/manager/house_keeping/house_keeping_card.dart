@@ -2,10 +2,13 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
 import 'package:aku_community/ui/manager/house_keeping/house_keeping_detail_page.dart';
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_community/widget/others/aku_chip_box.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +17,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 class HouseKeepingCard extends StatelessWidget {
   final HouseKeepingListModel model;
-  const HouseKeepingCard({Key? key, required this.model}) : super(key: key);
+  final VoidCallback callRefresh;
+  const HouseKeepingCard(
+      {Key? key, required this.model, required this.callRefresh})
+      : super(key: key);
   String get dateStart =>
       DateUtil.formatDateStr(model.createDate, format: 'yyyy-MM-dd HH:mm:ss');
 
@@ -22,11 +28,17 @@ class HouseKeepingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        Get.to(() => HouseKeepingDetailPage(model: model));
+        List<HouseKeepingProcessModel> processModels =
+            await HouseKeepingFunc.getHouseKeepingProcess(
+          model.id,
+        );
+        Get.to(() => HouseKeepingDetailPage(
+              model: model,
+              processModels: processModels,
+            ));
       },
       child: Container(
         padding: EdgeInsets.all(24.w),
-        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -131,17 +143,36 @@ class HouseKeepingCard extends StatelessWidget {
     switch (model.status) {
       case 1:
         return [
-          CardBottomButton.white(onPressed: () async {}, text: ('取消服务')),
+          CardBottomButton.white(
+              onPressed: () async {
+                Function cancel = BotToast.showLoading();
+                await HouseKeepingFunc.cancelHouseKeepingProcess(model.id);
+                cancel();
+                callRefresh();
+              },
+              text: ('取消服务')),
         ];
       case 2:
         return [
-          CardBottomButton.white(onPressed: () async {}, text: ('取消服务')),
+          CardBottomButton.white(
+              onPressed: () async {
+                Function cancel = BotToast.showLoading();
+                await HouseKeepingFunc.cancelHouseKeepingProcess(model.id);
+                cancel();
+                callRefresh();
+              },
+              text: ('取消服务')),
         ];
       case 3:
         return [
           CardBottomButton.white(
               onPressed: () async {
-                Get.to(() => HouseKeepingDetailPage(model: model));
+                List<HouseKeepingProcessModel> processModels =
+                    await HouseKeepingFunc.getHouseKeepingProcess(model.id);
+                Get.to(() => HouseKeepingDetailPage(
+                      model: model,
+                      processModels: processModels,
+                    ));
               },
               text: ('查看详情')),
         ];

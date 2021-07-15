@@ -286,6 +286,13 @@ class _Manager {
   ///app新版家政服务：确认提交家政
   String get submitHouseKeeping =>
       '/user/housekeepingService/submitHousekeeping';
+
+  ///app新版家政服务：根据家政服务主键id查询家政服务服务进程
+  String get houseKeepingProcess =>
+      '/user/housekeepingService/findHousekeepingProcessRecord';
+
+  ///app新版家政服务：取消服务
+  String get housekeepingCancel => '/user/housekeepingService/cancel';
 }
 
 class _Community {

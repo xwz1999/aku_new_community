@@ -46,9 +46,14 @@ class _HouseKeepingViewState extends State<HouseKeepingView>
         },
         builder: (items) {
           return ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               itemBuilder: (context, index) {
-                return HouseKeepingCard(model: items[index]);
+                return HouseKeepingCard(
+                  model: items[index],
+                  callRefresh: () {
+                    _controller.callRefresh();
+                  },
+                );
               },
               separatorBuilder: (_, __) {
                 return 24.w.heightBox;
@@ -56,6 +61,7 @@ class _HouseKeepingViewState extends State<HouseKeepingView>
               itemCount: items.length);
         });
   }
+
   @override
   bool get wantKeepAlive => true;
 }

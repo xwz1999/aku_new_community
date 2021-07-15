@@ -1,17 +1,25 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_community/widget/bee_divider.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/views/bee_grid_image_view.dart';
+
 class HouseKeepingDetailPage extends StatefulWidget {
   final HouseKeepingListModel model;
-  HouseKeepingDetailPage({Key? key, required this.model}) : super(key: key);
+  final List<HouseKeepingProcessModel> processModels;
+  HouseKeepingDetailPage(
+      {Key? key, required this.model, required this.processModels})
+      : super(key: key);
 
   @override
   _HouseKeepingDetailPageState createState() => _HouseKeepingDetailPageState();
@@ -26,6 +34,42 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
         padding: EdgeInsets.symmetric(vertical: 24.w),
         children: [
           _buildInfo(),
+          16.w.heightBox,
+          _buildProcess(),
+          16.w.heightBox,
+          Offstage(
+            offstage: widget.model.handlingTime == null,
+            child: Column(
+              children: [
+                16.w.heightBox,
+                _serviceFeedBack(),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
+            color: Colors.white,
+            child: Row(
+              children: [
+                '服务费用'.text.size(28.sp).black.make(),
+                Spacer(),
+                '¥ ${widget.model.payFee ?? 0}'
+                    .text
+                    .size(32.sp)
+                    .color(Colors.red)
+                    .make()
+              ],
+            ),
+          ),
+          Offstage(
+            offstage: widget.model.evaluationTime == null,
+            child: Column(
+              children: [
+                16.w.heightBox,
+                _buildEvaluate(),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -80,9 +124,10 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
     );
   }
 
-  Widget _buidProcess() {
+  Widget _buildProcess() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w),
+      color: Colors.white,
       width: double.infinity,
       child: Column(
         children: [
@@ -91,20 +136,136 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               '服务进程'.text.size(36.sp).bold.black.make(),
             ],
           ),
+          24.w.heightBox,
+          ...widget.processModels
+              .map((e) => _buildProcessTile(e.operatorContent, e.operationDate))
+              .toList()
+              .sepWidget(separate: 24.w.heightBox)
         ],
       ),
     );
   }
 
-  Widget _buidProcessTile(String title, DateTime date) {
+  Widget _buildProcessTile(String content, String date) {
     return Row(children: [
-      title.text.size(28.sp).color(ktextSubColor).make(),
+      content.text.size(28.sp).color(ktextSubColor).make(),
       Spacer(),
-      '${DateUtil.formatDate(date, format: 'yyyy-MM-dd HH:mm:ss')}'
+      '${DateUtil.formatDateStr(date, format: 'yyyy-MM-dd HH:mm:ss')}'
           .text
           .size(28.sp)
           .black
           .make(),
     ]);
+  }
+
+  Widget _buildEvaluate() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w),
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          '服务评价'.text.size(36.sp).bold.black.make(),
+          40.w.heightBox,
+          Row(
+            children: [
+              '综合评价'.text.size(28.sp).color(ktextSubColor).make(),
+              40.w.widthBox,
+              RatingBar(
+                  ignoreGestures: true,
+                  allowHalfRating: true,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 15.w),
+                  itemSize: 32.w,
+                  initialRating: (widget.model.evaluation ?? 0).toDouble(),
+                  ratingWidget: RatingWidget(
+                      empty: Icon(
+                        CupertinoIcons.star,
+                      ),
+                      full: Icon(
+                        CupertinoIcons.star_fill,
+                        color: kPrimaryColor,
+                      ),
+                      half: Icon(
+                        CupertinoIcons.star_lefthalf_fill,
+                        color: kPrimaryColor,
+                      )),
+                  onRatingUpdate: (value) {})
+            ],
+          ),
+          40.w.heightBox,
+          BeeDivider.horizontal(),
+          40.w.heightBox,
+          (widget.model.evaluationContent ?? '')
+              .text
+              .size(28.sp)
+              .black
+              .softWrap(true)
+              .make(),
+          BeeGridImageView(urls: [])
+        ],
+      ),
+    );
+  }
+
+  Widget _serviceFeedBack() {
+    return Container(
+      width: double.infinity,
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w),
+      child: Column(
+        children: [
+          '服务反馈'.text.size(36.sp).bold.black.make(),
+          40.w.heightBox,
+          Row(
+            children: [
+              '完成情况'.text.size(28.sp).color(ktextSubColor).make(),
+              Spacer(),
+              widget.model.completionString.text.size(32.sp).black.make()
+            ],
+          ),
+          40.w.heightBox,
+          Row(
+            children: [
+              Image.asset(
+                R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                width: 40.w,
+                height: 40.w,
+              ),
+              8.w.widthBox,
+              '维修人'.text.size(28.sp).color(ktextSubColor).make(),
+              Spacer(),
+              widget.model.proposerName.text.size(28.sp).black.make(),
+            ],
+          ),
+          16.w.heightBox,
+          Row(
+            children: [
+              Image.asset(
+                R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                width: 40.w,
+                height: 40.w,
+              ),
+              8.w.widthBox,
+              '联系电话'.text.size(28.sp).color(ktextSubColor).make(),
+              Spacer(),
+              widget.model.proposerTel.text.size(28.sp).black.make(),
+            ],
+          ),
+          16.w.heightBox,
+          40.w.heightBox,
+          '处理描述'.text.size(28.sp).color(ktextSubColor).make(),
+          24.w.heightBox,
+          (widget.model.processDescription ?? '')
+              .text
+              .size(2)
+              .black
+              .softWrap(true)
+              .make(),
+          BeeGridImageView(urls: [])
+        ],
+      ),
+    );
   }
 }
