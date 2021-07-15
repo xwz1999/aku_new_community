@@ -1,9 +1,12 @@
+import 'package:aku_community/ui/manager/house_keeping/evaluate_page.dart';
 import 'package:aku_community/widget/bee_divider.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -72,7 +75,26 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
           )
         ],
       ),
+      bottomNavi: _getBottomButton(),
     );
+  }
+
+  Widget _getBottomButton() {
+    switch (widget.model.status) {
+      case 2:
+      case 3:
+      case 4:
+        return BottomButton(
+            onPressed: () {}, child: '立即支付'.text.size(32.sp).bold.black.make());
+      case 5:
+        return BottomButton(
+            onPressed: () {
+              Get.to(() => EvaluatePage());
+            },
+            child: '立即评价'.text.size(28.sp).bold.black.make());
+      default:
+        return SizedBox();
+    }
   }
 
   Widget _buildInfo() {
