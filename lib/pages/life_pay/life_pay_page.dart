@@ -1,4 +1,5 @@
 import 'package:aku_community/pages/life_pay/life_pre_pay_page.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,7 @@ class _LifePayPageState extends State<LifePayPage> {
   List<LifePayListModel> _models = []; //原model,禁止修改
   int _page = 0;
   int _size = 10;
+  double _prePrice = 0;
 
   List<LifePayListModel> _selectModels = []; //选中的models
 
@@ -232,7 +234,7 @@ class _LifePayPageState extends State<LifePayPage> {
             children: [
               '¥'.text.size(28.sp).black.make(),
               16.w.widthBox,
-              '2300'.text.size(40.sp).black.bold.make(),
+              _prePrice.text.size(40.sp).black.bold.make(),
               Spacer(),
               MaterialButton(
                 elevation: 0,
@@ -243,7 +245,7 @@ class _LifePayPageState extends State<LifePayPage> {
                     side: BorderSide(color: Color(0xFF979797), width: 1.w)),
                 color: Colors.white,
                 onPressed: () {
-                  Get.to(() => LifePrePayPage());
+                  Get.to(() => LifePrePayPage(prePay: _prePrice,));
                 },
                 child: '预缴充值'.text.size(28.sp).black.make(),
               )
@@ -252,6 +254,18 @@ class _LifePayPageState extends State<LifePayPage> {
         ],
       ),
     );
+  }
+
+  Future<double> _dailyPaymentPrePay() async {
+    BaseModel baseModel =
+        await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
+      "estateId": UserTool.appProveider.selectedHouse!.estateId,
+    });
+    if (baseModel.status ?? false) {
+      return (baseModel.data as num).toDouble();
+    } else {
+      return 0;
+    }
   }
 
   @override
@@ -295,6 +309,7 @@ class _LifePayPageState extends State<LifePayPage> {
           for (var i = 0; i < _selectModels.length; i++) {
             _selectYears.add(i);
           }
+          _prePrice = await _dailyPaymentPrePay();
           if (mounted) setState(() {});
         },
         child: Column(

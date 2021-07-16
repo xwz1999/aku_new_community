@@ -1,18 +1,26 @@
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/bee_input_row.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 
 class LifePrePayPage extends StatefulWidget {
-  LifePrePayPage({Key? key}) : super(key: key);
+  final double prePay;
+  LifePrePayPage({Key? key, required this.prePay}) : super(key: key);
 
   @override
   _LifePrePayPageState createState() => _LifePrePayPageState();
@@ -72,7 +80,10 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r"^[0-9][\.\d]*(,\d+)?$"))
+                      ],
                       keyboardType: TextInputType.number,
                     ).expand(),
                   ],
@@ -83,7 +94,8 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                 '当前房屋下的预缴金额为 '
                     .richText
                     .withTextSpanChildren([
-                      '2300'
+                      widget.prePay
+                          .toDoubleStringAsFixed()
                           .textSpan
                           .bold
                           .size(28.sp)
@@ -104,45 +116,64 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
             ),
           ),
           16.w.heightBox,
-          // Container(
-          //   width: double.infinity,
-          //   color: Colors.white,
-          //   padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
-          //   child: Row(
-          //     children: [
-          //       '缴费方式'.text.size(28.sp).black.make(),
-          //       Spacer(),
-          //       TextButton(
-          //           onPressed: () async {
-          //             Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
-          //               _paymethod = value;
-          //               Get.back();
-          //               setState(() {});
-          //             }));
-          //           },
-          //           child: _paymethod.text.size(28.sp).black.make()),
-          //       24.w.widthBox,
-          //       Icon(
-          //         CupertinoIcons.chevron_right,
-          //         size: 40.w,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          BeeInputRow.button(
-              title: '支付方式',
-              hintText: _payMethod,
-              onPressed: () {
-                Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
-                  _payMethod = value;
-                  Get.back();
-                  setState(() {});
-                }));
-              }),
+          Container(
+            width: double.infinity,
+            color: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+            child: Row(
+              children: [
+                '缴费方式'.text.size(28.sp).black.make(),
+                Spacer(),
+                Image.asset(
+                  R.ASSETS_ICONS_ALIPAY_ROUND_PNG,
+                  width: 48.w,
+                  height: 48.w,
+                ),
+                16.w.widthBox,
+                TextButton(
+                    onPressed: () async {
+                      Get.bottomSheet(PayMethodBottomSheet(onChoose: (value) {
+                        _payMethod = value;
+                        Get.back();
+                        setState(() {});
+                      }));
+                    },
+                    child: _payMethod.text.size(28.sp).black.make()),
+                24.w.widthBox,
+                Icon(
+                  CupertinoIcons.chevron_right,
+                  size: 40.w,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavi: BottomButton(
-          onPressed: () {}, child: '立即充值'.text.size(32.sp).bold.black.make()),
+          onPressed: () async {
+            Function cancel = BotToast.showLoading();
+            try {
+              BaseModel baseModel =
+                  await NetUtil().post(API.pay.dailPaymentPrePay, params: {
+                "estateId": UserTool.appProveider.selectedHouse!.estateId,
+                "payType": 1,
+                "payPrice": _editingController.text
+              });
+              if (baseModel.status ?? false) {
+                bool result = await PayUtil().callAliPay(
+                    baseModel.message!, API.pay.dailPaymentPrePayCheck);
+                if (result) {
+                  Get.off(() => PayFinishPage());
+                }
+              } else {
+                BotToast.showText(text: baseModel.message??"");
+              }
+            } catch (e) {
+              LoggerData.addData(e);
+            }
+            cancel();
+          },
+          child: '立即充值'.text.size(32.sp).bold.black.make()),
     );
   }
 }

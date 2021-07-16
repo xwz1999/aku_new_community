@@ -209,6 +209,10 @@ class _Manager {
   ///生活缴费：查询当前用户的房屋是否缴费
   String get findEstatelsPament => '/user/dailyPayment/findEstateIsPayment';
 
+  ///生活缴费：根据房产id查询对应的预付款充值金额
+  String get dailyPaymentPrePay =>
+      '/user/dailyPayment/findAdvancePaymentPriceByEstateId';
+
   ///活动投票：app查询所有活动投票信息
   String get enventVotingList => '/user/eventVoting/list';
 
@@ -501,6 +505,13 @@ class _Pay {
 
   ///我的房屋-合同终止：app 房屋租赁-剩余需结清租金支付(当剩余需结清租金 小于等于 0 时调用)：
   String get leaseRentOrderNegative => '/user/myHouse/leaseRentOrderAlipay';
+
+  ///支付宝支付：app 生活缴费-预充值支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  String get dailPaymentPrePay => '/user/alipay/advancePaymentOrderAlipay';
+
+  ///支付宝支付：生活缴费-预充值支付 向支付宝发起订单查询请求
+  String get dailPaymentPrePayCheck =>
+      '/user/alipay/advancePaymentOrderCheckAlipay';
 }
 
 class _House {
