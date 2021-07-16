@@ -1,3 +1,5 @@
+import 'package:aku_community/models/life_pay/life_pay_record_model.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -8,7 +10,6 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/model/manager/life_pay_record_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -22,7 +23,13 @@ class LifePayRecordPage extends StatefulWidget {
 
 class _LifePayRecordPageState extends State<LifePayRecordPage> {
   EasyRefreshController? _refreshController;
-  Map<int, String> getPayType = {1: '支付宝', 2: '微信', 3: '现金', 4: 'pos'};
+  Map<int, String> getPayType = {
+    1: '支付宝',
+    2: '微信',
+    3: '现金',
+    4: 'pos',
+    5: '预缴扣除'
+  };
   @override
   void initState() {
     super.initState();
@@ -41,6 +48,9 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
       title: '生活缴费',
       body: BeeListView(
         path: API.manager.paymentRecord,
+        extraParams: {
+          "estateId": UserTool.appProveider.selectedHouse!.estateId
+        },
         controller: _refreshController,
         convert: (models) {
           return models.tableList!
@@ -82,7 +92,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
       children: [
         Row(
           children: [
-            model.chargesTemplateDetailName!.text
+            model.chargesTemplateDetailName.text
                 .size(30.sp)
                 .color(ktextPrimary)
                 .bold
@@ -95,12 +105,12 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                 .make()
           ],
         ),
-        50.w.heightBox,
+        16.w.heightBox,
         Row(
           children: [
-            '${model.years}年'.text.color(ktextSubColor).size(24.sp).make(),
+            '缴纳人'.text.color(ktextSubColor).size(24.sp).make(),
             Spacer(),
-            '${model.paidPrice}'
+            '${model.createName}'
                 .text
                 .color(Color(0xFFFC361D))
                 .size(28.sp)
@@ -110,9 +120,16 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
         ),
         Row(
           children: [
-            '创建时间'.text.color(ktextSubColor).size(28.sp).make(),
+            '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
-            '${DateUtil.formatDateStr(model.createDate!, format: "yyyy/MM/dd HH:mm")}'
+            '${model.paidPrice}'.text.color(ktextPrimary).size(28.sp).make(),
+          ],
+        ),
+        Row(
+          children: [
+            '缴费时间'.text.color(ktextSubColor).size(28.sp).make(),
+            Spacer(),
+            '${DateUtil.formatDateStr(model.createDate, format: "yyyy/MM/dd HH:mm")}'
                 .text
                 .color(ktextPrimary)
                 .size(28.sp)
@@ -123,7 +140,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
           children: [
             '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
-            '${getPayType[model.payType!]}'
+            '${getPayType[model.payType]}'
                 .text
                 .color(ktextPrimary)
                 .size(28.sp)
@@ -137,7 +154,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
             '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
           ],
         ),
-      ],
+      ].sepWidget(separate: 24.w.heightBox),
     )
         .box
         .color(Colors.white)
