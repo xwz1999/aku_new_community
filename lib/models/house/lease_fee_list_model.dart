@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'lease_fee_list_model.g.dart';
 
 @JsonSerializable()

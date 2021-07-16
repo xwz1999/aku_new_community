@@ -1,9 +1,7 @@
-import 'package:aku_community/ui/manager/house_keeping/evaluate_page.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flustars/flustars.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,8 +11,11 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
 import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
+import 'package:aku_community/ui/manager/house_keeping/evaluate_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class HouseKeepingDetailPage extends StatefulWidget {

@@ -1,19 +1,21 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/house/lease_fee_list_model.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
 
 class LeasePayQueryDetailPage extends StatefulWidget {
   final LeaseFeeListModel model;

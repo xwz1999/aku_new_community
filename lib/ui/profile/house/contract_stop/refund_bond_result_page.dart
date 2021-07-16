@@ -73,8 +73,7 @@ class _RefundBondResultPageState extends State<RefundBondResultPage> {
                           date: widget.date,
                           id: widget.id));
                     },
-                    child:
-                        '重新申请'.text.color(ktextPrimary).size(36.sp).make(),
+                    child: '重新申请'.text.color(ktextPrimary).size(36.sp).make(),
                   )
                 : SizedBox(),
           ],

@@ -1,4 +1,3 @@
-import 'package:aku_community/ui/profile/house/lease_pay_query/lease_pay_query_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -21,6 +20,7 @@ import 'package:aku_community/ui/profile/house/contract_stop/submit_finish_page.
 import 'package:aku_community/ui/profile/house/house_card.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/ui/profile/house/identify_selection_page.dart';
+import 'package:aku_community/ui/profile/house/lease_pay_query/lease_pay_query_page.dart';
 import 'package:aku_community/ui/profile/house/lease_relevation/tenant_house_list_page.dart';
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_community/utils/headers.dart';
@@ -208,7 +208,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         crossAxisSpacing: 32.w,
         children: [
           _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {
-            Get.to(() => LeasePayQueryPage(id:UserTool.appProveider.selectedHouse!.sysLeaseId!,));
+            Get.to(() => LeasePayQueryPage(
+                  id: UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                ));
           }),
           _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
           _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
@@ -243,7 +245,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
           Get.to(() => PayResultPage(
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateUtil.formatDateStr(model.marginPayDate??''),
+                date: DateUtil.formatDateStr(model.marginPayDate ?? ''),
                 id: model.id,
               ));
           break;
@@ -254,7 +256,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                 status: model.status,
                 name: model.name,
                 bond: model.margin.toDouble(),
-                date: DateUtil.formatDateStr(model.marginPayDate??''),
+                date: DateUtil.formatDateStr(model.marginPayDate ?? ''),
                 id: model.id,
               ));
           break;

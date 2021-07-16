@@ -1,7 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
@@ -10,13 +19,6 @@ import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart'
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
 
 class LifePrePayPage extends StatefulWidget {
   final double prePay;
@@ -166,7 +168,7 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                   Get.off(() => PayFinishPage());
                 }
               } else {
-                BotToast.showText(text: baseModel.message??"");
+                BotToast.showText(text: baseModel.message ?? "");
               }
             } catch (e) {
               LoggerData.addData(e);

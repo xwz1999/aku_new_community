@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'house_keeping_process_model.g.dart';
 
 @JsonSerializable()

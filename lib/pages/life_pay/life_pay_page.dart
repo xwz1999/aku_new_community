@@ -1,5 +1,3 @@
-import 'package:aku_community/pages/life_pay/life_pre_pay_page.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +11,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
 import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
+import 'package:aku_community/pages/life_pay/life_pre_pay_page.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
@@ -26,6 +25,7 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 import 'package:aku_community/widget/others/house_head_card.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key? key}) : super(key: key);
@@ -245,7 +245,9 @@ class _LifePayPageState extends State<LifePayPage> {
                     side: BorderSide(color: Color(0xFF979797), width: 1.w)),
                 color: Colors.white,
                 onPressed: () {
-                  Get.to(() => LifePrePayPage(prePay: _prePrice,));
+                  Get.to(() => LifePrePayPage(
+                        prePay: _prePrice,
+                      ));
                 },
                 child: '预缴充值'.text.size(28.sp).black.make(),
               )

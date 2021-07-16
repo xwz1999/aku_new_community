@@ -1,12 +1,14 @@
 import 'dart:io';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class EvaluatePage extends StatefulWidget {
   EvaluatePage({Key? key}) : super(key: key);

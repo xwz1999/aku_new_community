@@ -40,7 +40,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
       element.detailedVoList.forEach((element) {
         element.detailsVoList.forEach((element) {
           count++;
-          price += (element.paymentPrice+element.overdueFine);
+          price += (element.paymentPrice + element.overdueFine);
           ids.add(element.id);
         });
       });
@@ -74,7 +74,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
               ? '${widget.year}上半年'.text.black.size(28.sp).make()
               : '${widget.year}下半年'.text.black.size(28.sp).make(),
           Spacer(),
-          '¥${(model.paymentPrice+model.overdueFine).toStringAsFixed(2)}'
+          '¥${(model.paymentPrice + model.overdueFine).toStringAsFixed(2)}'
               .text
               .color(kDangerColor)
               .size(28.sp)
@@ -119,7 +119,7 @@ class _LifePayDetailPageState extends State<LifePayDetailPage> {
             12.w.widthBox,
             model.month.toString().text.size(26.sp).black.make(),
             Spacer(),
-            '¥${(model.paymentPrice+model.overdueFine).toStringAsFixed(2)}'
+            '¥${(model.paymentPrice + model.overdueFine).toStringAsFixed(2)}'
                 .text
                 .size(26.sp)
                 .black

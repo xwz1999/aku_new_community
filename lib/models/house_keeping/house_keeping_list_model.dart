@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'package:aku_community/model/common/img_model.dart';
-import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
+
 part 'house_keeping_list_model.g.dart';
 
 @JsonSerializable()
@@ -101,9 +103,9 @@ class HouseKeepingListModel extends Equatable {
       case 1:
         return '未完成';
       case 2:
-      return '已完成';
+        return '已完成';
       default:
-      return '未知';
+        return '未知';
     }
   }
 

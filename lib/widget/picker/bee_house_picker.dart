@@ -8,6 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
+
 @Deprecated('use HouseHeadCard instead')
 class BeeHousePicker extends StatelessWidget {
   const BeeHousePicker({Key? key}) : super(key: key);

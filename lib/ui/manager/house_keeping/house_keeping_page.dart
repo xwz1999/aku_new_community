@@ -1,12 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_community/ui/manager/house_keeping/add_house_keeping_page.dart';
 import 'package:aku_community/ui/manager/house_keeping/house_keeping_view.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class HouseKeepingPage extends StatefulWidget {
   HouseKeepingPage({Key? key}) : super(key: key);

@@ -9,7 +9,11 @@ class BeeCheckButton<T> extends StatefulWidget {
   final T groupValue;
   final String title;
   BeeCheckButton(
-      {Key? key, required this.onChange, required this.value, required this.groupValue, required this.title})
+      {Key? key,
+      required this.onChange,
+      required this.value,
+      required this.groupValue,
+      required this.title})
       : super(key: key);
 
   @override

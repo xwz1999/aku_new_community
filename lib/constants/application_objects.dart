@@ -1,6 +1,5 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/const/resource.dart';
@@ -24,6 +23,7 @@ import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
 import 'package:aku_community/ui/home/application/all_application.dart';
 import 'package:aku_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_page.dart';
 import 'package:aku_community/ui/manager/questionnaire/questionnaire_page.dart';
 import 'package:aku_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_community/ui/profile/car_parking/car_parking_page.dart';
