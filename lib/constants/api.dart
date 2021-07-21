@@ -297,6 +297,9 @@ class _Manager {
 
   ///app新版家政服务：取消服务
   String get housekeepingCancel => '/user/housekeepingService/cancel';
+
+  ///app新版家政服务：评价
+  String get houseKeepingEvaluation => '/user/housekeepingService/evaluation';
 }
 
 class _Community {
@@ -417,6 +420,10 @@ class _Upload {
   ///家政服务上传提交照片
   String get uploadHouseKeepingPhotos =>
       '/user/upload/uploadAppHousekeepingServiceSubmitPhone';
+
+  ///家政服务上传评价照片
+  String get uploadHouseKeepingEvaluationPhotos =>
+      '/user/upload/uploadAppHousekeepingServiceEvaluationPhone';
 }
 
 class _Message {

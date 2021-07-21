@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +12,12 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/picker/grid_image_picker.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 
 class EvaluatePage extends StatefulWidget {
-  EvaluatePage({Key? key}) : super(key: key);
+  final int id;
+  EvaluatePage({Key? key, required this.id}) : super(key: key);
 
   @override
   _EvaluatePageState createState() => _EvaluatePageState();
@@ -106,6 +112,24 @@ class _EvaluatePageState extends State<EvaluatePage> {
           }),
         ],
       ),
+      bottomNavi: BottomButton(
+          onPressed: () async {
+            Function cancel = BotToast.showLoading();
+            List<String> _urls = [];
+            try {
+              _urls = await HouseKeepingFunc.uploadHouseKeepingEvaluationPhotos(
+                  _files);
+              bool result = await HouseKeepingFunc.houseKeepingEvaluation(
+                  widget.id, _rating, _textEditingController.text, _urls);
+              if (result) {
+                Get.back();
+              }
+            } catch (e) {
+              LoggerData.addData(e);
+            }
+            cancel();
+          },
+          child: '提交'.text.size(32.sp).black.bold.make()),
     );
   }
 }

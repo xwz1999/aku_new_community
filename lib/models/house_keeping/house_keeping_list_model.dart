@@ -17,8 +17,8 @@ class HouseKeepingListModel extends Equatable {
   final int status;
   final int? completion;
   final String? processDescription;
-  final String handlerName;
-  final String handlerTel;
+  final String? handlerName;
+  final String? handlerTel;
   final String? handlingTime;
   final List<ImgModel> handlerImgList;
   final double? payFee;
@@ -38,8 +38,8 @@ class HouseKeepingListModel extends Equatable {
     required this.status,
     this.completion,
     this.processDescription,
-    required this.handlerName,
-    required this.handlerTel,
+     this.handlerName,
+     this.handlerTel,
     this.handlingTime,
     required this.handlerImgList,
     this.payFee,

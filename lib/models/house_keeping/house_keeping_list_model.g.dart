@@ -18,8 +18,8 @@ HouseKeepingListModel _$HouseKeepingListModelFromJson(
     status: json['status'] as int,
     completion: json['completion'] as int?,
     processDescription: json['processDescription'] as String?,
-    handlerName: json['handlerName'] as String,
-    handlerTel: json['handlerTel'] as String,
+    handlerName: json['handlerName'] as String?,
+    handlerTel: json['handlerTel'] as String?,
     handlingTime: json['handlingTime'] as String?,
     handlerImgList: (json['handlerImgList'] as List<dynamic>)
         .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))

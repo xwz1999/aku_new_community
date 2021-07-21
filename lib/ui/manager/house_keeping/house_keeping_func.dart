@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bot_toast/bot_toast.dart';
 
 import 'package:aku_community/constants/api.dart';
@@ -48,5 +50,31 @@ class HouseKeepingFunc {
     } else {
       return false;
     }
+  }
+
+  ///上传家政服务评价照片
+  static Future<List<String>> uploadHouseKeepingEvaluationPhotos(
+      List<File> files) async {
+    List<String> urls = await NetUtil()
+        .uploadFiles(files, API.upload.uploadHouseKeepingEvaluationPhotos);
+
+    if (urls.isNotEmpty) {
+      return urls;
+    } else {
+      return [];
+    }
+  }
+
+  ///家政服务：评价
+  static Future<bool> houseKeepingEvaluation(int id, int evaluation,
+      String evaluationContent, List<String> imgs) async {
+    BaseModel baseModel =
+        await NetUtil().post(API.manager.houseKeepingEvaluation, params: {
+      "id": id,
+      "evaluation": evaluation,
+      "evaluationContent": evaluationContent,
+      "	evaluationImgUrls": imgs,
+    });
+    return baseModel.status ?? false;
   }
 }
