@@ -1,3 +1,4 @@
+import 'package:aku_community/constants/api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -228,7 +229,10 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .black
               .softWrap(true)
               .make(),
-          BeeGridImageView(urls: [])
+          BeeGridImageView(
+              urls: widget.model.evaluationImgList
+                  .map((e) => API.image(e.url))
+                  .toList())
         ],
       ),
     );
@@ -261,7 +265,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               8.w.widthBox,
               '维修人'.text.size(28.sp).color(ktextSubColor).make(),
               Spacer(),
-              widget.model.proposerName.text.size(28.sp).black.make(),
+              widget.model.handlerName.text.size(28.sp).black.make(),
             ],
           ),
           16.w.heightBox,
@@ -275,7 +279,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               8.w.widthBox,
               '联系电话'.text.size(28.sp).color(ktextSubColor).make(),
               Spacer(),
-              widget.model.proposerTel.text.size(28.sp).black.make(),
+              widget.model.handlerTel.text.size(28.sp).black.make(),
             ],
           ),
           16.w.heightBox,
@@ -288,7 +292,10 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .black
               .softWrap(true)
               .make(),
-          BeeGridImageView(urls: [])
+          BeeGridImageView(
+              urls: widget.model.handlerImgList
+                  .map((e) => API.image(e.url))
+                  .toList())
         ],
       ),
     );

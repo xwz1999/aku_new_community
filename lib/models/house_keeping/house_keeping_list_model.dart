@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:aku_community/model/common/img_model.dart';
@@ -18,11 +17,15 @@ class HouseKeepingListModel extends Equatable {
   final int status;
   final int? completion;
   final String? processDescription;
+  final String handlerName;
+  final String handlerTel;
   final String? handlingTime;
+  final List<ImgModel> handlerImgList;
   final double? payFee;
   final int? evaluation;
   final String? evaluationContent;
   final String? evaluationTime;
+  final List<ImgModel> evaluationImgList;
   final String createDate;
   final List<ImgModel> submitImgList;
   HouseKeepingListModel({
@@ -35,11 +38,15 @@ class HouseKeepingListModel extends Equatable {
     required this.status,
     this.completion,
     this.processDescription,
+    required this.handlerName,
+    required this.handlerTel,
     this.handlingTime,
+    required this.handlerImgList,
     this.payFee,
     this.evaluation,
     this.evaluationContent,
     this.evaluationTime,
+    required this.evaluationImgList,
     required this.createDate,
     required this.submitImgList,
   });
@@ -121,11 +128,15 @@ class HouseKeepingListModel extends Equatable {
       status,
       completion,
       processDescription,
+      handlerName,
+      handlerTel,
       handlingTime,
+      handlerImgList,
       payFee,
       evaluation,
       evaluationContent,
       evaluationTime,
+      evaluationImgList,
       createDate,
       submitImgList,
     ];
