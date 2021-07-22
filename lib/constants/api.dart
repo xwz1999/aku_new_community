@@ -519,6 +519,14 @@ class _Pay {
   ///支付宝支付：生活缴费-预充值支付 向支付宝发起订单查询请求
   String get dailPaymentPrePayCheck =>
       '/user/alipay/advancePaymentOrderCheckAlipay';
+
+  ///支付宝支付：app 家政服务-服务费用支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  String get houseKeepingServiceOrderAlipay =>
+      '/user/alipay/housekeepingServiceOrderAlipay';
+
+  ///支付宝支付：家政服务-服务费用支付 向支付宝发起订单查询请求
+  String get houseKeepingServieceOrderCheck =>
+      '/user/alipay/housekeepingServiceOrderCheckAlipay';
 }
 
 class _House {

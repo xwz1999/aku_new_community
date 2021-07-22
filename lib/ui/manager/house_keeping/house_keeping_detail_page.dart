@@ -1,4 +1,8 @@
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_community/pages/life_pay/pay_util.dart';
+import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +10,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
@@ -22,8 +27,12 @@ import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 class HouseKeepingDetailPage extends StatefulWidget {
   final HouseKeepingListModel model;
   final List<HouseKeepingProcessModel> processModels;
+  final VoidCallback callRefresh;
   HouseKeepingDetailPage(
-      {Key? key, required this.model, required this.processModels})
+      {Key? key,
+      required this.model,
+      required this.processModels,
+      required this.callRefresh})
       : super(key: key);
 
   @override
@@ -49,7 +58,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
                 _serviceFeedBack(),
               ],
             ),
-
+          16.w.heightBox,
           Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
             color: Colors.white,
@@ -65,6 +74,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               ],
             ),
           ),
+          16.w.heightBox,
           if (widget.model.evaluationTime != null)
             Column(
               children: [
@@ -87,7 +97,23 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
       case 3:
       case 4:
         return BottomButton(
-            onPressed: () {}, child: '立即支付'.text.size(32.sp).bold.black.make());
+            onPressed: () async {
+              Function cancel = BotToast.showLoading();
+              try {
+                String code = await HouseKeepingFunc.houseKeepingOrderAlipay(
+                    widget.model.id, 1, widget.model.payFee ?? 0);
+                bool result = await PayUtil()
+                    .callAliPay(code, API.pay.houseKeepingServieceOrderCheck);
+                if (result) {
+                  Get.off(() => PayFinishPage());
+                  widget.callRefresh();
+                }
+              } catch (e) {
+                LoggerData.addData(e);
+              }
+              cancel();
+            },
+            child: '立即支付'.text.size(32.sp).bold.black.make());
       case 5:
         return BottomButton(
             onPressed: () {
@@ -244,6 +270,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
       color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 24.w),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           '服务反馈'.text.size(36.sp).bold.black.make(),
           40.w.heightBox,
