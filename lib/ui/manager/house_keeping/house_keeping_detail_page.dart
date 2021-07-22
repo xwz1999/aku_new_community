@@ -50,7 +50,6 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
           _buildInfo(),
           16.w.heightBox,
           _buildProcess(),
-          16.w.heightBox,
           if (widget.model.handlingTime != null)
             Column(
               children: [
@@ -74,7 +73,6 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               ],
             ),
           ),
-          16.w.heightBox,
           if (widget.model.evaluationTime != null)
             Column(
               children: [
@@ -106,20 +104,21 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
                     .callAliPay(code, API.pay.houseKeepingServieceOrderCheck);
                 if (result) {
                   Get.off(() => PayFinishPage());
-                  widget.callRefresh();
                 }
               } catch (e) {
                 LoggerData.addData(e);
               }
               cancel();
+              widget.callRefresh();
             },
             child: '立即支付'.text.size(32.sp).bold.black.make());
       case 5:
         return BottomButton(
-            onPressed: () {
-              Get.to(() => EvaluatePage(
+            onPressed: () async {
+              await Get.to(() => EvaluatePage(
                     id: widget.model.id,
                   ));
+              widget.callRefresh();
             },
             child: '立即评价'.text.size(28.sp).bold.black.make());
       default:
@@ -255,9 +254,10 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .black
               .softWrap(true)
               .make(),
+          16.w.heightBox,
           BeeGridImageView(
               urls: widget.model.evaluationImgList
-                  .map((e) => API.image(e.url))
+                  .map((e) => e.url)
                   .toList())
         ],
       ),
@@ -321,7 +321,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .make(),
           BeeGridImageView(
               urls: widget.model.handlerImgList
-                  .map((e) => API.image(e.url))
+                  .map((e) => e.url)
                   .toList())
         ],
       ),

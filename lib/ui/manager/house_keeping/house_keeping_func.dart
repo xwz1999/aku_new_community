@@ -73,7 +73,7 @@ class HouseKeepingFunc {
       "id": id,
       "evaluation": evaluation,
       "evaluationContent": evaluationContent,
-      "	evaluationImgUrls": imgs,
+      "evaluationImgUrls": imgs,
     });
     return baseModel.status ?? false;
   }

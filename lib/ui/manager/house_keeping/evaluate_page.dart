@@ -122,6 +122,8 @@ class _EvaluatePageState extends State<EvaluatePage> {
               bool result = await HouseKeepingFunc.houseKeepingEvaluation(
                   widget.id, _rating, _textEditingController.text, _urls);
               if (result) {
+                //需两次退栈操作
+                Get.back();
                 Get.back();
               }
             } catch (e) {
