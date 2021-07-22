@@ -58,7 +58,7 @@ class _HouseKeepingViewState extends State<HouseKeepingView>
                 );
               },
               separatorBuilder: (_, __) {
-                return 24.w.heightBox;
+                return 16.w.heightBox;
               },
               itemCount: items.length);
         });

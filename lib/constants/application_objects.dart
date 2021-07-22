@@ -91,7 +91,7 @@ List<AO> appObjects = [
   AO('电子商务', R.ASSETS_ICONS_COMMERC_PNG, () => ElectronicCommercPage()),
   AO('服务浏览', R.ASSETS_ICONS_SERVICE_PNG, () => ServiceBrowsePage()),
   AO('社区介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
-  AO('家政服务', R.ASSETS_IMAGES_PLACEHOLDER_WEBP, () => HouseKeepingPage()),
+  AO('家政服务', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => HouseKeepingPage()),
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

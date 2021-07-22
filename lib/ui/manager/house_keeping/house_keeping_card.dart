@@ -36,6 +36,7 @@ class HouseKeepingCard extends StatelessWidget {
         );
         Get.to(() => HouseKeepingDetailPage(
               model: model,
+              callRefresh: callRefresh,
               processModels: processModels,
             ));
       },
@@ -173,6 +174,7 @@ class HouseKeepingCard extends StatelessWidget {
                     await HouseKeepingFunc.getHouseKeepingProcess(model.id);
                 Get.to(() => HouseKeepingDetailPage(
                       model: model,
+                      callRefresh: callRefresh,
                       processModels: processModels,
                     ));
               },

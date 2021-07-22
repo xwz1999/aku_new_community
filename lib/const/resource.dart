@@ -209,6 +209,10 @@ class R {
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/house.png)
   static const String ASSETS_ICONS_HOUSE_PNG = 'assets/icons/house.png';
 
+  /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/house_keeping.png)
+  static const String ASSETS_ICONS_HOUSE_KEEPING_PNG =
+      'assets/icons/house_keeping.png';
+
   /// ![preview](file:///Users/zhangmeng/aku_community/assets/icons/icon_notification.png)
   static const String ASSETS_ICONS_ICON_NOTIFICATION_PNG =
       'assets/icons/icon_notification.png';
