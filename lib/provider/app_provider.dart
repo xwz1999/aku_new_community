@@ -174,8 +174,8 @@ class AppProvider extends ChangeNotifier {
       longitude = 116.46;
       latitude = 39.92;
     } else {
-      longitude = _location!['longitude'];
-      latitude = _location!['latitude'];
+      longitude = _location?['longitude']??116.46;
+      latitude = _location?['latitude']??39.92;
     }
 
     Response response = await Dio().get(

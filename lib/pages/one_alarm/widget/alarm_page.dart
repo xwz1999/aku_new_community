@@ -68,8 +68,8 @@ class _AlarmPageState extends State<AlarmPage> {
               final appProvider =
                   Provider.of<AppProvider>(context, listen: false);
               LatLng _target = LatLng(
-                appProvider.location!['latitude'] as double,
-                appProvider.location!['longitude'] as double,
+                (appProvider.location?['latitude'] ?? 0) as double,
+                (appProvider.location?['longitude'] ?? 0 )as double,
               );
               _mapController = controller;
               _mapController!.moveCamera(
@@ -127,7 +127,7 @@ class _AlarmPageState extends State<AlarmPage> {
                               child: Text(
                                 (appProvider.location == null)
                                     ? '加载中……'
-                                    : appProvider.location!['address']
+                                    : (appProvider.location?['address'] ?? '')
                                         as String,
                                 style: TextStyle(
                                   color: Color(0xff666666),
