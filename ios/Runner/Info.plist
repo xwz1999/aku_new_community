@@ -34,7 +34,7 @@
 		<key>NSCalendarsUsageDescription</key>
 		<string>请允许访问，否则无法查看您每日的浏览记录.</string>
 		<key>NSCameraUsageDescription</key>
-		<string>我们需要访问您的相机,编辑创建</string>
+		<string>我们需要访问您的相机,用于上传报修情况等相关功能</string>
 		<key>NSContactsUsageDescription</key>
 		<string>我们需要访问您的通讯录,获取通讯录信息.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
@@ -44,7 +44,7 @@
 		<key>NSMotionUsageDescription</key>
 		<string>同步健康数据到App.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>我们需要访问您的照片,编辑创建</string>
+		<string>我们需要访问您的照片,用于上传报修状况等相关功能</string>
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>请允许访问,否则无法将语音消息转换为文字.</string>
 		<key>NSBluetoothPeripheralUsageDescription</key>

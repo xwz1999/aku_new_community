@@ -45,14 +45,12 @@ class MainInitialize {
   static Future initJPush() async {
     if (kIsWeb || Platform.isMacOS) return;
     JPush jpush = new JPush();
-
-    Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
-        String type) {
-      return (Map<String, dynamic>? message) async {
-        LoggerData.addData(message, tag: type);
-      };
-    }
-
+    // Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
+    //     String type) {
+    //   return (Map<String, dynamic>? message) async {
+    //     LoggerData.addData(message, tag: type);
+    //   };
+    // }
     jpush.addEventHandler(
       onReceiveNotification: (message) async {
         LoggerData.addData(message, tag: 'onReceiveNotification');
@@ -61,16 +59,23 @@ class MainInitialize {
             Provider.of<AppProvider>(Get.context!, listen: false);
         appProvider.getMessageCenter();
       },
-      onOpenNotification: jPushLogger('onOpenNotification'),
-      onReceiveMessage: jPushLogger('onReceiveMessage'),
+      onOpenNotification: (Map<String, dynamic>? message) async {
+        LoggerData.addData(message, tag: 'onOpenNotification');
+      },
+      onReceiveMessage: (Map<String, dynamic>? message) async {
+        LoggerData.addData(message, tag: 'onReceiveMessage');
+      },
     );
     jpush.setup(
-      appKey: "6a2c6507e3e8b3187ac1c9f9",
+      appKey: "00e20fef79ee804d5c9abb54",
       channel: "developer-default",
       production: false,
       debug: true,
     );
-    String? rID = await jpush.getRegistrationID();
+    // jpush.applyPushAuthority();
+    String? rID;
+    jpush.getRegistrationID().then((value) => rID = value);
+    print('jpush registrationID is $rID');
     LoggerData.addData(rID, tag: 'RegistrationID');
   }
 

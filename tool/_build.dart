@@ -48,7 +48,7 @@ buildIos() async {
   await runAsync(
     'fvm',
     arguments: [
-      'flutter'
+      'flutter',
       'build',
       'ios',
       '--dart-define',
