@@ -31,7 +31,7 @@ class _VisitorRecordViewState extends State<VisitorRecordView> {
     return BeeListView<VisitorListItemModel>(
       controller: _refreshController,
       path: API.manager.visitorAccessList,
-      extraParams: {'visitorStatus': widget.type},
+      extraParams: {'visitorInviteStatus': widget.type},
       convert: (model) {
         return model.tableList!
             .map((e) => VisitorListItemModel.fromJson(e))
