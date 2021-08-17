@@ -432,7 +432,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "0831af6f0f239d20fb9578612d7a893e2a53d044"
-      url: "git@git.oa00.com:flutter_third/flutter-icons.git"
+      url: "https://git.oa00.com/flutter_third/flutter-icons.git"
     source: git
     version: "1.1.1-nullsafety.0"
   flutter_localizations:
@@ -932,7 +932,7 @@ packages:
       path: "."
       ref: null-safety
       resolved-ref: "2a4d0949486432033d4b1a948243644a79a6b445"
-      url: "git@git.oa00.com:flutter_pub/random_character.git"
+      url: "https://git.oa00.com/flutter_pub/random_character.git"
     source: git
     version: "0.1.0-nullsafety.0"
   rational:

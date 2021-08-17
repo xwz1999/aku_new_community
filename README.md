@@ -6,16 +6,24 @@
 
 ### After pull this repo
 
-#### 资源文件生成器
-
+#### 使用grind命令构建页面
+使用以下代码全局启用构建器
+```shell
+flutter pub global activate grinder
+```
+或使用
+```shell
+flutter pub run grinder
+```
+###使用fgen生成图片路径
+```shell
+ flutter pub global activate global activate flutter_asset_generator
+```
+或使用
 ```shell
 flutter pub run flutter_asset_generator:resource_generator
-```
 
-```shell
-fgen
 ```
-
 ### Before git push
 
 #### import 排序
