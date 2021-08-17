@@ -29,7 +29,7 @@ dependencies:
   flustars: ^2.0.1
   flutter_icons:
     git:
-      url: git@git.oa00.com:flutter_third/flutter-icons.git
+      url: https://git.oa00.com/flutter_third/flutter-icons.git
   #弹窗
   bot_toast: ^4.0.1
   #滑块
@@ -68,7 +68,7 @@ dependencies:
   #随机昵称
   random_character:
     git:
-      url: git@git.oa00.com:flutter_pub/random_character.git
+      url: https://git.oa00.com/flutter_pub/random_character.git
       ref: null-safety
   #图片选择
   image_picker: ^0.7.4
