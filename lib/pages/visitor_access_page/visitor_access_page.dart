@@ -19,7 +19,7 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/common_input.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
-
+import 'package:aku_community/extensions/widget_list_ext.dart';
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key? key}) : super(key: key);
 
@@ -30,9 +30,18 @@ class VisitorAccessPage extends StatefulWidget {
 class _VisitorAccessPageState extends State<VisitorAccessPage> {
   TextEditingController _userName = new TextEditingController();
   TextEditingController _userCarNum = new TextEditingController();
+  TextEditingController _phoneNum = TextEditingController();
   DateTime? dateTime;
   int _selectSex = 1;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _phoneNum.dispose();
+    _userCarNum.dispose();
+    _userName.dispose();
+    super.dispose();
+  }
 
   Widget _buildHouseCard(
     String title,
@@ -210,26 +219,30 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
               style: TextStyle(fontSize: 28.sp, color: Color(0xff333333)),
             ),
             SizedBox(height: 32.w),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    dateTime == null
-                        ? '请选择到访时间'
-                        : '${DateUtil.formatDate(dateTime, format: 'yyyy-MM-dd')}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 34.sp,
-                        color: Color(0xff333333)),
+            Row(
+              children: [
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        dateTime == null
+                            ? '请选择到访时间'
+                            : '${DateUtil.formatDate(dateTime, format: 'yyyy-MM-dd')}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 34.sp,
+                            color: Color(0xff333333)),
+                      ),
+                      Icon(
+                        AntDesign.right,
+                        size: 36.sp,
+                        color: Color(0xffd8d8d8),
+                      ),
+                    ],
                   ),
-                  Icon(
-                    AntDesign.right,
-                    size: 36.sp,
-                    color: Color(0xffd8d8d8),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(height: 26.w),
             Divider(),
@@ -257,7 +270,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
         );
         if (result != null)
           Share.share(
-              '${API.host}/static/dist/index.html#/visitor?code=$result');
+              '请点击链接补充访客预约资料：\n${API.host}/static/dist/index.html#/visitor?code=$result');
       },
       minWidth: double.infinity,
       height: 96.w,
@@ -329,6 +342,15 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                         return null;
                       },
                     ),
+                    _input(
+                      '访客手机',
+                      '请输入手机号',
+                      _phoneNum,
+                      (text) {
+                        if (TextUtil.isEmpty(text)) return '手机号不能为空';
+                        return null;
+                      },
+                    ),
                     _sexSelect(),
                     _input(
                       '是否驾车',
@@ -341,7 +363,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _create(
                       appProvider.selectedHouse!.estateId,
                       userProvider.userDetailModel!.type,
-                      userProvider.userDetailModel!.tel,
+                      _phoneNum.text,
                     ),
                     _tips(),
                   ],

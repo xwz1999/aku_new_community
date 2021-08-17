@@ -18,7 +18,6 @@ import 'package:aku_community/model/manager/visitor_list_item_model.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
-
 // import 'package:qr_flutter/qr_flutter.dart';
 
 class VisitorPassportPage extends StatefulWidget {
@@ -52,8 +51,8 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
           child: ListView(
             children: [
               64.hb,
-              '宁波华茂悦峰'.text.size(40.sp).white.bold.make().centered(),
-              '1幢-1单元-702室'.text.size(30.sp).white.make().centered(),
+              '${S.of(context)!.tempPlotName}'.text.size(40.sp).white.bold.make().centered(),
+              '${widget.model.roomName}'.text.size(30.sp).white.make().centered(),
               32.hb,
               Container(
                 width: 600.w,
