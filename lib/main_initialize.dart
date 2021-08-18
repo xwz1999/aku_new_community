@@ -1,24 +1,22 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:fluwx/fluwx.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/constants/config.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/utils/message_parser.dart';
 import 'package:aku_community/utils/websocket/fire_dialog.dart';
 import 'package:aku_community/utils/websocket/web_socket_util.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluwx/fluwx.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 class MainInitialize {
   ///初始化firebase
@@ -73,10 +71,6 @@ class MainInitialize {
       debug: true,
     );
     // jpush.applyPushAuthority();
-    String? rID;
-    jpush.getRegistrationID().then((value) => rID = value);
-    print('jpush registrationID is $rID');
-    LoggerData.addData(rID, tag: 'RegistrationID');
   }
 
   static initWechat() {

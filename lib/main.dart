@@ -1,12 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/main_initialize.dart';
 import 'package:aku_community/pages/splash/splash_page.dart';
@@ -15,6 +6,15 @@ import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   const buildType = const String.fromEnvironment('BUILD_TYPE');
@@ -27,7 +27,10 @@ void main() async {
   await MainInitialize.initJPush();
   MainInitialize.initWechat();
   MainInitialize.initWebSocket();
-
+  String? rID;
+  JPush().getRegistrationID().then((value) => rID = value);
+  print('jpush registrationID is $rID');
+  LoggerData.addData(rID, tag: 'RegistrationID');
   runApp(MyApp());
 }
 

@@ -1,13 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
@@ -25,11 +15,19 @@ import 'package:aku_community/ui/profile/house/lease_relevation/tenant_house_lis
 import 'package:aku_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 class HouseOwnersPage extends StatefulWidget {
   final int identify;
+
   HouseOwnersPage({Key? key, required this.identify}) : super(key: key);
 
   @override
@@ -129,7 +127,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                             ? Get.to(() => MyHouseList())
                             : Get.to(() => TenantHouseListPage());
                       },
-                      child: Text(isOwner ? '审核记录' : '我的选房'),
+                      child: Text('审核记录'),
                     ),
             ],
             body: isTourist
@@ -183,9 +181,9 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                       ],
                     ),
                   ),
-            bottomNavi: BottomButton(
-                onPressed: _addHouse,
-                child: '新增房屋'.text.size(32.sp).color(ktextPrimary).bold.make()),
+            // bottomNavi: BottomButton(
+            //     onPressed: _addHouse,
+            //     child: '新增房屋'.text.size(32.sp).color(ktextPrimary).bold.make()),
           );
   }
 
@@ -212,8 +210,16 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                   id: UserTool.appProveider.selectedHouse!.sysLeaseId!,
                 ));
           }),
-          _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {}),
-          _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {}),
+          _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {
+            Get.to(() => TenantHouseListPage(
+                  leaseId: -UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                ));
+          }),
+          _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {
+            Get.to(() => TenantHouseListPage(
+                  leaseId: UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                ));
+          }),
           _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {
             await stopContract();
           })

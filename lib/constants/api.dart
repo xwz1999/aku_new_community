@@ -9,6 +9,7 @@ class API {
   static String get resource => '$host/static';
 
   static String image(String? path) => '$resource$path';
+
   static String file(String? path) => '$resource$path';
 
   static const int networkTimeOut = 10000;
@@ -36,7 +37,10 @@ class _Login {
   String get buildingInfo => '/login/findAllBuildingIAN';
 
   ///查询单元ID
-  String get unitInfo => '/login/findEstateIANByBuilding';
+  String get unitInfo => '/login/findUnitByBuildingId';
+
+  ///查询房间号
+  String get room => '/login/findEstateIdByUnitId';
 
   /// app用户注册
   String get signUp => '/login/register';

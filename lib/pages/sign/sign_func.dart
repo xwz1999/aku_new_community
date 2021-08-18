@@ -1,8 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/pick_building_model.dart';
 import 'package:aku_community/model/user/user_detail_model.dart';
@@ -11,6 +6,10 @@ import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:provider/provider.dart';
 
 class SignFunc {
   static Future sendMessageCode(String phone) async {
@@ -39,6 +38,7 @@ class SignFunc {
     return response;
   }
 
+  ///获取楼栋
   static Future<List<PickBuildingModel>> getBuildingInfo() async {
     BaseModel model = await NetUtil().get(API.login.buildingInfo);
     return (model.data as List)
@@ -46,10 +46,22 @@ class SignFunc {
         .toList();
   }
 
+  ///获取单元
   static Future<List<PickBuildingModel>> getUnitInfo(int? id) async {
     BaseModel model = await NetUtil().get(
       API.login.unitInfo,
       params: {"buildingId": id},
+    );
+    return (model.data as List)
+        .map((e) => PickBuildingModel.fromJson(e))
+        .toList();
+  }
+
+  ///获取房间
+  static Future<List<PickBuildingModel>> getRoom(int? id) async {
+    BaseModel model = await NetUtil().get(
+      API.login.room,
+      params: {"unitId": id},
     );
     return (model.data as List)
         .map((e) => PickBuildingModel.fromJson(e))

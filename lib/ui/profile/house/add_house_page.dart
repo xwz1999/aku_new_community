@@ -1,11 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/ui/profile/house/house_item.dart';
 import 'package:aku_community/ui/profile/house/pick_building_page.dart';
@@ -14,6 +6,12 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class AddHousePage extends StatefulWidget {
   AddHousePage({Key? key}) : super(key: key);
@@ -37,6 +35,7 @@ class _AddHousePageState extends State<AddHousePage> {
       );
 
   TextStyle get _textStyle => _hintStyle.copyWith(color: Color(0xFF333333));
+
   // 仅在租客身份下检查租期是否填写
   bool get _rentCheck => _roleType != 3 ? true : _range != null;
 
@@ -47,6 +46,7 @@ class _AddHousePageState extends State<AddHousePage> {
       _item != null &&
       _roleType != null &&
       _rentCheck;
+
   _renderTile({
     required String title,
     Widget? item,
@@ -263,7 +263,7 @@ class _AddHousePageState extends State<AddHousePage> {
 
   _identifyHouse() async {
     Map<String, dynamic> params = {
-      'estateId': _item!.house.value,
+      'estateId': _item!.room.value,
       'name': _nameController.text,
       'type': _roleType,
       'idType': 1,

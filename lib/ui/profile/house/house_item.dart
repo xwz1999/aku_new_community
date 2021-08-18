@@ -2,13 +2,16 @@ import 'package:aku_community/model/user/pick_building_model.dart';
 
 class HouseItem {
   PickBuildingModel building;
-  PickBuildingModel house;
+  PickBuildingModel unit;
+  PickBuildingModel room;
+
   HouseItem({
     required this.building,
-    required this.house,
+    required this.unit,
+    required this.room,
   });
 
-  int? get houseCode => house.value;
+  int? get houseCode => room.value;
 
-  String get houseName => '${building.label}-${house.label}';
+  String get houseName => '${building.label}-${unit.label}单元-${room.label}';
 }
