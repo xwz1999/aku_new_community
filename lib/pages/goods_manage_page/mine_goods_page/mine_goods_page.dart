@@ -1,8 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/mine_goods_model.dart';
 import 'package:aku_community/pages/manager_func.dart';
@@ -10,6 +5,9 @@ import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/utils/bee_map.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class MineGoodsPage extends StatefulWidget {
   MineGoodsPage({Key? key}) : super(key: key);
@@ -58,7 +56,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
 
   String _getDatelength(int date) {
     if (date >= 24) {
-      return '${date / 24}' + '${date % 24}';
+      return '${(date ~/ 24)}天' + '${date % 24}小时';
     } else {
       return '$date';
     }

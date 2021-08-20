@@ -196,14 +196,14 @@ class _AddHousePageState extends State<AddHousePage> {
                 title: '身份',
                 item: _renderPicker(
                   text: PickRolePage.getType(_roleType),
-                  hintText: '请选择身份',
+                  hintText: '业主',
                   onTap: () async {
-                    int? role =
-                        await Get.to(() => PickRolePage(init: _roleType));
-                    if (role != null) {
-                      _roleType = role;
-                      setState(() {});
-                    }
+                    // int? role =
+                    //     await Get.to(() => PickRolePage(init: _roleType));
+                    // if (role != null) {
+                    //   _roleType = role;
+                    //   setState(() {});
+                    // }
                   },
                 ),
               ),
@@ -265,7 +265,7 @@ class _AddHousePageState extends State<AddHousePage> {
     Map<String, dynamic> params = {
       'estateId': _item!.room.value,
       'name': _nameController.text,
-      'type': _roleType,
+      'type': 1,
       'idType': 1,
       'idNumber': _idController.text,
     };

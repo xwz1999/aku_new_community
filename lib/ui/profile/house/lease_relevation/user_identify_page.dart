@@ -1,12 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/models/house/lease_echo_model.dart';
@@ -16,6 +7,13 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/bottom_sheets/sex_bottom_sheet.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class UserIdentifyPage extends StatefulWidget {
   UserIdentifyPage({Key? key}) : super(key: key);
@@ -104,12 +102,9 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
           ),
           BeeInputRow.button(
             title: '身份',
-            hintText: _identify,
+            hintText: '租客',
             isRequire: true,
-            onPressed: () async {
-              await Get.bottomSheet(_identifyBottomSheet());
-              setState(() {});
-            },
+            onPressed: () async {},
           )
         ].sepWidget(separate: 32.w.heightBox),
       ),
@@ -145,37 +140,33 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
       BotToast.showText(text: '请先选择性别');
       return false;
     }
-    if (_identify == '请选择身份') {
-      BotToast.showText(text: '请先选择身份');
-      return false;
-    }
     return true;
   }
 
-  Widget _identifyBottomSheet() {
-    return CupertinoActionSheet(
-      title:
-          '选择身份'.text.size(32.sp).bold.color(ktextPrimary).isIntrinsic.make(),
-      cancelButton: TextButton(
-          onPressed: () => Get.back(),
-          child: '取消'.text.size(28.sp).color(ktextSubColor).isIntrinsic.make()),
-      actions: [
-        CupertinoActionSheetAction(
-            onPressed: () {
-              _identify = '业主';
-              Get.back();
-            },
-            child:
-                '业主'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make()),
-        CupertinoActionSheetAction(
-            onPressed: () {
-              _identify = '租户';
-              Get.back();
-            },
-            child: '租户'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make())
-      ],
-    );
-  }
+  // Widget _identifyBottomSheet() {
+  //   return CupertinoActionSheet(
+  //     title:
+  //         '选择身份'.text.size(32.sp).bold.color(ktextPrimary).isIntrinsic.make(),
+  //     cancelButton: TextButton(
+  //         onPressed: () => Get.back(),
+  //         child: '取消'.text.size(28.sp).color(ktextSubColor).isIntrinsic.make()),
+  //     actions: [
+  //       CupertinoActionSheetAction(
+  //           onPressed: () {
+  //             _identify = '业主';
+  //             Get.back();
+  //           },
+  //           child:
+  //               '业主'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make()),
+  //       CupertinoActionSheetAction(
+  //           onPressed: () {
+  //             _identify = '租户';
+  //             Get.back();
+  //           },
+  //           child: '租户'.text.size(30.sp).color(ktextPrimary).isIntrinsic.make())
+  //     ],
+  //   );
+  // }
 
   Widget _errorDialog() {
     return CupertinoAlertDialog(
