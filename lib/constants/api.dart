@@ -304,6 +304,13 @@ class _Manager {
 
   ///app新版家政服务：评价
   String get houseKeepingEvaluation => '/user/housekeepingService/evaluation';
+
+  ///查询公摊缴费列表
+  String get sharePayList => '/user/meterReadingShareDetails/findAllUnPayList';
+
+  ///app抄表分摊详情管理:根据手机号查询所有的抄表公摊缴费订单记录
+  String get sharePayRecord =>
+      '/user/meterReadingShareDetails/findAllMeterShareOrderByTel';
 }
 
 class _Community {
@@ -531,6 +538,14 @@ class _Pay {
   ///支付宝支付：家政服务-服务费用支付 向支付宝发起订单查询请求
   String get houseKeepingServieceOrderCheck =>
       '/user/alipay/housekeepingServiceOrderCheckAlipay';
+
+  ///app 抄表记录管理-抄表分摊详情费用支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  String get sharePayOrderCode =>
+      '/user/alipay/meterReadingShareDetailsOrderAlipay';
+
+  ///抄表记录管理-抄表分摊详情费用支付 向支付宝发起订单查询请求
+  String get sharePayOrderCodeCheck =>
+      '/user/alipay/meterReadingShareDetailsOrderCheckAlipay';
 }
 
 class _House {

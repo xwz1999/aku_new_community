@@ -245,8 +245,12 @@ class AppProvider extends ChangeNotifier {
 
   ///设置当前选中的房屋
   setCurrentHouse(PassedHouseListModel? model) {
-    _selectedHouse = model;
-    _selectedHouseId = model!.estateId;
+    if (model != null) {
+      _selectedHouse = model;
+      _selectedHouseId = model.estateId;
+    } else {
+      _selectedHouse = null;
+    }
     notifyListeners();
   }
 

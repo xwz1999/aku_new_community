@@ -1,14 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -22,6 +13,13 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/picker/bee_custom_picker.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_community/widget/picker/bee_image_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class UserProfilePage extends StatefulWidget {
   UserProfilePage({Key? key}) : super(key: key);
@@ -32,6 +30,7 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   int _sex = 1;
+
   Widget _buildTile(String title, Widget suffix, {VoidCallback? onPressed}) {
     return MaterialButton(
       color: Colors.white,
@@ -95,7 +94,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
               child: ClipOval(
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: API.image(userProvider.userInfoModel?.imgUrl ?? ''),
+                  image: API.image(
+                      userProvider.userInfoModel!.imgUrls.isNotEmpty
+                          ? userProvider.userInfoModel?.imgUrls.first.url
+                          : ''),
                   height: 56.w,
                   width: 56.w,
                   fit: BoxFit.cover,

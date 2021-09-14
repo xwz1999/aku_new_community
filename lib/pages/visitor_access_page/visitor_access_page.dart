@@ -1,13 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:share/share.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/provider/app_provider.dart';
@@ -19,7 +9,15 @@ import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/common_input.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:share/share.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 class VisitorAccessPage extends StatefulWidget {
   VisitorAccessPage({Key? key}) : super(key: key);
 

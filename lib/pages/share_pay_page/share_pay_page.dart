@@ -2,16 +2,13 @@ import 'dart:convert';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
-import 'package:aku_community/pages/life_pay/life_pay_record_page.dart';
-import 'package:aku_community/pages/life_pay/life_pre_pay_page.dart';
+import 'package:aku_community/extensions/widget_list_ext.dart';
+import 'package:aku_community/models/life_pay/share_pay_list_model.dart';
+import 'package:aku_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/pages/life_pay/widget/life_pay_detail_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/bee_parse.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/pages/share_pay_page/share_pay_detail_page.dart';
+import 'package:aku_community/pages/share_pay_page/share_record_page.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_divider.dart';
@@ -23,33 +20,24 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:provider/provider.dart';
+import 'package:flutter_easyrefresh/material_header.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LifePayPage extends StatefulWidget {
-  LifePayPage({Key? key}) : super(key: key);
+class SharePayPage extends StatefulWidget {
+  const SharePayPage({Key? key}) : super(key: key);
 
   @override
-  _LifePayPageState createState() => _LifePayPageState();
+  _SharePayPageState createState() => _SharePayPageState();
 }
 
-class SelectPay {
-  double payTotal; //费用
-  int payCount; //项数
-  List<int> ids; //存储选中的主键id数组
-  SelectPay(
-      {required this.payCount, required this.payTotal, required this.ids});
-}
-
-class _LifePayPageState extends State<LifePayPage> {
+class _SharePayPageState extends State<SharePayPage> {
   EasyRefreshController? _controller;
-  List<int> _selectYears = []; //选择的年份，存储其数组下标
-  List<LifePayListModel> _models = []; //原model,禁止修改
-  int _page = 0;
-  int _size = 10;
+  List<SharePayListModel> _models = []; //原model,禁止修改
   double _prePrice = 0;
-  List<LifePayListModel> _selectModels = []; //选中的models
+  List<int> _selectYears = []; //选择的年份，存储其数组下标
+  List<SharePayListModel> _selectModels = []; //选中的models
 
   bool get allSelect =>
       ((_models.length == _selectYears.length) && (_models.length != 0));
@@ -67,21 +55,22 @@ class _LifePayPageState extends State<LifePayPage> {
     return SelectPay(payCount: count, payTotal: price, ids: ids);
   }
 
-  SelectPay selectCount(LifePayListModel model) {
+  SelectPay selectCount(SharePayListModel model) {
     int count = 0;
     double price = 0;
     List<int> ids = [];
-    model.dailyPaymentTypeVos.forEach((element) {
-      element.detailedVoList.forEach((element) {
-        element.detailsVoList.forEach((element) {
-          count++;
-          price += (element.paymentPrice + element.overdueFine);
-          ids.add(element.id);
-        });
-      });
+    model.appMeterShareDetailsVos.forEach((element) {
+      count++;
+      price += element.remainingUnpaidAmount;
+      ids.add(element.id);
     });
     return SelectPay(payCount: count, payTotal: price, ids: ids);
   }
+
+  Map<int, String> getType = {
+    1: '水费',
+    2: '电费',
+  };
 
   @override
   void initState() {
@@ -96,7 +85,7 @@ class _LifePayPageState extends State<LifePayPage> {
     super.dispose();
   }
 
-  Widget _buildCard(LifePayListModel model, int index) {
+  Widget _buildCard(SharePayListModel model, int index) {
     SelectPay _select = selectCount(_selectModels[index]);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.w),
@@ -130,13 +119,13 @@ class _LifePayPageState extends State<LifePayPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              '${BeeParse.getCustomYears(model.years)}(${model.years})'
+              '公摊${getType[model.type]}(${model.months})'
                   .text
                   .color(ktextSubColor)
                   .size(28.sp)
                   .make(),
               24.w.heightBox,
-              '待缴：${model.paymentNum}项  已选${_select.payCount}项'
+              '待缴：${model.num}项  已选${_select.payCount}项'
                   .text
                   .color(ktextPrimary)
                   .size(28.sp)
@@ -166,12 +155,12 @@ class _LifePayPageState extends State<LifePayPage> {
               GestureDetector(
                 onTap: () async {
                   if (_selectYears.contains(index)) {}
-                  dynamic payMent = await (Get.to(() => LifePayDetailPage(
+                  dynamic payMent = await (Get.to(() => SharePayDetailPage(
                         model: _models[index],
                         selectModel: _selectModels[index],
-                        year: model.years,
+                        months: model.months,
                       )));
-                  if (payMent.runtimeType == LifePayListModel) {
+                  if (payMent.runtimeType == SharePayListModel) {
                     _selectModels[index] = payMent;
                   }
                   setState(() {});
@@ -202,14 +191,14 @@ class _LifePayPageState extends State<LifePayPage> {
       onPressed: () async {
         Function cancel = BotToast.showLoading();
         BaseModel baseModel =
-            await NetUtil().post('/user/alipay/dailyPaymentAlipay', params: {
+            await NetUtil().post(API.pay.sharePayOrderCode, params: {
           "ids": total.ids,
           "payType": 1, //暂时写死 等待后续补充
           "payPrice": total.payTotal.toDoubleStringAsFixed()
         });
         if (baseModel.status ?? false) {
           bool result = await PayUtil()
-              .callAliPay(baseModel.message!, API.pay.dailPayMentCheck);
+              .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);
           if (result) {
             Get.off(() => PayFinishPage());
           }
@@ -245,9 +234,9 @@ class _LifePayPageState extends State<LifePayPage> {
                     side: BorderSide(color: Color(0xFF979797), width: 1.w)),
                 color: Colors.white,
                 onPressed: () {
-                  Get.to(() => LifePrePayPage(
-                        prePay: _prePrice,
-                      ));
+                  // Get.to(() => LifePrePayPage(
+                  //       prePay: _prePrice,
+                  //     ));
                 },
                 child: '预缴充值'.text.size(28.sp).black.make(),
               )
@@ -258,27 +247,26 @@ class _LifePayPageState extends State<LifePayPage> {
     );
   }
 
-  Future<double> _dailyPaymentPrePay() async {
-    BaseModel baseModel =
-        await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
-      "estateId": UserTool.appProveider.selectedHouse!.estateId,
-    });
-    if (baseModel.status ?? false) {
-      return (baseModel.data as num).toDouble();
-    } else {
-      return 0;
-    }
-  }
+  // Future<double> _dailyPaymentPrePay() async {
+  //   BaseModel baseModel =
+  //       await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
+  //     "estateId": UserTool.appProveider.selectedHouse!.estateId,
+  //   });
+  //   if (baseModel.status ?? false) {
+  //     return (baseModel.data as num).toDouble();
+  //   } else {
+  //     return 0;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
-      title: '生活缴费',
+      title: '公摊缴费',
       actions: [
         InkWell(
           onTap: () {
-            Get.to(() => LifePayRecordPage());
+            Get.to(() => ShareRecordPage());
           },
           child: Container(
             padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
@@ -292,26 +280,23 @@ class _LifePayPageState extends State<LifePayPage> {
         header: MaterialHeader(),
         controller: _controller,
         onRefresh: () async {
-          _page = 1;
-          _size = 10;
-          BaseListModel baseListModel = await NetUtil()
-              .getList(API.manager.dailyPaymentList, params: {
-            "pageNum": _page,
-            "size": _size,
-            'estateId': appProvider.selectedHouse!.estateId
+          BaseModel baseModel =
+              await NetUtil().get(API.manager.sharePayList, params: {
+            'estateId': UserTool.appProveider.selectedHouse?.estateId,
           });
-          _models = baseListModel.tableList!
-              .map((e) => LifePayListModel.fromJson(e))
+          _models = (baseModel.data as List)
+              .map((e) => SharePayListModel.fromJson(e))
               .toList();
           // _selectPay.clear();
           _selectYears.clear();
           _selectModels = _models
-              .map((e) => LifePayListModel.fromJson(jsonDecode(jsonEncode(e))))
+              .map((e) => SharePayListModel.fromJson(jsonDecode(jsonEncode(e))))
               .toList();
+
           for (var i = 0; i < _selectModels.length; i++) {
             _selectYears.add(i);
           }
-          _prePrice = await _dailyPaymentPrePay();
+          // _prePrice = await _dailyPaymentPrePay();
           if (mounted) setState(() {});
         },
         child: Column(
@@ -322,8 +307,9 @@ class _LifePayPageState extends State<LifePayPage> {
                 },
                 context: context),
             16.w.heightBox,
-            _buildPrePayment(),
-            16.w.heightBox,
+            //隐藏预缴
+            // _buildPrePayment(),
+            // 16.w.heightBox,
             Container(
               padding: EdgeInsets.all(32.w),
               width: double.infinity,

@@ -1,13 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
@@ -20,6 +12,12 @@ import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/bee_input_row.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:aku_community/widget/picker/identify_card_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SupplementInformationPage extends StatefulWidget {
   final int leaseId;
@@ -37,7 +35,7 @@ class _SupplementInformationPageState extends State<SupplementInformationPage> {
   String _sex = '请选择性别';
 
   ///电话
-  String _tel = UserTool.userProvider.userInfoModel!.tel!;
+  String _tel = UserTool.userProvider.userInfoModel!.tel;
 
   ///身份证号
   TextEditingController _codeController = TextEditingController();

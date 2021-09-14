@@ -1,14 +1,16 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/ui/community/community_views/community_page.dart';
 import 'package:aku_community/ui/market/market_page.dart';
 import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
 import 'property/property_index.dart';
@@ -17,6 +19,7 @@ class TabNavigator extends StatefulWidget {
   const TabNavigator({
     Key? key,
   }) : super(key: key);
+
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
 }
@@ -124,8 +127,12 @@ class _TabNavigatorState extends State<TabNavigator>
           selectedFontSize: 20.sp,
           unselectedFontSize: 20.sp,
           onTap: (index) {
-            _tabController!.animateTo(index, curve: Curves.easeInOutCubic);
-            setFunc(() => _currentIndex = index);
+            if (UserTool.userProvider.isLogin == false) {
+              Get.offAll(() => SignInPage());
+            } else {
+              _tabController!.animateTo(index, curve: Curves.easeInOutCubic);
+              setFunc(() => _currentIndex = index);
+            }
           },
         );
       }),

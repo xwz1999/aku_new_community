@@ -1,11 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -17,9 +9,16 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/views/application_view.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool? isSign;
+
   PersonalIndex({Key? key, this.isSign}) : super(key: key);
 
   @override
@@ -72,8 +71,11 @@ class _PersonalIndexState extends State<PersonalIndex>
                               child: ClipOval(
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  image: API.image(
-                                      userProvider.userInfoModel?.imgUrl ?? ''),
+                                  image: API.image(userProvider
+                                          .userInfoModel!.imgUrls.isNotEmpty
+                                      ? userProvider
+                                          .userInfoModel?.imgUrls.first.url
+                                      : ''),
                                   height: 106.w,
                                   width: 106.w,
                                   fit: BoxFit.cover,

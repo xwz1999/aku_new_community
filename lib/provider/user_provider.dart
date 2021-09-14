@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/user_detail_model.dart';
-import 'package:aku_community/model/user/user_info_model.dart';
+import 'package:aku_community/models/user/user_info_model.dart';
 import 'package:aku_community/pages/sign/sign_func.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/profile/house/house_func.dart';

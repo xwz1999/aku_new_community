@@ -1,7 +1,7 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/pick_building_model.dart';
 import 'package:aku_community/model/user/user_detail_model.dart';
-import 'package:aku_community/model/user/user_info_model.dart';
+import 'package:aku_community/models/user/user_info_model.dart';
 import 'package:aku_community/provider/sign_up_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/network/base_model.dart';

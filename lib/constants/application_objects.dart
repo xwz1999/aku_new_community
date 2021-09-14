@@ -1,7 +1,5 @@
 // import 'package:aku_community/widget/bee_scaffold.dart';
 
-import 'package:flutter/material.dart';
-
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/pages/community_introduce/community_introduce_page.dart';
 import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart';
@@ -11,7 +9,7 @@ import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
@@ -29,6 +27,7 @@ import 'package:aku_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:flutter/material.dart';
 
 ///应用对象
 ///Application Object
@@ -72,7 +71,7 @@ List<AO> appObjects = [
   AO('访客邀请', R.ASSETS_APPLICATIONS_VISITOR_INVITE_PNG,
       () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_APPLICATIONS_FIX_PNG, () => FixedSubmitPage()),
-  AO('生活缴费', R.ASSETS_APPLICATIONS_PAYMENT_PNG, () => LifePayPage()),
+  AO('生活缴费', R.ASSETS_APPLICATIONS_PAYMENT_PNG, () => LifePayChoosePage()),
   AO('业委会', R.ASSETS_APPLICATIONS_COMMITTEE_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_APPLICATIONS_ADVICE_PNG,
       () => AdvicePage(type: AdviceType.SUGGESTION)),
