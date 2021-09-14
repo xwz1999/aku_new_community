@@ -1,14 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:amap_flutter_location/amap_flutter_location.dart';
-import 'package:amap_flutter_location/amap_location_option.dart';
-import 'package:collection/collection.dart' show IterableExtension;
-import 'package:dio/dio.dart';
-import 'package:power_logger/power_logger.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/application_objects.dart';
 import 'package:aku_community/constants/config.dart';
@@ -20,6 +11,13 @@ import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/hive_store.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
+import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:amap_flutter_location/amap_location_option.dart';
+import 'package:collection/collection.dart' show IterableExtension;
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:power_logger/power_logger.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为
@@ -79,7 +77,9 @@ class AppProvider extends ChangeNotifier {
   }
 
   List<HotTopicModel> _hotTopicModels = [];
+
   List<HotTopicModel> get hotTopicModels => _hotTopicModels;
+
   updateHotTopicModel() async {
     BaseModel model = await NetUtil().get(API.community.hotTopic);
     _hotTopicModels =
@@ -88,6 +88,7 @@ class AppProvider extends ChangeNotifier {
   }
 
   RealTimeWeatherModel? _weatherModel;
+
   RealTimeWeatherModel? get weatherModel => _weatherModel;
 
   String get weatherTemp =>
@@ -140,6 +141,7 @@ class AppProvider extends ChangeNotifier {
   }
 
   Map<String, dynamic>? _location;
+
   Map<String, dynamic>? get location => _location;
   late AMapFlutterLocation _aMapFlutterLocation;
 
@@ -174,8 +176,8 @@ class AppProvider extends ChangeNotifier {
       longitude = 116.46;
       latitude = 39.92;
     } else {
-      longitude = _location?['longitude']??116.46;
-      latitude = _location?['latitude']??39.92;
+      longitude = _location?['longitude'] ?? 116.46;
+      latitude = _location?['latitude'] ?? 39.92;
     }
 
     Response response = await Dio().get(
@@ -188,8 +190,10 @@ class AppProvider extends ChangeNotifier {
 
   /// 消息中心
   MessageCenterModel? _messageCenterModel;
+
   MessageCenterModel get messageCenterModel =>
       _messageCenterModel ?? MessageCenterModel.zero();
+
   getMessageCenter() async {
     Response response = await NetUtil().dio!.get(API.message.center);
     _messageCenterModel = MessageCenterModel.fromJson(response.data);
@@ -205,7 +209,7 @@ class AppProvider extends ChangeNotifier {
   updateHouses(List<PassedHouseListModel> items) {
     if (items.isEmpty) return;
     _selectedHouse = items.firstWhereOrNull(
-      (element) => element.id == (_selectedHouse?.id ?? -1),
+      (element) => element.id == _selectedHouseId,
     );
     _houses = items;
     notifyListeners();
@@ -213,21 +217,43 @@ class AppProvider extends ChangeNotifier {
 
   PassedHouseListModel? _selectedHouse;
 
+  ///选中的房屋id；
+  int _selectedHouseId = -1;
+
+  int get selectHouseId => _selectedHouseId;
+
+  void setCurrentHouseId(int? id) {
+    if (id != null) {
+      _selectedHouseId = id;
+    }
+  }
+
   ///选中的房屋
   PassedHouseListModel? get selectedHouse {
-    if (_houses.isEmpty) return null;
-    if (_selectedHouse == null) _selectedHouse = _houses.first;
+    if (_selectedHouse == null) {
+      if (_houses.isEmpty) return null;
+      if (_selectedHouseId != -1) {
+        _selectedHouse = _houses.firstWhereOrNull(
+            (element) => element.estateId == _selectedHouseId);
+      } else {
+        _selectedHouseId = _houses.first.estateId;
+        _selectedHouse = _houses.first;
+      }
+    }
     return _selectedHouse;
   }
 
   ///设置当前选中的房屋
   setCurrentHouse(PassedHouseListModel? model) {
     _selectedHouse = model;
+    _selectedHouseId = model!.estateId;
     notifyListeners();
   }
 
   List<CarParkingModel> _carParkingModels = [];
+
   List<CarParkingModel> get carParkingModels => _carParkingModels;
+
   Future updateCarParkingModels() async {
     BaseModel baseModel = await NetUtil().get(API.user.carParkingList);
     if (baseModel.data == null) return [];
@@ -238,7 +264,9 @@ class AppProvider extends ChangeNotifier {
   }
 
   List<CarParkingModel> _carModels = [];
+
   List<CarParkingModel> get carModels => _carModels;
+
   Future updateCarModels() async {
     BaseModel baseModel = await NetUtil().get(
       API.user.carList,
@@ -253,7 +281,9 @@ class AppProvider extends ChangeNotifier {
 
   //设置火灾报警开关
   bool _fireAlert = true;
+
   bool get fireAlert => _fireAlert;
+
   void setFireAlert(bool value) {
     _fireAlert = value;
     notifyListeners();

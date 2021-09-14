@@ -1,14 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/user_detail_model.dart';
 import 'package:aku_community/model/user/user_info_model.dart';
@@ -19,6 +10,14 @@ import 'package:aku_community/utils/hive_store.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/utils/websocket/web_socket_util.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
@@ -81,6 +80,7 @@ class UserProvider extends ChangeNotifier {
     UserDetailModel? _model = await SignFunc.getUserDetail();
     if (_model != null) {
       _userDetailModel = _model;
+      UserTool.appProveider.setCurrentHouseId(_model.nowEstateExamineId);
     }
     notifyListeners();
   }

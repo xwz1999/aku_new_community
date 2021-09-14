@@ -42,6 +42,14 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
     return appProvider.houses.isEmpty;
   }
 
+  int get currentSysLeaseId {
+    if (UserTool.appProveider.selectedHouse!.sysLeaseId == null) {
+      BotToast.showText(text: '无租赁合同！请先签订租赁合同');
+      return -1;
+    }
+    return UserTool.appProveider.selectedHouse!.sysLeaseId!;
+  }
+
   ///存在已认证的房屋
   bool get _haveAuthedHouse {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
@@ -207,30 +215,28 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
         children: [
           _cardBuild(R.ASSETS_ICONS_PAY_PNG, '缴费查询', '查看租金及保证金情况', () {
             Get.to(() => LeasePayQueryPage(
-                  id: UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                  id: currentSysLeaseId,
                 ));
           }),
           _cardBuild(R.ASSETS_ICONS_CHANGE_PNG, '合同变更', '变更合同信息、重新签约', () {
             Get.to(() => TenantHouseListPage(
-                  leaseId: -UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                  leaseId: currentSysLeaseId,
                 ));
           }),
           _cardBuild(R.ASSETS_ICONS_CONTRACT_PNG, '合同续签', '到期前线上办理续签手续', () {
             Get.to(() => TenantHouseListPage(
-                  leaseId: UserTool.appProveider.selectedHouse!.sysLeaseId!,
+                  leaseId: currentSysLeaseId,
                 ));
           }),
-          _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同', () async {
-            await stopContract();
-          })
+          _cardBuild(R.ASSETS_ICONS_FINISH_PNG, '合同终止', '线上申请终止合同',
+              () => stopContract())
         ],
       ),
     );
   }
 
   Future stopContract() async {
-    LeaseDetailModel? model = await HouseFunc()
-        .leaseDetail(UserTool.appProveider.selectedHouse!.sysLeaseId!);
+    LeaseDetailModel? model = await HouseFunc().leaseDetail(currentSysLeaseId);
     if (model != null) {
       switch (model.status) {
         case 1:

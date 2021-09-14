@@ -1,12 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
@@ -16,6 +7,13 @@ import 'package:aku_community/ui/profile/house/house_func.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class PickMyHousePage extends StatefulWidget {
   PickMyHousePage({Key? key}) : super(key: key);
@@ -41,7 +39,8 @@ class _PickMyHousePageState extends State<PickMyHousePage> {
     final appProvider = Provider.of<AppProvider>(context, listen: false);
     List<PassedHouseListModel> models = List.from(appProvider.houses);
     models.removeWhere(
-      (element) => element.id == (appProvider.selectedHouse?.id ?? -1),
+      (element) =>
+          element.estateId == (appProvider.selectedHouse?.estateId ?? -1),
     );
     if (models.isEmpty) return [];
     return models;
