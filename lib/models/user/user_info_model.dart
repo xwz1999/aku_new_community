@@ -8,13 +8,13 @@ part 'user_info_model.g.dart';
 class UserInfoModel {
   int id;
   List<ImgModel> imgUrls;
-  String name;
+  String? name;
   String nickName;
   String tel;
 
   /// 性别 1.男 2.女
   int? sex;
-  String birthday;
+  String? birthday;
 
   String get sexValue {
     if (sex == null) return '未设置';
@@ -23,7 +23,7 @@ class UserInfoModel {
     return '未设置';
   }
 
-  DateTime? get birthdayDate => DateUtil.getDateTime(birthday);
+  DateTime? get birthdayDate => DateUtil.getDateTime(birthday ?? '');
 
   String get birthdayValue {
     if (TextUtil.isEmpty(birthday))
@@ -38,10 +38,10 @@ class UserInfoModel {
   UserInfoModel({
     required this.id,
     required this.imgUrls,
-    required this.name,
+    this.name,
     required this.nickName,
     required this.tel,
     this.sex,
-    required this.birthday,
+    this.birthday,
   });
 }

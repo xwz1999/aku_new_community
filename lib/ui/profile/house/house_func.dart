@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:bot_toast/bot_toast.dart';
-
 import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/user/house_model.dart';
 import 'package:aku_community/models/house/lease_detail_model.dart';
 import 'package:aku_community/models/house/lease_echo_model.dart';
 import 'package:aku_community/models/house/submit_model.dart';
@@ -12,13 +9,16 @@ import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/network/base_file_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 class HouseFunc {
   ///查询所有的房屋审核信息
-  static Future<List<HouseModel>> get examineHouses async {
+  static Future<List<PassedHouseListModel>> get examineHouses async {
     BaseModel model = await NetUtil().get(API.user.examineHouseList);
     if (!model.status!) return [];
-    return (model.data as List).map((e) => HouseModel.fromJson(e)).toList();
+    return (model.data as List)
+        .map((e) => PassedHouseListModel.fromJson(e))
+        .toList();
   }
 
   ///查询用户所拥有的房屋信息

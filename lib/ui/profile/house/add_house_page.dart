@@ -25,7 +25,7 @@ class _AddHousePageState extends State<AddHousePage> {
   TextEditingController _idController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   HouseItem? _item;
-  int? _roleType;
+  int _roleType = 1;
   DateTimeRange? _range;
 
   TextStyle get _hintStyle => TextStyle(
@@ -44,7 +44,6 @@ class _AddHousePageState extends State<AddHousePage> {
       _nameController.text.isNotEmpty &&
       _idController.text.isNotEmpty &&
       _item != null &&
-      _roleType != null &&
       _rentCheck;
 
   _renderTile({

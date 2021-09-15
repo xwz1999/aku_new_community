@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:equatable/equatable.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'passed_house_list_model.g.dart';
@@ -38,6 +38,9 @@ class PassedHouseListModel extends Equatable {
 
   factory PassedHouseListModel.fromJson(Map<String, dynamic> json) =>
       _$PassedHouseListModelFromJson(json);
+
+  DateTime? get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart!);
+  DateTime? get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd!);
 
   String get houseStatus {
     if (type == 1) return '业主';

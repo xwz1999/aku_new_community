@@ -26,7 +26,6 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _indentifyCodeController = TextEditingController();
   String _sex = '请选择性别';
-  String _identify = '请选择身份';
   String _tel = '';
   @override
   void initState() {

@@ -1,14 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -27,6 +16,15 @@ import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
 ///商品详情页面
 class GoodsDetailPage extends StatefulWidget {
@@ -55,7 +53,9 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     _refreshController = EasyRefreshController();
     _pageController = PageController();
-    _nameController.text = userProvider.userInfoModel?.name ?? '';
+    _nameController.text = userProvider.userInfoModel?.name ??
+        userProvider.userInfoModel?.nickName ??
+        '';
     _phoneController.text = userProvider.userInfoModel?.tel ?? '';
   }
 

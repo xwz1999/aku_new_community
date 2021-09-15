@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 enum CardAuthType {
   FAIL,
@@ -28,13 +26,13 @@ class HouseCard extends StatelessWidget {
     Key? key,
     required this.model,
     required this.isOwner,
-  })  : type = CardAuthType.FAIL,
+  })   : type = CardAuthType.FAIL,
         super(key: key);
   const HouseCard.success({
     Key? key,
     required this.model,
     required this.isOwner,
-  })  : type = CardAuthType.SUCCESS,
+  })   : type = CardAuthType.SUCCESS,
         super(key: key);
 
   String get _assetPath {
@@ -48,7 +46,7 @@ class HouseCard extends StatelessWidget {
   }
 
   String get _roleName {
-    switch (model!.type) {
+    switch (model?.type ?? 2) {
       case 1:
         return '业主';
       case 2:
@@ -130,7 +128,7 @@ class HouseCard extends StatelessWidget {
             ),
             10.hb,
             Text(
-              model!.roomName,
+              model?.roomName ?? '',
               style: Theme.of(context).textTheme.subtitle1,
             ),
             Spacer(),
@@ -158,7 +156,7 @@ class HouseCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '到期时间：${_isOverDate(DateUtil.getDateTime(model!.effectiveTimeEnd ?? ''))}',
+                            '到期时间：${_isOverDate(DateUtil.getDateTime(model?.effectiveTimeEnd ?? ''))}',
                             style:
                                 Theme.of(context).textTheme.subtitle2!.copyWith(
                                       color: Color(0xFF666666),
@@ -166,7 +164,7 @@ class HouseCard extends StatelessWidget {
                           ),
                           Text(
                             DateUtil.formatDateStr(
-                                model!.effectiveTimeEnd ?? '',
+                                model?.effectiveTimeEnd ?? '',
                                 format: 'yyyy-MM-dd'),
                             style: Theme.of(context).textTheme.subtitle1,
                           ),

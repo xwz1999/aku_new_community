@@ -149,7 +149,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                     },
                     child: ListView(
                       children: [
-                        _emptyHouse
+                        UserTool.appProveider.selectedHouse == null
                             ? 280.hb
                             : Padding(
                                 padding: EdgeInsets.all(32.w),

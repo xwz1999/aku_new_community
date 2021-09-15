@@ -74,7 +74,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                   image: API.image(userProvider
                                           .userInfoModel!.imgUrls.isNotEmpty
                                       ? userProvider
-                                          .userInfoModel?.imgUrls.first.url
+                                          .userInfoModel!.imgUrls.first.url
                                       : ''),
                                   height: 106.w,
                                   width: 106.w,

@@ -12,10 +12,10 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) {
     imgUrls: (json['imgUrls'] as List<dynamic>)
         .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
         .toList(),
-    name: json['name'] as String,
+    name: json['name'] as String?,
     nickName: json['nickName'] as String,
     tel: json['tel'] as String,
     sex: json['sex'] as int?,
-    birthday: json['birthday'] as String,
+    birthday: json['birthday'] as String?,
   );
 }
