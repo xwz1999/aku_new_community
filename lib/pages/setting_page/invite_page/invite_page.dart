@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:qr_flutter/qr_flutter.dart';
-
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class InvitePage extends StatelessWidget {
   const InvitePage({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class InvitePage extends StatelessWidget {
         alignment: Alignment.center,
         child: QrImage(
           padding: EdgeInsets.zero,
-          data: '智慧社区开门码',
+          data: '智慧小区开门码',
           size: 460.w,
         ),
       );
@@ -34,7 +32,7 @@ class InvitePage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Text(
-                '扫一扫，二维码直接下载小蜜蜂智慧社区',
+                '扫一扫，二维码直接下载小蜜蜂智慧小区',
                 style: TextStyle(
                   fontSize: 28.sp,
                   color: Color(0xff666666),
@@ -48,7 +46,7 @@ class InvitePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 30.w),
               alignment: Alignment.center,
               child: Text(
-                '分享小蜜蜂智慧社区APP',
+                '分享小蜜蜂智慧小区APP',
                 style: TextStyle(
                   fontSize: 32.sp,
                   color: Color(0xff333333),

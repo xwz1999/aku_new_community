@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class OpeningCodePage extends StatefulWidget {
   OpeningCodePage({Key? key}) : super(key: key);
@@ -136,7 +134,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                           width: 646.w,
                           height: 146.w,
                           child: Text(
-                            '扫一扫，你的专属二维码，人人文明出行，路路畅通安宁，智慧社区祝您一路顺风',
+                            '扫一扫，你的专属二维码，人人文明出行，路路畅通安宁，智慧小区祝您一路顺风',
                             maxLines: 2,
                             style: TextStyle(
                               fontSize: 28.sp,

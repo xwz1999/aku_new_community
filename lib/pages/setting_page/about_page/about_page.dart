@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class AboutPage extends StatelessWidget {
     );
 
     return BeeScaffold(
-      title: '关于小蜜蜂智慧社区',
+      title: '关于小蜜蜂智慧小区',
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
@@ -28,7 +27,7 @@ class AboutPage extends StatelessWidget {
           ),
           SizedBox(height: 100.w),
           Text(
-            '“小蜜蜂智慧社区”APP——幸福生活，简单到达',
+            '“小蜜蜂智慧小区”APP——幸福生活，简单到达',
             style: _style,
           ),
         ],

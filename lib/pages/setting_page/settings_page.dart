@@ -1,11 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/extensions/num_ext.dart';
 import 'package:aku_community/extensions/widget_list_ext.dart';
@@ -20,6 +12,12 @@ import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -117,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
             //   ),
             // ),
             _buildTile(
-              title: '关于小蜜蜂智慧社区',
+              title: '关于小蜜蜂智慧小区',
               onTap: () => Get.to(() => AboutPage()),
             ),
             //TODO 邀请注册
