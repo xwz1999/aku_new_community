@@ -149,7 +149,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                     },
                     child: ListView(
                       children: [
-                        UserTool.appProveider.selectedHouse == null
+                        _emptyHouse
                             ? 280.hb
                             : Padding(
                                 padding: EdgeInsets.all(32.w),
@@ -162,7 +162,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                                 ),
                               ),
                         if (!_emptyHouse) 88.hb,
-                        if (!_haveAuthedHouse)
+                        if (_emptyHouse)
                           Stack(
                             children: [
                               Padding(
@@ -185,7 +185,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
                               child: Text('添加房屋'),
                             ),
                           ),
-                        if (!isOwner && !_emptyHouse) _contractRelevant()
+                        if (!isOwner && _haveAuthedHouse) _contractRelevant()
                       ],
                     ),
                   ),

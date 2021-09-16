@@ -11,7 +11,7 @@ LifePayRecordModel _$LifePayRecordModelFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     chargesTemplateDetailName: json['chargesTemplateDetailName'] as String,
     roomName: json['roomName'] as String,
-    years: json['years'] as int,
+    years: json['years'] as String,
     paidPrice: json['paidPrice'] as num,
     createName: json['createName'] as String,
     createDate: json['createDate'] as String,

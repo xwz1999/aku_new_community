@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'life_pay_record_model.g.dart';
 
 @JsonSerializable()
@@ -7,7 +8,7 @@ class LifePayRecordModel extends Equatable {
   final int id;
   final String chargesTemplateDetailName;
   final String roomName;
-  final int years;
+  final String years;
   final num paidPrice;
   final String createName;
   final String createDate;
