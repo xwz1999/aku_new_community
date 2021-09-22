@@ -1,10 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -12,17 +5,25 @@ import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/manager/article_borrow_model.dart';
 import 'package:aku_community/pages/goods_manage_page/borrow/borrow_finsh_page.dart';
 import 'package:aku_community/pages/goods_manage_page/borrow/borrow_goods_detail_page.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class BorrowGoodsSubmitModel {
   List<int> selectIds;
+
+  static BorrowGoodsSubmitModel init() => BorrowGoodsSubmitModel([]);
+
   BorrowGoodsSubmitModel(
     this.selectIds,
   );
-  BorrowGoodsSubmitModel.init({List<int>? selectIds}) : this(selectIds = []);
 }
 
 class BorrowGoodsPage extends StatefulWidget {
@@ -35,6 +36,10 @@ class BorrowGoodsPage extends StatefulWidget {
 class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   EasyRefreshController? _easyRefreshController;
   List<BorrowGoodsSubmitModel> _receiveIds = [];
+  List<ArticleBorrowModel> _borrowModels = [];
+  int _page = 1;
+  int _size = 10;
+
   List<int> get _submitIds {
     List<int> _list = [];
     _receiveIds.forEach((element) {
@@ -68,29 +73,51 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
       //     padding: EdgeInsets.symmetric(horizontal: 32.w),
       //   ),
       // ],
-      body: BeeListView<ArticleBorrowModel>(
-          path: API.manager.articleBorrow,
-          controller: _easyRefreshController,
-          convert: (models) {
-            _receiveIds = List.generate(models.tableList?.length ?? 0,
-                (index) => BorrowGoodsSubmitModel.init());
-            print(_submitIds);
-            setState(() {});
-            return models.tableList!
-                .map((e) => ArticleBorrowModel.fromJson(e))
-                .toList();
-          },
-          builder: (items) {
-            return ListView.separated(
+      body: EasyRefresh(
+        firstRefresh: true,
+        header: MaterialHeader(),
+        footer: MaterialFooter(),
+        controller: _easyRefreshController,
+        onRefresh: () async {
+          _page = 1;
+          BaseListModel _listModel = await NetUtil().getList(
+              API.manager.articleBorrow,
+              params: {'pageNum': _page, 'size': _size});
+          _borrowModels = _listModel.tableList
+                  ?.map((e) => ArticleBorrowModel.fromJson(e))
+                  .toList() ??
+              [];
+          _receiveIds =
+              _borrowModels.map((e) => BorrowGoodsSubmitModel.init()).toList();
+          setState(() {});
+        },
+        onLoad: () async {
+          _page++;
+          BaseListModel _listModel = await NetUtil().getList(
+              API.manager.articleBorrow,
+              params: {'pageNum': _page, 'size': _size});
+          _borrowModels.addAll(_listModel.tableList
+                  ?.map((e) => ArticleBorrowModel.fromJson(e))
+                  .toList() ??
+              []);
+          _receiveIds.addAll(_listModel.tableList
+                  ?.map((e) => BorrowGoodsSubmitModel.init())
+                  .toList() ??
+              []);
+          setState(() {});
+        },
+        child: _borrowModels.isEmpty
+            ? Container()
+            : ListView.separated(
                 padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
                 itemBuilder: (context, index) {
-                  return _goodsCard(items[index], index);
+                  return _goodsCard(_borrowModels[index], index);
                 },
                 separatorBuilder: (_, __) {
                   return 16.w.heightBox;
                 },
-                itemCount: items.length);
-          }),
+                itemCount: _borrowModels.length),
+      ),
       bottomNavi: Row(
         children: [
           '已选择 '.richText.color(ktextPrimary).size(24.sp).withTextSpanChildren([
@@ -133,6 +160,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
   }
 
   Widget _goodsCard(ArticleBorrowModel model, int index) {
+    var selectCount = _receiveIds[index].selectIds.length;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -177,7 +205,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             ),
           ],
         ),
-        _receiveIds[index].selectIds.length == 0
+        selectCount == 0
             ? SizedBox()
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -214,6 +242,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             receiveIds: _receiveIds[index].selectIds,
           ));
       setState(() {});
+      LoggerData.addData(_receiveIds.last.selectIds.length);
     });
   }
 }
