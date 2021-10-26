@@ -1,25 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart' show TextUtil;
-import 'package:flustars/flustars.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/extensions/num_ext.dart';
-import 'package:aku_community/pages/setting_page/agreement_page/agreement_page.dart';
-import 'package:aku_community/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:aku_community/pages/sign/sign_func.dart';
 import 'package:aku_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:aku_community/pages/tab_navigator.dart';
@@ -28,6 +12,18 @@ import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart' show TextUtil;
+import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -41,6 +37,7 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController _code = new TextEditingController();
 
   Timer? _timer;
+
   bool get validPhone => RegexUtil.isMobileSimple(_phone.text);
 
   bool get _canGetCode {
@@ -56,30 +53,6 @@ class _SignInPageState extends State<SignInPage> {
         height: 184.w,
         width: 266.w,
       ),
-    );
-  }
-
-  Future<bool?> _showLoginVerify() async {
-    return await showCupertinoDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text('点击登录即表示您已阅读并同意'),
-          content: Text(
-              '''点击登录即表示您已阅读并同意《小蜜蜂用户协议》《小蜜蜂隐私政策》（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。'''),
-          actions: [
-            CupertinoDialogAction(
-              child: Text('同意'),
-              onPressed: () => Get.back(result: true),
-            ),
-            CupertinoDialogAction(
-              child: Text('拒绝'),
-              onPressed: () => Get.back(result: false),
-            ),
-          ],
-        );
-      },
     );
   }
 
@@ -120,8 +93,9 @@ class _SignInPageState extends State<SignInPage> {
           else if (TextUtil.isEmpty(_code.text))
             BotToast.showText(text: '验证码不能为空');
           else {
-            bool? result = await _showLoginVerify();
-            if (result != null) _parseLogin(result);
+            // bool? result = await _showLoginVerify();
+            // if (result != null) _parseLogin(result);
+            _parseLogin(true);
           }
         },
         height: 89.w,
@@ -277,34 +251,34 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(height: 59.w),
                 _inkWellLogin(),
                 10.hb,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MaterialButton(
-                      shape: StadiumBorder(),
-                      padding: EdgeInsets.zero,
-                      onPressed: () => Get.to(() => AgreementPage()),
-                      child: Text(
-                        '《小蜜蜂用户协议》',
-                        style: TextStyle(
-                          color: Colors.lightBlue,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 15.w),
-                    MaterialButton(
-                      shape: StadiumBorder(),
-                      padding: EdgeInsets.zero,
-                      onPressed: () => Get.to(() => PrivacyPage()),
-                      child: Text(
-                        '《小蜜蜂隐私政策》',
-                        style: TextStyle(
-                          color: Colors.lightBlue,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     MaterialButton(
+                //       shape: StadiumBorder(),
+                //       padding: EdgeInsets.zero,
+                //       onPressed: () => Get.to(() => AgreementPage()),
+                //       child: Text(
+                //         '《小蜜蜂用户协议》',
+                //         style: TextStyle(
+                //           color: Colors.lightBlue,
+                //         ),
+                //       ),
+                //     ),
+                //     SizedBox(width: 15.w),
+                //     MaterialButton(
+                //       shape: StadiumBorder(),
+                //       padding: EdgeInsets.zero,
+                //       onPressed: () => Get.to(() => PrivacyPage()),
+                //       child: Text(
+                //         '《小蜜蜂隐私政策》',
+                //         style: TextStyle(
+                //           color: Colors.lightBlue,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             )),
       ),
