@@ -233,7 +233,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
                     color: kPrimaryColor,
                     height: 80.w,
                     onPressed: () async {
-                      Get.off(GoodsOrderDetailPage(
+                      Get.off(() => GoodsOrderDetailPage(
                           model: _goodsModel,
                           name: _nameController.text,
                           phone: _phoneController.text));

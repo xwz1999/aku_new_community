@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:common_utils/common_utils.dart';
 import 'package:grinder/grinder.dart';
 import 'package:path/path.dart';
@@ -38,6 +39,21 @@ void addVersionPatch() async {
   //rename version
 
   Version resultVersion = VersionTool.fromText(version).nextPatchTag('dev');
+
+  String result = yamlContent.replaceFirst(version, resultVersion.toString());
+  await File(yamlPath).writeAsString(result);
+}
+
+@Task('add major version number')
+void addVersionMajor() async {
+  String projectPath = Directory('.').absolute.path;
+  String yamlPath = join(projectPath, 'pubspec.yaml');
+  String yamlContent = await File(yamlPath).readAsString();
+  dynamic content = loadYaml(yamlContent);
+  String version = content['version'];
+  //rename version
+
+  Version resultVersion = VersionTool.fromText(version).nextMajorTag('dev');
 
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);

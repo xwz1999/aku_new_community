@@ -1,12 +1,11 @@
 import 'dart:convert';
 
+import 'package:aku_community/models/pay/pay_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:tobias/tobias.dart';
-
-import 'package:aku_community/models/pay/pay_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 
 enum PAYTYPE {
   ///支付宝
@@ -53,7 +52,17 @@ class PayUtil {
 
   ///传入订单信息和确认订单请求地址
   Future<bool> callAliPay(String order, String apiPath) async {
-    Map<dynamic, dynamic> result = await aliPay(order);
+    var install = await isAliPayInstalled();
+    if (!install) {
+      BotToast.showText(text: '未安装支付宝！');
+      return false;
+    }
+    Map<dynamic, dynamic> result = {};
+    try {
+      result = await aliPay(order);
+    } catch (e) {
+      print(e.toString());
+    }
     _resultStatus = result['resultStatus'];
     if (_resultStatus == '9000') {
       String _res = result['result'];

@@ -9,6 +9,11 @@ class Config {
   static String get buildPath =>
       './build/app/outputs/flutter-apk/app-release.apk';
 
-  ///打包目录文件夹
-  static String get buildDir => './build/app/outputs/flutter-apk';
+  ///测试包文件夹
+  static String get apkDevDir =>
+      '/users/zhangmeng/team/bee/app/aku_community/dev';
+
+  ///正式包文件夹
+  static String get apkDir =>
+      '/users/zhangmeng/team/bee/app/aku_community/release';
 }

@@ -1,13 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -22,6 +12,14 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/widget/bee_divider.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/views/horizontal_image_view.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;
@@ -402,7 +400,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
           .callAliPay(baseModel.message!, API.pay.reportReapirCheck);
       if (result) {
         Get.back();
-        Get.off(PayFinishPage());
+        Get.off(() => PayFinishPage());
       }
     } else {
       Get.back();
@@ -528,7 +526,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                   MaterialButton(
                     minWidth: 375.w,
                     onPressed: () {
-                      Get.off(FixedEvaluatePage(_model));
+                      Get.off(() => FixedEvaluatePage(_model));
                     },
                     child: '立即评价'.text.white.size(32.sp).bold.make(),
                     padding: EdgeInsets.symmetric(vertical: 26.w),

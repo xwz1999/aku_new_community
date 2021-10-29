@@ -1,11 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
@@ -22,6 +14,12 @@ import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/bee_numberic_button.dart';
 import 'package:aku_community/widget/buttons/bottom_button.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class GoodsOrderDetailPage extends StatefulWidget {
   final GoodsDetailModel model;
@@ -50,6 +48,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
   @override
   void dispose() {
     _refreshController.dispose();
+    BotToast.closeAllLoading();
     super.dispose();
   }
 
@@ -105,7 +104,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
               bool result = await PayUtil()
                   .callAliPay(baseModel.message!, API.pay.shoppingCheck);
               if (result) {
-                Get.off(PayFinishPage());
+                Get.off(() => PayFinishPage());
               }
             } else {
               BotToast.showText(text: baseModel.message!);
