@@ -106,6 +106,8 @@ dependencies:
   advance_pdf_viewer: ^2.0.0
   #扩展组件
   expandable: ^5.0.1
+  #加载网络图片
+  cached_network_image: ^3.1.0
 
 dev_dependencies:
   flutter_test:

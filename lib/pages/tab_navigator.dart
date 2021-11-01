@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
@@ -36,7 +37,6 @@ class _TabNavigatorState extends State<TabNavigator>
   @override
   void initState() {
     super.initState();
-
     _pages = [
       HomePage(),
       MarketPage(),

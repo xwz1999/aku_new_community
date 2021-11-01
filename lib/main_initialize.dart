@@ -19,6 +19,7 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 class MainInitialize {
+
   ///初始化firebase
   static Future initFirebase() async {
     await Firebase.initializeApp();
@@ -41,14 +42,17 @@ class MainInitialize {
   }
 
   static Future initJPush() async {
+    final JPush jpush = new JPush();
     if (kIsWeb || Platform.isMacOS) return;
-    JPush jpush = new JPush();
+
     // Future<dynamic> Function(Map<String, dynamic>? message)? jPushLogger(
     //     String type) {
     //   return (Map<String, dynamic>? message) async {
     //     LoggerData.addData(message, tag: type);
     //   };
     // }
+
+    try {
     jpush.addEventHandler(
       onReceiveNotification: (message) async {
         LoggerData.addData(message, tag: 'onReceiveNotification');
@@ -62,8 +66,14 @@ class MainInitialize {
       },
       onReceiveMessage: (Map<String, dynamic>? message) async {
         LoggerData.addData(message, tag: 'onReceiveMessage');
-      },
+      }, onReceiveNotificationAuthorization:
+        (Map<String, dynamic> message) async {
+      print("flutter onReceiveNotificationAuthorization: $message");
+    }
     );
+    } on PlatformException {
+
+    }
     jpush.setup(
       appKey: "00e20fef79ee804d5c9abb54",
       channel: "developer-default",
@@ -71,6 +81,13 @@ class MainInitialize {
       debug: true,
     );
     // jpush.applyPushAuthority();
+    String? rID;
+    jpush.getRegistrationID().then((rid) {
+      print("flutter get registration id : $rid");
+      rID = rid;
+      LoggerData.addData(rID, tag: 'RegistrationID');
+    });
+
   }
 
   static initWechat() {
