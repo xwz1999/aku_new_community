@@ -24,13 +24,10 @@ void main() async {
   ///firebase crashlytics initalize
   await MainInitialize.initFirebase();
   MainInitialize.initTheme();
-  await MainInitialize.initJPush();
   MainInitialize.initWechat();
   MainInitialize.initWebSocket();
-  String? rID;
-  JPush().getRegistrationID().then((value) => rID = value);
-  print('jpush registrationID is $rID');
-  LoggerData.addData(rID, tag: 'RegistrationID');
+  await MainInitialize.initJPush();
+
   runApp(MyApp());
 }
 
