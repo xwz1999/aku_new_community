@@ -359,6 +359,9 @@ class _Community {
 
   ///社区活动：报名
   String get signUpActivity => '/user/activity/signUp';
+
+  ///资讯轮播图
+  String get getSwiper => '/user/news/findNewsRotation';
 }
 
 class _Market {

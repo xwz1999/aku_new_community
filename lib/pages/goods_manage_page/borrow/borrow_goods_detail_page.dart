@@ -195,7 +195,10 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
             child: ClipRRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model.imgList)),
+                image: API.image(ImgModel.first(model.imgList)), imageErrorBuilder: (context, error, stackTrace) {
+                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 184.w,
+                  width: 184.w,);
+              },
               ),
             ),
           ),

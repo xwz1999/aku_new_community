@@ -1,5 +1,19 @@
 // Dart imports:
 
+import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/swiper_model.dart';
+import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
+import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
+import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
+import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
+import 'package:aku_community/ui/home/application/all_application.dart';
+import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_community/ui/search/bee_search.dart';
+import 'package:aku_community/widget/animated/OverlayWidget.dart';
+import 'package:aku_community/widget/others/rectIndicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +47,8 @@ import 'package:aku_community/widget/buttons/column_action_button.dart';
 import 'package:aku_community/widget/views/application_box.dart';
 import 'package:aku_community/widget/views/application_view.dart';
 import 'widget/home_search.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -45,6 +61,7 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   @override
   bool get wantKeepAlive => true;
+  int _currentIndicator = 0;
 
   ScrollController? _scrollController;
 
@@ -53,9 +70,13 @@ class _HomePageState extends State<HomePage>
   late EasyRefreshController _refreshController;
 
   int page = 1;
-
-  ActivityItemModel? _activityItemModel;
+  int commentCount = 0;
+  int sysCount = 0;
+  int sum = 0;
+  // ActivityItemModel? _activityItemModel;
+  List<ActivityItemModel> _activityItemModels = [];
   List<BoardItemModel> _boardItemModels = [];
+  List<SwiperModel> _swiperModels = [];
 
   @override
   void initState() {
@@ -75,96 +96,456 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
+    commentCount = appProvider.messageCenterModel.commentCount ?? 0;
+    sysCount = appProvider.messageCenterModel.sysCount ?? 0;
+    sum = commentCount + sysCount;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AnimateAppBar(
         scrollController: _scrollController,
         actions: [
-          Badge(
-            elevation: 0,
-            showBadge: appProvider.messageCenterModel.commentCount != 0 ||
-                appProvider.messageCenterModel.sysCount != 0,
-            position: BadgePosition.topEnd(
-              top: 8,
-              end: 8,
-            ),
-            child: ColumnActionButton(
-              onPressed: () {
-                if (LoginUtil.isNotLogin) return;
-                Get.to(() => MessageCenterPage());
-              },
-              title: '消息',
-              path: R.ASSETS_ICONS_ALARM_PNG,
-            ),
+          GestureDetector(
+            onTap: () {
+              Get.to(() => BeeSearch());
+            },
+            child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_FIND_PNG,
+                height: 40.w, width: 40.w),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 16, left: 12),
+            child: Badge(
+                elevation: 0,
+                badgeColor: Color(0xFFCF2525),
+                padding: sum > 9 ? EdgeInsets.all(2) : EdgeInsets.all(5),
+                showBadge: appProvider.messageCenterModel.commentCount != 0 ||
+                    appProvider.messageCenterModel.sysCount != 0,
+                position: BadgePosition.topEnd(
+                  top: 3,
+                  end: -5,
+                ),
+                badgeContent: Text(
+                  (sum).toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    if (LoginUtil.isNotLogin) return;
+                    Get.to(() => MessageCenterPage());
+                  },
+                  child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_MESSAGE_PNG,
+                      height: 40.w, width: 40.w),
+                )),
           ),
         ],
       ),
-      body: EasyRefresh(
-        controller: _refreshController,
-        header: MaterialHeader(),
-        firstRefresh: true,
-        onRefresh: () async {
-          _activityItemModel = await CommunityFunc.activity();
-          _boardItemModels = await CommunityFunc.board();
-          appProvider.getMessageCenter();
-          setState(() {});
-        },
-        child: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  HomeSearch(),
-                  // HomeSwiper(),
-                  // SizedBox(height: 100.w),
-                  ApplicationBox(child: ApplicationView()),
-                ],
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  HomeNotification(items: _boardItemModels),
-                  HomeTitle(
-                    title: '公共资讯',
-                    suffixTitle: '更多资讯',
-                    onTap: () async {
-                      final cancel = BotToast.showLoading();
-                      BaseModel model = await NetUtil().get(API.news.category);
-                      List<NewsCategoryModel>? category;
-                      if (model.status == true && model.data != null) {
-                        category = (model.data as List)
-                            .map((e) => NewsCategoryModel.fromJson(e))
-                            .toList();
-                      }
-                      cancel();
-                      Get.to(
-                          () => PublicInfomationPage(models: category ?? []));
-                    },
+      // floatingActionButton: FloatingActionButton(
+      //
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //         image: DecorationImage(
+      //           fit: BoxFit.fill,
+      //           image:
+      //           AssetImage(R.ASSETS_ICONS_ICON_MAIN_OPEN_PNG),)
+      //     ),
+      //   ),
+      //   onPressed: (){
+      //     print('FloatingActionButton');
+      //   },
+      // ),
+      body: Stack(
+        children: [
+          EasyRefresh(
+            controller: _refreshController,
+            header: MaterialHeader(),
+            firstRefresh: true,
+            onRefresh: () async {
+              //_activityItemModel = await CommunityFunc.activity();
+              _activityItemModels = await CommunityFunc.activityList();
+              _boardItemModels = await CommunityFunc.board();
+              _swiperModels = await CommunityFunc.swiper();
+              appProvider.getMessageCenter();
+              setState(() {});
+            },
+            child: CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      HomeSearch(),
+
+                      HomeSwiper(), //要做点击事件
+                      // SizedBox(height: 100.w),
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: 24.w, left: 32.w, right: 32.w, bottom: 32.w),
+                        child: getFunction(), //ApplicationView(),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: const <BoxShadow>[
+                              BoxShadow(
+                                  color: Color(0x14000000),
+                                  blurRadius: 0,
+                                  offset: Offset(0.0, 2.0),
+                                  spreadRadius: 0.1)
+                            ],
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(28),
+                                bottomRight: Radius.circular(28))),
+                      )
+                      //ApplicationBox(child: ApplicationView()),
+                    ],
                   ),
-                  HomeTitle(
-                    title: '社区活动',
-                    suffixTitle: '更多活动',
-                    onTap: () => Get.to(() => ActivityListPage()),
+                ),
+                SliverToBoxAdapter(
+                  child: Container(
+                      height: 40,
+                      margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 24.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                              color: Color(0x14000000),
+                              blurRadius: 4,
+                              spreadRadius: 0.5)
+                        ],
+                      ),
+                      child: HomeNotification(items: _boardItemModels)),
+                ),
+                SliverToBoxAdapter(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 32.w, top: 24.w),
+                          padding: EdgeInsets.only(left: 32.w, top: 24.w),
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                  image:
+                                      AssetImage(R.ASSETS_IMAGES_CARD_YELLOW_PNG),)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '访客邀请',
+                                style: TextStyle(
+                                    color: Color(0xD9000000),
+                                    fontSize: 26.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              10.hb,
+                              Text(
+                                '一键分享',
+                                style: TextStyle(
+                                    color: Color(0x73000000),
+                                    fontSize: 20.sp,
+                                    ),
+                              ),
+                              Text(
+                                '让拜访不再是难事',
+                                style: TextStyle(
+                                    color: Color(0x73000000),
+                                    fontSize: 20.sp,
+                                   ),
+                              ),
+                              Spacer(),
+                              Image.asset(R.ASSETS_ICONS_ICON_MAIN_INVITE_PNG,width: 100.w,height: 100.w,),
+                              30.hb,
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          Get.to(VisitorAccessPage());
+                        },
+                      ),
+                      Container(
+
+                        margin: EdgeInsets.only(top: 24.w,left: 25.w),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+
+                              child: Container(
+                                width: 195,
+                                height: 69,
+                                decoration: BoxDecoration(
+
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                  image: AssetImage(R.ASSETS_IMAGES_CARD_PINK_PNG),
+                                )),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    20.wb,
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        20.hb,
+                                        Text(
+                                          '一键报警',
+                                          style: TextStyle(
+                                              color: Color(0xD9000000),
+                                              fontSize: 26.sp,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        10.hb,
+                                        Text(
+                                          '提交报警位置给物业',
+                                          style: TextStyle(
+                                            color: Color(0x73000000),
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_POLICE_PNG,width: 100.w,height: 100.w,),
+                                    25.wb,
+                                  ],
+                                ),
+                              ),
+                              onTap: (){
+                                Get.to(AlarmPage());
+                              },
+                            ),
+                            GestureDetector(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 20.w),
+                                width: 195,
+                                height: 69,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: AssetImage(R.ASSETS_IMAGES_CARD_BLUE_PNG),
+                                    )),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    20.wb,
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        20.hb,
+                                        Text(
+                                          '建议咨询',
+                                          style: TextStyle(
+                                              color: Color(0xD9000000),
+                                              fontSize: 26.sp,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        10.hb,
+                                        Text(
+                                          '欢迎给我们提供服务意见',
+                                          style: TextStyle(
+                                            color: Color(0x73000000),
+                                            fontSize: 20.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_CONSULT_PNG,width: 100.w,height: 100.w,),
+                                    25.wb,
+                                  ],
+                                ),
+                              ),
+                              onTap: (){
+                                Get.to(AdvicePage(type: AdviceType.SUGGESTION));
+                              },
+                            )
+
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  _activityItemModel == null
-                      ? SizedBox()
-                      : ActivityCard(model: _activityItemModel)
-                          .pSymmetric(h: 24.w, v: 24.w),
-                ],
-              )
-                  .box
-                  .white
-                  .withRounded(value: 8.w)
-                  .clip(Clip.antiAlias)
-                  .margin(EdgeInsets.symmetric(horizontal: 32.w))
-                  .make(),
+                ),
+                // SliverToBoxAdapter(
+                //   child: 20.hb,
+                // ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      // HomeTitle(
+                      //   title: '公共资讯',
+                      //   suffixTitle: '更多资讯',
+                      //   onTap: () async {
+                      //     final cancel = BotToast.showLoading();
+                      //     BaseModel model = await NetUtil().get(API.news.category);
+                      //     List<NewsCategoryModel>? category;
+                      //     if (model.status == true && model.data != null) {
+                      //       category = (model.data as List)
+                      //           .map((e) => NewsCategoryModel.fromJson(e))
+                      //           .toList();
+                      //     }
+                      //     cancel();
+                      //     Get.to(
+                      //         () => PublicInfomationPage(models: category ?? []));
+                      //   },
+                      // ),
+                      HomeTitle(
+                        title: '社区活动',
+                        suffixTitle: '查看全部',
+                        onTap: () => Get.to(() => ActivityListPage()),
+                      ),
+                      _activityItemModels == []
+                          ? SizedBox()
+                          :Container(
+                        height: 400.w,
+                        padding: EdgeInsets.only(left: 32.w),
+                        child: ListView.separated(
+                          padding: EdgeInsets.zero,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: 16.w,);
+                          },
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 500.w,
+                              child: Builder(
+                                builder: (context) {
+
+                                    return ActivityCard(model: _activityItemModels[index]);
+
+                                },
+                              ),
+                            );
+                          },
+                          itemCount: _activityItemModels.length,
+                        ),
+                      ),
+                          // : ActivityCard(model: _activityItemModel)
+                          //     .pSymmetric(h: 24.w, v: 24.w),
+                    ],
+                  )
+                ),
+              ],
             ),
-          ],
+          ),
+          OverlayLivingBtnWidget()
+        ],
+      ),
+    );
+  }
+
+  Widget HomeSwiper() {
+    return Container(
+      width: double.infinity,
+      height: 320.w,
+      child: AspectRatio(
+        aspectRatio: 375 / 160,
+        child: Swiper(
+          key: UniqueKey(),
+          itemBuilder: (BuildContext context, int index) {
+            return getSwiperImage(_swiperModels[index]);
+          },
+          // CarouselSlider(
+          //   items:
+          //   _swiperModels.map((e) => getSwiperImage(e)).toList(),
+          // options: CarouselOptions(
+          //   viewportFraction: 1.0,
+          //   aspectRatio: 686 / 172,
+          //   autoPlay: true,
+          //   onPageChanged: (index, _) {
+          //     setState(() {
+          //       _currentIndicator = index;
+          //     });
+          //   },
+          // ),
+
+          pagination: SwiperPagination(
+              alignment: Alignment.bottomRight,
+              builder: SwiperCustomPagination(
+                  builder: (BuildContext context, SwiperPluginConfig config) {
+                return RectIndicator(
+                  position: config.activeIndex,
+                  count: _swiperModels.length,
+                  activeColor: Color(0x99FFFFFF),
+                  color: Color(0xD9FFFFFF),
+                  //未选中 指示器颜色，选中的颜色key为Color
+                  width: 4,
+                  //指示器宽度
+                  activeWidth: 14,
+                  //选中的指示器宽度
+                  radius: 4,
+                  //指示器圆角角度
+                  height: 4,
+                ); //指示器高度
+              })),
+          scrollDirection: Axis.horizontal,
+          // control: new SwiperControl(),
+          autoplay: true,
+          onTap: (index) {
+            Get.to(() =>
+                PublicInformationDetailPage(id: _swiperModels[index].newsId!));
+          },
+          itemCount: _swiperModels.length,
         ),
       ),
     );
   }
+
+  Widget getSwiperImage(SwiperModel swiperModel) {
+    return Container(
+      child: FadeInImage.assetNetwork(
+        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+        image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
+        fit: BoxFit.fill,
+        imageErrorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            fit: BoxFit.fill,
+          );
+        },
+      ),
+    );
+  }
+
+  Widget getFunction() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        getFunctionBtn(
+            '报事报修', R.ASSETS_ICONS_ICON_MAIN_FIX_PNG, () => FixedSubmitPage()),
+        getFunctionBtn('设施预约', R.ASSETS_ICONS_ICON_MAIN_SUBSCRIBE_PNG,
+            () => FacilityAppointmentPage()),
+        getFunctionBtn('生活缴费', R.ASSETS_ICONS_ICON_MAIN_PAY_PNG,
+            () => LifePayChoosePage()),
+        getFunctionBtn('全部应用', R.ASSETS_ICONS_ICON_MAIN_ALL_PNG,
+            () => AllApplicationPage()),
+      ],
+    );
+  }
+
+  Widget getFunctionBtn(String title, String path, dynamic page) {
+    return MaterialButton(
+      shape: StadiumBorder(),
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        if (LoginUtil.isNotLogin) return;
+        if (!LoginUtil.haveRoom(title)) return;
+        Get.to(page);
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            path,
+            height: 80.w,
+            width: 80.w,
+          ),
+          8.hb,
+          title.text.size(22.sp).color(Color(0xA6000000)).bold.make(),
+        ],
+      ),
+    );
+  }
+
 }

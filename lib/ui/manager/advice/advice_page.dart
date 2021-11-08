@@ -1,3 +1,5 @@
+import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/websocket/tips_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -69,6 +71,13 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(milliseconds: 0), () async {
+      var agreement = await HiveStore.appBox?.get('AdvicePage') ?? false;
+      if (!agreement) {
+        await TipsDialog.tipsDialog();
+        HiveStore.appBox!.put('AdvicePage',true);
+      }
+    });
     _tabController = TabController(length: 2, vsync: this);
   }
 

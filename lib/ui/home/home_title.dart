@@ -23,18 +23,18 @@ class HomeTitle extends StatelessWidget {
     return Row(
       children: [
         85.hb,
-        24.wb,
+        32.wb,
         Stack(
           children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 4.w,
-              child: Container(
-                color: kPrimaryColor,
-                height: 8.w,
-              ),
-            ),
+            // Positioned(
+            //   left: 0,
+            //   right: 0,
+            //   bottom: 4.w,
+            //   child: Container(
+            //     color: kPrimaryColor,
+            //     height: 8.w,
+            //   ),
+            // ),
             title.text.size(32.sp).bold.make(),
           ],
         ),
@@ -45,7 +45,7 @@ class HomeTitle extends StatelessWidget {
           onPressed: onTap,
           child: Row(
             children: [
-              suffixTitle.text.size(20.sp).color(Color(0xFF999999)).make(),
+              suffixTitle.text.size(24.sp).color(Color(0xFF999999)).make(),
               8.wb,
               Icon(
                 CupertinoIcons.chevron_forward,

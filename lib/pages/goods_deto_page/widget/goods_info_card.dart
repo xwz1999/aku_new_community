@@ -120,7 +120,7 @@ class GoodsInfoCard extends StatelessWidget {
                   ]),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     top: 19.w,
                     bottom: 30.w,
                   ),

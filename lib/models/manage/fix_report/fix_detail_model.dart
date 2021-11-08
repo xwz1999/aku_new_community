@@ -32,11 +32,13 @@ class FixDetailModel extends Equatable {
 @JsonSerializable()
 class AppReportRepairVo extends Equatable {
   final int id;
+  final String roomName;
   final int type;
   final int status;
   final String reportDetail;
   final List<ImgModel> imgUrls;
   AppReportRepairVo({
+    required this.roomName,
     required this.id,
     required this.type,
     required this.status,
@@ -50,6 +52,7 @@ class AppReportRepairVo extends Equatable {
   List<Object> get props {
     return [
       id,
+      roomName,
       type,
       status,
       reportDetail,

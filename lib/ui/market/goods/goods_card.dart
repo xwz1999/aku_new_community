@@ -39,7 +39,12 @@ class GoodsCard extends StatelessWidget {
               children: [
                 FadeInImage.assetNetwork(
                     placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    image: API.image(ImgModel.first(item.imgList))),
+                    image: API.image(ImgModel.first(item.imgList)),
+                    fit: BoxFit.fill,
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP);
+                  },
+                ),
                 Positioned(
                   left: 0,
                   right: 0,

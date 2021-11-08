@@ -1,3 +1,5 @@
+import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/websocket/tips_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flustars/flustars.dart';
@@ -26,6 +28,14 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(milliseconds: 0), () async {
+      var agreement = await HiveStore.appBox?.get('QuestionnairePage') ?? false;
+      if (!agreement) {
+        await TipsDialog.tipsDialog();
+        HiveStore.appBox!.put('QuestionnairePage',true);
+      }
+    });
+
   }
 
   String _getButtonText(int? status) {

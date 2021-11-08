@@ -195,7 +195,7 @@ class ManagerFunc {
   }
 
   static Future<BaseModel> fromLoss(int? id) async {
-    BaseModel baseModel = await NetUtil().post(
+    BaseModel baseModel = await NetUtil().get(
       API.manager.fromLoss,
       params: {'articleBorrowId': id},
       showMessage: true,

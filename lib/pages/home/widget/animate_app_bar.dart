@@ -9,6 +9,7 @@ import 'package:aku_community/utils/headers.dart';
 class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
   final ScrollController? scrollController;
   final List<Widget>? actions;
+
   AnimateAppBar({Key? key, this.scrollController, this.actions})
       : super(key: key);
 
@@ -16,21 +17,22 @@ class AnimateAppBar extends StatefulWidget with PreferredSizeWidget {
   _AnimateAppBarState createState() => _AnimateAppBarState();
 
   @override
-  Size get preferredSize => Size.fromHeight(56);
+  Size get preferredSize => Size.fromHeight(45);
 }
 
 class _AnimateAppBarState extends State<AnimateAppBar> {
-  Color _bgColor = Colors.transparent;
+  Color _bgColor = Colors.white;
+
   @override
   void initState() {
     super.initState();
     widget.scrollController!.addListener(() {
       setState(() {
         _bgColor = widget.scrollController!.offset > 30
-            ? Color(0xFFFFBD00)
+            ? Colors.white
             : widget.scrollController!.offset < 0
                 ? Colors.transparent
-                : Color(0xFFFFBD00)
+                : Colors.white
                     .withOpacity((widget.scrollController!.offset / 30));
       });
     });
@@ -39,16 +41,24 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
   @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
-    return AppBar(
-      title: Text(S.of(context)!.tempPlotName),
-      backgroundColor: _bgColor,
-      leading: Container(
-        margin: EdgeInsets.only(left: 32.w),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: AppBar(
+        titleSpacing: 10.0,
+
+        title: Row(
+
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (appProvider.location != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2,right: 5),
+                  child: Image.asset(
+                    R.ASSETS_ICONS_ICON_MAIN_LOCATION_PNG,
+                    width: 32.w,
+                    height: 32.w,
+                  ),
+                ),
                 Text(
                   appProvider.location!['city'] as String? ?? '',
                   style: TextStyle(
@@ -56,17 +66,20 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
                     fontSize: 24.sp,
                     color: Color(0xff333333),
                   ),
+                  textAlign: TextAlign.center,
                 ),
               Text(
-                '${appProvider.weatherType} ${appProvider.weatherTemp}℃',
+                '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
                 style: TextStyle(
-                  fontSize: 20.sp,
-                  color: Color(0xff333333),
+                  fontSize: 24.sp,
+                  color: Color(0xff999999),
                 ),
-              )
+                textAlign: TextAlign.center,
+              ),
             ]),
+        backgroundColor: _bgColor,
+        actions: widget.actions,
       ),
-      actions: widget.actions,
     );
   }
 }

@@ -173,6 +173,15 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
               ),
               Row(
                 children: [
+                  '报修房屋'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  model.appReportRepairVo.roomName.text.black
+                      .size(28.sp)
+                      .make()
+                ],
+              ),
+              Row(
+                children: [
                   '派单类型'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
                   model.appDispatchListVo!.type.text.black.size(28.sp).make(),

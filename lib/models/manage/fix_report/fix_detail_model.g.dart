@@ -26,6 +26,7 @@ FixDetailModel _$FixDetailModelFromJson(Map<String, dynamic> json) {
 
 AppReportRepairVo _$AppReportRepairVoFromJson(Map<String, dynamic> json) {
   return AppReportRepairVo(
+    roomName: json['roomName'] as String,
     id: json['id'] as int,
     type: json['type'] as int,
     status: json['status'] as int,

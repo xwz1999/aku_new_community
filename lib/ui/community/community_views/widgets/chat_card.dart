@@ -74,6 +74,10 @@ class _ChatCardState extends State<ChatCard> {
             child:FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(widget.model!.imgUrls)),
+              imageErrorBuilder: (context, error, stackTrace) {
+                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 300.w,
+                  width: 300.w,);
+              },
             ),
           ),
         ),
@@ -293,7 +297,7 @@ class _ChatCardState extends State<ChatCard> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.model!.headSculptureImgUrl!.length>0?
+
             Material(
               color: Color(0xFFF5F5F5),
               borderRadius: BorderRadius.circular(6.w),
@@ -305,8 +309,12 @@ class _ChatCardState extends State<ChatCard> {
                 height: 86.w,
                 width: 86.w,
                 fit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 86.w,
+                    width: 86.w,);
+                },
               ),
-            ):SizedBox(),
+            ),
             24.wb,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

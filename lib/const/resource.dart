@@ -178,6 +178,9 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/contract.png)
   static const String ASSETS_ICONS_CONTRACT_PNG = 'assets/icons/contract.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/examine.png)
+  static const String ASSETS_ICONS_EXAMINE_PNG = 'assets/icons/examine.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/facility.png)
   static const String ASSETS_ICONS_FACILITY_PNG = 'assets/icons/facility.png';
 
@@ -212,6 +215,50 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/house_keeping.png)
   static const String ASSETS_ICONS_HOUSE_KEEPING_PNG =
       'assets/icons/house_keeping.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_all.png)
+  static const String ASSETS_ICONS_ICON_MAIN_ALL_PNG =
+      'assets/icons/icon_main_all.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_consult.png)
+  static const String ASSETS_ICONS_ICON_MAIN_CONSULT_PNG =
+      'assets/icons/icon_main_consult.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_find.png)
+  static const String ASSETS_ICONS_ICON_MAIN_FIND_PNG =
+      'assets/icons/icon_main_find.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_fix.png)
+  static const String ASSETS_ICONS_ICON_MAIN_FIX_PNG =
+      'assets/icons/icon_main_fix.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_invite.png)
+  static const String ASSETS_ICONS_ICON_MAIN_INVITE_PNG =
+      'assets/icons/icon_main_invite.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_location.png)
+  static const String ASSETS_ICONS_ICON_MAIN_LOCATION_PNG =
+      'assets/icons/icon_main_location.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_message.png)
+  static const String ASSETS_ICONS_ICON_MAIN_MESSAGE_PNG =
+      'assets/icons/icon_main_message.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_open.png)
+  static const String ASSETS_ICONS_ICON_MAIN_OPEN_PNG =
+      'assets/icons/icon_main_open.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_pay.png)
+  static const String ASSETS_ICONS_ICON_MAIN_PAY_PNG =
+      'assets/icons/icon_main_pay.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_police.png)
+  static const String ASSETS_ICONS_ICON_MAIN_POLICE_PNG =
+      'assets/icons/icon_main_police.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_subscribe.png)
+  static const String ASSETS_ICONS_ICON_MAIN_SUBSCRIBE_PNG =
+      'assets/icons/icon_main_subscribe.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_notification.png)
   static const String ASSETS_ICONS_ICON_NOTIFICATION_PNG =
@@ -478,6 +525,18 @@ class R {
   static const String ASSETS_IMAGES_CAR_HEADER_PNG =
       'assets/images/car_header.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/images/card_blue.png)
+  static const String ASSETS_IMAGES_CARD_BLUE_PNG =
+      'assets/images/card_blue.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/images/card_pink.png)
+  static const String ASSETS_IMAGES_CARD_PINK_PNG =
+      'assets/images/card_pink.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/images/card_yellow.png)
+  static const String ASSETS_IMAGES_CARD_YELLOW_PNG =
+      'assets/images/card_yellow.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/images/code_logo.png)
   static const String ASSETS_IMAGES_CODE_LOGO_PNG =
       'assets/images/code_logo.png';
@@ -520,6 +579,9 @@ class R {
 
   /// ![preview](file:///Users/datang/aku_community/assets/images/mine_bg.png)
   static const String ASSETS_IMAGES_MINE_BG_PNG = 'assets/images/mine_bg.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/images/notice.png)
+  static const String ASSETS_IMAGES_NOTICE_PNG = 'assets/images/notice.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/images/open_door.png)
   static const String ASSETS_IMAGES_OPEN_DOOR_PNG =

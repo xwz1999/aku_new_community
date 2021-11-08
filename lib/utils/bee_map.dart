@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 class BeeMap {
   static Map<int, String> fixTag = {
     1: '公区报修',
@@ -37,9 +39,11 @@ class BeeMap {
     1: '自己搬运',
     2: '搬家公司',
   };
-  static Map<int, String> goodsOutStatus = {1: '审核中', 2: '审核通过', 3: '审核失败'};
+  static Map<int, String> goodsOutStatus = {1: '审核中', 2: '审核通过', 3: '审核驳回'};
 
-  static Map<int, String> borrowStatus = {1: '出借中', 2: '已归还', 3: '待检查'};
+  static Map<int, String> borrowStatus = {-1: '出借审核中',0: '出借审核驳回',1: '出借中', 2: '已归还', 3: '归还审核中',4:'归还审核驳回'};
+
+  static Map<int, Color> borrowStatusColor = {-1: Color(0xFFFF8200),0:  Color(0xFFE60E0E),1: Color(0xD9000000), 2:  Color(0xFF999999), 3:  Color(0xFFFF8200),4:Color(0xFFE60E0E)};
 
   static Map<int, String> votingStatus = {
     1: '未开始',

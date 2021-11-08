@@ -57,6 +57,10 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 image: API.image(ImgModel.first(model.imgUrls)),
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 106.w,
+                    width: 106.w,);
+                },
               ),
             ),
           ),
@@ -118,7 +122,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 itemCount: items.length);
           }),
       bottomNavi: BottomButton(
-        child: '扫一扫'.text.black.size(32.sp).bold.make(),
+        child:  widget.isBorrow?'出借'.text.black.size(32.sp).bold.make():'归还'.text.black.size(32.sp).bold.make(),
         onPressed: widget.isBorrow
             ? () {
                 Get.to(() => BorrowGoodsPage());

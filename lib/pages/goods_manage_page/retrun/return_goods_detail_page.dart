@@ -1,3 +1,5 @@
+import 'package:aku_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -133,15 +135,19 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
           color: kPrimaryColor,
           padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
           onPressed: () async {
-            BaseModel baseModel =
-                await NetUtil().post(API.manager.articleReturnGoods,
-                    params: {
-                      'ids': _selectItems,
-                    },
-                    showMessage: true);
-            if (baseModel.status!) {
-              Get.back();
+            if(_selectItems.length<1){
+              BotToast.showText(text: '请先选择您要借归还的物品');
+            }else{
+              BaseModel baseModel =
+              await NetUtil().post(API.manager.articleReturnGoods,
+                  params: {
+                    'ids': _selectItems,
+                  },
+                  showMessage: true);
+              Get.to(BorrowExaminePage(
+              ));
             }
+
           },
           child: '归还'.text.black.size(32.sp).bold.make(),
         ),
@@ -199,6 +205,10 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(model.imgList)),
+              imageErrorBuilder: (context, error, stackTrace) {
+                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 184.w,
+                  width: 184.w,);
+              },
             ),
           ),
         ),

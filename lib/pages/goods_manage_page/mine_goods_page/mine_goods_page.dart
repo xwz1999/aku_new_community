@@ -1,13 +1,17 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/manager/mine_goods_model.dart';
+import 'package:aku_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
 import 'package:aku_community/pages/manager_func.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/utils/bee_map.dart';
 import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 
 class MineGoodsPage extends StatefulWidget {
   MineGoodsPage({Key? key}) : super(key: key);
@@ -53,6 +57,68 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
       ),
     );
   }
+
+  InkWell _frmBorrow(int? id) {
+    List<int> _list = [];
+    _list.add(id!);
+    return InkWell(
+      onTap: () async {
+        BaseModel baseModel = await NetUtil().post(
+            API.manager.articleBorrowGoods,
+            params: {"ids": _list},
+            showMessage: false);
+        Get.to(BorrowExaminePage(
+        ));
+      },
+      child: Container(
+        width: 120.w,
+        height: 44.w,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 7.w),
+        decoration: BoxDecoration(
+          color: Color(0xff2a2a2a),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        child: Text(
+          '借用',
+          style: TextStyle(fontSize: 22.sp, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  InkWell _frmReturn(int? id) {
+    List<int> _list = [];
+    _list.add(id!);
+    return InkWell(
+      onTap: () async {
+        BaseModel baseModel =
+        await NetUtil().post(API.manager.articleReturnGoods,
+            params: {
+              'ids': _list,
+            },
+            showMessage: true);
+        Get.to(BorrowExaminePage(
+        ));
+      },
+      child: Container(
+        width: 120.w,
+        height: 44.w,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 7.w),
+        decoration: BoxDecoration(
+          color: Color(0xff2a2a2a),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        child: Text(
+          '归还',
+          style: TextStyle(fontSize: 22.sp, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+
 
   String _getDatelength(int date) {
     if (date >= 24) {
@@ -127,16 +193,39 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
                 Container(
                   margin: EdgeInsets.only(top: 16.w),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '借用状态: ${BeeMap.borrowStatus[model.borrowStatus]}',
+                        '借用状态：',
                         style: TextStyle(
                           fontSize: 24.sp,
-                          color: Color(0xff999999),
+                          color:Color(0xff999999),
                         ),
                       ),
-                      _frmLoss(model.id),
+                      Text(
+                        '${BeeMap.borrowStatus[model.borrowStatus]}',
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          color:BeeMap.borrowStatusColor[model.borrowStatus],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 16.w),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Spacer(),
+                     model.borrowStatus==1||model.borrowStatus==4?_frmLoss(model.id):SizedBox(),
+
+                      model.borrowStatus==0||model.borrowStatus==2?SizedBox(width: 16.w):SizedBox(),
+                      model.borrowStatus==0||model.borrowStatus==2?_frmBorrow(model.id):SizedBox(),
+
+                      model.borrowStatus==1||model.borrowStatus==4?SizedBox(width: 16.w):SizedBox(),
+                      model.borrowStatus==1||model.borrowStatus==4?_frmReturn(model.id):SizedBox(),
                     ],
                   ),
                 ),

@@ -9,12 +9,15 @@ import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'borrow_examine_page.dart';
 
 class BorrowGoodsSubmitModel {
   List<int> selectIds;
@@ -136,14 +139,17 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             color: kPrimaryColor,
             padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
             onPressed: () async {
-              BaseModel baseModel = await NetUtil().post(
-                  API.manager.articleBorrowGoods,
-                  params: {"ids": _submitIds},
-                  showMessage: false);
-              Get.to(BorrowFinshPage(
-                isSuccess: baseModel.status,
-                failText: baseModel.message,
-              ));
+              if(_submitIds.length<1){
+                BotToast.showText(text: '请先选择您要借出的物品');
+              }else{
+                BaseModel baseModel = await NetUtil().post(
+                    API.manager.articleBorrowGoods,
+                    params: {"ids": _submitIds},
+                    showMessage: false);
+                Get.to(BorrowExaminePage(
+                ));
+              }
+
             },
             child: '借出'.text.black.size(32.sp).bold.make(),
           ),
@@ -171,6 +177,10 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(model.imgUrls)),
+              imageErrorBuilder: (context, error, stackTrace) {
+                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 184.w,
+                  width: 184.w,);
+              },
             ),
           ),
         ),

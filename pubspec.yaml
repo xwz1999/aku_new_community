@@ -2,7 +2,7 @@ name: aku_community
 description: A new Flutter project.
 publish_to: "none"
 
-version: 1.8.2-dev+46
+version: 1.8.3-dev+47
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -108,6 +108,10 @@ dependencies:
   expandable: ^5.0.1
   #加载网络图片
   cached_network_image: ^3.1.0
+  #轮播图
+  flutter_swiper_null_safety: ^1.0.2
+  #划动组件
+  carousel_slider: ^4.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:

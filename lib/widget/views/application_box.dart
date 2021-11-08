@@ -12,17 +12,17 @@ class ApplicationBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBox(child: child)
-        .margin(EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w))
+        // .margin(EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w))
         .padding(EdgeInsets.all(24.w))
         .color(Colors.white)
         .withRounded(value: 8.w)
-        .withShadow([
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            offset: Offset(1.1, 1.1),
-            blurRadius: 10.0,
-          )
-        ])
+        // .withShadow([
+        //   BoxShadow(
+        //     color: Colors.grey.withOpacity(0.2),
+        //     offset: Offset(1.1, 1.1),
+        //     blurRadius: 10.0,
+        //   )
+        // ])
         .make()
         .centered();
   }

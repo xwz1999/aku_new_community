@@ -1,3 +1,5 @@
+import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/websocket/tips_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_community/pages/express_packages/express_package_view.dart';
@@ -18,6 +20,13 @@ class _ExpressPackagePageState extends State<ExpressPackagePage>
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(milliseconds: 0), () async {
+      var agreement = await HiveStore.appBox?.get('ExpressPackagePage') ?? false;
+      if (!agreement) {
+        await TipsDialog.tipsDialog();
+        HiveStore.appBox!.put('ExpressPackagePage',true);
+      }
+    });
     _tabController = TabController(length: _tabs.length, vsync: this);
   }
 
