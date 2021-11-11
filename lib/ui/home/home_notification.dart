@@ -51,9 +51,7 @@ class _HomeNotificationState extends State<HomeNotification> {
         24.wb,
         widget.items.isEmpty
             ? Spacer()
-            : Container(
-                width: 295,
-                child: CarouselSlider(
+            : CarouselSlider(
                   items: widget.items.map((e) => getText(e)).toList(),
                   options: CarouselOptions(
                     scrollDirection: Axis.vertical,
@@ -62,116 +60,15 @@ class _HomeNotificationState extends State<HomeNotification> {
                     autoPlay: true,
 
                     onPageChanged: (index, _) {
-                      print(index.toString());
+                      //print(index.toString());
                       // setState(() {
                       //   _currentIndicator = index;
                       // });
                     },
                   ),
-                ),
-              ),
-        // Container(
-        //         alignment: Alignment.centerLeft,
-        //         height: 85.w,
-        //         child:
-        //         Row(
-        //           children: [
-        //             Container(
-        //               width: 200,
-        //               height: 22,
-        //               alignment: Alignment.centerLeft,
-        //               child: AnimatedTextKit(
-        //                 pause: Duration(milliseconds: 2000),
-        //                 animatedTexts: widget.items
-        //                     .map((e) {
-        //                 return   RotateAnimatedText(
-        //                     e.title!,
-        //                     textStyle: TextStyle(
-        //                       color: Color(0xA6000000),
-        //                       fontSize: 22.sp,
-        //                       fontWeight: FontWeight.bold,
-        //
-        //
-        //                     ),
-        //                     duration: Duration(milliseconds: 3000),
-        //                   );
-        //                 }
-        //
-        //               )
-        //                     .toList(),
-        //                 repeatForever: true,
-        //                 onNext: (index,bool){
-        //                   print('next');
-        //                   boardItemModel = widget.items[index];
-        //                   isDate = true;
-        //                   setState(() {
-        //                   });
-        //                 },
-        //                 onNextBeforePause: (index,bool){
-        //                   print('before');
-        //                   isDate = false;
-        //                   setState(() {
-        //                   });
-        //                 },
-        //               ),
-        //             ),
-        //
-        //
-        //           ],
-        //         )
-        //
-        //       ).expand(),
-        // isDate
-        //     ? MaterialButton(
-        //         shape: StadiumBorder(),
-        //         padding: EdgeInsets.symmetric(horizontal: 12.w),
-        //         onPressed: () {
-        //           Get.to(() => NoticePage());
-        //         },
-        //         child: Row(
-        //           children: [
-        //             Container(
-        //                 constraints: BoxConstraints(minWidth: 60),
-        //                 child: Text(
-        //                   isDate
-        //                       ? boardItemModel.releaseDate != null
-        //                           ? BeeDateUtil(boardItemModel.releaseDate)
-        //                               .timeAgo
-        //                           : ''
-        //                       : '',
-        //                   style: TextStyle(
-        //                     color: Color(0x73000000),
-        //                     fontSize: 20.sp,
-        //                   ),
-        //                 )
-        //                 // AnimatedTextKit(
-        //                 //   pause: Duration(milliseconds: 2000),
-        //                 //   animatedTexts: widget.items
-        //                 //       .map((e) => RotateAnimatedText(
-        //                 //     e.releaseDate!=null?BeeDateUtil(e.releaseDate)
-        //                 //         .timeAgo:'',
-        //                 //
-        //                 //     textStyle: TextStyle(
-        //                 //       color: Color(0x73000000),
-        //                 //       fontSize: 20.sp,
-        //                 //
-        //                 //     ),
-        //                 //     duration: Duration(milliseconds: 3000),
-        //                 //   ))
-        //                 //       .toList(),
-        //                 //   repeatForever: true,
-        //                 // ),
-        //                 ),
-        //             8.wb,
-        //             Icon(
-        //               CupertinoIcons.chevron_forward,
-        //               size: 24.w,
-        //               color: Color(0xFF999999),
-        //             ),
-        //           ],
-        //         ),
-        //       )
-        //     : SizedBox(),
+
+              ).expand(),
+
         12.wb,
       ],
     );
@@ -183,13 +80,14 @@ class _HomeNotificationState extends State<HomeNotification> {
         Get.to(() => NoticePage());
       },
       child: Container(
-        width: 295,
         color: Colors.transparent,
         child: Row(
+
           children: [
             Container(
+
               constraints: BoxConstraints(
-                maxWidth: 230
+                maxWidth: 190
               ),
                 child: Text(
               e.title ?? '',

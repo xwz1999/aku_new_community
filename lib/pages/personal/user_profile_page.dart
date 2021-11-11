@@ -14,6 +14,7 @@ import 'package:aku_community/widget/picker/bee_custom_picker.dart';
 import 'package:aku_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_community/widget/picker/bee_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,21 @@ class _UserProfilePageState extends State<UserProfilePage> {
             Hero(
               tag: 'AVATAR',
               child: ClipOval(
-                child: FadeInImage.assetNetwork(
+                child:
+                // CachedNetworkImage(
+                //   imageUrl: API.image(
+                //           userProvider.userInfoModel!.imgUrls.isNotEmpty
+                //               ? userProvider.userInfoModel?.imgUrls.first.url
+                //               : ''),
+                //     height: 56.w,
+                //     width: 56.w,
+                //   placeholder: (context, url) =>
+                //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
+                //   errorWidget: (context, url, error) =>
+                //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
+                //   fit: BoxFit.fill,
+                // ),
+                FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(
                       userProvider.userInfoModel!.imgUrls.isNotEmpty

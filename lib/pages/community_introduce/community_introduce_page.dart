@@ -23,6 +23,7 @@ class CommunityIntroducePage extends StatefulWidget {
 class _CommunityIntroducePageState extends State<CommunityIntroducePage> {
   CommunityIontroduceModel _model = CommunityIontroduceModel.init();
   bool _onload = false;
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

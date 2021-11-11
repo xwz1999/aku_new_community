@@ -8,6 +8,7 @@ import 'package:aku_community/pages/event_activity/event_voting_page.dart';
 import 'package:aku_community/pages/express_packages/express_package_page.dart';
 import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
+import 'package:aku_community/pages/house_introduce/house_introduce.dart';
 import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
 import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
@@ -91,6 +92,11 @@ List<AO> appObjects = [
   AO('服务浏览', R.ASSETS_ICONS_SERVICE_PNG, () => ServiceBrowsePage()),
   AO('社区介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
   AO('家政服务', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => HouseKeepingPage()),
+
+  AO('地理信息', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
+  AO('周边企业', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => HouseKeepingPage()),
+  AO('住房介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => HouseIntroducePage()),
+
   // AO(
   //   '小区教育',
   //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -174,7 +180,10 @@ List<String> _smartManagerApp = [
   '电子商务',
   '服务浏览',
   '社区介绍',
-  '家政服务'
+  '家政服务',
+  '地理信息',
+  '周边企业',
+  '住房介绍',
   // '小区教育',
   // '健康运动',
   // '家政服务',

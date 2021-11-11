@@ -14,6 +14,7 @@ import 'package:aku_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_community/ui/search/bee_search.dart';
 import 'package:aku_community/widget/animated/OverlayWidget.dart';
 import 'package:aku_community/widget/others/rectIndicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -179,7 +180,7 @@ class _HomePageState extends State<HomePage>
                       // SizedBox(height: 100.w),
                       Container(
                         padding: EdgeInsets.only(
-                            top: 24.w, left: 32.w, right: 32.w, bottom: 32.w),
+                            top: 24.w, bottom: 32.w),
                         child: getFunction(), //ApplicationView(),
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -216,12 +217,13 @@ class _HomePageState extends State<HomePage>
                 ),
                 SliverToBoxAdapter(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
                         child: Container(
-                          margin: EdgeInsets.only(left: 32.w, top: 24.w),
+                          margin: EdgeInsets.only(top: 24.w),
                           padding: EdgeInsets.only(left: 32.w, top: 24.w),
-                          width: 150,
+                          width: 140,
                           height: 150,
                           decoration: BoxDecoration(
                               image: DecorationImage(
@@ -263,15 +265,16 @@ class _HomePageState extends State<HomePage>
                           Get.to(VisitorAccessPage());
                         },
                       ),
+                      25.wb,
                       Container(
 
-                        margin: EdgeInsets.only(top: 24.w,left: 25.w),
+                        margin: EdgeInsets.only(top: 24.w),
                         child: Column(
                           children: [
                             GestureDetector(
 
                               child: Container(
-                                width: 195,
+                                width: 190,
                                 height: 69,
                                 decoration: BoxDecoration(
 
@@ -305,8 +308,8 @@ class _HomePageState extends State<HomePage>
                                       ],
                                     ),
                                     Spacer(),
-                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_POLICE_PNG,width: 100.w,height: 100.w,),
-                                    25.wb,
+                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_POLICE_PNG,width: 98.w,height: 98.w,),
+                                    20.wb,
                                   ],
                                 ),
                               ),
@@ -317,7 +320,7 @@ class _HomePageState extends State<HomePage>
                             GestureDetector(
                               child: Container(
                                 margin: EdgeInsets.only(top: 20.w),
-                                width: 195,
+                                width: 190,
                                 height: 69,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -350,8 +353,8 @@ class _HomePageState extends State<HomePage>
                                       ],
                                     ),
                                     Spacer(),
-                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_CONSULT_PNG,width: 100.w,height: 100.w,),
-                                    25.wb,
+                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_CONSULT_PNG,width: 98.w,height: 98.w,),
+                                    20.wb,
                                   ],
                                 ),
                               ),
@@ -366,9 +369,7 @@ class _HomePageState extends State<HomePage>
                     ],
                   ),
                 ),
-                // SliverToBoxAdapter(
-                //   child: 20.hb,
-                // ),
+
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -445,19 +446,6 @@ class _HomePageState extends State<HomePage>
           itemBuilder: (BuildContext context, int index) {
             return getSwiperImage(_swiperModels[index]);
           },
-          // CarouselSlider(
-          //   items:
-          //   _swiperModels.map((e) => getSwiperImage(e)).toList(),
-          // options: CarouselOptions(
-          //   viewportFraction: 1.0,
-          //   aspectRatio: 686 / 172,
-          //   autoPlay: true,
-          //   onPageChanged: (index, _) {
-          //     setState(() {
-          //       _currentIndicator = index;
-          //     });
-          //   },
-          // ),
 
           pagination: SwiperPagination(
               alignment: Alignment.bottomRight,
@@ -493,7 +481,8 @@ class _HomePageState extends State<HomePage>
 
   Widget getSwiperImage(SwiperModel swiperModel) {
     return Container(
-      child: FadeInImage.assetNetwork(
+      child:
+      FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
         image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
         fit: BoxFit.fill,
@@ -547,5 +536,6 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
+
 
 }

@@ -82,7 +82,7 @@ class ActivityCard extends StatelessWidget {
                     width: 98.w,
                     decoration: BoxDecoration(
                         color: outdate ? Color(0xFFABABAB) : Color(0x80FEBF76),
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
 
                     child: outdate
@@ -90,13 +90,13 @@ class ActivityCard extends StatelessWidget {
                             .text
                             .size(22.sp)
                             .color(Color(0xFF666666))
-                            .bold
+
                             .make()
                         : '报名中'
                             .text
                             .size(22.sp)
                             .color(Color(0xFFF48117))
-                            .bold
+
                             .make(),
                   ),
                   onTap: () {

@@ -45,14 +45,12 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
       padding: const EdgeInsets.only(top: 5),
       child: AppBar(
         titleSpacing: 10.0,
-
         title: Row(
-
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (appProvider.location != null)
                 Padding(
-                  padding: const EdgeInsets.only(top: 2,right: 5),
+                  padding: const EdgeInsets.only(right: 5),
                   child: Image.asset(
                     R.ASSETS_ICONS_ICON_MAIN_LOCATION_PNG,
                     width: 32.w,
@@ -60,7 +58,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
                   ),
                 ),
                 Text(
-                  appProvider.location!['city'] as String? ?? '',
+                  appProvider.location?['city']==null?'':appProvider.location?['city'] as String? ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 24.sp,
@@ -79,6 +77,7 @@ class _AnimateAppBarState extends State<AnimateAppBar> {
             ]),
         backgroundColor: _bgColor,
         actions: widget.actions,
+
       ),
     );
   }

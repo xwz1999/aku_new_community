@@ -9,6 +9,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,13 +23,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   ///firebase crashlytics initalize
-  await MainInitialize.initFirebase();
+  // await MainInitialize.initFirebase();
   MainInitialize.initTheme();
-  MainInitialize.initWechat();
+  //MainInitialize.initWechat();
   MainInitialize.initWebSocket();
   await MainInitialize.initJPush();
+  //强制横屏
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
 
-  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -73,7 +78,13 @@ class _MyAppState extends State<MyApp> {
             ],
             supportedLocales: [const Locale('zh')],
             locale: Locale('zh'),
-            builder: BotToastInit(),
+            builder: (context, child) {
+              return MediaQuery(
+                //设置文字大小不随系统设置改变
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: BotToastInit().call(context,child),
+              );
+            },
             navigatorObservers: [BotToastNavigatorObserver()],
           ),
         ),

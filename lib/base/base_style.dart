@@ -5,6 +5,7 @@ import 'package:aku_community/utils/headers.dart';
 
 const ktextPrimary = Color(0xff333333);
 const ktextSubColor = Color(0xff666666);
+const ktextThirdColor = Color(0xff999999);
 const kForeGroundColor = Color(0xFFFFFFFF);
 const kPrimaryColor = Color(0xFFFFC40C);
 const kDarkPrimaryColor = Color(0xFFFF8200);
