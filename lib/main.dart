@@ -24,7 +24,7 @@ void main() async {
   ///firebase crashlytics initalize
   //await MainInitialize.initFirebase();
   MainInitialize.initTheme();
- // MainInitialize.initWechat();
+  MainInitialize.initWechat();
   MainInitialize.initWebSocket();
   await MainInitialize.initJPush();
 
