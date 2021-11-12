@@ -15,6 +15,7 @@ import 'AlarmModel.dart';
 
 class FireDialog {
   static fireAlarm(String content) async {
+
     var json = jsonDecode(content);
     AlarmModel alarmModel = AlarmModel.fromJson(json);
 

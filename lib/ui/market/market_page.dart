@@ -346,28 +346,28 @@ class _MarketPageState extends State<MarketPage>
   Widget _buildTitle() {
     final appProvider = Provider.of<AppProvider>(context);
     double iconSize = 18.w;
-    MaterialButton ges = MaterialButton(
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        height: 74.w,
-        shape: StadiumBorder(),
-        elevation: 0,
-        minWidth: double.infinity,
-        color: Colors.white,
-        onPressed: () {
-          Get.to(() => BeeSearch());
-        },
-        child: Row(
-          children: [
-            Icon(
-              Icons.search,
-              size: 32.w,
-              color: Color(0xFF666666),
-            ),
-            10.wb,
-            '请输入关键字'.text.size(28.sp).color(ktextSubColor).make().expand(),
-          ],
-        ),
-      );
+    // MaterialButton ges = MaterialButton(
+    //     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    //     height: 74.w,
+    //     shape: StadiumBorder(),
+    //     elevation: 0,
+    //     minWidth: double.infinity,
+    //     color: Colors.white,
+    //     onPressed: () {
+    //       Get.to(() => BeeSearch());
+    //     },
+    //     child: Row(
+    //       children: [
+    //         Icon(
+    //           Icons.search,
+    //           size: 32.w,
+    //           color: Color(0xFF666666),
+    //         ),
+    //         10.wb,
+    //         '请输入关键字'.text.size(28.sp).color(ktextSubColor).make().expand(),
+    //       ],
+    //     ),
+    //   );
 
     return Container(
       height: kToolbarHeight,
@@ -437,6 +437,12 @@ class _MarketPageState extends State<MarketPage>
               ),
               Column(
                 children: <Widget>[
+                  Container(
+                    height: ScreenUtil().statusBarHeight +kToolbarHeight,
+                  ),
+                  geSearch(),
+                  20.hb,
+                  getNum()
                   // Container(
                   //   color: Colors.blue,
                   //   width: 300,
@@ -469,6 +475,117 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
+
+  geSearch(){
+   return  Container(
+     margin: EdgeInsets.symmetric(horizontal: 24.w),
+     child: MaterialButton(
+
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        height: 74.w,
+        shape: StadiumBorder(),
+        elevation: 0,
+        minWidth: double.infinity,
+        color: Color(0xFFF3F3F3),
+        onPressed: () {
+          Get.to(() => SearchGoodsPage());
+        },
+        child: Row(
+          children: [
+            Icon(
+              Icons.search,
+              size: 32.w,
+              color: Color(0xFF666666),
+            ),
+            10.wb,
+            '请输入关键字'.text.size(28.sp).color(ktextSubColor).make().expand(),
+          ],
+        ),
+      ),
+   );
+  }
+
+  getNum(){
+    return Container(
+      margin: EdgeInsets.only(left: 18.w,right: 18.w),
+      padding: EdgeInsets.only(right:8.w ),
+      height: 76.w,
+      width: double.infinity,
+      alignment: Alignment.center,
+
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12), ),
+        gradient: LinearGradient(
+            begin: FractionalOffset.centerRight,
+            end: FractionalOffset.centerLeft,
+          colors: <Color>[Color(0xFFAD2222), Color(0xFFCD392B)],
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 5,
+              right: 0,
+              top: 5,
+              child: Container(
+                padding: EdgeInsets.only(top: 5.w,bottom: 5.w),
+                alignment: Alignment.center,
+                height: 61.w,
+                width: 694.w,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFDEEBF),
+                  borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12) ),
+
+                ),
+                child: Container(
+
+                  width: 682.w,
+                  decoration: BoxDecoration(
+                    //color: Color(0x99F5AF16),
+                    borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12)),
+                    border: Border.all(width: 1.w,color: Color(0x99F5AF16)),
+
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                    ],
+                  ),
+                ),
+              )
+
+          ),
+          Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                padding: EdgeInsets.only(left: 10.w),
+                height: 76.w,
+                width: 258.w,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: FractionalOffset.centerLeft,
+                    end: FractionalOffset.centerRight,
+                    colors: <Color>[Color(0xFFAD2222), Color(0xFFCD392B)],
+                  ),
+                  borderRadius: BorderRadius.horizontal(right: Radius.circular(50),left: Radius.circular(24))
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('SKU总数：237809',style: TextStyle(color: Colors.white,fontSize: 24.sp),),
+                    Text('入驻品牌数：237809',style: TextStyle(color: Colors.white,fontSize: 24.sp),)
+                  ],
+                ),
+          )),
+
+
+
+        ],
+      ),
+    );
+  }
 
 
 
