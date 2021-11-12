@@ -110,7 +110,7 @@ class _SplashPageState extends State<SplashPage> {
       context,
       debug: DeveloperUtil.dev,
     );
-    Future.delayed(Duration(milliseconds: 1000), () async {
+    Future.delayed(Duration(milliseconds: 0), () async {
       await _originOp();
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
       if (!agreement) {

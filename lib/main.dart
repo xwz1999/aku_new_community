@@ -22,9 +22,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   ///firebase crashlytics initalize
-  await MainInitialize.initFirebase();
+  //await MainInitialize.initFirebase();
   MainInitialize.initTheme();
-  MainInitialize.initWechat();
+ // MainInitialize.initWechat();
   MainInitialize.initWebSocket();
   await MainInitialize.initJPush();
 
@@ -73,7 +73,14 @@ class _MyAppState extends State<MyApp> {
             ],
             supportedLocales: [const Locale('zh')],
             locale: Locale('zh'),
-            builder: BotToastInit(),
+            //builder: BotToastInit(),
+            builder: (context, child) {
+              return MediaQuery(
+                //设置文字大小不随系统设置改变
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: BotToastInit().call(context,child),
+              );
+            },
             navigatorObservers: [BotToastNavigatorObserver()],
           ),
         ),

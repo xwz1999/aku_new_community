@@ -253,6 +253,9 @@ class _Manager {
   ///app社区介绍：查询开启的社区介绍模版
   String get communityIntroduceInfo => '/user/communityIntroduction/findEnable';
 
+  ///获取地理信息
+  String get geographyInformation => '/user/geography/findGeographyInfo';
+
   ///咨询建议/投诉表扬：完成反馈
   String get completeFeedBack => '/user/advice/completeFeedback';
 
@@ -311,6 +314,12 @@ class _Manager {
   ///app抄表分摊详情管理:根据手机号查询所有的抄表公摊缴费订单记录
   String get sharePayRecord =>
       '/user/meterReadingShareDetails/findAllMeterShareOrderByTel';
+
+
+  ///查询所有的已发布的户型说明
+  String get houseType =>
+      '/user/houseTypeDescription/list';
+
 }
 
 class _Community {
