@@ -1,19 +1,17 @@
 import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
+import 'package:aku_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
 import 'package:aku_community/pages/surrounding_enterprises/surrounding_enterprises_detail_page.dart';
-import 'package:aku_community/utils/hive_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/constants/app_theme.dart';
 import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/user/committee_item_model.dart';
 import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
@@ -30,6 +28,8 @@ class SurroundingEnterprisesPage extends StatefulWidget {
 
 class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+  int _page = 1;
+  int _size = 10;
   @override
   void initState() {
     super.initState();
@@ -44,10 +44,10 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
   }
 
 
-  Widget _buildCard(HouseIntroduceModel model) {
+  Widget _buildCard(SurroundingEnterprisesModel model) {
     return GestureDetector(
       onTap: (){
-        Get.to(SurroundingEnterprisesDetailPage(houseIntroduceModel: model,));
+        Get.to(SurroundingEnterprisesDetailPage(surroundingEnterprisesModel: model,));
       },
       child: Container(
         padding: EdgeInsets.all(20.w),
@@ -62,7 +62,7 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
               borderRadius: BorderRadius.circular(4.w),
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model.imgUrls)),
+                image: API.image(ImgModel.first(model.imgList)),
                 height: 200.w,
                 width: 240.w,
                 fit: BoxFit.fill,
@@ -86,13 +86,36 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Spacer(),
-                '发布于：${model.getReleaseDate}'
-                    .text
-                    .size(20.sp)
-                    .color(ktextThirdColor)
-                    .make(),
+                20.hb,
+                Container(
+                  width: 440.w,
+                  child: Text(
+                    '${model.content}',
+                    style: TextStyle(
+                        fontSize: 24.sp,
 
+                        color: ktextPrimary
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Spacer(),
+                Row(
+                  children: [
+                    '南宁人才公寓'
+                        .text
+                        .size(20.sp)
+                        .color(ktextThirdColor)
+                        .make(),
+                    Spacer(),
+                    '发布于：${model.getReleaseDate}'
+                        .text
+                        .size(20.sp)
+                        .color(ktextThirdColor)
+                        .make(),
+                  ],
+                )
               ],
             ),
           ],
@@ -103,13 +126,14 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
 
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '住房介绍',
+      title: '周边企业',
       systemStyle: SystemStyle.genStyle(bottom: Color(0xFF2A2A2A)),
-      body: BeeListView<HouseIntroduceModel>(
-        path: API.manager.houseType,
+      body: BeeListView<SurroundingEnterprisesModel>(
+        path: API.manager.surroundingEnterprises,
+        extraParams: {'pageNum': _page, 'size': _size},
         convert: (model) {
           return model.tableList!
-              .map((e) => HouseIntroduceModel.fromJson(e))
+              .map((e) => SurroundingEnterprisesModel.fromJson(e))
               .toList();
         },
         controller: _refreshController,

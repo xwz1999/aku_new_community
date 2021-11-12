@@ -320,6 +320,11 @@ class _Manager {
   String get houseType =>
       '/user/houseTypeDescription/list';
 
+
+  ///查询所有的周边企业信息
+  String get surroundingEnterprises =>
+      '/user/surroundingEnterprises/list';
+
 }
 
 class _Community {
