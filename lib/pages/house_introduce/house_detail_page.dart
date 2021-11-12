@@ -1,7 +1,7 @@
 import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -9,9 +9,7 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/community_introduce/community_introduce_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+
 import 'package:aku_community/widget/bee_scaffold.dart';
 
 class HouseDetailPage extends StatefulWidget {
@@ -47,11 +45,11 @@ class _HouseDetailPageState extends State<HouseDetailPage> {
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child:
-                  // widget.houseIntroduceModel.content!.text
-                  //     .size(28.sp)
-                  //     .color(ktextPrimary)
-                  //     .make(),
-                  Text(
+              // widget.houseIntroduceModel.content!.text
+              //     .size(28.sp)
+              //     .color(ktextPrimary)
+              //     .make(),
+              Text(
                 widget.houseIntroduceModel.name ?? '',
                 style: TextStyle(
                     fontSize: 30.sp,

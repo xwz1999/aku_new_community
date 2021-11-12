@@ -1,6 +1,5 @@
 import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
 import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/websocket/tips_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -79,20 +78,20 @@ class _HouseIntroducePageState extends State<HouseIntroducePage> {
                   child: Text(
                     '${model.name}',
                     style: TextStyle(
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.bold,
-                      color: ktextPrimary
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.bold,
+                        color: ktextPrimary
                     ),
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Spacer(),
-             '发布于：${model.getReleaseDate}'
-                      .text
-                      .size(20.sp)
-                      .color(ktextThirdColor)
-                      .make(),
+                '发布于：${model.getReleaseDate}'
+                    .text
+                    .size(20.sp)
+                    .color(ktextThirdColor)
+                    .make(),
 
               ],
             ),

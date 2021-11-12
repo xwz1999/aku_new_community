@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'package:aku_community/extensions/num_ext.dart';
 import 'package:aku_community/pages/tab_navigator.dart';
 import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/headers.dart';
+
 import 'AlarmModel.dart';
 
 class FireDialog {
@@ -21,11 +23,10 @@ class FireDialog {
         title: getImage(alarmModel),
         content: Column(
           children: [
-
             Text(getTitle(alarmModel)),
+
             10.hb,
             Text(getContent(alarmModel)),
-
 
           ],
         ),
@@ -46,7 +47,6 @@ class FireDialog {
       barrierDismissible: false,
     );
   }
-
   static String getTitle(AlarmModel alarmModel){
     switch(alarmModel.type){
       case 1:
@@ -78,7 +78,6 @@ class FireDialog {
 
     }
   }
-
   static Widget getImage(AlarmModel alarmModel){
     switch(alarmModel.type){
       case 1:

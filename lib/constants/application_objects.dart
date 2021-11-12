@@ -6,6 +6,7 @@ import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart'
 import 'package:aku_community/pages/electronic_commerc/electronic_commerc_page.dart';
 import 'package:aku_community/pages/event_activity/event_voting_page.dart';
 import 'package:aku_community/pages/express_packages/express_package_page.dart';
+import 'package:aku_community/pages/geographic_information/geographic_information_page.dart';
 import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:aku_community/pages/house_introduce/house_introduce.dart';
@@ -16,6 +17,7 @@ import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:aku_community/pages/service_browse/service_browse_page.dart';
 import 'package:aku_community/pages/setting_page/settings_page.dart';
+import 'package:aku_community/pages/surrounding_enterprises/Surrounding_enterprises_page.dart';
 import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
@@ -93,8 +95,8 @@ List<AO> appObjects = [
   AO('社区介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
   AO('家政服务', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => HouseKeepingPage()),
 
-  AO('地理信息', R.ASSETS_ICONS_INTRODUCE_PNG, () => CommunityIntroducePage()),
-  AO('周边企业', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => HouseKeepingPage()),
+  AO('地理信息', R.ASSETS_ICONS_INTRODUCE_PNG, () => GeographicInformationPage()),
+  AO('周边企业', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => SurroundingEnterprisesPage()),
   AO('住房介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => HouseIntroducePage()),
 
   // AO(
@@ -183,7 +185,10 @@ List<String> _smartManagerApp = [
   '家政服务',
   '地理信息',
   '周边企业',
-  '住房介绍',
+  '住房介绍'
+
+
+
   // '小区教育',
   // '健康运动',
   // '家政服务',
