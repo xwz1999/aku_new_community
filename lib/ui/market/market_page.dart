@@ -1,16 +1,22 @@
 // import 'package:aku_community/base/base_style.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/swiper_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/community/community_func.dart';
+import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_community/ui/market/widget/animated_home_background.dart';
 import 'package:aku_community/ui/search/bee_search.dart';
 import 'package:aku_community/widget/home/home_sliver_app_bar.dart';
+import 'package:aku_community/widget/others/rectIndicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 
@@ -53,12 +59,15 @@ class _MarketPageState extends State<MarketPage>
   int _pageNum = 1;
   int _size = 4;
   int _pageCount = 0;
-  double MessageHeight = 0;
-  double bannerHeight = 0;
-  double buttonsHeight = 200.w;
+  double MessageHeight = 76.w;
+  double bannerHeight = 354.w;
+  double buttonsHeight = 334.w;
+  double searchHeight = 74.w.w;
 
   double tabBarHeight = 60.w;
   late TabController _tabController;
+
+  List<SwiperModel> _swiperModels = [];
 
   Future updateMarketInfo() async {
     BaseListModel baseListModel =
@@ -115,64 +124,7 @@ class _MarketPageState extends State<MarketPage>
     super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
 
-    MessageHeight = 76;
-
     return Scaffold(
-      // leading: IconButton(
-      //   icon: Icon(CupertinoIcons.search),
-      //   onPressed: () {
-      //     Get.to(() => SearchGoodsPage());
-      //   },
-      // ),
-      // title: '商城',
-      // actions: [
-      //   MaterialButton(
-      //     minWidth: 108.w,
-      //     padding: EdgeInsets.zero,
-      //     onPressed: () async {
-      //       // Get.to(() => SecondHandPage());
-      //       Get.to(() => MyOrderPage());
-      //     },
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       mainAxisSize: MainAxisSize.max,
-      //       children: [
-      //         Image.asset(
-      //           R.ASSETS_ICONS_SECOND_HAND_PNG,
-      //           width: 48.w,
-      //           height: 48.w,
-      //         ),
-      //         4.hb,
-      //         // '二手'.text.size(20.sp).black.make(),
-      //         '订单'.text.size(20.sp).black.make(),
-      //       ],
-      //     ),
-      //   ),
-      //   MaterialButton(
-      //     minWidth: 108.w,
-      //     padding: EdgeInsets.zero,
-      //     onPressed: () async {
-      //       final cancel = BotToast.showLoading();
-      //       List<MarketCategoryModel> models =
-      //           await DisplayCategoryModel.fetchCategory(0);
-      //       cancel();
-      //       Get.to(() => CategoryPage(models: models));
-      //     },
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       mainAxisSize: MainAxisSize.max,
-      //       children: [
-      //         Image.asset(
-      //           R.ASSETS_ICONS_CATEGORY_PNG,
-      //           width: 48.w,
-      //           height: 48.w,
-      //         ),
-      //         4.hb,
-      //         '分类'.text.size(20.sp).black.make(),
-      //       ],
-      //     ),
-      //   ),
-      // ],
       body:EasyRefresh(
         firstRefresh: true,
         enableControlFinishLoad: false,
@@ -182,6 +134,7 @@ class _MarketPageState extends State<MarketPage>
         onRefresh: () async {
           _pageNum = 1;
           await updateMarketInfo();
+          _swiperModels = await CommunityFunc.swiper();
           setState(() {});
         },
         onLoad: () async {
@@ -209,83 +162,32 @@ class _MarketPageState extends State<MarketPage>
             key: _sliverAppBarGlobalKey,
             actions: _actionsWidget(),
             title: _buildTitle(),
-            backgroundColor: Colors.white,
-            expandedHeight:
-                bannerHeight +
-                buttonsHeight+600.w,
+            backgroundColor: Colors.red,
+            expandedHeight:  MessageHeight+
+                             bannerHeight +
+                             buttonsHeight+
+                             searchHeight +tabBarHeight+ScreenUtil().statusBarHeight +kToolbarHeight+280.w,
             flexibleSpace: _flexibleSpaceBar(context),
 
             bottom:  PreferredSize(
               preferredSize: Size.fromHeight(tabBarHeight),
               child: _goodsTitle()
-
-              // Container(
-              //   color: Colors.green,
-              //   height: tabBarHeight,
-              //   width: 200.w,
-              //   // alignment: Alignment.center,
-              //   // color: AppColor.frenchColor,
-              //   // child: HomePageTabbar(
-              //   //   promotionList: _promotionList,
-              //   //   timerJump: (index) {
-              //   //     _tabIndex = index;
-              //   //     _homeCountdownController.indexChange(index);
-              //   //     // 定时任务回调
-              //   //     _tabController.animateTo(index);
-              //   //     _getPromotionGoodsList(_promotionList[index].id);
-              //   //   },
-              //   //   clickItem: (index) {
-              //   //     _homeCountdownController.indexChange(index);
-              //   //     _getPromotionGoodsList(_promotionList[index].id);
-              //   //   },
-              //   //   tabController: _tabController,
-              //   // ),
-              // ),
             )),
         SliverPadding(
           padding: EdgeInsets.all(10.w),
         ),
-        buildSliverGrid(),
+        SliverPadding(
+          padding: EdgeInsets.only(left: 20.w,right: 20.w),
+          sliver: buildSliverGrid(),
+        ),
 
-        // EasyRefresh(
-        //   firstRefresh: false,
-        //   enableControlFinishLoad: false,
-        //   header: MaterialHeader(),
-        //   footer: MaterialFooter(),
-        //   controller: _refreshController,
-        //   onRefresh: () async {
-        //     _pageNum = 1;
-        //     await updateMarketInfo();
-        //     setState(() {});
-        //   },
-        //   onLoad: () async {
-        //     _pageNum++;
-        //     await loadMarketInfo();
-        //     if (_pageCount <= _pageNum) {
-        //       _refreshController.finishLoad(noMore: false);
-        //     }
-        //     setState(() {});
-        //   },
-        //   child: WaterfallFlow.builder(
-        //     gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-        //       crossAxisCount: 2,
-        //       mainAxisSpacing: 20.w,
-        //       crossAxisSpacing: 20.w,
-        //     ),
-        //     padding: EdgeInsets.all(32.w),
-        //     itemBuilder: (context, index) {
-        //       final item = _hotItems[index];
-        //       return GoodsCard(item: item);
-        //     },
-        //     itemCount: _hotItems.length,
-        //   ),
-        // ),
       ],
     );
   }
 
   SliverGrid buildSliverGrid() {
     return SliverGrid(
+
         // child: WaterfallFlow.builder(
         //   gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
         //     crossAxisCount: 2,
@@ -303,20 +205,23 @@ class _MarketPageState extends State<MarketPage>
             crossAxisCount: 2,
             mainAxisSpacing: 20.w,
             crossAxisSpacing: 20.w,
+            childAspectRatio:0.57,
       ),
+
       ///子Item构建器
       delegate: new SliverChildBuilderDelegate(
             (BuildContext context, int index) {
+
           ///每一个子Item的样式
-              //return GoodsCard(item:  _hotItems[index]);
-              return Container(
-                width: 200.w,
-                  height: 200.w,
-                color: Colors.blue,
-              );
+              return GoodsCard(item:  _hotItems[index]);
+              // return Container(
+              //   width: 200.w,
+              //     height: 200.w,
+              //   color: Colors.blue,
+              // );
         },
         ///子Item的个数
-        childCount: 20,//_hotItems.length,
+        childCount: _hotItems.length,
       ),
     );
   }
@@ -345,29 +250,6 @@ class _MarketPageState extends State<MarketPage>
 
   Widget _buildTitle() {
     final appProvider = Provider.of<AppProvider>(context);
-    double iconSize = 18.w;
-    // MaterialButton ges = MaterialButton(
-    //     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-    //     height: 74.w,
-    //     shape: StadiumBorder(),
-    //     elevation: 0,
-    //     minWidth: double.infinity,
-    //     color: Colors.white,
-    //     onPressed: () {
-    //       Get.to(() => BeeSearch());
-    //     },
-    //     child: Row(
-    //       children: [
-    //         Icon(
-    //           Icons.search,
-    //           size: 32.w,
-    //           color: Color(0xFF666666),
-    //         ),
-    //         10.wb,
-    //         '请输入关键字'.text.size(28.sp).color(ktextSubColor).make().expand(),
-    //       ],
-    //     ),
-    //   );
 
     return Container(
       height: kToolbarHeight,
@@ -442,31 +324,13 @@ class _MarketPageState extends State<MarketPage>
                   ),
                   geSearch(),
                   20.hb,
-                  getNum()
-                  // Container(
-                  //   color: Colors.blue,
-                  //   width: 300,
-                  //   height: 300,
-                  // ),
-
-
-                  // HomeWeatherWidget(
-                  //   backgroundColor: Colors.white.withAlpha(0),
-                  //   homeWeatherModel: _homeWeatherModel,
-                  // ),
-                  // _bannerView(),
-                  // _buildGoodsCards(),
-                  // kingCoinListModelList != null
-                  //     ? _buttonTitle(context)
-                  //     : SizedBox(),
-                  // _activityImageTitle(),
-                  // _activityImageRow(),
-                  // _activityT4Image(),
-                  // HomeCountdownWidget(
-                  //   height: timeHeight,
-                  //   controller: _homeCountdownController,
-                  //   promotionList: _promotionList,
-                  // ),
+                  getNum(),
+                  20.hb,
+                  HomeSwiper(),
+                  20.hb,
+                  _buttonTitle(),
+                  20.hb,
+                  _recommend(),
 
                 ],
               ),
@@ -480,7 +344,6 @@ class _MarketPageState extends State<MarketPage>
    return  Container(
      margin: EdgeInsets.symmetric(horizontal: 24.w),
      child: MaterialButton(
-
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         height: 74.w,
         shape: StadiumBorder(),
@@ -538,18 +401,21 @@ class _MarketPageState extends State<MarketPage>
 
                 ),
                 child: Container(
-
+                  height: 50.w,
                   width: 682.w,
                   decoration: BoxDecoration(
                     //color: Color(0x99F5AF16),
                     borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12)),
-                    border: Border.all(width: 1.w,color: Color(0x99F5AF16)),
+                    border: Border.all(width: 2.w,color: Color(0x99F5AF16)),
 
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
+                      80.wb,
+                      Image.asset(R.ASSETS_ICONS_SHOP_LABA_PNG,width: 36.w,height: 34.w,),
+                      20.wb,
+                      Text('今日上新1231件',style: TextStyle(color: Color(0xFFD0564B),fontSize: 24.sp,height: 1.05),),
                     ],
                   ),
                 ),
@@ -587,8 +453,294 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
+  Widget HomeSwiper() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      width: double.infinity,
+      height: bannerHeight,
+      child: AspectRatio(
+        aspectRatio: 355 / 177,
+        child: Swiper(
+          key: UniqueKey(),
+          itemBuilder: (BuildContext context, int index) {
+            return getSwiperImage(_swiperModels[index]);
+          },
+
+          pagination: SwiperPagination(
+              alignment: Alignment.bottomRight,
+              builder: SwiperCustomPagination(
+                  builder: (BuildContext context, SwiperPluginConfig config) {
+                    return RectIndicator(
+                      position: config.activeIndex,
+                      count: _swiperModels.length,
+                      activeColor: Color(0x99FFFFFF),
+                      color: Color(0xD9FFFFFF),
+                      //未选中 指示器颜色，选中的颜色key为Color
+                      width: 4,
+                      //指示器宽度
+                      activeWidth: 14,
+                      //选中的指示器宽度
+                      radius: 4,
+                      //指示器圆角角度
+                      height: 4,
+                    ); //指示器高度
+                  })),
+          scrollDirection: Axis.horizontal,
+          // control: new SwiperControl(),
+          autoplay: true,
+          onTap: (index) {
+            Get.to(() =>
+                PublicInformationDetailPage(id: _swiperModels[index].newsId!));
+          },
+          itemCount: _swiperModels.length,
+        ),
+      ),
+    );
+  }
+
+  Widget getSwiperImage(SwiperModel swiperModel) {
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(12.w)),
+      ),
+      child:
+      FadeInImage.assetNetwork(
+        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+        image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
+        fit: BoxFit.fill,
+
+        imageErrorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            fit: BoxFit.fill,
+          );
+        },
+      ),
+    );
+  }
 
 
+  _buttonTitle() {
+    Container titles = Container(
+      alignment: Alignment.center,
+
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.w),
+      ),
+      child:
+
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+
+
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+          28.hb,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+                    _buttonTitleRow(
+
+                    ),
+
+
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      height: buttonsHeight,
+      width: MediaQuery.of(context).size.width,
+      child: titles,
+    );
+  }
+
+  Widget getkingCoin() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.w),
+      width: double.infinity,
+      height: buttonsHeight,
+      child:_buttonTitleRow(),
+    );
+  }
+
+
+  _buttonTitleRow({onPressed}) {
+    return Expanded(
+      child: CupertinoButton(
+        padding: EdgeInsets.zero,
+        child: Column(
+          children: <Widget>[
+            Container(
+                width: 88.w,
+                height: 88.w,
+                child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 88.w,height: 88.w,),
+                // FadeInImage.assetNetwork(
+                //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 6.w),
+              child: Text(
+                '数码产品',
+                style: TextStyle(
+
+                    fontSize: 28.sp,
+                    color: Color(0xFF333333)),
+              ),
+            )
+          ],
+        ),
+        onPressed: () {
+          if (onPressed != null) {
+            onPressed();
+          }
+        },
+      ),
+    );
+  }
+
+
+  _recommend(){
+    return Container(
+        height: 184.w,
+        margin: EdgeInsets.only(left: 20.w,right: 20.w),
+        padding: EdgeInsets.only(top: 8.w,left: 16.w,right: 16.w),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.w),
+    ),
+    child:
+    Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              '爆款推荐',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28.sp,
+                  color: ktextPrimary),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            20.wb,
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            20.wb,
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            20.wb,
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            20.wb,
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+            20.wb,
+            Container(
+              width: 96.w,
+              height: 96.w,
+              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
+            ),
+          ],
+        ).expand(),
+      ],
+    )
+    );
+  }
 
 
 

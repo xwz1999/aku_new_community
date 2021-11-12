@@ -340,6 +340,14 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_car.png)
   static const String ASSETS_ICONS_SHOP_CAR_PNG = 'assets/icons/shop_car.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_close.png)
+  static const String ASSETS_ICONS_SHOP_CLOSE_PNG =
+      'assets/icons/shop_close.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_favorfill.png)
+  static const String ASSETS_ICONS_SHOP_FAVORFILL_PNG =
+      'assets/icons/shop_favorfill.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_laba.png)
   static const String ASSETS_ICONS_SHOP_LABA_PNG = 'assets/icons/shop_laba.png';
 
@@ -358,6 +366,9 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_search.png)
   static const String ASSETS_ICONS_SHOP_SEARCH_PNG =
       'assets/icons/shop_search.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/shop_torb.png)
+  static const String ASSETS_ICONS_SHOP_TORB_PNG = 'assets/icons/shop_torb.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/system_notice.png)
   static const String ASSETS_ICONS_SYSTEM_NOTICE_PNG =
@@ -402,6 +413,10 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/tabbar_user_no.png)
   static const String ASSETS_ICONS_TABBAR_USER_NO_PNG =
       'assets/icons/tabbar_user_no.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/test_kingcion.png)
+  static const String ASSETS_ICONS_TEST_KINGCION_PNG =
+      'assets/icons/test_kingcion.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/tool_bmdh.png)
   static const String ASSETS_ICONS_TOOL_BMDH_PNG = 'assets/icons/tool_bmdh.png';

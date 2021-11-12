@@ -22,7 +22,7 @@ class HomeSliverAppBar extends StatefulWidget {
 }
 
 class HomeSliverAppBarState extends State<HomeSliverAppBar> {
-  Color _displayColor = Colors.blue;
+  Color _displayColor = Colors.red;
 
   updateColor(Color color) {
     setState(() {

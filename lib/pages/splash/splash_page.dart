@@ -148,53 +148,48 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             Align(
               alignment: Alignment.topCenter,
-              child:Row(
+              child:
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
 
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        380.hb,
+
                         Text('追\n求',style: TextStyle(color:Color(0xFF000000),fontSize: 40.sp,height: 1.15),),
                       ],
                     ),
-                    height: 400,
+                    margin: EdgeInsets.only(top: 450.w),
+
                   ),
                   25.wb,
                   Container(
                     child:
-                    Row(
-                      children: [
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+
                             Text('更\n便\n捷\n的\n生\n活\n方\n程\n式',style: TextStyle(color:Color(0xFF000000),fontSize: 40.sp,height: 1.15),),
-                            40.hb,
+
                           ],
                         ),
-                        20.wb,
-                        Column(
-                          children: [
-                            580.hb,
-                            Container(
-                              height: 400.w,
-                              width: 2.w,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [Color(0x99000000), Color(0x00000000)],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter),
-                                borderRadius:  BorderRadius.circular(2.w),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    height: 472,
+                    margin: EdgeInsets.only(top: 530.w),
                   ),
+                  25.wb,
+                  Container(
+                        height: 400.w,
+                        width: 2.w,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [Color(0x99000000), Color(0x00000000)],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter),
+                          borderRadius:  BorderRadius.circular(2.w),
+                        ),
+                      ),
 
 
                 ],

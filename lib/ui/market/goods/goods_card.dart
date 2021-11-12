@@ -33,8 +33,11 @@ class GoodsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 1,
+          Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12.w)),
+            ),
             child: Stack(
               children: [
                 FadeInImage.assetNetwork(
@@ -70,17 +73,28 @@ class GoodsCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 12.w,
-              vertical: 20.w,
+              vertical: 10.w,
+            ),
+            child: Container(
+
+            )
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.w,
+              vertical: 10.w,
             ),
             child: Text(
               item.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 24.sp,
+                  fontSize: 28.sp,
+                  color: ktextPrimary
               ),
             ),
           ),
+
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 12.w,
@@ -112,4 +126,7 @@ class GoodsCard extends StatelessWidget {
       ),
     );
   }
+  
+
+
 }
