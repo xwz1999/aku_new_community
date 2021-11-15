@@ -34,6 +34,7 @@ class _PersonalIndexState extends State<PersonalIndex>
       toolbarHeight: 0,
       elevation: 0,
       floating: true,
+
       expandedHeight: 450.w - height,
       backgroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(

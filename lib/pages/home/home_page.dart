@@ -30,7 +30,6 @@ import 'package:aku_community/const/resource.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/board_model.dart';
-import 'package:aku_community/models/news/news_category_model.dart';
 import 'package:aku_community/pages/home/widget/animate_app_bar.dart';
 import 'package:aku_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
@@ -39,17 +38,11 @@ import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/home/home_notification.dart';
 import 'package:aku_community/ui/home/home_title.dart';
-import 'package:aku_community/ui/home/public_infomation/public_infomation_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/buttons/column_action_button.dart';
-import 'package:aku_community/widget/views/application_box.dart';
-import 'package:aku_community/widget/views/application_view.dart';
 import 'widget/home_search.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -113,11 +106,11 @@ class _HomePageState extends State<HomePage>
                 height: 40.w, width: 40.w),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 16, left: 12),
+            padding: EdgeInsets.only(right: 16.w, left: 12.w),
             child: Badge(
                 elevation: 0,
                 badgeColor: Color(0xFFCF2525),
-                padding: sum > 9 ? EdgeInsets.all(2) : EdgeInsets.all(5),
+                padding: sum > 9 ? EdgeInsets.all(2.w) : EdgeInsets.all(5.w),
                 showBadge: appProvider.messageCenterModel.commentCount != 0 ||
                     appProvider.messageCenterModel.sysCount != 0,
                 position: BadgePosition.topEnd(
@@ -126,7 +119,7 @@ class _HomePageState extends State<HomePage>
                 ),
                 badgeContent: Text(
                   (sum).toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 10),
+                  style: TextStyle(color: Colors.white, fontSize: 10.sp),
                 ),
                 child: GestureDetector(
                   onTap: () {

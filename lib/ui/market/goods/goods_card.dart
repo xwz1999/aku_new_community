@@ -71,21 +71,12 @@ class GoodsCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-              vertical: 10.w,
-            ),
-            child: Container(
-
-            )
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-              vertical: 10.w,
+            padding: EdgeInsets.only(
+              left: 16.w,right: 16.w,
+              top: 10.w,
             ),
             child: Text(
-              item.title,
+              item.title+'98-034789reuyguiuioprguioptuiop348907r789-0re8097grt789rge978-ge',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -96,17 +87,56 @@ class GoodsCard extends StatelessWidget {
           ),
 
           Padding(
+            padding: EdgeInsets.only(
+              left: 16.w,right: 16.w,
+              top: 10.w,
+            ),
+            child: Container(
+                child: _getIcon(1),
+            )
+          ),
+
+
+          Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
+              horizontal: 16.w,
             ),
             child: RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '¥${item.sellingPrice} ',
+                    text: '¥',
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 28.sp,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${item.sellingPrice} ',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.w,
+            ),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: '原价：¥',
+                    style: TextStyle(
+                      color: ktextSubColor,
+                      fontSize: 20.sp,
+
                     ),
                   ),
                   TextSpan(
@@ -121,10 +151,88 @@ class GoodsCard extends StatelessWidget {
               ),
             ),
           ),
-          16.hb,
+        Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.w,
+            ),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: '折扣：',
+                    style: TextStyle(
+                      color: ktextSubColor,
+                      fontSize: 20.sp,
+
+                    ),
+                  ),
+                  TextSpan(
+                    text: '9折',
+                    style: TextStyle(
+                      color: ktextSubColor,
+                      fontSize: 20.sp,
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
         ],
       ),
     );
+  }
+
+
+  Widget _getIcon(int type){
+    if(type==1){
+      return Container(
+        width: 86.w,
+        height: 26.w,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.w), ),
+          gradient: LinearGradient(
+            begin: FractionalOffset.centerLeft,
+            end: FractionalOffset.centerRight,
+            colors: <Color>[Color(0xFFEC5329), Color(0xFFF58123)],
+          ),
+        ),
+        child: Text(
+         '京东自营',
+          style: TextStyle(
+              fontSize: 18.sp,
+              color: kForeGroundColor
+          ),
+        ),
+      );
+    }
+    else if(type==2){
+      return Container(
+        alignment: Alignment.center,
+        width: 86.w,
+        height: 30.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.w), ),
+          gradient: LinearGradient(
+            begin: FractionalOffset.centerLeft,
+            end: FractionalOffset.centerRight,
+            colors: <Color>[Color(0xFFF59B1C), Color(0xFFF5AF16)],
+          ),
+        ),
+        child: Text(
+          '京东POP',
+          style: TextStyle(
+              fontSize: 18.sp,
+              color: kForeGroundColor
+          ),
+        ),
+      );
+
+    }
+    else
+      return SizedBox();
   }
   
 

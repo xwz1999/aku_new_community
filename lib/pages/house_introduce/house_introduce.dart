@@ -103,7 +103,7 @@ class _HouseIntroducePageState extends State<HouseIntroducePage> {
 
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '住房介绍',
+      title: '住房说明',
       systemStyle: SystemStyle.genStyle(bottom: Color(0xFF2A2A2A)),
       body: BeeListView<HouseIntroduceModel>(
         path: API.manager.houseType,

@@ -97,7 +97,7 @@ List<AO> appObjects = [
 
   AO('地理信息', R.ASSETS_ICONS_INTRODUCE_PNG, () => GeographicInformationPage()),
   AO('周边企业', R.ASSETS_ICONS_HOUSE_KEEPING_PNG, () => SurroundingEnterprisesPage()),
-  AO('住房介绍', R.ASSETS_ICONS_INTRODUCE_PNG, () => HouseIntroducePage()),
+  AO('住房说明', R.ASSETS_ICONS_INTRODUCE_PNG, () => HouseIntroducePage()),
 
   // AO(
   //   '小区教育',
@@ -185,7 +185,7 @@ List<String> _smartManagerApp = [
   '家政服务',
   '地理信息',
   '周边企业',
-  '住房介绍'
+  '住房说明'
 
 
 
@@ -199,3 +199,65 @@ List<String> _smartManagerApp = [
 ///智慧管家
 List<AO> get smartManagerApp =>
     _smartManagerApp.map((e) => AO.fromRaw(e)).toList();
+
+///出行安全
+List<String> _getOutApp = [
+  // if (false) '一键开门',
+  '开门码',
+  '访客邀请',
+  '物品出门',
+  '一键报警',
+];
+
+///出行安全
+List<AO> get getOutApp =>
+    _getOutApp.map((e) => AO.fromRaw(e)).toList();
+
+
+
+
+///物业服务
+List<String> _propertyServicesApp = [
+  // if (false) '一键开门',
+  '报事报修',
+  '设施预约',
+  '生活缴费',
+  '装修管理',
+];
+
+///物业服务
+List<AO> get propertyServicesApp =>
+    _propertyServicesApp.map((e) => AO.fromRaw(e)).toList();
+
+
+///居民生活
+List<String> _residentLifeApp = [
+  '便民电话',
+  '问卷调查',
+  '建议咨询',
+  '活动投票',
+  '设施预约',
+  '借还管理',
+  '业委会',
+  '快递包裹',
+];
+
+///居民生活
+List<AO> get residentLifeApp =>
+    _residentLifeApp.map((e) => AO.fromRaw(e)).toList();
+
+///About community
+List<String> _aboutCommunityApp = [
+
+
+  '服务浏览',
+  '社区介绍',
+  // '地理信息',
+  // '周边企业',
+  '住房说明',
+  '电子商务',
+];
+
+///智慧管家
+List<AO> get aboutCommunityApp =>
+    _aboutCommunityApp.map((e) => AO.fromRaw(e)).toList();

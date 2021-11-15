@@ -1,4 +1,5 @@
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/pages/property/property_page.dart';
 import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/ui/community/community_views/community_page.dart';
 import 'package:aku_community/ui/market/market_page.dart';
@@ -40,7 +41,7 @@ class _TabNavigatorState extends State<TabNavigator>
     _pages = [
       HomePage(),
       MarketPage(),
-      PropertyIndex(),
+      PropertyPage(),//PropertyIndex(),
       CommunityPage(),
       PersonalIndex()
     ];

@@ -268,11 +268,12 @@ class _MarketPageState extends State<MarketPage>
                     children: [
                       if (appProvider.location != null)
                         Padding(
-                          padding:EdgeInsets.only(right: 5.w),
+                          padding:EdgeInsets.only(right: 5.w,top: 5.w),
                           child: Image.asset(
                             R.ASSETS_ICONS_SHOP_LOCATION_PNG,
-                            width: 48.w,
-                            height: 48.w,
+                            width: 40.w,
+                            height: 40.w,
+                            fit: BoxFit.fitHeight,
                             //color: Colors.white,
                           ),
                         ),
