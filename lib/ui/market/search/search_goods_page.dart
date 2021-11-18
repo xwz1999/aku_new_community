@@ -85,13 +85,20 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
       onPressed: () {
         _orderType = OrderType.NORMAL;
         priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        orderBySalesVolume = null;
+        orderByPrice = null;
+        _refreshController1.callRefresh();
         setState(() {});
       },
       child: Text(
         '综合',
         style: TextStyle(
           color:
-              _orderType == OrderType.NORMAL ? kDarkPrimaryColor : ktextPrimary,
+          _orderType == OrderType.NORMAL ? kBalckSubColor : ktextPrimary,
+          fontSize: _orderType == OrderType.NORMAL ? 32.sp : 28.sp,
+          fontWeight: _orderType == OrderType.NORMAL
+              ?FontWeight.bold
+              : FontWeight.normal,
         ),
       ),
       height: 80.w,
@@ -100,14 +107,21 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     final salesTypeButton = MaterialButton(
       onPressed: () {
         _orderType = OrderType.SALES;
+        orderBySalesVolume = 2;
+        orderByPrice = null;
         priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        _refreshController1.callRefresh();
         setState(() {});
       },
       child: Text(
         '销量',
         style: TextStyle(
           color:
-              _orderType == OrderType.SALES ? kDarkPrimaryColor : ktextPrimary,
+          _orderType == OrderType.SALES ? kBalckSubColor : ktextPrimary,
+          fontSize: _orderType == OrderType.SALES ? 32.sp : 28.sp,
+          fontWeight: _orderType == OrderType.SALES
+              ?FontWeight.bold
+              : FontWeight.normal,
         ),
       ),
       height: 80.w,
@@ -120,17 +134,24 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
           case OrderType.NORMAL:
           case OrderType.SALES:
             _orderType = OrderType.PRICE_HIGH;
+            orderByPrice = 1;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_up;
             break;
           case OrderType.PRICE_HIGH:
             _orderType = OrderType.PRICE_LOW;
+            orderByPrice = 2;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_down;
             break;
           case OrderType.PRICE_LOW:
             _orderType = OrderType.PRICE_HIGH;
+            orderByPrice = 1;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_up;
             break;
         }
+        _refreshController1.callRefresh();
         setState(() {});
       },
       child: Row(
@@ -139,17 +160,25 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
             '价格',
             style: TextStyle(
               color: _orderType == OrderType.PRICE_HIGH ||
-                      _orderType == OrderType.PRICE_LOW
-                  ? kDarkPrimaryColor
+                  _orderType == OrderType.PRICE_LOW
+                  ? kBalckSubColor
                   : ktextPrimary,
+              fontSize: _orderType == OrderType.PRICE_HIGH ||
+                  _orderType == OrderType.PRICE_LOW
+                  ? 32.sp
+                  : 28.sp,
+              fontWeight: _orderType == OrderType.PRICE_HIGH ||
+                  _orderType == OrderType.PRICE_LOW
+                  ?FontWeight.bold
+                  : FontWeight.normal,
             ),
           ),
           Icon(
             priceIcon,
             size: 32.w,
             color: _orderType == OrderType.PRICE_HIGH ||
-                    _orderType == OrderType.PRICE_LOW
-                ? kDarkPrimaryColor
+                _orderType == OrderType.PRICE_LOW
+                ? kBalckSubColor
                 : ktextPrimary,
           ),
         ],

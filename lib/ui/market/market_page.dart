@@ -158,6 +158,98 @@ class _MarketPageState extends State<MarketPage>
   }
 
   Widget _buildBody(BuildContext context) {
+    final normalTypeButton = MaterialButton(
+      onPressed: () {
+        _orderType = OrderType.NORMAL;
+        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        setState(() {});
+      },
+      child: Text(
+        '综合',
+        style: TextStyle(
+          color:
+          _orderType == OrderType.NORMAL ? kBalckSubColor : ktextPrimary,
+          fontSize: _orderType == OrderType.NORMAL ? 32.sp : 28.sp,
+          fontWeight: _orderType == OrderType.NORMAL
+              ?FontWeight.bold
+              : FontWeight.normal,
+        ),
+      ),
+      height: 80.w,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    );
+    final salesTypeButton = MaterialButton(
+      onPressed: () {
+        _orderType = OrderType.SALES;
+        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        setState(() {});
+      },
+      child: Text(
+        '销量',
+        style: TextStyle(
+          color:
+          _orderType == OrderType.SALES ? kBalckSubColor : ktextPrimary,
+          fontSize: _orderType == OrderType.SALES ? 32.sp : 28.sp,
+          fontWeight: _orderType == OrderType.SALES
+              ?FontWeight.bold
+              : FontWeight.normal,
+        ),
+      ),
+      height: 80.w,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    );
+
+    final priceButton = MaterialButton(
+      onPressed: () {
+        switch (_orderType) {
+          case OrderType.NORMAL:
+          case OrderType.SALES:
+            _orderType = OrderType.PRICE_HIGH;
+            priceIcon = CupertinoIcons.chevron_up;
+            break;
+          case OrderType.PRICE_HIGH:
+            _orderType = OrderType.PRICE_LOW;
+            priceIcon = CupertinoIcons.chevron_down;
+            break;
+          case OrderType.PRICE_LOW:
+            _orderType = OrderType.PRICE_HIGH;
+            priceIcon = CupertinoIcons.chevron_up;
+            break;
+        }
+        setState(() {});
+      },
+      child: Row(
+        children: [
+          Text(
+            '价格',
+            style: TextStyle(
+              color: _orderType == OrderType.PRICE_HIGH ||
+                  _orderType == OrderType.PRICE_LOW
+                  ? kBalckSubColor
+                  : ktextPrimary,
+              fontSize: _orderType == OrderType.PRICE_HIGH ||
+                  _orderType == OrderType.PRICE_LOW
+                  ? 32.sp
+                  : 28.sp,
+              fontWeight: _orderType == OrderType.PRICE_HIGH ||
+                  _orderType == OrderType.PRICE_LOW
+                  ?FontWeight.bold
+                  : FontWeight.normal,
+            ),
+          ),
+          Icon(
+            priceIcon,
+            size: 32.w,
+            color: _orderType == OrderType.PRICE_HIGH ||
+                _orderType == OrderType.PRICE_LOW
+                ? kBalckSubColor
+                : ktextPrimary,
+          ),
+        ],
+      ),
+      height: 80.w,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    );
     return CustomScrollView(
       controller: _sliverListController,
       slivers: <Widget>[
@@ -174,7 +266,7 @@ class _MarketPageState extends State<MarketPage>
 
             bottom:  PreferredSize(
               preferredSize: Size.fromHeight(tabBarHeight),
-              child: _goodsTitle()
+              child: _goodsTitle( normalTypeButton, salesTypeButton, priceButton,)
             )),
         SliverPadding(
           padding: EdgeInsets.all(10.w),
@@ -752,7 +844,7 @@ class _MarketPageState extends State<MarketPage>
 
 
 
-  _goodsTitle(){
+  _goodsTitle(Widget normalTypeButton,Widget salesTypeButton,Widget priceButton,){
     return Container(
       height: 90.w,
       alignment: Alignment.centerLeft,
@@ -762,153 +854,21 @@ class _MarketPageState extends State<MarketPage>
       Container(
         alignment: Alignment.centerLeft,
         height: 60.w,
-        child:
-        TabBar(
-            onTap: (index) {
-              // _presenter.fetchList(_category.id, 0, _sortType);
-              setState(() {});
-            },
-            isScrollable: true,
-            labelPadding: EdgeInsets.zero,
-            controller: _tabController,
-            labelColor: Color(0xFFF9F9F9),
-            indicatorPadding: EdgeInsets.symmetric(horizontal: 40.w),
-            indicatorSize: TabBarIndicatorSize.label,
-            unselectedLabelColor: Colors.black54,
-            labelStyle: TextStyle(color: Colors.black54),
-            indicatorColor: Color(0xFFE52E2E),
-            tabs: _tabItems()),
-      ),
-    );
-  }
-  List<Widget> _tabItems() {
-    return [_tabItemComprehensive(0,'综合推荐'),_tabItemSalesVolume(1,'销量'),_tabItemPrice(2,'价格')];
-  }
-
-  _tabItemComprehensive(int index,String text) {
-    bool isChoose = index == _tabController.index;
-    // Color textColor = index == _tabController.index
-    //     ? getCurrentThemeColor()
-    //     : Colors.black.withOpacity(0.9);
-    return Tab(
-      child: GestureDetector(
-        onTap: (){
-          _orderType = OrderType.NORMAL;
-          priceIcon = CupertinoIcons.chevron_up_chevron_down;
-          setState(() {});
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 150.w,
-          // color: Colors.white,
-          color: Color(0xFFF9F9F9),
-         padding: EdgeInsets.only(left: 10.w, right: 10.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                text,
-                style: TextStyle(
-                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
-                    fontSize: isChoose?32.sp:28.sp,
-                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
-              ),
-            ],
-          ),
+        child:Row(
+          children: [
+            normalTypeButton,
+            salesTypeButton,
+            priceButton,
+          ],
         ),
+
       ),
     );
   }
 
-  _tabItemSalesVolume(int index,String text) {
-    bool isChoose = index == _tabController.index;
-    // Color textColor = index == _tabController.index
-    //     ? getCurrentThemeColor()
-    //     : Colors.black.withOpacity(0.9);
-    return Tab(
-      child: GestureDetector(
-        onTap: (){
-          _orderType = OrderType.SALES;
-          priceIcon = CupertinoIcons.chevron_up_chevron_down;
-          setState(() {});
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 150.w,
-          // color: Colors.white,
-          color: Color(0xFFF9F9F9),
-          padding: EdgeInsets.only(left: 10.w, right: 10.w),
-          child: Row(
-            children: [
-              Text(
-                text,
-                style: TextStyle(
-                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
-                    fontSize: isChoose?32.sp:28.sp,
-                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
-              ),
-              Icon(
-                priceIcon,
-                size: 32.w,
-                color: _orderType == OrderType.PRICE_HIGH ||
-                    _orderType == OrderType.PRICE_LOW
-                    ? kDarkPrimaryColor
-                    : ktextPrimary,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
-  _tabItemPrice(int index,String text) {
-    bool isChoose = index == _tabController.index;
-    // Color textColor = index == _tabController.index
-    //     ? getCurrentThemeColor()
-    //     : Colors.black.withOpacity(0.9);
-    return Tab(
-      child: GestureDetector(
-        onTap: (){
-          switch (_orderType) {
-            case OrderType.NORMAL:
-            case OrderType.SALES:
-              _orderType = OrderType.PRICE_HIGH;
-              priceIcon = CupertinoIcons.chevron_up;
-              break;
-            case OrderType.PRICE_HIGH:
-              _orderType = OrderType.PRICE_LOW;
-              priceIcon = CupertinoIcons.chevron_down;
-              break;
-            case OrderType.PRICE_LOW:
-              _orderType = OrderType.PRICE_HIGH;
-              priceIcon = CupertinoIcons.chevron_up;
-              break;
-          }
-          setState(() {});
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 150.w,
-          // color: Colors.white,
-          color: Color(0xFFF9F9F9),
-          padding: EdgeInsets.only(left: 10.w, right: 10.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                text,
-                style: TextStyle(
-                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
-                    fontSize: isChoose?32.sp:28.sp,
-                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+
+
 
 
 

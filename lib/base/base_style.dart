@@ -11,6 +11,7 @@ const kPrimaryColor = Color(0xFFFFC40C);
 const kDarkPrimaryColor = Color(0xFFFF8200);
 const kDangerColor = Color(0xFFFF3B30);
 const kDarkSubColor = Color(0xFF979797);
+const kBalckSubColor = Color(0xFF000000);
 
 class BaseStyle {
   ///字体类
