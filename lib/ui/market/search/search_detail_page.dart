@@ -1,16 +1,6 @@
-import 'dart:math';
-
 import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
 import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/market/collection/collection_list_card.dart';
-import 'package:aku_community/ui/market/collection/my_collection.dart';
-import 'package:aku_community/ui/market/search/search_detail_page.dart';
-import 'package:aku_community/ui/market/search/search_func.dart';
 import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/utils/text_utils.dart';
 import 'package:aku_community/widget/bee_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +18,6 @@ import 'package:aku_community/ui/market/goods/goods_card.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 
-import 'goods_list_card.dart';
-
 enum OrderType {
   NORMAL,
   SALES,
@@ -37,44 +25,32 @@ enum OrderType {
   PRICE_LOW,
 }
 
-class SearchGoodsPage extends StatefulWidget {
-  SearchGoodsPage({Key? key}) : super(key: key);
+class SearchDetailPage extends StatefulWidget {
+  SearchDetailPage({Key? key}) : super(key: key);
 
   @override
-  SearchGoodsPageState createState() => SearchGoodsPageState();
+  SearchDetailPageState createState() => SearchDetailPageState();
 }
 
-class SearchGoodsPageState extends State<SearchGoodsPage> {
+class SearchDetailPageState extends State<SearchDetailPage> {
   TextEditingController _editingController = TextEditingController();
   OrderType _orderType = OrderType.NORMAL;
   IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
   EasyRefreshController _refreshController = EasyRefreshController();
-  EasyRefreshController _refreshController1 = EasyRefreshController();
   List<String> _searchHistory = [];
   String _searchText = "";
   FocusNode _contentFocusNode = FocusNode();
   bool _showList = true;
-  bool _startSearch = false;
-   int? orderBySalesVolume;
-   int? orderByPrice;
-   int? brandId;
-   double? minPrice;
-   double? maxPrice;
-    late List<SearchGoodsModel> _models;
-  ScrollController  _scrollController= new ScrollController();
 
   @override
   void initState() {
     super.initState();
-
     getSearchListFromSharedPreferences();
   }
 
   @override
   void dispose() {
     _refreshController.dispose();
-    _refreshController1.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -157,24 +133,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
       height: 80.w,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-    return
-      BeeScaffold(
-        // fab:  FloatingActionButton(
-        //   backgroundColor: Colors.transparent,
-        //   foregroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   highlightElevation: 0,
-        //   shape: new ,
-        //   onPressed: ()  {
-        //   },
-        //   child: Column(
-        //     children: [
-        //       Image.asset(R.ASSETS_ICONS_COLLECT_PNG,width: 84.w,height: 84.w,),
-        //       24.hb,
-        //       Image.asset(R.ASSETS_ICONS_ICON_TOTOP_PNG,width: 84.w,height: 84.w,),
-        //     ],
-        //   ),
-        // ),
+    return BeeScaffold(
       titleSpacing: 0,
       bgColor: Color(0xFFF9F9F9),
       bodyColor: Color(0xFFF9F9F9),
@@ -191,19 +150,25 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
               },
               focusNode: _contentFocusNode,
               onChanged: (text) {
-                _startSearch = false;
                 _searchText = text;
                 setState(() {});
               },
               onSubmitted: (_submitted) async {
-                if (TextUtils.isEmpty(_searchText)) return;
-                _startSearch = true;
                 _contentFocusNode.unfocus();
-                _searchText = _searchText.trimLeft();
-                _searchText = _searchText.trimRight();
-                remember();
+                if (_searchHistory.contains(_searchText)) {
+                  _searchHistory.remove(_searchText);
+                  List<String> list = [_searchText];
+                  list.addAll(_searchHistory);
+                  _searchHistory = list;
+                } else {
+                  List<String> list = [_searchText];
+                  list.addAll(_searchHistory);
+                  _searchHistory = list;
+                  while (_searchHistory.length > 15) {
+                    _searchHistory.removeLast();
+                  }
+                }
                 saveSearchListToSharedPreferences(_searchHistory);
-                _refreshController1.callRefresh();
                 setState(() {});
               },
               style: TextStyle(
@@ -237,198 +202,61 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
             ),
           ),
           20.wb,
-          GestureDetector(
-            onTap: (){
-              if (TextUtils.isEmpty(_searchText)) return;
-              _startSearch = true;
-              _contentFocusNode.unfocus();
-              _searchText = _searchText.trimLeft();
-              _searchText = _searchText.trimRight();
-              remember();
-              saveSearchListToSharedPreferences(_searchHistory);
-              _refreshController1.callRefresh();
-              setState(() {});
-            },
-            child: Text(
-              '搜索',
-              style: TextStyle(color: ktextPrimary, fontSize: 28.sp),
-            ),
+          Image.asset(R.ASSETS_ICONS_ICON_CHANGE_LIST_PNG,width: 48.w,height: 48.w,),
+
+          Text(
+            '搜索',
+            style: TextStyle(color: ktextPrimary, fontSize: 28.sp),
           ),
         ],
       ),
-
-      body:Stack(
-
+      body: Column(
         children: [
-
-          !(!TextUtils.isEmpty(_editingController.text) &&
-              _startSearch)
-              ? Column(
+        Row(
             children: [
-              _searchHistoryWidget(),
-              10.hb,
-              Row(
-                children: [
-                  20.wb,
-                  Text(
-                    '热搜榜',
-                    style: TextStyle(
-                      color: ktextSubColor,
-                      fontSize: 32.sp,
-                    ),
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                    child: Image.asset(
-                      _showList
-                          ? R.ASSETS_ICONS_XIANSHI_PNG
-                          : R.ASSETS_ICONS_EYE_CLOSE_PNG,
-                      width: 40.w,
-                      height: 40.w,
-                    ),
-                    onTap: () {
-                      _showList = !_showList;
-                      setState(() {});
+              normalTypeButton,
+              salesTypeButton,
+              priceButton,
+            ],
+          ),
+          10.hb,
+          10.hb,
+          _showList
+              ? Container(
+                color: Color(0xFFF2F3F4),
+                child: BeeListView(
+                    path: API.market.search,
+                    controller: _refreshController,
+                    extraParams: {'searchName': ''},
+                    convert: (model) => model.tableList!
+                        .map((e) => GoodsItem.fromJson(e))
+                        .toList(),
+                    builder: (items) {
+                      return ListView.separated(
+                        padding: EdgeInsets.only(top: 10.w,
+                            left: 20.w, right: 20.w, bottom: 32.w),
+                        // gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                        //   crossAxisCount: 2,
+                        //   mainAxisSpacing: 20.w,
+                        //   crossAxisSpacing: 20.w,
+                        // ),
+                        itemBuilder: (context, index) {
+                          final item = items[index];
+                          return _hotGoodsCard(
+                              item, index); //GoodsCard(item: item);
+                        },
+                        separatorBuilder: (_, __) {
+                          return 32.w.heightBox;
+                        },
+                        itemCount: items.length,
+                      );
                     },
                   ),
-                  32.wb,
-                ],
-              ),
-              10.hb,
-              _showList
-                  ? Container(
-                color: Color(0xFFF2F3F4),
-                child: BeeListView(
-
-                  path: API.market.search,
-                  controller: _refreshController,
-                  extraParams: {'searchName': ''},
-                  convert: (model) => model.tableList!
-                      .map((e) => GoodsItem.fromJson(e))
-                      .toList(),
-                  builder: (items) {
-                    return ListView.separated(
-                      padding: EdgeInsets.only(top: 10.w,
-                          left: 20.w, right: 20.w, bottom: 32.w),
-
-                      // gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                      //   crossAxisCount: 2,
-                      //   mainAxisSpacing: 20.w,
-                      //   crossAxisSpacing: 20.w,
-                      // ),
-                      itemBuilder: (context, index) {
-                        final item = items[index];
-                        return _hotGoodsCard(
-                            item, index); //GoodsCard(item: item);
-                      },
-                      separatorBuilder: (_, __) {
-                        return 32.w.heightBox;
-                      },
-                      itemCount: items.length,
-                    );
-                  },
-                ),
               ).expand()
-                  : SizedBox(),
-            ],
-          ):Column(
-            children: [
-              Row(
-                children: [
-                  normalTypeButton,
-                  salesTypeButton,
-                  priceButton,
-                ],
-              ),
-              10.hb,
-              Container(
-                color: Color(0xFFF2F3F4),
-                child: BeeListView(
-                  path: API.market.findGoodsList,
-                  controller: _refreshController1,
-                  refreshExtra:( model) =>  _models  = model as List<SearchGoodsModel>,
-                  extraParams: {"orderBySalesVolume":orderBySalesVolume,"orderByPrice":orderByPrice,
-                    "keyword":_searchText,
-                    "brandId":brandId,"minPrice":minPrice,"maxPrice":maxPrice,},
-                  convert: (model) => model.tableList!
-                      .map((e) => SearchGoodsModel.fromJson(e))
-                      .toList(),
-                  builder: (items) {
-                    return ListView.separated(
-                      controller: _scrollController,
-                      padding: EdgeInsets.only(top: 10.w,
-                          left: 20.w, right: 20.w, bottom: 32.w),
-                      // gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                      //   crossAxisCount: 2,
-                      //   mainAxisSpacing: 20.w,
-                      //   crossAxisSpacing: 20.w,
-                      // ),
-                      itemBuilder: (context, index) {
-                        final item = items[index];
-                        return GoodsListCard(
-                          model: item,); //GoodsCard(item: item);
-                      },
-                      separatorBuilder: (_, __) {
-                        return 32.w.heightBox;
-                      },
-                      itemCount: items.length,
-                    );
-                  },
-                ),
-              ).expand(),
-            ],
-          ),
-
-          Positioned(
-            right: 26.w,
-            bottom: 92.w,
-            child:  Column(
-              children: [
-                GestureDetector(
-                  child: Image.asset(R.ASSETS_ICONS_COLLECT_PNG,width: 84.w,height: 84.w,),
-                  onTap: (){
-                    Get.to(() => MyCollectionPage());
-
-                  },
-                ),
-                24.hb,
-                GestureDetector(
-                  child: Image.asset(R.ASSETS_ICONS_ICON_TOTOP_PNG,width: 84.w,height: 84.w,),
-                  onTap: (){
-                    _scrollController.jumpToTop();
-                  },
-                ),
-
-              ],
-            ),
-          ),
+              : SizedBox(),
         ],
-      )
-
-
-
-
-
+      ),
     );
-  }
-
-  ///保存搜索记录
-  remember() {
-      if (_searchHistory.contains(_searchText)) {
-        _searchHistory.remove(_searchText);
-        List<String> list = [_searchText];
-        list.addAll(_searchHistory);
-        _searchHistory = list;
-      } else {
-        List<String> list = [_searchText];
-        list.addAll(_searchHistory);
-        _searchHistory = list;
-        while (_searchHistory.length > 15) {
-          _searchHistory.removeLast();
-        }
-      }
-      saveSearchListToSharedPreferences(_searchHistory);
-      setState(() {});
   }
 
   _hotGoodsCard(GoodsItem goodsItem, int index) {
@@ -455,6 +283,12 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                 },
               ),
             ),
+            // Image.asset(
+            //   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            //   fit: BoxFit.fill,
+            //   width: 124.w,
+            //   height: 124.w,
+            // ),
             Positioned(
                 left: 0,
                 top: 0,
@@ -534,7 +368,6 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     );
   }
 
-  ///搜索记录
   _searchHistoryWidget() {
     List<Widget> choiceChipList = [];
     if (_searchHistory != null && _searchHistory.length > 0) {
@@ -548,13 +381,10 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
             labelPadding: EdgeInsets.only(left: 20, right: 20),
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             onSelected: (bool value) {
-              _startSearch = true;
               _editingController.text = text;
               _searchText = text;
-              setState(() {});
-
               FocusManager.instance.primaryFocus!.unfocus();
-              _refreshController1.callRefresh();
+              setState(() {});
             },
             label: Text(text),
             selected: false,
@@ -617,17 +447,16 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
           );
   }
 
-  ///获取搜索记录
   getSearchListFromSharedPreferences() async {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     _searchHistory = HiveStore.appBox!.get(
-        userProvider.userInfoModel?.id.toString() ?? '' + "userSearhHistory")??'';
+        userProvider.userInfoModel?.id.toString() ?? '' + "userSearhHistory")!;
     if (_searchHistory == null) {
       _searchHistory = [];
     }
     setState(() {});
   }
-  ///保存搜索记录
+
   saveSearchListToSharedPreferences(List<String> value) async {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
 
@@ -635,7 +464,4 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
         userProvider.userInfoModel?.id.toString() ?? '' + "userSearhHistory",
         value);
   }
-
-
-
 }

@@ -23,11 +23,11 @@ class GoodsCard extends StatelessWidget {
       shape: !(border ?? false)
           ? null
           : RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.w),
-              side: BorderSide(color: Color(0xFFC4C4C4))),
+          borderRadius: BorderRadius.circular(8.w),
+          side: BorderSide(color: Color(0xFFC4C4C4))),
       padding: EdgeInsets.zero,
       onPressed: () => Get.to(
-        () => GoodsDetailPage(id: item.id),
+            () => GoodsDetailPage(id: item.id),
         preventDuplicates: false,
       ),
       child: Column(
@@ -41,9 +41,9 @@ class GoodsCard extends StatelessWidget {
             child: Stack(
               children: [
                 FadeInImage.assetNetwork(
-                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    image: ImgModel.first(item.imgList),
-                    fit: BoxFit.fill,
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  image: API.image(ImgModel.first(item.imgList)),
+                  fit: BoxFit.fill,
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP);
                   },
@@ -87,13 +87,13 @@ class GoodsCard extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.only(
-              left: 16.w,right: 16.w,
-              top: 10.w,
-            ),
-            child: Container(
+              padding: EdgeInsets.only(
+                left: 16.w,right: 16.w,
+                top: 10.w,
+              ),
+              child: Container(
                 child: _getIcon(1),
-            )
+              )
           ),
 
           10.hb,
@@ -151,7 +151,7 @@ class GoodsCard extends StatelessWidget {
               ),
             ),
           ),
-        Padding(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 16.w,
             ),
@@ -200,7 +200,7 @@ class GoodsCard extends StatelessWidget {
           ),
         ),
         child: Text(
-         '京东自营',
+          '京东自营',
           style: TextStyle(
               fontSize: 18.sp,
               color: kForeGroundColor
@@ -234,7 +234,7 @@ class GoodsCard extends StatelessWidget {
     else
       return SizedBox();
   }
-  
+
 
 
 }

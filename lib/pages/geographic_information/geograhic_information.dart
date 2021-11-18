@@ -27,7 +27,7 @@ class GeographicInformationPage extends StatefulWidget {
 
 class _GeographicInformationPageState extends State<GeographicInformationPage> {
   GeographicInformationModel _model = GeographicInformationModel.init();
-  bool _onload = false;
+  bool _onload = true;
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

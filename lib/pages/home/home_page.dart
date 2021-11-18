@@ -53,8 +53,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  @override
-  bool get wantKeepAlive => true;
+
   int _currentIndicator = 0;
 
   ScrollController? _scrollController;
@@ -530,5 +529,6 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-
+  @override
+  bool get wantKeepAlive => true;
 }

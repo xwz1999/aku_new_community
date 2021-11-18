@@ -19,6 +19,8 @@ class BeeScaffold extends StatelessWidget {
   final Widget? bottomNavi;
   final PreferredSizeWidget? appBarBottom;
   final FloatingActionButton? fab;
+  final double? titleSpacing;
+
 
   final SystemUiOverlayStyle systemStyle;
   BeeScaffold({
@@ -32,7 +34,9 @@ class BeeScaffold extends StatelessWidget {
     this.bottomNavi,
     this.appBarBottom,
     this.fab,
+    this.titleSpacing,
     this.systemStyle = SystemStyle.initial,
+
   }) : super(key: key);
 
   BeeScaffold.white({
@@ -45,6 +49,7 @@ class BeeScaffold extends StatelessWidget {
     this.bottomNavi,
     this.appBarBottom,
     this.fab,
+    this.titleSpacing,
     this.systemStyle = SystemStyle.initial,
   })  : this.bodyColor = Colors.white,
         super(key: key);
@@ -66,6 +71,7 @@ class BeeScaffold extends StatelessWidget {
         leading: leading ?? BeeBackButton(),
         actions: actions,
         bottom: appBarBottom,
+        titleSpacing: titleSpacing,
       );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -76,6 +82,7 @@ class BeeScaffold extends StatelessWidget {
         body: body,
         bottomNavigationBar: bottomNavi,
         floatingActionButton: fab,
+
       ),
     );
   }

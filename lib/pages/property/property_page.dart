@@ -31,7 +31,7 @@ class PropertyPage extends StatefulWidget {
 }
 
 class _PropertyPageState extends State<PropertyPage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   int sum = 0;
   int commentCount = 0;
   int sysCount = 0;
@@ -547,4 +547,8 @@ class _PropertyPageState extends State<PropertyPage>
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
+
 }

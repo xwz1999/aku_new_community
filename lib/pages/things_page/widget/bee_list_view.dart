@@ -48,6 +48,7 @@ class BeeListView<T> extends StatefulWidget {
   ///...
   ///```
   final List<T> Function(BaseListModel model) convert;
+  final List<T> Function(List<T?> model)? refreshExtra;
 
   ///子组件构造器
   final Widget Function(dynamic items) builder;
@@ -64,7 +65,7 @@ class BeeListView<T> extends StatefulWidget {
     required this.convert,
     required this.builder,
     this.size = 10,
-    this.extraParams,
+    this.extraParams, this.refreshExtra ,
   }) : super(key: key);
 
   @override
@@ -98,6 +99,9 @@ class _BeeListViewState<T> extends State<BeeListView> {
         );
         _models = widget.convert(_model) as List<T?>;
         widget.controller?.resetLoadState();
+        if(widget.refreshExtra!=null){
+          widget.refreshExtra!(_models);
+        }
         if (mounted) setState(() {});
       },
       firstRefresh: true,

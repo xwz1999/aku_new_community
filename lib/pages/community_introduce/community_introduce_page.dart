@@ -22,7 +22,7 @@ class CommunityIntroducePage extends StatefulWidget {
 
 class _CommunityIntroducePageState extends State<CommunityIntroducePage> {
   CommunityIontroduceModel _model = CommunityIontroduceModel.init();
-  bool _onload = false;
+  bool _onload = true;
 
   @override
   Widget build(BuildContext context) {

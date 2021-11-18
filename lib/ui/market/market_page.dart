@@ -62,12 +62,15 @@ class _MarketPageState extends State<MarketPage>
   double MessageHeight = 76.w;
   double bannerHeight = 354.w;
   double buttonsHeight = 334.w;
-  double searchHeight = 74.w.w;
+  double searchHeight = 74.w;
 
   double tabBarHeight = 60.w;
   late TabController _tabController;
 
   List<SwiperModel> _swiperModels = [];
+
+  OrderType _orderType = OrderType.NORMAL;
+  IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
 
   Future updateMarketInfo() async {
     BaseListModel baseListModel =
@@ -755,10 +758,12 @@ class _MarketPageState extends State<MarketPage>
       alignment: Alignment.centerLeft,
       color:  Color(0xFFF9F9F9),
       width: MediaQuery.of(context).size.width,
-      child: Container(
+      child:
+      Container(
         alignment: Alignment.centerLeft,
         height: 60.w,
-        child: TabBar(
+        child:
+        TabBar(
             onTap: (index) {
               // _presenter.fetchList(_category.id, 0, _sortType);
               setState(() {});
@@ -777,36 +782,136 @@ class _MarketPageState extends State<MarketPage>
     );
   }
   List<Widget> _tabItems() {
-    return [_tabItem(0,'综合推荐'),_tabItem(1,'销量'),_tabItem(2,'价格')];
+    return [_tabItemComprehensive(0,'综合推荐'),_tabItemSalesVolume(1,'销量'),_tabItemPrice(2,'价格')];
   }
 
-  _tabItem(int index,String text) {
+  _tabItemComprehensive(int index,String text) {
     bool isChoose = index == _tabController.index;
     // Color textColor = index == _tabController.index
     //     ? getCurrentThemeColor()
     //     : Colors.black.withOpacity(0.9);
     return Tab(
-      child: Container(
-        alignment: Alignment.center,
-        width: 150.w,
-        // color: Colors.white,
-        color: Color(0xFFF9F9F9),
-       padding: EdgeInsets.only(left: 10.w, right: 10.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              text,
-              style: TextStyle(
-                  fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
-                  fontSize: isChoose?32.sp:28.sp,
-                  color: isChoose?Color(0xFF000000):Color(0xFF666666)),
-            ),
-          ],
+      child: GestureDetector(
+        onTap: (){
+          _orderType = OrderType.NORMAL;
+          priceIcon = CupertinoIcons.chevron_up_chevron_down;
+          setState(() {});
+        },
+        child: Container(
+          alignment: Alignment.center,
+          width: 150.w,
+          // color: Colors.white,
+          color: Color(0xFFF9F9F9),
+         padding: EdgeInsets.only(left: 10.w, right: 10.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                text,
+                style: TextStyle(
+                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
+                    fontSize: isChoose?32.sp:28.sp,
+                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  _tabItemSalesVolume(int index,String text) {
+    bool isChoose = index == _tabController.index;
+    // Color textColor = index == _tabController.index
+    //     ? getCurrentThemeColor()
+    //     : Colors.black.withOpacity(0.9);
+    return Tab(
+      child: GestureDetector(
+        onTap: (){
+          _orderType = OrderType.SALES;
+          priceIcon = CupertinoIcons.chevron_up_chevron_down;
+          setState(() {});
+        },
+        child: Container(
+          alignment: Alignment.center,
+          width: 150.w,
+          // color: Colors.white,
+          color: Color(0xFFF9F9F9),
+          padding: EdgeInsets.only(left: 10.w, right: 10.w),
+          child: Row(
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
+                    fontSize: isChoose?32.sp:28.sp,
+                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
+              ),
+              Icon(
+                priceIcon,
+                size: 32.w,
+                color: _orderType == OrderType.PRICE_HIGH ||
+                    _orderType == OrderType.PRICE_LOW
+                    ? kDarkPrimaryColor
+                    : ktextPrimary,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _tabItemPrice(int index,String text) {
+    bool isChoose = index == _tabController.index;
+    // Color textColor = index == _tabController.index
+    //     ? getCurrentThemeColor()
+    //     : Colors.black.withOpacity(0.9);
+    return Tab(
+      child: GestureDetector(
+        onTap: (){
+          switch (_orderType) {
+            case OrderType.NORMAL:
+            case OrderType.SALES:
+              _orderType = OrderType.PRICE_HIGH;
+              priceIcon = CupertinoIcons.chevron_up;
+              break;
+            case OrderType.PRICE_HIGH:
+              _orderType = OrderType.PRICE_LOW;
+              priceIcon = CupertinoIcons.chevron_down;
+              break;
+            case OrderType.PRICE_LOW:
+              _orderType = OrderType.PRICE_HIGH;
+              priceIcon = CupertinoIcons.chevron_up;
+              break;
+          }
+          setState(() {});
+        },
+        child: Container(
+          alignment: Alignment.center,
+          width: 150.w,
+          // color: Colors.white,
+          color: Color(0xFFF9F9F9),
+          padding: EdgeInsets.only(left: 10.w, right: 10.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                text,
+                style: TextStyle(
+                    fontWeight: isChoose?FontWeight.bold:FontWeight.normal,
+                    fontSize: isChoose?32.sp:28.sp,
+                    color: isChoose?Color(0xFF000000):Color(0xFF666666)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+
 
   @override
   bool get wantKeepAlive => true;

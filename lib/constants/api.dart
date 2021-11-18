@@ -416,6 +416,20 @@ class _Market {
 
   ///app商场中心：根据订单主键id查询订单详情
   String get orderDetail => '/user/shop/findOrderDetailByOrderId';
+
+
+
+  ///接入京库客
+  ///jcook商城（首页搜索）：查询综合推荐商品列表
+  String get findGoodsList => '/user/jcookGoods/findRecommendGoodsList';
+
+  ///jcook商城 加入收藏
+  String get addCollection => '/user/jcookCollection/collection';
+
+  ///jcook商城 收藏列表
+  String get collectionList => '/user/jcookCollection/myCollection';
+
+
 }
 
 class _Upload {

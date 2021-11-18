@@ -41,7 +41,7 @@ class ChatCard extends StatefulWidget {
   _ChatCardState createState() => _ChatCardState();
 }
 
-class _ChatCardState extends State<ChatCard> {
+class _ChatCardState extends State<ChatCard>  {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     return (userProvider.userInfoModel?.id ?? -1) == widget.model!.createId;
@@ -279,13 +279,13 @@ class _ChatCardState extends State<ChatCard> {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            color: widget.hideLine
-                ? Colors.transparent
-                : Color(0xFFE5E5E5).withOpacity(0.5),
-          ),
-        ),
+        // border: Border(
+        //   bottom: BorderSide(
+        //     color: widget.hideLine
+        //         ? Colors.transparent
+        //         : Color(0xFFE5E5E5).withOpacity(0.5),
+        //   ),
+        // ),
       ),
       child: MaterialButton(
         padding: EdgeInsets.zero,
@@ -294,85 +294,116 @@ class _ChatCardState extends State<ChatCard> {
                 Get.to(() => EventDetailPage(themeId: widget.model!.id));
               }
             : null,
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Material(
-              color: Color(0xFFF5F5F5),
-              borderRadius: BorderRadius.circular(6.w),
-              clipBehavior: Clip.antiAlias,
-              child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API
-                    .image(ImgModel.first(widget.model!.headSculptureImgUrl)),
-                height: 86.w,
-                width: 86.w,
-                fit: BoxFit.cover,
-                imageErrorBuilder: (context, error, stackTrace) {
-                  return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 86.w,
-                    width: 86.w,);
-                },
+            [
+              Material(
+                color: Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(48.w),
+                clipBehavior: Clip.antiAlias,
+                child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  image: API
+                      .image(ImgModel.first(widget.model!.headSculptureImgUrl)),
+                  height: 96.w,
+                  width: 96.w,
+                  fit: BoxFit.cover,
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 86.w,
+                      width: 86.w,);
+                  },
+                ),
+              ).paddingOnly(left: 32.w),
+              20.wb,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.model!.createName!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.85),
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  12.hb,
+                  BeeDateUtil(widget.model!.date)
+                      .timeAgoWithHm
+                      .text
+                      .size(24.sp)
+                      .color(Color(0xFF999999))
+                      .make(),
+                ],
               ),
-            ),
-            24.wb,
+              Spacer(),
+
+              PopupMenuButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.w)),
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      child: '举报'.text.isIntrinsic.make(),
+                      value: 0,
+                    ),
+                  ];
+                },
+                onSelected: (dynamic _) async {
+                  if (LoginUtil.isNotLogin) return;
+                  VoidCallback cancel = BotToast.showLoading();
+                  await Future.delayed(
+                      Duration(milliseconds: 500 + Random().nextInt(500)));
+                  cancel();
+                  BotToast.showText(text: '举报成功');
+                },
+                child: Container(
+                    width: 40.w,height: 32.w,
+                    child: Image.asset(R.ASSETS_ICONS_ICON_MORE_PNG,
+                      width: 8.w,height: 32.w,fit: BoxFit.fitHeight,)),
+
+              ).paddingOnly(right: 32.w),
+
+            ].row(),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                [
-                  widget.model!.createName!.text.black
-                      .size(36.sp)
-                      .make()
-                      .expand(),
-                  PopupMenuButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.w)),
-                    itemBuilder: (context) {
-                      return [
-                        PopupMenuItem(
-                          child: '举报'.text.isIntrinsic.make(),
-                          value: 0,
-                        ),
-                      ];
-                    },
-                    onSelected: (dynamic _) async {
-                      if (LoginUtil.isNotLogin) return;
-                      VoidCallback cancel = BotToast.showLoading();
-                      await Future.delayed(
-                          Duration(milliseconds: 500 + Random().nextInt(500)));
-                      cancel();
-                      BotToast.showText(text: '举报成功');
-                    },
-                  ),
-                ].row(),
-                6.hb,
-                widget.model!.content!.text.size(32.sp).black.make(),
-                20.hb,
-                _renderImage(),
-                widget.model!.gambitTitle?.isEmpty ?? true
-                    ? SizedBox()
-                    : Chip(
-                        label: '#${widget.model!.gambitTitle}'
-                            .text
-                            .size(22.sp)
-                            .make(),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 5.w),
-                        labelPadding: EdgeInsets.zero,
-                        backgroundColor: Colors.transparent,
-                        shape: StadiumBorder(
-                          side: BorderSide(),
-                        ),
-                      ).pOnly(top: 10.w),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    32.hb,
+                    widget.model!.content!.text.size(32.sp).black.make(),
+                    32.hb,
+                    _renderImage(),
+                    widget.model!.gambitTitle?.isEmpty ?? true
+                        ? SizedBox()
+                        : Chip(
+                      label: '# ${widget.model!.gambitTitle}'
+                          .text
+                          .color(Color(0xFF547fc0))
+                          .size(28.sp)
+                          .make(),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 16.w, vertical: 5.w),
+                      labelPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      // shape: StadiumBorder(
+                      //   side: BorderSide(),
+                      // ),
+                    ).pOnly(top: 20.w),
+                    20.hb,
+                  ],
+                ).paddingOnly(right: 32.w,left: 32.w),
+
+                Divider(height: 1.w, thickness: 1.w),
+                10.hb,
                 Row(
                   children: [
                     64.hb,
-                    BeeDateUtil(widget.model!.date)
-                        .timeAgo
-                        .text
-                        .size(28.sp)
-                        .color(Color(0xFF999999))
-                        .make(),
+
                     _isMyself
                         ? TextButton(
                             onPressed: () async {
@@ -411,12 +442,13 @@ class _ChatCardState extends State<ChatCard> {
                     _buildMoreButton(),
                   ],
                 ),
-                _renderLikeAndComment(),
+                // _renderLikeAndComment(),
+
               ],
-            ).expand(),
+            ),
           ],
-        ).p(20.w),
+        ).paddingOnly(top: 24.w,bottom: 32.w),
       ),
-    );
+    ).paddingOnly(bottom: 16.w);
   }
 }

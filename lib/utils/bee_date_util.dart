@@ -28,4 +28,17 @@ class BeeDateUtil {
     else
       return DateUtil.formatDate(date, format: 'yyyy-MM-dd');
   }
+
+  String get timeAgoWithHm {
+    Duration duration = _now.difference(date!);
+    if (duration.inSeconds <= 60) return '${duration.inSeconds}秒前';
+    if (duration.inMinutes <= 60) return '${duration.inMinutes}分钟前';
+    if (duration.inHours <= 12) return '${duration.inHours}小时前';
+    if (isYesterday) return '昨天';
+    if (isDoubleYesterday) return '前天';
+    if (duration.inDays <= 30)
+      return '${duration.inDays}天前';
+    else
+      return DateUtil.formatDate(date, format: 'yyyy-MM-dd HH-mm');
+  }
 }
