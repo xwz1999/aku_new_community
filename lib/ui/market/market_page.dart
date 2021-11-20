@@ -3,6 +3,9 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
+import 'package:aku_community/models/market/goods_classification.dart';
+import 'package:aku_community/models/market/goods_popular_model.dart';
+import 'package:aku_community/models/market/order/goods_home_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
@@ -37,6 +40,8 @@ import 'package:provider/provider.dart';
 
 import 'package:aku_community/provider/app_provider.dart';
 
+import 'market_home_goods_card.dart';
+
 // import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
 
 // import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
@@ -49,22 +54,23 @@ class MarketPage extends StatefulWidget {
 }
 
 class _MarketPageState extends State<MarketPage>
-    with AutomaticKeepAliveClientMixin , TickerProviderStateMixin{
-  List<MarketCategoryModel> _marketModels = [];
-  List<GoodsItem> _hotItems = [];
+    with TickerProviderStateMixin,AutomaticKeepAliveClientMixin{
   late EasyRefreshController _refreshController;
   late ScrollController _sliverListController;
   GlobalKey<HomeSliverAppBarState> _sliverAppBarGlobalKey = GlobalKey();
   GlobalKey<AnimatedHomeBackgroundState> _animatedBackgroundState = GlobalKey();
   int _pageNum = 1;
-  int _size = 4;
+  int _size = 10;
   int _pageCount = 0;
   double MessageHeight = 76.w;
   double bannerHeight = 354.w;
   double buttonsHeight = 334.w;
   double searchHeight = 74.w;
+  String _total = '';
+  String _newTotal = '';
+  String _brandTotal = '';
 
-  double tabBarHeight = 60.w;
+  double tabBarHeight = 40.w;
   late TabController _tabController;
 
   List<SwiperModel> _swiperModels = [];
@@ -72,15 +78,25 @@ class _MarketPageState extends State<MarketPage>
   OrderType _orderType = OrderType.NORMAL;
   IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
 
+  List<GoodsClassification> _goodsClassificationList = [];
+
+  List<GoodsHomeModel> _goodsHomeModelList = [];
+
+  List<GoodsPopularModel> _goodsPopularModelList = [];
+
+  int? orderBySalesVolume;
+  int? orderByPrice;
+
   Future updateMarketInfo() async {
+
     BaseListModel baseListModel =
-        await NetUtil().getList(API.market.hotTop, params: {
-      "pageNum": _pageNum,
-      "size": _size,
-    });
+        await NetUtil().getList( API.market.findRecommendGoodsList,
+          params: {'pageNum': _pageNum, 'size': _size,
+            'orderBySalesVolume': orderBySalesVolume,'orderByPrice': orderByPrice,},
+    );
     if (baseListModel.tableList!.isNotEmpty) {
-      _hotItems = (baseListModel.tableList as List)
-          .map((e) => GoodsItem.fromJson(e))
+      _goodsHomeModelList = (baseListModel.tableList as List)
+          .map((e) => GoodsHomeModel.fromJson(e))
           .toList();
     }
     _pageCount = baseListModel.pageCount!;
@@ -88,14 +104,14 @@ class _MarketPageState extends State<MarketPage>
 
   Future loadMarketInfo() async {
     BaseListModel baseListModel =
-        await NetUtil().getList(API.market.hotTop, params: {
-      "pageNum": _pageNum,
-      "size": _size,
-    });
+    await NetUtil().getList( API.market.findRecommendGoodsList,
+      params: {'pageNum': _pageNum, 'size': _size,
+        'orderBySalesVolume': orderBySalesVolume,'orderByPrice': orderByPrice,},
+    );
     if (baseListModel.tableList!.isNotEmpty) {
-      _hotItems.addAll((baseListModel.tableList as List)
-          .map((e) => GoodsItem.fromJson(e))
-          .toList());
+      _goodsHomeModelList = (baseListModel.tableList as List)
+          .map((e) => GoodsHomeModel.fromJson(e))
+          .toList();
     }
     _pageCount = baseListModel.pageCount!;
   }
@@ -103,13 +119,22 @@ class _MarketPageState extends State<MarketPage>
   @override
   void initState() {
     super.initState();
+    for(int i=0;i<10;i++){
+      _goodsClassificationList.add(GoodsClassification(id: 0,name: '',imgUrls: null));
+    }
+    for(int i=0;i<6;i++){
+      _goodsPopularModelList.add(GoodsPopularModel(id: 0,skuName: '',mainPhoto: '',viewsNum: 0));
+    }
+
+
     _refreshController = EasyRefreshController();
     _sliverListController = ScrollController();
     _tabController = TabController(
         initialIndex: 0, length: 3, vsync: this);
+    ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
     Future.delayed(Duration(milliseconds: 0), () async {
-      _marketModels = await DisplayCategoryModel.top8;
       await updateMarketInfo();
+      await _refresh();
       setState(() {});
     });
   }
@@ -124,21 +149,18 @@ class _MarketPageState extends State<MarketPage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body:EasyRefresh(
-        firstRefresh: true,
+        firstRefresh: false,
         enableControlFinishLoad: false,
         header: MaterialHeader(),
         footer: MaterialFooter(),
         controller: _refreshController,
         onRefresh: () async {
-          _pageNum = 1;
-          await updateMarketInfo();
-          _swiperModels = await CommunityFunc.swiper();
-          setState(() {});
+          _refresh();
         },
         onLoad: () async {
           _pageNum++;
@@ -157,11 +179,30 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
+
+
+  _refresh() async{
+    _pageNum = 1;
+    await updateMarketInfo();
+    _swiperModels = await CommunityFunc.swiper();
+    _newTotal = await CommunityFunc.getNewProductsTodayNum();
+    _total = await CommunityFunc.getSkuTotal();
+    _brandTotal = await CommunityFunc.getSettledBrandsNum();
+    _goodsClassificationList = await CommunityFunc.getGoodsClassificationList(0);//0获取根目录下的分类
+    //_goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
+
+    setState(() {});
+  }
+
+
   Widget _buildBody(BuildContext context) {
     final normalTypeButton = MaterialButton(
-      onPressed: () {
+      onPressed: () async {
         _orderType = OrderType.NORMAL;
         priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        orderBySalesVolume = null;
+        orderByPrice = null;
+        await updateMarketInfo();
         setState(() {});
       },
       child: Text(
@@ -179,9 +220,12 @@ class _MarketPageState extends State<MarketPage>
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
     final salesTypeButton = MaterialButton(
-      onPressed: () {
+      onPressed: () async {
         _orderType = OrderType.SALES;
+        orderBySalesVolume = 2;
+        orderByPrice = null;
         priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        await updateMarketInfo();
         setState(() {});
       },
       child: Text(
@@ -200,22 +244,29 @@ class _MarketPageState extends State<MarketPage>
     );
 
     final priceButton = MaterialButton(
-      onPressed: () {
+      onPressed: () async {
         switch (_orderType) {
           case OrderType.NORMAL:
           case OrderType.SALES:
             _orderType = OrderType.PRICE_HIGH;
+            orderByPrice = 1;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_up;
             break;
           case OrderType.PRICE_HIGH:
             _orderType = OrderType.PRICE_LOW;
+            orderByPrice = 2;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_down;
             break;
           case OrderType.PRICE_LOW:
             _orderType = OrderType.PRICE_HIGH;
+            orderByPrice = 1;
+            orderBySalesVolume = null;
             priceIcon = CupertinoIcons.chevron_up;
             break;
         }
+        await updateMarketInfo();
         setState(() {});
       },
       child: Row(
@@ -308,7 +359,7 @@ class _MarketPageState extends State<MarketPage>
             (BuildContext context, int index) {
 
           ///每一个子Item的样式
-              return GoodsCard(item:  _hotItems[index]);
+              return MarketHomeGoodsCard(item:  _goodsHomeModelList[index]);
               // return Container(
               //   width: 200.w,
               //     height: 200.w,
@@ -316,7 +367,7 @@ class _MarketPageState extends State<MarketPage>
               // );
         },
         ///子Item的个数
-        childCount: _hotItems.length,
+        childCount: _goodsHomeModelList.length,
       ),
     );
   }
@@ -331,7 +382,7 @@ class _MarketPageState extends State<MarketPage>
             height: 40.w, width: 40.w),
       ),
       Padding(
-        padding: const EdgeInsets.only( left: 12),
+        padding: EdgeInsets.only( left: 32.w,right: 32.w),
         child: GestureDetector(
           onTap: () {
             //Get.to(() => BeeSearch()); 订单
@@ -511,7 +562,7 @@ class _MarketPageState extends State<MarketPage>
                       80.wb,
                       Image.asset(R.ASSETS_ICONS_SHOP_LABA_PNG,width: 36.w,height: 34.w,),
                       20.wb,
-                      Text('今日上新1231件',style: TextStyle(color: Color(0xFFD0564B),fontSize: 24.sp,height: 1.05),),
+                      Text('今日上新${_total}件',style: TextStyle(color: Color(0xFFD0564B),fontSize: 24.sp,height: 1.05),),
                     ],
                   ),
                 ),
@@ -535,9 +586,10 @@ class _MarketPageState extends State<MarketPage>
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('SKU总数：237809',style: TextStyle(color: Colors.white,fontSize: 24.sp),),
-                    Text('入驻品牌数：237809',style: TextStyle(color: Colors.white,fontSize: 24.sp),)
+                    Text('SKU总数：${_newTotal}',style: TextStyle(color: Colors.white,fontSize: 24.sp),),
+                    Text('入驻品牌数：${_brandTotal}',style: TextStyle(color: Colors.white,fontSize: 24.sp),)
                   ],
                 ),
           )),
@@ -620,79 +672,27 @@ class _MarketPageState extends State<MarketPage>
   _buttonTitle() {
     Container titles = Container(
       alignment: Alignment.center,
-
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.w),
       ),
       child:
-
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-
-
-
-                  ],
-                ),
-              ),
-            ],
-          ),
-          28.hb,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-                    _buttonTitleRow(
-
-                    ),
-
-
-
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+      GridView.builder(
+        padding: EdgeInsets.zero,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate:
+        SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+        itemBuilder: (context, index) {
+          if(index == 9){
+            return _buildAllTile();
+          }else{
+            return _buildTile(_goodsClassificationList[index]);
+          }
+        },
+        itemCount: 10,
+        shrinkWrap: true,
       ),
+
     );
     return Container(
       alignment: Alignment.center,
@@ -700,6 +700,50 @@ class _MarketPageState extends State<MarketPage>
       height: buttonsHeight,
       width: MediaQuery.of(context).size.width,
       child: titles,
+    );
+  }
+
+
+  _buildTile(GoodsClassification item) {
+    return GestureDetector(
+
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FadeInImage.assetNetwork(
+            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            width: 88.w,
+            height: 88.w,
+            image: API.image(ImgModel.first(item.imgUrls)),
+            imageErrorBuilder: (context, error, stackTrace) {
+              return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 88.w,
+                width: 88.w,);
+            },
+          ),
+          8.hb,
+          Text( (item.name??'').replaceAll('、', ''),style: TextStyle(
+            fontSize: 28.sp,
+            color: ktextPrimary
+          ),)
+        ],
+      ),
+    );
+  }
+
+  _buildAllTile() {
+    return GestureDetector(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Image.asset(R.ASSETS_ICONS_TEST_KINGCION_PNG,height: 88.w,
+        width: 88.w,),
+          8.hb,
+          Text( '全部分类',style: TextStyle(
+              fontSize: 28.sp,
+              color: ktextPrimary
+          ),)
+        ],
+      ),
     );
   }
 
@@ -775,64 +819,56 @@ class _MarketPageState extends State<MarketPage>
             ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-            20.wb,
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-            20.wb,
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-            20.wb,
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-            20.wb,
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-            20.wb,
-            Container(
-              width: 96.w,
-              height: 96.w,
-              child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 96.w,height: 96.w,),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
-            ),
-          ],
-        ).expand(),
+        GridView.builder(
+          padding: EdgeInsets.zero,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
+          itemBuilder: (context, index) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 96.w,
+                            height: 96.w,
+                            child:FadeInImage.assetNetwork(
+                              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                              image: _goodsPopularModelList[index].mainPhoto??'',
+                              imageErrorBuilder: (context, error, stackTrace) {
+                                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 96.w,
+                                  width: 96.w,);
+                              },
+                            ),
+                          ),
+
+                        ],
+                      );
+          },
+          itemCount: 6,
+          shrinkWrap: true,
+        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     ..._goodsPopularModelList.map((e) => Row(
+        //       children: [
+        //         Container(
+        //           width: 96.w,
+        //           height: 96.w,
+        //           child:FadeInImage.assetNetwork(
+        //             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+        //             image: e.mainPhoto??'',
+        //             imageErrorBuilder: (context, error, stackTrace) {
+        //               return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 96.w,
+        //                 width: 96.w,);
+        //             },
+        //           ),
+        //         ),
+        //         20.wb,
+        //       ],
+        //     ),)
+        //   ],
+        // ).expand(),
       ],
     )
     );

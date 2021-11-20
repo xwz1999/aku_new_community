@@ -701,6 +701,10 @@ class R {
   static const String ASSETS_IMAGES_PLACEHOLDER_WEBP =
       'assets/images/placeholder.webp';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/images/property_bg.png)
+  static const String ASSETS_IMAGES_PROPERTY_BG_PNG =
+      'assets/images/property_bg.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/images/splash_logo.png)
   static const String ASSETS_IMAGES_SPLASH_LOGO_PNG =
       'assets/images/splash_logo.png';

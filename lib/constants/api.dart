@@ -429,6 +429,54 @@ class _Market {
   ///jcook商城 收藏列表
   String get collectionList => '/user/jcookCollection/myCollection';
 
+  ///jcook商城 查询品牌入驻数
+  String get settledBrandsNum => '/user/jcookGoods/settledBrandsNum';
+
+
+  ///jcook商城 查询已上架的SKU总数
+  String get skuTotal => '/user/jcookGoods/skuTotal';
+
+
+  ///jcook商城 查询今日上新的产品数量
+  String get newProductsTodayNum => '/user/jcookGoods/newProductsTodayNum';
+
+  ///jcook商城 查询人气最大的几个商品
+  String get findMaxPopularity => '/user/jcookGoods/findMaxPopularity';
+
+  ///jcook商城 根据商品分类父类主键id查询首页所有显示的商品分类
+  String get findAllCategoryByParentId => '/user/jcookGoods/findAllCategoryByParentId';
+
+  ///jcook商城 查询商品详情 bigInfo大图信息【加载太慢了所以异步查询该接口】
+  String get findGoodsDetailBigInfo => '/user/jcookGoods/findGoodsDetailBigInfo';
+
+  ///jcook商城 查询所有品牌
+  String get findAllBrand => '/user/jcookGoods/findAllBrand';
+
+  ///jcook商城 查询综合推荐列表
+  String get findRecommendGoodsList => '/user/jcookGoods/findRecommendGoodsList';
+
+  ///jcook商城 查询商品详情
+  String get findGoodsDetail => '/user/jcookGoods/findGoodsDetail';
+
+  ///jcook商城 我的购物车
+  String get myShoppingCart => '/user/jcookShoppingCat/myShoppingCart';
+
+  ///jcook商城 加入购物车
+  String get insertShoppingCart => '/user/jcookShoppingCat/insertShoppingCart';
+
+  ///jcook商城 更改购物车商品数量
+  String get updateShoppingCartNum => '/user/jcookShoppingCat/updateShoppingCartNum';
+
+  ///jcook商城 删除购物车商品
+  String get deleteShoppingCart => '/user/jcookShoppingCat/deleteShoppingCart';
+
+  ///jcook商城 购物车结算
+  String get settlement => '/user/jcookShoppingCat/settlement';
+
+  ///jcook商城 我的订单
+  String get myOrder => '/user/jcookOrder/myOrder';
+
+
 
 }
 

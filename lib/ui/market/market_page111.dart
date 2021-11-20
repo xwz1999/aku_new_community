@@ -285,8 +285,9 @@ class _MarketPageState extends State<MarketPage111>
             ),
             padding: EdgeInsets.all(32.w),
             itemBuilder: (context, index) {
-              final item = _hotItems[index];
-              return GoodsCard(item: item);
+              return SizedBox();
+              //final item = _hotItems[index];
+              // return GoodsCard(item: item);
             },
             itemCount: _hotItems.length,
           ),

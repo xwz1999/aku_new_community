@@ -151,6 +151,7 @@ class AppProvider extends ChangeNotifier {
       return;
     }
     _aMapFlutterLocation = AMapFlutterLocation();
+
     _aMapFlutterLocation.onLocationChanged().listen((event) {
       _location = event;
       if (_location != null) {

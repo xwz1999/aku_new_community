@@ -3,22 +3,20 @@ import 'dart:math';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/models/search/search_goods_model.dart';
 import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/market/collection/collection_list_card.dart';
+
 import 'package:aku_community/ui/market/collection/my_collection.dart';
-import 'package:aku_community/ui/market/search/search_detail_page.dart';
-import 'package:aku_community/ui/market/search/search_func.dart';
+
 import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+
 import 'package:aku_community/utils/text_utils.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
+
 
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
@@ -395,7 +393,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                       itemBuilder: (context, index) {
                         final item = items[index];
                         return GoodsListCard(
-                          model: item,); //GoodsCard(item: item);
+                          model: item,refreshController: _refreshController1,); //GoodsCard(item: item);
                       },
                       separatorBuilder: (_, __) {
                         return 32.w.heightBox;

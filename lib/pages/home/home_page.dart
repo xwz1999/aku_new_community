@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage>
       extendBodyBehindAppBar: true,
       appBar: AnimateAppBar(
         scrollController: _scrollController,
-        actions: [
+        actions: [   
           GestureDetector(
             onTap: () {
               Get.to(() => BeeSearch());
@@ -113,12 +113,12 @@ class _HomePageState extends State<HomePage>
                 showBadge: appProvider.messageCenterModel.commentCount != 0 ||
                     appProvider.messageCenterModel.sysCount != 0,
                 position: BadgePosition.topEnd(
-                  top: 3,
-                  end: -5,
+                  top: 8.w,
+                  end: -4.w,
                 ),
                 badgeContent: Text(
                   (sum).toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
                 ),
                 child: GestureDetector(
                   onTap: () {
