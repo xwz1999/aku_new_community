@@ -4,14 +4,18 @@ import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/event_item_model.dart';
 import 'package:aku_community/model/community/gambit_model.dart';
 import 'package:aku_community/model/community/hot_news_model.dart';
+import 'package:aku_community/models/news/news_category_model.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_community/ui/home/home_title.dart';
+import 'package:aku_community/ui/home/public_infomation/public_infomation_page.dart';
+import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -93,9 +97,10 @@ class _CommunityPageState extends State<CommunityPage>
             Text(
               '附近社区',
               style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 24.sp,
+                fontWeight: FontWeight.bold,
+                fontSize: 32.sp,
                 color: Color(0xff333333),
+
               ),
               textAlign: TextAlign.center,
             ),
@@ -103,38 +108,55 @@ class _CommunityPageState extends State<CommunityPage>
           ]),
           backgroundColor: Colors.white,
           actions: [
-            GestureDetector(
-              onTap: () {
-
-              },
-              child: Image.asset(R.ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG,
-                  height: 40.w, width: 40.w),
+            Padding(
+              padding:  EdgeInsets.only(right: 32.w),
+              child: GestureDetector(
+                onTap: () async {
+                  if (LoginUtil.isNotLogin) return;
+                  bool? result = await Get.to(() => AddNewEventPage());
+                  if (result == true) {
+                    switch (_tabController!.index) {
+                      case 0:
+                        newKey.currentState!.refresh();
+                        break;
+                      case 1:
+                        topicKey.currentState!.refresh();
+                        break;
+                      case 2:
+                        myKey.currentState!.refresh();
+                        break;
+                    }
+                  }
+                },
+                child: Image.asset(R.ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG,
+                    height: 40.w, width: 40.w),
+              ),
             )
           ],
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(90.w), child: _geSearch()),
         ),
-      floatingActionButton:  FloatingActionButton(
-          onPressed: () async {
-            if (LoginUtil.isNotLogin) return;
-            bool? result = await Get.to(() => AddNewEventPage());
-            if (result == true) {
-              switch (_tabController!.index) {
-                case 0:
-                  newKey.currentState!.refresh();
-                  break;
-                case 1:
-                  topicKey.currentState!.refresh();
-                  break;
-                case 2:
-                  myKey.currentState!.refresh();
-                  break;
-              }
-            }
-          },
-          heroTag: 'event_add',
-          child: Icon(Icons.add),
-        ),
+      // floatingActionButton:  FloatingActionButton(
+      //     onPressed: () async {
+      //       if (LoginUtil.isNotLogin) return;
+      //       bool? result = await Get.to(() => AddNewEventPage());
+      //       if (result == true) {
+      //         switch (_tabController!.index) {
+      //           case 0:
+      //             newKey.currentState!.refresh();
+      //             break;
+      //           case 1:
+      //             topicKey.currentState!.refresh();
+      //             break;
+      //           case 2:
+      //             myKey.currentState!.refresh();
+      //             break;
+      //         }
+      //       }
+      //     },
+      //     heroTag: 'event_add',
+      //     child: Icon(Icons.add),
+      //   ),
 
 
 
@@ -226,7 +248,19 @@ class _CommunityPageState extends State<CommunityPage>
           EdgeInsets.only(top: 32.w, bottom: 32.w, left: 32.w, right: 32.w),
       child: Column(
         children: [
-          _homeTitle('热门资讯', () {}, '更多'),
+          _homeTitle('热门资讯', () async {
+            final cancel = BotToast.showLoading();
+            BaseModel model = await NetUtil().get(API.news.category);
+            List<NewsCategoryModel>? category;
+            if (model.status == true && model.data != null) {
+              category = (model.data as List)
+                  .map((e) => NewsCategoryModel.fromJson(e))
+                  .toList();
+            }
+            cancel();
+            Get.to(
+                    () => PublicInfomationPage(models: category ?? []));
+          }, '更多'),
           32.hb,
           Container(
             height: 204.w,
@@ -292,7 +326,13 @@ class _CommunityPageState extends State<CommunityPage>
   _infoCard(HotNewsModel item) {
 
     return GestureDetector(
-      onTap: (){
+      onTap: () async{
+        var result = await Get.to(() => PublicInformationDetailPage(id: item.id!));
+
+        CommunityFunc.addViews(item.id!);
+        if(result){
+          _easyRefreshController.callRefresh();
+        }
 
       },
       child: Stack(
@@ -445,9 +485,9 @@ class _CommunityPageState extends State<CommunityPage>
             //width: MediaQuery.of(context).size.width,
             //padding: EdgeInsets.only(left: 10, right: 10),
             child: Wrap(
-              children:
-              [_choiceChip('EDG夺冠',1),_choiceChip('双十一',2),
-                _choiceChip('11月吃土',2),_choiceChip('成都疫情',0),_choiceChip('万圣节',0)],
+              children: [..._gambitModels.map((e) => _choiceChip(e.summary??'',0)).toList()]
+              // [_choiceChip('EDG夺冠',1),_choiceChip('双十一',2),
+              //   _choiceChip('11月吃土',2),_choiceChip('成都疫情',0),_choiceChip('万圣节',0)],
             ),
           ),
           // Spacer()

@@ -18,7 +18,7 @@ class CommunityFunc {
   static Future<List<GambitModel>> getListGambit() async {
     BaseListModel model = await NetUtil().getList(
       API.community.listGambit,
-      params: {'pageNum': 1, 'size': 6},
+      params: {'pageNum': 1, 'size': 8},
     );
     if (model.tableList!.length == 0) return [];
     return model.tableList!.map((e) => GambitModel.fromJson(e)).toList();
@@ -39,7 +39,6 @@ class CommunityFunc {
     BaseModel model = await NetUtil().get(
       API.community.addViews,
       params: {'newsId': newsId,},
-      showMessage: true,
     );
     if (model.message == null)
       return '';
