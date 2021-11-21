@@ -1,7 +1,11 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/event_item_model.dart';
+import 'package:aku_community/model/community/gambit_model.dart';
+import 'package:aku_community/model/community/hot_news_model.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
+import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_community/ui/home/home_title.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
@@ -25,6 +29,7 @@ import 'package:aku_community/ui/community/community_views/new_community_view.da
 import 'package:aku_community/ui/community/community_views/topic/topic_community_view.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
+import 'dart:math';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/buttons/column_action_button.dart';
 import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
@@ -48,6 +53,8 @@ class _CommunityPageState extends State<CommunityPage>
 
 
   List<EventItemModel> _newItems = [];
+  List<GambitModel> _gambitModels = [];
+  List<HotNewsModel> _hotNewsModels = [];
 
   int _pageNum = 1;
   int _size = 4;
@@ -83,19 +90,8 @@ class _CommunityPageState extends State<CommunityPage>
         appBar: AppBar(
           titleSpacing: 10.0,
           title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            if (appProvider.location != null)
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: Image.asset(
-                  R.ASSETS_ICONS_ICON_MAIN_LOCATION_PNG,
-                  width: 32.w,
-                  height: 32.w,
-                ),
-              ),
             Text(
-              appProvider.location?['city'] == null
-                  ? ''
-                  : appProvider.location?['city'] as String? ?? '',
+              '附近社区',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 24.sp,
@@ -103,34 +99,17 @@ class _CommunityPageState extends State<CommunityPage>
               ),
               textAlign: TextAlign.center,
             ),
-            Text(
-              '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
-              style: TextStyle(
-                fontSize: 24.sp,
-                color: Color(0xff999999),
-              ),
-              textAlign: TextAlign.center,
-            ),
+
           ]),
           backgroundColor: Colors.white,
           actions: [
-            Badge(
-              elevation: 0,
-              showBadge: appProvider.messageCenterModel.commentCount != 0 ||
-                  appProvider.messageCenterModel.sysCount != 0,
-              position: BadgePosition.topEnd(
-                top: 8,
-                end: 8,
-              ),
-              child: ColumnActionButton(
-                onPressed: () {
-                  if (LoginUtil.isNotLogin) return;
-                  Get.to(() => MessageCenterPage());
-                },
-                title: '消息',
-                path: R.ASSETS_ICONS_ALARM_PNG,
-              ),
-            ),
+            GestureDetector(
+              onTap: () {
+
+              },
+              child: Image.asset(R.ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG,
+                  height: 40.w, width: 40.w),
+            )
           ],
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(90.w), child: _geSearch()),
@@ -165,6 +144,8 @@ class _CommunityPageState extends State<CommunityPage>
           controller: _easyRefreshController,
           onRefresh: () async {
             await (getNewInfo());
+            _gambitModels = await  CommunityFunc.getListGambit();
+            _hotNewsModels = await CommunityFunc.getHotNews();
             _onload = false;
             setState(() {});
           },
@@ -173,7 +154,7 @@ class _CommunityPageState extends State<CommunityPage>
               : ListView(
             children: [
                   2.hb,
-                  _getInfo(),
+                  _hotNewsModels.isEmpty?SizedBox():_getInfo(),
                   16.hb,
                   _getNews(),
                   16.hb,
@@ -262,12 +243,12 @@ class _CommunityPageState extends State<CommunityPage>
                   width: 396.w,
                   child: Builder(
                     builder: (context) {
-                      return _infoCard();
+                      return _infoCard(_hotNewsModels[index]);
                     },
                   ),
                 );
               },
-              itemCount: 3,
+              itemCount: _hotNewsModels.length,
             ),
           ),
         ],
@@ -299,58 +280,108 @@ class _CommunityPageState extends State<CommunityPage>
     );
   }
 
-  _infoCard() {
-    return Container(
-      width: 396.w,
-      height: 204.w,
-      padding:
-          EdgeInsets.only(top: 32.w, left: 40.w, right: 40.w, bottom: 32.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.horizontal(
-          right: Radius.circular(12),
-          left: Radius.circular(16),
-        ),
-        color: Colors.black38,
-      ),
-      child: Column(
+
+   _next(int min, int max) {
+     var rng = new Random();
+//将 参数min + 取随机数（最大值范围：参数max -  参数min）的结果 赋值给变量 result;
+    var result = min + rng.nextInt(max - min);
+//返回变量 result 的值;
+    return result;
+  }
+
+  _infoCard(HotNewsModel item) {
+
+    return GestureDetector(
+      onTap: (){
+
+      },
+      child: Stack(
         children: [
           Container(
-              width: 316.w,
-              alignment: Alignment.center,
-              child: Text(
-                '肖生克的救赎到底在讲人性的还是在激励人在困...',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Colors.white.withOpacity(0.85),
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.bold),
-              )
-          ),
-          24.hb,
-          Row(
-            children: [
-              Text(
-                '271.8w浏览',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.85),
-                  fontSize: 24.sp,
-                ),
+            width: 396.w,
+            height: 204.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.horizontal(
+                right: Radius.circular(12),
+                left: Radius.circular(16),
               ),
-              Spacer(),
-              Text(
-                '01-03',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.85),
-                  fontSize: 24.sp,
+              image: DecorationImage(
+                image: NetworkImage(
+                    API.image(ImgModel.first(item.imgList)),
                 ),
-              )
-            ],
-          )
+                fit: BoxFit.cover,
+              ),
+              //color: Colors.black38,
+            ),
+
+
+          ),
+          Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              alignment: Alignment.center,
+              width: 396.w,
+              height: 204.w,
+              padding:
+              EdgeInsets.only(top: 32.w, left: 40.w, right: 40.w, bottom: 32.w),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.5),
+                borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(12),
+                  left: Radius.circular(16),
+                ), //color: Colors.black38,
+              ),
+              child:
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      width: 316.w,
+                      alignment: Alignment.center,
+                      child: Text(
+                        item.title??'',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.85),
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.bold),
+                      )
+                  ),
+                  24.hb,
+                  Row(
+                    children: [
+                      Text(
+                        '${item.views??0}浏览',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.85),
+                          fontSize: 24.sp,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        item.createDate?.substring(0,10)??'',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.85),
+                          fontSize: 24.sp,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+
+
+
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -386,7 +417,7 @@ class _CommunityPageState extends State<CommunityPage>
         minWidth: double.infinity,
         color: Color(0xFFF3F3F3),
         onPressed: () {
-          Get.to(() => SearchGoodsPage());
+          //Get.to(() => SearchGoodsPage());
         },
         child: Row(
           children: [

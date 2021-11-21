@@ -221,6 +221,78 @@ class R {
   static const String ASSETS_ICONS_FIRE_ALARM_PNG =
       'assets/icons/fire_alarm.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_bmdh.png)
+  static const String ASSETS_ICONS_FUNC_BMDH_PNG = 'assets/icons/func_bmdh.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_bsbx.png)
+  static const String ASSETS_ICONS_FUNC_BSBX_PNG = 'assets/icons/func_bsbx.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_dlxx.png)
+  static const String ASSETS_ICONS_FUNC_DLXX_PNG = 'assets/icons/func_dlxx.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_dzsw.png)
+  static const String ASSETS_ICONS_FUNC_DZSW_PNG = 'assets/icons/func_dzsw.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_fkyq.png)
+  static const String ASSETS_ICONS_FUNC_FKYQ_PNG = 'assets/icons/func_fkyq.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_fwll.png)
+  static const String ASSETS_ICONS_FUNC_FWLL_PNG = 'assets/icons/func_fwll.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_gife.png)
+  static const String ASSETS_ICONS_FUNC_GIFE_PNG = 'assets/icons/func_gife.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_hdtp.png)
+  static const String ASSETS_ICONS_FUNC_HDTP_PNG = 'assets/icons/func_hdtp.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_jhgl.png)
+  static const String ASSETS_ICONS_FUNC_JHGL_PNG = 'assets/icons/func_jhgl.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_jyzx.png)
+  static const String ASSETS_ICONS_FUNC_JYZX_PNG = 'assets/icons/func_jyzx.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_jzfw.png)
+  static const String ASSETS_ICONS_FUNC_JZFW_PNG = 'assets/icons/func_jzfw.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_kdbg.png)
+  static const String ASSETS_ICONS_FUNC_KDBG_PNG = 'assets/icons/func_kdbg.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_kmm.png)
+  static const String ASSETS_ICONS_FUNC_KMM_PNG = 'assets/icons/func_kmm.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_shjf.png)
+  static const String ASSETS_ICONS_FUNC_SHJF_PNG = 'assets/icons/func_shjf.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_sqjs.png)
+  static const String ASSETS_ICONS_FUNC_SQJS_PNG = 'assets/icons/func_sqjs.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_ssyy.png)
+  static const String ASSETS_ICONS_FUNC_SSYY_PNG = 'assets/icons/func_ssyy.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_tsby.png)
+  static const String ASSETS_ICONS_FUNC_TSBY_PNG = 'assets/icons/func_tsby.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_wjdc.png)
+  static const String ASSETS_ICONS_FUNC_WJDC_PNG = 'assets/icons/func_wjdc.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_wpch.png)
+  static const String ASSETS_ICONS_FUNC_WPCH_PNG = 'assets/icons/func_wpch.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_yjbj.png)
+  static const String ASSETS_ICONS_FUNC_YJBJ_PNG = 'assets/icons/func_yjbj.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_ywh.png)
+  static const String ASSETS_ICONS_FUNC_YWH_PNG = 'assets/icons/func_ywh.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_zbqy.png)
+  static const String ASSETS_ICONS_FUNC_ZBQY_PNG = 'assets/icons/func_zbqy.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_zfsm.png)
+  static const String ASSETS_ICONS_FUNC_ZFSM_PNG = 'assets/icons/func_zfsm.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/func_zxgl.png)
+  static const String ASSETS_ICONS_FUNC_ZXGL_PNG = 'assets/icons/func_zxgl.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/goods_borrow.png)
   static const String ASSETS_ICONS_GOODS_BORROW_PNG =
       'assets/icons/goods_borrow.png';
@@ -250,6 +322,10 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_change_list.png)
   static const String ASSETS_ICONS_ICON_CHANGE_LIST_PNG =
       'assets/icons/icon_change_list.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_community_push.png)
+  static const String ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG =
+      'assets/icons/icon_community_push.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_favor_choose.png)
   static const String ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG =
@@ -302,6 +378,30 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_more.png)
   static const String ASSETS_ICONS_ICON_MORE_PNG = 'assets/icons/icon_more.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_car.png)
+  static const String ASSETS_ICONS_ICON_MY_CAR_PNG =
+      'assets/icons/icon_my_car.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_carSeat.png)
+  static const String ASSETS_ICONS_ICON_MY_CARSEAT_PNG =
+      'assets/icons/icon_my_carSeat.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_house.png)
+  static const String ASSETS_ICONS_ICON_MY_HOUSE_PNG =
+      'assets/icons/icon_my_house.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_location.png)
+  static const String ASSETS_ICONS_ICON_MY_LOCATION_PNG =
+      'assets/icons/icon_my_location.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_setting.png)
+  static const String ASSETS_ICONS_ICON_MY_SETTING_PNG =
+      'assets/icons/icon_my_setting.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_my_visitor.png)
+  static const String ASSETS_ICONS_ICON_MY_VISITOR_PNG =
+      'assets/icons/icon_my_visitor.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_notification.png)
   static const String ASSETS_ICONS_ICON_NOTIFICATION_PNG =
       'assets/icons/icon_notification.png';
@@ -309,6 +409,18 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_price.png)
   static const String ASSETS_ICONS_ICON_PRICE_PNG =
       'assets/icons/icon_price.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_property_location.png)
+  static const String ASSETS_ICONS_ICON_PROPERTY_LOCATION_PNG =
+      'assets/icons/icon_property_location.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_property_message.png)
+  static const String ASSETS_ICONS_ICON_PROPERTY_MESSAGE_PNG =
+      'assets/icons/icon_property_message.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_property_search.png)
+  static const String ASSETS_ICONS_ICON_PROPERTY_SEARCH_PNG =
+      'assets/icons/icon_property_search.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_setting.png)
   static const String ASSETS_ICONS_ICON_SETTING_PNG =

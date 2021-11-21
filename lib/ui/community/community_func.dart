@@ -1,6 +1,8 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/board_model.dart';
+import 'package:aku_community/model/community/gambit_model.dart';
+import 'package:aku_community/model/community/hot_news_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
 import 'package:aku_community/models/market/goods_classification.dart';
 import 'package:aku_community/models/market/goods_popular_model.dart';
@@ -10,6 +12,41 @@ import 'package:aku_community/utils/network/base_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 
 class CommunityFunc {
+
+
+  ///查询热门话题
+  static Future<List<GambitModel>> getListGambit() async {
+    BaseListModel model = await NetUtil().getList(
+      API.community.listGambit,
+      params: {'pageNum': 1, 'size': 6},
+    );
+    if (model.tableList!.length == 0) return [];
+    return model.tableList!.map((e) => GambitModel.fromJson(e)).toList();
+  }
+
+  ///查询热门资讯
+  static Future<List<HotNewsModel>> getHotNews() async {
+    BaseListModel model = await NetUtil().getList(
+      API.community.findHotNews,
+      params: {'pageNum': 1, 'size': 4},
+    );
+    if (model.tableList!.length == 0) return [];
+    return model.tableList!.map((e) => HotNewsModel.fromJson(e)).toList();
+  }
+
+  ///给单个资讯增加浏览量
+  static Future<String> addViews(int newsId) async {
+    BaseModel model = await NetUtil().get(
+      API.community.addViews,
+      params: {'newsId': newsId,},
+      showMessage: true,
+    );
+    if (model.message == null)
+      return '';
+    return (model.message as String).toString();
+  }
+
+
 
   ///查询当天上架的商品数量
   static Future<String> getNewProductsTodayNum() async {

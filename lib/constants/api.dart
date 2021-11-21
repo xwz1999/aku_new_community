@@ -325,6 +325,10 @@ class _Manager {
   String get surroundingEnterprises =>
       '/user/surroundingEnterprises/list';
 
+  ///生活缴费：查询未缴金额（日常缴费+公摊费）
+  String get findUnpaidAmount =>
+      '/user/dailyPayment/findUnpaidAmount';
+
 }
 
 class _Community {
@@ -376,6 +380,27 @@ class _Community {
 
   ///资讯轮播图
   String get getSwiper => '/user/news/findNewsRotation';
+
+  ///查询热门资讯
+  String get findHotNews => '/user/news/findHotNews';
+
+  ///资讯增加浏览量
+  String get addViews => '/user/news/addViews';
+
+  ///查询最新的所有主题信息
+  String get getGambitList => '/user/gambit/list';
+
+  ///查询最新的所有主题信息  详情
+  String get gambitThemeDetail => '/user/gambit/GambitThemeDetail';
+
+  ///查询所有的话题(按热度排序)
+  String get listGambit => '/user/gambit/listGambit';
+
+  ///查询当前话题下，所有的主题信息
+  String get listByGambitId => '/user/gambit/listByGambitId';
+
+
+
 }
 
 class _Market {
