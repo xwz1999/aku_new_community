@@ -30,6 +30,7 @@
 /dev/docs/pubspec.yaml
 /packages/flutter/coverage/
 version
+/tool/config.dart
 
 # packages file containing multi-root paths
 .packages.generated

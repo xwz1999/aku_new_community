@@ -27,6 +27,7 @@ import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
 import 'package:aku_community/widget/animated/OverlayWidget.dart';
 import 'package:aku_community/widget/others/rectIndicator.dart';
+import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,8 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -69,6 +72,15 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    if (UserTool.userProvider.isLogin) {
+      try {
+        JPush().setAlias(UserTool.userProvider.userInfoModel!.id.toString());
+        LoggerData.addData(
+            'setAlias ${UserTool.userProvider.userInfoModel!.id} ${DateTime.now()}');
+      } catch (e) {
+        LoggerData.addData('${e.toString()} ${DateTime.now()}');
+      }
+    }
     _scrollController = ScrollController();
     _refreshController = EasyRefreshController();
   }

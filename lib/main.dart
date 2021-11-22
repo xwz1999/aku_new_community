@@ -12,21 +12,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   const buildType = const String.fromEnvironment('BUILD_TYPE');
   DeveloperUtil.setDev(!(buildType.contains('PRODUCT')));
   WidgetsFlutterBinding.ensureInitialized();
+  await MainInitialize.initJPush();
 
   ///firebase crashlytics initalize
   //await MainInitialize.initFirebase();
-  MainInitialize.initTheme();
-  MainInitialize.initWechat();
-  MainInitialize.initWebSocket();
-  await MainInitialize.initJPush();
 
   runApp(MyApp());
 }
@@ -78,7 +73,7 @@ class _MyAppState extends State<MyApp> {
               return MediaQuery(
                 //设置文字大小不随系统设置改变
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: BotToastInit().call(context,child),
+                child: BotToastInit().call(context, child),
               );
             },
             navigatorObservers: [BotToastNavigatorObserver()],
