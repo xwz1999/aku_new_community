@@ -338,15 +338,11 @@ class _Manager {
   String get sharePayRecord =>
       '/user/meterReadingShareDetails/findAllMeterShareOrderByTel';
 
-
   ///查询所有的已发布的户型说明
-  String get houseType =>
-      '/user/houseTypeDescription/list';
-
+  String get houseType => '/user/houseTypeDescription/list';
 
   ///查询所有的周边企业信息
-  String get surroundingEnterprises =>
-      '/user/surroundingEnterprises/list';
+  String get surroundingEnterprises => '/user/surroundingEnterprises/list';
 
   ///生活缴费：查询未缴金额（日常缴费+公摊费）
   String get findUnpaidAmount =>
@@ -465,8 +461,6 @@ class _Market {
   ///app商场中心：根据订单主键id查询订单详情
   String get orderDetail => '/user/shop/findOrderDetailByOrderId';
 
-
-
   ///接入京库客
   ///jcook商城（首页搜索）：查询综合推荐商品列表
   String get findGoodsList => '/user/jcookGoods/findRecommendGoodsList';
@@ -480,10 +474,8 @@ class _Market {
   ///jcook商城 查询品牌入驻数
   String get settledBrandsNum => '/user/jcookGoods/settledBrandsNum';
 
-
   ///jcook商城 查询已上架的SKU总数
   String get skuTotal => '/user/jcookGoods/skuTotal';
-
 
   ///jcook商城 查询今日上新的产品数量
   String get newProductsTodayNum => '/user/jcookGoods/newProductsTodayNum';
@@ -492,16 +484,19 @@ class _Market {
   String get findMaxPopularity => '/user/jcookGoods/findMaxPopularity';
 
   ///jcook商城 根据商品分类父类主键id查询首页所有显示的商品分类
-  String get findAllCategoryByParentId => '/user/jcookGoods/findAllCategoryByParentId';
+  String get findAllCategoryByParentId =>
+      '/user/jcookGoods/findAllCategoryByParentId';
 
   ///jcook商城 查询商品详情 bigInfo大图信息【加载太慢了所以异步查询该接口】
-  String get findGoodsDetailBigInfo => '/user/jcookGoods/findGoodsDetailBigInfo';
+  String get findGoodsDetailBigInfo =>
+      '/user/jcookGoods/findGoodsDetailBigInfo';
 
   ///jcook商城 查询所有品牌
   String get findAllBrand => '/user/jcookGoods/findAllBrand';
 
   ///jcook商城 查询综合推荐列表
-  String get findRecommendGoodsList => '/user/jcookGoods/findRecommendGoodsList';
+  String get findRecommendGoodsList =>
+      '/user/jcookGoods/findRecommendGoodsList';
 
   ///jcook商城 查询商品详情
   String get findGoodsDetail => '/user/jcookGoods/findGoodsDetail';
@@ -513,7 +508,8 @@ class _Market {
   String get insertShoppingCart => '/user/jcookShoppingCat/insertShoppingCart';
 
   ///jcook商城 更改购物车商品数量
-  String get updateShoppingCartNum => '/user/jcookShoppingCat/updateShoppingCartNum';
+  String get updateShoppingCartNum =>
+      '/user/jcookShoppingCat/updateShoppingCartNum';
 
   ///jcook商城 删除购物车商品
   String get deleteShoppingCart => '/user/jcookShoppingCat/deleteShoppingCart';
@@ -524,12 +520,24 @@ class _Market {
   ///jcook商城 我的订单
   String get myOrder => '/user/jcookOrder/myOrder';
 
+  ///jcook商城（购物车）：我的购物车
+  String get shopCarList => '/user/jcookShoppingCat/myShoppingCart';
+
+  ///jcook商城（购物车）：加入购物车
+  String get shopCarAdd => '/user/jcookShoppingCat/insertShoppingCart';
   ///jcook商城 查询所有的可显示的分类信息 需要4秒 进入商场页面的时候加载
   String get findAllCategoryInfo => '/user/jcookGoods/findAllCategoryInfo';
 
 
 
+  ///jcook商城（购物车）：更改购物车商品数量
+  String get shopCarChangeNum => '/user/jcookShoppingCat/updateShoppingCartNum';
 
+  ///jcook商城（购物车）：删除购物车商品
+  String get shopCarDelete => '/user/jcookShoppingCat/deleteShoppingCart';
+
+  ///jcook商城（购物车）：购物车结算
+  String get shopCarSettlement => '/user/jcookShoppingCat/settlement';
 }
 
 class _Upload {
