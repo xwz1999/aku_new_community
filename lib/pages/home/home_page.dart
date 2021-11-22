@@ -1,48 +1,43 @@
 // Dart imports:
 
-import 'package:aku_community/constants/application_objects.dart';
+import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/activity_item_model.dart';
+import 'package:aku_community/model/community/board_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
+import 'package:aku_community/pages/home/widget/animate_app_bar.dart';
 import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
+import 'package:aku_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
-import 'package:aku_community/ui/home/application/all_application.dart';
-import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
-import 'package:aku_community/ui/manager/advice/advice_page.dart';
-import 'package:aku_community/ui/search/bee_search.dart';
-import 'package:aku_community/widget/animated/OverlayWidget.dart';
-import 'package:aku_community/widget/others/rectIndicator.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:badges/badges.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/community/activity_item_model.dart';
-import 'package:aku_community/model/community/board_model.dart';
-import 'package:aku_community/pages/home/widget/animate_app_bar.dart';
-import 'package:aku_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/activity/activity_card.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/community_func.dart';
+import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
+import 'package:aku_community/ui/home/application/all_application.dart';
 import 'package:aku_community/ui/home/home_notification.dart';
 import 'package:aku_community/ui/home/home_title.dart';
+import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_community/ui/search/bee_search.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
-import 'widget/home_search.dart';
+import 'package:aku_community/widget/animated/OverlayWidget.dart';
+import 'package:aku_community/widget/others/rectIndicator.dart';
+import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
+import 'widget/home_search.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -53,7 +48,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-
   int _currentIndicator = 0;
 
   ScrollController? _scrollController;
@@ -66,6 +60,7 @@ class _HomePageState extends State<HomePage>
   int commentCount = 0;
   int sysCount = 0;
   int sum = 0;
+
   // ActivityItemModel? _activityItemModel;
   List<ActivityItemModel> _activityItemModels = [];
   List<BoardItemModel> _boardItemModels = [];
@@ -96,7 +91,7 @@ class _HomePageState extends State<HomePage>
       extendBodyBehindAppBar: true,
       appBar: AnimateAppBar(
         scrollController: _scrollController,
-        actions: [   
+        actions: [
           GestureDetector(
             onTap: () {
               Get.to(() => BeeSearch());
@@ -171,8 +166,7 @@ class _HomePageState extends State<HomePage>
                       HomeSwiper(), //要做点击事件
                       // SizedBox(height: 100.w),
                       Container(
-                        padding: EdgeInsets.only(
-                            top: 24.w, bottom: 32.w),
+                        padding: EdgeInsets.only(top: 24.w, bottom: 32.w),
                         child: getFunction(), //ApplicationView(),
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -194,7 +188,8 @@ class _HomePageState extends State<HomePage>
                 SliverToBoxAdapter(
                   child: Container(
                       height: 40,
-                      margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 24.w),
+                      margin:
+                          EdgeInsets.only(left: 32.w, right: 32.w, top: 24.w),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -219,9 +214,9 @@ class _HomePageState extends State<HomePage>
                           height: 150,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                fit: BoxFit.fill,
-                                  image:
-                                      AssetImage(R.ASSETS_IMAGES_CARD_YELLOW_PNG),)),
+                            fit: BoxFit.fill,
+                            image: AssetImage(R.ASSETS_IMAGES_CARD_YELLOW_PNG),
+                          )),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -236,50 +231,53 @@ class _HomePageState extends State<HomePage>
                               Text(
                                 '一键分享',
                                 style: TextStyle(
-                                    color: Color(0x73000000),
-                                    fontSize: 20.sp,
-                                    ),
+                                  color: Color(0x73000000),
+                                  fontSize: 20.sp,
+                                ),
                               ),
                               Text(
                                 '让拜访不再是难事',
                                 style: TextStyle(
-                                    color: Color(0x73000000),
-                                    fontSize: 20.sp,
-                                   ),
+                                  color: Color(0x73000000),
+                                  fontSize: 20.sp,
+                                ),
                               ),
                               Spacer(),
-                              Image.asset(R.ASSETS_ICONS_ICON_MAIN_INVITE_PNG,width: 100.w,height: 100.w,),
+                              Image.asset(
+                                R.ASSETS_ICONS_ICON_MAIN_INVITE_PNG,
+                                width: 100.w,
+                                height: 100.w,
+                              ),
                               30.hb,
                             ],
                           ),
                         ),
-                        onTap: (){
+                        onTap: () {
                           Get.to(VisitorAccessPage());
                         },
                       ),
                       25.wb,
                       Container(
-
                         margin: EdgeInsets.only(top: 24.w),
                         child: Column(
                           children: [
                             GestureDetector(
-
                               child: Container(
                                 width: 190,
                                 height: 69,
                                 decoration: BoxDecoration(
-
                                     image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                  image: AssetImage(R.ASSETS_IMAGES_CARD_PINK_PNG),
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage(R.ASSETS_IMAGES_CARD_PINK_PNG),
                                 )),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     20.wb,
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         20.hb,
                                         Text(
@@ -300,12 +298,16 @@ class _HomePageState extends State<HomePage>
                                       ],
                                     ),
                                     Spacer(),
-                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_POLICE_PNG,width: 98.w,height: 98.w,),
+                                    Image.asset(
+                                      R.ASSETS_ICONS_ICON_MAIN_POLICE_PNG,
+                                      width: 98.w,
+                                      height: 98.w,
+                                    ),
                                     20.wb,
                                   ],
                                 ),
                               ),
-                              onTap: (){
+                              onTap: () {
                                 Get.to(AlarmPage());
                               },
                             ),
@@ -316,15 +318,17 @@ class _HomePageState extends State<HomePage>
                                 height: 69,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: AssetImage(R.ASSETS_IMAGES_CARD_BLUE_PNG),
-                                    )),
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage(R.ASSETS_IMAGES_CARD_BLUE_PNG),
+                                )),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     20.wb,
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         20.hb,
                                         Text(
@@ -345,79 +349,81 @@ class _HomePageState extends State<HomePage>
                                       ],
                                     ),
                                     Spacer(),
-                                    Image.asset(R.ASSETS_ICONS_ICON_MAIN_CONSULT_PNG,width: 98.w,height: 98.w,),
+                                    Image.asset(
+                                      R.ASSETS_ICONS_ICON_MAIN_CONSULT_PNG,
+                                      width: 98.w,
+                                      height: 98.w,
+                                    ),
                                     20.wb,
                                   ],
                                 ),
                               ),
-                              onTap: (){
+                              onTap: () {
                                 Get.to(AdvicePage(type: AdviceType.SUGGESTION));
                               },
                             )
-
                           ],
                         ),
                       )
                     ],
                   ),
                 ),
-
                 SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      // HomeTitle(
-                      //   title: '公共资讯',
-                      //   suffixTitle: '更多资讯',
-                      //   onTap: () async {
-                      //     final cancel = BotToast.showLoading();
-                      //     BaseModel model = await NetUtil().get(API.news.category);
-                      //     List<NewsCategoryModel>? category;
-                      //     if (model.status == true && model.data != null) {
-                      //       category = (model.data as List)
-                      //           .map((e) => NewsCategoryModel.fromJson(e))
-                      //           .toList();
-                      //     }
-                      //     cancel();
-                      //     Get.to(
-                      //         () => PublicInfomationPage(models: category ?? []));
-                      //   },
-                      // ),
-                      HomeTitle(
-                        title: '社区活动',
-                        suffixTitle: '查看全部',
-                        onTap: () => Get.to(() => ActivityListPage()),
-                      ),
-                      _activityItemModels == []
-                          ? SizedBox()
-                          :Container(
-                        height: 400.w,
-                        padding: EdgeInsets.only(left: 32.w),
-                        child: ListView.separated(
-                          padding: EdgeInsets.zero,
-                          separatorBuilder: (context, index) {
-                            return SizedBox(width: 16.w,);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              width: 500.w,
-                              child: Builder(
-                                builder: (context) {
-
-                                    return ActivityCard(model: _activityItemModels[index]);
-
-                                },
-                              ),
-                            );
-                          },
-                          itemCount: _activityItemModels.length,
-                        ),
-                      ),
-                          // : ActivityCard(model: _activityItemModel)
-                          //     .pSymmetric(h: 24.w, v: 24.w),
-                    ],
-                  )
-                ),
+                    child: Column(
+                  children: [
+                    // HomeTitle(
+                    //   title: '公共资讯',
+                    //   suffixTitle: '更多资讯',
+                    //   onTap: () async {
+                    //     final cancel = BotToast.showLoading();
+                    //     BaseModel model = await NetUtil().get(API.news.category);
+                    //     List<NewsCategoryModel>? category;
+                    //     if (model.status == true && model.data != null) {
+                    //       category = (model.data as List)
+                    //           .map((e) => NewsCategoryModel.fromJson(e))
+                    //           .toList();
+                    //     }
+                    //     cancel();
+                    //     Get.to(
+                    //         () => PublicInfomationPage(models: category ?? []));
+                    //   },
+                    // ),
+                    HomeTitle(
+                      title: '社区活动',
+                      suffixTitle: '查看全部',
+                      onTap: () => Get.to(() => ActivityListPage()),
+                    ),
+                    _activityItemModels == []
+                        ? SizedBox()
+                        : Container(
+                            height: 400.w,
+                            padding: EdgeInsets.only(left: 32.w),
+                            child: ListView.separated(
+                              padding: EdgeInsets.zero,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  width: 16.w,
+                                );
+                              },
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 500.w,
+                                  child: Builder(
+                                    builder: (context) {
+                                      return ActivityCard(
+                                          model: _activityItemModels[index]);
+                                    },
+                                  ),
+                                );
+                              },
+                              itemCount: _activityItemModels.length,
+                            ),
+                          ),
+                    // : ActivityCard(model: _activityItemModel)
+                    //     .pSymmetric(h: 24.w, v: 24.w),
+                  ],
+                )),
               ],
             ),
           ),
@@ -473,8 +479,7 @@ class _HomePageState extends State<HomePage>
 
   Widget getSwiperImage(SwiperModel swiperModel) {
     return Container(
-      child:
-      FadeInImage.assetNetwork(
+      child: FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
         image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
         fit: BoxFit.fill,
