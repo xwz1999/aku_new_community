@@ -1,6 +1,7 @@
 // import 'package:aku_community/base/base_style.dart';
 
 import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
 import 'package:aku_community/models/market/goods_classification.dart';
@@ -9,36 +10,21 @@ import 'package:aku_community/models/market/order/goods_home_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_community/ui/market/search/search_goods_page.dart';
+import 'package:aku_community/ui/market/shop_car/shop_car_page.dart';
 import 'package:aku_community/ui/market/widget/animated_home_background.dart';
-import 'package:aku_community/ui/search/bee_search.dart';
+import 'package:aku_community/utils/headers.dart';
+import 'package:aku_community/utils/network/base_list_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_community/widget/others/rectIndicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/display_category_model.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/category/category_card.dart';
-import 'package:aku_community/ui/market/category/category_page.dart';
-import 'package:aku_community/ui/market/goods/goods_card.dart';
-import 'package:aku_community/ui/market/order/my_order_page.dart';
-import 'package:aku_community/ui/market/search/search_goods_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/provider/app_provider.dart';
 
 import 'market_home_goods_card.dart';
 
@@ -54,7 +40,7 @@ class MarketPage extends StatefulWidget {
 }
 
 class _MarketPageState extends State<MarketPage>
-    with TickerProviderStateMixin,AutomaticKeepAliveClientMixin{
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late EasyRefreshController _refreshController;
   late ScrollController _sliverListController;
   GlobalKey<HomeSliverAppBarState> _sliverAppBarGlobalKey = GlobalKey();
@@ -88,11 +74,14 @@ class _MarketPageState extends State<MarketPage>
   int? orderByPrice;
 
   Future updateMarketInfo() async {
-
-    BaseListModel baseListModel =
-        await NetUtil().getList( API.market.findRecommendGoodsList,
-          params: {'pageNum': _pageNum, 'size': _size,
-            'orderBySalesVolume': orderBySalesVolume,'orderByPrice': orderByPrice,},
+    BaseListModel baseListModel = await NetUtil().getList(
+      API.market.findRecommendGoodsList,
+      params: {
+        'pageNum': _pageNum,
+        'size': _size,
+        'orderBySalesVolume': orderBySalesVolume,
+        'orderByPrice': orderByPrice,
+      },
     );
     if (baseListModel.tableList!.isNotEmpty) {
       _goodsHomeModelList = (baseListModel.tableList as List)
@@ -103,10 +92,14 @@ class _MarketPageState extends State<MarketPage>
   }
 
   Future loadMarketInfo() async {
-    BaseListModel baseListModel =
-    await NetUtil().getList( API.market.findRecommendGoodsList,
-      params: {'pageNum': _pageNum, 'size': _size,
-        'orderBySalesVolume': orderBySalesVolume,'orderByPrice': orderByPrice,},
+    BaseListModel baseListModel = await NetUtil().getList(
+      API.market.findRecommendGoodsList,
+      params: {
+        'pageNum': _pageNum,
+        'size': _size,
+        'orderBySalesVolume': orderBySalesVolume,
+        'orderByPrice': orderByPrice,
+      },
     );
     if (baseListModel.tableList!.isNotEmpty) {
       _goodsHomeModelList = (baseListModel.tableList as List)
@@ -119,18 +112,19 @@ class _MarketPageState extends State<MarketPage>
   @override
   void initState() {
     super.initState();
-    for(int i=0;i<10;i++){
-      _goodsClassificationList.add(GoodsClassification(id: 0,name: '',imgUrls: null));
+    for (int i = 0; i < 10; i++) {
+      _goodsClassificationList
+          .add(GoodsClassification(id: 0, name: '', imgUrls: null));
     }
-    for(int i=0;i<6;i++){
-      _goodsPopularModelList.add(GoodsPopularModel(id: 0,skuName: '',mainPhoto: '',viewsNum: 0));
+    for (int i = 0; i < 6; i++) {
+      _goodsPopularModelList.add(
+          GoodsPopularModel(id: 0, skuName: '', mainPhoto: '', viewsNum: 0));
     }
-
 
     _refreshController = EasyRefreshController();
     _sliverListController = ScrollController();
-    _tabController = TabController(
-        initialIndex: 0, length: 3, vsync: this);
+    _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+
     ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
     Future.delayed(Duration(milliseconds: 0), () async {
       await updateMarketInfo();
@@ -149,11 +143,11 @@ class _MarketPageState extends State<MarketPage>
 
   @override
   Widget build(BuildContext context) {
-    // super.build(context);
+    super.build(context);
     final mediaWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body:EasyRefresh(
+      body: EasyRefresh(
         firstRefresh: false,
         enableControlFinishLoad: false,
         header: MaterialHeader(),
@@ -170,30 +164,24 @@ class _MarketPageState extends State<MarketPage>
           }
           setState(() {});
         },
-        child:  _buildBody(context),
-
+        child: _buildBody(context),
       ),
-
-
-
     );
   }
 
-
-
-  _refresh() async{
+  _refresh() async {
     _pageNum = 1;
     await updateMarketInfo();
     _swiperModels = await CommunityFunc.swiper();
     _newTotal = await CommunityFunc.getNewProductsTodayNum();
     _total = await CommunityFunc.getSkuTotal();
     _brandTotal = await CommunityFunc.getSettledBrandsNum();
-    _goodsClassificationList = await CommunityFunc.getGoodsClassificationList(0);//0获取根目录下的分类
+    _goodsClassificationList =
+        await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
     //_goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
 
     setState(() {});
   }
-
 
   Widget _buildBody(BuildContext context) {
     final normalTypeButton = MaterialButton(
@@ -208,11 +196,10 @@ class _MarketPageState extends State<MarketPage>
       child: Text(
         '综合',
         style: TextStyle(
-          color:
-          _orderType == OrderType.NORMAL ? kBalckSubColor : ktextPrimary,
+          color: _orderType == OrderType.NORMAL ? kBalckSubColor : ktextPrimary,
           fontSize: _orderType == OrderType.NORMAL ? 32.sp : 28.sp,
           fontWeight: _orderType == OrderType.NORMAL
-              ?FontWeight.bold
+              ? FontWeight.bold
               : FontWeight.normal,
         ),
       ),
@@ -231,11 +218,10 @@ class _MarketPageState extends State<MarketPage>
       child: Text(
         '销量',
         style: TextStyle(
-          color:
-          _orderType == OrderType.SALES ? kBalckSubColor : ktextPrimary,
+          color: _orderType == OrderType.SALES ? kBalckSubColor : ktextPrimary,
           fontSize: _orderType == OrderType.SALES ? 32.sp : 28.sp,
           fontWeight: _orderType == OrderType.SALES
-              ?FontWeight.bold
+              ? FontWeight.bold
               : FontWeight.normal,
         ),
       ),
@@ -275,16 +261,16 @@ class _MarketPageState extends State<MarketPage>
             '价格',
             style: TextStyle(
               color: _orderType == OrderType.PRICE_HIGH ||
-                  _orderType == OrderType.PRICE_LOW
+                      _orderType == OrderType.PRICE_LOW
                   ? kBalckSubColor
                   : ktextPrimary,
               fontSize: _orderType == OrderType.PRICE_HIGH ||
-                  _orderType == OrderType.PRICE_LOW
+                      _orderType == OrderType.PRICE_LOW
                   ? 32.sp
                   : 28.sp,
               fontWeight: _orderType == OrderType.PRICE_HIGH ||
-                  _orderType == OrderType.PRICE_LOW
-                  ?FontWeight.bold
+                      _orderType == OrderType.PRICE_LOW
+                  ? FontWeight.bold
                   : FontWeight.normal,
             ),
           ),
@@ -292,7 +278,7 @@ class _MarketPageState extends State<MarketPage>
             priceIcon,
             size: 32.w,
             color: _orderType == OrderType.PRICE_HIGH ||
-                _orderType == OrderType.PRICE_LOW
+                    _orderType == OrderType.PRICE_LOW
                 ? kBalckSubColor
                 : ktextPrimary,
           ),
@@ -309,63 +295,67 @@ class _MarketPageState extends State<MarketPage>
             actions: _actionsWidget(),
             title: _buildTitle(),
             backgroundColor: Colors.red,
-            expandedHeight:  MessageHeight+
-                             bannerHeight +
-                             buttonsHeight+
-                             searchHeight +tabBarHeight+ScreenUtil().statusBarHeight +kToolbarHeight+280.w,
+            expandedHeight: MessageHeight +
+                bannerHeight +
+                buttonsHeight +
+                searchHeight +
+                tabBarHeight +
+                ScreenUtil().statusBarHeight +
+                kToolbarHeight +
+                280.w,
             flexibleSpace: _flexibleSpaceBar(context),
-
-            bottom:  PreferredSize(
-              preferredSize: Size.fromHeight(tabBarHeight),
-              child: _goodsTitle( normalTypeButton, salesTypeButton, priceButton,)
-            )),
+            bottom: PreferredSize(
+                preferredSize: Size.fromHeight(tabBarHeight),
+                child: _goodsTitle(
+                  normalTypeButton,
+                  salesTypeButton,
+                  priceButton,
+                ))),
         SliverPadding(
           padding: EdgeInsets.all(10.w),
         ),
         SliverPadding(
-          padding: EdgeInsets.only(left: 20.w,right: 20.w),
+          padding: EdgeInsets.only(left: 20.w, right: 20.w),
           sliver: buildSliverGrid(),
         ),
-
       ],
     );
   }
 
   SliverGrid buildSliverGrid() {
     return SliverGrid(
-
-        // child: WaterfallFlow.builder(
-        //   gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-        //     crossAxisCount: 2,
-        //     mainAxisSpacing: 20.w,
-        //     crossAxisSpacing: 20.w,
-        //   ),
-        //   padding: EdgeInsets.all(32.w),
-        //   itemBuilder: (context, index) {
-        //     final item = _hotItems[index];
-        //     return GoodsCard(item: item);
-        //   },
-        //   itemCount: _hotItems.length,
-        // ),
+      // child: WaterfallFlow.builder(
+      //   gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+      //     crossAxisCount: 2,
+      //     mainAxisSpacing: 20.w,
+      //     crossAxisSpacing: 20.w,
+      //   ),
+      //   padding: EdgeInsets.all(32.w),
+      //   itemBuilder: (context, index) {
+      //     final item = _hotItems[index];
+      //     return GoodsCard(item: item);
+      //   },
+      //   itemCount: _hotItems.length,
+      // ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20.w,
-            crossAxisSpacing: 20.w,
-            childAspectRatio:0.57,
+        crossAxisCount: 2,
+        mainAxisSpacing: 20.w,
+        crossAxisSpacing: 20.w,
+        childAspectRatio: 0.57,
       ),
 
       ///子Item构建器
       delegate: new SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-
+        (BuildContext context, int index) {
           ///每一个子Item的样式
-              return MarketHomeGoodsCard(item:  _goodsHomeModelList[index]);
-              // return Container(
-              //   width: 200.w,
-              //     height: 200.w,
-              //   color: Colors.blue,
-              // );
+          return MarketHomeGoodsCard(item: _goodsHomeModelList[index]);
+          // return Container(
+          //   width: 200.w,
+          //     height: 200.w,
+          //   color: Colors.blue,
+          // );
         },
+
         ///子Item的个数
         childCount: _goodsHomeModelList.length,
       ),
@@ -376,13 +366,13 @@ class _MarketPageState extends State<MarketPage>
     return <Widget>[
       GestureDetector(
         onTap: () {
-          //Get.to(() => BeeSearch()); 购物车
+          Get.to(() => ShopCarPage()); // 购物车
         },
-        child: Image.asset(R.ASSETS_ICONS_SHOP_CAR_PNG,
-            height: 40.w, width: 40.w),
+        child:
+            Image.asset(R.ASSETS_ICONS_SHOP_CAR_PNG, height: 40.w, width: 40.w),
       ),
       Padding(
-        padding: EdgeInsets.only( left: 32.w,right: 32.w),
+        padding: EdgeInsets.only(left: 32.w, right: 32.w),
         child: GestureDetector(
           onTap: () {
             //Get.to(() => BeeSearch()); 订单
@@ -403,36 +393,36 @@ class _MarketPageState extends State<MarketPage>
       //color: Colors.blue,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:[
+        children: [
           Container(
             height: 40.w,
             child: Flex(
               direction: Axis.horizontal,
               children: <Widget>[
-                Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (appProvider.location != null)
-                        Padding(
-                          padding:EdgeInsets.only(right: 5.w,top: 5.w),
-                          child: Image.asset(
-                            R.ASSETS_ICONS_SHOP_LOCATION_PNG,
-                            width: 40.w,
-                            height: 40.w,
-                            fit: BoxFit.fitHeight,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      Text(
-                        appProvider.location?['city']==null?'':appProvider.location?['city'] as String? ?? '',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28.sp,
-                          color: Colors.white,
-                        ),
-                        //textAlign: TextAlign.center,
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  if (appProvider.location != null)
+                    Padding(
+                      padding: EdgeInsets.only(right: 5.w, top: 5.w),
+                      child: Image.asset(
+                        R.ASSETS_ICONS_SHOP_LOCATION_PNG,
+                        width: 40.w,
+                        height: 40.w,
+                        fit: BoxFit.fitHeight,
+                        //color: Colors.white,
                       ),
-                    ]),
+                    ),
+                  Text(
+                    appProvider.location?['city'] == null
+                        ? ''
+                        : appProvider.location?['city'] as String? ?? '',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.sp,
+                      color: Colors.white,
+                    ),
+                    //textAlign: TextAlign.center,
+                  ),
+                ]),
                 // Expanded(
                 //   child: ges,
                 // )
@@ -449,25 +439,24 @@ class _MarketPageState extends State<MarketPage>
   }
 
   FlexibleSpaceBar _flexibleSpaceBar(context) {
-
     return FlexibleSpaceBar(
       collapseMode: CollapseMode.pin,
       background: Container(
-        //头部整个背景颜色
+          //头部整个背景颜色
           height: double.infinity,
-          color:  Color(0xFFF9F9F9),
+          color: Color(0xFFF9F9F9),
           // color: Colors.white,
           child: Stack(
             children: <Widget>[
               AnimatedHomeBackground(
                 key: _animatedBackgroundState,
                 height: 530.w,
-                backgroundColor: Colors.white ,
+                backgroundColor: Colors.white,
               ),
               Column(
                 children: <Widget>[
                   Container(
-                    height: ScreenUtil().statusBarHeight +kToolbarHeight,
+                    height: ScreenUtil().statusBarHeight + kToolbarHeight,
                   ),
                   geSearch(),
                   20.hb,
@@ -478,7 +467,6 @@ class _MarketPageState extends State<MarketPage>
                   _buttonTitle(),
                   20.hb,
                   _recommend(),
-
                 ],
               ),
             ],
@@ -486,11 +474,10 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-
-  geSearch(){
-   return  Container(
-     margin: EdgeInsets.symmetric(horizontal: 24.w),
-     child: MaterialButton(
+  geSearch() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24.w),
+      child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         height: 74.w,
         shape: StadiumBorder(),
@@ -512,63 +499,73 @@ class _MarketPageState extends State<MarketPage>
           ],
         ),
       ),
-   );
+    );
   }
 
-  getNum(){
+  getNum() {
     return Container(
-      margin: EdgeInsets.only(left: 18.w,right: 18.w),
-      padding: EdgeInsets.only(right:8.w ),
+      margin: EdgeInsets.only(left: 18.w, right: 18.w),
+      padding: EdgeInsets.only(right: 8.w),
       height: 76.w,
       width: double.infinity,
       alignment: Alignment.center,
-
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12), ),
+        borderRadius: BorderRadius.horizontal(
+          right: Radius.circular(12),
+          left: Radius.circular(12),
+        ),
         gradient: LinearGradient(
-            begin: FractionalOffset.centerRight,
-            end: FractionalOffset.centerLeft,
+          begin: FractionalOffset.centerRight,
+          end: FractionalOffset.centerLeft,
           colors: <Color>[Color(0xFFAD2222), Color(0xFFCD392B)],
         ),
       ),
       child: Stack(
         children: [
           Positioned(
-            bottom: 5,
+              bottom: 5,
               right: 0,
               top: 5,
               child: Container(
-                padding: EdgeInsets.only(top: 5.w,bottom: 5.w),
+                padding: EdgeInsets.only(top: 5.w, bottom: 5.w),
                 alignment: Alignment.center,
                 height: 61.w,
                 width: 694.w,
                 decoration: BoxDecoration(
                   color: Color(0xFFFDEEBF),
-                  borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12) ),
-
+                  borderRadius: BorderRadius.horizontal(
+                      right: Radius.circular(12), left: Radius.circular(12)),
                 ),
                 child: Container(
                   height: 50.w,
                   width: 682.w,
                   decoration: BoxDecoration(
                     //color: Color(0x99F5AF16),
-                    borderRadius: BorderRadius.horizontal(right: Radius.circular(12),left:Radius.circular(12)),
-                    border: Border.all(width: 2.w,color: Color(0x99F5AF16)),
-
+                    borderRadius: BorderRadius.horizontal(
+                        right: Radius.circular(12), left: Radius.circular(12)),
+                    border: Border.all(width: 2.w, color: Color(0x99F5AF16)),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       80.wb,
-                      Image.asset(R.ASSETS_ICONS_SHOP_LABA_PNG,width: 36.w,height: 34.w,),
+                      Image.asset(
+                        R.ASSETS_ICONS_SHOP_LABA_PNG,
+                        width: 36.w,
+                        height: 34.w,
+                      ),
                       20.wb,
-                      Text('今日上新${_total}件',style: TextStyle(color: Color(0xFFD0564B),fontSize: 24.sp,height: 1.05),),
+                      Text(
+                        '今日上新${_total}件',
+                        style: TextStyle(
+                            color: Color(0xFFD0564B),
+                            fontSize: 24.sp,
+                            height: 1.05),
+                      ),
                     ],
                   ),
                 ),
-              )
-
-          ),
+              )),
           Positioned(
               left: 0,
               top: 0,
@@ -577,25 +574,28 @@ class _MarketPageState extends State<MarketPage>
                 height: 76.w,
                 width: 258.w,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.centerLeft,
-                    end: FractionalOffset.centerRight,
-                    colors: <Color>[Color(0xFFAD2222), Color(0xFFCD392B)],
-                  ),
-                  borderRadius: BorderRadius.horizontal(right: Radius.circular(50),left: Radius.circular(24))
-                ),
+                    gradient: LinearGradient(
+                      begin: FractionalOffset.centerLeft,
+                      end: FractionalOffset.centerRight,
+                      colors: <Color>[Color(0xFFAD2222), Color(0xFFCD392B)],
+                    ),
+                    borderRadius: BorderRadius.horizontal(
+                        right: Radius.circular(50), left: Radius.circular(24))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('SKU总数：${_newTotal}',style: TextStyle(color: Colors.white,fontSize: 24.sp),),
-                    Text('入驻品牌数：${_brandTotal}',style: TextStyle(color: Colors.white,fontSize: 24.sp),)
+                    Text(
+                      'SKU总数：${_newTotal}',
+                      style: TextStyle(color: Colors.white, fontSize: 24.sp),
+                    ),
+                    Text(
+                      '入驻品牌数：${_brandTotal}',
+                      style: TextStyle(color: Colors.white, fontSize: 24.sp),
+                    )
                   ],
                 ),
-          )),
-
-
-
+              )),
         ],
       ),
     );
@@ -618,21 +618,21 @@ class _MarketPageState extends State<MarketPage>
               alignment: Alignment.bottomRight,
               builder: SwiperCustomPagination(
                   builder: (BuildContext context, SwiperPluginConfig config) {
-                    return RectIndicator(
-                      position: config.activeIndex,
-                      count: _swiperModels.length,
-                      activeColor: Color(0x99FFFFFF),
-                      color: Color(0xD9FFFFFF),
-                      //未选中 指示器颜色，选中的颜色key为Color
-                      width: 4,
-                      //指示器宽度
-                      activeWidth: 14,
-                      //选中的指示器宽度
-                      radius: 4,
-                      //指示器圆角角度
-                      height: 4,
-                    ); //指示器高度
-                  })),
+                return RectIndicator(
+                  position: config.activeIndex,
+                  count: _swiperModels.length,
+                  activeColor: Color(0x99FFFFFF),
+                  color: Color(0xD9FFFFFF),
+                  //未选中 指示器颜色，选中的颜色key为Color
+                  width: 4,
+                  //指示器宽度
+                  activeWidth: 14,
+                  //选中的指示器宽度
+                  radius: 4,
+                  //指示器圆角角度
+                  height: 4,
+                ); //指示器高度
+              })),
           scrollDirection: Axis.horizontal,
           // control: new SwiperControl(),
           autoplay: true,
@@ -652,12 +652,10 @@ class _MarketPageState extends State<MarketPage>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(12.w)),
       ),
-      child:
-      FadeInImage.assetNetwork(
+      child: FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
         image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
         fit: BoxFit.fill,
-
         imageErrorBuilder: (context, error, stackTrace) {
           return Image.asset(
             R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -668,7 +666,6 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-
   _buttonTitle() {
     Container titles = Container(
       alignment: Alignment.center,
@@ -676,23 +673,21 @@ class _MarketPageState extends State<MarketPage>
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.w),
       ),
-      child:
-      GridView.builder(
+      child: GridView.builder(
         padding: EdgeInsets.zero,
         physics: NeverScrollableScrollPhysics(),
         gridDelegate:
-        SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
         itemBuilder: (context, index) {
-          if(index == 9){
+          if (index == 9) {
             return _buildAllTile();
-          }else{
+          } else {
             return _buildTile(_goodsClassificationList[index]);
           }
         },
         itemCount: 10,
         shrinkWrap: true,
       ),
-
     );
     return Container(
       alignment: Alignment.center,
@@ -703,10 +698,8 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-
   _buildTile(GoodsClassification item) {
     return GestureDetector(
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -716,15 +709,18 @@ class _MarketPageState extends State<MarketPage>
             height: 88.w,
             image: API.image(ImgModel.first(item.imgUrls)),
             imageErrorBuilder: (context, error, stackTrace) {
-              return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 88.w,
-                width: 88.w,);
+              return Image.asset(
+                R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                height: 88.w,
+                width: 88.w,
+              );
             },
           ),
           8.hb,
-          Text( (item.name??'').replaceAll('、', ''),style: TextStyle(
-            fontSize: 28.sp,
-            color: ktextPrimary
-          ),)
+          Text(
+            (item.name ?? '').replaceAll('、', ''),
+            style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
+          )
         ],
       ),
     );
@@ -735,13 +731,16 @@ class _MarketPageState extends State<MarketPage>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        Image.asset(R.ASSETS_ICONS_TEST_KINGCION_PNG,height: 88.w,
-        width: 88.w,),
+          Image.asset(
+            R.ASSETS_ICONS_TEST_KINGCION_PNG,
+            height: 88.w,
+            width: 88.w,
+          ),
           8.hb,
-          Text( '全部分类',style: TextStyle(
-              fontSize: 28.sp,
-              color: ktextPrimary
-          ),)
+          Text(
+            '全部分类',
+            style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
+          )
         ],
       ),
     );
@@ -750,13 +749,12 @@ class _MarketPageState extends State<MarketPage>
   Widget getkingCoin() {
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
       width: double.infinity,
       height: buttonsHeight,
-      child:_buttonTitleRow(),
+      child: _buttonTitleRow(),
     );
   }
-
 
   _buttonTitleRow({onPressed}) {
     return Expanded(
@@ -765,21 +763,22 @@ class _MarketPageState extends State<MarketPage>
         child: Column(
           children: <Widget>[
             Container(
+              width: 88.w,
+              height: 88.w,
+              child: Image.asset(
+                R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 width: 88.w,
                 height: 88.w,
-                child: Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,width: 88.w,height: 88.w,),
-                // FadeInImage.assetNetwork(
-                //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                //   image: Api.getImgUrl(kingCoin.url),)
+              ),
+              // FadeInImage.assetNetwork(
+              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              //   image: Api.getImgUrl(kingCoin.url),)
             ),
             Container(
               margin: EdgeInsets.only(top: 6.w),
               child: Text(
                 '数码产品',
-                style: TextStyle(
-
-                    fontSize: 28.sp,
-                    color: Color(0xFF333333)),
+                style: TextStyle(fontSize: 28.sp, color: Color(0xFF333333)),
               ),
             )
           ],
@@ -793,121 +792,109 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-
-  _recommend(){
+  _recommend() {
     return Container(
         height: 184.w,
-        margin: EdgeInsets.only(left: 20.w,right: 20.w),
-        padding: EdgeInsets.only(top: 8.w,left: 16.w,right: 16.w),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w),
+        padding: EdgeInsets.only(top: 8.w, left: 16.w, right: 16.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.w),
-    ),
-    child:
-    Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.w),
+        ),
+        child: Column(
           children: [
-            Text(
-              '爆款推荐',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28.sp,
-                  color: ktextPrimary),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  '爆款推荐',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.sp,
+                      color: ktextPrimary),
+                ),
+              ],
             ),
-          ],
-        ),
-        GridView.builder(
-          padding: EdgeInsets.zero,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
-          itemBuilder: (context, index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 96.w,
+            GridView.builder(
+              padding: EdgeInsets.zero,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
+              itemBuilder: (context, index) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 96.w,
+                      height: 96.w,
+                      child: FadeInImage.assetNetwork(
+                        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                        image: _goodsPopularModelList[index].mainPhoto ?? '',
+                        imageErrorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                             height: 96.w,
-                            child:FadeInImage.assetNetwork(
-                              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                              image: _goodsPopularModelList[index].mainPhoto??'',
-                              imageErrorBuilder: (context, error, stackTrace) {
-                                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 96.w,
-                                  width: 96.w,);
-                              },
-                            ),
-                          ),
-
-                        ],
-                      );
-          },
-          itemCount: 6,
-          shrinkWrap: true,
-        ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     ..._goodsPopularModelList.map((e) => Row(
-        //       children: [
-        //         Container(
-        //           width: 96.w,
-        //           height: 96.w,
-        //           child:FadeInImage.assetNetwork(
-        //             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-        //             image: e.mainPhoto??'',
-        //             imageErrorBuilder: (context, error, stackTrace) {
-        //               return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 96.w,
-        //                 width: 96.w,);
-        //             },
-        //           ),
-        //         ),
-        //         20.wb,
-        //       ],
-        //     ),)
-        //   ],
-        // ).expand(),
-      ],
-    )
-    );
+                            width: 96.w,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+              itemCount: 6,
+              shrinkWrap: true,
+            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     ..._goodsPopularModelList.map((e) => Row(
+            //       children: [
+            //         Container(
+            //           width: 96.w,
+            //           height: 96.w,
+            //           child:FadeInImage.assetNetwork(
+            //             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            //             image: e.mainPhoto??'',
+            //             imageErrorBuilder: (context, error, stackTrace) {
+            //               return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 96.w,
+            //                 width: 96.w,);
+            //             },
+            //           ),
+            //         ),
+            //         20.wb,
+            //       ],
+            //     ),)
+            //   ],
+            // ).expand(),
+          ],
+        ));
   }
 
-
-
-
-
-
-
-  _goodsTitle(Widget normalTypeButton,Widget salesTypeButton,Widget priceButton,){
+  _goodsTitle(
+    Widget normalTypeButton,
+    Widget salesTypeButton,
+    Widget priceButton,
+  ) {
     return Container(
       height: 90.w,
       alignment: Alignment.centerLeft,
-      color:  Color(0xFFF9F9F9),
+      color: Color(0xFFF9F9F9),
       width: MediaQuery.of(context).size.width,
-      child:
-      Container(
+      child: Container(
         alignment: Alignment.centerLeft,
         height: 60.w,
-        child:Row(
+        child: Row(
           children: [
             normalTypeButton,
             salesTypeButton,
             priceButton,
           ],
         ),
-
       ),
     );
   }
-
-
-
-
-
-
-
 
   @override
   bool get wantKeepAlive => true;

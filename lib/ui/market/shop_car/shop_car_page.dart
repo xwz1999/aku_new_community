@@ -42,6 +42,14 @@ class _ShopCarPageState extends State<ShopCarPage> {
   }
 
   @override
+  void dispose() {
+    _controllers.forEach((element) {
+      element.dispose();
+    });
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -102,26 +110,17 @@ class _ShopCarPageState extends State<ShopCarPage> {
                     _models = (base.data as List)
                         .map((e) => ShopCarListModel.fromJson(e))
                         .toList();
+                    _controllers.forEach((element) {
+                      element.dispose();
+                    });
+                    _controllers.clear();
+                    _models.forEach((element) {
+                      _controllers.add(
+                          TextEditingController(text: element.num.toString()));
+                    });
                   }
-                  _models.add(ShopCarListModel(
-                      id: 0,
-                      skuName: '123',
-                      mainPhoto: '',
-                      status: 1,
-                      shopStatus: 1,
-                      sellPrice: 20.00,
-                      discountPrice: 10,
-                      unit: '个',
-                      kind: 1,
-                      weight: 3,
-                      num: 2));
-                  _models.forEach((element) {
-                    _controllers.add(
-                        TextEditingController(text: element.num.toString()));
-                  });
                   if (mounted) {
                     setState(() {});
-                    ;
                   }
                 },
                 child: _models.isEmpty
@@ -209,7 +208,15 @@ class _ShopCarPageState extends State<ShopCarPage> {
 
   Future _settleEnd() async {}
 
-  Future _delete() async {}
+  Future _delete() async {
+    await NetUtil().post(
+      API.market.shopCarDelete,
+      params: {
+        'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
+      },
+      showMessage: true,
+    );
+  }
 
   Widget _goodCard(ShopCarListModel model, int index) {
     var top = RichText(
