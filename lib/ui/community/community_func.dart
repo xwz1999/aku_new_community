@@ -1,7 +1,7 @@
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/community/activity_item_model.dart';
 import 'package:aku_community/model/community/board_model.dart';
-import 'package:aku_community/model/community/gambit_model.dart';
+import 'package:aku_community/model/community/community_topic_model.dart';
 import 'package:aku_community/model/community/hot_news_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
 import 'package:aku_community/models/market/goods_classification.dart';
@@ -15,13 +15,13 @@ class CommunityFunc {
 
 
   ///查询热门话题
-  static Future<List<GambitModel>> getListGambit() async {
+  static Future<List<CommunityTopicModel>> getListGambit() async {
     BaseListModel model = await NetUtil().getList(
       API.community.listGambit,
       params: {'pageNum': 1, 'size': 8},
     );
     if (model.tableList!.length == 0) return [];
-    return model.tableList!.map((e) => GambitModel.fromJson(e)).toList();
+    return model.tableList!.map((e) => CommunityTopicModel.fromJson(e)).toList();
   }
 
   ///查询热门资讯

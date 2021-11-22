@@ -26,6 +26,7 @@ class API {
   static _House house = _House();
 }
 
+
 class _Login {
   /// 获取手机验证码
   String get sendSMSCode => '/login/sendMMSLogin';
@@ -97,6 +98,28 @@ class _User {
 
   ///我的车辆：查询所有的车辆
   String get carList => '/user/myCar/list';
+
+  ///我的收获地址
+  String get myAddressList => '/user/jcookAddress/myAddress';
+
+  ///修改收货地址
+  String get updateAddress => '/user/jcookAddress/update';
+
+  ///删除收货地址
+  String get deleteAddress => '/user/jcookAddress/delete';
+
+  ///根据父类主键id查询城市信息
+  String get findByParentId => '/user/jcookAddress/findByParentId';
+
+  ///添加收货地址
+  String get insertAddress => '/user/jcookAddress/insert';
+
+  ///设置默认收货地址
+  String get settingDefaultAddress => '/user/jcookAddress/settingDefaultAddress';
+
+  ///查询所有城市的信息 需要10秒  首次打开APP时加载调用，保存到本地
+  String get findAllCityInfo => '/user/jcookAddress/findAllCityInfo';
+
 }
 
 class _News {
@@ -500,6 +523,10 @@ class _Market {
 
   ///jcook商城 我的订单
   String get myOrder => '/user/jcookOrder/myOrder';
+
+  ///jcook商城 查询所有的可显示的分类信息 需要4秒 进入商场页面的时候加载
+  String get findAllCategoryInfo => '/user/jcookGoods/findAllCategoryInfo';
+
 
 
 

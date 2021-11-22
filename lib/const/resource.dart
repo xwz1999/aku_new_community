@@ -827,6 +827,9 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/images/wxpay.png)
   static const String ASSETS_IMAGES_WXPAY_PNG = 'assets/images/wxpay.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/json/province.json)
+  static const String ASSETS_JSON_PROVINCE_JSON = 'assets/json/province.json';
+
   /// ![preview](file:///Users/datang/aku_community/assets/static/car_card_grey.webp)
   static const String ASSETS_STATIC_CAR_CARD_GREY_WEBP =
       'assets/static/car_card_grey.webp';

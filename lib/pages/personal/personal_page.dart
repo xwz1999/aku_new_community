@@ -21,6 +21,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'address/address_list_page.dart';
+
 class PersonalIndex extends StatefulWidget {
   final bool? isSign;
 
@@ -596,7 +598,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         36.hb,
                         _function('我的访客', R.ASSETS_ICONS_ICON_MY_VISITOR_PNG, () => CarManagePage(),''),
                         36.hb,
-                        _function('收获地址设置', R.ASSETS_ICONS_ICON_MY_LOCATION_PNG, () => CarManagePage(),''),
+                        _function('收货地址设置', R.ASSETS_ICONS_ICON_MY_LOCATION_PNG, () => AddressListPage(),''),
 
                         //
                         // ApplicationView.custom(
@@ -648,32 +650,35 @@ class _PersonalIndexState extends State<PersonalIndex>
       onTap: (){
         Get.to(page);
       },
-      child: Row(
-        children: [
-          Image.asset(path,width: 40.w,height: 40.w,fit:BoxFit.fitHeight,),
-          16.wb,
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 28.sp,
-              color: Colors.black.withOpacity(0.85),
+      child: Container(
+        color: Colors.transparent,
+        child: Row(
+          children: [
+            Image.asset(path,width: 40.w,height: 40.w,fit:BoxFit.fitHeight,),
+            16.wb,
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 28.sp,
+                color: Colors.black.withOpacity(0.85),
+              ),
             ),
-          ),
-          Spacer(),
-          Text(
-            msg,
-            style: TextStyle(
-              fontSize: 24.sp,
-              color: Colors.black.withOpacity(0.45),
+            Spacer(),
+            Text(
+              msg,
+              style: TextStyle(
+                fontSize: 24.sp,
+                color: Colors.black.withOpacity(0.45),
+              ),
             ),
-          ),
-          24.wb,
-          Icon(
-            CupertinoIcons.chevron_forward,
-            size: 24.w,
-            color: Color(0xFF999999),
-          ),
-        ],
+            24.wb,
+            Icon(
+              CupertinoIcons.chevron_forward,
+              size: 24.w,
+              color: Color(0xFF999999),
+            ),
+          ],
+        ),
       ),
     );
   }

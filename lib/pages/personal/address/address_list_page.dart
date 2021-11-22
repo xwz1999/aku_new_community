@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:aku_community/model/user/adress_model.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -13,15 +14,25 @@ import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_community/utils/headers.dart';
 
-class TopicCommunityView extends StatefulWidget {
-  TopicCommunityView({Key? key}) : super(key: key);
+import '../item_my_address.dart';
+import '../user_func.dart';
+import 'new_address_page.dart';
+
+class AddressListPage extends StatefulWidget {
+  AddressListPage({Key? key}) : super(key: key);
 
   @override
-  TopicCommunityViewState createState() => TopicCommunityViewState();
+  AddressListPageState createState() => AddressListPageState();
 }
 
-class TopicCommunityViewState extends State<TopicCommunityView>{
+class AddressListPageState extends State<AddressListPage>
+    with AutomaticKeepAliveClientMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
+  bool _onload = true;
+  List<AddressModel> _addressModels = [];
+  refresh() {
+    _refreshController.callRefresh();
+  }
 
   _buildItem(CommunityTopicModel model) {
     return MaterialButton(
@@ -117,27 +128,44 @@ class TopicCommunityViewState extends State<TopicCommunityView>{
 
   @override
   Widget build(BuildContext context) {
-
+    super.build(context);
     return  BeeScaffold(
-      title: '所有话题',
-      body:BeeListView<CommunityTopicModel>(
-        path: API.community.topicList,
-        controller: _refreshController,
-        convert: (model) {
-          return model.tableList!
-              .map((e) => CommunityTopicModel.fromJson(e))
-              .toList();
+      title: '我的收货地址',
+      bottomNavi: MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textColor: Colors.white,
+        child: '新增收货地址'.text.size(28.sp).make(),
+        onPressed: (){
+          Get.to(() => NewAddressPage());
         },
-        builder: (items) {
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              return _buildItem(items[index]);
-            },
-            separatorBuilder: (_, __) => 20.hb,
-            itemCount: items.length,
-          );
-        },
+        color: Color(0xFFE52E2E),
+        height: 98.w,
+        minWidth: double.infinity,
       ),
+      body:EasyRefresh(
+        firstRefresh: true,
+        header: MaterialHeader(),
+        controller: _refreshController,
+        onRefresh: () async {
+          _addressModels = await Userfunc.getMyAddress();
+          setState(() {});
+        },
+        child: _onload
+            ? SizedBox()
+            : ListView(
+          children: [
+            ..._addressModels.map((e) => MyAddressItem(addressModel: e,setDefaultListener:(){},
+                deleteListener:(){},editListener:(){}
+      )).toList(),
+            //
+            // ..._newItems.map((e) => ChatCard(
+            //   model: e,
+            //
+            // )).toList()
+          ],
+        ),
+      ),
+
     );
 
 

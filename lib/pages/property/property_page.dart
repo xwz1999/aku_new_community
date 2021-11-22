@@ -60,7 +60,7 @@ class _PropertyPageState extends State<PropertyPage>
   _getRefresh(){
     Future.delayed(Duration(milliseconds: 0), () async {
       paid = await PropertyFunc.getDailyPaymentPrePay();
-     unpaid =  await PropertyFunc.getFindUnpaidAmount();
+      unpaid =  await PropertyFunc.getFindUnpaidAmount();
       setState(() {});
     });
   }

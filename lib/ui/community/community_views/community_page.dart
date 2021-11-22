@@ -1,12 +1,13 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_community/model/community/community_topic_model.dart';
 import 'package:aku_community/model/community/event_item_model.dart';
-import 'package:aku_community/model/community/gambit_model.dart';
 import 'package:aku_community/model/community/hot_news_model.dart';
 import 'package:aku_community/models/news/news_category_model.dart';
 import 'package:aku_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_community/ui/community/community_func.dart';
+import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_community/ui/home/home_title.dart';
 import 'package:aku_community/ui/home/public_infomation/public_infomation_page.dart';
@@ -57,7 +58,7 @@ class _CommunityPageState extends State<CommunityPage>
 
 
   List<EventItemModel> _newItems = [];
-  List<GambitModel> _gambitModels = [];
+  List<CommunityTopicModel> _gambitModels = [];
   List<HotNewsModel> _hotNewsModels = [];
 
   int _pageNum = 1;
@@ -120,7 +121,7 @@ class _CommunityPageState extends State<CommunityPage>
                         newKey.currentState!.refresh();
                         break;
                       case 1:
-                        topicKey.currentState!.refresh();
+                        // topicKey.currentState!.refresh();
                         break;
                       case 2:
                         myKey.currentState!.refresh();
@@ -178,7 +179,7 @@ class _CommunityPageState extends State<CommunityPage>
                   2.hb,
                   _hotNewsModels.isEmpty?SizedBox():_getInfo(),
                   16.hb,
-                  _getNews(),
+                  _gambitModels.isEmpty?SizedBox():_getNews(),
                   16.hb,
               ..._newItems.map((e) => ChatCard(
               model: e,
@@ -436,7 +437,9 @@ class _CommunityPageState extends State<CommunityPage>
         children: [
           Container(
             padding: EdgeInsets.only(left: 32.w,right: 32.w),
-            child: _homeTitle('新鲜话题', () {}, '更多'),
+            child: _homeTitle('新鲜话题', () {
+              Get.to(() => TopicCommunityView());
+            }, '全部'),
           ),
           32.hb,
           _searchHistoryWidget()
@@ -485,7 +488,7 @@ class _CommunityPageState extends State<CommunityPage>
             //width: MediaQuery.of(context).size.width,
             //padding: EdgeInsets.only(left: 10, right: 10),
             child: Wrap(
-              children: [..._gambitModels.map((e) => _choiceChip(e.summary??'',0)).toList()]
+              children: [..._gambitModels.map((e) => _choiceChip(e,0)).toList()]
               // [_choiceChip('EDG夺冠',1),_choiceChip('双十一',2),
               //   _choiceChip('11月吃土',2),_choiceChip('成都疫情',0),_choiceChip('万圣节',0)],
             ),
@@ -496,7 +499,7 @@ class _CommunityPageState extends State<CommunityPage>
     );
   }
 
-  _choiceChip(String title, int type) {
+  _choiceChip(CommunityTopicModel item, int type) {
     return  Padding(
       padding:  EdgeInsets.only(right: 12.w,bottom: 24.w),
       child: ChoiceChip(
@@ -506,12 +509,14 @@ class _CommunityPageState extends State<CommunityPage>
 
           labelPadding: EdgeInsets.only(right: 12.w,left: 12.w),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          onSelected: (bool value) {},
+          onSelected: (bool value) {
+            Get.to(() => TopicDetailPage(model: item));
+          },
           label: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '#  ${title}',
+                '#  ${item.summary??''}',
                 style: TextStyle(
                     color: Colors.black.withOpacity(0.65),
                     fontSize: 28.sp,

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/user/ProvinceModel.dart';
 import 'package:aku_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_community/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:aku_community/pages/tab_navigator.dart';
@@ -8,6 +10,8 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/utils/developer_util.dart';
 import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -112,8 +116,26 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     PowerLogger.start(
       context,
-      debug: DeveloperUtil.dev,
+      debug:true //DeveloperUtil.dev,
     );
+    Future.delayed(Duration(milliseconds: 0), () async {
+      List<ProvinceModel> _province = [];
+      var agreement = await HiveStore.appBox?.get('cityList') ?? null;
+      if (agreement==null) {
+        ///获取城市列表
+        BaseModel baseModel = await NetUtil().get(
+          API.user.findAllCityInfo,
+        );
+        if (baseModel.data!=null) {
+          _province = (baseModel.data as List)
+              .map((e) => ProvinceModel.fromJson(e))
+              .toList();
+          print(_province);
+          HiveStore.appBox!.put('cityList', _province);
+        }
+      }
+    });
+
     Future.delayed(Duration(milliseconds: 0), () async {
       await _originOp();
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
