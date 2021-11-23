@@ -1,8 +1,13 @@
 import 'package:aku_community/const/resource.dart';
+import 'package:aku_community/constants/api.dart';
+import 'package:aku_community/model/user/province_model.dart';
 import 'package:aku_community/pages/property/property_page.dart';
 import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/ui/community/community_views/community_page.dart';
 import 'package:aku_community/ui/market/market_page.dart';
+import 'package:aku_community/utils/hive_store.dart';
+import 'package:aku_community/utils/network/base_model.dart';
+import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
@@ -38,6 +43,22 @@ class _TabNavigatorState extends State<TabNavigator>
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(milliseconds: 0), () async {
+      List<ProvinceModel> _province = [];
+      var agreement = await HiveStore.appBox?.get('cityList') ?? null;
+      if (agreement==null) {
+        ///获取城市列表
+        BaseModel baseModel = await NetUtil().get(
+          API.user.findAllCityInfo,
+        );
+        if (baseModel.data!=null) {
+          _province = (baseModel.data as List)
+              .map((e) => ProvinceModel.fromJson(e))
+              .toList();
+          HiveStore.appBox!.put('cityList', _province);
+        }
+      }
+    });
     _pages = [
       HomePage(),
       MarketPage(),

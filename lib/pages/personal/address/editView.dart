@@ -65,7 +65,7 @@ class _EditTileState extends State<EditTile> {
       },
       child: Container(
         constraints: widget.constraints,
-        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 15),
+        padding: EdgeInsets.symmetric(vertical: 2.w, horizontal: 20.w),
         color: Colors.white,
         child:
         widget.direction == Axis.horizontal ? _horizontal() : _vertical(),
@@ -77,7 +77,7 @@ class _EditTileState extends State<EditTile> {
     return Row(
       children: <Widget>[
         Container(
-          width: 80.w,
+          width: 120.w,
           child: Text(
             widget.title,
             style: widget.titleStyle,
@@ -85,6 +85,7 @@ class _EditTileState extends State<EditTile> {
         ),
         Expanded(
             child: InputView(
+              padding: EdgeInsets.symmetric(horizontal: 0),
               focusNode: _focusNode,
               controller: _controller,
               maxLength: widget.maxLength,
@@ -113,7 +114,7 @@ class _EditTileState extends State<EditTile> {
         Expanded(
             child: InputView(
               focusNode: _focusNode,
-              padding: EdgeInsets.symmetric(horizontal: 3),
+              padding: EdgeInsets.symmetric(horizontal: 0),
               maxLines: widget.maxLines,
               maxLength: widget.maxLength,
               controller: _controller,

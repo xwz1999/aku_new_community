@@ -6,10 +6,12 @@
  * remark    : 
  * ====================================================
  */
-import 'package:aku_community/model/user/ProvinceModel.dart';
+import 'package:aku_community/base/base_style.dart';
+import 'package:aku_community/model/user/province_model.dart';
 import 'package:aku_community/utils/text_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:aku_community/utils/headers.dart';
 
 typedef AddressSelectorCallback = Function(
     String province, String city, String disctrict,int? locationId);
@@ -44,7 +46,7 @@ class _AddressSelectorState extends State<AddressSelector>
   late ProvinceModel _province;
   late City? _city;
   late District? _district;
-  Color _selectedColor = Colors.white;
+  Color _selectedColor = Colors.black;
   late BuildContext _context;
   late bool _tab = true;
 
@@ -63,7 +65,7 @@ class _AddressSelectorState extends State<AddressSelector>
     _context = context;
     return GestureDetector(
       onTap: () {},
-      child: _buildBody(),
+      child: _buildBody(context),
     );
   }
 
@@ -74,31 +76,32 @@ class _AddressSelectorState extends State<AddressSelector>
     super.dispose();
   }
 
-  Container _buildBody() {
+  Container _buildBody(BuildContext context) {
     return Container(
-      height: 750.w,
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      height: 1000.w,
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10.w))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[_header(), _tabBar(), _list()],
+        children: <Widget>[_header(), _tabBar(), 10.hb, _list()],
       ),
     );
   }
 
   Container _header() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 30.w),
       child: Row(
         children: <Widget>[
+          Spacer(),
           Text(
-            "配送至",
+            "请选择所在地区",
             style: TextStyle(
-                fontSize: 18 * 2.sp,
+                fontSize: 32.sp,
                 fontWeight: FontWeight.w500,
-                color: Colors.black),
+                color:ktextPrimary),
           ),
           Spacer(),
           GestureDetector(
@@ -106,15 +109,15 @@ class _AddressSelectorState extends State<AddressSelector>
               _dismiss();
             },
             child: Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(5.w),
               decoration:BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Colors.grey[200],
+                borderRadius: BorderRadius.all(Radius.circular(20.w)),
+                color: Colors.white,
               ),
               child: Icon(
-                Icons.delete,
+                Icons.close,
                 color: Colors.grey[500],
-                size: 12,
+                size: 40.w,
               ),
             ),
           )
@@ -126,12 +129,12 @@ class _AddressSelectorState extends State<AddressSelector>
   TabBar _tabBar() {
     return TabBar(
         controller: _tabController,
-        labelPadding: EdgeInsets.zero,
-        unselectedLabelColor: Colors.black,
+        labelPadding: EdgeInsets.only(top: 5.w),
+        unselectedLabelColor: Color(0xFFE52E2E),
         isScrollable: true,
-        indicatorColor: _selectedColor,
+        indicatorColor: Color(0xFFE52E2E),
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorPadding: EdgeInsets.only(left: 0, right: 0),
+        indicatorPadding: EdgeInsets.only(left: 10.w, right: 10.w,bottom: -5.w),
         tabs: _tabItems());
   }
 
@@ -146,7 +149,7 @@ class _AddressSelectorState extends State<AddressSelector>
       }
       list.add(Container(
         margin: EdgeInsets.symmetric(horizontal: 5.w),
-        height: 30.w,
+        height: 40.w,
         alignment: Alignment.center,
         child: Text(
           TextUtils.isEmpty(_result[i]) ? "请选择" : _result[i],
@@ -176,7 +179,8 @@ class _AddressSelectorState extends State<AddressSelector>
                 child: Container(
                 padding: EdgeInsets.zero,
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 6),
+                  color: Colors.transparent,
+                  padding: EdgeInsets.symmetric(vertical: 10.w),
                   child: Row(children: [
                     Text(
                       addr,
@@ -189,7 +193,8 @@ class _AddressSelectorState extends State<AddressSelector>
                         offstage: !selected,
                         child: Icon(
                           Icons.check,
-                          size: 16 * 2.sp,
+                          color: Color(0xFFE52E2E),
+                          size: 40.sp,
                         ))
                   ]),
                 ),
@@ -297,7 +302,7 @@ class _AddressSelectorState extends State<AddressSelector>
           /// 没有次级列表返回
           if (city.districts!.length == 0) {
             _dismiss();
-            widget.callback(_province.name??'', _city?.name??'', '',_province.id??null);
+            widget.callback(_province.name??'', _city?.name??'', '',_city?.id??null);
             return;
           }
 
@@ -317,7 +322,7 @@ class _AddressSelectorState extends State<AddressSelector>
           _result[2] = _district?.name??'';
           _indexs[2] = index;
           _dismiss();
-          widget.callback(_province.name??'', _city?.name??'', _district?.name??'',_province.id??null);
+          widget.callback(_province.name??'', _city?.name??'', _district?.name??'',_district?.id??null);
         }
     }
   }

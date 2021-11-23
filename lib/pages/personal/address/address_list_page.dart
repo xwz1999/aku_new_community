@@ -131,16 +131,25 @@ class AddressListPageState extends State<AddressListPage>
     super.build(context);
     return  BeeScaffold(
       title: '我的收货地址',
-      bottomNavi: MaterialButton(
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        textColor: Colors.white,
-        child: '新增收货地址'.text.size(28.sp).make(),
-        onPressed: (){
-          Get.to(() => NewAddressPage());
+      bottomNavi: GestureDetector(
+        onTap: ()async{
+          bool? result =  await  Get.to(() => NewAddressPage(isFirstAdd: _addressModels.isEmpty? true:false,));
+          if(result!=null){
+            if(result) _refreshController.callRefresh();
+          }
         },
-        color: Color(0xFFE52E2E),
-        height: 98.w,
-        minWidth: double.infinity,
+        child: Container(
+          margin: EdgeInsets.only(left: 100.w,right: 100.w,bottom: 100.w),
+          alignment: Alignment.center,
+          child: '新增收货地址'.text.size(28.sp).white.make(),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.horizontal(left:  Radius.circular(49.w),right:  Radius.circular(49.w)),
+            color: Color(0xFFE52E2E),
+          ),
+          width: 522.w,
+          height: 98.w,
+
+        ),
       ),
       body:EasyRefresh(
         firstRefresh: true,
@@ -148,14 +157,15 @@ class AddressListPageState extends State<AddressListPage>
         controller: _refreshController,
         onRefresh: () async {
           _addressModels = await Userfunc.getMyAddress();
+          _onload =false;
           setState(() {});
         },
         child: _onload
             ? SizedBox()
             : ListView(
+          padding: EdgeInsets.all(20.w),
           children: [
-            ..._addressModels.map((e) => MyAddressItem(addressModel: e,setDefaultListener:(){},
-                deleteListener:(){},editListener:(){}
+            ..._addressModels.map((e) => MyAddressItem(addressModel: e,refreshController: _refreshController,
       )).toList(),
             //
             // ..._newItems.map((e) => ChatCard(

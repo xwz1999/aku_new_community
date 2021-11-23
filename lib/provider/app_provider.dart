@@ -6,7 +6,6 @@ import 'package:aku_community/constants/config.dart';
 import 'package:aku_community/model/common/real_time_weather_model.dart';
 import 'package:aku_community/model/community/hot_topic_model.dart';
 import 'package:aku_community/model/message/message_center_model.dart';
-import 'package:aku_community/model/user/ProvinceModel.dart';
 import 'package:aku_community/model/user/car_parking_model.dart';
 import 'package:aku_community/models/user/passed_house_list_model.dart';
 import 'package:aku_community/utils/hive_store.dart';
