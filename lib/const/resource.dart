@@ -331,6 +331,9 @@ class R {
   static const String ASSETS_ICONS_ICON_ADDRESS_NOT_PNG =
       'assets/icons/icon_address_not.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_back.png)
+  static const String ASSETS_ICONS_ICON_BACK_PNG = 'assets/icons/icon_back.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_change_list.png)
   static const String ASSETS_ICONS_ICON_CHANGE_LIST_PNG =
       'assets/icons/icon_change_list.png';
@@ -342,6 +345,22 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_favor_choose.png)
   static const String ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG =
       'assets/icons/icon_favor_choose.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_good_car.png)
+  static const String ASSETS_ICONS_ICON_GOOD_CAR_PNG =
+      'assets/icons/icon_good_car.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_good_favor.png)
+  static const String ASSETS_ICONS_ICON_GOOD_FAVOR_PNG =
+      'assets/icons/icon_good_favor.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_good_location.png)
+  static const String ASSETS_ICONS_ICON_GOOD_LOCATION_PNG =
+      'assets/icons/icon_good_location.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_good_my.png)
+  static const String ASSETS_ICONS_ICON_GOOD_MY_PNG =
+      'assets/icons/icon_good_my.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_all.png)
   static const String ASSETS_ICONS_ICON_MAIN_ALL_PNG =
@@ -421,6 +440,18 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_price.png)
   static const String ASSETS_ICONS_ICON_PRICE_PNG =
       'assets/icons/icon_price.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_price_bottom.png)
+  static const String ASSETS_ICONS_ICON_PRICE_BOTTOM_PNG =
+      'assets/icons/icon_price_bottom.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_price_normal.png)
+  static const String ASSETS_ICONS_ICON_PRICE_NORMAL_PNG =
+      'assets/icons/icon_price_normal.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_price_top.png)
+  static const String ASSETS_ICONS_ICON_PRICE_TOP_PNG =
+      'assets/icons/icon_price_top.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_property_location.png)
   static const String ASSETS_ICONS_ICON_PROPERTY_LOCATION_PNG =

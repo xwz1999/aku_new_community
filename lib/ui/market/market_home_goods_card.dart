@@ -170,7 +170,10 @@ class MarketHomeGoodsCard extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '9折',
+                    text: (item.discountPrice??0)<(item.sellPrice??0)
+                        ? _getDiscount(item.sellPrice ?? -1,
+                        item.discountPrice ?? -1)
+                        : '暂无折扣',
                     style: TextStyle(
                       color: ktextSubColor,
                       fontSize: 20.sp,
@@ -185,6 +188,13 @@ class MarketHomeGoodsCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _getDiscount(double sellPrice, double discountPrice) {
+    String count = '';
+    count = ((discountPrice / sellPrice) * 10).toStringAsFixed(1);
+
+    return count + '折';
   }
 
 

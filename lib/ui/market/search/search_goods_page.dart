@@ -45,7 +45,8 @@ class SearchGoodsPage extends StatefulWidget {
 class SearchGoodsPageState extends State<SearchGoodsPage> {
   TextEditingController _editingController = TextEditingController();
   OrderType _orderType = OrderType.NORMAL;
-  IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
+  // IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
+  String priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
   EasyRefreshController _refreshController = EasyRefreshController();
   EasyRefreshController _refreshController1 = EasyRefreshController();
   List<String> _searchHistory = [];
@@ -82,7 +83,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     final normalTypeButton = MaterialButton(
       onPressed: () {
         _orderType = OrderType.NORMAL;
-        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
         orderBySalesVolume = null;
         orderByPrice = null;
         _refreshController1.callRefresh();
@@ -107,7 +108,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
         _orderType = OrderType.SALES;
         orderBySalesVolume = 2;
         orderByPrice = null;
-        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        priceIcon =  R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
         _refreshController1.callRefresh();
         setState(() {});
       },
@@ -134,19 +135,19 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
             _orderType = OrderType.PRICE_HIGH;
             orderByPrice = 1;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_up;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_TOP_PNG;
             break;
           case OrderType.PRICE_HIGH:
             _orderType = OrderType.PRICE_LOW;
             orderByPrice = 2;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_down;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_BOTTOM_PNG;
             break;
           case OrderType.PRICE_LOW:
             _orderType = OrderType.PRICE_HIGH;
             orderByPrice = 1;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_up;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_TOP_PNG;
             break;
         }
         _refreshController1.callRefresh();
@@ -171,14 +172,15 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                   : FontWeight.normal,
             ),
           ),
-          Icon(
-            priceIcon,
-            size: 32.w,
-            color: _orderType == OrderType.PRICE_HIGH ||
-                _orderType == OrderType.PRICE_LOW
-                ? kBalckSubColor
-                : ktextPrimary,
-          ),
+          // Icon(
+          //   priceIcon,
+          //   size: 32.w,
+          //   color: _orderType == OrderType.PRICE_HIGH ||
+          //       _orderType == OrderType.PRICE_LOW
+          //       ? kBalckSubColor
+          //       : ktextPrimary,
+          // ),
+          Image.asset(priceIcon,width: 32.w,height: 32.w,)
         ],
       ),
       height: 80.w,
@@ -326,7 +328,6 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                   ? Container(
                 color: Color(0xFFF2F3F4),
                 child: BeeListView(
-
                   path: API.market.search,
                   controller: _refreshController,
                   extraParams: {'searchName': ''},
@@ -413,9 +414,11 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
               children: [
                 GestureDetector(
                   child: Image.asset(R.ASSETS_ICONS_COLLECT_PNG,width: 84.w,height: 84.w,),
-                  onTap: (){
-                    Get.to(() => MyCollectionPage());
-
+                  onTap: ()async{
+                    var result = await Get.to(() => MyCollectionPage());
+                    if(result){
+                      _refreshController1.callRefresh();
+                    }
                   },
                 ),
                 24.hb,
