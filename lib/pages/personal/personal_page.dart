@@ -598,7 +598,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         36.hb,
                         _function('我的访客', R.ASSETS_ICONS_ICON_MY_VISITOR_PNG, () => CarManagePage(),''),
                         36.hb,
-                        _function('收货地址设置', R.ASSETS_ICONS_ICON_MY_LOCATION_PNG, () => AddressListPage(),''),
+                        _function('收货地址设置', R.ASSETS_ICONS_ICON_MY_LOCATION_PNG, () => AddressListPage(canBack: false,),''),
 
                         //
                         // ApplicationView.custom(

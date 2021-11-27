@@ -325,7 +325,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
             children: [
               '设置为默认地址'.text.size(28.sp).color(ktextPrimary).make(),
               5.hb,
-              '提醒：每次下单灰默认推荐使用该地址'.text.size(24.sp).color(Color(0xFFBBBBBB)).make(),
+              '提醒：每次下单会默认推荐使用该地址'.text.size(24.sp).color(Color(0xFFBBBBBB)).make(),
             ],
           ),
           Spacer(),

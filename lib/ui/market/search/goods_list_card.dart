@@ -123,7 +123,7 @@ class GoodsListCardState extends State<GoodsListCard> {
                                 ),
                               ),
                               TextSpan(
-                                text: '${widget.model.sellPrice ?? 0}',
+                                text: '${widget.model.discountPrice ?? 0}',
                                 style: TextStyle(
                                   color: ktextSubColor,
                                   fontSize: 20.sp,
@@ -144,7 +144,7 @@ class GoodsListCardState extends State<GoodsListCard> {
                                 ),
                               ),
                               TextSpan(
-                                text: (widget.model.discountPrice??0)<(widget.model.sellPrice??0)
+                                text: (widget.model.discountPrice??0)>(widget.model.sellPrice??0)
                                     ? _getDiscount(widget.model.sellPrice ?? -1,
                                     widget.model.discountPrice ?? -1)
                                     : '暂无折扣',
@@ -193,7 +193,7 @@ class GoodsListCardState extends State<GoodsListCard> {
 
   _getDiscount(double sellPrice, double discountPrice) {
     String count = '';
-    count = ((discountPrice / sellPrice) * 10).toStringAsFixed(1);
+    count = ((sellPrice / discountPrice) * 10).toStringAsFixed(1);
 
     return count + '折';
   }

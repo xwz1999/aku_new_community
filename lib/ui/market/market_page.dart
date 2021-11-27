@@ -27,10 +27,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'market_home_goods_card.dart';
-
-// import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
-
-// import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key? key}) : super(key: key);
@@ -62,7 +59,7 @@ class _MarketPageState extends State<MarketPage>
   List<SwiperModel> _swiperModels = [];
 
   OrderType _orderType = OrderType.NORMAL;
-  IconData priceIcon = CupertinoIcons.chevron_up_chevron_down;
+  String priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
 
   List<GoodsClassification> _goodsClassificationList = [];
 
@@ -74,6 +71,7 @@ class _MarketPageState extends State<MarketPage>
   int? orderByPrice;
 
   Future updateMarketInfo() async {
+    _pageNum =1;
     BaseListModel baseListModel = await NetUtil().getList(
       API.market.findRecommendGoodsList,
       params: {
@@ -102,9 +100,9 @@ class _MarketPageState extends State<MarketPage>
       },
     );
     if (baseListModel.tableList!.isNotEmpty) {
-      _goodsHomeModelList = (baseListModel.tableList as List)
+      _goodsHomeModelList.addAll((baseListModel.tableList as List)
           .map((e) => GoodsHomeModel.fromJson(e))
-          .toList();
+          .toList());
     }
     _pageCount = baseListModel.pageCount!;
   }
@@ -114,7 +112,7 @@ class _MarketPageState extends State<MarketPage>
     super.initState();
     for (int i = 0; i < 10; i++) {
       _goodsClassificationList
-          .add(GoodsClassification(id: 0, name: '', imgUrls: null));
+          .add(GoodsClassification(id: 0, name: '', imgUrls: []));
     }
     for (int i = 0; i < 6; i++) {
       _goodsPopularModelList.add(
@@ -127,7 +125,6 @@ class _MarketPageState extends State<MarketPage>
 
     ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
     Future.delayed(Duration(milliseconds: 0), () async {
-      await updateMarketInfo();
       await _refresh();
       setState(() {});
     });
@@ -170,14 +167,17 @@ class _MarketPageState extends State<MarketPage>
   }
 
   _refresh() async {
-    _pageNum = 1;
     await updateMarketInfo();
     _swiperModels = await CommunityFunc.swiper();
     _newTotal = await CommunityFunc.getNewProductsTodayNum();
     _total = await CommunityFunc.getSkuTotal();
     _brandTotal = await CommunityFunc.getSettledBrandsNum();
-    _goodsClassificationList =
-        await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
+
+
+    var list =   await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
+
+     _goodsClassificationList.replaceRange(0, list.length, list);
+
     //_goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
 
     setState(() {});
@@ -187,7 +187,7 @@ class _MarketPageState extends State<MarketPage>
     final normalTypeButton = MaterialButton(
       onPressed: () async {
         _orderType = OrderType.NORMAL;
-        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
         orderBySalesVolume = null;
         orderByPrice = null;
         await updateMarketInfo();
@@ -211,7 +211,7 @@ class _MarketPageState extends State<MarketPage>
         _orderType = OrderType.SALES;
         orderBySalesVolume = 2;
         orderByPrice = null;
-        priceIcon = CupertinoIcons.chevron_up_chevron_down;
+        priceIcon =  R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
         await updateMarketInfo();
         setState(() {});
       },
@@ -237,19 +237,19 @@ class _MarketPageState extends State<MarketPage>
             _orderType = OrderType.PRICE_HIGH;
             orderByPrice = 1;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_up;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_TOP_PNG;
             break;
           case OrderType.PRICE_HIGH:
             _orderType = OrderType.PRICE_LOW;
             orderByPrice = 2;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_down;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_BOTTOM_PNG;
             break;
           case OrderType.PRICE_LOW:
             _orderType = OrderType.PRICE_HIGH;
             orderByPrice = 1;
             orderBySalesVolume = null;
-            priceIcon = CupertinoIcons.chevron_up;
+            priceIcon = R.ASSETS_ICONS_ICON_PRICE_TOP_PNG;
             break;
         }
         await updateMarketInfo();
@@ -274,14 +274,7 @@ class _MarketPageState extends State<MarketPage>
                   : FontWeight.normal,
             ),
           ),
-          Icon(
-            priceIcon,
-            size: 32.w,
-            color: _orderType == OrderType.PRICE_HIGH ||
-                    _orderType == OrderType.PRICE_LOW
-                ? kBalckSubColor
-                : ktextPrimary,
-          ),
+          Image.asset(priceIcon,width: 32.w,height: 32.w,)
         ],
       ),
       height: 80.w,

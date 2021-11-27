@@ -54,6 +54,29 @@ class SearchFunc {
     return GoodDetailModel.fromJson(model.data);
   }
 
+  ///查询商品详情图
+  static Future<List> getGoodDetailImage(int shopId) async {
+    BaseModel model = await NetUtil().get(
+      API.market.findGoodsDetailBigInfo,
+      params: {'shopId': shopId},
+    );
+    if (model.data == null) return [];
+    return model.data!.map((e) => e as String).toList();
+  }
+
+  ///加入购物车
+  static Future<String> addGoodsCar(int jcookGoodsId) async {
+    BaseModel model = await NetUtil().post(
+      API.market.insertShoppingCart,
+      params: {'jcookGoodsId': jcookGoodsId},
+      showMessage: true
+    );
+    if (model.message == null) return '';
+    return model.message as String;
+  }
+
+
+
 
 
 

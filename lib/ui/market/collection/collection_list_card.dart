@@ -112,7 +112,7 @@ class CollectionListCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '${model.sellPrice ?? 0}',
+                                text: '${model.discountPrice ?? 0}',
                                 style: TextStyle(
                                   color: ktextSubColor,
                                   fontSize: 20.sp,
@@ -133,7 +133,7 @@ class CollectionListCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: (model.discountPrice??0)<(model.sellPrice??0)
+                                text: (model.discountPrice??0)>(model.sellPrice??0)
                                     ? _getDiscount(model.sellPrice ?? -1,
                                         model.discountPrice ?? -1)
                                     : '暂无折扣',
@@ -187,7 +187,7 @@ class CollectionListCard extends StatelessWidget {
 
   _getDiscount(double sellPrice, double discountPrice) {
     String count = '';
-    count = ((discountPrice / sellPrice) * 10).toStringAsFixed(1);
+    count = ((sellPrice / discountPrice) * 10).toStringAsFixed(1);
 
     return count + '折';
   }

@@ -111,6 +111,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+
+
     PowerLogger.start(
       context,
       debug: DeveloperUtil.dev,
@@ -119,6 +121,7 @@ class _SplashPageState extends State<SplashPage> {
 
     Future.delayed(Duration(milliseconds: 0), () async {
       await _originOp();
+
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
       if (!agreement) {
         var result = await _showLoginVerify();
@@ -139,7 +142,8 @@ class _SplashPageState extends State<SplashPage> {
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
       Get.offAll(() => TabNavigator());
-    });
+    }
+    );
   }
 
   @override

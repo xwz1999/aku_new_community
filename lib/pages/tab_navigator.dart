@@ -3,6 +3,7 @@ import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/user/province_model.dart';
 import 'package:aku_community/pages/property/property_page.dart';
 import 'package:aku_community/pages/sign/sign_in_page.dart';
+import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/community_views/community_page.dart';
 import 'package:aku_community/ui/market/market_page.dart';
 import 'package:aku_community/utils/hive_store.dart';
@@ -17,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
@@ -43,7 +45,9 @@ class _TabNavigatorState extends State<TabNavigator>
   @override
   void initState() {
     super.initState();
+    final appProvider = Provider.of<AppProvider>(Get.context!);
     Future.delayed(Duration(milliseconds: 0), () async {
+      await appProvider.getMyAddress();//设置默认地址
       List<ProvinceModel> _province = [];
       var agreement = await HiveStore.appBox?.get('cityList') ?? null;
       if (agreement==null) {
@@ -68,6 +72,7 @@ class _TabNavigatorState extends State<TabNavigator>
     ];
 
     _tabController = TabController(length: _pages.length, vsync: this);
+
   }
 
   _buildBottomBar(

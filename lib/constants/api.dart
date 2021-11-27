@@ -99,7 +99,7 @@ class _User {
   ///我的车辆：查询所有的车辆
   String get carList => '/user/myCar/list';
 
-  ///我的收获地址
+  ///我的收货地址
   String get myAddressList => '/user/jcookAddress/myAddress';
 
   ///修改收货地址
@@ -523,8 +523,6 @@ class _Market {
   ///jcook商城（购物车）：我的购物车
   String get shopCarList => '/user/jcookShoppingCat/myShoppingCart';
 
-  ///jcook商城（购物车）：加入购物车
-  String get shopCarAdd => '/user/jcookShoppingCat/insertShoppingCart';
   ///jcook商城 查询所有的可显示的分类信息 需要4秒 进入商场页面的时候加载
   String get findAllCategoryInfo => '/user/jcookGoods/findAllCategoryInfo';
 
@@ -685,6 +683,16 @@ class _Pay {
   ///抄表记录管理-抄表分摊详情费用支付 向支付宝发起订单查询请求
   String get sharePayOrderCodeCheck =>
       '/user/alipay/meterReadingShareDetailsOrderCheckAlipay';
+
+  ///app jcook商品创建订单(生成APP支付订单消息)
+  String get jcookOrderCreateOrder =>
+      '/user/alipay/jcookOrderCreateOrder';
+
+  ///支付宝支付：jcook商品 向支付宝发起订单查询请求
+  String get jcookOrderCheckAlipay =>
+      '/user/alipay/jcookOrderCheckAlipay';
+
+
 }
 
 class _House {

@@ -1,4 +1,5 @@
 class GoodDetailModel {
+  int? id;
   List<GoodsDetailImageVos>? goodsDetailImageVos;
   double? sellPrice;
   double? discountPrice;
@@ -12,7 +13,9 @@ class GoodDetailModel {
   int? isCollection;
 
   GoodDetailModel(
-      {this.goodsDetailImageVos,
+      {
+        this.id,
+        this.goodsDetailImageVos,
         this.sellPrice,
         this.discountPrice,
         this.skuName,
@@ -24,11 +27,12 @@ class GoodDetailModel {
         this.goodsDetailSpecificationVoList,
         this.isCollection});
 
-  factory GoodDetailModel.fail() => GoodDetailModel(goodsDetailImageVos: [],sellPrice: 0,discountPrice: 0,skuName: '',
+  factory GoodDetailModel.fail() => GoodDetailModel(id:null,goodsDetailImageVos: [],sellPrice: 0,discountPrice: 0,skuName: '',
   sellNum: 0,kind: 0,defaultLocation: '',defaultAddressDetail: '',stockStatus: 0,goodsDetailSpecificationVoList: [],isCollection: 0
   );
 
   GoodDetailModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     if (json['goodsDetailImageVos'] != null) {
       goodsDetailImageVos = [];
       json['goodsDetailImageVos'].forEach((v) {
@@ -59,6 +63,7 @@ class GoodDetailModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     if (this.goodsDetailImageVos != null) {
       data['goodsDetailImageVos'] =
           this.goodsDetailImageVos!.map((v) => v.toJson()).toList();

@@ -15,7 +15,7 @@ import 'package:bot_toast/bot_toast.dart';
 
 class Userfunc {
 
-  ///查询爆款推荐
+  ///查询我的收货地址列表
   static Future<List<AddressModel>> getMyAddress(
       ) async {
     BaseModel model = await NetUtil().get(
