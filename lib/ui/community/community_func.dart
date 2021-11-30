@@ -4,6 +4,7 @@ import 'package:aku_community/model/community/board_model.dart';
 import 'package:aku_community/model/community/community_topic_model.dart';
 import 'package:aku_community/model/community/hot_news_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
+import 'package:aku_community/model/good/category_model.dart';
 import 'package:aku_community/models/market/goods_classification.dart';
 import 'package:aku_community/models/market/goods_popular_model.dart';
 import 'package:aku_community/models/market/order/goods_home_model.dart';
@@ -114,6 +115,21 @@ class CommunityFunc {
     return (model.data as List)
         .map((e) => GoodsPopularModel.fromJson(e))
         .toList();
+  }
+
+
+  ///获取所有商品的分类
+  static Future<List<CategoryModel>> getCategory() async {
+    BaseModel model = await NetUtil().get(
+      API.market.findAllCategoryInfo,
+    );
+    if (model.data!.length == 0) return [];
+    else{
+      return (model.data as List)
+          .map((e) => CategoryModel.fromJson(e))
+          .toList();
+    }
+
   }
 
 

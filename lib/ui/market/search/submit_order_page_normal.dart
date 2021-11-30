@@ -9,6 +9,7 @@ import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/market/order/order_page.dart';
 import 'package:aku_community/ui/market/search/settlementGoodsDTO.dart';
 import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
 import 'package:aku_community/utils/network/base_model.dart';
@@ -126,9 +127,12 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                   });
                   if (baseModel.status ?? false) {
                     bool result = await PayUtil().callAliPay(
-                        baseModel.message!, API.pay.sharePayOrderCodeCheck);
+                        baseModel.message!, API.pay.jcookOrderCheckAlipay);
                     if (result) {
-                      Get.off(() => PayFinishPage());
+                      Get.off(() => OrderPage(initIndex: 2));
+                    }else{
+                      ///跳到待付款页面
+                      Get.off(() => OrderPage(initIndex: 1));
                     }
                   }
                   cancel();
@@ -183,7 +187,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
+                                  horizontal: 20.w, vertical: 4.w),
                               child: SizedBox(
                                 width: 518.w,
                                 child: Text(
@@ -197,7 +201,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
+                                  horizontal: 20.w, vertical: 4.w),
                               child: SizedBox(
                                 width: 518.w,
                                 child: Text(
@@ -211,7 +215,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
+                                  horizontal: 20.w, vertical: 4.w),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
@@ -380,7 +384,11 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4.w), color: Color(0xFFF2F3F4)),
-      child: '规格：'.text.size(24.sp).color(Color(0xFFBBBBBB)).make(),
+      child: '规格：${model.weight}kg/${model.unit}'
+          .text
+          .size(24.sp)
+          .color(Color(0xFFBBBBBB))
+          .make(),
     );
     var bottom = Column(
       children: [
@@ -461,7 +469,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16.w),
                           ),
-                          child: _getGoodsStatusImg(GoodStatus.unSell) ??
+                          child: _getGoodsStatusImg(model.goodStatus) ??
                               SizedBox()))
                 ],
               ),

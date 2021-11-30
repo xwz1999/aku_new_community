@@ -25,8 +25,9 @@ import 'personal/personal_page.dart';
 import 'property/property_index.dart';
 
 class TabNavigator extends StatefulWidget {
+  final int? index;
   const TabNavigator({
-    Key? key,
+    Key? key, this.index,
   }) : super(key: key);
 
   @override
@@ -71,7 +72,7 @@ class _TabNavigatorState extends State<TabNavigator>
       PersonalIndex()
     ];
 
-    _tabController = TabController(length: _pages.length, vsync: this);
+    _tabController = TabController(length: _pages.length, vsync: this,initialIndex: widget.index??0);
 
   }
 

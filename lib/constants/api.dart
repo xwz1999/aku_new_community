@@ -536,6 +536,22 @@ class _Market {
 
   ///jcook商城（购物车）：购物车结算
   String get shopCarSettlement => '/user/jcookShoppingCat/settlement';
+
+  ///jcook商城 订单 取消订单
+  String get cancelOrder => '/user/jcookOrder/cancel';
+
+  ///jcook商城 订单 删除订单
+  String get deleteOrder => '/user/jcookOrder/appDelete';
+
+  ///jcook商城 订单 查看物流
+  String get findLogistics => '/user/jcookOrder/findLogistics';
+
+
+  ///jcook商城 订单 确认收货
+  String get confirmOrder => '/user/jcookOrder/confirm';
+
+
+
 }
 
 class _Upload {

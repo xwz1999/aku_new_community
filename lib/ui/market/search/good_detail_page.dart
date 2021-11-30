@@ -246,37 +246,52 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             },
             child: Container(
               color: Colors.white,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
+
                 children: [
-                  16.wb,
-                  '送至'.text.color(Color(0xFFBBBBBB)).size(28.sp).make(),
-                  Image.asset(R.ASSETS_ICONS_SHOP_LOCATION_PNG,width: 48.w,height: 48.w,),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      16.wb,
+                      '送至'.text.color(Color(0xFFBBBBBB)).size(28.sp).make(),
+                      20.wb,
+                      Image.asset(R.ASSETS_ICONS_ICON_GOOD_LOCATION_PNG,width: 30.w,height: 30.w,),
 
-                  Container(
-                    width: 430.w,
-                    child: Text(
-                      _addressModel==null?'请先选择地址':(_addressModel!.locationName??'')
-                          +(_addressModel!.addressDetail??''),
-                      style: TextStyle(fontSize: 24.sp,color: ktextPrimary),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    ),
+                      Container(
+                        width: 430.w,
+                        child: Text(
+                          _addressModel==null?'请先选择地址':(_addressModel!.locationName??'')
+                              +(_addressModel!.addressDetail??''),
+                          style: TextStyle(fontSize: 24.sp,color: ktextPrimary),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        ),
 
-                  Spacer(),
-                  Icon(
-                    CupertinoIcons.chevron_forward,
-                    size: 32.w,
-                    color: Color(0xFF999999),
+                      Spacer(),
+                      Icon(
+                        CupertinoIcons.chevron_forward,
+                        size: 32.w,
+                        color: Color(0xFF999999),
+                      ),
+
+                      16.wb,
+                    ],
                   ),
-
-                  16.wb,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      120.wb,
+                      _goodDetail!.stockStatus==1?'有货'.text.color(Color(0xFFE52E2E)).size(28.sp).make()
+                          :'无货'.text.color(Color(0xFFE52E2E)).size(28.sp).make(),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-          52.hb,
+          20.hb,
+
           GestureDetector(
             onTap: (){
                  showModalBottomSheet(
@@ -517,7 +532,11 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               ),
               GestureDetector(
                 onTap: (){
+                  if(_goodDetail!.stockStatus==0){
+                    BotToast.showText(text: '商品库存不足');
+                  }else{
                     Get.to(()=>SubmitOrderNormalPage(goodModel: _goodDetail!,));
+                  }
                 },
                 child: Container(
                   width: 230.w,

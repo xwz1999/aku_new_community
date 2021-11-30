@@ -11,7 +11,6 @@ import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/provider/user_provider.dart';
 import 'package:aku_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:aku_community/ui/search/bee_search.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/utils/login_util.dart';
@@ -419,72 +418,10 @@ class _PropertyPageState extends State<PropertyPage>
     );
   }
 
-  Widget _orderButton({
-    required String name,
-    required String path,
-    required int index,
-  }) {
-    return MaterialButton(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(path, height: 50.w, width: 50.w),
-          10.hb,
-          Text(
-            name,
-            style: TextStyle(
-              color: Color(0xFF333333),
-              fontSize: 22.sp,
-            ),
-          ),
-        ],
-      ),
-      onPressed: () {
-        Get.to(() => OrderPage(initIndex: index));
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final double _statusHeight = MediaQuery.of(context).padding.top;
     final userProvider = Provider.of<UserProvider>(context);
-    var orderWidget = SliverToBoxAdapter(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _containerBar('我的订单'),
-          GridView(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
-            ),
-            shrinkWrap: true,
-            children: [
-              _orderButton(
-                name: '待付款',
-                path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
-                index: 1,
-              ),
-              _orderButton(
-                name: '待收货',
-                path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
-                index: 2,
-              ),
-              _orderButton(
-                name: '待评价',
-                path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
-                index: 3,
-              ),
-              _orderButton(
-                name: '售后',
-                path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
-                index: 4,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
     return Scaffold(
       body: EasyRefresh(
         header: MaterialHeader(),

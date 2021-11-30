@@ -4,12 +4,14 @@ import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/constants/api.dart';
 import 'package:aku_community/model/common/img_model.dart';
 import 'package:aku_community/model/community/swiper_model.dart';
+import 'package:aku_community/model/good/category_model.dart';
 import 'package:aku_community/models/market/goods_classification.dart';
 import 'package:aku_community/models/market/goods_popular_model.dart';
 import 'package:aku_community/models/market/order/goods_home_model.dart';
 import 'package:aku_community/provider/app_provider.dart';
 import 'package:aku_community/ui/community/community_func.dart';
 import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_community/ui/market/shop_car/shop_car_page.dart';
 import 'package:aku_community/ui/market/widget/animated_home_background.dart';
@@ -18,6 +20,7 @@ import 'package:aku_community/utils/network/base_list_model.dart';
 import 'package:aku_community/utils/network/net_util.dart';
 import 'package:aku_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_community/widget/others/rectIndicator.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -26,8 +29,11 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'category/new_category_page.dart';
 import 'market_home_goods_card.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'order/order_page.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key? key}) : super(key: key);
@@ -57,6 +63,8 @@ class _MarketPageState extends State<MarketPage>
   late TabController _tabController;
 
   List<SwiperModel> _swiperModels = [];
+
+  List<CategoryModel> _categoryModels = [];
 
   OrderType _orderType = OrderType.NORMAL;
   String priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
@@ -173,12 +181,14 @@ class _MarketPageState extends State<MarketPage>
     _total = await CommunityFunc.getSkuTotal();
     _brandTotal = await CommunityFunc.getSettledBrandsNum();
 
+    _categoryModels = await CommunityFunc.getCategory();
+
 
     var list =   await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
 
      _goodsClassificationList.replaceRange(0, list.length, list);
 
-    //_goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
+    _goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
 
     setState(() {});
   }
@@ -368,7 +378,7 @@ class _MarketPageState extends State<MarketPage>
         padding: EdgeInsets.only(left: 32.w, right: 32.w),
         child: GestureDetector(
           onTap: () {
-            //Get.to(() => BeeSearch()); 订单
+            Get.to(() => OrderPage(initIndex: 0,));
           },
           child: Image.asset(R.ASSETS_ICONS_SHOP_ORDER_PNG,
               height: 40.w, width: 40.w),
@@ -721,6 +731,9 @@ class _MarketPageState extends State<MarketPage>
 
   _buildAllTile() {
     return GestureDetector(
+      onTap: () async{
+        Get.to(() => NewCategoryPage(models: _categoryModels));
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -818,19 +831,26 @@ class _MarketPageState extends State<MarketPage>
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 96.w,
-                      height: 96.w,
-                      child: FadeInImage.assetNetwork(
-                        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                        image: _goodsPopularModelList[index].mainPhoto ?? '',
-                        imageErrorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            height: 96.w,
-                            width: 96.w,
-                          );
-                        },
+                    GestureDetector(
+                      onTap:(){
+                        Get.to(
+                              () => GoodDetailPage(goodId: _goodsPopularModelList[index].id!),
+                        );
+                     },
+                      child: Container(
+                        width: 96.w,
+                        height: 96.w,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                          image: _goodsPopularModelList[index].mainPhoto ?? '',
+                          imageErrorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                              height: 96.w,
+                              width: 96.w,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

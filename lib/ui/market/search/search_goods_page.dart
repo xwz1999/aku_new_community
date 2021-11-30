@@ -39,7 +39,8 @@ enum OrderType {
 }
 
 class SearchGoodsPage extends StatefulWidget {
-  SearchGoodsPage({Key? key}) : super(key: key);
+  final String? search;
+  SearchGoodsPage({Key? key, this.search}) : super(key: key);
 
   @override
   SearchGoodsPageState createState() => SearchGoodsPageState();
@@ -69,6 +70,11 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
   @override
   void initState() {
     super.initState();
+    if(widget.search!=null){
+       _startSearch = true;
+      _searchText = widget.search??'';
+      _editingController.text = widget.search??'';
+    }
 
     getSearchListFromSharedPreferences();
   }
@@ -192,22 +198,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     );
     return
       BeeScaffold(
-        // fab:  FloatingActionButton(
-        //   backgroundColor: Colors.transparent,
-        //   foregroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   highlightElevation: 0,
-        //   shape: new ,
-        //   onPressed: ()  {
-        //   },
-        //   child: Column(
-        //     children: [
-        //       Image.asset(R.ASSETS_ICONS_COLLECT_PNG,width: 84.w,height: 84.w,),
-        //       24.hb,
-        //       Image.asset(R.ASSETS_ICONS_ICON_TOTOP_PNG,width: 84.w,height: 84.w,),
-        //     ],
-        //   ),
-        // ),
+
       titleSpacing: 0,
       bgColor: Color(0xFFF9F9F9),
       bodyColor: Color(0xFFF9F9F9),

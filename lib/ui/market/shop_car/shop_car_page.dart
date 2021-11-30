@@ -19,7 +19,6 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_community/utils/headers.dart';
 
-
 class ShopCarPage extends StatefulWidget {
   const ShopCarPage({Key? key}) : super(key: key);
 
@@ -32,7 +31,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
   List<TextEditingController> _controllers = [];
   List<ShopCarListModel> _models = [];
   List<ShopCarListModel> _chooseModels = [];
-  EasyRefreshController _refreshController=EasyRefreshController();
+  EasyRefreshController _refreshController = EasyRefreshController();
+  bool _first = true;
 
   //选中的model下表
   List<int> _selectIndex = [];
@@ -42,16 +42,14 @@ class _ShopCarPageState extends State<ShopCarPage> {
 
   double get total {
     var num = 0.0;
-    if(_selectIndex.isEmpty) return 0.0;
+    if (_selectIndex.isEmpty) return 0.0;
     _selectIndex.forEach((element) {
-      double  sellPrice  = _models[element].sellPrice??0;
-      int number = _models[element].num??0;
-      num += (sellPrice * number) ;
+      double sellPrice = _models[element].sellPrice ?? 0;
+      int number = _models[element].num ?? 0;
+      num += (sellPrice * number);
     });
     return num;
   }
-
-
 
   @override
   void dispose() {
@@ -66,23 +64,16 @@ class _ShopCarPageState extends State<ShopCarPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '购物车'.text.size(32.sp).black.bold.make(),
-      titleSpacing:  0,
+      titleSpacing: 0,
       actions: [
         TextButton(
             onPressed: () {
               _editStatus = !_editStatus;
-              setState(() {
-
-              });
+              setState(() {});
             },
-            child: (_editStatus ? '完成' : '管理')
-                .text
-                .size(32.sp)
-                .black
-                .bold
-                .make())
+            child:
+                (_editStatus ? '完成' : '管理').text.size(32.sp).black.bold.make())
       ],
-
       body: SafeArea(
         child: Column(
           children: [
@@ -106,15 +97,26 @@ class _ShopCarPageState extends State<ShopCarPage> {
                     _models = (base.data as List)
                         .map((e) => ShopCarListModel.fromJson(e))
                         .toList();
-                    _controllers.forEach((element) {
-                      element.dispose();
-                    });
-                    _controllers.clear();
-                    _models.forEach((element) {
-                      _controllers.add(
-                          TextEditingController(text: element.num.toString()));
+                    // _controllers.forEach((element) {
+                    //   element.dispose();
+                    // });
+                    // _controllers.clear();
+                    if (_first) {
+                      _models.forEach((element) {
+                        _controllers.add(TextEditingController(
+                            text: element.num.toString()));
+                      });
+                      _first = false;
+                    } else {
+                      if (_models.length > _controllers.length) {
+                        for (int i = _controllers.length - 1;
+                            i < _models.length;
+                            i++) {
+                          _controllers.add(TextEditingController(
+                              text: _models[i].num.toString()));
+                        }
+                      }
                     }
-                    );
                   }
                   print(_models.length);
                   if (mounted) {
@@ -206,7 +208,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
             ),
             20.widthBox,
             EndButton(
-                onPressed: _editStatus ?  _delete: _settleEnd,
+                onPressed: _editStatus ? _delete : _settleEnd,
                 text: (_editStatus ? '删除' : '结算')
                     .text
                     .size(32.sp)
@@ -220,60 +222,56 @@ class _ShopCarPageState extends State<ShopCarPage> {
   }
 
   Future _settleEnd() async {
-    if(_chooseModels.isEmpty){
+    if (_chooseModels.isEmpty) {
       BotToast.showText(text: '请先选择商品');
-    }else
-    Get.to(()=>SubmitOrderPage(models: _chooseModels,));
+    } else
+      Get.to(() => SubmitOrderPage(
+            models: _chooseModels,
+          ));
   }
 
   Future _delete() async {
-        if(_selectIndex.isNotEmpty){
-          bool? result =
-          await Get.dialog(CupertinoAlertDialog(
-            title: '您确定要删除该商品吗？'.text.isIntrinsic.size(30.sp).make(),
-            actions: [
-              CupertinoDialogAction(
-                child: '取消'.text.black.isIntrinsic.make(),
-                onPressed: () => Get.back(),
-              ),
-              CupertinoDialogAction(
-                child: '确定'
-                    .text
-                    .color(Colors.orange)
-                    .isIntrinsic
-                    .make(),
-                onPressed: () => Get.back(result: true),
-              ),
-            ],
-          ));
+    if (_selectIndex.isNotEmpty) {
+      bool? result = await Get.dialog(CupertinoAlertDialog(
+        title: '您确定要删除该商品吗？'.text.isIntrinsic.size(30.sp).make(),
+        actions: [
+          CupertinoDialogAction(
+            child: '取消'.text.black.isIntrinsic.make(),
+            onPressed: () => Get.back(),
+          ),
+          CupertinoDialogAction(
+            child: '确定'.text.color(Colors.orange).isIntrinsic.make(),
+            onPressed: () => Get.back(result: true),
+          ),
+        ],
+      ));
 
-          if (result == true) {
-            BaseModel model =  await NetUtil().post(
-              API.market.shopCarDelete,
-              params: {
-                'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
-              },
-              showMessage: true,
-            );
-            if(model.status!=null){
-              if(model.status!){
-                _selectIndex.clear();
-                _refreshController.callRefresh();
-              }
-            }
-          };
-        }else{
-          BotToast.showText(text: '请先选择商品');
+      if (result == true) {
+        BaseModel model = await NetUtil().post(
+          API.market.shopCarDelete,
+          params: {
+            'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
+          },
+          showMessage: true,
+        );
+        if (model.status != null) {
+          if (model.status!) {
+            _selectIndex.clear();
+            _refreshController.callRefresh();
+          }
         }
-
-
+      }
+      ;
+    } else {
+      BotToast.showText(text: '请先选择商品');
+    }
   }
 
   Widget _goodCard(ShopCarListModel model, int index) {
     var top = RichText(
       text: TextSpan(children: [
         WidgetSpan(
-          child: _getKindWd(model.kind??0),
+          child: _getKindWd(model.kind ?? 0),
         ),
         TextSpan(
             text: model.skuName,
@@ -292,13 +290,13 @@ class _ShopCarPageState extends State<ShopCarPage> {
           .color(Color(0xFFBBBBBB))
           .make(),
     );
-    double sellPrice = model.sellPrice??0;
+    double sellPrice = model.sellPrice ?? 0;
     var bottom = Row(
       children: [
         '¥'
             .richText
             .withTextSpanChildren([
-          sellPrice
+              sellPrice
                   .toInt()
                   .toString()
                   .textSpan
@@ -321,7 +319,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
     return Container(
       alignment: Alignment.center,
       height: 260.w,
-      margin: EdgeInsets.only(left: 20.w,right: 20.w,bottom: 20.w),
+      margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.w),
@@ -340,7 +338,34 @@ class _ShopCarPageState extends State<ShopCarPage> {
               }
               setState(() {});
             },
-            child: Container(
+            child:
+            model.goodStatus==GoodStatus.unSell?
+            Container(
+              color: Colors.transparent,
+              height: double.infinity,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                height: double.infinity,
+                alignment: Alignment.center,
+                child:Container(
+                  height: 40.w,
+                  width: 40.w,
+                  decoration: BoxDecoration(
+                    color:Color(0xFFBBBBBB),
+
+                    borderRadius: BorderRadius.circular(20.w),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    color: Color(0xFFEEEEEE),
+                    width: 26.w,
+                    height: 8.w,
+                  )
+                ),
+
+              ),
+            ):
+            Container(
               color: Colors.transparent,
               height: double.infinity,
               child: Container(
@@ -385,14 +410,14 @@ class _ShopCarPageState extends State<ShopCarPage> {
                 ),
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: model.mainPhoto??'',
+                  image: model.mainPhoto ?? '',
                   height: 220.w,
                   width: 220.w,
                 ),
               ),
-              Positioned(child: _getGoodsStatusImg(GoodStatus.onSell)??SizedBox())
+              Positioned(
+                  child: _getGoodsStatusImg(model.goodStatus) ?? SizedBox())
             ],
-
           ),
           16.widthBox,
           Column(
@@ -479,8 +504,11 @@ class _ShopCarPageState extends State<ShopCarPage> {
             children: [
               GestureDetector(
                 onTap: () async {
+                  if(_controllers[index].text.isEmpty){
+                    _controllers[index].text = '1';
+                  }
                   int num = int.parse(_controllers[index].text);
-                  if(num>1){
+                  if (num > 1) {
                     var result = await changeNum(id, num - 1);
                     if (result) {
                       _controllers[index].text = (num - 1).toString();
@@ -504,13 +532,18 @@ class _ShopCarPageState extends State<ShopCarPage> {
                     color: Color(0xFFF2F2F2),
                     borderRadius: BorderRadius.circular(4.w)),
                 child: TextField(
-                  readOnly: true,
+                  //readOnly: true,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (text) async {
-                    var result = await changeNum(id, int.parse(text));
-                    if (!result) {
-                      // _controllers[index].text=
+                    if(text.isNotEmpty){
+                      if(int.parse(text)>10){
+                        _controllers[index].text = '10';
+                      }
+                      var result = await changeNum(id, int.parse(_controllers[index].text));
+                      if (!result) {
+                        // _controllers[index].text=
 
+                      }
                     }
 
                     setState(() {});
@@ -526,8 +559,12 @@ class _ShopCarPageState extends State<ShopCarPage> {
               ),
               GestureDetector(
                 onTap: () async {
+                  if(_controllers[index].text.isEmpty){
+                    _controllers[index].text = '0';
+                  }
                   int num = int.parse(_controllers[index].text);
-                  if(num<10){
+
+                  if (num < 10) {
                     var result = await changeNum(
                         id, int.parse(_controllers[index].text) + 1);
                     if (result) {
@@ -535,9 +572,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
                           (int.parse(_controllers[index].text) + 1).toString();
                     }
                     setState(() {});
+                  }else{
+                    BotToast.showText(text:  '一次最多购买10个商品');
                   }
-
-
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 12.w),
@@ -580,5 +617,43 @@ class _ShopCarPageState extends State<ShopCarPage> {
     }
     cancel();
     return base.status ?? false;
+  }
+
+
+  Future _changeNum() async {
+    if (_selectIndex.isNotEmpty) {
+      bool? result = await Get.dialog(CupertinoAlertDialog(
+        title: '您确定要删除该商品吗？'.text.isIntrinsic.size(30.sp).make(),
+        actions: [
+          CupertinoDialogAction(
+            child: '取消'.text.black.isIntrinsic.make(),
+            onPressed: () => Get.back(),
+          ),
+          CupertinoDialogAction(
+            child: '确定'.text.color(Colors.orange).isIntrinsic.make(),
+            onPressed: () => Get.back(result: true),
+          ),
+        ],
+      ));
+
+      if (result == true) {
+        BaseModel model = await NetUtil().post(
+          API.market.shopCarDelete,
+          params: {
+            'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
+          },
+          showMessage: true,
+        );
+        if (model.status != null) {
+          if (model.status!) {
+            _selectIndex.clear();
+            _refreshController.callRefresh();
+          }
+        }
+      }
+      ;
+    } else {
+      BotToast.showText(text: '请先选择商品');
+    }
   }
 }

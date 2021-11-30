@@ -10,11 +10,13 @@
 import 'package:aku_community/base/base_style.dart';
 import 'package:aku_community/model/user/adress_model.dart';
 import 'package:aku_community/pages/personal/user_func.dart';
+import 'package:aku_community/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'address/new_address_page.dart';
 
@@ -36,6 +38,7 @@ this.refreshController, required this.canBack})
 class _MyAddressItemState extends State<MyAddressItem> {
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
     return GestureDetector(
       onTap: widget.canBack? (){
         Get.back(result: widget.addressModel);
@@ -59,7 +62,10 @@ class _MyAddressItemState extends State<MyAddressItem> {
                   onTap: () async{
                     bool? result =  await  Userfunc.setIsDefaultAddress(widget.addressModel.id!);
                     if(result!=null){
-                      if(result)  widget.refreshController!.callRefresh();
+                      if(result)  {
+                        await appProvider.getMyAddress();
+                        widget.refreshController!.callRefresh();
+                      }
                     }
                   },
                   child: Container(

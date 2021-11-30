@@ -75,6 +75,7 @@ class MyShoppingCartVoList {
   int? shopStatus;
   double? sellPrice;
   double? discountPrice;
+  int? stockStatus;
   String? unit;
   int? kind;
   double? weight;
@@ -91,7 +92,7 @@ class MyShoppingCartVoList {
         this.unit,
         this.kind,
         this.weight,
-        this.num});
+        this.num,this.stockStatus});
 
   MyShoppingCartVoList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -101,6 +102,7 @@ class MyShoppingCartVoList {
     shopStatus = json['shopStatus'];
     sellPrice = json['sellPrice'];
     discountPrice = json['discountPrice'];
+    stockStatus = json['stockStatus'];
     unit = json['unit'];
     kind = json['kind'];
     weight = json['weight'];
@@ -116,6 +118,7 @@ class MyShoppingCartVoList {
     data['shopStatus'] = this.shopStatus;
     data['sellPrice'] = this.sellPrice;
     data['discountPrice'] = this.discountPrice;
+    data['stockStatus'] = this.stockStatus;
     data['unit'] = this.unit;
     data['kind'] = this.kind;
     data['weight'] = this.weight;

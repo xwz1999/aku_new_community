@@ -1,9 +1,13 @@
+import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
+
 class GoodDetailModel {
   int? id;
   List<GoodsDetailImageVos>? goodsDetailImageVos;
   double? sellPrice;
   double? discountPrice;
   String? skuName;
+  int? status;
+  int? shopStatus;
   int? sellNum;
   int? kind;
   String? defaultLocation;
@@ -11,54 +15,61 @@ class GoodDetailModel {
   int? stockStatus;
   List<GoodsDetailSpecificationVoList>? goodsDetailSpecificationVoList;
   int? isCollection;
+  String? unit;
+  double? weight;
+
+  factory GoodDetailModel.fail() => GoodDetailModel(goodsDetailImageVos: [],sellPrice: 0,discountPrice: 0,skuName: '',
+      sellNum: 0,kind: 0,defaultLocation: '',defaultAddressDetail: '',stockStatus: 0,goodsDetailSpecificationVoList: [],isCollection: 0,unit:'',weight: 0
+  );
+  GoodStatus get goodStatus => ShopCarFunc.getGoodsStatus(status??1, shopStatus??1);
 
   GoodDetailModel(
-      {
-        this.id,
+      {this.id,
         this.goodsDetailImageVos,
         this.sellPrice,
         this.discountPrice,
         this.skuName,
+        this.status,
+        this.shopStatus,
         this.sellNum,
         this.kind,
         this.defaultLocation,
         this.defaultAddressDetail,
         this.stockStatus,
         this.goodsDetailSpecificationVoList,
-        this.isCollection});
-
-  factory GoodDetailModel.fail() => GoodDetailModel(id:null,goodsDetailImageVos: [],sellPrice: 0,discountPrice: 0,skuName: '',
-  sellNum: 0,kind: 0,defaultLocation: '',defaultAddressDetail: '',stockStatus: 0,goodsDetailSpecificationVoList: [],isCollection: 0
-  );
+        this.isCollection,
+        this.unit,
+        this.weight});
 
   GoodDetailModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['goodsDetailImageVos'] != null) {
-      goodsDetailImageVos = [];
+      goodsDetailImageVos =[];
       json['goodsDetailImageVos'].forEach((v) {
         goodsDetailImageVos!.add(new GoodsDetailImageVos.fromJson(v));
       });
-    } else
-      goodsDetailImageVos = [];
-
+    }
     sellPrice = json['sellPrice'];
     discountPrice = json['discountPrice'];
     skuName = json['skuName'];
+    status = json['status'];
+    shopStatus = json['shopStatus'];
     sellNum = json['sellNum'];
     kind = json['kind'];
     defaultLocation = json['defaultLocation'];
     defaultAddressDetail = json['defaultAddressDetail'];
     stockStatus = json['stockStatus'];
-
     if (json['goodsDetailSpecificationVoList'] != null) {
-      goodsDetailSpecificationVoList = [];
+      goodsDetailSpecificationVoList =
+      [];
       json['goodsDetailSpecificationVoList'].forEach((v) {
-        goodsDetailSpecificationVoList!.add(new GoodsDetailSpecificationVoList.fromJson(v));
+        goodsDetailSpecificationVoList!
+            .add(new GoodsDetailSpecificationVoList.fromJson(v));
       });
-    } else
-      goodsDetailSpecificationVoList = [];
-
+    }
     isCollection = json['isCollection'];
+    unit = json['unit'];
+    weight = json['weight'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,6 +82,8 @@ class GoodDetailModel {
     data['sellPrice'] = this.sellPrice;
     data['discountPrice'] = this.discountPrice;
     data['skuName'] = this.skuName;
+    data['status'] = this.status;
+    data['shopStatus'] = this.shopStatus;
     data['sellNum'] = this.sellNum;
     data['kind'] = this.kind;
     data['defaultLocation'] = this.defaultLocation;
@@ -81,6 +94,8 @@ class GoodDetailModel {
           this.goodsDetailSpecificationVoList!.map((v) => v.toJson()).toList();
     }
     data['isCollection'] = this.isCollection;
+    data['unit'] = this.unit;
+    data['weight'] = this.weight;
     return data;
   }
 }
@@ -122,15 +137,12 @@ class GoodsDetailSpecificationVoList {
 
   GoodsDetailSpecificationVoList.fromJson(Map<String, dynamic> json) {
     groupName = json['groupName'];
-
     if (json['attribute'] != null) {
       attribute = [];
       json['attribute'].forEach((v) {
         attribute!.add(new Attribute.fromJson(v));
       });
-    } else
-      attribute = [];
-
+    }
   }
 
   Map<String, dynamic> toJson() {

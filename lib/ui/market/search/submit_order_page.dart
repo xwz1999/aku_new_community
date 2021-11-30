@@ -8,6 +8,7 @@ import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_community/pages/life_pay/pay_util.dart';
 import 'package:aku_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_community/ui/market/order/order_page.dart';
 import 'package:aku_community/ui/market/search/settlementGoodsDTO.dart';
 import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
 import 'package:aku_community/utils/network/base_model.dart';
@@ -40,6 +41,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
   AddressModel? _addressModel;
   CreateOrderModel? _createOrderModel;
   double _allPrice = 0;
+  bool haveStock = true;
 
   @override
   void initState() {
@@ -109,7 +111,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
             20.hb,
             _address(context),
             20.hb,
-            ...widget.models.mapIndexed((currentValue, index) => _goodCard(currentValue,index)),
+            ...widget.models.mapIndexed((currentValue, index) => _goodCard(currentValue,index,_createOrderModel)),
             20.hb,
             _priceView(),
             20.hb,
@@ -130,6 +132,11 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
                 onPressed:  () async {
                   if(_addressModel==null){
                     BotToast.showText(text: '请先选择地址');
+                    return;
+                  }
+                  if(!haveStock){
+                    BotToast.showText(text: '下单失败，订单内有商品无库存');
+                    return;
                   }
                   Function cancel = BotToast.showLoading();
                   BaseModel baseModel =
@@ -141,9 +148,12 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
                   });
                   if (baseModel.status ?? false) {
                     bool result = await PayUtil()
-                        .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);
+                        .callAliPay(baseModel.message!, API.pay.jcookOrderCheckAlipay);
                     if (result) {
-                      Get.off(() => PayFinishPage());
+                      Get.off(() => OrderPage(initIndex: 2));
+                    }else{
+                      ///跳到待付款页面
+                      Get.off(() => OrderPage(initIndex: 1));
                     }
                   }
                   cancel();
@@ -407,7 +417,15 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
   }
 
 
-  Widget _goodCard(ShopCarListModel model, int index) {
+  Widget _goodCard(ShopCarListModel model, int index,CreateOrderModel? createOrderModel) {
+    bool haveGoods = true;
+    if(createOrderModel!=null){
+      if(createOrderModel.myShoppingCartVoList![index].stockStatus==0){
+        haveGoods = false;
+        haveStock = false;
+      }
+
+    }
     var top = RichText(
       text: TextSpan(children: [
         WidgetSpan(
@@ -442,7 +460,13 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
                 .color(Color(0xFF333333))
                 .make(),
             Spacer(),
-            _getBottomSuffix(model.goodStatus, model.id!, index)
+            haveGoods?
+            _getBottomSuffix(model.goodStatus, model.id!, index):
+            '该规格商品无库存'
+                .text
+                .size(24.sp)
+                .color(Color(0xFFF58123))
+                .make(),
           ],
         ),
         48.hb,

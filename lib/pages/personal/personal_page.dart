@@ -7,10 +7,10 @@ import 'package:aku_community/pages/setting_page/settings_page.dart';
 import 'package:aku_community/pages/sign/sign_in_page.dart';
 import 'package:aku_community/painters/user_bottom_bar_painter.dart';
 import 'package:aku_community/provider/user_provider.dart';
+import 'package:aku_community/ui/market/order/order_page.dart';
 import 'package:aku_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_community/ui/profile/order/order_page.dart';
 import 'package:aku_community/utils/headers.dart';
 import 'package:aku_community/widget/others/user_tool.dart';
 import 'package:aku_community/widget/views/application_view.dart';
@@ -205,57 +205,7 @@ class _PersonalIndexState extends State<PersonalIndex>
   Widget build(BuildContext context) {
     final double _statusHeight = MediaQuery.of(context).padding.top;
     final userProvider = Provider.of<UserProvider>(context);
-    // var orderWidget = SliverToBoxAdapter(
-    //   child: Container(
-    //     decoration: BoxDecoration(
-    //       color: Color(0xffffffff),
-    //       borderRadius: BorderRadius.all(Radius.circular(8)),
-    //       boxShadow: <BoxShadow>[
-    //         BoxShadow(
-    //           color: Colors.grey.withOpacity(0.1),
-    //           offset: Offset(1, 1),
-    //         ),
-    //       ],
-    //     ),
-    //     margin: EdgeInsets.all(20.w),
-    //     padding: EdgeInsets.all(12.w),
-    //     child:
-    //   Column(
-    //     mainAxisSize: MainAxisSize.min,
-    //     children: [
-    //       _containerBar('我的订单'),
-    //       GridView(
-    //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //           crossAxisCount: 5,
-    //         ),
-    //         shrinkWrap: true,
-    //         children: [
-    //           _orderButton(
-    //             name: '待付款',
-    //             path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
-    //             index: 1,
-    //           ),
-    //           _orderButton(
-    //             name: '待收货',
-    //             path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
-    //             index: 2,
-    //           ),
-    //           _orderButton(
-    //             name: '待评价',
-    //             path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
-    //             index: 3,
-    //           ),
-    //           _orderButton(
-    //             name: '售后',
-    //             path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
-    //             index: 4,
-    //           ),
-    //         ],
-    //       ),
-    //     ],
-    //   ),
-    //   )
-    // );
+
     return Scaffold(
 
       body: EasyRefresh(
@@ -540,7 +490,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                     Column(
                      //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _homeTitle('我的订单', () {}, '查看全部'),
+                        _homeTitle('我的订单', () {
+                          Get.to(() => OrderPage(initIndex: 0));
+                        }, '查看全部'),
                         50.hb,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -553,17 +505,17 @@ class _PersonalIndexState extends State<PersonalIndex>
                               index: 1,
                             ),
                             _orderButton(
-                              name: '待收货',
+                              name: '待发货',
                               path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
                               index: 2,
                             ),
                             _orderButton(
-                              name: '待评价',
+                              name: '待收货',
                               path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
                               index: 3,
                             ),
                             _orderButton(
-                              name: '售后',
+                              name: '已完成',
                               path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
                               index: 4,
                             ),

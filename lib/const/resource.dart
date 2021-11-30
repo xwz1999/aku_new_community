@@ -362,6 +362,10 @@ class R {
   static const String ASSETS_ICONS_ICON_GOOD_MY_PNG =
       'assets/icons/icon_good_my.png';
 
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_logistics.png)
+  static const String ASSETS_ICONS_ICON_LOGISTICS_PNG =
+      'assets/icons/icon_logistics.png';
+
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_all.png)
   static const String ASSETS_ICONS_ICON_MAIN_ALL_PNG =
       'assets/icons/icon_main_all.png';
@@ -405,6 +409,10 @@ class R {
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_main_subscribe.png)
   static const String ASSETS_ICONS_ICON_MAIN_SUBSCRIBE_PNG =
       'assets/icons/icon_main_subscribe.png';
+
+  /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_market_success.png)
+  static const String ASSETS_ICONS_ICON_MARKET_SUCCESS_PNG =
+      'assets/icons/icon_market_success.png';
 
   /// ![preview](file:///Users/datang/aku_community/assets/icons/icon_more.png)
   static const String ASSETS_ICONS_ICON_MORE_PNG = 'assets/icons/icon_more.png';
