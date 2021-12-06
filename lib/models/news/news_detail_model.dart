@@ -12,6 +12,7 @@ class NewsDetailModel extends Equatable {
   final String newsCategoryName;
   final String createName;
   final String createDate;
+
   NewsDetailModel({
     required this.id,
     required this.code,
@@ -21,8 +22,10 @@ class NewsDetailModel extends Equatable {
     required this.createName,
     required this.createDate,
   });
+
   factory NewsDetailModel.fromJson(Map<String, dynamic> json) =>
       _$NewsDetailModelFromJson(json);
+
   @override
   List<Object> get props {
     return [

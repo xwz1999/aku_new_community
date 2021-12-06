@@ -1,22 +1,21 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/models/express_package/express_package_list_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/models/express_package/express_package_list_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
 
 class ExpressPackageCard extends StatefulWidget {
   final int index;
   final ExpressPackageListModel model;
   final VoidCallback callFresh;
+
   ExpressPackageCard(
       {Key? key,
       required this.index,

@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house/lease_detail_model.dart';
-import 'package:aku_community/models/house/lease_echo_model.dart';
-import 'package:aku_community/models/house/submit_model.dart';
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:aku_community/utils/network/base_file_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house/lease_detail_model.dart';
+import 'package:aku_new_community/models/house/lease_echo_model.dart';
+import 'package:aku_new_community/models/house/submit_model.dart';
+import 'package:aku_new_community/models/user/passed_house_list_model.dart';
+import 'package:aku_new_community/utils/network/base_file_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 
 class HouseFunc {

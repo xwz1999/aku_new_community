@@ -1,22 +1,18 @@
-import 'dart:convert';
 import 'dart:ui';
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/model/user/province_model.dart';
-import 'package:aku_community/pages/personal/user_func.dart';
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/text_utils.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/model/user/province_model.dart';
+import 'package:aku_new_community/pages/personal/user_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/text_utils.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/headers.dart';
 
 import 'address_selector.dart';
 import 'editView.dart';
@@ -26,7 +22,8 @@ class NewAddressPage extends StatefulWidget {
   final AddressModel? addressModel;
   final EasyRefreshController? refreshController;
 
-  NewAddressPage({Key? key, this.isFirstAdd, this.addressModel, this.refreshController})
+  NewAddressPage(
+      {Key? key, this.isFirstAdd, this.addressModel, this.refreshController})
       : super(key: key);
 
   @override
@@ -51,7 +48,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title:widget.addressModel==null? '新建收货地址':'修改收货地址',
+      title: widget.addressModel == null ? '新建收货地址' : '修改收货地址',
       body: _buildBody(context),
     );
   }
@@ -77,7 +74,8 @@ class _NewAddressPageState extends State<NewAddressPage> {
                   constraints: BoxConstraints.tight(Size(double.infinity, 45)),
                   title: "收货人",
                   titleStyle: TextStyle(fontSize: 28.sp, color: ktextPrimary),
-                  hintStyle: TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
+                  hintStyle:
+                      TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
                   textStyle: TextStyle(fontSize: 28.sp, color: ktextSubColor),
                   value: _address.name ?? '',
                   hint: "请填写收货人姓名",
@@ -90,10 +88,12 @@ class _NewAddressPageState extends State<NewAddressPage> {
                     color: Color(0xFFD9D9D9),
                     margin: EdgeInsets.symmetric(horizontal: 24.w)),
                 EditTile(
-                  constraints: BoxConstraints.tight(Size(double.infinity, 100.w)),
+                  constraints:
+                      BoxConstraints.tight(Size(double.infinity, 100.w)),
                   title: "手机号码",
                   titleStyle: TextStyle(fontSize: 28.sp, color: ktextPrimary),
-                  hintStyle: TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
+                  hintStyle:
+                      TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
                   textStyle: TextStyle(fontSize: 28.sp, color: ktextSubColor),
                   value: _address.tel ?? '',
                   hint: "请填写收货人手机号码",
@@ -111,7 +111,6 @@ class _NewAddressPageState extends State<NewAddressPage> {
                     height: 2.w,
                     color: Color(0xFFD9D9D9),
                     margin: EdgeInsets.symmetric(horizontal: 24.w)),
-
                 Container(
                   height: 20.w,
                 ),
@@ -119,7 +118,8 @@ class _NewAddressPageState extends State<NewAddressPage> {
                   title: "详细地址",
                   hint: "街道门牌号等",
                   titleStyle: TextStyle(fontSize: 28.sp, color: ktextPrimary),
-                  hintStyle: TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
+                  hintStyle:
+                      TextStyle(fontSize: 28.sp, color: Color(0xFFBBBBBB)),
                   textStyle: TextStyle(fontSize: 28.sp, color: ktextSubColor),
                   value: _address.addressDetail ?? '',
                   maxLength: 100,
@@ -154,7 +154,6 @@ class _NewAddressPageState extends State<NewAddressPage> {
   Container _saveButton(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 100.w),
-
       child: GestureDetector(
         onTap: () {
           _saveAddress(context);
@@ -172,7 +171,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
             "保存并使用",
             style: TextStyle(
               color: Colors.white,
-              fontSize:28.sp,
+              fontSize: 28.sp,
             ),
           ),
         ),
@@ -266,7 +265,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
       return;
     }
 
-    if (_address.location==null) {
+    if (_address.location == null) {
       BotToast.showText(text: '所在地区不能为空');
       return;
     }
@@ -293,25 +292,23 @@ class _NewAddressPageState extends State<NewAddressPage> {
           _address.isDefault ?? null);
     }
 
-
     //Navigator.maybePop<dynamic>(context, _address);
     Get.back(result: true);
   }
 
   _defaultAddressTile() {
-
-    if (widget.isFirstAdd != null)
-      if(_address.isDefault ==1){
-        isDefault = true;
-      }else{
-        isDefault = false;
-        widget.isFirstAdd! ? _address.isDefault = 1 : _address.isDefault = 0;
-      }
+    if (widget.isFirstAdd != null) if (_address.isDefault == 1) {
+      isDefault = true;
+    } else {
+      isDefault = false;
+      widget.isFirstAdd! ? _address.isDefault = 1 : _address.isDefault = 0;
+    }
 
     return Container(
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.all(20.w),
-      padding: EdgeInsets.only(top: 24.w,bottom: 24.w,left: 24.w,right: 24.w),
+      padding:
+          EdgeInsets.only(top: 24.w, bottom: 24.w, left: 24.w, right: 24.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(24.w)),
@@ -319,13 +316,16 @@ class _NewAddressPageState extends State<NewAddressPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               '设置为默认地址'.text.size(28.sp).color(ktextPrimary).make(),
               5.hb,
-              '提醒：每次下单会默认推荐使用该地址'.text.size(24.sp).color(Color(0xFFBBBBBB)).make(),
+              '提醒：每次下单会默认推荐使用该地址'
+                  .text
+                  .size(24.sp)
+                  .color(Color(0xFFBBBBBB))
+                  .make(),
             ],
           ),
           Spacer(),
@@ -346,8 +346,5 @@ class _NewAddressPageState extends State<NewAddressPage> {
         ],
       ),
     );
-
-
   }
-
 }

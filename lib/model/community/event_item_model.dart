@@ -1,6 +1,5 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 class EventItemModel {
   int? id;
@@ -15,7 +14,9 @@ class EventItemModel {
   List<ImgModel>? imgUrls;
   List<ImgModel>? headSculptureImgUrl;
   List<GambitThemeCommentVoList>? gambitThemeCommentVoList;
+
   DateTime? get date => DateUtil.getDateTime(createDate!);
+
   EventItemModel(
       {this.id,
       this.createId,

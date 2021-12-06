@@ -1,10 +1,8 @@
+import 'package:aku_new_community/widget/picker/bee_custom_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/widget/picker/bee_custom_picker.dart';
 
 class BeeDatePicker {
   static Future<DateTime?> pick(
@@ -37,6 +35,7 @@ class _BeeDatePicker extends StatefulWidget {
   final DateTime? max;
   final DateTime? min;
   final CupertinoDatePickerMode? mode;
+
   _BeeDatePicker({
     Key? key,
     required this.date,
@@ -52,6 +51,7 @@ class _BeeDatePicker extends StatefulWidget {
 
 class __BeeDatePickerState extends State<_BeeDatePicker> {
   DateTime _date = DateTime.now();
+
   @override
   void initState() {
     super.initState();

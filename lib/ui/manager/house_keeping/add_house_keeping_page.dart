@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_submit_page.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_button.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/house_head_card.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_submit_page.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_button.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/house_head_card.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +31,7 @@ class _AddHouseKeepingPageState extends State<AddHouseKeepingPage> {
   List<String> _buttons = ['室内清洁', '洗涤护理'];
   int? _selectType;
   List<File> _files = [];
+
   @override
   void initState() {
     super.initState();

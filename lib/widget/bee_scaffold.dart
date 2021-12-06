@@ -1,8 +1,7 @@
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
 
 class BeeScaffold extends StatelessWidget {
   final dynamic title;
@@ -21,8 +20,8 @@ class BeeScaffold extends StatelessWidget {
   final FloatingActionButton? fab;
   final double? titleSpacing;
 
-
   final SystemUiOverlayStyle systemStyle;
+
   BeeScaffold({
     Key? key,
     this.title,
@@ -36,7 +35,6 @@ class BeeScaffold extends StatelessWidget {
     this.fab,
     this.titleSpacing,
     this.systemStyle = SystemStyle.initial,
-
   }) : super(key: key);
 
   BeeScaffold.white({
@@ -82,7 +80,6 @@ class BeeScaffold extends StatelessWidget {
         body: body,
         bottomNavigationBar: bottomNavi,
         floatingActionButton: fab,
-
       ),
     );
   }

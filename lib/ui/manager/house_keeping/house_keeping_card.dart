@@ -1,28 +1,28 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_process_model.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_detail_page.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
+import 'package:aku_new_community/widget/others/aku_chip_box.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_detail_page.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/buttons/card_bottom_button.dart';
-import 'package:aku_community/widget/others/aku_chip_box.dart';
-
 class HouseKeepingCard extends StatelessWidget {
   final HouseKeepingListModel model;
   final VoidCallback callRefresh;
+
   const HouseKeepingCard(
       {Key? key, required this.model, required this.callRefresh})
       : super(key: key);
+
   String get dateStart =>
       DateUtil.formatDateStr(model.createDate, format: 'yyyy-MM-dd HH:mm:ss');
 

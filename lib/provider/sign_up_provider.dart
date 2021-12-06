@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class SignUpProvider extends ChangeNotifier {
   String? _nickName;
+
   String? get nickName => _nickName;
 
   String? _tel;
+
   String? get tel => _tel;
 
   Map<String, dynamic> get toMap => {

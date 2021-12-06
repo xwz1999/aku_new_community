@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'goods_item.g.dart';
 
@@ -14,6 +13,7 @@ class GoodsItem extends Equatable {
   final num markingPrice;
   final int subscribeNum;
   final List<ImgModel> imgList;
+
   GoodsItem({
     required this.id,
     required this.title,
@@ -32,6 +32,7 @@ class GoodsItem extends Equatable {
       markingPrice: 2000,
       subscribeNum: 0,
       imgList: []);
+
   @override
   List<Object?> get props => throw UnimplementedError();
 

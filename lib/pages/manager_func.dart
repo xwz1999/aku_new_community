@@ -1,16 +1,15 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/manager/article_QR_code_model.dart';
+import 'package:aku_new_community/model/manager/moving_company_model.dart';
+import 'package:aku_new_community/model/manager/questionnaire_detail_model.dart';
+import 'package:aku_new_community/model/manager/quetionnaire_submit_model.dart';
+import 'package:aku_new_community/model/manager/voting_detail_model.dart';
+import 'package:aku_new_community/models/manage/fix_report/fix_detail_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/manager/article_QR_code_model.dart';
-import 'package:aku_community/model/manager/moving_company_model.dart';
-import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
-import 'package:aku_community/model/manager/quetionnaire_submit_model.dart';
-import 'package:aku_community/model/manager/voting_detail_model.dart';
-import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 
 class ManagerFunc {
   @Deprecated('')

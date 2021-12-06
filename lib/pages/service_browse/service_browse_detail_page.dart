@@ -1,18 +1,17 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/service_browse/service_browse_list_mode.dart';
+import 'package:aku_new_community/utils/link_text_parase.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/service_browse/service_browse_list_mode.dart';
-import 'package:aku_community/utils/link_text_parase.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-
 class ServiceBrowseDetailPage extends StatefulWidget {
   final ServiceBrowseListModel model;
+
   ServiceBrowseDetailPage({Key? key, required this.model}) : super(key: key);
 
   @override

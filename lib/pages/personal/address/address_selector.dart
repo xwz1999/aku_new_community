@@ -6,15 +6,15 @@
  * remark    : 
  * ====================================================
  */
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/user/province_model.dart';
-import 'package:aku_community/utils/text_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/user/province_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/text_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef AddressSelectorCallback = Function(
-    String province, String city, String disctrict,int? locationId);
+    String province, String city, String disctrict, int? locationId);
 
 class AddressSelector extends StatefulWidget {
   final List<ProvinceModel> model;
@@ -101,16 +101,16 @@ class _AddressSelectorState extends State<AddressSelector>
             style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w500,
-                color:ktextPrimary),
+                color: ktextPrimary),
           ),
           Spacer(),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               _dismiss();
             },
             child: Container(
               padding: EdgeInsets.all(5.w),
-              decoration:BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20.w)),
                 color: Colors.white,
               ),
@@ -134,7 +134,8 @@ class _AddressSelectorState extends State<AddressSelector>
         isScrollable: true,
         indicatorColor: Color(0xFFE52E2E),
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorPadding: EdgeInsets.only(left: 10.w, right: 10.w,bottom: -5.w),
+        indicatorPadding:
+            EdgeInsets.only(left: 10.w, right: 10.w, bottom: -5.w),
         tabs: _tabItems());
   }
 
@@ -171,12 +172,11 @@ class _AddressSelectorState extends State<AddressSelector>
           itemBuilder: (context, index) {
             String addr = _items[_tabController.index][index];
             bool selected = addr == _result[_tabController.index];
-            return
-              GestureDetector(
-                onTap: (){
-                  _itemSelected(index);
-                },
-                child: Container(
+            return GestureDetector(
+              onTap: () {
+                _itemSelected(index);
+              },
+              child: Container(
                 padding: EdgeInsets.zero,
                 child: Container(
                   color: Colors.transparent,
@@ -198,8 +198,8 @@ class _AddressSelectorState extends State<AddressSelector>
                         ))
                   ]),
                 ),
-            ),
-              );
+              ),
+            );
           }),
     );
   }
@@ -208,7 +208,7 @@ class _AddressSelectorState extends State<AddressSelector>
     int index = 1;
     for (int i = 0; i < widget.model.length; ++i) {
       ProvinceModel province = widget.model[i];
-      String proAddressStr = province.name??'';
+      String proAddressStr = province.name ?? '';
       _items[0].add(proAddressStr);
       if (proAddressStr != widget.province) {
         continue;
@@ -219,7 +219,7 @@ class _AddressSelectorState extends State<AddressSelector>
 
       for (int m = 0; m < province.cityList!.length; ++m) {
         City city = province.cityList![m];
-        String cityAddressStr = city.name??'';
+        String cityAddressStr = city.name ?? '';
         _items[1].add(cityAddressStr);
         if (cityAddressStr != widget.city) {
           continue;
@@ -230,7 +230,7 @@ class _AddressSelectorState extends State<AddressSelector>
 
         for (int n = 0; n < city.districts!.length; ++n) {
           District district = city.districts![n];
-          String disAddressStr = district.name??'';
+          String disAddressStr = district.name ?? '';
           _items[2].add(disAddressStr);
           if (disAddressStr != widget.district) {
             continue;
@@ -245,12 +245,12 @@ class _AddressSelectorState extends State<AddressSelector>
   }
 
   void _resetTabBar(int index) {
-    if(!_tab){
+    if (!_tab) {
       _tabController.removeListener(_tabBarListener);
     }
 
     _tabController = TabController(length: index, vsync: this);
-    _tab =  false;
+    _tab = false;
     _tabController.addListener(_tabBarListener);
     _tabController.index = index - 1;
   }
@@ -264,7 +264,7 @@ class _AddressSelectorState extends State<AddressSelector>
           _items[1].clear();
           _items[2].clear();
           _province = province;
-          _result[0] = _province.name??'';
+          _result[0] = _province.name ?? '';
           _result[1] = "";
           _result[2] = "";
           _indexs[0] = index;
@@ -275,7 +275,7 @@ class _AddressSelectorState extends State<AddressSelector>
           /// 没有次级列表返回
           if (_province.cityList!.length == 0) {
             _dismiss();
-            widget.callback(_province.name??'', '', '',_province.id??null);
+            widget.callback(_province.name ?? '', '', '', _province.id ?? null);
             return;
           }
 
@@ -294,7 +294,7 @@ class _AddressSelectorState extends State<AddressSelector>
           _city = city;
           _district = null;
           _items[2].clear();
-          _result[1] = _city?.name??'';
+          _result[1] = _city?.name ?? '';
           _indexs[1] = index;
           _result[2] = "";
           _indexs[2] = null;
@@ -302,12 +302,13 @@ class _AddressSelectorState extends State<AddressSelector>
           /// 没有次级列表返回
           if (city.districts!.length == 0) {
             _dismiss();
-            widget.callback(_province.name??'', _city?.name??'', '',_city?.id??null);
+            widget.callback(
+                _province.name ?? '', _city?.name ?? '', '', _city?.id ?? null);
             return;
           }
 
           city.districts!.forEach((District district) {
-            _items[2].add(district.name??'');
+            _items[2].add(district.name ?? '');
           });
           _resetTabBar(3);
           setState(() {});
@@ -319,10 +320,11 @@ class _AddressSelectorState extends State<AddressSelector>
           /// 选区
           District district = _city!.districts![index];
           _district = district;
-          _result[2] = _district?.name??'';
+          _result[2] = _district?.name ?? '';
           _indexs[2] = index;
           _dismiss();
-          widget.callback(_province.name??'', _city?.name??'', _district?.name??'',_district?.id??null);
+          widget.callback(_province.name ?? '', _city?.name ?? '',
+              _district?.name ?? '', _district?.id ?? null);
         }
     }
   }
@@ -344,15 +346,16 @@ class AddressSelectorHelper {
       {required List<ProvinceModel> models,
       String? province,
       String? city,
-      String? district, required AddressSelectorCallback callback}) {
+      String? district,
+      required AddressSelectorCallback callback}) {
     showModalBottomSheet(
         context: context,
         builder: (context) {
           return AddressSelector(
             model: models,
-            province: province??'',
-            city: city??'',
-            district: district??"",
+            province: province ?? '',
+            city: city ?? '',
+            district: district ?? "",
             callback: callback,
           );
         });

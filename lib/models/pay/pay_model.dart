@@ -10,13 +10,16 @@ class PayModel extends Equatable {
   final String sign;
   @JsonKey(name: 'sign_type')
   final String signType;
+
   PayModel({
     required this.aliPayTradeAppPayResponse,
     required this.sign,
     required this.signType,
   });
+
   factory PayModel.fromJson(Map<String, dynamic> json) =>
       _$PayModelFromJson(json);
+
   @override
   List<Object> get props => [aliPayTradeAppPayResponse, sign, signType];
 }
@@ -37,6 +40,7 @@ class AliPayTradeAppPayResponse extends Equatable {
   final String sellerId;
   final String charset;
   final String timestamp;
+
   AliPayTradeAppPayResponse({
     required this.code,
     required this.msg,

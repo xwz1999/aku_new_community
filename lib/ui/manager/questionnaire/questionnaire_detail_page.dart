@@ -1,29 +1,28 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/manager/questionnaire_detail_model.dart';
+import 'package:aku_new_community/model/manager/quetionnaire_submit_model.dart';
+import 'package:aku_new_community/pages/manager_func.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_siglecheck.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_truefalse.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/questionnarie_raido_check.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/submit_complish_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
-import 'package:aku_community/model/manager/quetionnaire_submit_model.dart';
-import 'package:aku_community/pages/manager_func.dart';
-import 'package:aku_community/ui/manager/questionnaire/questionnaire_siglecheck.dart';
-import 'package:aku_community/ui/manager/questionnaire/questionnaire_truefalse.dart';
-import 'package:aku_community/ui/manager/questionnaire/questionnarie_raido_check.dart';
-import 'package:aku_community/ui/manager/questionnaire/submit_complish_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int? id;
   final int? status;
+
   QuestionnaireDetailPage({Key? key, this.id, this.status}) : super(key: key);
 
   @override
@@ -36,6 +35,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
   bool _onload = true;
 
   List<AppQuestionnaireAnswerSubmits> _submitModels = [];
+
   Widget _emptyWidget() {
     return Container();
   }

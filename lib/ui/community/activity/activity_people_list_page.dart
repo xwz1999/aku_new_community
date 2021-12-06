@@ -1,17 +1,16 @@
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/activity_people_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/activity_people_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class ActivityPeopleListPage extends StatefulWidget {
   final int? id;
+
   ActivityPeopleListPage({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -20,6 +19,7 @@ class ActivityPeopleListPage extends StatefulWidget {
 
 class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+
   @override
   void dispose() {
     _refreshController.dispose();

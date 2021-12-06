@@ -14,6 +14,7 @@ class PassedHouseListModel extends Equatable {
   final String? effectiveTimeStart;
   final String? effectiveTimeEnd;
   final int? sysLeaseId;
+
   PassedHouseListModel({
     required this.id,
     required this.estateId,
@@ -40,6 +41,7 @@ class PassedHouseListModel extends Equatable {
       _$PassedHouseListModelFromJson(json);
 
   DateTime? get effectiveStartDate => DateUtil.getDateTime(effectiveTimeStart!);
+
   DateTime? get effectiveEndDate => DateUtil.getDateTime(effectiveTimeEnd!);
 
   String get houseStatus {

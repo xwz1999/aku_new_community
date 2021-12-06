@@ -1,23 +1,22 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/life_pay/life_pay_list_model.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/bee_parse.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/life_pay/life_pay_list_model.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/bee_parse.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_radio.dart';
 
 class LifePayDetailPage extends StatefulWidget {
   final LifePayListModel model;
   final LifePayListModel selectModel;
   final int year;
+
   LifePayDetailPage({
     Key? key,
     required this.model,
@@ -32,6 +31,7 @@ class LifePayDetailPage extends StatefulWidget {
 class _LifePayDetailPageState extends State<LifePayDetailPage> {
   late LifePayListModel _selectModel; //已选择的model
   late LifePayListModel _model;
+
   SelectPay get total {
     int count = 0;
     double price = 0;

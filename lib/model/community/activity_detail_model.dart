@@ -1,6 +1,5 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 class ActivityDetailModel {
   int? id;
@@ -15,7 +14,9 @@ class ActivityDetailModel {
   List<ImgModel>? headImgURls;
 
   DateTime? get startDate => DateUtil.getDateTime(activityStartTime!);
+
   DateTime? get endDate => DateUtil.getDateTime(activityEndTime!);
+
   DateTime? get registEndDate => DateUtil.getDateTime(registrationEndTime!);
 
   ActivityDetailModel(

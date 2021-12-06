@@ -4,19 +4,19 @@ class CategoryModel {
   List<String>? imgUrls;
   List<CategoryList>? categoryList;
 
-  CategoryModel({this.id, this.name, this.categoryList,this.imgUrls});
+  CategoryModel({this.id, this.name, this.categoryList, this.imgUrls});
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     if (json['imgUrls'] != null) {
-      imgUrls =  [];
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls!.add(v.toString());
       });
     }
     if (json['categoryList'] != null) {
-      categoryList =  [];
+      categoryList = [];
       json['categoryList'].forEach((v) {
         categoryList!.add(new CategoryList.fromJson(v));
       });
@@ -55,7 +55,7 @@ class CategoryList {
       });
     }
     if (json['imgUrls'] != null) {
-      imgUrls =  [];
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls!.add(v.toString());
       });
@@ -82,18 +82,20 @@ class CategoryListSecond {
   String? name;
   List<String>? imgUrls;
 
-  CategoryListSecond({this.id, this.name,});
+  CategoryListSecond({
+    this.id,
+    this.name,
+  });
 
   CategoryListSecond.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     if (json['imgUrls'] != null) {
-      imgUrls =  [];
+      imgUrls = [];
       json['imgUrls'].forEach((v) {
         imgUrls!.add(v.toString());
       });
     }
-
   }
 
   Map<String, dynamic> toJson() {

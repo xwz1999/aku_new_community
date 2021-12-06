@@ -10,6 +10,7 @@ class LeaseListModel extends Equatable {
   final int type;
   final String estateType;
   final int status;
+
   LeaseListModel({
     required this.id,
     required this.roomName,

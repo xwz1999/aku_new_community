@@ -1,8 +1,8 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/models/market/order/order_detail_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/goods_item.dart';
+import 'package:aku_new_community/models/market/order/order_detail_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 
 class MyOrderFunc {
   ///确认收货
@@ -54,8 +54,8 @@ class MyOrderFunc {
       return (baseModel.data as List)
           .map((e) => GoodsItem.fromJson(e))
           .toList();
-    }else
-    return [];
+    } else
+      return [];
   }
 
   ///获取商品详情

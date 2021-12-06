@@ -1,31 +1,20 @@
-import 'dart:math';
-
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/market/goods_popular_model.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/community/community_func.dart';
-
-import 'package:aku_community/ui/market/collection/my_collection.dart';
-
-import 'package:aku_community/utils/hive_store.dart';
-
-import 'package:aku_community/utils/text_utils.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/search/search_goods_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/community_func.dart';
+import 'package:aku_new_community/ui/market/collection/my_collection.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/text_utils.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/market/goods/goods_card.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 
 import '../search_goods_card.dart';
@@ -73,7 +62,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
   List<GoodsPopularModel> goodsPopularModels = [];
   int? categoryThirdId;
   bool _showCategory = false;
-  bool _showListOrGrid = true;//true list false grid
+  bool _showListOrGrid = true; //true list false grid
 
   @override
   void initState() {
@@ -257,7 +246,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                       fontWeight: FontWeight.w300),
                   prefixIcon: _showCategory
                       ? GestureDetector(
-                        child: Container(
+                          child: Container(
                             padding: EdgeInsets.only(left: 18.w, right: 18.w),
                             margin: EdgeInsets.all(12.w),
                             decoration: BoxDecoration(
@@ -282,7 +271,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                             ),
                             height: 44.w,
                           ),
-                      )
+                        )
                       : null,
 
                   //isDense: true,
@@ -425,17 +414,18 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                           priceButton,
                           Spacer(),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               _showListOrGrid = !_showListOrGrid;
-                              setState(() {
-
-                              });
+                              setState(() {});
                             },
-                            child:  Image.asset(_showListOrGrid?
-                            R.ASSETS_ICONS_ICON_CHANGE_LIST_PNG:
-                            R.ASSETS_ICONS_ICON_CHANGE_GRID_PNG,width: 40.w,height: 40.w,),
+                            child: Image.asset(
+                              _showListOrGrid
+                                  ? R.ASSETS_ICONS_ICON_CHANGE_LIST_PNG
+                                  : R.ASSETS_ICONS_ICON_CHANGE_GRID_PNG,
+                              width: 40.w,
+                              height: 40.w,
+                            ),
                           ),
-
                           30.wb,
                         ],
                       ),
@@ -460,47 +450,52 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                               .map((e) => SearchGoodsModel.fromJson(e))
                               .toList(),
                           builder: (items) {
-                            return
-                              _showListOrGrid?ListView.separated(
-                              controller: _scrollController,
-                              padding: EdgeInsets.only(
-                                  top: 10.w,
-                                  left: 20.w,
-                                  right: 20.w,
-                                  bottom: 32.w),
-                              // gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                              //   crossAxisCount: 2,
-                              //   mainAxisSpacing: 20.w,
-                              //   crossAxisSpacing: 20.w,
-                              // ),
-                              itemBuilder: (context, index) {
-                                final item = items[index];
-                                return GoodsListCard(
-                                  model: item,
-                                  refreshController: _refreshController1,
-                                ); //GoodsCard(item: item);
-                              },
-                              separatorBuilder: (_, __) {
-                                return 32.w.heightBox;
-                              },
-                              itemCount: items.length,
-                            ):WaterfallFlow.builder(
-                                  gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 20.w,
-                                    crossAxisSpacing: 20.w,
-                                  ),
-                                padding: EdgeInsets.only(
-                                    top: 10.w,
-                                    left: 20.w,
-                                    right: 20.w,
-                                    bottom: 32.w),
-                                  itemBuilder: (context, index) {
-                                    final item = _models[index];
-                                    return SearchGoodsCard(item: item,refreshController: _refreshController1,);
-                                  },
-                                  itemCount: _models.length,
-                                );
+                            return _showListOrGrid
+                                ? ListView.separated(
+                                    controller: _scrollController,
+                                    padding: EdgeInsets.only(
+                                        top: 10.w,
+                                        left: 20.w,
+                                        right: 20.w,
+                                        bottom: 32.w),
+                                    // gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                                    //   crossAxisCount: 2,
+                                    //   mainAxisSpacing: 20.w,
+                                    //   crossAxisSpacing: 20.w,
+                                    // ),
+                                    itemBuilder: (context, index) {
+                                      final item = items[index];
+                                      return GoodsListCard(
+                                        model: item,
+                                        refreshController: _refreshController1,
+                                      ); //GoodsCard(item: item);
+                                    },
+                                    separatorBuilder: (_, __) {
+                                      return 32.w.heightBox;
+                                    },
+                                    itemCount: items.length,
+                                  )
+                                : WaterfallFlow.builder(
+                                    gridDelegate:
+                                        SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 20.w,
+                                      crossAxisSpacing: 20.w,
+                                    ),
+                                    padding: EdgeInsets.only(
+                                        top: 10.w,
+                                        left: 20.w,
+                                        right: 20.w,
+                                        bottom: 32.w),
+                                    itemBuilder: (context, index) {
+                                      final item = _models[index];
+                                      return SearchGoodsCard(
+                                        item: item,
+                                        refreshController: _refreshController1,
+                                      );
+                                    },
+                                    itemCount: _models.length,
+                                  );
                           },
                         ),
                       ).expand(),

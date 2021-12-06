@@ -1,9 +1,8 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_divider.dart';
 
 class BeeInputRow extends StatefulWidget {
   final String title;
@@ -11,10 +10,13 @@ class BeeInputRow extends StatefulWidget {
   final List<TextInputFormatter>? formatters;
   final String? hintText;
   final bool isRequire;
+
   //输入框还是按钮（点击弹窗选择
   final bool isButton;
+
   //是按钮时的回调
   final VoidCallback? onPressed;
+
   BeeInputRow({
     Key? key,
     required this.title,
@@ -25,6 +27,7 @@ class BeeInputRow extends StatefulWidget {
   })  : this.isButton = false,
         this.onPressed = null,
         super(key: key);
+
   BeeInputRow.button(
       {Key? key,
       required this.title,
@@ -35,6 +38,7 @@ class BeeInputRow extends StatefulWidget {
         this.formatters = null,
         this.controller = null,
         super(key: key);
+
   @override
   _BeeInputRowState createState() => _BeeInputRowState();
 }

@@ -1,23 +1,22 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/bee_input_row.dart';
+import 'package:aku_new_community/widget/others/house_head_card.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/bee_input_row.dart';
-import 'package:aku_community/widget/others/house_head_card.dart';
 
 class RefundBondPage extends StatefulWidget {
   final String name;
   final double bond;
   final String date;
   final int id;
+
   RefundBondPage(
       {Key? key,
       required this.name,

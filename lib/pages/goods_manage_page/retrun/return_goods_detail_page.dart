@@ -1,22 +1,20 @@
-import 'package:aku_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/manager/article_return_list_model.dart';
+import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/animated/animated_scale.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/radio_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/manager/article_return_list_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/animated/animated_scale.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/radio_button.dart';
 
 class ReturnGoodsDetailPage extends StatefulWidget {
   ReturnGoodsDetailPage({Key? key}) : super(key: key);
@@ -30,7 +28,9 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
   late List<ArticleReturnListModel> _models;
   bool _onload = true;
   List<int?> _selectItems = [];
+
   bool get allSelect => _selectItems.length == _models.length;
+
   @override
   void initState() {
     super.initState();
@@ -135,19 +135,17 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
           color: kPrimaryColor,
           padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
           onPressed: () async {
-            if(_selectItems.length<1){
+            if (_selectItems.length < 1) {
               BotToast.showText(text: '请先选择您要借归还的物品');
-            }else{
+            } else {
               BaseModel baseModel =
-              await NetUtil().post(API.manager.articleReturnGoods,
-                  params: {
-                    'ids': _selectItems,
-                  },
-                  showMessage: true);
-              Get.to(BorrowExaminePage(
-              ));
+                  await NetUtil().post(API.manager.articleReturnGoods,
+                      params: {
+                        'ids': _selectItems,
+                      },
+                      showMessage: true);
+              Get.to(BorrowExaminePage());
             }
-
           },
           child: '归还'.text.black.size(32.sp).bold.make(),
         ),
@@ -206,8 +204,11 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(model.imgList)),
               imageErrorBuilder: (context, error, stackTrace) {
-                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 184.w,
-                  width: 184.w,);
+                return Image.asset(
+                  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  height: 184.w,
+                  width: 184.w,
+                );
               },
             ),
           ),

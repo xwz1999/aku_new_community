@@ -1,9 +1,7 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
 
 //各种卡片下方的button组
 class CardBottomButton extends StatelessWidget {
@@ -12,6 +10,7 @@ class CardBottomButton extends StatelessWidget {
   final Color bgColor;
   final bool hasBorder;
   final VoidCallback onPressed;
+
   const CardBottomButton(
       {Key? key,
       required this.text,
@@ -20,22 +19,25 @@ class CardBottomButton extends StatelessWidget {
       this.hasBorder = false,
       required this.onPressed})
       : super(key: key);
+
   CardBottomButton.white({
     Key? key,
     required this.text,
     required this.onPressed,
-  })  : this.bgColor = Colors.white,
+  })   : this.bgColor = Colors.white,
         this.textColor = ktextPrimary,
         this.hasBorder = true,
         super(key: key);
+
   CardBottomButton.yellow({
     Key? key,
     required this.text,
     required this.onPressed,
-  })  : this.bgColor = Color(0xFFFFC40C),
+  })   : this.bgColor = Color(0xFFFFC40C),
         this.textColor = ktextPrimary,
         this.hasBorder = false,
         super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(

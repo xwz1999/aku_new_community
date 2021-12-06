@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/activity_item_model.dart';
+import 'package:aku_new_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/activity_item_model.dart';
-import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/others/stack_avatar.dart';
 
 class ActivityCard extends StatelessWidget {
   final ActivityItemModel? model;
@@ -61,7 +58,7 @@ class ActivityCard extends StatelessWidget {
                 Container(
                   constraints: BoxConstraints(maxWidth: 340.w),
                   child: Text(
-                    model==null?'':model!.title!,
+                    model == null ? '' : model!.title!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -73,7 +70,6 @@ class ActivityCard extends StatelessWidget {
                 Spacer(),
                 GestureDetector(
                   child: Container(
-
                     //color: Color(0x80FEBF76),
 
                     // shape: StadiumBorder(),
@@ -81,22 +77,16 @@ class ActivityCard extends StatelessWidget {
                     height: 39.w,
                     width: 98.w,
                     decoration: BoxDecoration(
-                        color: outdate ? Color(0xFFABABAB) : Color(0x80FEBF76),
+                      color: outdate ? Color(0xFFABABAB) : Color(0x80FEBF76),
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
 
                     child: outdate
-                        ? '已结束'
-                            .text
-                            .size(22.sp)
-                            .color(Color(0xFF666666))
-
-                            .make()
+                        ? '已结束'.text.size(22.sp).color(Color(0xFF666666)).make()
                         : '报名中'
                             .text
                             .size(22.sp)
                             .color(Color(0xFFF48117))
-
                             .make(),
                   ),
                   onTap: () {
@@ -107,7 +97,7 @@ class ActivityCard extends StatelessWidget {
                           };
                   },
                 ),
-              24.wb
+                24.wb
               ],
             ),
           ),

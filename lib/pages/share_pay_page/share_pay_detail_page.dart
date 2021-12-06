@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/life_pay/share_pay_list_model.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_radio.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/life_pay/share_pay_list_model.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

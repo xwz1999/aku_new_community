@@ -1,11 +1,10 @@
 import 'dart:io';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_process_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 
 class HouseKeepingFunc {
   ///提交新增家政服务
@@ -78,12 +77,17 @@ class HouseKeepingFunc {
     return baseModel.status ?? false;
   }
 
- ///支付宝支付：app 家政服务-服务费用支付 完成订单支付宝支付(生成 APP 支付订单信息)
+  ///支付宝支付：app 家政服务-服务费用支付 完成订单支付宝支付(生成 APP 支付订单信息)
   ///支付方式暂写死为1
   ///支付方式：1.支付宝 2.微信 3.现金 4.pos
- static Future<String> houseKeepingOrderAlipay(int id, int type, double price) async {
-    BaseModel baseModel = await NetUtil().post(API.pay.houseKeepingServiceOrderAlipay,
-        params: {"housekeepingServiceId": id, "payType": type, "payPrice": price});
+  static Future<String> houseKeepingOrderAlipay(
+      int id, int type, double price) async {
+    BaseModel baseModel = await NetUtil()
+        .post(API.pay.houseKeepingServiceOrderAlipay, params: {
+      "housekeepingServiceId": id,
+      "payType": type,
+      "payPrice": price
+    });
     if (baseModel.status ?? false) {
       return baseModel.message!;
     } else {

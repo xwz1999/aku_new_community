@@ -1,14 +1,13 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
 
 class BeeRowTile extends StatelessWidget {
   final String assetPath;
   final String titile;
   final Widget content;
+
   const BeeRowTile(
       {Key? key,
       required this.assetPath,

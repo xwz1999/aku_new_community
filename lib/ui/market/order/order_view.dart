@@ -1,19 +1,15 @@
-import 'package:aku_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/order/my_order_list_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/market/order/my_order_card.dart';
 
 import 'order_card.dart';
 
 class OrderView extends StatefulWidget {
   final int? index;
+
   OrderView({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -22,6 +18,7 @@ class OrderView extends StatefulWidget {
 
 class _OrderViewState extends State<OrderView> {
   late EasyRefreshController _refreshController;
+
   @override
   void initState() {
     super.initState();
@@ -39,7 +36,7 @@ class _OrderViewState extends State<OrderView> {
     return BeeListView(
         path: API.market.myOrder,
         controller: _refreshController,
-        extraParams: {"tradeStatus": widget.index,'orderCode':null},
+        extraParams: {"tradeStatus": widget.index, 'orderCode': null},
         convert: (models) {
           return models.tableList!
               .map((e) => OrderListModel.fromJson(e))
@@ -47,11 +44,11 @@ class _OrderViewState extends State<OrderView> {
         },
         builder: (items) {
           return ListView.builder(
-              padding: EdgeInsets.symmetric( horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               itemBuilder: (context, index) {
                 return Container(
                   color: Colors.transparent,
-                  margin: EdgeInsets.only(top:20.w),
+                  margin: EdgeInsets.only(top: 20.w),
                   child: OrderCard(
                     model: items[index],
                     callRefresh: () {

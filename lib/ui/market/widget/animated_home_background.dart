@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 class AnimatedHomeBackground extends StatefulWidget {
   final double height;
   final Color backgroundColor;
-  AnimatedHomeBackground({Key? key, required this.height, required this.backgroundColor})
+
+  AnimatedHomeBackground(
+      {Key? key, required this.height, required this.backgroundColor})
       : super(key: key);
 
   @override
@@ -13,6 +14,7 @@ class AnimatedHomeBackground extends StatefulWidget {
 
 class AnimatedHomeBackgroundState extends State<AnimatedHomeBackground> {
   late Color displayColor;
+
   @override
   void initState() {
     super.initState();

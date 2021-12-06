@@ -1,27 +1,26 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/community/activity_detail_model.dart';
+import 'package:aku_new_community/ui/community/activity/activity_people_list_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/stack_avatar.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/community/activity_detail_model.dart';
-import 'package:aku_community/ui/community/activity/activity_people_list_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/stack_avatar.dart';
-import 'package:aku_community/widget/picker/bee_image_preview.dart';
-
 class ActivityDetailPage extends StatefulWidget {
   final int? id;
+
   ActivityDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -31,8 +30,10 @@ class ActivityDetailPage extends StatefulWidget {
 class _ActivityDetailPageState extends State<ActivityDetailPage> {
   ActivityDetailModel? model;
   EasyRefreshController _refreshController = EasyRefreshController();
+
   bool get outdate =>
       (model?.registEndDate ?? DateTime(0)).compareTo(DateTime.now()) == -1;
+
   Widget get emptyWidget => Shimmer.fromColors(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,6 +61,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
         baseColor: Colors.black12,
         highlightColor: Colors.white,
       );
+
   @override
   void dispose() {
     _refreshController.dispose();

@@ -1,24 +1,23 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/market/order/my_order_list_model.dart';
+import 'package:aku_new_community/ui/market/order/my_order_func.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/aku_single_check_button.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/bee_text_field.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/market/order/my_order_list_model.dart';
-import 'package:aku_community/ui/market/order/my_order_func.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/aku_single_check_button.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/bee_text_field.dart';
-
 class MyOrderRefundPage extends StatefulWidget {
   final MyOrderListModel model;
+
   MyOrderRefundPage({Key? key, required this.model}) : super(key: key);
 
   @override
@@ -28,6 +27,7 @@ class MyOrderRefundPage extends StatefulWidget {
 class _MyOrderRefundPageState extends State<MyOrderRefundPage> {
   int _type = 1; //退换类型，1为退款，2为换货
   late TextEditingController _editingController;
+
   @override
   void initState() {
     super.initState();

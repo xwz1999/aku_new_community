@@ -1,15 +1,13 @@
 import 'dart:io';
 
+import 'package:aku_new_community/painters/plus_painter.dart';
+import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/painters/plus_painter.dart';
-import 'package:aku_community/widget/picker/bee_image_picker.dart';
-import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 ///网格图片选择
 ///
@@ -29,6 +27,7 @@ class GridImagePicker extends StatefulWidget {
 
   ///Padding
   final EdgeInsetsGeometry padding;
+
   GridImagePicker({
     Key? key,
     required this.onChange,
@@ -41,7 +40,9 @@ class GridImagePicker extends StatefulWidget {
 
 class _GridImagePickerState extends State<GridImagePicker> {
   List<File> _files = [];
+
   int get displayLength => _files.length < 9 ? (_files.length + 1) : 9;
+
   Widget _buildSelect() {
     return MaterialButton(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

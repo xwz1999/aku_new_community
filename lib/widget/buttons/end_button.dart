@@ -7,6 +7,7 @@ class EndButton extends StatelessWidget {
   final double? width;
   final EdgeInsetsGeometry? padding;
   final Color? color;
+
   const EndButton(
       {Key? key,
       required this.onPressed,

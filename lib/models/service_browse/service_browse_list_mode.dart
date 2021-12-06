@@ -9,14 +9,17 @@ class ServiceBrowseListModel extends Equatable {
   final String name;
   final String content;
   final String createDate;
+
   ServiceBrowseListModel({
     required this.id,
     required this.name,
     required this.content,
     required this.createDate,
   });
+
   factory ServiceBrowseListModel.fromJson(Map<String, dynamic> json) =>
       _$ServiceBrowseListModelFromJson(json);
+
   @override
   List<Object> get props => [id, name, content, createDate];
 }

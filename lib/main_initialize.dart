@@ -1,16 +1,12 @@
 import 'dart:io';
 
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/constants/config.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/message_parser.dart';
-import 'package:aku_community/utils/websocket/fire_dialog.dart';
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/constants/config.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/message_parser.dart';
+import 'package:aku_new_community/utils/websocket/fire_dialog.dart';
+import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:get/get.dart';
@@ -19,7 +15,6 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 class MainInitialize {
-
   ///初始化firebase
   // static Future initFirebase() async {
   //   await Firebase.initializeApp();
@@ -53,27 +48,21 @@ class MainInitialize {
     // }
 
     try {
-    jpush.addEventHandler(
-      onReceiveNotification: (message) async {
+      jpush.addEventHandler(onReceiveNotification: (message) async {
         LoggerData.addData(message, tag: 'onReceiveNotification');
         await MessageParser(message).shot();
         final appProvider =
             Provider.of<AppProvider>(Get.context!, listen: false);
         appProvider.getMessageCenter();
-      },
-      onOpenNotification: (Map<String, dynamic>? message) async {
+      }, onOpenNotification: (Map<String, dynamic>? message) async {
         LoggerData.addData(message, tag: 'onOpenNotification');
-      },
-      onReceiveMessage: (Map<String, dynamic>? message) async {
+      }, onReceiveMessage: (Map<String, dynamic>? message) async {
         LoggerData.addData(message, tag: 'onReceiveMessage');
       }, onReceiveNotificationAuthorization:
-        (Map<String, dynamic> message) async {
-      print("flutter onReceiveNotificationAuthorization: $message");
-    }
-    );
-    } on PlatformException {
-
-    }
+          (Map<String, dynamic> message) async {
+        print("flutter onReceiveNotificationAuthorization: $message");
+      });
+    } on PlatformException {}
     jpush.setup(
       appKey: "00e20fef79ee804d5c9abb54",
       channel: "developer-default",
@@ -87,7 +76,6 @@ class MainInitialize {
       rID = rid;
       LoggerData.addData(rID, tag: 'RegistrationID');
     });
-
   }
 
   static initWechat() {

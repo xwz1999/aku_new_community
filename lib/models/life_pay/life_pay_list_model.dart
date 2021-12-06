@@ -8,13 +8,16 @@ class LifePayListModel extends Equatable {
   final int years;
   final int paymentNum;
   final List<DailyPaymentTypeVos> dailyPaymentTypeVos;
+
   LifePayListModel({
     required this.years,
     required this.paymentNum,
     required this.dailyPaymentTypeVos,
   });
+
   factory LifePayListModel.fromJson(Map<String, dynamic> json) =>
       _$LifePayListModelFromJson(json);
+
   // factory LifePayListModel.zero() =>
   //     LifePayListModel(years: 0, paymentNum: 0, dailyPaymentTypeVos: [
   //       DailyPaymentTypeVos(id: 0, name: '', detailedVoList: [
@@ -22,6 +25,7 @@ class LifePayListModel extends Equatable {
   //       ])
   //     ]);
   Map<String, dynamic> toJson() => _$LifePayListModelToJson(this);
+
   @override
   List<Object?> get props => [years, paymentNum, dailyPaymentTypeVos];
 }
@@ -31,14 +35,18 @@ class DailyPaymentTypeVos extends Equatable {
   final int id;
   final String name;
   final List<DetailedVoList> detailedVoList;
+
   DailyPaymentTypeVos({
     required this.id,
     required this.name,
     required this.detailedVoList,
   });
+
   factory DailyPaymentTypeVos.fromJson(Map<String, dynamic> json) =>
       _$DailyPaymentTypeVosFromJson(json);
+
   Map<String, dynamic> toJson() => _$DailyPaymentTypeVosToJson(this);
+
   @override
   List<Object> get props => [id, name, detailedVoList];
 }
@@ -49,15 +57,19 @@ class DetailedVoList extends Equatable {
   final num paymentPrice;
   final num overdueFine;
   final List<DetailsVoList> detailsVoList;
+
   DetailedVoList({
     required this.groupId,
     required this.paymentPrice,
     required this.overdueFine,
     required this.detailsVoList,
   });
+
   factory DetailedVoList.fromJson(Map<String, dynamic> json) =>
       _$DetailedVoListFromJson(json);
+
   Map<String, dynamic> toJson() => _$DetailedVoListToJson(this);
+
   @override
   List<Object> get props => [groupId, paymentPrice, overdueFine, detailsVoList];
 }
@@ -79,6 +91,7 @@ class DetailsVoList extends Equatable {
   final num rate;
   final String paymentTerm;
   final num overdueFine;
+
   DetailsVoList({
     required this.id,
     required this.month,
@@ -95,9 +108,12 @@ class DetailsVoList extends Equatable {
     required this.paymentTerm,
     required this.overdueFine,
   });
+
   factory DetailsVoList.fromJson(Map<String, dynamic> json) =>
       _$DetailsVoListFromJson(json);
+
   Map<String, dynamic> toJson() => _$DetailsVoListToJson(this);
+
   @override
   List<Object> get props {
     return [

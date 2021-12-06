@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/pages/sign/sign_func.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class UpdateTelPage extends StatefulWidget {
   UpdateTelPage({Key? key}) : super(key: key);
@@ -27,7 +25,9 @@ class _UpdateTelPageState extends State<UpdateTelPage> {
   TextEditingController? _newTelController;
   TextEditingController? _codeController;
   Timer? _timer;
+
   bool get validPhone => RegexUtil.isMobileSimple(_newTelController!.text);
+
   bool get _canGetCode {
     bool timeActive = _timer?.isActive ?? false;
     return (!timeActive) && validPhone;

@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-
-import 'package:aku_community/widget/others/user_tool.dart';
 
 const String baseUri = 'wss://test.kaidalai.cn/websocket/app';
 enum SOCKETSTATUS {
@@ -19,6 +18,7 @@ class WebSocketUtil {
 
 //内部构造函数
   WebSocketUtil._();
+
 //单例模式
   factory WebSocketUtil() => _socket;
 

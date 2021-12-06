@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'lease_detail_model.g.dart';
 
@@ -39,6 +38,7 @@ class LeaseDetailModel extends Equatable {
   final String? notMeterRentDate;
   final num? requiredRent;
   final String? depositRefundReviewRemake;
+
   LeaseDetailModel({
     required this.id,
     required this.code,
@@ -76,6 +76,7 @@ class LeaseDetailModel extends Equatable {
 
   factory LeaseDetailModel.fromJson(Map<String, dynamic> json) =>
       _$LeaseDetailModelFromJson(json);
+
   @override
   List<Object?> get props {
     return [

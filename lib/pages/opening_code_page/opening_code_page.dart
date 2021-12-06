@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +27,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
   late EasyRefreshController _refreshController;
   static const int seconds = 300; //有效时间
   Timer? _overDateTimer;
+
   @override
   void initState() {
     super.initState();

@@ -1,14 +1,14 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/animated/animated_scale.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/animated/animated_scale.dart';
 
 class CommonRadio<T> extends StatefulWidget {
   final T? value;
   final T? groupValue;
   final Widget? text;
   final double? size;
+
   CommonRadio({Key? key, this.value, this.groupValue, this.text, this.size})
       : super(key: key);
 
@@ -18,6 +18,7 @@ class CommonRadio<T> extends StatefulWidget {
 
 class _CommonRadioState extends State<CommonRadio> {
   bool get _selected => widget.value == widget.groupValue;
+
   double get smallSize {
     return widget.size!.isNull! ? 24.w : (widget.size! * 24 / 40);
   }

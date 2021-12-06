@@ -7,6 +7,7 @@ part 'electronic_commerc_category_model.g.dart';
 class ElectronicCommercCategoryModel extends Equatable {
   final int id;
   final String name;
+
   ElectronicCommercCategoryModel({
     required this.id,
     required this.name,

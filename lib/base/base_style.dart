@@ -1,7 +1,6 @@
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/utils/headers.dart';
 
 const ktextPrimary = Color(0xff333333);
 const ktextSubColor = Color(0xff666666);

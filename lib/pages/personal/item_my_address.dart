@@ -7,19 +7,18 @@
  * ====================================================
  */
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/pages/personal/user_func.dart';
-import 'package:aku_community/provider/app_provider.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/pages/personal/user_func.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'address/new_address_page.dart';
-
 
 // ignore: must_be_immutable
 class MyAddressItem extends StatefulWidget {
@@ -29,26 +28,30 @@ class MyAddressItem extends StatefulWidget {
 
   Color _titleColor = Colors.black;
 
-  MyAddressItem({required this.addressModel,
-this.refreshController, required this.canBack})
+  MyAddressItem(
+      {required this.addressModel,
+      this.refreshController,
+      required this.canBack})
       : assert(addressModel != null);
 
   _MyAddressItemState createState() => _MyAddressItemState();
 }
+
 class _MyAddressItemState extends State<MyAddressItem> {
   @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     return GestureDetector(
-      onTap: widget.canBack? (){
-        Get.back(result: widget.addressModel);
-      }:(){
-
-      },
+      onTap: widget.canBack
+          ? () {
+              Get.back(result: widget.addressModel);
+            }
+          : () {},
       child: Container(
         clipBehavior: Clip.antiAlias,
-        margin: EdgeInsets.only(bottom:20.w),
-        padding: EdgeInsets.only(top: 22.w,bottom: 24.w,left: 24.w,right: 20.w),
+        margin: EdgeInsets.only(bottom: 20.w),
+        padding:
+            EdgeInsets.only(top: 22.w, bottom: 24.w, left: 24.w, right: 20.w),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(24.w)),
@@ -59,19 +62,28 @@ class _MyAddressItemState extends State<MyAddressItem> {
             Row(
               children: [
                 GestureDetector(
-                  onTap: () async{
-                    bool? result =  await  Userfunc.setIsDefaultAddress(widget.addressModel.id!);
-                    if(result!=null){
-                      if(result)  {
+                  onTap: () async {
+                    bool? result = await Userfunc.setIsDefaultAddress(
+                        widget.addressModel.id!);
+                    if (result != null) {
+                      if (result) {
                         await appProvider.getMyAddress();
                         widget.refreshController!.callRefresh();
                       }
                     }
                   },
                   child: Container(
-                    child:  widget.addressModel.isDefault==1?
-                    Image.asset(R.ASSETS_ICONS_ICON_ADDRESS_ISDEFAULT_PNG,width: 40.w,height: 40.w,):
-                    Image.asset(R.ASSETS_ICONS_ICON_ADDRESS_NOT_PNG,width: 40.w,height: 40.w,),
+                    child: widget.addressModel.isDefault == 1
+                        ? Image.asset(
+                            R.ASSETS_ICONS_ICON_ADDRESS_ISDEFAULT_PNG,
+                            width: 40.w,
+                            height: 40.w,
+                          )
+                        : Image.asset(
+                            R.ASSETS_ICONS_ICON_ADDRESS_NOT_PNG,
+                            width: 40.w,
+                            height: 40.w,
+                          ),
                   ),
                 ),
                 Column(
@@ -79,12 +91,13 @@ class _MyAddressItemState extends State<MyAddressItem> {
                   children: [
                     Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical:6.w),
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 6.w),
                       child: SizedBox(
                         width: 520.w,
                         child: Text(
-                          widget.addressModel.locationName??'',
-                            style:TextStyle(fontSize: 24.sp,color: ktextPrimary),
+                          widget.addressModel.locationName ?? '',
+                          style:
+                              TextStyle(fontSize: 24.sp, color: ktextPrimary),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -92,32 +105,31 @@ class _MyAddressItemState extends State<MyAddressItem> {
                     ),
                     Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical:6.w),
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 6.w),
                       child: SizedBox(
                         width: 520.w,
                         child: Text(
-                          ( widget.addressModel.addressDetail??''),
-                            style:TextStyle(fontSize: 32.sp,color: ktextPrimary),
+                          (widget.addressModel.addressDetail ?? ''),
+                          style:
+                              TextStyle(fontSize: 32.sp, color: ktextPrimary),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical:6.w),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 6.w),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          Text(
-                              widget.addressModel.name??'',
-                              style: TextStyle(fontSize: 24.sp,color: ktextPrimary)
-                          ),
+                          Text(widget.addressModel.name ?? '',
+                              style: TextStyle(
+                                  fontSize: 24.sp, color: ktextPrimary)),
                           30.wb,
-                          Text(
-                              widget.addressModel.tel??'',
-                              style: TextStyle(fontSize: 24.sp,color: ktextPrimary)
-                          ),
+                          Text(widget.addressModel.tel ?? '',
+                              style: TextStyle(
+                                  fontSize: 24.sp, color: ktextPrimary)),
                         ],
                       ),
                     ),
@@ -125,17 +137,21 @@ class _MyAddressItemState extends State<MyAddressItem> {
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap: () async{
-
-                      bool? result =  await  Get.to(() => NewAddressPage(isFirstAdd:false,addressModel: widget.addressModel,
-                      ));
-                      if(result!=null){
-                        if(result)  widget.refreshController!.callRefresh();
-                      }
-
+                  onTap: () async {
+                    bool? result = await Get.to(() => NewAddressPage(
+                          isFirstAdd: false,
+                          addressModel: widget.addressModel,
+                        ));
+                    if (result != null) {
+                      if (result) widget.refreshController!.callRefresh();
+                    }
                   },
                   child: Container(
-                    child: Image.asset(R.ASSETS_ICONS_ICON_ADDRESS_EDIT_PNG,width: 40.w,height: 40.w,),
+                    child: Image.asset(
+                      R.ASSETS_ICONS_ICON_ADDRESS_EDIT_PNG,
+                      width: 40.w,
+                      height: 40.w,
+                    ),
                   ),
                 )
               ],
@@ -152,51 +168,48 @@ class _MyAddressItemState extends State<MyAddressItem> {
                 10.wb,
                 Text(
                   widget.addressModel.isDefault == 0 ? "" : "默认地址",
-                  style: TextStyle(fontSize: 28.sp,color: ktextSubColor),
+                  style: TextStyle(fontSize: 28.sp, color: ktextSubColor),
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap: () async{
+                  onTap: () async {
                     // bool? result =  await  Userfunc.deleteAddress(widget.addressModel.id!);
                     // if(result!=null){
                     //   if(result)  widget.refreshController!.callRefresh();
                     // }
-                      bool? result =
-                      await Get.dialog(CupertinoAlertDialog(
-                        title: '您确定要删除该地址吗？'.text.isIntrinsic.size(30.sp).make(),
-                        actions: [
-                          CupertinoDialogAction(
-                            child: '取消'.text.black.isIntrinsic.make(),
-                            onPressed: () => Get.back(),
-                          ),
-                          CupertinoDialogAction(
-                            child: '确定'
-                                .text
-                                .color(Colors.orange)
-                                .isIntrinsic
-                                .make(),
-                            onPressed: () => Get.back(result: true),
-                          ),
-                        ],
-                      ));
+                    bool? result = await Get.dialog(CupertinoAlertDialog(
+                      title: '您确定要删除该地址吗？'.text.isIntrinsic.size(30.sp).make(),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: '取消'.text.black.isIntrinsic.make(),
+                          onPressed: () => Get.back(),
+                        ),
+                        CupertinoDialogAction(
+                          child:
+                              '确定'.text.color(Colors.orange).isIntrinsic.make(),
+                          onPressed: () => Get.back(result: true),
+                        ),
+                      ],
+                    ));
 
-                      if (result == true) {
-                        bool? result =  await  Userfunc.deleteAddress(widget.addressModel.id!);
-                        if(result!=null){
-                          if(result)  widget.refreshController!.callRefresh();
-                        }
-                    };
+                    if (result == true) {
+                      bool? result =
+                          await Userfunc.deleteAddress(widget.addressModel.id!);
+                      if (result != null) {
+                        if (result) widget.refreshController!.callRefresh();
+                      }
+                    }
+                    ;
                   },
                   child: Container(
                     width: 70.w,
                     height: 40.w,
-                    child:Text(
+                    child: Text(
                       "删除",
-                      style: TextStyle(fontSize: 28.sp,color: ktextSubColor),
+                      style: TextStyle(fontSize: 28.sp, color: ktextSubColor),
                     ),
                   ),
                 ),
-
               ],
             )
           ],
@@ -204,5 +217,4 @@ class _MyAddressItemState extends State<MyAddressItem> {
       ),
     );
   }
-
 }

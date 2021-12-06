@@ -1,21 +1,20 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/manager/visitor_list_item_model.dart';
+import 'package:aku_new_community/ui/manager/visitor/visitor_passport_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/manager/visitor_list_item_model.dart';
-import 'package:aku_community/ui/manager/visitor/visitor_passport_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 
 class VisitorListItem extends StatefulWidget {
   final VisitorListItemModel model;
   final int type;
+
   VisitorListItem({Key? key, required this.model, required this.type})
       : super(key: key);
 

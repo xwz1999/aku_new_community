@@ -38,11 +38,11 @@ class OperatorNodeList {
 
   OperatorNodeList(
       {this.scanState,
-        this.systemOperator,
-        this.msgTime,
-        this.orderId,
-        this.content,
-        this.groupState});
+      this.systemOperator,
+      this.msgTime,
+      this.orderId,
+      this.content,
+      this.groupState});
 
   OperatorNodeList.fromJson(Map<String, dynamic> json) {
     scanState = json['scan_state'];

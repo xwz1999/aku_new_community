@@ -1,8 +1,7 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'house_keeping_list_model.g.dart';
 
@@ -28,6 +27,7 @@ class HouseKeepingListModel extends Equatable {
   final List<ImgModel> evaluationImgList;
   final String createDate;
   final List<ImgModel> submitImgList;
+
   HouseKeepingListModel({
     required this.id,
     required this.proposerName,
@@ -38,8 +38,8 @@ class HouseKeepingListModel extends Equatable {
     required this.status,
     this.completion,
     this.processDescription,
-     this.handlerName,
-     this.handlerTel,
+    this.handlerName,
+    this.handlerTel,
     this.handlingTime,
     required this.handlerImgList,
     this.payFee,
@@ -50,8 +50,10 @@ class HouseKeepingListModel extends Equatable {
     required this.createDate,
     required this.submitImgList,
   });
+
   factory HouseKeepingListModel.fromJson(Map<String, dynamic> json) =>
       _$HouseKeepingListModelFromJson(json);
+
   String get typeString {
     switch (this.type) {
       case 1:

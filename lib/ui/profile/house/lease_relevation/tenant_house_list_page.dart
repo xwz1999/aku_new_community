@@ -1,8 +1,8 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house/lease_list_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/profile/house/lease_relevation/lease_house_card.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house/lease_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/profile/house/lease_relevation/lease_house_card.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +10,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class TenantHouseListPage extends StatefulWidget {
   final int leaseId;
+
   TenantHouseListPage({Key? key, this.leaseId = 0}) : super(key: key);
 
   @override
@@ -18,6 +19,7 @@ class TenantHouseListPage extends StatefulWidget {
 
 class _TenantHouseListPageState extends State<TenantHouseListPage> {
   late EasyRefreshController _refreshController;
+
   @override
   void initState() {
     _refreshController = EasyRefreshController();

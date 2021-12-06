@@ -1,23 +1,19 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/order/order_list_model.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/ui/market/search/settlementGoodsDTO.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/buttons/line_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/ui/market/search/settlementGoodsDTO.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/buttons/line_button.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-
-import 'package:flutter/cupertino.dart';
 
 import 'order_detail_page.dart';
 
@@ -37,6 +33,7 @@ class OrderCard extends StatefulWidget {
 
 class _OrderCardState extends State<OrderCard> {
   List<SettlementGoodsDTO> _goodsList = [];
+
   @override
   Widget build(BuildContext context) {
     switch (widget.model.tradeStatus) {
@@ -63,31 +60,29 @@ class _OrderCardState extends State<OrderCard> {
   void initState() {
     super.initState();
     widget.model.myOrderListVoList!.forEach((element) {
-      _goodsList.add(SettlementGoodsDTO(jcookGoodsId: element.jcookGoodsId,num: element.num));
+      _goodsList.add(SettlementGoodsDTO(
+          jcookGoodsId: element.jcookGoodsId, num: element.num));
     });
-
   }
 
   Future _pay() async {
     Function cancel = BotToast.showLoading();
-    BaseModel baseModel = await NetUtil()
-        .post(API.pay.jcookOrderCreateOrder, params: {
-      "addressId":widget.model.jcookAddressId,
+    BaseModel baseModel =
+        await NetUtil().post(API.pay.jcookOrderCreateOrder, params: {
+      "addressId": widget.model.jcookAddressId,
       "settlementGoodsDTOList": _goodsList.map((v) => v.toJson()).toList(),
       "payType": 1, //暂时写死 等待后续补充
-      "payPrice":  widget.model.payPrice
+      "payPrice": widget.model.payPrice
     });
     if (baseModel.status ?? false) {
-      bool result = await PayUtil().callAliPay(
-          baseModel.message!, API.pay.sharePayOrderCodeCheck);
+      bool result = await PayUtil()
+          .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);
       if (result) {
         Get.off(() => PayFinishPage());
       }
     }
     cancel();
   }
-
-
 
   Future _deleteOrder() async {
     bool? result = await Get.dialog(
@@ -106,12 +101,11 @@ class _OrderCardState extends State<OrderCard> {
         ],
       ),
     );
-    if(result==true){
-
+    if (result == true) {
       Function cancel = BotToast.showLoading();
-      BaseModel baseModel = await NetUtil()
-          .get(API.market.deleteOrder, params: {
-        "orderId":widget.model.id,
+      BaseModel baseModel =
+          await NetUtil().get(API.market.deleteOrder, params: {
+        "orderId": widget.model.id,
       });
       if (baseModel.status ?? false) {
         BotToast.showText(text: '删除成功');
@@ -138,14 +132,10 @@ class _OrderCardState extends State<OrderCard> {
         ],
       ),
     );
-    if(result==true){
-
+    if (result == true) {
       Function cancel = BotToast.showLoading();
-      BaseModel baseModel = await NetUtil()
-          .get(API.market.cancelOrder, params: {
-        "orderId":widget.model.id,
-        'cancelReasonCode':4
-      });
+      BaseModel baseModel = await NetUtil().get(API.market.cancelOrder,
+          params: {"orderId": widget.model.id, 'cancelReasonCode': 4});
       if (baseModel.status ?? false) {
         BotToast.showText(text: '取消成功');
         widget.callRefresh();
@@ -173,8 +163,10 @@ class _OrderCardState extends State<OrderCard> {
     );
     if (result == true) {
       Function cancel = BotToast.showLoading();
-      BaseModel baseModel = await NetUtil().get(API.market.confirmOrder,
-          params: {"orderId": widget.model.id,});
+      BaseModel baseModel =
+          await NetUtil().get(API.market.confirmOrder, params: {
+        "orderId": widget.model.id,
+      });
       if (baseModel.status ?? false) {
         BotToast.showText(text: '收货成功');
         Get.back();
@@ -186,8 +178,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _yiquxiao() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -220,13 +215,11 @@ class _OrderCardState extends State<OrderCard> {
               children: [
                 Spacer(),
                 LineButton(
-                  onPressed: ()async {
-
+                  onPressed: () async {
                     _deleteOrder();
-
-
                   },
-                  text: ('删除订单').text.size(28.sp).color(Color(0xFF666666)).make(),
+                  text:
+                      ('删除订单').text.size(28.sp).color(Color(0xFF666666)).make(),
                   color: Color(0xFFBBBBBB),
                 ),
               ],
@@ -239,8 +232,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _yiwancheng() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -290,8 +286,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _daishouhuo() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -333,7 +332,8 @@ class _OrderCardState extends State<OrderCard> {
                   onPressed: () {
                     _confirmOrder();
                   },
-                  text: ('确认收货').text.size(28.sp).color(Color(0xFFE52E2E)).make(),
+                  text:
+                      ('确认收货').text.size(28.sp).color(Color(0xFFE52E2E)).make(),
                   color: Color(0xFFE52E2E),
                 ),
               ],
@@ -346,8 +346,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _daifahuo() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -383,7 +386,8 @@ class _OrderCardState extends State<OrderCard> {
                   onPressed: () {
                     _cancelOrder();
                   },
-                  text: ('取消订单').text.size(28.sp).color(Color(0xFF666666)).make(),
+                  text:
+                      ('取消订单').text.size(28.sp).color(Color(0xFF666666)).make(),
                   color: Color(0xFFBBBBBB),
                 ),
               ],
@@ -396,8 +400,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _yiguanbi() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -433,7 +440,8 @@ class _OrderCardState extends State<OrderCard> {
                   onPressed: () {
                     _deleteOrder();
                   },
-                  text: ('删除订单').text.size(28.sp).color(Color(0xFF666666)).make(),
+                  text:
+                      ('删除订单').text.size(28.sp).color(Color(0xFF666666)).make(),
                   color: Color(0xFFBBBBBB),
                 ),
               ],
@@ -446,8 +454,11 @@ class _OrderCardState extends State<OrderCard> {
 
   _daifukuan() {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>OrderDetailPage(orderModel: widget.model,callRefresh: widget.callRefresh,));
+      onTap: () {
+        Get.to(() => OrderDetailPage(
+              orderModel: widget.model,
+              callRefresh: widget.callRefresh,
+            ));
       },
       child: Container(
         width: double.infinity,
@@ -483,7 +494,8 @@ class _OrderCardState extends State<OrderCard> {
                   onPressed: () {
                     _cancelOrder();
                   },
-                  text: ('取消订单').text.size(28.sp).color(Color(0xFF666666)).make(),
+                  text:
+                      ('取消订单').text.size(28.sp).color(Color(0xFF666666)).make(),
                   color: Color(0xFFBBBBBB),
                   width: 168.w,
                 ),

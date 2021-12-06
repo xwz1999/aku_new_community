@@ -1,11 +1,11 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-
 class RefundShopCard extends StatelessWidget {
   final String? imagePath, content, specs;
+
   RefundShopCard({Key? key, this.imagePath, this.content, this.specs})
       : super(key: key);
 

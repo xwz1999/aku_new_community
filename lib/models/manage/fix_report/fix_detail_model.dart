@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'fix_detail_model.g.dart';
 
@@ -12,14 +11,17 @@ class FixDetailModel extends Equatable {
   final List<AppProcessRecordVo> appProcessRecordVo;
   final AppMaintenanceResultVo? appMaintenanceResultVo;
   final AppDispatchListVo? appDispatchListVo;
+
   FixDetailModel({
     required this.appReportRepairVo,
     required this.appProcessRecordVo,
     this.appMaintenanceResultVo,
     required this.appDispatchListVo,
   });
+
   factory FixDetailModel.fromJson(Map<String, dynamic> json) =>
       _$FixDetailModelFromJson(json);
+
   @override
   List<Object?> get props => [
         appReportRepairVo,
@@ -37,6 +39,7 @@ class AppReportRepairVo extends Equatable {
   final int status;
   final String reportDetail;
   final List<ImgModel> imgUrls;
+
   AppReportRepairVo({
     required this.roomName,
     required this.id,
@@ -48,6 +51,7 @@ class AppReportRepairVo extends Equatable {
 
   factory AppReportRepairVo.fromJson(Map<String, dynamic> json) =>
       _$AppReportRepairVoFromJson(json);
+
   @override
   List<Object> get props {
     return [
@@ -65,6 +69,7 @@ class AppReportRepairVo extends Equatable {
 class AppProcessRecordVo extends Equatable {
   final String operationDate;
   final int operationType;
+
   AppProcessRecordVo({
     required this.operationDate,
     required this.operationType,
@@ -72,6 +77,7 @@ class AppProcessRecordVo extends Equatable {
 
   factory AppProcessRecordVo.fromJson(Map<String, dynamic> json) =>
       _$AppProcessRecordVoFromJson(json);
+
   @override
   List<Object> get props => [operationDate, operationType];
 }
@@ -83,6 +89,7 @@ class AppDispatchListVo extends Equatable {
   final int type;
   final String operatorName;
   final String distributorName;
+
   AppDispatchListVo({
     required this.code,
     required this.orderDate,
@@ -93,6 +100,7 @@ class AppDispatchListVo extends Equatable {
 
   factory AppDispatchListVo.fromJson(Map<String, dynamic> json) =>
       _$AppDispatchListVoFromJson(json);
+
   @override
   List<Object> get props {
     return [
@@ -112,6 +120,7 @@ class AppMaintenanceResultVo extends Equatable {
   final num? materialCost;
   final num? totalCost;
   final List<ImgModel> imgUrls;
+
   AppMaintenanceResultVo({
     required this.id,
     this.laborCost,
@@ -122,6 +131,7 @@ class AppMaintenanceResultVo extends Equatable {
 
   factory AppMaintenanceResultVo.fromJson(Map<String, dynamic> json) =>
       _$AppMaintenanceResultVoFromJson(json);
+
   @override
   List<Object?> get props {
     return [

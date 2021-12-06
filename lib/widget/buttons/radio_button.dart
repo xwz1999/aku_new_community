@@ -1,12 +1,12 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/animated/animated_scale.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/animated/animated_scale.dart';
 
 class BeeRadio<T> extends StatefulWidget {
   final T value;
   final List<T>? groupValues;
+
   BeeRadio({Key? key, required this.value, required this.groupValues})
       : super(key: key);
 

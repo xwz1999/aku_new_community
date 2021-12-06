@@ -1,11 +1,11 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/models/life_pay/share_pay_record_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/models/life_pay/share_pay_record_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -28,6 +28,7 @@ class _ShareRecordPageState extends State<ShareRecordPage> {
     4: 'pos',
     5: '预缴扣除'
   };
+
   @override
   void initState() {
     super.initState();

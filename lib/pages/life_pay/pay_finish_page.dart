@@ -1,8 +1,7 @@
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
 
 class PayFinishPage extends StatelessWidget {
   const PayFinishPage({Key? key}) : super(key: key);

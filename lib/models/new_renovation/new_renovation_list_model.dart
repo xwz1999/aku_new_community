@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/base/base_style.dart';
 
 part 'new_renovation_list_model.g.dart';
 
@@ -29,6 +27,7 @@ class NewRenovationListModel extends Equatable {
   final String createName;
   final String createDate;
   final List<CheckVoList?> checkVoList;
+
   NewRenovationListModel({
     required this.id,
     required this.roomName,
@@ -137,8 +136,10 @@ class NewRenovationListModel extends Equatable {
 
   String get actualEndString =>
       DateUtil.formatDateStr(this.actualEnd ?? '', format: 'yyyy-MM-dd HH:mm');
+
   String get expectSlot =>
       '${expectBginString}-${DateUtil.formatDateStr(this.expectedEnd, format: 'HH:mm')}';
+
   String get actualSlot =>
       '${actualBginString}-${DateUtil.formatDateStr(this.actualEnd ?? '', format: 'HH:mm')}';
 
@@ -162,6 +163,7 @@ class CheckVoList extends Equatable {
   final int isQualified;
   final String createName;
   final String createDate;
+
   CheckVoList({
     required this.id,
     required this.decorationNewId,
@@ -185,6 +187,7 @@ class CheckVoList extends Equatable {
 
   factory CheckVoList.fromJson(Map<String, dynamic> json) =>
       _$CheckVoListFromJson(json);
+
   String get qualitfied {
     switch (this.isQualified) {
       case 1:

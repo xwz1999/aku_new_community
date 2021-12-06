@@ -1,23 +1,21 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/bee_input_row.dart';
+import 'package:aku_new_community/widget/others/house_head_card.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/bottom_sheets/pay_mothod_bottom_sheet.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/bee_input_row.dart';
-import 'package:aku_community/widget/others/house_head_card.dart';
 
 class PaySuerplusRentPage extends StatefulWidget {
   ///不再计租时间
@@ -27,6 +25,7 @@ class PaySuerplusRentPage extends StatefulWidget {
   final num amount;
 
   final int id;
+
   PaySuerplusRentPage(
       {Key? key, required this.time, required this.amount, required this.id})
       : super(key: key);
@@ -37,6 +36,7 @@ class PaySuerplusRentPage extends StatefulWidget {
 
 class _PaySuerplusRentPageState extends State<PaySuerplusRentPage> {
   String _payMethod = '支付宝';
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

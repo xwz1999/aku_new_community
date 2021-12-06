@@ -1,20 +1,18 @@
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/websocket/tips_dialog.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/manager/questinnaire_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/stack_avatar.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/manager/questinnaire_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/manager/questionnaire/questionnaire_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/others/stack_avatar.dart';
 
 class QuestionnairePage extends StatefulWidget {
   QuestionnairePage({Key? key}) : super(key: key);
@@ -25,6 +23,7 @@ class QuestionnairePage extends StatefulWidget {
 
 class _QuestionnairePageState extends State<QuestionnairePage> {
   EasyRefreshController _easyRefreshController = EasyRefreshController();
+
   @override
   void initState() {
     super.initState();
@@ -32,10 +31,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
       var agreement = await HiveStore.appBox?.get('QuestionnairePage') ?? false;
       if (!agreement) {
         await TipsDialog.tipsDialog();
-        HiveStore.appBox!.put('QuestionnairePage',true);
+        HiveStore.appBox!.put('QuestionnairePage', true);
       }
     });
-
   }
 
   String _getButtonText(int? status) {

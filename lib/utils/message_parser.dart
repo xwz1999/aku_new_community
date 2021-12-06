@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:aku_community/utils/websocket/fire_dialog.dart';
+import 'package:aku_new_community/utils/websocket/fire_dialog.dart';
 
 class MessageParser {
   final Map<String, dynamic> message;
@@ -8,6 +8,7 @@ class MessageParser {
   String type = '0';
 
   MessageParser(rawMessage) : message = Map<String, dynamic>.from(rawMessage);
+
   //TODO 只支持Android端显示消息，需要适配iOS
   Future shot() async {
     ///副标题

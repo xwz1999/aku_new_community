@@ -26,7 +26,6 @@ class API {
   static _House house = _House();
 }
 
-
 class _Login {
   /// 获取手机验证码
   String get sendSMSCode => '/login/sendMMSLogin';
@@ -115,11 +114,11 @@ class _User {
   String get insertAddress => '/user/jcookAddress/insert';
 
   ///设置默认收货地址
-  String get settingDefaultAddress => '/user/jcookAddress/settingDefaultAddress';
+  String get settingDefaultAddress =>
+      '/user/jcookAddress/settingDefaultAddress';
 
   ///查询所有城市的信息 需要10秒  首次打开APP时加载调用，保存到本地
   String get findAllCityInfo => '/user/jcookAddress/findAllCityInfo';
-
 }
 
 class _News {
@@ -345,9 +344,7 @@ class _Manager {
   String get surroundingEnterprises => '/user/surroundingEnterprises/list';
 
   ///生活缴费：查询未缴金额（日常缴费+公摊费）
-  String get findUnpaidAmount =>
-      '/user/dailyPayment/findUnpaidAmount';
-
+  String get findUnpaidAmount => '/user/dailyPayment/findUnpaidAmount';
 }
 
 class _Community {
@@ -417,9 +414,6 @@ class _Community {
 
   ///查询当前话题下，所有的主题信息
   String get listByGambitId => '/user/gambit/listByGambitId';
-
-
-
 }
 
 class _Market {
@@ -526,8 +520,6 @@ class _Market {
   ///jcook商城 查询所有的可显示的分类信息 需要4秒 进入商场页面的时候加载
   String get findAllCategoryInfo => '/user/jcookGoods/findAllCategoryInfo';
 
-
-
   ///jcook商城（购物车）：更改购物车商品数量
   String get shopCarChangeNum => '/user/jcookShoppingCat/updateShoppingCartNum';
 
@@ -551,9 +543,6 @@ class _Market {
 
   ///jcook商城 查询轮播图信息集合
   String get findRotationList => '/user/jcookGoods/findRotationList';
-
-
-
 }
 
 class _Upload {
@@ -703,14 +692,10 @@ class _Pay {
       '/user/alipay/meterReadingShareDetailsOrderCheckAlipay';
 
   ///app jcook商品创建订单(生成APP支付订单消息)
-  String get jcookOrderCreateOrder =>
-      '/user/alipay/jcookOrderCreateOrder';
+  String get jcookOrderCreateOrder => '/user/alipay/jcookOrderCreateOrder';
 
   ///支付宝支付：jcook商品 向支付宝发起订单查询请求
-  String get jcookOrderCheckAlipay =>
-      '/user/alipay/jcookOrderCheckAlipay';
-
-
+  String get jcookOrderCheckAlipay => '/user/alipay/jcookOrderCheckAlipay';
 }
 
 class _House {

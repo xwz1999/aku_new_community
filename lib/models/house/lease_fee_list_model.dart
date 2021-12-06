@@ -11,6 +11,7 @@ class LeaseFeeListModel extends Equatable {
   final int payStatus;
   final String createDate;
   final int type;
+
   LeaseFeeListModel({
     required this.id,
     required this.price,
@@ -18,8 +19,10 @@ class LeaseFeeListModel extends Equatable {
     required this.createDate,
     required this.type,
   });
+
   factory LeaseFeeListModel.fromJson(Map<String, dynamic> json) =>
       _$LeaseFeeListModelFromJson(json);
+
   @override
   List<Object> get props {
     return [

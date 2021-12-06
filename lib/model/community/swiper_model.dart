@@ -1,4 +1,4 @@
-import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 
 class SwiperModel {
   int? newsId;
@@ -25,7 +25,8 @@ class SwiperModel {
     data['newsId'] = this.newsId;
     data['title'] = this.title;
     if (this.voResourcesImgList != null) {
-      data['voResourcesImgList'] = this.voResourcesImgList!.map((v) => v.toJson()).toList();
+      data['voResourcesImgList'] =
+          this.voResourcesImgList!.map((v) => v.toJson()).toList();
     }
     return data;
   }

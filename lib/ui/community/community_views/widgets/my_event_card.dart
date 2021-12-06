@@ -1,20 +1,19 @@
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/my_event_item_model.dart';
+import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
+import 'package:aku_new_community/utils/bee_date_util.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/my_event_item_model.dart';
-import 'package:aku_community/ui/community/community_views/event_detail_page.dart';
-import 'package:aku_community/utils/bee_date_util.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/picker/bee_image_preview.dart';
 
 class MyEventCard extends StatelessWidget {
   final MyEventItemModel model;
   final MyEventItemModel? preModel;
+
   const MyEventCard({
     Key? key,
     required this.model,

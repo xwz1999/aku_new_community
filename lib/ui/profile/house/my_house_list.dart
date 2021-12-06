@@ -1,11 +1,11 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:aku_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/others/bee_row_tile.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/models/user/passed_house_list_model.dart';
+import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/bee_row_tile.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -24,6 +24,7 @@ class _MyHouseListState extends State<MyHouseList> {
   late EasyRefreshController _refreshController;
 
   List<PassedHouseListModel> models = [];
+
   @override
   void initState() {
     super.initState();

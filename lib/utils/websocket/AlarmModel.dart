@@ -8,11 +8,11 @@ class AlarmModel {
 
   AlarmModel(
       {this.alarmNo,
-        this.alarmType,
-        this.deviceName,
-        this.deviceNo,
-        this.time,
-        this.type});
+      this.alarmType,
+      this.deviceName,
+      this.deviceNo,
+      this.time,
+      this.type});
 
   AlarmModel.fromJson(Map<String, dynamic> json) {
     alarmNo = json['alarmNo'];

@@ -2,33 +2,31 @@
 
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/pages/goods_deto_page/select_move_company_page.dart';
+import 'package:aku_new_community/pages/manager_func.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
+import 'package:aku_new_community/utils/bee_parse.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_button.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
+import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/pages/goods_deto_page/select_move_company_page.dart';
-import 'package:aku_community/pages/manager_func.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
-import 'package:aku_community/utils/bee_parse.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_button.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/picker/bee_date_picker.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class DetoCreatePage extends StatefulWidget {
   DetoCreatePage({Key? key}) : super(key: key);
@@ -39,10 +37,12 @@ class DetoCreatePage extends StatefulWidget {
 
 class _DetoCreatePageState extends State<DetoCreatePage> {
   List<File> _files = [];
+
   UserProvider get userProvider => Provider.of<UserProvider>(context);
 
   String? _itemName;
   DateTime? _date;
+
   String get datetime =>
       DateUtil.formatDate(_date, format: "yyyy-MM-dd HH:mm:ss");
   int? _selectWeight;

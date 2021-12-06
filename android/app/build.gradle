@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         //  Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.akuCommunity.app"
+        applicationId "com.aku_new_community.app"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -101,5 +101,5 @@ dependencies {
 
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.google.firebase.crashlytics'

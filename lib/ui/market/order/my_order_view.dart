@@ -1,16 +1,15 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/order/my_order_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/market/order/my_order_card.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/order/my_order_list_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/market/order/my_order_card.dart';
-
 class MyOrderView extends StatefulWidget {
   final int index;
+
   MyOrderView({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class MyOrderView extends StatefulWidget {
 
 class _MyOrderViewState extends State<MyOrderView> {
   late EasyRefreshController _refreshController;
+
   @override
   void initState() {
     super.initState();

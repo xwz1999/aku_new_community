@@ -7,9 +7,8 @@
  * ====================================================
  */
 
-import 'package:aku_community/utils/text_utils.dart';
+import 'package:aku_new_community/utils/text_utils.dart';
 import 'package:flutter/material.dart';
-
 
 /// 自筛选列表点击监听
 typedef SelectedListener = Function(int selectedIndex, FilterItemModel item);
@@ -35,14 +34,16 @@ class FilterToolBarController {
   }
 
   get toolBarDx {
-    RenderBox box = _toolBarKey.currentContext?.findRenderObject() as RenderBox;//_toolBarKey.currentContext.findRenderObject();
+    RenderBox box = _toolBarKey.currentContext?.findRenderObject()
+        as RenderBox; //_toolBarKey.currentContext.findRenderObject();
     Offset offset = box.localToGlobal(Offset.zero);
     return offset.dx;
   }
 
   double get toolBarDy {
     /// toolbar 距离top 的间距 - container外层距离top的间距
-    RenderBox containerBox = _containerKey.currentContext?.findRenderObject() as RenderBox;
+    RenderBox containerBox =
+        _containerKey.currentContext?.findRenderObject() as RenderBox;
     RenderBox box = _toolBarKey.currentContext?.findRenderObject() as RenderBox;
     Offset containerTopOffset = containerBox.localToGlobal(Offset.zero);
     Offset toolBarTopOffset = box.localToGlobal(Offset.zero);
@@ -83,7 +84,7 @@ class FilterToolBarResultContainer extends StatefulWidget {
   final Widget? body;
 
   const FilterToolBarResultContainer(
-      { GlobalKey? key, this.controller, this.body})
+      {GlobalKey? key, this.controller, this.body})
       : assert(controller != null, "controller 不为空");
 
   @override
@@ -177,67 +178,67 @@ class _FilterToolBarResultContainerState
         widget.controller?._toolBarKey == null
             ? Container()
             : Positioned(
-            top: widget.controller!.toolBarDy + 40,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Stack(children: [
-              widget.controller!.item.type == FilterItemType.list
-                  ? _buildList(context)
-                  : Container(),
-            ]))
+                top: widget.controller!.toolBarDy + 40,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Stack(children: [
+                  widget.controller!.item.type == FilterItemType.list
+                      ? _buildList(context)
+                      : Container(),
+                ]))
       ],
     );
   }
 
   Widget _maskView() {
-    double? num =widget.controller?.toolBarDy;
+    double? num = widget.controller?.toolBarDy;
 
     return widget.controller?._toolBarKey == null
         ? Container()
         : Positioned(
-      top: (num as double) + 40,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Offstage(
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: () {
-            widget.controller!.helper.changeOptionListStatus(
-              OptionListStatus.close,
-            );
-            widget.controller!.updateToolBarState(false);
-            _animationController.reset();
-          },
-          child: Opacity(
-            opacity: 0.3,
-            child: Container(
-              color: Colors.black,
+            top: (num as double) + 40,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Offstage(
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  widget.controller!.helper.changeOptionListStatus(
+                    OptionListStatus.close,
+                  );
+                  widget.controller!.updateToolBarState(false);
+                  _animationController.reset();
+                },
+                child: Opacity(
+                  opacity: 0.3,
+                  child: Container(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              offstage: _animation == null ||
+                  (_animation.status == AnimationStatus.dismissed),
             ),
-          ),
-        ),
-        offstage: _animation == null ||
-            (_animation.status == AnimationStatus.dismissed),
-      ),
-    );
+          );
   }
 
   /// 有多个子列表时 因为有设置最大行数，小于最大行数[widget.maxLines]时，以子列表个数为准，
   /// 否则以最大行数为准，选中时切换动画,
   _buildAnimation(FilterItemModel item) {
     _lines =
-    item.subtitles!.length > maxLines ? maxLines : item.subtitles!.length;
+        item.subtitles!.length > maxLines ? maxLines : item.subtitles!.length;
 
     _animation = new Tween(
-        begin: 0.0 - _lines * _lineHeight - _bottomSpacing - _topSpacing,
-        end: 0.0)
+            begin: 0.0 - _lines * _lineHeight - _bottomSpacing - _topSpacing,
+            end: 0.0)
         .animate(_animationController)
-      ..addListener(() {
-        setState(() {
-          // the state that has changed here is the animation object’s value
-        });
-      });
+          ..addListener(() {
+            setState(() {
+              // the state that has changed here is the animation object’s value
+            });
+          });
   }
 
   /// 筛选子列表
@@ -279,7 +280,7 @@ class _FilterToolBarResultContainerState
 
                         item.selectedSubIndex = index;
                         String title = item.subtitleShort == null ||
-                            TextUtils.isEmpty(item.subtitleShort![index])
+                                TextUtils.isEmpty(item.subtitleShort![index])
                             ? item.subtitles![index]
                             : item.subtitleShort![index];
                         item.title = title;
@@ -316,13 +317,13 @@ class _FilterToolBarResultContainerState
           ),
           Expanded(
               child: Text(
-                item.subtitles![index],
-                style: TextStyle(
-                    fontSize: _subTitleFont,
-                    color: _unselectedColor,
-                    fontWeight:
+            item.subtitles![index],
+            style: TextStyle(
+                fontSize: _subTitleFont,
+                color: _unselectedColor,
+                fontWeight:
                     (subTitleSelected ? FontWeight.w600 : FontWeight.w400)),
-              )),
+          )),
         ],
       ),
     );
@@ -330,7 +331,6 @@ class _FilterToolBarResultContainerState
 }
 
 class FilterToolBar extends StatefulWidget {
-
   FilterToolBar({
     required this.titles,
     required this.listener,
@@ -372,7 +372,6 @@ class _FilterToolBarState extends State<FilterToolBar>
 
     widget.controller?.selectedIndex = widget.controller?.selectedIndex ?? 0;
 
-
     widget.controller?._toolBarKey = _key;
 
     widget.controller?.updateToolBarState = (bool update) {
@@ -397,9 +396,13 @@ class _FilterToolBarState extends State<FilterToolBar>
   Container _buildToolBar() {
     List<Widget> items = <Widget>[];
     if (widget.startWidget != null) {
-      items.add(SizedBox(width: 60,));
+      items.add(SizedBox(
+        width: 60,
+      ));
       items.add(widget.startWidget!);
-      items.add(SizedBox(width: 20,));
+      items.add(SizedBox(
+        width: 20,
+      ));
     }
     items.addAll(_buildToolBarItem());
     if (widget.trialing != null) {
@@ -464,7 +467,7 @@ class _FilterToolBarState extends State<FilterToolBar>
                 //print(item.topSelected);
                 //item.topSelected = !item.topSelected;
                 // print(widget.titles[index].topSelected);
-                item.selectedList![index] = ! item.selectedList![index];
+                item.selectedList![index] = !item.selectedList![index];
                 item.topSelected = item.selectedList![index];
               }
               widget.listener(index, item);
@@ -485,15 +488,15 @@ class _FilterToolBarState extends State<FilterToolBar>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  item.title,
-                  style: TextStyle(
-                    fontSize: widget.fontSize, color: color, fontWeight: FontWeight.w400
-                  )
-                  // AppTextStyle.generate(widget.fontSize,
-                  //     color: color, fontWeight: FontWeight.w400),
-                ),
-                _buildArrow(item, color, selected,index)
+                Text(item.title,
+                    style: TextStyle(
+                        fontSize: widget.fontSize,
+                        color: color,
+                        fontWeight: FontWeight.w400)
+                    // AppTextStyle.generate(widget.fontSize,
+                    //     color: color, fontWeight: FontWeight.w400),
+                    ),
+                _buildArrow(item, color, selected, index)
               ],
             ),
           ),
@@ -502,14 +505,14 @@ class _FilterToolBarState extends State<FilterToolBar>
     }).toList();
   }
 
-  _buildArrow(FilterItemModel item, color, bool selected,int index) {
+  _buildArrow(FilterItemModel item, color, bool selected, int index) {
     if (item.type == FilterItemType.list) {
       return Icon(
         selected
             ? (widget.controller?.helper != null &&
-            widget.controller?.helper.status == OptionListStatus.open
-            ? Icons.arrow_drop_up
-            : Icons.arrow_drop_down)
+                    widget.controller?.helper.status == OptionListStatus.open
+                ? Icons.arrow_drop_up
+                : Icons.arrow_drop_down)
             : Icons.arrow_drop_down,
         color: color,
         size: 19,
@@ -519,7 +522,9 @@ class _FilterToolBarState extends State<FilterToolBar>
         return Padding(
           padding: const EdgeInsets.only(left: 2.0),
           child: Icon(
-            item.selectedList![index] ? IconData( 0xe620, fontFamily: "AppIcons"): IconData( 0xe621, fontFamily: "AppIcons"),
+            item.selectedList![index]
+                ? IconData(0xe620, fontFamily: "AppIcons")
+                : IconData(0xe621, fontFamily: "AppIcons"),
             size: 7,
             color: color,
           ),
@@ -531,12 +536,12 @@ class _FilterToolBarState extends State<FilterToolBar>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(
-                IconData( 0xe620, fontFamily: "AppIcons"),
+                IconData(0xe620, fontFamily: "AppIcons"),
                 size: 7,
                 color: _unselectedColor,
               ),
               Icon(
-                IconData( 0xe621, fontFamily: "AppIcons"),
+                IconData(0xe621, fontFamily: "AppIcons"),
                 size: 7,
                 color: _unselectedColor,
               ),
@@ -578,10 +583,10 @@ class FilterItemModel {
     this.selectedList,
     this.subtitles,
     this.subtitleShort,
-    this.topSelected  = true,
+    this.topSelected = true,
   }) : assert(
-  type == FilterItemType.list
-      ? (subtitles != null && subtitles.length > 0)
-      : true,
-  "type为list，列表项不能为空");
+            type == FilterItemType.list
+                ? (subtitles != null && subtitles.length > 0)
+                : true,
+            "type为list，列表项不能为空");
 }

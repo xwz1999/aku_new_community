@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'order_detail_model.g.dart';
 
@@ -33,6 +32,7 @@ class OrderDetailModel extends Equatable {
   final String? evaluationReason;
   final String? arrivalTime;
   final String? createDate;
+
   OrderDetailModel({
     required this.id,
     required this.code,

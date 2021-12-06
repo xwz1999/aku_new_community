@@ -1,15 +1,14 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/new_renovation/new_renovation_list_model.dart';
+import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_card.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/new_renovation/new_renovation_list_model.dart';
-import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_card.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class NewRenovationView extends StatefulWidget {
   final int index;
+
   NewRenovationView({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class NewRenovationView extends StatefulWidget {
 class _NewRenovationViewState extends State<NewRenovationView>
     with AutomaticKeepAliveClientMixin {
   late EasyRefreshController _refreshController;
+
   @override
   void initState() {
     super.initState();

@@ -49,7 +49,7 @@ class FileUtils {
   static Future<FileOperationResult> readJSON(String path) async {
     try {
       String filePath = await appDocPath();
-      final File file = await localFile(filePath+path);
+      final File file = await localFile(filePath + path);
       String str = await file.readAsString();
       return FileOperationResult(str, "读取成功", true);
     } catch (err) {
@@ -58,10 +58,11 @@ class FileUtils {
   }
 
 // 写入 json 数据
-  static Future<FileOperationResult> writeJSON(String path, String jsonStr) async {
+  static Future<FileOperationResult> writeJSON(
+      String path, String jsonStr) async {
     try {
       String filePath = await appDocPath();
-      final File file = await localFile(filePath+path);
+      final File file = await localFile(filePath + path);
       await file.writeAsString(jsonStr);
       return FileOperationResult(file, "写入成功", true);
     } catch (err) {

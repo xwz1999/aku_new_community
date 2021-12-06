@@ -1,20 +1,19 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_detail_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_detail_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-
 class ElectronicCommercDetailPage extends StatefulWidget {
   final int id;
+
   ElectronicCommercDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -27,6 +26,7 @@ class _ElectronicCommercDetailPageState
   late EasyRefreshController _easyRefreshController;
   bool _onload = true;
   late ElectronicCommercDetailModel _detailModel;
+
   @override
   void initState() {
     super.initState();

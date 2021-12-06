@@ -1,8 +1,7 @@
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CommitteeMailboxPage extends StatefulWidget {
   CommitteeMailboxPage({Key? key}) : super(key: key);
@@ -13,6 +12,7 @@ class CommitteeMailboxPage extends StatefulWidget {
 
 class _CommitteeMailboxPageState extends State<CommitteeMailboxPage> {
   TextEditingController _thingsContent = new TextEditingController();
+
   Widget _input() {
     return Container(
       padding: EdgeInsets.only(top: 32.w, left: 22.w, right: 35.w),

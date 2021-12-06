@@ -6,8 +6,8 @@ class CreateOrderModel {
   CreateOrderModel(
       {this.defaultAddressVo, this.myShoppingCartVoList, this.fee});
 
-  factory CreateOrderModel.fail() => CreateOrderModel(defaultAddressVo: null,myShoppingCartVoList: [],fee: null
-  );
+  factory CreateOrderModel.fail() => CreateOrderModel(
+      defaultAddressVo: null, myShoppingCartVoList: [], fee: null);
 
   CreateOrderModel.fromJson(Map<String, dynamic> json) {
     defaultAddressVo = json['defaultAddressVo'] != null
@@ -19,7 +19,7 @@ class CreateOrderModel {
       json['myShoppingCartVoList'].forEach((v) {
         myShoppingCartVoList!.add(new MyShoppingCartVoList.fromJson(v));
       });
-    }else
+    } else
       myShoppingCartVoList = [];
     fee = json['fee'];
   }
@@ -83,16 +83,17 @@ class MyShoppingCartVoList {
 
   MyShoppingCartVoList(
       {this.id,
-        this.skuName,
-        this.mainPhoto,
-        this.status,
-        this.shopStatus,
-        this.sellPrice,
-        this.discountPrice,
-        this.unit,
-        this.kind,
-        this.weight,
-        this.num,this.stockStatus});
+      this.skuName,
+      this.mainPhoto,
+      this.status,
+      this.shopStatus,
+      this.sellPrice,
+      this.discountPrice,
+      this.unit,
+      this.kind,
+      this.weight,
+      this.num,
+      this.stockStatus});
 
   MyShoppingCartVoList.fromJson(Map<String, dynamic> json) {
     id = json['id'];

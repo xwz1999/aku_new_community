@@ -1,4 +1,4 @@
-import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
 
 class SurroundingEnterprisesModel {

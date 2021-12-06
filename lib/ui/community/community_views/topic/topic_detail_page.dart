@@ -1,19 +1,17 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/community_topic_model.dart';
+import 'package:aku_new_community/model/community/event_item_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/community/community_views/add_new_event_page.dart';
+import 'package:aku_new_community/ui/community/community_views/topic/topic_sliver_header.dart';
+import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_new_community/utils/login_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/community_topic_model.dart';
-import 'package:aku_community/model/community/event_item_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/community/community_views/add_new_event_page.dart';
-import 'package:aku_community/ui/community/community_views/topic/topic_sliver_header.dart';
-import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
-import 'package:aku_community/utils/login_util.dart';
 
 class TopicDetailPage extends StatefulWidget {
   final CommunityTopicModel? model;
@@ -26,6 +24,7 @@ class TopicDetailPage extends StatefulWidget {
 
 class _TopicDetailPageState extends State<TopicDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+
   @override
   void dispose() {
     _refreshController.dispose();

@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CarParkingModel {
@@ -8,6 +7,7 @@ class CarParkingModel {
   int? type;
   int? status;
   String? effectiveTimeEnd;
+
   String get typeName {
     switch (type) {
       case 1:

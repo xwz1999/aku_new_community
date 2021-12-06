@@ -1,17 +1,12 @@
-import 'package:aku_community/model/good/category_model.dart';
+import 'package:aku_new_community/model/good/category_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/category/category_sub_view.dart';
-import 'package:aku_community/ui/market/search/search_goods_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/ui/market/category/category_sub_card.dart';
 
 import 'new_category_sub_card.dart';
 
 class NewCategorySubView extends StatefulWidget {
   final CategoryModel model;
+
   NewCategorySubView({Key? key, required this.model}) : super(key: key);
 
   @override
@@ -24,16 +19,14 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
   Widget build(BuildContext context) {
     super.build(context);
     return ListView.builder(
-    itemBuilder: (context, index) {
-      return _SecondCard(
-          widget.model.categoryList![index]
-      );
-    },
-    itemCount: widget.model.categoryList!.length,
+      itemBuilder: (context, index) {
+        return _SecondCard(widget.model.categoryList![index]);
+      },
+      itemCount: widget.model.categoryList!.length,
     );
   }
-  
-  _SecondCard(CategoryList item){
+
+  _SecondCard(CategoryList item) {
     return Container(
       padding: EdgeInsets.only(top: 20.w),
       decoration: BoxDecoration(
@@ -46,7 +39,7 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
             children: [
               20.wb,
               Text(
-                item.name??'',
+                item.name ?? '',
                 style: TextStyle(
                   fontSize: 28.sp,
                   color: Color(0xFF333333),
@@ -67,7 +60,6 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
               );
             },
             itemCount: item.categoryListSecond!.length,
-
           ),
         ],
       ),

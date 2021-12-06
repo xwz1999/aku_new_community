@@ -1,10 +1,10 @@
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class OrderPage extends StatefulWidget {
   final int initIndex;
+
   OrderPage({Key? key, required this.initIndex}) : super(key: key);
 
   @override
@@ -14,6 +14,7 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
   late TabController _tabController;
   List<String> _tabs = ['全部', '待付款', '待收货', '待评价', '售后'];
+
   @override
   void initState() {
     super.initState();

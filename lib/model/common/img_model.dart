@@ -4,6 +4,7 @@ class ImgModel {
   double? longs;
   double? paragraph;
   int? sort;
+
   double get aspect => paragraph! / longs!;
 
   ImgModel({this.url, this.size, this.longs, this.paragraph, this.sort});

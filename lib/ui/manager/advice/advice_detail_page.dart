@@ -1,29 +1,28 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/manager/advice_detail_model.dart';
+import 'package:aku_new_community/model/manager/suggestion_or_complain_model.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_add_comment_page.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_evaluate_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:shimmer/shimmer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/manager/advice_detail_model.dart';
-import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
-import 'package:aku_community/ui/manager/advice/advice_add_comment_page.dart';
-import 'package:aku_community/ui/manager/advice/advice_evaluate_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/views/bee_grid_image_view.dart';
-
 class AdviceDetailPage extends StatefulWidget {
   final SuggestionOrComplainModel? model;
+
   AdviceDetailPage({Key? key, required this.model}) : super(key: key);
 
   @override
@@ -34,6 +33,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
   bool _loading = true;
   EasyRefreshController _refreshController = EasyRefreshController();
   late AdviceDetailModel _model;
+
   String get adviceValue {
     switch (widget.model!.type) {
       case 1:

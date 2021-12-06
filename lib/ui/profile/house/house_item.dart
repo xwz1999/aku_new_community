@@ -1,4 +1,4 @@
-import 'package:aku_community/model/user/pick_building_model.dart';
+import 'package:aku_new_community/model/user/pick_building_model.dart';
 
 class HouseItem {
   PickBuildingModel building;

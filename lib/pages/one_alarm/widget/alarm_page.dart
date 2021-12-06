@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/pages/one_alarm/alarm_detail_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:amap_flutter_base/amap_flutter_base.dart';
 import 'package:amap_flutter_map/amap_flutter_map.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,13 +14,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/pages/one_alarm/alarm_detail_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class PermissionUtil {
   static Future<bool> getLocationPermission() async {
@@ -69,7 +67,7 @@ class _AlarmPageState extends State<AlarmPage> {
                   Provider.of<AppProvider>(context, listen: false);
               LatLng _target = LatLng(
                 (appProvider.location?['latitude'] ?? 0) as double,
-                (appProvider.location?['longitude'] ?? 0 )as double,
+                (appProvider.location?['longitude'] ?? 0) as double,
               );
               _mapController = controller;
               _mapController!.moveCamera(

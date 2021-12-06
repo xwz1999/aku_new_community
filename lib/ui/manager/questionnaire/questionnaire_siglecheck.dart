@@ -1,14 +1,14 @@
+import 'package:aku_new_community/model/manager/questionnaire_detail_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/buttons/bee_single_check.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/model/manager/questionnaire_detail_model.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/buttons/bee_single_check.dart';
 
 class QuestionnaireSingleCheck extends StatefulWidget {
   final String? title;
   final List<QuestionnaireChoiceVoList>? answers;
   final int? selected;
   final Function(int? id) onPressed;
+
   QuestionnaireSingleCheck(
       {Key? key,
       required this.title,

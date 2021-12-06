@@ -1,19 +1,17 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/message/system_message_model.dart';
+import 'package:aku_new_community/pages/message_center_page/system_message/system_message_detail_page.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/bee_map.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/message/system_message_model.dart';
-import 'package:aku_community/pages/message_center_page/system_message/system_message_detail_page.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/bee_map.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SystemMessagePage extends StatefulWidget {
   SystemMessagePage({Key? key}) : super(key: key);
@@ -24,6 +22,7 @@ class SystemMessagePage extends StatefulWidget {
 
 class _SystemMessagePageState extends State<SystemMessagePage> {
   EasyRefreshController? _refreshController;
+
   @override
   void initState() {
     super.initState();

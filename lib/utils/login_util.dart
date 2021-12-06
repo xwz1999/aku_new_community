@@ -1,13 +1,12 @@
+import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/pages/sign/sign_in_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
 
 /// | 名称 | 函数 |
 /// |-----|------|

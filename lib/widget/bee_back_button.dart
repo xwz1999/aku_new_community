@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class BeeBackButton extends StatelessWidget {
   final Color color;
+
   const BeeBackButton({Key? key, this.color = Colors.black}) : super(key: key);
 
   @override

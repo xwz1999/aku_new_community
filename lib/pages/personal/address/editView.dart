@@ -7,8 +7,8 @@
  * ====================================================
  */
 
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-import 'package:aku_community/utils/headers.dart';
 
 import 'input_view.dart';
 
@@ -51,6 +51,7 @@ class EditTile extends StatefulWidget {
 class _EditTileState extends State<EditTile> {
   late TextEditingController _controller;
   FocusNode _focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -68,7 +69,7 @@ class _EditTileState extends State<EditTile> {
         padding: EdgeInsets.symmetric(vertical: 2.w, horizontal: 20.w),
         color: Colors.white,
         child:
-        widget.direction == Axis.horizontal ? _horizontal() : _vertical(),
+            widget.direction == Axis.horizontal ? _horizontal() : _vertical(),
       ),
     );
   }
@@ -85,17 +86,17 @@ class _EditTileState extends State<EditTile> {
         ),
         Expanded(
             child: InputView(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              focusNode: _focusNode,
-              controller: _controller,
-              maxLength: widget.maxLength,
-              hintStyle: widget.hintStyle,
-              textStyle: widget.textStyle,
-              onValueChanged: (string) {
-                widget.textChanged(string);
-              },
-              hint: widget.hint,
-            )),
+          padding: EdgeInsets.symmetric(horizontal: 0),
+          focusNode: _focusNode,
+          controller: _controller,
+          maxLength: widget.maxLength,
+          hintStyle: widget.hintStyle,
+          textStyle: widget.textStyle,
+          onValueChanged: (string) {
+            widget.textChanged(string);
+          },
+          hint: widget.hint,
+        )),
       ],
     );
   }
@@ -105,7 +106,7 @@ class _EditTileState extends State<EditTile> {
       children: <Widget>[
         Container(
           alignment: Alignment.centerLeft,
-          height:40.w,
+          height: 40.w,
           child: Text(
             widget.title,
             style: widget.titleStyle,
@@ -113,18 +114,18 @@ class _EditTileState extends State<EditTile> {
         ),
         Expanded(
             child: InputView(
-              focusNode: _focusNode,
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              maxLines: widget.maxLines,
-              maxLength: widget.maxLength,
-              controller: _controller,
-              hintStyle: widget.hintStyle,
-              textStyle: widget.textStyle,
-              onValueChanged: (string) {
-                widget.textChanged(string);
-              },
-              hint: widget.hint,
-            )),
+          focusNode: _focusNode,
+          padding: EdgeInsets.symmetric(horizontal: 0),
+          maxLines: widget.maxLines,
+          maxLength: widget.maxLength,
+          controller: _controller,
+          hintStyle: widget.hintStyle,
+          textStyle: widget.textStyle,
+          onValueChanged: (string) {
+            widget.textChanged(string);
+          },
+          hint: widget.hint,
+        )),
       ],
     );
   }

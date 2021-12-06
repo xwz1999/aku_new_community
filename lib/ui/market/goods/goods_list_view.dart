@@ -1,21 +1,20 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/market/market_category_model.dart';
+import 'package:aku_new_community/ui/market/goods/goods_tab_list_view.dart';
+import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/goods/goods_tab_list_view.dart';
-import 'package:aku_community/ui/market/search/search_goods_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class GoodsListView extends StatefulWidget {
   final MarketCategoryModel model;
   final MarketCategoryModel? selectSubModel;
   final List<MarketCategoryModel> subModels;
+
   GoodsListView({
     Key? key,
     required this.model,
@@ -106,6 +105,7 @@ class GoodsSubTypeButton extends StatelessWidget {
   final MarketCategoryModel model;
   final MarketCategoryModel? groupValue;
   final VoidCallback onTap;
+
   const GoodsSubTypeButton({
     Key? key,
     required this.model,

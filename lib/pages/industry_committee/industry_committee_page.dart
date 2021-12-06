@@ -1,21 +1,19 @@
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/user/committee_item_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/user/committee_item_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
   IndustryCommitteePage({Key? key}) : super(key: key);
@@ -24,21 +22,20 @@ class IndustryCommitteePage extends StatefulWidget {
   _IndustryCommitteePageState createState() => _IndustryCommitteePageState();
 }
 
-
-
 class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 0), () async {
-      var agreement = await HiveStore.appBox?.get('IndustryCommitteePage') ?? false;
+      var agreement =
+          await HiveStore.appBox?.get('IndustryCommitteePage') ?? false;
       if (!agreement) {
         await TipsDialog.tipsDialog();
-        HiveStore.appBox!.put('IndustryCommitteePage',true);
+        HiveStore.appBox!.put('IndustryCommitteePage', true);
       }
     });
-
   }
 
   Widget _buildBottomNavi() {

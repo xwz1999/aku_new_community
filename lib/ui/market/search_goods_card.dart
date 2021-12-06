@@ -1,17 +1,10 @@
-import 'package:aku_community/models/market/order/goods_home_model.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
-import 'package:aku_community/ui/market/search/good_detail_page.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/search/search_goods_model.dart';
+import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/ui/market/goods/goods_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
 
 import 'collection/collection_func.dart';
 
@@ -19,25 +12,29 @@ class SearchGoodsCard extends StatefulWidget {
   final SearchGoodsModel item;
   final EasyRefreshController? refreshController;
 
-  const SearchGoodsCard({Key? key, required this.item, this.refreshController,})
-      : super(key: key);
+  const SearchGoodsCard({
+    Key? key,
+    required this.item,
+    this.refreshController,
+  }) : super(key: key);
 
   @override
   _SearchGoodsCardState createState() => _SearchGoodsCardState();
 }
+
 class _SearchGoodsCardState extends State<SearchGoodsCard> {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       color: Colors.white,
       elevation: 0,
-      shape:  RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.w),
-          ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24.w),
+      ),
       padding: EdgeInsets.zero,
       onPressed: () {
         Get.to(
-              () => GoodDetailPage(goodId: widget.item.id!),
+          () => GoodDetailPage(goodId: widget.item.id!),
         );
       },
       child: Column(
@@ -82,30 +79,26 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
           ),
           Container(
             padding: EdgeInsets.only(
-              left: 16.w, right: 16.w,
+              left: 16.w,
+              right: 16.w,
               top: 10.w,
             ),
             child: Text(
               widget.item.skuName ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontSize: 28.sp,
-                  color: ktextPrimary
-              ),
+              style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
             ),
           ),
-
           Padding(
               padding: EdgeInsets.only(
-                left: 16.w, right: 16.w,
+                left: 16.w,
+                right: 16.w,
                 top: 10.w,
               ),
               child: Container(
-                child: _getIcon(widget.item.kind??0),
-              )
-          ),
-
+                child: _getIcon(widget.item.kind ?? 0),
+              )),
           10.hb,
           Padding(
             padding: EdgeInsets.symmetric(
@@ -149,12 +142,12 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
                             style: TextStyle(
                               color: ktextSubColor,
                               fontSize: 20.sp,
-
                             ),
                           ),
                           TextSpan(
-                            text: widget.item.discountPrice == null ? '' : '¥${widget.item
-                                .discountPrice ?? ''}',
+                            text: widget.item.discountPrice == null
+                                ? ''
+                                : '¥${widget.item.discountPrice ?? ''}',
                             style: TextStyle(
                               color: ktextSubColor,
                               fontSize: 20.sp,
@@ -177,18 +170,17 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
                             style: TextStyle(
                               color: ktextSubColor,
                               fontSize: 20.sp,
-
                             ),
                           ),
                           TextSpan(
-                            text: (widget.item.discountPrice ?? 0) > (widget.item.sellPrice ?? 0)
+                            text: (widget.item.discountPrice ?? 0) >
+                                    (widget.item.sellPrice ?? 0)
                                 ? _getDiscount(widget.item.sellPrice ?? -1,
-                                widget.item.discountPrice ?? -1)
+                                    widget.item.discountPrice ?? -1)
                                 : '暂无折扣',
                             style: TextStyle(
                               color: ktextSubColor,
                               fontSize: 20.sp,
-
                             ),
                           ),
                         ],
@@ -208,20 +200,19 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
                 },
                 child: (widget.item.isCollection ?? 0) != 0
                     ? Image.asset(
-                  R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
-                  width: 42.w,
-                  height: 42.w,
-                )
+                        R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
+                        width: 42.w,
+                        height: 42.w,
+                      )
                     : Image.asset(
-                  R.ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG,
-                  width: 42.w,
-                  height: 42.w,
-                ),
+                        R.ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG,
+                        width: 42.w,
+                        height: 42.w,
+                      ),
               ),
               20.wb,
             ],
           ),
-
           20.hb,
         ],
       ),
@@ -235,7 +226,6 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
     return count + '折';
   }
 
-
   Widget _getIcon(int type) {
     if (type == 1) {
       return Container(
@@ -243,7 +233,9 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
         height: 26.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4.w),),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.w),
+          ),
           gradient: LinearGradient(
             begin: FractionalOffset.centerLeft,
             end: FractionalOffset.centerRight,
@@ -252,20 +244,18 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
         ),
         child: Text(
           '京东自营',
-          style: TextStyle(
-              fontSize: 18.sp,
-              color: kForeGroundColor
-          ),
+          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
         ),
       );
-    }
-    else if (type == 2) {
+    } else if (type == 2) {
       return Container(
         alignment: Alignment.center,
         width: 86.w,
         height: 30.w,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4.w),),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.w),
+          ),
           gradient: LinearGradient(
             begin: FractionalOffset.centerLeft,
             end: FractionalOffset.centerRight,
@@ -274,16 +264,10 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
         ),
         child: Text(
           '京东POP',
-          style: TextStyle(
-              fontSize: 18.sp,
-              color: kForeGroundColor
-          ),
+          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
         ),
       );
-    }
-    else
+    } else
       return SizedBox();
   }
 }
-
-

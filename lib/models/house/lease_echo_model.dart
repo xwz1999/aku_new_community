@@ -9,12 +9,14 @@ class LeaseEchoModel extends Equatable {
   final num? sex;
   final String tel;
   final String? idNumber;
+
   LeaseEchoModel({
     required this.name,
     required this.sex,
     required this.tel,
     required this.idNumber,
   });
+
   factory LeaseEchoModel.fromJson(Map<String, dynamic> json) =>
       _$LeaseEchoModelFromJson(json);
 

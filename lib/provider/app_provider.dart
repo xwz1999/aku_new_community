@@ -1,17 +1,17 @@
 import 'dart:io';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/application_objects.dart';
-import 'package:aku_community/constants/config.dart';
-import 'package:aku_community/model/common/real_time_weather_model.dart';
-import 'package:aku_community/model/community/hot_topic_model.dart';
-import 'package:aku_community/model/message/message_center_model.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/model/user/car_parking_model.dart';
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/application_objects.dart';
+import 'package:aku_new_community/constants/config.dart';
+import 'package:aku_new_community/model/common/real_time_weather_model.dart';
+import 'package:aku_new_community/model/community/hot_topic_model.dart';
+import 'package:aku_new_community/model/message/message_center_model.dart';
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/model/user/car_parking_model.dart';
+import 'package:aku_new_community/models/user/passed_house_list_model.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -296,8 +296,8 @@ class AppProvider extends ChangeNotifier {
   }
 
   List<AddressModel> _addressModels = [];
-  List<AddressModel> get addressModels => _addressModels;
 
+  List<AddressModel> get addressModels => _addressModels;
 
   AddressModel? _addressModel;
 
@@ -305,35 +305,28 @@ class AppProvider extends ChangeNotifier {
 
   ///设置当前选中的房屋
 
-
   ///保存默认收货地址
-   Future getMyAddress() async {
+  Future getMyAddress() async {
     BaseModel model = await NetUtil().get(
       API.user.myAddressList,
     );
     if (model.data!.length == 0)
       return [];
-    else{
-      _addressModels =  (model.data as List)
-          .map((e) => AddressModel.fromJson(e))
-          .toList();
+    else {
+      _addressModels =
+          (model.data as List).map((e) => AddressModel.fromJson(e)).toList();
 
-        if (_addressModels.isEmpty) {
-          _addressModel = null;
-        } else {
-          _addressModels.forEach((element) {
-            if(element.isDefault==1){
-              _addressModel = element;
-            }
-          });
-        }
-
+      if (_addressModels.isEmpty) {
+        _addressModel = null;
+      } else {
+        _addressModels.forEach((element) {
+          if (element.isDefault == 1) {
+            _addressModel = element;
+          }
+        });
+      }
     }
 
     notifyListeners();
   }
-
-
-
-
 }

@@ -7,6 +7,7 @@ class HomeSliverAppBar extends StatefulWidget {
   final Widget? flexibleSpace;
   final PreferredSizeWidget? bottom;
   final double? expandedHeight;
+
   HomeSliverAppBar(
       {Key? key,
       this.actions,
@@ -48,7 +49,7 @@ class HomeSliverAppBarState extends State<HomeSliverAppBar> {
       elevation: 0,
       backgroundColor: _displayColor,
       flexibleSpace: widget.flexibleSpace,
-      collapsedHeight: kToolbarHeight+10,
+      collapsedHeight: kToolbarHeight + 10,
       expandedHeight: widget.expandedHeight,
       bottom: widget.bottom,
     );

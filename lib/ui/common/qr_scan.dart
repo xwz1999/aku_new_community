@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -20,6 +19,7 @@ class __QRScanPageState extends State<_QRScanPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? _controller;
   bool _doneTag = false;
+
   @override
   void dispose() {
     _controller?.dispose();

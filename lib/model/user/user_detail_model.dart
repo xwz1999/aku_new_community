@@ -15,6 +15,7 @@ class UserDetailModel {
   String? nickName;
   List<String>? estateNames;
   int? nowEstateExamineId;
+
   UserDetailModel(
       {this.id,
       this.name,

@@ -1,7 +1,7 @@
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
-import 'package:aku_community/utils/headers.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/models/user/passed_house_list_model.dart';
+import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +15,7 @@ class HouseCard extends StatelessWidget {
   final PassedHouseListModel? model;
   final CardAuthType type;
   final bool isOwner;
+
   const HouseCard({
     Key? key,
     required this.model,
@@ -28,6 +29,7 @@ class HouseCard extends StatelessWidget {
     required this.isOwner,
   })   : type = CardAuthType.FAIL,
         super(key: key);
+
   const HouseCard.success({
     Key? key,
     required this.model,

@@ -1,5 +1,5 @@
 class AddressModel {
-  int?id;
+  int? id;
   String? name;
   String? tel;
   int? location;
@@ -12,20 +12,18 @@ class AddressModel {
   String? city;
   String? district;
 
-
-
-  AddressModel(
-      {this.id,
-        this.name,
-        this.tel,
-        this.location,
-        this.locationName,
-        this.addressDetail,
-        this.isDefault,
-        this.province = '',
-        this.city = '',
-        this.district = '',
-      });
+  AddressModel({
+    this.id,
+    this.name,
+    this.tel,
+    this.location,
+    this.locationName,
+    this.addressDetail,
+    this.isDefault,
+    this.province = '',
+    this.city = '',
+    this.district = '',
+  });
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -50,6 +48,13 @@ class AddressModel {
   }
 
   factory AddressModel.empty() {
-    return AddressModel(id: null,name: '',tel: '',location: null,locationName: '',addressDetail: '',isDefault: null);
+    return AddressModel(
+        id: null,
+        name: '',
+        tel: '',
+        location: null,
+        locationName: '',
+        addressDetail: '',
+        isDefault: null);
   }
 }

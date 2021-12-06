@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/common/img_model.dart';
+import 'package:flutter/material.dart';
 
 class ActivityItemModel {
   int? id;
@@ -16,6 +14,7 @@ class ActivityItemModel {
   List<ImgModel>? headImgURls;
 
   DateTime? get begin => DateUtil.getDateTime(registrationStartTime!);
+
   DateTime? get end => DateUtil.getDateTime(registrationEndTime!);
 
   ActivityItemModel(

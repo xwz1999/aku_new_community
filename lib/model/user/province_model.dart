@@ -1,10 +1,9 @@
-
 import 'package:hive/hive.dart';
+
 part 'province_model.g.dart';
 
 @HiveType(typeId: 0)
 class ProvinceModel {
-
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -19,9 +18,9 @@ class ProvinceModel {
     name = json['name'];
 
     if (json['cityList'] != null) {
-      cityList = (json['cityList'] as List).map((e) => City.fromJson(e)).toList();
-
-    }else
+      cityList =
+          (json['cityList'] as List).map((e) => City.fromJson(e)).toList();
+    } else
       cityList = [];
   }
 
@@ -51,9 +50,9 @@ class City {
     id = json['id'];
     name = json['name'];
     if (json['cityList'] != null) {
-      districts = (json['cityList'] as List).map((e) => District.fromJson(e)).toList();
-
-    }else
+      districts =
+          (json['cityList'] as List).map((e) => District.fromJson(e)).toList();
+    } else
       districts = [];
   }
 

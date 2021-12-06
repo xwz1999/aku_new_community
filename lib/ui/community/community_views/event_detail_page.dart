@@ -1,16 +1,15 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/community/event_item_model.dart';
+import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/community/event_item_model.dart';
-import 'package:aku_community/ui/community/community_views/widgets/chat_card.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class EventDetailPage extends StatefulWidget {
   final int? themeId;
+
   EventDetailPage({
     Key? key,
     required this.themeId,
@@ -23,6 +22,7 @@ class EventDetailPage extends StatefulWidget {
 class _EventDetailPageState extends State<EventDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   EventItemModel? _model;
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

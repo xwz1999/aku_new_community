@@ -1,10 +1,8 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/painters/as_numberic_painter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/painters/as_numberic_painter.dart';
 
 ///## 数量选择组件
 class BeeNumberPickerButton extends StatefulWidget {
@@ -39,6 +37,7 @@ class BeeNumberPickerButton extends StatefulWidget {
 
   ///圆形或方形
   final bool circle;
+
   BeeNumberPickerButton({
     Key? key,
     required this.initValue,
@@ -48,7 +47,7 @@ class BeeNumberPickerButton extends StatefulWidget {
     this.reachMax,
     this.reachMin,
     required this.onChange,
-  })  : this.circle = false,
+  })   : this.circle = false,
         super(key: key);
 
   BeeNumberPickerButton.circle({
@@ -60,7 +59,7 @@ class BeeNumberPickerButton extends StatefulWidget {
     this.reachMin,
     this.suffix,
     required this.onChange,
-  })  : this.circle = true,
+  })   : this.circle = true,
         super(key: key);
 
   @override

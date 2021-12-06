@@ -1,33 +1,33 @@
 // Dart imports:
 
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/activity_item_model.dart';
-import 'package:aku_community/model/community/board_model.dart';
-import 'package:aku_community/model/community/swiper_model.dart';
-import 'package:aku_community/pages/home/widget/animate_app_bar.dart';
-import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
-import 'package:aku_community/pages/message_center_page/message_center_page.dart';
-import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
-import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/community/activity/activity_card.dart';
-import 'package:aku_community/ui/community/activity/activity_list_page.dart';
-import 'package:aku_community/ui/community/community_func.dart';
-import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
-import 'package:aku_community/ui/home/application/all_application.dart';
-import 'package:aku_community/ui/home/home_notification.dart';
-import 'package:aku_community/ui/home/home_title.dart';
-import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
-import 'package:aku_community/ui/manager/advice/advice_page.dart';
-import 'package:aku_community/ui/search/bee_search.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/login_util.dart';
-import 'package:aku_community/widget/animated/OverlayWidget.dart';
-import 'package:aku_community/widget/others/rectIndicator.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/activity_item_model.dart';
+import 'package:aku_new_community/model/community/board_model.dart';
+import 'package:aku_new_community/model/community/swiper_model.dart';
+import 'package:aku_new_community/pages/home/widget/animate_app_bar.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
+import 'package:aku_new_community/pages/message_center_page/message_center_page.dart';
+import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
+import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
+import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/community/activity/activity_card.dart';
+import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
+import 'package:aku_new_community/ui/community/community_func.dart';
+import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
+import 'package:aku_new_community/ui/home/application/all_application.dart';
+import 'package:aku_new_community/ui/home/home_notification.dart';
+import 'package:aku_new_community/ui/home/home_title.dart';
+import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_new_community/ui/search/bee_search.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/login_util.dart';
+import 'package:aku_new_community/widget/animated/OverlayWidget.dart';
+import 'package:aku_new_community/widget/others/rectIndicator.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage>
                   end: -4.w,
                 ),
                 badgeContent: Text(
-                  (sum>99?99:sum).toString(),
+                  (sum > 99 ? 99 : sum).toString(),
                   style: TextStyle(color: Colors.white, fontSize: 20.sp),
                 ),
                 child: GestureDetector(
@@ -514,10 +514,10 @@ class _HomePageState extends State<HomePage>
             '报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
         getFunctionBtn('设施预约', R.ASSETS_ICONS_FUNC_SSYY_PNG,
             () => FacilityAppointmentPage()),
-        getFunctionBtn('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG,
-            () => LifePayChoosePage()),
-        getFunctionBtn('全部应用', R.ASSETS_ICONS_FUNC_ALL_PNG,
-            () => AllApplicationPage()),
+        getFunctionBtn(
+            '生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayChoosePage()),
+        getFunctionBtn(
+            '全部应用', R.ASSETS_ICONS_FUNC_ALL_PNG, () => AllApplicationPage()),
       ],
     );
   }

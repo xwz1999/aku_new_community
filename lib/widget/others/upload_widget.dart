@@ -1,17 +1,16 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/painters/upload_painter.dart';
+import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/painters/upload_painter.dart';
-import 'package:aku_community/widget/picker/bee_image_picker.dart';
 
 class UploadWidget extends StatelessWidget {
   final String sheetTitle;
   final Function(File file) onPicked;
+
   const UploadWidget(
       {Key? key, required this.sheetTitle, required this.onPicked})
       : super(key: key);

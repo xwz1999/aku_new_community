@@ -1,38 +1,44 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/good/good_detail_model.dart';
-import 'package:aku_community/models/market/goods_item.dart';
-import 'package:aku_community/models/market/order/order_detail_model.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/utils/text_utils.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/good/good_detail_model.dart';
+import 'package:aku_new_community/models/market/order/order_detail_model.dart';
+import 'package:aku_new_community/models/search/search_goods_model.dart';
+import 'package:aku_new_community/utils/network/base_list_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/utils/text_utils.dart';
 
 class SearchFunc {
   /// 搜索商品 根据关键字
-  static Future<List<SearchGoodsModel>> getGoodsList(int pageNum,int size
-      ,int orderBySalesVolume,int orderByPrice,String keyword, int brandId,double minPrice,double maxPrice) async {
+  static Future<List<SearchGoodsModel>> getGoodsList(
+      int pageNum,
+      int size,
+      int orderBySalesVolume,
+      int orderByPrice,
+      String keyword,
+      int brandId,
+      double minPrice,
+      double maxPrice) async {
     //orderBySalesVolume 1降序 2升序
     Map<String, dynamic> params = {
       "pageNum": pageNum,
-      "size":size,
+      "size": size,
     };
-    if(orderBySalesVolume!=-1){
+    if (orderBySalesVolume != -1) {
       params.putIfAbsent("orderBySalesVolume", () => orderBySalesVolume);
     }
-    if(orderByPrice!=-1){
+    if (orderByPrice != -1) {
       params.putIfAbsent("orderByPrice", () => orderByPrice);
     }
     if (!TextUtils.isEmpty(keyword)) {
       params.putIfAbsent("keyword", () => keyword);
     }
-    if(brandId!=-1){
+    if (brandId != -1) {
       params.putIfAbsent("brandId", () => brandId);
     }
-    if(minPrice!=-1){
+    if (minPrice != -1) {
       params.putIfAbsent("minPrice", () => minPrice);
     }
-    if(maxPrice!=-1){
+    if (maxPrice != -1) {
       params.putIfAbsent("maxPrice", () => maxPrice);
     }
 
@@ -66,19 +72,11 @@ class SearchFunc {
 
   ///加入购物车
   static Future<String> addGoodsCar(int jcookGoodsId) async {
-    BaseModel model = await NetUtil().post(
-      API.market.insertShoppingCart,
-      params: {'jcookGoodsId': jcookGoodsId},
-      showMessage: true
-    );
+    BaseModel model = await NetUtil().post(API.market.insertShoppingCart,
+        params: {'jcookGoodsId': jcookGoodsId}, showMessage: true);
     if (model.message == null) return '';
     return model.message as String;
   }
-
-
-
-
-
 
   ///确认收货
   static Future confirmReceive(int goodsAppointmentId) async {
@@ -118,7 +116,6 @@ class SearchFunc {
         showMessage: true);
     return baseModel;
   }
-
 
   ///获取商品详情
   static Future getOrderDetail(int goodsAppointmentId) async {

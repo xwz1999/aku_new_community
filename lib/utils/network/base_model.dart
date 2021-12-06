@@ -3,6 +3,7 @@ class BaseModel {
   String? message;
   bool? status;
   dynamic data;
+
   BaseModel({
     this.code,
     this.message,

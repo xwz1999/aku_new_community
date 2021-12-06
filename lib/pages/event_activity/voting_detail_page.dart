@@ -1,23 +1,21 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/manager/voting_detail_model.dart';
+import 'package:aku_new_community/pages/manager_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_single_check.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/manager/voting_detail_model.dart';
-import 'package:aku_community/pages/manager_func.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_single_check.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
 
 class VotingDetailPage extends StatefulWidget {
   final int? id;
@@ -32,9 +30,11 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   VotingDetailModel _model = VotingDetailModel();
   late EasyRefreshController _refreshController;
   bool _isOnload = true;
+
   // List<int> _select = [];
   int? _selectId;
   bool _hasVoted = false;
+
   bool get finishVoted {
     if ((_model.status == 4) || _hasVoted || (_model.status == 3)) {
       return true;

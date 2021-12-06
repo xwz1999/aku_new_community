@@ -1,4 +1,4 @@
-import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 
 class GoodDetailModel {
   int? id;
@@ -18,33 +18,46 @@ class GoodDetailModel {
   String? unit;
   double? weight;
 
-  factory GoodDetailModel.fail() => GoodDetailModel(goodsDetailImageVos: [],sellPrice: 0,discountPrice: 0,skuName: '',
-      sellNum: 0,kind: 0,defaultLocation: '',defaultAddressDetail: '',stockStatus: 0,goodsDetailSpecificationVoList: [],isCollection: 0,unit:'',weight: 0
-  );
-  GoodStatus get goodStatus => ShopCarFunc.getGoodsStatus(status??1, shopStatus??1);
+  factory GoodDetailModel.fail() => GoodDetailModel(
+      goodsDetailImageVos: [],
+      sellPrice: 0,
+      discountPrice: 0,
+      skuName: '',
+      sellNum: 0,
+      kind: 0,
+      defaultLocation: '',
+      defaultAddressDetail: '',
+      stockStatus: 0,
+      goodsDetailSpecificationVoList: [],
+      isCollection: 0,
+      unit: '',
+      weight: 0);
+
+  GoodStatus get goodStatus =>
+      ShopCarFunc.getGoodsStatus(status ?? 1, shopStatus ?? 1);
 
   GoodDetailModel(
       {this.id,
-        this.goodsDetailImageVos,
-        this.sellPrice,
-        this.discountPrice,
-        this.skuName,
-        this.status,
-        this.shopStatus,
-        this.sellNum,
-        this.kind,
-        this.defaultLocation,
-        this.defaultAddressDetail,
-        this.stockStatus,
-        this.goodsDetailSpecificationVoList,
-        this.isCollection,
-        this.unit,
-        this.weight});
+      this.goodsDetailImageVos,
+      this.sellPrice,
+      this.discountPrice,
+      this.skuName,
+      this.status,
+      this.shopStatus,
+      this.sellNum,
+      this.kind,
+      this.defaultLocation,
+      this.defaultAddressDetail,
+      this.stockStatus,
+      this.goodsDetailSpecificationVoList,
+      this.isCollection,
+      this.unit,
+      this.weight});
 
   GoodDetailModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['goodsDetailImageVos'] != null) {
-      goodsDetailImageVos =[];
+      goodsDetailImageVos = [];
       json['goodsDetailImageVos'].forEach((v) {
         goodsDetailImageVos!.add(new GoodsDetailImageVos.fromJson(v));
       });
@@ -60,8 +73,7 @@ class GoodDetailModel {
     defaultAddressDetail = json['defaultAddressDetail'];
     stockStatus = json['stockStatus'];
     if (json['goodsDetailSpecificationVoList'] != null) {
-      goodsDetailSpecificationVoList =
-      [];
+      goodsDetailSpecificationVoList = [];
       json['goodsDetailSpecificationVoList'].forEach((v) {
         goodsDetailSpecificationVoList!
             .add(new GoodsDetailSpecificationVoList.fromJson(v));

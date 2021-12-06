@@ -1,11 +1,9 @@
 import 'dart:io';
 
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
 
 ///图片点击放大预览
 class BeeImagePreview extends StatefulWidget {
@@ -48,6 +46,7 @@ class BeeImagePreview extends StatefulWidget {
   final File? file;
   final String? path;
   final String? tag;
+
   BeeImagePreview.file({Key? key, required this.file, this.tag})
       : path = null,
         super(key: key);

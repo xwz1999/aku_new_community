@@ -1,33 +1,32 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_process_model.dart';
+import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/evaluate_page.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_process_model.dart';
-import 'package:aku_community/ui/manager/house_keeping/evaluate_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/views/bee_grid_image_view.dart';
-
 class HouseKeepingDetailPage extends StatefulWidget {
   final HouseKeepingListModel model;
   final List<HouseKeepingProcessModel> processModels;
   final VoidCallback callRefresh;
+
   HouseKeepingDetailPage(
       {Key? key,
       required this.model,
@@ -256,9 +255,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .make(),
           16.w.heightBox,
           BeeGridImageView(
-              urls: widget.model.evaluationImgList
-                  .map((e) => e.url)
-                  .toList())
+              urls: widget.model.evaluationImgList.map((e) => e.url).toList())
         ],
       ),
     );
@@ -320,9 +317,7 @@ class _HouseKeepingDetailPageState extends State<HouseKeepingDetailPage> {
               .softWrap(true)
               .make(),
           BeeGridImageView(
-              urls: widget.model.handlerImgList
-                  .map((e) => e.url)
-                  .toList())
+              urls: widget.model.handlerImgList.map((e) => e.url).toList())
         ],
       ),
     );

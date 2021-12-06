@@ -8,6 +8,7 @@ class AnimatedTranslate extends ImplicitlyAnimatedWidget {
       : super(
           duration: Duration(milliseconds: 300),
         );
+
   @override
   ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
       _AnimatedTranslateState();
@@ -16,6 +17,7 @@ class AnimatedTranslate extends ImplicitlyAnimatedWidget {
 class _AnimatedTranslateState
     extends AnimatedWidgetBaseState<AnimatedTranslate> {
   Tween<Offset?>? _offsetTween;
+
   @override
   Widget build(BuildContext context) {
     return Transform.translate(

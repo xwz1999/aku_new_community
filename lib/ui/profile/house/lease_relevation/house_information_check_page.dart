@@ -1,13 +1,13 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/models/house/lease_detail_model.dart';
-import 'package:aku_community/models/house/submit_model.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/ui/profile/house/lease_relevation/contract_preview_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/models/house/lease_detail_model.dart';
+import 'package:aku_new_community/models/house/submit_model.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/ui/profile/house/lease_relevation/contract_preview_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +18,7 @@ import 'package:velocity_x/velocity_x.dart';
 class HouseInformationCheckPage extends StatefulWidget {
   final SubmitModel submitModel;
   final LeaseDetailModel detailModel;
+
   HouseInformationCheckPage(
       {Key? key, required this.submitModel, required this.detailModel})
       : super(key: key);
@@ -29,6 +30,7 @@ class HouseInformationCheckPage extends StatefulWidget {
 
 class _HouseInformationCheckPageState extends State<HouseInformationCheckPage> {
   late SubmitModel _submitModel;
+
   @override
   void initState() {
     super.initState();

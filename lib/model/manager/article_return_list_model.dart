@@ -1,4 +1,4 @@
-import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 
 class ArticleReturnListModel {
   int? id;
@@ -7,6 +7,7 @@ class ArticleReturnListModel {
   String? beginDate;
   int? borrowTime;
   List<ImgModel>? imgList;
+
   String get paraseBorrowTime {
     if (this.borrowTime! > 24) {
       return '${this.borrowTime! ~/ 24}天${this.borrowTime! % 24}小时';

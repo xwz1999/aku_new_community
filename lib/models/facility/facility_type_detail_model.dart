@@ -7,6 +7,7 @@ part 'facility_type_detail_model.g.dart';
 class FacilityTypeDetailModel extends Equatable {
   final int id;
   final String name;
+
   FacilityTypeDetailModel({
     required this.id,
     required this.name,

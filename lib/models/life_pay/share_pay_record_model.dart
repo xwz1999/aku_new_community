@@ -13,6 +13,7 @@ class SharePayRecordModel {
   final String effectiveTimeEnd;
   final double shareUnitPrice;
   final double indoorArea;
+
   factory SharePayRecordModel.fromJson(Map<String, dynamic> json) =>
       _$SharePayRecordModelFromJson(json);
 

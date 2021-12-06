@@ -1,23 +1,22 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/manager/goods_out_model.dart';
+import 'package:aku_new_community/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
+import 'package:aku_new_community/pages/manager_func.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/buttons/radio_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/manager/goods_out_model.dart';
-import 'package:aku_community/pages/goods_deto_page/deto_create_page/deto_create_page.dart';
-import 'package:aku_community/pages/manager_func.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/buttons/radio_button.dart';
 import 'widget/goods_info_card.dart';
 
 class GoodsDetoPage extends StatefulWidget {
@@ -31,6 +30,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   List<int?> _select = [];
   bool _isEdit = false;
+
   bool _canSkew(int? state) {
     switch (state) {
       case 1:

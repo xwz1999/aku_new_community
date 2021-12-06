@@ -1,4 +1,4 @@
-# aku_community
+# aku_new_community
 
 ## Getting Started
 

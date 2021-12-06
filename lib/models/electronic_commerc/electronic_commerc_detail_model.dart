@@ -12,6 +12,7 @@ class ElectronicCommercDetailModel extends Equatable {
   final String electronicCommerceCategoryName;
   final String createName;
   final String createDate;
+
   ElectronicCommercDetailModel({
     required this.id,
     required this.title,
@@ -21,8 +22,10 @@ class ElectronicCommercDetailModel extends Equatable {
     required this.createName,
     required this.createDate,
   });
+
   factory ElectronicCommercDetailModel.fromJson(Map<String, dynamic> json) =>
       _$ElectronicCommercDetailModelFromJson(json);
+
   @override
   List<Object> get props {
     return [

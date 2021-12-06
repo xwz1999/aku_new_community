@@ -1,8 +1,8 @@
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
-import 'package:aku_community/pages/share_pay_page/share_pay_page.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_new_community/pages/share_pay_page/share_pay_page.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

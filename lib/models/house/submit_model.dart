@@ -13,6 +13,7 @@ class SubmitModel {
   List<String> idCardBackImgUrl;
   File? idCardFrontFile;
   File? idCardBackFile;
+
   SubmitModel({
     required this.id,
     required this.emergencyContact,

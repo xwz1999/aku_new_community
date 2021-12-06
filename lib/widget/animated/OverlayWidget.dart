@@ -1,48 +1,42 @@
-
-import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
-import 'package:aku_community/const/resource.dart';
-
-import 'package:aku_community/utils/headers.dart';
 import 'package:get/get.dart';
 
-
-
 class OverlayLivingBtnWidget extends StatefulWidget {
-
-
-  OverlayLivingBtnWidget({Key? key, }) : super(key: key);
+  OverlayLivingBtnWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _OverlayLivingBtnWidgetState createState() => _OverlayLivingBtnWidgetState();
 }
 
-class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget> with TickerProviderStateMixin{
+class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget>
+    with TickerProviderStateMixin {
   double _topPos = 0;
   double _leftPos = 0;
   bool _isMoving = false;
   double _width = 65;
+
   double get _subWidth => _width / 2;
   double _height = 65;
+
   double get _subHeight => _height / 2;
   bool _isHide = false;
-
 
   @override
   void initState() {
     super.initState();
 
-    _topPos = ScreenUtil().screenHeight - 20 - _height -50;
-    _leftPos = _leftPos = ScreenUtil().screenWidth-20 - _width;
+    _topPos = ScreenUtil().screenHeight - 20 - _height - 50;
+    _leftPos = _leftPos = ScreenUtil().screenWidth - 20 - _width;
   }
 
   @override
   void dispose() {
-
     super.dispose();
   }
 
@@ -52,7 +46,6 @@ class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget> with Ti
       left: _isHide ? -_width : _leftPos,
       top: _topPos,
       child: Container(
-
         child: Stack(
           children: [
             Positioned(
@@ -65,17 +58,14 @@ class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget> with Ti
                 height: 65.w,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image:
-                      AssetImage(R.ASSETS_ICONS_ICON_MAIN_OPEN_PNG),)
-                ),
+                  fit: BoxFit.fill,
+                  image: AssetImage(R.ASSETS_ICONS_ICON_MAIN_OPEN_PNG),
+                )),
               ),
-
             ),
             GestureDetector(
               onTap: () {
                 Get.to(OpeningCodePage());
-
               },
               onPanUpdate: (detail) {
                 setState(() {
@@ -96,7 +86,7 @@ class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget> with Ti
                 if ((_leftPos + _width + 20) > ScreenUtil().screenWidth)
                   _leftPos = ScreenUtil().screenWidth - 20 - _width;
                 if ((_topPos + _height + 55 + 20) > ScreenUtil().screenHeight)
-                  _topPos = ScreenUtil().screenHeight- 20 - _height - 55;
+                  _topPos = ScreenUtil().screenHeight - 20 - _height - 55;
                 setState(() {});
               },
               child: Container(

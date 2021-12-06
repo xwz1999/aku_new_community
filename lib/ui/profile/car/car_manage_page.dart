@@ -1,12 +1,10 @@
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/profile/car/car_manage_card.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
-
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/profile/car/car_manage_card.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class CarManagePage extends StatefulWidget {
   CarManagePage({Key? key}) : super(key: key);

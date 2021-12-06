@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/market/display_category_model.dart';
+import 'package:aku_new_community/models/market/market_category_model.dart';
+import 'package:aku_new_community/ui/market/goods/goods_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/market/display_category_model.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/goods/goods_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class CategoryCard extends StatelessWidget {
   final MarketCategoryModel model;
+
   const CategoryCard({Key? key, required this.model}) : super(key: key);
 
   @override

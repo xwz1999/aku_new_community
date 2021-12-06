@@ -1,20 +1,18 @@
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/websocket/tips_dialog.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_category_model.dart';
+import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_view.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/num_ext.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_category_model.dart';
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_view.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class ElectronicCommercPage extends StatefulWidget {
   ElectronicCommercPage({Key? key}) : super(key: key);
@@ -29,14 +27,16 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
   late TabController _tabController;
   bool _onloading = true;
   late List<ElectronicCommercCategoryModel> _models;
+
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 0), () async {
-      var agreement = await HiveStore.appBox?.get('ElectronicCommercPage') ?? false;
+      var agreement =
+          await HiveStore.appBox?.get('ElectronicCommercPage') ?? false;
       if (!agreement) {
         await TipsDialog.tipsDialog();
-        HiveStore.appBox!.put('ElectronicCommercPage',true);
+        HiveStore.appBox!.put('ElectronicCommercPage', true);
       }
     });
     _tabController = TabController(length: _tabs.length, vsync: this);

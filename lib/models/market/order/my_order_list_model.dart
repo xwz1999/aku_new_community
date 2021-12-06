@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'my_order_list_model.g.dart';
 
@@ -35,6 +33,7 @@ class MyOrderListModel extends Equatable {
   final String? evaluationReason;
   final String? createDate;
   final String arrivalTime;
+
   MyOrderListModel({
     required this.id,
     required this.code,
@@ -68,18 +67,24 @@ class MyOrderListModel extends Equatable {
 
   String get sendDateString =>
       DateUtil.formatDateStr(this.sendDate ?? '', format: 'yyyy-MM-dd HH:mm');
+
   String get arrivalDateString => DateUtil.formatDateStr(this.arrivalDate ?? '',
       format: 'yyyy-MM-dd HH:mm');
+
   String get receiveDateString =>
       DateUtil.formatDateStr(this.receivingDate ?? '',
           format: 'yyyy-MM-dd HH:mm');
+
   String get backDateString =>
       DateUtil.formatDateStr(this.backDate ?? '', format: 'yyyy-MM-dd HH:mm');
+
   String get evaluateDateString =>
       DateUtil.formatDateStr(this.evaluationDate ?? '',
           format: 'yyyy-MM-dd HH:mm');
+
   String get createDateString =>
       DateUtil.formatDateStr(this.createDate ?? '', format: 'yyyy-MM-dd HH:mm');
+
   String get statusString {
     switch (this.status) {
       case 1:

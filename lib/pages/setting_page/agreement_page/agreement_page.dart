@@ -1,5 +1,5 @@
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class AgreementPage extends StatefulWidget {

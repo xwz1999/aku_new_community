@@ -1,16 +1,14 @@
 import 'dart:io';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
 
 class FeedBackPage extends StatefulWidget {
   FeedBackPage({Key? key}) : super(key: key);
@@ -51,7 +49,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
             bottom: 0.w,
           ),
           hintText: '请输入',
-          border: InputBorder.none, //去掉输入框的下滑线
+          border: InputBorder.none,
+          //去掉输入框的下滑线
           fillColor: Colors.white,
           filled: true,
           hintStyle: TextStyle(

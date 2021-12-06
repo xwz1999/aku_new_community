@@ -1,24 +1,23 @@
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/manager/article_borrow_model.dart';
+import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_goods_page.dart';
+import 'package:aku_new_community/pages/goods_manage_page/mine_goods_page/mine_goods_page.dart';
+import 'package:aku_new_community/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/manager/article_borrow_model.dart';
-import 'package:aku_community/pages/goods_manage_page/borrow/borrow_goods_page.dart';
-import 'package:aku_community/pages/goods_manage_page/mine_goods_page/mine_goods_page.dart';
-import 'package:aku_community/pages/goods_manage_page/retrun/return_goods_detail_page.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-
 class GoodsManagePage extends StatefulWidget {
   final bool isBorrow;
+
   GoodsManagePage({Key? key, this.isBorrow = true}) : super(key: key);
 
   @override
@@ -58,8 +57,11 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 image: API.image(ImgModel.first(model.imgUrls)),
                 imageErrorBuilder: (context, error, stackTrace) {
-                  return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 106.w,
-                    width: 106.w,);
+                  return Image.asset(
+                    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                    height: 106.w,
+                    width: 106.w,
+                  );
                 },
               ),
             ),
@@ -122,7 +124,9 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
                 itemCount: items.length);
           }),
       bottomNavi: BottomButton(
-        child:  widget.isBorrow?'出借'.text.black.size(32.sp).bold.make():'归还'.text.black.size(32.sp).bold.make(),
+        child: widget.isBorrow
+            ? '出借'.text.black.size(32.sp).bold.make()
+            : '归还'.text.black.size(32.sp).bold.make(),
         onPressed: widget.isBorrow
             ? () {
                 Get.to(() => BorrowGoodsPage());

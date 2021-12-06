@@ -1,25 +1,23 @@
 import 'dart:math';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/event_item_model.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
+import 'package:aku_new_community/ui/community/community_views/widgets/send_a_chat.dart';
+import 'package:aku_new_community/utils/bee_date_util.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/login_util.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/event_item_model.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/community/community_views/event_detail_page.dart';
-import 'package:aku_community/ui/community/community_views/widgets/send_a_chat.dart';
-import 'package:aku_community/utils/bee_date_util.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/login_util.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/picker/bee_image_preview.dart';
-import 'package:aku_community/widget/views/bee_grid_image_view.dart';
 
 class ChatCard extends StatefulWidget {
   final EventItemModel? model;
@@ -41,7 +39,7 @@ class ChatCard extends StatefulWidget {
   _ChatCardState createState() => _ChatCardState();
 }
 
-class _ChatCardState extends State<ChatCard>  {
+class _ChatCardState extends State<ChatCard> {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     return (userProvider.userInfoModel?.id ?? -1) == widget.model!.createId;
@@ -71,12 +69,15 @@ class _ChatCardState extends State<ChatCard>  {
           ),
           child: Hero(
             tag: ImgModel.first(widget.model!.imgUrls),
-            child:FadeInImage.assetNetwork(
+            child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(widget.model!.imgUrls)),
               imageErrorBuilder: (context, error, stackTrace) {
-                return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 300.w,
-                  width: 300.w,);
+                return Image.asset(
+                  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  height: 300.w,
+                  width: 300.w,
+                );
               },
             ),
           ),
@@ -310,8 +311,11 @@ class _ChatCardState extends State<ChatCard>  {
                   width: 96.w,
                   fit: BoxFit.cover,
                   imageErrorBuilder: (context, error, stackTrace) {
-                    return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 86.w,
-                      width: 86.w,);
+                    return Image.asset(
+                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      height: 86.w,
+                      width: 86.w,
+                    );
                   },
                 ),
               ).paddingOnly(left: 32.w),
@@ -338,7 +342,6 @@ class _ChatCardState extends State<ChatCard>  {
                 ],
               ),
               Spacer(),
-
               PopupMenuButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.w)),
@@ -359,14 +362,16 @@ class _ChatCardState extends State<ChatCard>  {
                   BotToast.showText(text: '举报成功');
                 },
                 child: Container(
-                    width: 40.w,height: 32.w,
-                    child: Image.asset(R.ASSETS_ICONS_ICON_MORE_PNG,
-                      width: 8.w,height: 32.w,fit: BoxFit.fitHeight,)),
-
+                    width: 40.w,
+                    height: 32.w,
+                    child: Image.asset(
+                      R.ASSETS_ICONS_ICON_MORE_PNG,
+                      width: 8.w,
+                      height: 32.w,
+                      fit: BoxFit.fitHeight,
+                    )),
               ).paddingOnly(right: 32.w),
-
             ].row(),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -380,30 +385,30 @@ class _ChatCardState extends State<ChatCard>  {
                     widget.model!.gambitTitle?.isEmpty ?? true
                         ? SizedBox()
                         : Chip(
-                      label: '# ${widget.model!.gambitTitle}'
-                          .text
-                          .color(Color(0xFF547fc0))
-                          .size(28.sp)
-                          .make(),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.w, vertical: 5.w),
-                      labelPadding: EdgeInsets.zero,
-                      backgroundColor: Colors.transparent,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      // shape: StadiumBorder(
-                      //   side: BorderSide(),
-                      // ),
-                    ).pOnly(top: 20.w),
+                            label: '# ${widget.model!.gambitTitle}'
+                                .text
+                                .color(Color(0xFF547fc0))
+                                .size(28.sp)
+                                .make(),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 5.w),
+                            labelPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            // shape: StadiumBorder(
+                            //   side: BorderSide(),
+                            // ),
+                          ).pOnly(top: 20.w),
                     20.hb,
                   ],
-                ).paddingOnly(right: 32.w,left: 32.w),
+                ).paddingOnly(right: 32.w, left: 32.w),
 
                 Divider(height: 1.w, thickness: 1.w),
                 10.hb,
                 Row(
                   children: [
                     64.hb,
-
                     _isMyself
                         ? TextButton(
                             onPressed: () async {
@@ -444,11 +449,10 @@ class _ChatCardState extends State<ChatCard>  {
                   ],
                 ),
                 // _renderLikeAndComment(),
-
               ],
             ),
           ],
-        ).paddingOnly(top: 24.w,bottom: 32.w),
+        ).paddingOnly(top: 24.w, bottom: 32.w),
       ),
     ).paddingOnly(bottom: 16.w);
   }

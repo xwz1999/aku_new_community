@@ -1,35 +1,23 @@
 import 'dart:async';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/good/good_detail_model.dart';
-import 'package:aku_community/model/order/create_order_model.dart';
-import 'package:aku_community/model/order/logistics_model.dart';
-import 'package:aku_community/model/order/order_list_model.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/models/market/shop_car/shop_car_list_model.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/pages/personal/address/address_list_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/market/search/settlementGoodsDTO.dart';
-import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/line_button.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/widget/buttons/end_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/order/logistics_model.dart';
+import 'package:aku_new_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/ui/market/search/settlementGoodsDTO.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/line_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'logistics_page.dart';
 import 'order_page.dart';
@@ -78,7 +66,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           .callAliPay(baseModel.message!, API.pay.jcookOrderCheckAlipay);
       if (result) {
         Get.off(() => OrderPage(initIndex: 2));
-      }else{
+      } else {
         Get.off(() => OrderPage(initIndex: 1));
       }
     }
@@ -183,8 +171,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   void initState() {
     super.initState();
     widget.orderModel.myOrderListVoList!.forEach((element) {
-      _goodsList
-          .add(SettlementGoodsDTO(jcookGoodsId: element.jcookGoodsId, num: element.num));
+      _goodsList.add(SettlementGoodsDTO(
+          jcookGoodsId: element.jcookGoodsId, num: element.num));
     });
     if (widget.orderModel.tradeStatus == 0) {
       timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _checkTime());
@@ -193,8 +181,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
 
   @override
   void dispose() {
-    if(timer!=null)
-    timer!.cancel();
+    if (timer != null) timer!.cancel();
     super.dispose();
   }
 
@@ -218,13 +205,13 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       titleSpacing: 0,
       body: ListView(
         children: [
-
           widget.orderModel.tradeStatus == 0
               ? _head()
               : widget.orderModel.tradeStatus == 2
-                  ? _headDaifahuo(): widget.orderModel.tradeStatus == 4
-              ? _headDaishouhuo()
-                  : SizedBox(),
+                  ? _headDaifahuo()
+                  : widget.orderModel.tradeStatus == 4
+                      ? _headDaishouhuo()
+                      : SizedBox(),
           20.hb,
           _address(context),
           20.hb,
@@ -235,11 +222,10 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         ],
       ),
       bottomNavi: Container(
-        width: double.infinity,
-        height: 120.w,
-        color: Colors.white,
-        child: _getBtn()
-      ),
+          width: double.infinity,
+          height: 120.w,
+          color: Colors.white,
+          child: _getBtn()),
     );
   }
 
@@ -309,53 +295,52 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       child: Column(
         children: [
           ...widget.orderModel.myOrderListVoList!.map((e) => _goodCard(e)),
-
           _priceView(),
-
         ],
       ),
     );
   }
+
   _priceView() {
     return Column(
-        children: [
-          Row(
-            children: [
-              Spacer(),
-              '商品金额：'.text.size(28.sp).color(Color(0xFF666666)).make(),
-              '¥${((widget.orderModel.payPrice ?? 0) - (widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
-                  .text.size(28.sp).color(Color(0xFF333333)).make(),
-
-
-            ],
-          ),
-          8.hb,
-          Row(
-            children: [
-              Spacer(),
-              '运费：'.text.size(28.sp).color(Color(0xFF666666)).make(),
-              '¥${((widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
-                  .text
-                  .size(28.sp)
-                  .color(Color(0xFF666666))
-                  .make(),
-            ],
-          ),
-          8.hb,
-          Row(
-            children: [
-              Spacer(),
-              '实付款：'.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
-              '¥${((widget.orderModel.payPrice ?? 0)).toStringAsFixed(2)}'
-                  .text
-                  .size(28.sp)
-                  .color(Color(0xFFE52E2E))
-                  .make(),
-            ],
-          ),
-          16.hb,
-        ],
-
+      children: [
+        Row(
+          children: [
+            Spacer(),
+            '商品金额：'.text.size(28.sp).color(Color(0xFF666666)).make(),
+            '¥${((widget.orderModel.payPrice ?? 0) - (widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
+                .text
+                .size(28.sp)
+                .color(Color(0xFF333333))
+                .make(),
+          ],
+        ),
+        8.hb,
+        Row(
+          children: [
+            Spacer(),
+            '运费：'.text.size(28.sp).color(Color(0xFF666666)).make(),
+            '¥${((widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
+                .text
+                .size(28.sp)
+                .color(Color(0xFF666666))
+                .make(),
+          ],
+        ),
+        8.hb,
+        Row(
+          children: [
+            Spacer(),
+            '实付款：'.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
+            '¥${((widget.orderModel.payPrice ?? 0)).toStringAsFixed(2)}'
+                .text
+                .size(28.sp)
+                .color(Color(0xFFE52E2E))
+                .make(),
+          ],
+        ),
+        16.hb,
+      ],
     );
   }
 
@@ -388,8 +373,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                      ),
                       child: SizedBox(
                         width: 518.w,
                         child: Text(
@@ -403,8 +389,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     ),
                     5.hb,
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                      ),
                       child: SizedBox(
                         width: 518.w,
                         child: Text(
@@ -418,8 +405,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     ),
                     5.hb,
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                      ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
@@ -482,7 +470,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     return Container(
       padding:
           EdgeInsets.only(left: 20.w, right: 16.w, top: 20.w, bottom: 20.w),
-      margin: EdgeInsets.only(left: 20.w,right: 20.w,top: 20.w),
+      margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.w),
       width: double.infinity,
       height: 150.w,
       decoration: BoxDecoration(
@@ -508,7 +496,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     return Container(
       padding:
           EdgeInsets.only(left: 20.w, right: 16.w, top: 20.w, bottom: 20.w),
-      margin: EdgeInsets.only(left: 20.w,right: 20.w,top: 20.w),
+      margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.w),
       width: double.infinity,
       height: 150.w,
       decoration: BoxDecoration(
@@ -530,7 +518,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     return Container(
       padding:
           EdgeInsets.only(left: 22.w, right: 22.w, top: 20.w, bottom: 20.w),
-      margin: EdgeInsets.only(left: 20.w,right: 20.w,top: 20.w),
+      margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 20.w),
       width: double.infinity,
       height: 150.w,
       decoration: BoxDecoration(
@@ -539,14 +527,17 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(R.ASSETS_ICONS_ICON_LOGISTICS_PNG,width: 56.w,height: 56.w,),
+          Image.asset(
+            R.ASSETS_ICONS_ICON_LOGISTICS_PNG,
+            width: 56.w,
+            height: 56.w,
+          ),
           20.wb,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               '已发货'.text.size(32.sp).color(ktextPrimary).bold.make(),
-
               '包裹正在等待揽收'.text.size(28.sp).color(ktextPrimary).make(),
             ],
           ),
@@ -558,21 +549,21 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 "orderId": widget.orderModel.id,
               });
               if (baseModel.status == true && baseModel.data != null) {
-                logisticsModels =  (baseModel.data as List)
+                logisticsModels = (baseModel.data as List)
                     .map((e) => LogisticsModel.fromJson(e))
                     .toList();
-                if(logisticsModels.isNotEmpty){
-                  Get.to(()=> LogisticsPage(models: logisticsModels,goods: widget.orderModel.myOrderListVoList!.first,orderModel:widget.orderModel));
-                }else{
+                if (logisticsModels.isNotEmpty) {
+                  Get.to(() => LogisticsPage(
+                      models: logisticsModels,
+                      goods: widget.orderModel.myOrderListVoList!.first,
+                      orderModel: widget.orderModel));
+                } else {
                   BotToast.showText(text: '未获取到物流信息');
                 }
-
-              }else{
+              } else {
                 BotToast.showText(text: '未获取到物流信息');
               }
-
             },
-
             text: '查看物流'.text.size(32.sp).color(Color(0xFFE52E2E)).make(),
             color: Color(0xFFE52E2E),
           ),
@@ -684,7 +675,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               )
             ],
           ),
-
         ],
       ),
     );

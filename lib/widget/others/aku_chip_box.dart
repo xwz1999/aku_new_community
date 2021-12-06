@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AkuChipBox extends StatelessWidget {
   final String title;
   final Color? borderClor;
   final Color? textColor;
+
   const AkuChipBox(
       {Key? key, required this.title, this.borderClor, this.textColor})
       : super(key: key);

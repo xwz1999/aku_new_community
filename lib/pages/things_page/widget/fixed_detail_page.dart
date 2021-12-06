@@ -1,17 +1,17 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/manage/fix_report/fix_detail_model.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/pages/manager_func.dart';
-import 'package:aku_community/pages/things_page/widget/fixed_evaluate_page.dart';
-import 'package:aku_community/utils/bee_map.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/views/horizontal_image_view.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/manage/fix_report/fix_detail_model.dart';
+import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/pages/manager_func.dart';
+import 'package:aku_new_community/pages/things_page/widget/fixed_evaluate_page.dart';
+import 'package:aku_new_community/utils/bee_map.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/views/horizontal_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +23,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;
+
   FixedDetailPage(
     this.id, {
     Key? key,
@@ -35,6 +36,7 @@ class FixedDetailPage extends StatefulWidget {
 class CancelModel {
   bool cancel;
   String message;
+
   CancelModel(this.cancel, this.message);
 }
 
@@ -42,7 +44,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
   bool _onLoading = true;
   EasyRefreshController _easyRefreshController = EasyRefreshController();
   late FixDetailModel _model;
+
   bool get showRepairCard => _model.appDispatchListVo != null;
+
   bool get showProcessCard => _model.appProcessRecordVo.isNotEmpty;
 
   bool _canComplete(int? state) {
@@ -175,9 +179,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
                 children: [
                   '报修房屋'.text.color(ktextSubColor).size(28.sp).make(),
                   Spacer(),
-                  model.appReportRepairVo.roomName.text.black
-                      .size(28.sp)
-                      .make()
+                  model.appReportRepairVo.roomName.text.black.size(28.sp).make()
                 ],
               ),
               Row(

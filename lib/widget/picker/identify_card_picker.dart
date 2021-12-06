@@ -1,13 +1,11 @@
 import 'dart:io';
 
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/widget/picker/bee_image_picker.dart';
 
 class IdentifyCardPicker extends StatefulWidget {
   static Widget front(Function(File? file) onChange) {
@@ -38,6 +36,7 @@ class IdentifyCardPicker extends StatefulWidget {
 
   final Function(File? file) onChange;
   final String path;
+
   IdentifyCardPicker({Key? key, required this.onChange, required this.path})
       : super(key: key);
 
@@ -47,6 +46,7 @@ class IdentifyCardPicker extends StatefulWidget {
 
 class _IdentifyCardPickerState extends State<IdentifyCardPicker> {
   File? _file;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

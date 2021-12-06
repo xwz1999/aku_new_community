@@ -1,32 +1,26 @@
-import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
-import 'package:aku_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/community_introduce/community_introduce_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SurroundingEnterprisesDetailPage extends StatefulWidget {
   final SurroundingEnterprisesModel surroundingEnterprisesModel;
 
-  SurroundingEnterprisesDetailPage({Key? key, required this.surroundingEnterprisesModel})
+  SurroundingEnterprisesDetailPage(
+      {Key? key, required this.surroundingEnterprisesModel})
       : super(key: key);
 
   @override
-  _SurroundingEnterprisesDetailPageState createState() => _SurroundingEnterprisesDetailPageState();
+  _SurroundingEnterprisesDetailPageState createState() =>
+      _SurroundingEnterprisesDetailPageState();
 }
 
-class _SurroundingEnterprisesDetailPageState extends State<SurroundingEnterprisesDetailPage> {
-
+class _SurroundingEnterprisesDetailPageState
+    extends State<SurroundingEnterprisesDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -38,12 +32,12 @@ class _SurroundingEnterprisesDetailPageState extends State<SurroundingEnterprise
             child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                 fit: BoxFit.cover,
-                image: API
-                    .image(ImgModel.first(widget.surroundingEnterprisesModel.imgList))),
+                image: API.image(ImgModel.first(
+                    widget.surroundingEnterprisesModel.imgList))),
             width: double.infinity,
             height: 424.w,
           ),
-         // 24.w.heightBox,
+          // 24.w.heightBox,
           // Padding(
           //     padding: EdgeInsets.symmetric(horizontal: 32.w),
           //     child:
@@ -68,7 +62,7 @@ class _SurroundingEnterprisesDetailPageState extends State<SurroundingEnterprise
           //           fontWeight: FontWeight.bold),
           //     )),
           Padding(
-              padding: EdgeInsets.only(left: 32.w,right: 32.w,top: 32.w),
+              padding: EdgeInsets.only(left: 32.w, right: 32.w, top: 32.w),
               child: Text(
                 widget.surroundingEnterprisesModel.content ?? '',
                 style: TextStyle(

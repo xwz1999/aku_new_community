@@ -1,18 +1,20 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class BeeCheckBox extends StatefulWidget {
   final Function(bool)? onChange;
   final bool? isRound;
   final double? size;
+
   BeeCheckBox({Key? key, this.onChange, this.isRound, this.size})
       : super(key: key);
+
   BeeCheckBox.round({Key? key, this.onChange, this.size})
       : this.isRound = true,
         super(key: key);
+
   @override
   _BeeCheckBoxState createState() => _BeeCheckBoxState();
 }
@@ -20,6 +22,7 @@ class BeeCheckBox extends StatefulWidget {
 class _BeeCheckBoxState extends State<BeeCheckBox> {
   double get boxSize => widget.size ?? 28.w;
   bool _isSelect = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

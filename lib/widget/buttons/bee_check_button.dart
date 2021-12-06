@@ -1,13 +1,13 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class BeeCheckButton<T> extends StatefulWidget {
   final Function(T value) onChange;
   final T value;
   final T groupValue;
   final String title;
+
   BeeCheckButton(
       {Key? key,
       required this.onChange,
@@ -22,6 +22,7 @@ class BeeCheckButton<T> extends StatefulWidget {
 
 class _BeeCheckButtonState extends State<BeeCheckButton> {
   bool get isSelect => widget.groupValue == widget.value;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(

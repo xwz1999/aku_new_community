@@ -1,16 +1,15 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house_keeping/house_keeping_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_card.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house_keeping/house_keeping_list_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_card.dart';
-
 class HouseKeepingView extends StatefulWidget {
   final int index;
+
   HouseKeepingView({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -20,6 +19,7 @@ class HouseKeepingView extends StatefulWidget {
 class _HouseKeepingViewState extends State<HouseKeepingView>
     with AutomaticKeepAliveClientMixin {
   late EasyRefreshController _controller;
+
   @override
   void initState() {
     super.initState();

@@ -1,23 +1,21 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/application_objects.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/activity_item_model.dart';
+import 'package:aku_new_community/model/community/community_topic_model.dart';
+import 'package:aku_new_community/models/search/search_model.dart';
+import 'package:aku_new_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_new_community/ui/community/community_views/topic/topic_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/login_util.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/application_objects.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/activity_item_model.dart';
-import 'package:aku_community/model/community/community_topic_model.dart';
-import 'package:aku_community/models/search/search_model.dart';
-import 'package:aku_community/ui/community/activity/activity_detail_page.dart';
-import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/login_util.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
 
 class BeeSearch extends StatefulWidget {
   BeeSearch({Key? key}) : super(key: key);
@@ -30,6 +28,7 @@ class _BeeSearchState extends State<BeeSearch> {
   late EasyRefreshController _refreshController;
   TextEditingController _textEditingController = TextEditingController();
   SearchModel _searchModel = SearchModel.init();
+
   @override
   void initState() {
     _refreshController = EasyRefreshController();

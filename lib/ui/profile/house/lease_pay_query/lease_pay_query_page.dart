@@ -1,25 +1,24 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/house/lease_fee_list_model.dart';
+import 'package:aku_new_community/ui/profile/house/lease_pay_query/lease_pay_query_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_list_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flustars/flustars.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/house/lease_fee_list_model.dart';
-import 'package:aku_community/ui/profile/house/lease_pay_query/lease_pay_query_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
-
 class LeasePayQueryPage extends StatefulWidget {
   final int id;
+
   LeasePayQueryPage({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -32,6 +31,7 @@ class _LeasePayQueryPageState extends State<LeasePayQueryPage> {
   int _years = DateTime.now().year;
   List<LeaseFeeListModel> _models = [];
   late EasyRefreshController _controller;
+
   @override
   void initState() {
     super.initState();

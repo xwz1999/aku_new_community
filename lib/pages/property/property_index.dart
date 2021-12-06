@@ -1,18 +1,17 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/application_objects.dart';
+import 'package:aku_new_community/model/community/board_model.dart';
+import 'package:aku_new_community/ui/community/notice/notice_card.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_list_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/views/application_box.dart';
+import 'package:aku_new_community/widget/views/application_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/application_objects.dart';
-import 'package:aku_community/model/community/board_model.dart';
-import 'package:aku_community/ui/community/notice/notice_card.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/views/application_box.dart';
-import 'package:aku_community/widget/views/application_view.dart';
 import 'widget/property_card.dart';
 
 //TODO CLEAN BOTTOM CODES.
@@ -35,6 +34,7 @@ class _PropertyIndexState extends State<PropertyIndex>
   int _page = 1;
   int? _pageCount = 0;
   List<BoardItemModel> _models = [];
+
   Future<List<BoardItemModel>> _getItems() async {
     BaseListModel model = await NetUtil().getList(
       API.community.boardList,

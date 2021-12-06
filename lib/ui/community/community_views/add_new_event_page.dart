@@ -1,29 +1,29 @@
 import 'dart:io';
 
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/community/hot_topic_model.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/community/hot_topic_model.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
-
 class AddNewEventPage extends StatefulWidget {
   final int? initTopic;
   final String? topicName;
+
   AddNewEventPage({Key? key})
       : initTopic = null,
         topicName = null,
         super(key: key);
+
   AddNewEventPage.topic({
     Key? key,
     required this.initTopic,

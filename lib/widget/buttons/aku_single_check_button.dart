@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -8,6 +7,7 @@ class AkuSingleCheckButton<T> extends StatefulWidget {
   final T value;
   final T gropValue;
   final VoidCallback onPressed;
+
   AkuSingleCheckButton(
       {Key? key,
       required this.text,
@@ -22,6 +22,7 @@ class AkuSingleCheckButton<T> extends StatefulWidget {
 
 class _AkuSingleCheckButtonState extends State<AkuSingleCheckButton> {
   bool get isSelect => widget.value == widget.gropValue;
+
   @override
   Widget build(BuildContext context) {
     return Container(

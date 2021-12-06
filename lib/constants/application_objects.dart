@@ -1,35 +1,35 @@
-// import 'package:aku_community/widget/bee_scaffold.dart';
+// import 'package:aku_new_community/widget/bee_scaffold.dart';
 
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/pages/community_introduce/community_introduce_page.dart';
-import 'package:aku_community/pages/convenient_phone/convenient_phone_page.dart';
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_page.dart';
-import 'package:aku_community/pages/event_activity/event_voting_page.dart';
-import 'package:aku_community/pages/express_packages/express_package_page.dart';
-import 'package:aku_community/pages/geographic_information/geographic_information_page.dart';
-import 'package:aku_community/pages/goods_deto_page/goods_deto_page.dart';
-import 'package:aku_community/pages/goods_manage_page/select_borrow_return_page.dart';
-import 'package:aku_community/pages/house_introduce/house_introduce.dart';
-import 'package:aku_community/pages/industry_committee/industry_committee_page.dart';
-import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
-import 'package:aku_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_community/pages/opening_code_page/opening_code_page.dart';
-import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
-import 'package:aku_community/pages/service_browse/service_browse_page.dart';
-import 'package:aku_community/pages/setting_page/settings_page.dart';
-import 'package:aku_community/pages/surrounding_enterprises/Surrounding_enterprises_page.dart';
-import 'package:aku_community/pages/things_page/fixed_submit_page.dart';
-import 'package:aku_community/pages/visitor_access_page/visitor_access_page.dart';
-import 'package:aku_community/ui/community/activity/activity_list_page.dart';
-import 'package:aku_community/ui/community/facility/facility_appointment_page.dart';
-import 'package:aku_community/ui/home/application/all_application.dart';
-import 'package:aku_community/ui/manager/advice/advice_page.dart';
-import 'package:aku_community/ui/manager/house_keeping/house_keeping_page.dart';
-import 'package:aku_community/ui/manager/questionnaire/questionnaire_page.dart';
-import 'package:aku_community/ui/profile/car/car_manage_page.dart';
-import 'package:aku_community/ui/profile/car_parking/car_parking_page.dart';
-import 'package:aku_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/pages/community_introduce/community_introduce_page.dart';
+import 'package:aku_new_community/pages/convenient_phone/convenient_phone_page.dart';
+import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_page.dart';
+import 'package:aku_new_community/pages/event_activity/event_voting_page.dart';
+import 'package:aku_new_community/pages/express_packages/express_package_page.dart';
+import 'package:aku_new_community/pages/geographic_information/geographic_information_page.dart';
+import 'package:aku_new_community/pages/goods_deto_page/goods_deto_page.dart';
+import 'package:aku_new_community/pages/goods_manage_page/select_borrow_return_page.dart';
+import 'package:aku_new_community/pages/house_introduce/house_introduce.dart';
+import 'package:aku_new_community/pages/industry_committee/industry_committee_page.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
+import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
+import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
+import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
+import 'package:aku_new_community/pages/service_browse/service_browse_page.dart';
+import 'package:aku_new_community/pages/setting_page/settings_page.dart';
+import 'package:aku_new_community/pages/surrounding_enterprises/Surrounding_enterprises_page.dart';
+import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
+import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
+import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
+import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
+import 'package:aku_new_community/ui/home/application/all_application.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_page.dart';
+import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.dart';
+import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
+import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
+import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 ///应用对象
@@ -71,15 +71,13 @@ List<AO> appObjects = [
   // if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
 
   AO('开门码', R.ASSETS_ICONS_FUNC_KMM_PNG, () => OpeningCodePage()),
-  AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG,
-      () => VisitorAccessPage()),
+  AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
   AO('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayChoosePage()),
   AO('业委会', R.ASSETS_ICONS_FUNC_YWH_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
       () => AdvicePage(type: AdviceType.SUGGESTION)),
-  AO('便民电话', R.ASSETS_ICONS_FUNC_BMDH_PNG,
-      () => ConvenientPhonePage()),
+  AO('便民电话', R.ASSETS_ICONS_FUNC_BMDH_PNG, () => ConvenientPhonePage()),
   AO('活动投票', R.ASSETS_ICONS_FUNC_HDTP_PNG, () => EventVotingPage()),
   AO('物品出门', R.ASSETS_ICONS_FUNC_WPCH_PNG, () => GoodsDetoPage()),
   AO('投诉表扬', R.ASSETS_ICONS_FUNC_TSBY_PNG,
@@ -187,8 +185,6 @@ List<String> _smartManagerApp = [
   '周边企业',
   '住房说明'
 
-
-
   // '小区教育',
   // '健康运动',
   // '家政服务',
@@ -210,11 +206,7 @@ List<String> _getOutApp = [
 ];
 
 ///出行安全
-List<AO> get getOutApp =>
-    _getOutApp.map((e) => AO.fromRaw(e)).toList();
-
-
-
+List<AO> get getOutApp => _getOutApp.map((e) => AO.fromRaw(e)).toList();
 
 ///物业服务
 List<String> _propertyServicesApp = [
@@ -228,7 +220,6 @@ List<String> _propertyServicesApp = [
 ///物业服务
 List<AO> get propertyServicesApp =>
     _propertyServicesApp.map((e) => AO.fromRaw(e)).toList();
-
 
 ///居民生活
 List<String> _residentLifeApp = [
@@ -251,8 +242,6 @@ List<AO> get residentLifeApp =>
 
 ///About community
 List<String> _aboutCommunityApp = [
-
-
   '服务浏览',
   '社区介绍',
   // '地理信息',

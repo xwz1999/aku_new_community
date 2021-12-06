@@ -1,22 +1,15 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/application_objects.dart';
-import 'package:aku_community/pages/life_pay/life_pay_choose_page.dart';
-import 'package:aku_community/pages/message_center_page/message_center_page.dart';
-import 'package:aku_community/pages/personal/user_profile_page.dart';
-import 'package:aku_community/pages/property/property_func.dart';
-import 'package:aku_community/pages/sign/sign_in_page.dart';
-import 'package:aku_community/painters/user_bottom_bar_painter.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_community/ui/search/bee_search.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/login_util.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
-import 'package:aku_community/widget/views/application_view.dart';
-import 'package:badges/badges.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/application_objects.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
+import 'package:aku_new_community/pages/property/property_func.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/widget/views/application_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,14 +49,14 @@ class _PropertyPageState extends State<PropertyPage>
     super.dispose();
   }
 
-  _getRefresh(){
+  _getRefresh() {
     Future.delayed(Duration(milliseconds: 0), () async {
       paid = await PropertyFunc.getDailyPaymentPrePay();
-      unpaid =  await PropertyFunc.getFindUnpaidAmount();
+      unpaid = await PropertyFunc.getFindUnpaidAmount();
       setState(() {});
     });
   }
-  
+
   SliverAppBar _sliverAppBar(double height) {
     final userProvider = Provider.of<UserProvider>(context);
     AppProvider appProvider = Provider.of<AppProvider>(context);
@@ -148,15 +141,13 @@ class _PropertyPageState extends State<PropertyPage>
                 height: 503.w,
                 fit: BoxFit.cover,
               ),
-
-
               top: 0,
               left: 0,
               right: 0,
               bottom: 0),
           Positioned(
             child: Container(
-              margin: EdgeInsets.only(left: 32.w, right: 32.w,top: 10.w),
+              margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 10.w),
               width: 686.w,
               height: 74.w,
               decoration: BoxDecoration(
@@ -178,7 +169,10 @@ class _PropertyPageState extends State<PropertyPage>
                   ),
                   Spacer(),
                   Text(
-                    userProvider.userDetailModel!.estateNames!.isEmpty?'暂未绑定': userProvider.userDetailModel!.estateNames?[0]??'暂未绑定',
+                    userProvider.userDetailModel!.estateNames!.isEmpty
+                        ? '暂未绑定'
+                        : userProvider.userDetailModel!.estateNames?[0] ??
+                            '暂未绑定',
                     style: TextStyle(
                         fontSize: 28.sp,
                         color: Colors.white.withOpacity(0.85),
@@ -189,9 +183,9 @@ class _PropertyPageState extends State<PropertyPage>
                   GestureDetector(
                     onTap: () {
                       Get.to(HouseOwnersPage(
-                        identify: UserTool.userProvider.userDetailModel!.type ?? 4,
+                        identify:
+                            UserTool.userProvider.userDetailModel!.type ?? 4,
                       ));
-
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -257,7 +251,7 @@ class _PropertyPageState extends State<PropertyPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                pay?paid.toStringAsFixed(2):unpaid.toStringAsFixed(2),
+                pay ? paid.toStringAsFixed(2) : unpaid.toStringAsFixed(2),
                 style: TextStyle(
                   color: Color(0xFFFFFFFF).withOpacity(0.85),
                   fontSize: 40.sp,
@@ -275,17 +269,16 @@ class _PropertyPageState extends State<PropertyPage>
           ),
           Spacer(),
           GestureDetector(
-            onTap: () async{
-              final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
+            onTap: () async {
+              final appProvider =
+                  Provider.of<AppProvider>(Get.context!, listen: false);
               if (appProvider.selectedHouse == null) {
                 BotToast.showText(text: '请先添加房屋');
                 Get.to(() => AddHousePage());
-
-              }else{
+              } else {
                 bool? result = await Get.to(() => LifePayChoosePage());
                 if (result == true) _getRefresh();
               }
-
             },
             child: Container(
               alignment: Alignment.center,
@@ -298,7 +291,6 @@ class _PropertyPageState extends State<PropertyPage>
               ),
               decoration: BoxDecoration(
                 color: Color(0xFFFFC257),
-
                 borderRadius: BorderRadius.all(
                   Radius.circular(8.w),
                 ),
@@ -420,6 +412,7 @@ class _PropertyPageState extends State<PropertyPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final double _statusHeight = MediaQuery.of(context).padding.top;
     final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(

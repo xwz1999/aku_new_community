@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_list_model.dart';
+import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_detail_page.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_list_model.dart';
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_detail_page.dart';
-
 class ElectronicCommercCard extends StatefulWidget {
   final ElectronicCommercListModel model;
+
   ElectronicCommercCard({Key? key, required this.model}) : super(key: key);
 
   @override

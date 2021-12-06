@@ -1,20 +1,19 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/facility/facility_appointment_model.dart';
+import 'package:aku_new_community/ui/common/qr_scan.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/facility/facility_appointment_model.dart';
-import 'package:aku_community/ui/common/qr_scan.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
 
 class FacilityAppointmentCard extends StatelessWidget {
   final FacilityAppointmentModel model;
   final VoidCallback onUpdate;
+
   const FacilityAppointmentCard(
       {Key? key, required this.model, required this.onUpdate})
       : super(key: key);
@@ -201,6 +200,7 @@ class _FacilityButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final bool outline;
+
   const _FacilityButton({
     Key? key,
     this.color = kPrimaryColor,

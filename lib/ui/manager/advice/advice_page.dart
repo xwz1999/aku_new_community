@@ -1,25 +1,23 @@
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/model/manager/suggestion_or_complain_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_card.dart';
+import 'package:aku_new_community/ui/manager/advice/new_advice_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
+import 'package:aku_new_community/widget/animated/animated_transition.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/buttons/radio_button.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/manager/suggestion_or_complain_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/manager/advice/advice_card.dart';
-import 'package:aku_community/ui/manager/advice/new_advice_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/animated/animated_transition.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/buttons/radio_button.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 enum AdviceType {
   SUGGESTION,
@@ -28,6 +26,7 @@ enum AdviceType {
 
 class AdvicePage extends StatefulWidget {
   final AdviceType type;
+
   AdvicePage({Key? key, required this.type}) : super(key: key);
 
   @override
@@ -75,7 +74,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
       var agreement = await HiveStore.appBox?.get('AdvicePage') ?? false;
       if (!agreement) {
         await TipsDialog.tipsDialog();
-        HiveStore.appBox!.put('AdvicePage',true);
+        HiveStore.appBox!.put('AdvicePage', true);
       }
     });
     _tabController = TabController(length: 2, vsync: this);

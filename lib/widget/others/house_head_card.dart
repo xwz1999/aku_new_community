@@ -1,16 +1,14 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/profile/house/pick_my_house_page.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class HouseHeadCard extends StatelessWidget {
   const HouseHeadCard({

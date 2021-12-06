@@ -1,4 +1,4 @@
-import 'package:aku_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 
 class ArticleBorrowDetailModel {
   int? id;
@@ -6,6 +6,7 @@ class ArticleBorrowDetailModel {
   String? code;
   int? status;
   List<ImgModel>? imgList;
+
   String get borrowStatus {
     switch (this.status) {
       case 1:

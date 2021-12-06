@@ -1,11 +1,12 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/market_category_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 
 class DisplayCategoryModel {
   final MarketCategoryModel model;
   final List<MarketCategoryModel> children;
+
   DisplayCategoryModel({
     required this.model,
     required this.children,

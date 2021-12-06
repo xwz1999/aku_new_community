@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'community_introduce_model.g.dart';
 
@@ -12,6 +11,7 @@ class CommunityIontroduceModel extends Equatable {
   final String content;
   final String createDate;
   final List<ImgModel>? imgList;
+
   CommunityIontroduceModel({
     required this.id,
     required this.name,
@@ -19,11 +19,13 @@ class CommunityIontroduceModel extends Equatable {
     required this.createDate,
     this.imgList,
   });
+
   factory CommunityIontroduceModel.fromJson(Map<String, dynamic> json) =>
       _$CommunityIontroduceModelFromJson(json);
 
   factory CommunityIontroduceModel.init() =>
       CommunityIontroduceModel(id: -1, name: '', content: '', createDate: '');
+
   @override
   List<Object?> get props {
     return [

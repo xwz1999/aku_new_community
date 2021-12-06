@@ -3,7 +3,7 @@ class Config {
   static const String homeDir = '/users/datang';
 
   ///包名
-  static const String packageName = 'aku_community';
+  static const String packageName = 'aku_new_community';
 
   ///打包目录
   static String get buildPath =>
@@ -11,9 +11,9 @@ class Config {
 
   ///测试包文件夹
   static String get apkDevDir =>
-      '/users/datang/team/bee/app/aku_community/dev';
+      '/users/datang/team/bee/app/aku_new_community/dev';
 
   ///正式包文件夹
   static String get apkDir =>
-      '/users/datang/team/bee/app/aku_community/release';
+      '/users/datang/team/bee/app/aku_new_community/release';
 }

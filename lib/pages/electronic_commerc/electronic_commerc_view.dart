@@ -1,16 +1,15 @@
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_list_model.dart';
+import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_card.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/electronic_commerc/electronic_commerc_list_model.dart';
-import 'package:aku_community/pages/electronic_commerc/electronic_commerc_card.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-
 class ElectronicCommercView extends StatefulWidget {
   final int id;
+
   ElectronicCommercView({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class ElectronicCommercView extends StatefulWidget {
 
 class _ElectronicCommercViewState extends State<ElectronicCommercView> {
   late EasyRefreshController _refreshController;
+
   @override
   void initState() {
     super.initState();

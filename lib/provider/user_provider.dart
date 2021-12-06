@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/user/user_detail_model.dart';
-import 'package:aku_community/models/user/user_info_model.dart';
-import 'package:aku_community/pages/sign/sign_func.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/utils/hive_store.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/utils/websocket/web_socket_util.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/user/user_detail_model.dart';
+import 'package:aku_new_community/models/user/user_info_model.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,11 @@ import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
   bool _isLogin = false;
+
   bool get isLogin => _isLogin;
+
   bool get isNotLogin => !_isLogin;
+
   Future setLogin(int token) async {
     try {
       final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
@@ -66,8 +69,7 @@ class UserProvider extends ChangeNotifier {
 
   Future updateProfile() async {
     _userInfoModel = await SignFunc.getUserInfo();
-    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
-    }
+    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
     notifyListeners();
   }
 
@@ -81,12 +83,15 @@ class UserProvider extends ChangeNotifier {
   }
 
   String? _token;
+
   String get token => _token ?? '';
 
   UserInfoModel? _userInfoModel;
+
   UserInfoModel? get userInfoModel => _userInfoModel;
 
   UserDetailModel? _userDetailModel;
+
   UserDetailModel? get userDetailModel => _userDetailModel;
 
   ///设置性别

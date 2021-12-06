@@ -6,6 +6,7 @@ part 'news_category_model.g.dart';
 class NewsCategoryModel {
   final int id;
   final String name;
+
   NewsCategoryModel({
     required this.id,
     required this.name,

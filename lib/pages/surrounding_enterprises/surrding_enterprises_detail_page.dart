@@ -1,30 +1,27 @@
-import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/house_introduce/house_introduce_model.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/community_introduce/community_introduce_model.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 class SurroundingEnterprisesDetailPage extends StatefulWidget {
   final HouseIntroduceModel houseIntroduceModel;
 
-  SurroundingEnterprisesDetailPage({Key? key, required this.houseIntroduceModel})
+  SurroundingEnterprisesDetailPage(
+      {Key? key, required this.houseIntroduceModel})
       : super(key: key);
 
   @override
-  _SurroundingEnterprisesDetailPageState createState() => _SurroundingEnterprisesDetailPageState();
+  _SurroundingEnterprisesDetailPageState createState() =>
+      _SurroundingEnterprisesDetailPageState();
 }
 
-class _SurroundingEnterprisesDetailPageState extends State<SurroundingEnterprisesDetailPage> {
+class _SurroundingEnterprisesDetailPageState
+    extends State<SurroundingEnterprisesDetailPage> {
   bool _onload = false;
 
   @override
@@ -59,16 +56,16 @@ class _SurroundingEnterprisesDetailPageState extends State<SurroundingEnterprise
                     fontWeight: FontWeight.bold),
               )),
           Padding(
-              padding: EdgeInsets.only(left: 32.w,right: 32.w,top: 16.w),
+              padding: EdgeInsets.only(left: 32.w, right: 32.w, top: 16.w),
               child: Text(
-                '发布于：${widget.houseIntroduceModel.getReleaseDate}'  ,
+                '发布于：${widget.houseIntroduceModel.getReleaseDate}',
                 style: TextStyle(
                     fontSize: 20.sp,
                     color: (ktextThirdColor),
                     fontWeight: FontWeight.bold),
               )),
           Padding(
-              padding: EdgeInsets.only(left: 32.w,right: 32.w,top: 40.w),
+              padding: EdgeInsets.only(left: 32.w, right: 32.w, top: 40.w),
               child: Text(
                 widget.houseIntroduceModel.content ?? '',
                 style: TextStyle(

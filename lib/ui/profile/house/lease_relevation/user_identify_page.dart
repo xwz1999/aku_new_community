@@ -1,12 +1,12 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/models/house/lease_echo_model.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/ui/profile/house/lease_relevation/tenant_house_list_page.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/bottom_sheets/sex_bottom_sheet.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/others/bee_input_row.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/models/house/lease_echo_model.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/ui/profile/house/lease_relevation/tenant_house_list_page.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/bottom_sheets/sex_bottom_sheet.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/bee_input_row.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +27,7 @@ class _UserIdentifyPageState extends State<UserIdentifyPage> {
   TextEditingController _indentifyCodeController = TextEditingController();
   String _sex = '请选择性别';
   String _tel = '';
+
   @override
   void initState() {
     super.initState();

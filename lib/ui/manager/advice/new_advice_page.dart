@@ -1,30 +1,29 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/manager/advice/advice_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bottom_button.dart';
-import 'package:aku_community/widget/picker/grid_image_picker.dart';
-
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;
   final int initType;
+
   NewAdvicePage({Key? key, required this.type, required this.initType})
       : super(key: key);
 
@@ -37,6 +36,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   List<File> _files = [];
   TextEditingController _editingController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   String get title {
     switch (widget.type) {
       case AdviceType.SUGGESTION:

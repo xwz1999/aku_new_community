@@ -11,8 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:aku_community/utils/headers.dart';
-
 typedef TextInputChangeCallBack = Function(String text);
 
 // ignore: must_be_immutable
@@ -40,7 +38,8 @@ class InputView extends StatefulWidget {
       this.padding = const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
       this.margin = const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       this.hint = "",
-      this.textStyle = const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
+      this.textStyle =
+          const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
       this.hintStyle = const TextStyle(color: Color(0xFFBDBDBD), fontSize: 16),
       this.cursorColor = const Color(0xFFBDBDBD),
       this.keyboardType = TextInputType.text,
@@ -69,9 +68,7 @@ class _InputViewState extends State<InputView> {
     _controller = widget.controller;
 
     _focusNode.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
       if (!_focusNode.hasFocus) {
         if (widget.onInputComplete != null) {
           widget.onInputComplete!(_controller.text);
@@ -106,8 +103,10 @@ class _InputViewState extends State<InputView> {
                 inputFormatters: widget.maxLength == null
                     ? null
                     : [
-                        widget.maxLength == 0 ? FilteringTextInputFormatter.digitsOnly:
-                        LengthLimitingTextInputFormatter(widget.maxLength),
+                        widget.maxLength == 0
+                            ? FilteringTextInputFormatter.digitsOnly
+                            : LengthLimitingTextInputFormatter(
+                                widget.maxLength),
                       ],
                 cursorColor: widget.cursorColor,
                 onChanged: widget.onValueChanged,
@@ -118,11 +117,8 @@ class _InputViewState extends State<InputView> {
                 },
                 enableInteractiveSelection: true,
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white.withAlpha(0),
-                    width: 0
-                  )
-                ),
+                    border:
+                        Border.all(color: Colors.white.withAlpha(0), width: 0)),
                 // decoration: InputDecoration(
                 //     contentPadding: EdgeInsets.symmetric(vertical: widget.padding.vertical),
                 //     border: InputBorder.none,

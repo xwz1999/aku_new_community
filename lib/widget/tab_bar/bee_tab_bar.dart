@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
@@ -7,6 +6,7 @@ class BeeTabBar extends StatefulWidget with PreferredSizeWidget {
   final List<String> tabs;
   final Function(int index)? onTap;
   final bool scrollable;
+
   BeeTabBar({
     Key? key,
     required this.controller,

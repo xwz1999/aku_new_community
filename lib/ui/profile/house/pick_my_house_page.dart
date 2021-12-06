@@ -1,12 +1,12 @@
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/models/user/passed_house_list_model.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_community/ui/profile/house/house_func.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/models/user/passed_house_list_model.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
+import 'package:aku_new_community/ui/profile/house/house_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +24,7 @@ class PickMyHousePage extends StatefulWidget {
 
 class _PickMyHousePageState extends State<PickMyHousePage> {
   EasyRefreshController _refreshController = EasyRefreshController();
+
   _renderTitle(String title) {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.w),
@@ -115,12 +116,14 @@ class _HouseCard extends StatelessWidget {
   final PassedHouseListModel? model;
   final bool highlight;
   final EasyRefreshController controller;
+
   const _HouseCard({
     Key? key,
     required this.model,
     this.highlight = false,
     required this.controller,
   }) : super(key: key);
+
   bool get canTapSlide {
     if (model == null) return false;
     return true;

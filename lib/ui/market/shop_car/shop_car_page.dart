@@ -1,14 +1,15 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/models/market/shop_car/shop_car_list_model.dart';
-import 'package:aku_community/ui/market/search/submit_order_page.dart';
-import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_radio.dart';
-import 'package:aku_community/widget/buttons/end_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/shop_car/shop_car_list_model.dart';
+import 'package:aku_new_community/ui/market/search/submit_order_page.dart';
+import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
+import 'package:aku_new_community/widget/buttons/end_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class ShopCarPage extends StatefulWidget {
   const ShopCarPage({Key? key}) : super(key: key);
@@ -338,55 +338,51 @@ class _ShopCarPageState extends State<ShopCarPage> {
               }
               setState(() {});
             },
-            child:
-            model.goodStatus==GoodStatus.unSell?
-            Container(
-              color: Colors.transparent,
-              height: double.infinity,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                height: double.infinity,
-                alignment: Alignment.center,
-                child:Container(
-                  height: 40.w,
-                  width: 40.w,
-                  decoration: BoxDecoration(
-                    color:Color(0xFFBBBBBB),
-
-                    borderRadius: BorderRadius.circular(20.w),
-                  ),
-                  alignment: Alignment.center,
-                  child: Container(
-                    color: Color(0xFFEEEEEE),
-                    width: 26.w,
-                    height: 8.w,
+            child: model.goodStatus == GoodStatus.unSell
+                ? Container(
+                    color: Colors.transparent,
+                    height: double.infinity,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      height: double.infinity,
+                      alignment: Alignment.center,
+                      child: Container(
+                          height: 40.w,
+                          width: 40.w,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFBBBBBB),
+                            borderRadius: BorderRadius.circular(20.w),
+                          ),
+                          alignment: Alignment.center,
+                          child: Container(
+                            color: Color(0xFFEEEEEE),
+                            width: 26.w,
+                            height: 8.w,
+                          )),
+                    ),
                   )
-                ),
-
-              ),
-            ):
-            Container(
-              color: Colors.transparent,
-              height: double.infinity,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                height: double.infinity,
-                alignment: Alignment.center,
-                child: BeeCheckRadio(
-                  value: index,
-                  groupValue: _selectIndex,
-                  backColor: Colors.white,
-                  indent: Container(
-                    width: 24.w,
-                    height: 24.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.w),
-                      color: Color(0xFFE52E2E),
+                : Container(
+                    color: Colors.transparent,
+                    height: double.infinity,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      height: double.infinity,
+                      alignment: Alignment.center,
+                      child: BeeCheckRadio(
+                        value: index,
+                        groupValue: _selectIndex,
+                        backColor: Colors.white,
+                        indent: Container(
+                          width: 24.w,
+                          height: 24.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.w),
+                            color: Color(0xFFE52E2E),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
           ),
           // Container(
           //   width: 220.w,
@@ -504,7 +500,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  if(_controllers[index].text.isEmpty){
+                  if (_controllers[index].text.isEmpty) {
                     _controllers[index].text = '1';
                   }
                   int num = int.parse(_controllers[index].text);
@@ -535,11 +531,12 @@ class _ShopCarPageState extends State<ShopCarPage> {
                   //readOnly: true,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (text) async {
-                    if(text.isNotEmpty){
-                      if(int.parse(text)>10){
+                    if (text.isNotEmpty) {
+                      if (int.parse(text) > 10) {
                         _controllers[index].text = '10';
                       }
-                      var result = await changeNum(id, int.parse(_controllers[index].text));
+                      var result = await changeNum(
+                          id, int.parse(_controllers[index].text));
                       if (!result) {
                         // _controllers[index].text=
 
@@ -559,7 +556,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
               ),
               GestureDetector(
                 onTap: () async {
-                  if(_controllers[index].text.isEmpty){
+                  if (_controllers[index].text.isEmpty) {
                     _controllers[index].text = '0';
                   }
                   int num = int.parse(_controllers[index].text);
@@ -572,8 +569,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
                           (int.parse(_controllers[index].text) + 1).toString();
                     }
                     setState(() {});
-                  }else{
-                    BotToast.showText(text:  '一次最多购买10个商品');
+                  } else {
+                    BotToast.showText(text: '一次最多购买10个商品');
                   }
                 },
                 child: Padding(
@@ -618,7 +615,6 @@ class _ShopCarPageState extends State<ShopCarPage> {
     cancel();
     return base.status ?? false;
   }
-
 
   Future _changeNum() async {
     if (_selectIndex.isNotEmpty) {

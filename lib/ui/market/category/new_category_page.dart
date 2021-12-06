@@ -1,22 +1,18 @@
-import 'package:aku_community/model/good/category_model.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/good/category_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/market/market_category_model.dart';
-import 'package:aku_community/ui/market/category/category_sub_view.dart';
-import 'package:aku_community/ui/market/search/search_goods_page.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
 
 import 'new_category_sub_view.dart';
 
 class NewCategoryPage extends StatefulWidget {
   final List<CategoryModel> models;
   final int index;
-  NewCategoryPage({Key? key, required this.models, required this.index}) : super(key: key);
+
+  NewCategoryPage({Key? key, required this.models, required this.index})
+      : super(key: key);
 
   @override
   _NewCategoryPageState createState() => _NewCategoryPageState();
@@ -26,11 +22,13 @@ class _NewCategoryPageState extends State<NewCategoryPage>
     with TickerProviderStateMixin {
   int _index = 0;
   late TabController _tabController;
+
   @override
   void initState() {
     super.initState();
-    _index=widget.index;
-    _tabController = TabController(length: widget.models.length, vsync: this,initialIndex: widget.index);
+    _index = widget.index;
+    _tabController = TabController(
+        length: widget.models.length, vsync: this, initialIndex: widget.index);
   }
 
   @override
@@ -76,7 +74,7 @@ class _NewCategoryPageState extends State<NewCategoryPage>
                         setState(() {});
                       },
                       child: Text(
-                        item.name??'',
+                        item.name ?? '',
                         style: TextStyle(
                           color: sameIndex ? kPrimaryColor : ktextPrimary,
                         ),

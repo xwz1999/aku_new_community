@@ -1,15 +1,14 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/constants/api.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:aku_community/constants/api.dart';
-
 class BeeDownloadView extends StatefulWidget {
   final String? file;
+
   BeeDownloadView({Key? key, this.file}) : super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class BeeDownloadView extends StatefulWidget {
 class _BeeDownloadViewState extends State<BeeDownloadView> {
   Dio dio = Dio();
   double? progress;
+
   Future download() async {
     Directory dir = await getApplicationDocumentsDirectory();
     Directory docPath = Directory('${dir.path}/docs');

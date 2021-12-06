@@ -15,6 +15,7 @@ class ExpressPackageListModel extends Equatable {
   final String? receiveDate;
   final String createDate;
   final String placePosition;
+
   ExpressPackageListModel({
     required this.id,
     required this.code,
@@ -26,8 +27,10 @@ class ExpressPackageListModel extends Equatable {
     required this.createDate,
     required this.placePosition,
   });
+
   factory ExpressPackageListModel.fromJson(Map<String, dynamic> json) =>
       _$ExpressPackageListModelFromJson(json);
+
   String get createDateString =>
       DateUtil.formatDateStr(this.createDate, format: 'yyyy-MM-dd HH:mm');
 

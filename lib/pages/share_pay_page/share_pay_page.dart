@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/extensions/widget_list_ext.dart';
-import 'package:aku_community/models/life_pay/share_pay_list_model.dart';
-import 'package:aku_community/pages/life_pay/life_pay_page.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/pages/share_pay_page/share_pay_detail_page.dart';
-import 'package:aku_community/pages/share_pay_page/share_record_page.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_divider.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/bee_check_radio.dart';
-import 'package:aku_community/widget/others/house_head_card.dart';
-import 'package:aku_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/models/life_pay/share_pay_list_model.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/pages/share_pay_page/share_pay_detail_page.dart';
+import 'package:aku_new_community/pages/share_pay_page/share_record_page.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
+import 'package:aku_new_community/widget/others/house_head_card.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -195,7 +195,7 @@ class _SharePayPageState extends State<SharePayPage> {
           "ids": total.ids,
           "payType": 1, //暂时写死 等待后续补充
           "payPrice": total.payTotal.toDoubleStringAsFixed()
-      });
+        });
         if (baseModel.status ?? false) {
           bool result = await PayUtil()
               .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);

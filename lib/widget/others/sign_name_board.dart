@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:signature/signature.dart';
@@ -36,6 +35,7 @@ class SignNameBoard extends StatefulWidget {
   final bool forceToHorizontal;
   final double width;
   final double height;
+
   SignNameBoard(
       {Key? key,
       required this.signatureController,

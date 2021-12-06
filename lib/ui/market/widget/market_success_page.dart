@@ -1,32 +1,25 @@
 import 'dart:ui';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/models/market/order/goods_home_model.dart';
-import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/buttons/end_button.dart';
-import 'package:aku_community/widget/buttons/line_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/market/order/goods_home_model.dart';
+import 'package:aku_new_community/pages/tab_navigator.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_list_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/end_button.dart';
+import 'package:aku_new_community/widget/buttons/line_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/model/community/community_topic_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/ui/community/community_views/topic/topic_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 
 import '../market_home_goods_card.dart';
 
 class MarketSuccessPage extends StatefulWidget {
   final int index;
+
   MarketSuccessPage({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -45,97 +38,94 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return  BeeScaffold(
+    return BeeScaffold(
       title: '返回',
-      body:Column(
+      body: Column(
         children: [
-
           EasyRefresh(
             firstRefresh: true,
             header: MaterialHeader(),
             controller: _refreshController,
             onRefresh: () async {
               await updateMarketInfo();
-              _onload =false;
+              _onload = false;
               setState(() {});
             },
             child: _onload
                 ? SizedBox()
                 : ListView(
-              padding: EdgeInsets.all(20.w),
-              children: [
-                Container(
-                  child:Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    padding: EdgeInsets.all(20.w),
                     children: [
-                      Row(
-                        children: [
-
-                          Text(
-                            _getTitle(widget.index),
-                            style:TextStyle(fontSize: 32.sp,color: ktextPrimary),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-
-
-                        ],
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  _getTitle(widget.index),
+                                  style: TextStyle(
+                                      fontSize: 32.sp, color: ktextPrimary),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                            50.hb,
+                            Row(
+                              children: [
+                                LineButton(
+                                  onPressed: () async {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) => TabNavigator(
+                                                  index: 1,
+                                                )),
+                                        (Route<dynamic> route) => false);
+                                  },
+                                  width: 168.w,
+                                  text: '返回首页'
+                                      .text
+                                      .size(32.sp)
+                                      .color(Color(0xFFE52E2E))
+                                      .make(),
+                                  color: Color(0xFFE52E2E),
+                                ),
+                                32.wb,
+                                EndButton(
+                                    onPressed: () async {},
+                                    text: '查看详情'
+                                        .text
+                                        .size(32.sp)
+                                        .color(Colors.white)
+                                        .make()),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                      50.hb,
-
-                      Row(
-                        children: [
-                          LineButton(
-                            onPressed: () async {
-                              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                                  TabNavigator(index: 1,)), (Route<dynamic> route) => false);
-                            },
-                            width: 168.w,
-                            text: '返回首页'.text.size(32.sp).color(Color(0xFFE52E2E)).make(),
-                            color: Color(0xFFE52E2E),
-                          ),
-                          32.wb,
-                          EndButton(
-                              onPressed:  () async {
-
-                              },
-                              text: '查看详情'
-                                  .text
-                                  .size(32.sp)
-                                  .color(Colors.white)
-                                  .make()),
-                        ],
-                      )
+                      _buildSliverGrid(),
                     ],
-                  ) ,
-                ),
-                _buildSliverGrid(),
-              ],
-            ),
+                  ),
           ),
         ],
       ),
-
     );
-
-
-
-
   }
 
-   _buildSliverGrid() {
-    return  WaterfallFlow.builder(
-        gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 20.w,
-          crossAxisSpacing: 20.w,
-        ),
-        padding: EdgeInsets.all(32.w),
-        itemBuilder: (context, index) {
-          return MarketHomeGoodsCard(item: _goodsHomeModelList[index]);
-        },
-        itemCount: _goodsHomeModelList.length,
+  _buildSliverGrid() {
+    return WaterfallFlow.builder(
+      gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 20.w,
+        crossAxisSpacing: 20.w,
+      ),
+      padding: EdgeInsets.all(32.w),
+      itemBuilder: (context, index) {
+        return MarketHomeGoodsCard(item: _goodsHomeModelList[index]);
+      },
+      itemCount: _goodsHomeModelList.length,
 
       // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       //   crossAxisCount: 2,
@@ -158,12 +148,11 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
       //
       //   ///子Item的个数
       //   childCount: _goodsHomeModelList.length,
-
     );
   }
 
   Future updateMarketInfo() async {
-    _pageNum =1;
+    _pageNum = 1;
     BaseListModel baseListModel = await NetUtil().getList(
       API.market.findRecommendGoodsList,
       params: {
@@ -199,8 +188,8 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
     _pageCount = baseListModel.pageCount!;
   }
 
-  _getTitle(int index){
-    switch(index){
+  _getTitle(int index) {
+    switch (index) {
       case 1:
         return '支付成功';
       case 2:
@@ -213,6 +202,7 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
         return '';
     }
   }
+
   @override
   bool get wantKeepAlive => true;
 }

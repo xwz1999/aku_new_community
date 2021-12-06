@@ -13,6 +13,7 @@ class HouseKeepingProcessModel extends Equatable {
   final int opName;
   final int operatorType;
   final String operatorContent;
+
   HouseKeepingProcessModel({
     required this.id,
     required this.housekeepingServiceId,
@@ -22,8 +23,10 @@ class HouseKeepingProcessModel extends Equatable {
     required this.operatorType,
     required this.operatorContent,
   });
+
   factory HouseKeepingProcessModel.fromJson(Map<String, dynamic> json) =>
       _$HouseKeepingProcessModelFromJson(json);
+
   factory HouseKeepingProcessModel.fail() => HouseKeepingProcessModel(
       id: -1,
       housekeepingServiceId: -1,
@@ -32,6 +35,7 @@ class HouseKeepingProcessModel extends Equatable {
       operationType: 0,
       operatorContent: '',
       operatorType: 1);
+
   @override
   List<Object> get props {
     return [

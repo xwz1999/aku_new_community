@@ -1,7 +1,6 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:aku_community/model/common/img_model.dart';
 
 part 'news_item_model.g.dart';
 
@@ -11,7 +10,9 @@ class NewsItemModel {
   final String title;
   final String createDate;
   final List<ImgModel> imgList;
+
   DateTime? get create => DateUtil.getDateTime(createDate);
+
   NewsItemModel({
     required this.id,
     required this.title,

@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/extensions/num_ext.dart';
-import 'package:aku_community/pages/sign/sign_func.dart';
-import 'package:aku_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
-import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/provider/sign_up_provider.dart';
-import 'package:aku_community/provider/user_provider.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_back_button.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
+import 'package:aku_new_community/pages/tab_navigator.dart';
+import 'package:aku_new_community/provider/sign_up_provider.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_back_button.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart' show TextUtil;

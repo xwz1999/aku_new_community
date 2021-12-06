@@ -1,4 +1,3 @@
-
 class TextUtils {
   ///判断空字符串
   ///

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +26,8 @@ class RectIndicator extends StatelessWidget {
 
   _indicator(bool isActive) {
     return AnimatedContainer(
-      margin: EdgeInsets.symmetric(horizontal: 3.0), //指示器间距
+      margin: EdgeInsets.symmetric(horizontal: 3.0),
+      //指示器间距
       height: height,
       width: isActive ? activeWidth : width,
       decoration: BoxDecoration(
@@ -38,7 +38,7 @@ class RectIndicator extends StatelessWidget {
                 offset: Offset(0.0, 2.0),
                 blurRadius: 0.0)
           ],
-          borderRadius: BorderRadius.circular(radius )),
+          borderRadius: BorderRadius.circular(radius)),
       duration: Duration(milliseconds: 150),
     );
   }

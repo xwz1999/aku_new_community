@@ -1,23 +1,20 @@
-
-import 'package:aku_community/model/good/good_detail_model.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/pages/personal/address/address_list_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/market/collection/collection_func.dart';
-import 'package:aku_community/ui/market/search/search_func.dart';
-import 'package:aku_community/ui/market/search/submit_order_page.dart';
-import 'package:aku_community/ui/market/search/submit_order_page_normal.dart';
-import 'package:aku_community/ui/market/shop_car/shop_car_page.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/good/good_detail_model.dart';
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/market/collection/collection_func.dart';
+import 'package:aku_new_community/ui/market/search/search_func.dart';
+import 'package:aku_new_community/ui/market/search/submit_order_page_normal.dart';
+import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-
 
 import 'good_detail_bottomSheet.dart';
 
@@ -39,8 +36,8 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
   late GoodDetailModel? _goodDetail;
   bool _onload = true;
   late ScrollController _sliverListController;
-   AddressModel? _addressModel;
-   List _imageList = [];
+  AddressModel? _addressModel;
+  List _imageList = [];
 
   @override
   void initState() {
@@ -55,9 +52,9 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     _pageController = PageController();
     _sliverListController = ScrollController();
     _refreshController = EasyRefreshController();
-    if(appProvider.addressModel!=null){
+    if (appProvider.addressModel != null) {
       _addressModel = appProvider.addressModel!;
-    }else{
+    } else {
       _addressModel = null;
     }
   }
@@ -72,8 +69,6 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return BeeScaffold(
       titleSpacing: 0,
       bgColor: Color(0xFFF9F9F9),
@@ -82,7 +77,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
       //   children: [
       //   ],
       // ),
-      bottomNavi: _onload?SizedBox(): _bottomButton(),
+      bottomNavi: _onload ? SizedBox() : _bottomButton(),
 
       body: Stack(
         children: [
@@ -99,27 +94,29 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
 
                 setState(() {});
               },
-              child: _onload?SizedBox():_buildBody(context)),
+              child: _onload ? SizedBox() : _buildBody(context)),
           Positioned(
-            top: (kToolbarHeight+16).w,
+            top: (kToolbarHeight + 16).w,
             left: 24.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 Container(
-                  padding: EdgeInsets.all(10.w),
+                    padding: EdgeInsets.all(10.w),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(52.w)),
                         color: Color(0x80000000)),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.back();
                       },
-                      child: Image.asset(R.ASSETS_ICONS_ICON_BACK_PNG,width: 52.w,height: 52.w,),
-                    )
-                )
+                      child: Image.asset(
+                        R.ASSETS_ICONS_ICON_BACK_PNG,
+                        width: 52.w,
+                        height: 52.w,
+                      ),
+                    ))
               ],
             ),
           ),
@@ -131,7 +128,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
   Widget _buildBody(BuildContext context) {
     return Column(
       children: [
-        _imageView(_goodDetail!.goodsDetailImageVos??[]),
+        _imageView(_goodDetail!.goodsDetailImageVos ?? []),
         20.hb,
         _goodInfo(),
         20.hb,
@@ -142,16 +139,15 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     );
   }
 
-  _goodInfo(){
+  _goodInfo() {
     return Container(
       padding: EdgeInsets.all(20.w),
-      margin: EdgeInsets.symmetric(horizontal:20.w ),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       width: double.infinity,
       height: 256.w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(24.w)),
-        color: Colors.white
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(24.w)),
+          color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -161,14 +157,16 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '¥'.text.color(Color(0xFFE52E2E)).size(28.sp).make(),
               Text(
-                _goodDetail!.sellPrice==null?'':(_goodDetail!.sellPrice!).toStringAsFixed(2),
-                style: TextStyle(fontSize: 40.sp,color: Color(0xFFE52E2E)),
+                _goodDetail!.sellPrice == null
+                    ? ''
+                    : (_goodDetail!.sellPrice!).toStringAsFixed(2),
+                style: TextStyle(fontSize: 40.sp, color: Color(0xFFE52E2E)),
               ),
               Spacer(),
               '已售：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                (_goodDetail!.sellNum??0).toString(),
-                style: TextStyle(fontSize: 24.sp,color: Color(0xFFBBBBBB)),
+                (_goodDetail!.sellNum ?? 0).toString(),
+                style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
               16.wb,
             ],
@@ -178,16 +176,14 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             height: 80.w,
             width: double.infinity,
-            child:
-            Text(
-                (_goodDetail!.skuName??''),
-              style: TextStyle(fontSize: 28.sp,color: ktextPrimary),
+            child: Text(
+              (_goodDetail!.skuName ?? ''),
+              style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-
-          _getIcon(_goodDetail!.kind??0),
+          _getIcon(_goodDetail!.kind ?? 0),
           Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -195,59 +191,56 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '原价：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                _goodDetail!.discountPrice==null?'':(_goodDetail!.discountPrice!).toStringAsFixed(2),
-                style: TextStyle(fontSize: 24.sp,color: Color(0xFFBBBBBB)),
+                _goodDetail!.discountPrice == null
+                    ? ''
+                    : (_goodDetail!.discountPrice!).toStringAsFixed(2),
+                style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
               50.wb,
-
               '折扣：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                (_goodDetail!.discountPrice??0)>(_goodDetail!.sellPrice??0)
+                (_goodDetail!.discountPrice ?? 0) >
+                        (_goodDetail!.sellPrice ?? 0)
                     ? _getDiscount(_goodDetail!.sellPrice ?? -1,
-                    _goodDetail!.discountPrice ?? -1)
+                        _goodDetail!.discountPrice ?? -1)
                     : '暂无折扣',
-                style: TextStyle(fontSize: 24.sp,color: Color(0xFFBBBBBB)),
+                style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
               16.wb,
             ],
           ),
-
         ],
       ),
     );
   }
 
-
-  _address(BuildContext context){
-
+  _address(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20.w),
-      margin: EdgeInsets.symmetric(horizontal:20.w ),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       width: double.infinity,
       height: 184.w,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24.w)),
-          color: Colors.white
-      ),
+          color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () async{
+            onTap: () async {
               //跳转到地址界面，点击地址然后返回地址
-              var result =  await  Get.to(()=>AddressListPage(canBack: true,));
-              if(result!=null){
+              var result = await Get.to(() => AddressListPage(
+                    canBack: true,
+                  ));
+              if (result != null) {
                 _addressModel = result;
               }
-              setState(() {
-
-              });
+              setState(() {});
             },
             child: Container(
               color: Colors.white,
               child: Column(
-
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -255,26 +248,30 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                       16.wb,
                       '送至'.text.color(Color(0xFFBBBBBB)).size(28.sp).make(),
                       20.wb,
-                      Image.asset(R.ASSETS_ICONS_ICON_GOOD_LOCATION_PNG,width: 30.w,height: 30.w,),
-
+                      Image.asset(
+                        R.ASSETS_ICONS_ICON_GOOD_LOCATION_PNG,
+                        width: 30.w,
+                        height: 30.w,
+                      ),
                       Container(
                         width: 430.w,
                         child: Text(
-                          _addressModel==null?'请先选择地址':(_addressModel!.locationName??'')
-                              +(_addressModel!.addressDetail??''),
-                          style: TextStyle(fontSize: 24.sp,color: ktextPrimary),
+                          _addressModel == null
+                              ? '请先选择地址'
+                              : (_addressModel!.locationName ?? '') +
+                                  (_addressModel!.addressDetail ?? ''),
+                          style:
+                              TextStyle(fontSize: 24.sp, color: ktextPrimary),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        ),
-
+                      ),
                       Spacer(),
                       Icon(
                         CupertinoIcons.chevron_forward,
                         size: 32.w,
                         color: Color(0xFF999999),
                       ),
-
                       16.wb,
                     ],
                   ),
@@ -282,8 +279,17 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       120.wb,
-                      _goodDetail!.stockStatus==1?'有货'.text.color(Color(0xFFE52E2E)).size(28.sp).make()
-                          :'无货'.text.color(Color(0xFFE52E2E)).size(28.sp).make(),
+                      _goodDetail!.stockStatus == 1
+                          ? '有货'
+                              .text
+                              .color(Color(0xFFE52E2E))
+                              .size(28.sp)
+                              .make()
+                          : '无货'
+                              .text
+                              .color(Color(0xFFE52E2E))
+                              .size(28.sp)
+                              .make(),
                     ],
                   ),
                 ],
@@ -291,14 +297,13 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             ),
           ),
           20.hb,
-
           GestureDetector(
-            onTap: (){
-                 showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return GoodDetailBottomSheet(goodDetail:_goodDetail!);
-                      });
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return GoodDetailBottomSheet(goodDetail: _goodDetail!);
+                  });
             },
             child: Container(
               color: Colors.white,
@@ -307,10 +312,10 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                 children: [
                   16.wb,
                   '参数'.text.color(Color(0xFFBBBBBB)).size(28.sp).make(),
-                 48.wb,
+                  48.wb,
                   Text(
                     '品牌、规格',
-                    style: TextStyle(fontSize: 24.sp,color: ktextPrimary),
+                    style: TextStyle(fontSize: 24.sp, color: ktextPrimary),
                   ),
                   Spacer(),
                   Icon(
@@ -323,22 +328,18 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               ),
             ),
           ),
-
-
-
         ],
       ),
     );
   }
 
-  _getDetailImage(){
+  _getDetailImage() {
     return Container(
       padding: EdgeInsets.all(20.w),
-      margin: EdgeInsets.symmetric(horizontal:20.w ),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24.w)),
-          color: Colors.white
-      ),
+          color: Colors.white),
       width: double.infinity,
       child: Column(
         children: [
@@ -356,19 +357,19 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               2.wb,
               Text(
                 '商品详情',
-                style: TextStyle(fontSize: 28.sp,color: ktextPrimary),
+                style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
               ),
               Spacer(),
             ],
           ),
           10.hb,
-          ..._imageList.map((e) => _image(_getRightUrl(e)??''))
+          ..._imageList.map((e) => _image(_getRightUrl(e) ?? ''))
         ],
       ),
     );
   }
 
-  _image(String url){
+  _image(String url) {
     print(url);
     return Container(
       width: double.infinity,
@@ -378,29 +379,30 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
         },
         child: FadeInImage.assetNetwork(
           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-          image: 'https://'+url,
+          image: 'https://' + url,
           fit: BoxFit.cover,
         ),
       ),
     );
   }
+
   ///获取的地址//img30.360buyimg.com/sku/jfs/t1/144443/40/4086/433571/5f22204bEd3a409dc/3090e34cf8c4187c.jpg
   ///多两个斜杠
-  _getRightUrl(String url){
+  _getRightUrl(String url) {
     return url.substring(2);
   }
 
-
-
-  Widget _getIcon(int type){
-    if(type==1){
+  Widget _getIcon(int type) {
+    if (type == 1) {
       return Container(
         margin: EdgeInsets.only(left: 15.w),
         width: 86.w,
         height: 26.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4.w), ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.w),
+          ),
           gradient: LinearGradient(
             begin: FractionalOffset.centerLeft,
             end: FractionalOffset.centerRight,
@@ -409,20 +411,18 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
         ),
         child: Text(
           '京东自营',
-          style: TextStyle(
-              fontSize: 18.sp,
-              color: kForeGroundColor
-          ),
+          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
         ),
       );
-    }
-    else if(type==2){
+    } else if (type == 2) {
       return Container(
         alignment: Alignment.center,
         width: 86.w,
         height: 30.w,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4.w), ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.w),
+          ),
           gradient: LinearGradient(
             begin: FractionalOffset.centerLeft,
             end: FractionalOffset.centerRight,
@@ -431,76 +431,73 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
         ),
         child: Text(
           '京东POP',
-          style: TextStyle(
-              fontSize: 18.sp,
-              color: kForeGroundColor
-          ),
+          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
         ),
       );
-
-    }
-    else
+    } else
       return SizedBox();
   }
 
-
-
-
   _bottomButton() {
-    return  Container(
+    return Container(
       width: double.infinity,
       height: 100.w,
-
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: Color(0x4D000000),
-                offset: Offset(0.0, -1), //阴影xy轴偏移量
-                blurRadius: 0, //阴影模糊程度
-                spreadRadius: 0 //阴影扩散程度
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+            color: Color(0x4D000000),
+            offset: Offset(0.0, -1), //阴影xy轴偏移量
+            blurRadius: 0, //阴影模糊程度
+            spreadRadius: 0 //阴影扩散程度
             )
-          ]
-        // border: Border(top:BorderSide( width: 2.w,
-        //   color: kPrimaryColor,))
-      ),
+      ]
+          // border: Border(top:BorderSide( width: 2.w,
+          //   color: kPrimaryColor,))
+          ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           40.wb,
           GestureDetector(
-            onTap: () async{
+            onTap: () async {
               await CollectionFunc.collection(_goodDetail!.id!);
               _refreshController.callRefresh();
-
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(_goodDetail!.isCollection==0? R.ASSETS_ICONS_ICON_GOOD_FAVOR_PNG:R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,width: 48.w,height: 48.w,),
+                Image.asset(
+                  _goodDetail!.isCollection == 0
+                      ? R.ASSETS_ICONS_ICON_GOOD_FAVOR_PNG
+                      : R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
+                  width: 48.w,
+                  height: 48.w,
+                ),
                 Text(
                   '加入收藏',
-                  style: TextStyle(fontSize: 20.sp,color: ktextPrimary),
+                  style: TextStyle(fontSize: 20.sp, color: ktextPrimary),
                 ),
               ],
             ),
           ),
           40.wb,
           GestureDetector(
-            onTap: ()async{
+            onTap: () async {
               //跳转到购物车界面
-              Get.to(()=> ShopCarPage());
-
+              Get.to(() => ShopCarPage());
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(R.ASSETS_ICONS_ICON_GOOD_CAR_PNG,width: 48.w,height: 48.w,),
+                Image.asset(
+                  R.ASSETS_ICONS_ICON_GOOD_CAR_PNG,
+                  width: 48.w,
+                  height: 48.w,
+                ),
                 Text(
                   '购物车',
-                  style: TextStyle(fontSize: 20.sp,color: ktextPrimary),
+                  style: TextStyle(fontSize: 20.sp, color: ktextPrimary),
                 ),
               ],
             ),
@@ -509,47 +506,49 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
           Row(
             children: [
               GestureDetector(
-                onTap: () async{
-
+                onTap: () async {
                   await SearchFunc.addGoodsCar(_goodDetail!.id!);
                 },
                 child: Container(
                   width: 230.w,
                   height: 84.w,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.horizontal(left: Radius.circular(84.w)),
-                    border: Border.all(color: Color(0xFFE52E2E),width: 2.w)
-                    // border: Border(top:BorderSide(color: Color(0xFFE52E2E),width: 2.w),
-                    // left: BorderSide(color: Color(0xFFE52E2E),width: 2.w),bottom: BorderSide(color: Color(0xFFE52E2E),width: 2.w))
-                  ),
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.horizontal(left: Radius.circular(84.w)),
+                      border: Border.all(color: Color(0xFFE52E2E), width: 2.w)
+                      // border: Border(top:BorderSide(color: Color(0xFFE52E2E),width: 2.w),
+                      // left: BorderSide(color: Color(0xFFE52E2E),width: 2.w),bottom: BorderSide(color: Color(0xFFE52E2E),width: 2.w))
+                      ),
                   alignment: Alignment.center,
-                  child:Text(
+                  child: Text(
                     '加入购物车',
-                    style: TextStyle(fontSize: 32.sp,color:  Color(0xFFE52E2E)),
+                    style: TextStyle(fontSize: 32.sp, color: Color(0xFFE52E2E)),
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: (){
-                  if(_goodDetail!.stockStatus==0){
+                onTap: () {
+                  if (_goodDetail!.stockStatus == 0) {
                     BotToast.showText(text: '商品库存不足');
-                  }else{
-                    Get.to(()=>SubmitOrderNormalPage(goodModel: _goodDetail!,));
+                  } else {
+                    Get.to(() => SubmitOrderNormalPage(
+                          goodModel: _goodDetail!,
+                        ));
                   }
                 },
                 child: Container(
                   width: 230.w,
                   height: 84.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(right: Radius.circular(84.w)),
-                      color:Color(0xFFE52E2E),
-
+                    borderRadius:
+                        BorderRadius.horizontal(right: Radius.circular(84.w)),
+                    color: Color(0xFFE52E2E),
                   ),
                   alignment: Alignment.center,
-                  child:Text(
+                  child: Text(
                     '立即购买',
-                    style: TextStyle(fontSize: 32.sp,color: Colors.white),
+                    style: TextStyle(fontSize: 32.sp, color: Colors.white),
                   ),
                 ),
               )
@@ -557,7 +556,6 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
           )
         ],
       ),
-
     );
   }
 
@@ -606,6 +604,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
       ],
     );
   }
+
   _getDiscount(double sellPrice, double discountPrice) {
     String count = '';
     count = ((sellPrice / discountPrice) * 10).toStringAsFixed(1);
@@ -613,7 +612,5 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     return count + '折';
   }
 
-  _getSpecifications(){
-
-  }
+  _getSpecifications() {}
 }

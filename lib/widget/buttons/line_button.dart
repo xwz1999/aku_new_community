@@ -7,6 +7,7 @@ class LineButton extends StatelessWidget {
   final double? width;
   final EdgeInsetsGeometry? padding;
   final Color? color;
+
   const LineButton(
       {Key? key,
       required this.onPressed,
@@ -26,11 +27,11 @@ class LineButton extends StatelessWidget {
       disabledTextColor: Colors.white.withOpacity(0.3),
       minWidth: width ?? 168.w,
       height: 70.w,
-      padding:
-          padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.w),
-      color:  Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34.w),
-          side: BorderSide(color: color??Color(0xFFBBBBBB),width: 2.w)),
+      padding: padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.w),
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(34.w),
+          side: BorderSide(color: color ?? Color(0xFFBBBBBB), width: 2.w)),
       onPressed: onPressed,
       child: text,
     );

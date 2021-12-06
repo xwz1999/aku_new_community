@@ -15,17 +15,18 @@ class OrderListModel {
 
   OrderListModel(
       {this.id,
-        this.code,
-        this.tradeStatus,
-        this.payType,
-        this.payPrice,
-        this.freightFee,
-        this.receiverName,
-        this.receiverTel,
-        this.locationName,
-        this.addressDetail,
-        this.createDate,
-        this.myOrderListVoList,this.jcookAddressId});
+      this.code,
+      this.tradeStatus,
+      this.payType,
+      this.payPrice,
+      this.freightFee,
+      this.receiverName,
+      this.receiverTel,
+      this.locationName,
+      this.addressDetail,
+      this.createDate,
+      this.myOrderListVoList,
+      this.jcookAddressId});
 
   OrderListModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -45,7 +46,7 @@ class OrderListModel {
       json['myOrderListVoList'].forEach((v) {
         myOrderListVoList!.add(new MyOrderListVoList.fromJson(v));
       });
-    }else{
+    } else {
       myOrderListVoList = [];
     }
   }
@@ -86,15 +87,15 @@ class MyOrderListVoList {
 
   MyOrderListVoList(
       {this.id,
-        this.jcookGoodsId,
-        this.skuName,
-        this.mainPhoto,
-        this.sellPrice,
-        this.unit,
-        this.kind,
-        this.weight,
-        this.num,
-        this.payPrice});
+      this.jcookGoodsId,
+      this.skuName,
+      this.mainPhoto,
+      this.sellPrice,
+      this.unit,
+      this.kind,
+      this.weight,
+      this.num,
+      this.payPrice});
 
   MyOrderListVoList.fromJson(Map<String, dynamic> json) {
     id = json['id'];

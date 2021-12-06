@@ -2,6 +2,7 @@ class BaseFileModel {
   String? message;
   String? url;
   bool? status;
+
   BaseFileModel({
     this.message,
     this.url,

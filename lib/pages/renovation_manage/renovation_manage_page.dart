@@ -1,8 +1,7 @@
+import 'package:aku_new_community/pages/renovation_manage/renovation_manage_view.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/pages/renovation_manage/renovation_manage_view.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class RenovationManagePage extends StatefulWidget {
   RenovationManagePage({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class _RenovationManagePageState extends State<RenovationManagePage>
     with TickerProviderStateMixin {
   List<String> _tabs = ['待处理', '处理中', '已完成', '全部'];
   late TabController _tabController;
+
   @override
   void initState() {
     super.initState();

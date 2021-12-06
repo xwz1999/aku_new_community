@@ -1,12 +1,12 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class BeeSingleCheck<T> extends StatefulWidget {
   final T? value;
   final T? groupValue;
+
   BeeSingleCheck({Key? key, this.value, this.groupValue}) : super(key: key);
 
   @override
@@ -15,6 +15,7 @@ class BeeSingleCheck<T> extends StatefulWidget {
 
 class _BeeSingleCheckState extends State<BeeSingleCheck> {
   bool get _selected => widget.value == widget.groupValue;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(

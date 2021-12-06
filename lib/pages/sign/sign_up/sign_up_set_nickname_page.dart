@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/pages/sign/sign_up/sign_up_common_widget.dart';
+import 'package:aku_new_community/pages/tab_navigator.dart';
+import 'package:aku_new_community/provider/sign_up_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:random_character/chinese_character/random_chinese_charater.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/pages/sign/sign_func.dart';
-import 'package:aku_community/pages/sign/sign_up/sign_up_common_widget.dart';
-import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/provider/sign_up_provider.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class SignUpSetNicknamePage extends StatefulWidget {
   SignUpSetNicknamePage({Key? key}) : super(key: key);
@@ -24,6 +22,7 @@ class SignUpSetNicknamePage extends StatefulWidget {
 class _SignUpSetNicknamePageState extends State<SignUpSetNicknamePage> {
   GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   TextEditingController _textEditingController = TextEditingController();
+
   @override
   void dispose() {
     _textEditingController.dispose();

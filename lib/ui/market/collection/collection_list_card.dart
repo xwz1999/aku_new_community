@@ -1,21 +1,17 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/collection/collection_goods_model.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
-import 'package:aku_community/ui/market/collection/collection_func.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/collection/collection_goods_model.dart';
+import 'package:aku_new_community/ui/market/collection/collection_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-
-import 'package:aku_community/utils/headers.dart';
 
 class CollectionListCard extends StatelessWidget {
   final CollectionGoodsModel model;
   final EasyRefreshController refreshController;
-  const CollectionListCard({Key? key, required this.model, required this.refreshController}) : super(key: key);
+
+  const CollectionListCard(
+      {Key? key, required this.model, required this.refreshController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,26 +70,26 @@ class CollectionListCard extends StatelessWidget {
                 Spacer(),
                 20.hb,
                 RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '¥',
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 28.sp,
-                          ),
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '¥',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 28.sp,
                         ),
-                        TextSpan(
-                          text: '${model.sellPrice ?? 0} ',
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40.sp,
-                          ),
+                      ),
+                      TextSpan(
+                        text: '${model.sellPrice ?? 0} ',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40.sp,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +129,8 @@ class CollectionListCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: (model.discountPrice??0)>(model.sellPrice??0)
+                                text: (model.discountPrice ?? 0) >
+                                        (model.sellPrice ?? 0)
                                     ? _getDiscount(model.sellPrice ?? -1,
                                         model.discountPrice ?? -1)
                                     : '暂无折扣',
@@ -158,19 +155,16 @@ class CollectionListCard extends StatelessWidget {
                         // ),
                         // 24.wb,
                         GestureDetector(
-                          onTap: () async {
-                            await CollectionFunc.collection(model.id!);
-
+                            onTap: () async {
+                              await CollectionFunc.collection(model.id!);
 
                               refreshController.callRefresh();
-
-                          },
-                          child:Image.asset(
-                            R.ASSETS_ICONS_DELETE_PNG,
-                            width: 44.w,
-                            height: 44.w,
-                          )
-                        ),
+                            },
+                            child: Image.asset(
+                              R.ASSETS_ICONS_DELETE_PNG,
+                              width: 44.w,
+                              height: 44.w,
+                            )),
                       ],
                     ),
                     44.wb,

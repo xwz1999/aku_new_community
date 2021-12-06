@@ -1,9 +1,8 @@
+import 'package:aku_new_community/ui/manager/visitor/visitor_record_view.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:aku_community/ui/manager/visitor/visitor_record_view.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class VisitorRecordPage extends StatefulWidget {
   VisitorRecordPage({Key? key}) : super(key: key);
@@ -18,6 +17,7 @@ class _VisitorRecordPageState extends State<VisitorRecordPage>
 
   //导航标签
   List<String> _tabs = ['已分享', '已提交', '已过期'];
+
   @override
   void initState() {
     _controller = TabController(length: _tabs.length, vsync: this);

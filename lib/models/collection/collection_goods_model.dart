@@ -1,22 +1,22 @@
 class CollectionGoodsModel {
   int? id;
-  String?  skuName;
-  String?  mainPhoto;
-  int?  status;
-  int?  shopStatus;
-  double?  sellPrice;
-  double?  discountPrice;
-  int?  kind;
+  String? skuName;
+  String? mainPhoto;
+  int? status;
+  int? shopStatus;
+  double? sellPrice;
+  double? discountPrice;
+  int? kind;
 
   CollectionGoodsModel(
       {this.id,
-        this.skuName,
-        this.mainPhoto,
-        this.status,
-        this.shopStatus,
-        this.sellPrice,
-        this.discountPrice,
-        this.kind});
+      this.skuName,
+      this.mainPhoto,
+      this.status,
+      this.shopStatus,
+      this.sellPrice,
+      this.discountPrice,
+      this.kind});
 
   CollectionGoodsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

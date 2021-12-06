@@ -9,12 +9,12 @@ class GoodsHomeModel {
 
   GoodsHomeModel(
       {this.id,
-        this.skuName,
-        this.mainPhoto,
-        this.sellPrice,
-        this.discountPrice,
-        this.kind,
-        this.isCollection});
+      this.skuName,
+      this.mainPhoto,
+      this.sellPrice,
+      this.discountPrice,
+      this.kind,
+      this.isCollection});
 
   GoodsHomeModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

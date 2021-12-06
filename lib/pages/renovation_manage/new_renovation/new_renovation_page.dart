@@ -1,13 +1,11 @@
+import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_add_page.dart';
+import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_add_page.dart';
-import 'package:aku_community/pages/renovation_manage/new_renovation/new_renovation_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:aku_community/widget/tab_bar/bee_tab_bar.dart';
 
 class NewRenovationPage extends StatefulWidget {
   NewRenovationPage({Key? key}) : super(key: key);
@@ -28,6 +26,7 @@ class _NewRenovationPageState extends State<NewRenovationPage>
     '检查未通过'
   ];
   late TabController _tabController;
+
   @override
   void initState() {
     super.initState();

@@ -1,31 +1,28 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/const/resource.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/good/good_detail_model.dart';
-import 'package:aku_community/model/order/create_order_model.dart';
-import 'package:aku_community/model/user/adress_model.dart';
-import 'package:aku_community/models/market/shop_car/shop_car_list_model.dart';
-import 'package:aku_community/pages/life_pay/pay_finish_page.dart';
-import 'package:aku_community/pages/life_pay/pay_util.dart';
-import 'package:aku_community/pages/personal/address/address_list_page.dart';
-import 'package:aku_community/provider/app_provider.dart';
-import 'package:aku_community/ui/market/order/order_page.dart';
-import 'package:aku_community/ui/market/search/settlementGoodsDTO.dart';
-import 'package:aku_community/ui/market/shop_car/shop_car_func.dart';
-import 'package:aku_community/utils/network/base_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:aku_community/widget/buttons/end_button.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/good/good_detail_model.dart';
+import 'package:aku_new_community/model/order/create_order_model.dart';
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/market/order/order_page.dart';
+import 'package:aku_new_community/ui/market/search/settlementGoodsDTO.dart';
+import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/end_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/utils/headers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SubmitOrderNormalPage extends StatefulWidget {
   final GoodDetailModel goodModel;
@@ -130,7 +127,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                         baseModel.message!, API.pay.jcookOrderCheckAlipay);
                     if (result) {
                       Get.off(() => OrderPage(initIndex: 2));
-                    }else{
+                    } else {
                       ///跳到待付款页面
                       Get.off(() => OrderPage(initIndex: 1));
                     }

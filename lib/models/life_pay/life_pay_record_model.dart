@@ -14,6 +14,7 @@ class LifePayRecordModel extends Equatable {
   final String createDate;
   final int payType;
   final String code;
+
   LifePayRecordModel({
     required this.id,
     required this.chargesTemplateDetailName,
@@ -25,8 +26,10 @@ class LifePayRecordModel extends Equatable {
     required this.payType,
     required this.code,
   });
+
   factory LifePayRecordModel.fromJson(Map<String, dynamic> json) =>
       _$LifePayRecordModelFromJson(json);
+
   @override
   List<Object> get props {
     return [

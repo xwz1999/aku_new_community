@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/news/news_item_model.dart';
+import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/models/news/news_item_model.dart';
-import 'package:aku_community/ui/home/public_infomation/public_information_detail_page.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class PublicInfomationCard extends StatelessWidget {
   final NewsItemModel model;
+
   const PublicInfomationCard({Key? key, required this.model}) : super(key: key);
 
   @override

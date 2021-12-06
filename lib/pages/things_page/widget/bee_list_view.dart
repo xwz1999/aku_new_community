@@ -1,9 +1,7 @@
+import 'package:aku_new_community/utils/network/base_list_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:aku_community/utils/network/base_list_model.dart';
-import 'package:aku_community/utils/network/net_util.dart';
 
 /// ## BeeListView
 ///```dart
@@ -58,6 +56,7 @@ class BeeListView<T> extends StatefulWidget {
 
   ///额外的参数
   final Map<String, dynamic>? extraParams;
+
   BeeListView({
     Key? key,
     required this.path,
@@ -65,7 +64,8 @@ class BeeListView<T> extends StatefulWidget {
     required this.convert,
     required this.builder,
     this.size = 10,
-    this.extraParams, this.refreshExtra ,
+    this.extraParams,
+    this.refreshExtra,
   }) : super(key: key);
 
   @override
@@ -76,6 +76,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
   int _pageNum = 1;
   BaseListModel _model = BaseListModel.zero();
   List<T?> _models = [];
+
   Map<String, dynamic> get _params {
     Map<String, dynamic> tempMap = {
       'pageNum': _pageNum,
@@ -99,7 +100,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
         );
         _models = widget.convert(_model) as List<T?>;
         widget.controller?.resetLoadState();
-        if(widget.refreshExtra!=null){
+        if (widget.refreshExtra != null) {
           widget.refreshExtra!(_models);
         }
         if (mounted) setState(() {});

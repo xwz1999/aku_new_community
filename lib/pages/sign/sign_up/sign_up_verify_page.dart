@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/pages/sign/sign_up/sign_up_common_widget.dart';
+import 'package:aku_new_community/pages/tab_navigator.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/pages/sign/sign_func.dart';
-import 'package:aku_community/pages/sign/sign_up/sign_up_common_widget.dart';
-import 'package:aku_community/pages/tab_navigator.dart';
-import 'package:aku_community/utils/headers.dart';
 
 class SignUpVerifyPage extends StatefulWidget {
   SignUpVerifyPage({Key? key}) : super(key: key);
@@ -22,6 +20,7 @@ class _SignUpVerifyPageState extends State<SignUpVerifyPage> {
   TextEditingController _idNumberController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

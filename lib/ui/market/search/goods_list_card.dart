@@ -1,15 +1,10 @@
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/models/search/search_goods_model.dart';
-import 'package:aku_community/ui/market/collection/collection_func.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/search/search_goods_model.dart';
+import 'package:aku_new_community/ui/market/collection/collection_func.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import 'package:aku_community/constants/api.dart';
-
-import 'package:aku_community/utils/headers.dart';
 
 import 'good_detail_page.dart';
 
@@ -25,12 +20,13 @@ class GoodsListCard extends StatefulWidget {
 }
 
 class GoodsListCardState extends State<GoodsListCard> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(() => GoodDetailPage(goodId: widget.model.id!,));
+      onTap: () {
+        Get.to(() => GoodDetailPage(
+              goodId: widget.model.id!,
+            ));
       },
       child: Container(
         height: 280.w,
@@ -144,9 +140,10 @@ class GoodsListCardState extends State<GoodsListCard> {
                                 ),
                               ),
                               TextSpan(
-                                text: (widget.model.discountPrice??0)>(widget.model.sellPrice??0)
+                                text: (widget.model.discountPrice ?? 0) >
+                                        (widget.model.sellPrice ?? 0)
                                     ? _getDiscount(widget.model.sellPrice ?? -1,
-                                    widget.model.discountPrice ?? -1)
+                                        widget.model.discountPrice ?? -1)
                                     : '暂无折扣',
                                 style: TextStyle(
                                   color: ktextSubColor,
@@ -242,6 +239,4 @@ class GoodsListCardState extends State<GoodsListCard> {
     } else
       return SizedBox();
   }
-
-
 }

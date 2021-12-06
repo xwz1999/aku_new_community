@@ -8,6 +8,7 @@ class AnimatedScale extends ImplicitlyAnimatedWidget {
       : super(
           duration: Duration(milliseconds: 300),
         );
+
   @override
   ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
       _AnimatedScaleState();
@@ -15,6 +16,7 @@ class AnimatedScale extends ImplicitlyAnimatedWidget {
 
 class _AnimatedScaleState extends AnimatedWidgetBaseState<AnimatedScale> {
   Tween<double?>? scaleTween;
+
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
