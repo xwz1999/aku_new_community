@@ -1,32 +1,30 @@
-import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
-import 'package:aku_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
-import 'package:aku_community/pages/surrounding_enterprises/surrounding_enterprises_detail_page.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
+import 'package:aku_new_community/pages/surrounding_enterprises/surrding_enterprises_detail_page.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
-
 
 class SurroundingEnterprisesPage extends StatefulWidget {
   SurroundingEnterprisesPage({Key? key}) : super(key: key);
 
   @override
-  _SurroundingEnterprisesPageState createState() => _SurroundingEnterprisesPageState();
+  _SurroundingEnterprisesPageState createState() =>
+      _SurroundingEnterprisesPageState();
 }
 
-
-
-class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage> {
+class _SurroundingEnterprisesPageState
+    extends State<SurroundingEnterprisesPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
   int _page = 1;
   int _size = 10;
@@ -40,14 +38,14 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
     //     HiveStore.appBox!.put('IndustryCommitteePage',true);
     //   }
     // });
-
   }
-
 
   Widget _buildCard(SurroundingEnterprisesModel model) {
     return GestureDetector(
-      onTap: (){
-        Get.to(SurroundingEnterprisesDetailPage(surroundingEnterprisesModel: model,));
+      onTap: () {
+        Get.to(SurroundingEnterprisesDetailPage(
+          houseIntroduceModel: model,
+        ));
       },
       child: Container(
         padding: EdgeInsets.all(20.w),
@@ -80,8 +78,7 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
                     style: TextStyle(
                         fontSize: 30.sp,
                         fontWeight: FontWeight.bold,
-                        color: ktextPrimary
-                    ),
+                        color: ktextPrimary),
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -91,11 +88,7 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
                   width: 440.w,
                   child: Text(
                     '${model.content}',
-                    style: TextStyle(
-                        fontSize: 24.sp,
-
-                        color: ktextPrimary
-                    ),
+                    style: TextStyle(fontSize: 24.sp, color: ktextPrimary),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -103,11 +96,7 @@ class _SurroundingEnterprisesPageState extends State<SurroundingEnterprisesPage>
                 Spacer(),
                 Row(
                   children: [
-                    '南宁人才公寓'
-                        .text
-                        .size(20.sp)
-                        .color(ktextThirdColor)
-                        .make(),
+                    '南宁人才公寓'.text.size(20.sp).color(ktextThirdColor).make(),
                     Spacer(),
                     '发布于：${model.getReleaseDate}'
                         .text
