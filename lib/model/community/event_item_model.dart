@@ -11,9 +11,12 @@ class EventItemModel {
   String? gambitTitle;
   String? createDate;
   List<LikeNames>? likeNames;
+  num? likeNamesNum;
   List<ImgModel>? imgUrls;
   List<ImgModel>? headSculptureImgUrl;
+  num? gambitThemeCommentNum;
   List<GambitThemeCommentVoList>? gambitThemeCommentVoList;
+  num? views;
 
   DateTime? get date => DateUtil.getDateTime(createDate!);
 
@@ -27,9 +30,10 @@ class EventItemModel {
       this.gambitTitle,
       this.createDate,
       this.likeNames,
+        this.likeNamesNum,
       this.imgUrls,
       this.headSculptureImgUrl,
-      this.gambitThemeCommentVoList});
+      this.gambitThemeCommentVoList,this.gambitThemeCommentNum,this.views});
 
   EventItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,6 +44,9 @@ class EventItemModel {
     content = json['content'];
     gambitTitle = json['gambitTitle'];
     createDate = json['createDate'];
+    likeNamesNum = json['likeNamesNum'];
+    views = json['views'];
+    gambitThemeCommentNum = json['gambitThemeCommentNum'];
     if (json['likeNames'] != null) {
       likeNames = [];
       json['likeNames'].forEach((v) {
@@ -80,6 +87,9 @@ class EventItemModel {
     data['content'] = this.content;
     data['gambitTitle'] = this.gambitTitle;
     data['createDate'] = this.createDate;
+    data['likeNamesNum'] = this.likeNamesNum;
+    data['views'] = this.views;
+    data['gambitThemeCommentNum'] = this.gambitThemeCommentNum;
     if (this.likeNames != null) {
       data['likeNames'] = this.likeNames!.map((v) => v.toJson()).toList();
     }

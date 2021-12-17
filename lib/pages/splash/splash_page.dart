@@ -90,13 +90,14 @@ class _SplashPageState extends State<SplashPage> {
 
           // ),
           actions: [
-            CupertinoDialogAction(
-              child: Text('同意'),
-              onPressed: () => Get.back(result: true),
-            ),
+
             CupertinoDialogAction(
               child: Text('拒绝'),
               onPressed: () => Get.back(result: false),
+            ),
+            CupertinoDialogAction(
+              child: Text('同意'),
+              onPressed: () => Get.back(result: true),
             ),
           ],
         );

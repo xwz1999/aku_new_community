@@ -23,6 +23,7 @@ import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,8 +62,8 @@ class _CommunityPageState extends State<CommunityPage>
     super.initState();
     _easyRefreshController = EasyRefreshController();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    if (userProvider.isLogin) _tabs = ['最新', '话题', '我的'];
-    if (userProvider.isNotLogin) _tabs = ['最新', '话题'];
+    if (userProvider.isLogin) _tabs = ['附近社区', '我的动态'];
+    if (userProvider.isNotLogin) _tabs = ['附近社区'];
     _tabController = TabController(
       vsync: this,
       length: _tabs.length,
@@ -84,17 +85,41 @@ class _CommunityPageState extends State<CommunityPage>
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 10.0,
-        title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Text(
-            '附近社区',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 32.sp,
-              color: Color(0xff333333),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ]),
+        title: Align(
+            alignment: Alignment.centerLeft,
+            child: Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+              ),
+              child: TabBar(
+                onTap: (index) {
+                  setState(() {});
+                },
+                controller: _tabController,
+                indicatorColor: Color(0xffffc40c),
+                indicatorPadding: EdgeInsets.only(bottom: 15.w),
+                indicator: const BoxDecoration(),
+                tabs: _tabs.map((e) => Tab(text: e)).toList(),
+                labelStyle:
+                    TextStyle(fontSize: 32.sp, fontWeight: FontWeight.bold),
+                labelColor: Color(0xD9000000),
+                unselectedLabelStyle: TextStyle(fontSize: 32.sp),
+                unselectedLabelColor: Color(0x73000000),
+                isScrollable: true,
+              ),
+            )),
+        // Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        //   Text(
+        //     '附近社区',
+        //     style: TextStyle(
+        //       fontWeight: FontWeight.bold,
+        //       fontSize: 32.sp,
+        //       color: Color(0xff333333),
+        //     ),
+        //     textAlign: TextAlign.center,
+        //   ),
+        // ]),
         backgroundColor: Colors.white,
         actions: [
           Padding(
@@ -106,12 +131,10 @@ class _CommunityPageState extends State<CommunityPage>
                 if (result == true) {
                   switch (_tabController!.index) {
                     case 0:
-                      newKey.currentState!.refresh();
+                      _easyRefreshController.callRefresh();
+
                       break;
                     case 1:
-                      // topicKey.currentState!.refresh();
-                      break;
-                    case 2:
                       myKey.currentState!.refresh();
                       break;
                   }
@@ -122,58 +145,100 @@ class _CommunityPageState extends State<CommunityPage>
             ),
           )
         ],
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(90.w), child: _geSearch()),
+        // bottom: _tabController!.index==0?PreferredSize(
+        //     preferredSize: Size.fromHeight(90.w), child: _geSearch()):
+        // PreferredSize(
+        //     preferredSize: Size.fromHeight(311.w), child: Container(
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     children: [
+        //       Image.asset(R.ASSETS_ICONS_ICON_LOGISTICS_PNG,width: 132.w,height: 132.w,),
+        //       32.hb,
+        //       '吼姆拉'.text.size(32.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
+        //       12.hb,
+        //       '当一个新时代的天之圣杯'.text.size(24.sp).color(Color(0x73000000)).make(),
+        //
+        //     ],
+        //   ),
+        // )),
       ),
-      // floatingActionButton:  FloatingActionButton(
-      //     onPressed: () async {
-      //       if (LoginUtil.isNotLogin) return;
-      //       bool? result = await Get.to(() => AddNewEventPage());
-      //       if (result == true) {
-      //         switch (_tabController!.index) {
-      //           case 0:
-      //             newKey.currentState!.refresh();
-      //             break;
-      //           case 1:
-      //             topicKey.currentState!.refresh();
-      //             break;
-      //           case 2:
-      //             myKey.currentState!.refresh();
-      //             break;
-      //         }
-      //       }
-      //     },
-      //     heroTag: 'event_add',
-      //     child: Icon(Icons.add),
-      //   ),
 
-      body: EasyRefresh(
-        firstRefresh: true,
-        header: MaterialHeader(),
-        controller: _easyRefreshController,
-        onRefresh: () async {
-          await (getNewInfo());
-          _gambitModels = await CommunityFunc.getListGambit();
-          _hotNewsModels = await CommunityFunc.getHotNews();
-          _onload = false;
-          setState(() {});
-        },
-        child: _onload
-            ? SizedBox()
-            : ListView(
-                children: [
-                  2.hb,
-                  _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
-                  16.hb,
-                  _gambitModels.isEmpty ? SizedBox() : _getNews(),
-                  16.hb,
-                  ..._newItems
-                      .map((e) => ChatCard(
-                            model: e,
-                          ))
-                      .toList()
-                ],
-              ),
+      body: TabBarView(
+        children: userProvider.isLogin
+            ? [
+                EasyRefresh(
+                  firstRefresh: true,
+                  header: MaterialHeader(),
+                  controller: _easyRefreshController,
+                  onRefresh: () async {
+                    await (getNewInfo());
+                    _gambitModels = await CommunityFunc.getListGambit();
+                    _hotNewsModels = await CommunityFunc.getHotNews();
+                    _onload = false;
+                    setState(() {});
+                  },
+                  child: _onload
+                      ? SizedBox()
+                      : ListView(
+                          children: [
+                            _geSearch(),
+                            2.hb,
+                            _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
+                            16.hb,
+                            _gambitModels.isEmpty ? SizedBox() : _getNews(),
+                            16.hb,
+                            ..._newItems
+                                .map((e) => ChatCard(
+                                      model: e,onDelete:(){
+                              _easyRefreshController.callRefresh();
+                              setState(() {
+
+                              });
+                              }
+                                    ))
+                                .toList()
+                          ],
+                        ),
+                ),
+                MyCommunityView(key: myKey),
+              ]
+            : [
+                EasyRefresh(
+                  firstRefresh: true,
+                  header: MaterialHeader(),
+                  controller: _easyRefreshController,
+                  onRefresh: () async {
+                    await (getNewInfo());
+                    _gambitModels = await CommunityFunc.getListGambit();
+                    _hotNewsModels = await CommunityFunc.getHotNews();
+                    _onload = false;
+                    setState(() {});
+                  },
+                  child: _onload
+                      ? SizedBox()
+                      : ListView(
+                          children: [
+                            _geSearch(),
+                            2.hb,
+                            _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
+                            16.hb,
+                            _gambitModels.isEmpty ? SizedBox() : _getNews(),
+                            16.hb,
+                            ..._newItems
+                                .map((e) => ChatCard(
+                                      model: e,onDelete:() {
+                              _easyRefreshController.callRefresh();
+                              setState(() {
+
+                              });
+                            }
+                                    ))
+                                .toList()
+                          ],
+                        ),
+                ),
+              ],
+        controller: _tabController,
       ),
 
       // ListView(
@@ -282,16 +347,19 @@ class _CommunityPageState extends State<CommunityPage>
         Spacer(),
         GestureDetector(
           onTap: onTap,
-          child: Row(
-            children: [
-              suffixTitle.text.size(24.sp).color(Color(0xFF999999)).make(),
-              8.wb,
-              Icon(
-                CupertinoIcons.chevron_forward,
-                size: 24.w,
-                color: Color(0xFF999999),
-              ),
-            ],
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                suffixTitle.text.size(24.sp).color(Color(0xFF999999)).make(),
+                8.wb,
+                Icon(
+                  CupertinoIcons.chevron_forward,
+                  size: 24.w,
+                  color: Color(0xFF999999),
+                ),
+              ],
+            ),
           ),
         ),
         //24.wb,
@@ -427,8 +495,8 @@ class _CommunityPageState extends State<CommunityPage>
 
   _geSearch() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 32.w),
-      padding: EdgeInsets.only(bottom: 20.w),
+      padding: EdgeInsets.only(bottom: 20.w,left: 32.w,right: 32.w),
+      color: Colors.white,
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         height: 74.w,

@@ -1,13 +1,18 @@
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/event_item_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyEventCard extends StatelessWidget {
@@ -47,6 +52,7 @@ class MyEventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -60,8 +66,13 @@ class MyEventCard extends StatelessWidget {
                 .paddingOnly(left: 32.w, top: isFirst ? 0 : 64.w, bottom: 32.w)
             : SizedBox(),
         MaterialButton(
-          onPressed: () {
-            Get.to(() => EventDetailPage(themeId: model.id));
+          onPressed: () async{
+            BaseModel models = await NetUtil().get(
+              API.community.getEventDetail,
+              params: {'themeId': model.id},
+            );
+            EventItemModel  eventItemModel = EventItemModel.fromJson(models.data);
+            Get.to(() => EventDetailPage(themeId: model.id, eventItemModel: eventItemModel,));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

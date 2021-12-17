@@ -64,7 +64,7 @@ class MainInitialize {
       });
     } on PlatformException {}
     jpush.setup(
-      appKey: "00e20fef79ee804d5c9abb54",
+      appKey: "5f42cbb15abcdda6f8aeb925",
       channel: "developer-default",
       production: false,
       debug: true,

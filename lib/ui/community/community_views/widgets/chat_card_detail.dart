@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/event_item_model.dart';
@@ -9,7 +10,6 @@ import 'package:aku_new_community/ui/community/community_views/widgets/send_a_ch
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
@@ -20,15 +20,15 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class ChatCard extends StatefulWidget {
+class ChatCardDetail extends StatefulWidget {
   final EventItemModel? model;
-  final VoidCallback? onDelete;
 
+  final VoidCallback? onDelete;
 
   final bool hideLine;
   final bool canTap;
 
-  ChatCard({
+  ChatCardDetail({
     Key? key,
     required this.model,
     this.onDelete,
@@ -37,10 +37,10 @@ class ChatCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ChatCardState createState() => _ChatCardState();
+  _ChatCardDetailState createState() => _ChatCardDetailState();
 }
 
-class _ChatCardState extends State<ChatCard> {
+class _ChatCardDetailState extends State<ChatCardDetail> {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     return (userProvider.userInfoModel?.id ?? -1) == widget.model!.createId;
@@ -68,6 +68,8 @@ class _ChatCardState extends State<ChatCard> {
             maxHeight: 300.w,
             maxWidth: 300.w,
           ),
+          child: Hero(
+            tag: ImgModel.first(widget.model!.imgUrls),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
               image: API.image(ImgModel.first(widget.model!.imgUrls)),
@@ -79,7 +81,7 @@ class _ChatCardState extends State<ChatCard> {
                 );
               },
             ),
-
+          ),
         ),
       );
     else
@@ -115,7 +117,7 @@ class _ChatCardState extends State<ChatCard> {
                   child: SizedBox(
                     height: 78.w,
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
+
                       children: [
                         MaterialButton(
                           height: 78.w,
@@ -251,7 +253,7 @@ class _ChatCardState extends State<ChatCard> {
           Icon(Icons.favorite_border_rounded, size: 24.w),
           14.wb,
           ...widget.model!.likeNames!
-              .map((e) => e.name!.text.make())
+              .map((e) => Container(child: e.name!.text.make(),margin: EdgeInsets.only(right: 10.w),))
               .toList()
               .sepWidget(separate: ','.text.make()),
         ],
@@ -260,24 +262,168 @@ class _ChatCardState extends State<ChatCard> {
   }
 
   _renderComment() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: widget.model!.gambitThemeCommentVoList!.map((e) {
-        StringBuffer buffer = StringBuffer();
-        buffer.write(e.createName);
-        if (e.parentName != null) buffer.write('回复${e.parentName}');
-        buffer.write(':${e.content}');
-        return InkWell(
-          child: Text(
-            buffer.toString(),
-            style: Theme.of(context).textTheme.subtitle2,
-          ),
-          onTap: () {
-            SendAChat.send(parentId: e.id, themeId: widget.model!.id);
-          },
-        );
-      }).toList(),
+    return Padding(
+      padding:  EdgeInsets.only(left: 20.w,right: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: widget.model!.gambitThemeCommentVoList!.map((e) {
+
+          // StringBuffer buffer = StringBuffer();
+          // buffer.write(e.createName);
+          //
+          // if (e.parentName != null) buffer.write('  回复  ${e.parentName}');
+          // buffer.write(': ${e.content}');
+          return InkWell(
+            child:     e.createName!.richText.color(Color(0xFF5D98F9)).size(24.sp).withTextSpanChildren([
+
+              e.parentName != null ?' 回复'.textSpan.size(24.sp).color(ktextSubColor).make():
+              ''.textSpan.size(24.sp).color(Color(0xFF5D98F9)).make(),
+              e.parentName != null ?' ${e.parentName}'.textSpan.size(24.sp).color(Color(0xFF5D98F9)).make():
+              ''.textSpan.size(24.sp).color(ktextPrimary).make(),
+              ' : '.textSpan.size(24.sp).color(ktextPrimary).make(),
+              '${e.content}'.textSpan.size(24.sp).black.make(),
+            ]).make(),
+            onTap: () {
+              SendAChat.send(parentId: e.id, themeId: widget.model!.id);
+            },
+          );
+        }).toList(),
+      ),
     );
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              [
+                Material(
+                  color: Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(48.w),
+                  clipBehavior: Clip.antiAlias,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                    image: API
+                        .image(ImgModel.first(widget.model!.headSculptureImgUrl)),
+                    height: 96.w,
+                    width: 96.w,
+                    fit: BoxFit.cover,
+                    imageErrorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                        height: 86.w,
+                        width: 86.w,
+                      );
+                    },
+                  ),
+                ).paddingOnly(left: 32.w),
+                20.wb,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.model!.createName!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.85),
+                          fontSize: 30.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    12.hb,
+                    BeeDateUtil(widget.model!.date)
+                        .timeAgoWithHm
+                        .text
+                        .size(24.sp)
+                        .color(Color(0xFF999999))
+                        .make(),
+                  ],
+                ),
+                Spacer(),
+                Image.asset(R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,width: 40.w,height: 40.w,),
+                //Image.asset(widget.model!.isLike!=1? R.ASSETS_ICONS_COMMUNITY_LIKE_PNG:R.ASSETS_ICONS_COMMUNITY_LIKE_IS_PNG,width: 32.w,height: 32.w,),
+                5.wb,
+                '${widget.model!.likeNamesNum}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
+                32.wb,
+
+
+
+
+              ].row(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      32.hb,
+                      widget.model!.content!.text.size(28.sp).color(ktextSubColor).make(),
+                      32.hb,
+                      _renderImage(),
+                      Row(
+                        children: [
+                          widget.model!.gambitTitle?.isEmpty ?? true
+                              ? SizedBox()
+                              : Chip(
+                            label: '# ${widget.model!.gambitTitle}'
+                                .text
+                                .color(Color(0xFF547fc0))
+                                .size(28.sp)
+                                .make(),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 5.w),
+                            labelPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            materialTapTargetSize:
+                            MaterialTapTargetSize.shrinkWrap,
+                            // shape: StadiumBorder(
+                            //   side: BorderSide(),
+                            // ),
+                          ).pOnly(top: 20.w),
+
+                        ],
+                      ),
+
+                      20.hb,
+                    ],
+                  ).paddingOnly(right: 32.w, left: 32.w)
+                 ,
+
+                  // Divider(height: 1.w, thickness: 1.w),
+                  // 10.hb,
+                  // Row(
+                  //   children: [
+                  //     // 64.hb,
+                  //
+                  //     Spacer(),
+                  //     _buildMoreButton(),
+                  //     20.wb,
+                  //   ],
+                  // ),
+                  20.hb,
+                  //_buildLikeAndComment(),
+
+                ],
+              ),
+            ],
+          ).paddingOnly(top: 20.w),
+        ).marginOnly(top: 12.w, bottom: 12.w),
+        _renderLikeAndCommentWidget()
+      ]
+
+
+    ).paddingOnly(bottom: 16.w);
   }
 
   _renderLikeAndComment() {
@@ -289,14 +435,15 @@ class _ChatCardState extends State<ChatCard> {
       child: Padding(
         padding: EdgeInsets.all(8.w),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             widget.model!.likeNames!.isEmpty ? SizedBox() : _renderLike(),
+            10.hb,
             (widget.model!.likeNames!.isNotEmpty &&
-                    widget.model!.gambitThemeCommentVoList!.isNotEmpty)
+                widget.model!.gambitThemeCommentVoList!.isNotEmpty)
                 ? Divider(height: 1.w, thickness: 1.w)
                 : SizedBox(),
+            10.hb,
             widget.model!.gambitThemeCommentVoList!.isEmpty
                 ? SizedBox()
                 : _renderComment(),
@@ -306,232 +453,117 @@ class _ChatCardState extends State<ChatCard> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        // border: Border(
-        //   bottom: BorderSide(
-        //     color: widget.hideLine
-        //         ? Colors.transparent
-        //         : Color(0xFFE5E5E5).withOpacity(0.5),
-        //   ),
-        // ),
-      ),
-      child: MaterialButton(
-        padding: EdgeInsets.zero,
-        onPressed: widget.canTap
-            ? () async{
-                BaseModel model = await NetUtil().get(
-                  API.community.getEventDetail,
-                  params: {'themeId': widget.model!.id},
-                );
-                EventItemModel  models = EventItemModel.fromJson(model.data);
-                Get.to(() => EventDetailPage(themeId: widget.model!.id, eventItemModel: models,onDelete: widget.onDelete,));
-              }
-            : null,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            [
-              Material(
-                color: Color(0xFFF5F5F5),
-                borderRadius: BorderRadius.circular(48.w),
-                clipBehavior: Clip.antiAlias,
-                child: FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: API
-                      .image(ImgModel.first(widget.model!.headSculptureImgUrl)),
-                  height: 96.w,
-                  width: 96.w,
-                  fit: BoxFit.cover,
-                  imageErrorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      height: 86.w,
-                      width: 86.w,
-                    );
-                  },
-                ),
-              ).paddingOnly(left: 32.w),
-              20.wb,
+  _renderLikeAndCommentWidget(){
+    return Container(
+      padding: EdgeInsets.only(top: 22.w,bottom: 22.w),
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              32.wb,
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    widget.model!.createName!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(0.85),
-                        fontSize: 30.sp,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  12.hb,
-                  BeeDateUtil(widget.model!.date)
-                      .timeAgoWithHm
-                      .text
-                      .size(24.sp)
-                      .color(Color(0xFF999999))
-                      .make(),
+
+                  ('评论'+'${widget.model!.gambitThemeCommentNum!}').text.size(28.sp).black.make(),
+                  Container(
+                    width: 32.w,
+                    height: 2.w,
+                    color: Color(0xCCFFB634),
+                  )
                 ],
               ),
               Spacer(),
-              PopupMenuButton(
-
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.w)),
-                itemBuilder: (context) {
-                  return [
-                    _isMyself?
-                    PopupMenuItem(
-                      child: '删除'.text.isIntrinsic.make(),
-                      value: 0,
-                    ):PopupMenuItem(
-                      child: '举报'.text.isIntrinsic.make(),
-                      value: 0,
-                    ),
-                  ];
-                },
-                onSelected: (dynamic _) async {
-                  if (LoginUtil.isNotLogin) return;
-                  if(!_isMyself){
-                    VoidCallback cancel = BotToast.showLoading();
-                    await Future.delayed(
-                        Duration(milliseconds: 500 + Random().nextInt(500)));
-                    cancel();
-                    BotToast.showText(text: '举报成功');
-                  }else{
-                    bool? result =
-                    await Get.dialog(CupertinoAlertDialog(
-                      title: '你确定删除吗'.text.isIntrinsic.make(),
-                      actions: [
-                        CupertinoDialogAction(
-                          child: '取消'.text.black.isIntrinsic.make(),
-                          onPressed: () => Get.back(),
-                        ),
-                        CupertinoDialogAction(
-                          child: '确定'
-                              .text
-                              .color(Colors.orange)
-                              .isIntrinsic
-                              .make(),
-                          onPressed: () => Get.back(result: true),
-                        ),
-                      ],
-                    ));
-
-                    if (result == true) {
-                      await NetUtil().get(
-                        API.community.deleteMyEvent,
-                        params: {'themeId': widget.model!.id},
-                        showMessage: true,
-                      );
-                      if (widget.onDelete != null) widget.onDelete!();
-                    }
-                  }
-
-
-                },
+              GestureDetector(
                 child: Container(
-                    width: 80.w,
-                    height: 80.w,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      R.ASSETS_ICONS_ICON_MORE_PNG,
-                      width: 8.w,
-                      height: 32.w,
-                      fit: BoxFit.fitHeight,
-                    )),
-              ).paddingOnly(right: 32.w),
-            ].row(),
+                  child: Row(
+                    children: [
+                      Image.asset(R.ASSETS_ICONS_ICON_SORT_PNG,height: 40.w,width: 40.w,),
+                      8.wb,
+                      ('按时间').text.size(28.sp).color(ktextPrimary).make(),
+                    ],
+                  ),
+                ),
+              ),
+              32.wb,
+            ],
+          ),
+          _renderLikeAndComment(),
 
+
+        ],
+      ),
+    );
+  }
+
+  _commentWidget(List<ImgModel>? headSculptureImgUrl,String createName,DateTime? date,num? likeNamesNum){
+    return Container(
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          [
+            Material(
+              color: Color(0xFFF5F5F5),
+              borderRadius: BorderRadius.circular(48.w),
+              clipBehavior: Clip.antiAlias,
+              child: FadeInImage.assetNetwork(
+                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                image: API
+                    .image(ImgModel.first(headSculptureImgUrl)),
+                height: 96.w,
+                width: 96.w,
+                fit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                    height: 86.w,
+                    width: 86.w,
+                  );
+                },
+              ),
+            ).paddingOnly(left: 32.w),
+            20.wb,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    32.hb,
-                    widget.model!.content!.text.size(32.sp).black.make(),
-                    32.hb,
-                    _renderImage(),
-                    widget.model!.gambitTitle?.isEmpty ?? true
-                        ? SizedBox()
-                        : Chip(
-                            label: '# ${widget.model!.gambitTitle}'
-                                .text
-                                .color(Color(0xFF547fc0))
-                                .size(28.sp)
-                                .make(),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 5.w),
-                            labelPadding: EdgeInsets.zero,
-                            backgroundColor: Colors.transparent,
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            // shape: StadiumBorder(
-                            //   side: BorderSide(),
-                            // ),
-                          ).pOnly(top: 20.w),
-                    20.hb,
-                  ],
-                ).paddingOnly(right: 32.w, left: 32.w),
-
-                Divider(height: 1.w, thickness: 1.w),
-                10.hb,
-                // Row(
-                //   children: [
-                //     // 64.hb,
-                //     _isMyself
-                //         ? TextButton(
-                //             onPressed: () async {
-                //               bool? result =
-                //                   await Get.dialog(CupertinoAlertDialog(
-                //                 title: '你确定删除吗'.text.isIntrinsic.make(),
-                //                 actions: [
-                //                   CupertinoDialogAction(
-                //                     child: '取消'.text.black.isIntrinsic.make(),
-                //                     onPressed: () => Get.back(),
-                //                   ),
-                //                   CupertinoDialogAction(
-                //                     child: '确定'
-                //                         .text
-                //                         .color(Colors.orange)
-                //                         .isIntrinsic
-                //                         .make(),
-                //                     onPressed: () => Get.back(result: true),
-                //                   ),
-                //                 ],
-                //               ));
-                //
-                //               if (result == true) {
-                //                 await NetUtil().get(
-                //                   API.community.deleteMyEvent,
-                //                   params: {'themeId': widget.model!.id},
-                //                   showMessage: true,
-                //                 );
-                //                 if (widget.onDelete != null) widget.onDelete!();
-                //               }
-                //             },
-                //             child: '删除'.text.black.size(28.sp).make(),
-                //           )
-                //         : SizedBox(),
-                //     Spacer(),
-                //    // _buildLikeAndComment(),
-                //     //_buildMoreButton(),
-                //     20.wb,
-                //   ],
-                // ),
-                // 20.hb,
-                _buildLikeAndComment(),
-                 //_renderLikeAndComment(),
+                Text(
+                  createName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.85),
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.w500),
+                ),
+                12.hb,
+                BeeDateUtil(date)
+                    .timeAgoWithHm
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
               ],
             ),
-          ],
-        ).paddingOnly(top: 32.w, bottom: 32.w),
-      ),
-    ).paddingOnly(bottom: 16.w);
+            Spacer(),
+            Image.asset(R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,width: 40.w,height: 40.w,),
+            //Image.asset(widget.model!.isLike!=1? R.ASSETS_ICONS_COMMUNITY_LIKE_PNG:R.ASSETS_ICONS_COMMUNITY_LIKE_IS_PNG,width: 32.w,height: 32.w,),
+            5.wb,
+            '${likeNamesNum}'
+                .text
+                .size(24.sp)
+                .color(Color(0xFF999999))
+                .make(),
+            32.wb,
+          ].row(),
+          20.hb,
+          widget.model!.content!.text.size(28.sp).color(ktextSubColor).make(),
+
+
+        ],
+      ).paddingOnly(top: 20.w),
+    ).marginOnly(top: 12.w, bottom: 12.w);
   }
+
 }

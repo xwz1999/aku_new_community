@@ -7,7 +7,7 @@
   <application android:name="io.flutter.app.FlutterApplication" android:label="小蜜蜂智慧小区" android:icon="@mipmap/ic_launcher" android:networkSecurityConfig="@xml/network_security_config">
   <service android:name="com.amap.api.location.APSService"></service>
   <meta-data android:name="com.amap.api.v2.apikey"
-                 android:value="717cf8c606307809bcbd6661123b9837"/>
+                 android:value="f6361c0537bf2d6ddb898b10618d3726"/>
     <activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
       <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user

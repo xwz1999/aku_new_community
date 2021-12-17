@@ -3,6 +3,7 @@ import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/community_topic_model.dart';
 import 'package:aku_new_community/model/community/hot_news_model.dart';
+import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/model/community/swiper_model.dart';
 import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
@@ -23,6 +24,18 @@ class CommunityFunc {
     if (model.tableList!.length == 0) return [];
     return model.tableList!
         .map((e) => CommunityTopicModel.fromJson(e))
+        .toList();
+  }
+
+  ///我的动态
+  static Future<List<MyEventItemModel>> getMyEventItem() async {
+    BaseListModel model = await NetUtil().getList(
+      API.community.myEvent,
+      params: {'pageNum': 1, 'size': 8},
+    );
+    if (model.tableList!.length == 0) return [];
+    return model.tableList!
+        .map((e) => MyEventItemModel.fromJson(e))
         .toList();
   }
 
