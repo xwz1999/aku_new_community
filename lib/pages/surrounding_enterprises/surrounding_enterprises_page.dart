@@ -1,20 +1,19 @@
-import 'package:aku_community/models/house_introduce/house_introduce_model.dart';
-import 'package:aku_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
-import 'package:aku_community/pages/surrounding_enterprises/surrounding_enterprises_detail_page.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/surrounding_enterprises/surrounding_enterprises_model.dart';
+import 'package:aku_new_community/pages/surrounding_enterprises/surrounding_enterprises_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_community/base/base_style.dart';
-import 'package:aku_community/constants/api.dart';
-import 'package:aku_community/constants/app_theme.dart';
-import 'package:aku_community/model/common/img_model.dart';
-import 'package:aku_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_community/utils/headers.dart';
-import 'package:aku_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 
 class SurroundingEnterprisesPage extends StatefulWidget {
