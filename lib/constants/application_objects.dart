@@ -17,7 +17,7 @@ import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart
 import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:aku_new_community/pages/service_browse/service_browse_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
-import 'package:aku_new_community/pages/surrounding_enterprises/Surrounding_enterprises_page.dart';
+import 'package:aku_new_community/pages/surrounding_enterprises/surrounding_enterprises_page.dart';
 import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
