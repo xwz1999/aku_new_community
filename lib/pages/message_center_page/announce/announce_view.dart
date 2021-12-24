@@ -90,38 +90,7 @@ class _AnnounceViewState extends State<AnnounceView> {
             scrollController: _autoScrollController,
             onRefresh: () async {
               _modelLists.clear();
-              monthListDepart([
-                AnnounceListModel(
-                    date: '2020-10-11 12:00:00',
-                    id: 1,
-                    content: 'aaaaaa',
-                    title: '11111'),
-                AnnounceListModel(
-                    date: '2020-10-11 12:00:00',
-                    id: 2,
-                    content: 'bbbbbbb',
-                    title: '222222'),
-                AnnounceListModel(
-                    date: '2020-11-11 12:00:00',
-                    id: 3,
-                    content: 'cccccccc',
-                    title: '33333'),
-                AnnounceListModel(
-                    date: '2020-11-11 12:00:00',
-                    id: 4,
-                    content: 'ddddddd',
-                    title: '44444'),
-                AnnounceListModel(
-                    date: '2020-12-11 12:00:00',
-                    id: 5,
-                    content: 'eeeeeee',
-                    title: '555555'),
-                AnnounceListModel(
-                    date: '2020-11-11 12:00:00',
-                    id: 5,
-                    content: 'eeeeeee',
-                    title: '555555'),
-              ]);
+              // monthListDepart();
               if (_modelLists.isNotEmpty) {
                 _headMonth = _modelLists[0].month;
               }
