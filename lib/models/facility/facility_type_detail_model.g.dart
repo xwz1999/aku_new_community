@@ -7,9 +7,8 @@ part of 'facility_type_detail_model.dart';
 // **************************************************************************
 
 FacilityTypeDetailModel _$FacilityTypeDetailModelFromJson(
-    Map<String, dynamic> json) {
-  return FacilityTypeDetailModel(
-    id: json['id'] as int,
-    name: json['name'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    FacilityTypeDetailModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );

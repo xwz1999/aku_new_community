@@ -7,14 +7,13 @@ part of 'community_introduce_model.dart';
 // **************************************************************************
 
 CommunityIontroduceModel _$CommunityIontroduceModelFromJson(
-    Map<String, dynamic> json) {
-  return CommunityIontroduceModel(
-    id: json['id'] as int,
-    name: json['name'] as String,
-    content: json['content'] as String,
-    createDate: json['createDate'] as String,
-    imgList: (json['imgList'] as List<dynamic>?)
-        ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    CommunityIontroduceModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      content: json['content'] as String,
+      createDate: json['createDate'] as String,
+      imgList: (json['imgList'] as List<dynamic>?)
+          ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );

@@ -10,7 +10,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -19,11 +18,6 @@ void main() async {
   DeveloperUtil.setDev(!(buildType.contains('PRODUCT')));
   WidgetsFlutterBinding.ensureInitialized();
 
-  ///firebase crashlytics initalize
-  //await MainInitialize.initFirebase();
-  MainInitialize.initTheme();
-  MainInitialize.initWechat();
-  MainInitialize.initWebSocket();
   await MainInitialize.initJPush();
 
   runApp(MyApp());

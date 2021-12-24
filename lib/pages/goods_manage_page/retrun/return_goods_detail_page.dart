@@ -6,7 +6,6 @@ import 'package:aku_new_community/model/manager/article_return_list_model.dart';
 import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/animated/animated_scale.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/radio_button.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -98,6 +97,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
           opacity: allSelect ? 1 : 0,
           child: AnimatedScale(
             scale: allSelect ? 1 : 0,
+            duration: Duration(milliseconds: 500),
             child: Container(
               height: 24.w,
               width: 24.w,

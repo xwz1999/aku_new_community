@@ -1,6 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/animated/animated_scale.dart';
 import 'package:flutter/material.dart';
 
 class BeeRadio<T> extends StatefulWidget {
@@ -41,6 +40,7 @@ class _BeeRadioState extends State<BeeRadio> {
         opacity: _selected ? 1 : 0,
         child: AnimatedScale(
           scale: _selected ? 1 : 0,
+          duration: Duration(milliseconds: 500),
           child: Container(
             height: 24.w,
             width: 24.w,

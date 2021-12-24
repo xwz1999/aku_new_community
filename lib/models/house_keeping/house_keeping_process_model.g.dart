@@ -7,14 +7,13 @@ part of 'house_keeping_process_model.dart';
 // **************************************************************************
 
 HouseKeepingProcessModel _$HouseKeepingProcessModelFromJson(
-    Map<String, dynamic> json) {
-  return HouseKeepingProcessModel(
-    id: json['id'] as int,
-    housekeepingServiceId: json['housekeepingServiceId'] as int,
-    operationDate: json['operationDate'] as String,
-    operationType: json['operationType'] as int,
-    opName: json['operator'] as int,
-    operatorType: json['operatorType'] as int,
-    operatorContent: json['operatorContent'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    HouseKeepingProcessModel(
+      id: json['id'] as int,
+      housekeepingServiceId: json['housekeepingServiceId'] as int,
+      operationDate: json['operationDate'] as String,
+      operationType: json['operationType'] as int,
+      opName: json['operator'] as int,
+      operatorType: json['operatorType'] as int,
+      operatorContent: json['operatorContent'] as String,
+    );

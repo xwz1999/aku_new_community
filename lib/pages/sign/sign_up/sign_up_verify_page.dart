@@ -6,7 +6,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignUpVerifyPage extends StatefulWidget {
   SignUpVerifyPage({Key? key}) : super(key: key);

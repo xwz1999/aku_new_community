@@ -36,14 +36,29 @@ void gitPush() {
 
 @Task('build runner')
 void gen() async {
-  await Pub.runAsync(
-    'build_runner',
-    arguments: ['build'],
+  await runAsync(
+    'fvm',
+    arguments: [
+      'flutter',
+      'pub',
+      'run',
+      'build_runner',
+      'build',
+    ],
   );
 }
 
 @Task('build runner clean')
 void genClean() async {
-  await Pub.runAsync('build_runner',
-      arguments: ['build', '--delete-conflicting-outputs']);
+  await runAsync(
+    'fvm',
+    arguments: [
+      'flutter',
+      'pub',
+      'run',
+      'build_runner',
+      'build',
+      '--delete-conflicting-outputs'
+    ],
+  );
 }

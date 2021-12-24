@@ -10,6 +10,7 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -90,7 +91,6 @@ class _SplashPageState extends State<SplashPage> {
 
           // ),
           actions: [
-
             CupertinoDialogAction(
               child: Text('拒绝'),
               onPressed: () => Get.back(result: false),
@@ -116,7 +116,6 @@ class _SplashPageState extends State<SplashPage> {
 
     Future.delayed(Duration(milliseconds: 0), () async {
       await _originOp();
-
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
       if (!agreement) {
         var result = await _showLoginVerify();
@@ -133,6 +132,8 @@ class _SplashPageState extends State<SplashPage> {
         await Permission.locationWhenInUse.request();
       }
       await _initOp();
+      AMapFlutterLocation.updatePrivacyShow(true, true);
+      AMapFlutterLocation.updatePrivacyAgree(true);
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();

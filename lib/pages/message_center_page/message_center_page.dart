@@ -1,15 +1,11 @@
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/pages/message_center_page/comment_message/comment_message_page.dart';
-import 'package:aku_new_community/pages/message_center_page/system_message/system_message_page.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
+import 'package:aku_new_community/pages/message_center_page/reply/replay_view.dart';
+import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_view.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:badges/badges.dart';
+import 'package:aku_new_community/widget/buttons/all_select_button.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key? key}) : super(key: key);
@@ -18,8 +14,23 @@ class MessageCenterPage extends StatefulWidget {
   _MessageCenterPageState createState() => _MessageCenterPageState();
 }
 
-class _MessageCenterPageState extends State<MessageCenterPage> {
+class _MessageCenterPageState extends State<MessageCenterPage>
+    with TickerProviderStateMixin {
   EasyRefreshController _refreshController = EasyRefreshController();
+  List<String> _tabs = ['回复我的', '收到的赞', '通知公告'];
+  late final TabController _tabController;
+  bool inEdit = false;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -27,101 +38,37 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
     super.dispose();
   }
 
-  Widget _buildCard({
-    required String path,
-    required String title,
-    required String content,
-    int? count,
-    VoidCallback? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.fromLTRB(28.w, 32.w, 28.w, 20.w),
-        child: Row(
-          children: [
-            SizedBox(
-                width: 90.w,
-                height: 90.w,
-                child: Badge(
-                  child: Image.asset(path),
-                  showBadge: count != 0,
-                  elevation: 0,
-                  position: BadgePosition.topEnd(top: 8.w, end: 8.w),
-                )),
-            15.w.widthBox,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                title.text.black.bold.size(32.sp).make(),
-                5.w.heightBox,
-                (content).text.black.size(28.sp).make(),
-              ],
-            ).expand()
-          ],
-        ),
-      ),
-    ).material(color: Colors.transparent);
-  }
-
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context);
     return BeeScaffold(
-        title: '消息中心',
-        actions: [
-          MaterialButton(
-            onPressed: () async {
-              await NetUtil().dio!.get(API.message.allRead);
-              _refreshController.callRefresh();
-              setState(() {});
-            },
-            child: '全部已读'.text.size(28.sp).black.make(),
-            padding: EdgeInsets.symmetric(horizontal: 32.w),
-          ),
+      title: '消息',
+      actions: [
+        // MaterialButton(
+        //   onPressed: () async {
+        //     setState(() {});
+        //   },
+        //   child: '${inEdit ? '取消' : '编辑'}'.text.size(28.sp).black.make(),
+        //   padding: EdgeInsets.symmetric(horizontal: 32.w),
+        // ),
+      ],
+      appBarBottom: BeeTabBar(
+        controller: _tabController,
+        tabs: _tabs,
+      ),
+      body: TabBarView(
+        children: [
+          ReplayView(),
+          ThumbsUpView(),
+          AnnounceView(),
         ],
-        body: EasyRefresh(
-          header: MaterialHeader(),
-          firstRefresh: true,
-          controller: _refreshController,
-          onRefresh: () async {
-            appProvider.getMessageCenter();
-          },
-          child: Column(
-            children: [
-              _buildCard(
-                path: R.ASSETS_ICONS_SYSTEM_NOTICE_PNG,
-                title: '系统通知',
-                content: appProvider.messageCenterModel.sysTitle ?? '无系统通知消息',
-                count: appProvider.messageCenterModel.sysCount ?? 0,
-                onTap: () async {
-                  await NetUtil().dio!.get(API.message.allReadComment);
-                  await Get.to(() => SystemMessagePage());
-                  _refreshController.callRefresh();
-                  setState(() {});
-                },
-              ),
-              _buildCard(
-                path: R.ASSETS_ICONS_COMMENT_NOTICE_PNG,
-                title: '评论通知',
-                content:
-                    appProvider.messageCenterModel.commentTitle ?? '无评论通知消息',
-                count: appProvider.messageCenterModel.commentCount ?? 0,
-                onTap: () async {
-                  await NetUtil().dio!.get(API.message.allReadComment);
-                  await Get.to(() => CommentMessagePage());
-                  _refreshController.callRefresh();
-                  setState(() {});
-                },
-              ),
-              // _buildCard(
-              //   path: R.ASSETS_ICONS_SHOP_NOTICE_PNG,
-              //   title: '商城通知',
-              //   content: '',
-              //   count: 0,
-              // )
-            ],
-          ),
-        ));
+        controller: _tabController,
+      ),
+      bottomNavi: Offstage(
+          offstage: !inEdit,
+          child: AllSelectButton(
+            onPressed: () {},
+            selected: true,
+          )),
+    );
   }
 }

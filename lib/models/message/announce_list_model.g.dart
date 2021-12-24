@@ -1,18 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'news_detail_model.dart';
+part of 'announce_list_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NewsDetailModel _$NewsDetailModelFromJson(Map<String, dynamic> json) =>
-    NewsDetailModel(
+AnnounceListModel _$AnnounceListModelFromJson(Map<String, dynamic> json) =>
+    AnnounceListModel(
       id: json['id'] as int,
-      code: json['code'] as String,
+      date: json['date'] as String,
       title: json['title'] as String,
       content: json['content'] as String,
-      newsCategoryName: json['newsCategoryName'] as String,
-      createName: json['createName'] as String,
-      createDate: json['createDate'] as String,
     );

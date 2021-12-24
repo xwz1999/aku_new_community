@@ -5,7 +5,6 @@ import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/article_borrow_detail_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/animated/animated_scale.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/radio_button.dart';
 import 'package:flutter/material.dart';
@@ -105,6 +104,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
           opacity: allSelect ? 1 : 0,
           child: AnimatedScale(
             scale: allSelect ? 1 : 0,
+            duration: Duration(milliseconds: 500),
             child: Container(
               height: 24.w,
               width: 24.w,

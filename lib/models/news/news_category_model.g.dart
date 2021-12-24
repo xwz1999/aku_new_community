@@ -6,9 +6,8 @@ part of 'news_category_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NewsCategoryModel _$NewsCategoryModelFromJson(Map<String, dynamic> json) {
-  return NewsCategoryModel(
-    id: json['id'] as int,
-    name: json['name'] as String,
-  );
-}
+NewsCategoryModel _$NewsCategoryModelFromJson(Map<String, dynamic> json) =>
+    NewsCategoryModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );

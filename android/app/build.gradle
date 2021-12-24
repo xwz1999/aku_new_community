@@ -51,8 +51,8 @@ android {
         versionName flutterVersionName
         manifestPlaceholders = [
         JPUSH_PKGNAME : applicationId,
-        JPUSH_APPKEY : "00e20fef79ee804d5c9abb54", 
-        JPUSH_CHANNEL : "developer-default", 
+        JPUSH_APPKEY : "5f42cbb15abcdda6f8aeb925",
+        JPUSH_CHANNEL : "developer-default",
         ]
 
     }
@@ -95,7 +95,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //implementation 'com.amap.api:3dmap:latest.integration'
+    implementation 'com.amap.api:3dmap:latest.integration'
     implementation 'com.amap.api:location:5.2.0'
     implementation 'com.android.support:multidex:2.0.1'
 
