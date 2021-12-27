@@ -6,13 +6,12 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
-import 'package:aku_new_community/widget/views/%20bee_download_view.dart';
+import 'package:aku_new_community/widget/views/bee_download_view.dart';
 import 'package:aku_new_community/widget/views/doc_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int? id;

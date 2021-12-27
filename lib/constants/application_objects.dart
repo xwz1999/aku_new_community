@@ -1,6 +1,7 @@
 // import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/community_introduce/community_introduce_page.dart';
 import 'package:aku_new_community/pages/convenient_phone/convenient_phone_page.dart';
 import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_page.dart';
@@ -96,6 +97,13 @@ List<AO> appObjects = [
   AO('地理信息', R.ASSETS_ICONS_FUNC_DLXX_PNG, () => GeographicInformationPage()),
   AO('周边企业', R.ASSETS_ICONS_FUNC_ZBQY_PNG, () => SurroundingEnterprisesPage()),
   AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
+  AO('智慧养老', Assets.icons.provideAged.path, null),
+  AO('周边服务', Assets.icons.nearbyService.path, null),
+  AO('小蜜蜂任务', Assets.icons.beeTask.path, null),
+  AO('自营商城', Assets.icons.shoppingMall.path, null),
+  AO('邻家宠物', Assets.icons.nearbyPet.path, null),
+  AO('共享停车', Assets.icons.sharePark.path, null),
+  AO('二手市场', Assets.icons.secondHandMarket.path, null),
 
   // AO(
   //   '小区教育',
@@ -250,6 +258,15 @@ List<String> _aboutCommunityApp = [
   '电子商务',
 ];
 
-///智慧管家
+///关于社区
 List<AO> get aboutCommunityApp =>
     _aboutCommunityApp.map((e) => AO.fromRaw(e)).toList();
+
+List<String> _wisdomServiceApp = ['智慧养老', '周边服务', '小蜜蜂任务'];
+
+List<AO> get wisdomServiceApp =>
+    _wisdomServiceApp.map((e) => AO.fromRaw(e)).toList();
+List<String> _nearbyShoppingApp = ['自营商城', '邻家宠物', '共享停车', '二手市场'];
+
+List<AO> get nearbyShoppingApp =>
+    _wisdomServiceApp.map((e) => AO.fromRaw(e)).toList();

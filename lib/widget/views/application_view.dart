@@ -2,6 +2,7 @@ import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +11,17 @@ import 'package:velocity_x/velocity_x.dart';
 class ApplicationView extends StatefulWidget {
   final List<AO>? items;
   final bool needAllApp;
+  final bool unComplete;
 
-  ApplicationView({Key? key, this.needAllApp = true})
+  ApplicationView({Key? key, this.needAllApp = true, this.unComplete = false})
       : items = null,
         super(key: key);
 
   ApplicationView.custom(
-      {Key? key, required List<AO> this.items, this.needAllApp = true})
+      {Key? key,
+      required List<AO> this.items,
+      this.needAllApp = true,
+      this.unComplete = false})
       : super(key: key);
 
   @override
@@ -31,7 +36,11 @@ class _ApplicationViewState extends State<ApplicationView> {
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(object.title)) return;
-        Get.to(object.page);
+        if (widget.unComplete) {
+          BotToast.showText(text: '该功能正在准备上线中，敬请期待');
+        } else {
+          Get.to(object.page);
+        }
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

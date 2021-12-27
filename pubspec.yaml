@@ -75,7 +75,7 @@ dependencies:
   #评分组件
   flutter_rating_bar: ^4.0.0
   #极光推送
-  jpush_flutter: ^2.1.5
+  jpush_flutter: ^2.2.1
   #打开文件
   open_file: ^3.2.1
   #角标

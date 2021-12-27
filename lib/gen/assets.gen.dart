@@ -154,6 +154,9 @@ class $AssetsIconsGen {
   AssetGenImage get articleName =>
       const AssetGenImage('assets/icons/article_name.png');
 
+  /// File path: assets/icons/bee_task.png
+  AssetGenImage get beeTask => const AssetGenImage('assets/icons/bee_task.png');
+
   /// File path: assets/icons/borrow_failure.png
   AssetGenImage get borrowFailure =>
       const AssetGenImage('assets/icons/borrow_failure.png');
@@ -602,6 +605,14 @@ class $AssetsIconsGen {
   AssetGenImage get marketTabUnselected =>
       const AssetGenImage('assets/icons/market_tab_unselected.png');
 
+  /// File path: assets/icons/nearby_pet.png
+  AssetGenImage get nearbyPet =>
+      const AssetGenImage('assets/icons/nearby_pet.png');
+
+  /// File path: assets/icons/nearby_service.png
+  AssetGenImage get nearbyService =>
+      const AssetGenImage('assets/icons/nearby_service.png');
+
   /// File path: assets/icons/pay.png
   AssetGenImage get pay => const AssetGenImage('assets/icons/pay.png');
 
@@ -616,6 +627,10 @@ class $AssetsIconsGen {
   AssetGenImage get proposal =>
       const AssetGenImage('assets/icons/proposal.png');
 
+  /// File path: assets/icons/provide_aged.png
+  AssetGenImage get provideAged =>
+      const AssetGenImage('assets/icons/provide_aged.png');
+
   /// File path: assets/icons/report.png
   AssetGenImage get report => const AssetGenImage('assets/icons/report.png');
 
@@ -623,8 +638,16 @@ class $AssetsIconsGen {
   AssetGenImage get secondHand =>
       const AssetGenImage('assets/icons/second_hand.png');
 
+  /// File path: assets/icons/second_hand_market.png
+  AssetGenImage get secondHandMarket =>
+      const AssetGenImage('assets/icons/second_hand_market.png');
+
   /// File path: assets/icons/service.png
   AssetGenImage get service => const AssetGenImage('assets/icons/service.png');
+
+  /// File path: assets/icons/share_park.png
+  AssetGenImage get sharePark =>
+      const AssetGenImage('assets/icons/share_park.png');
 
   /// File path: assets/icons/shield_content.png
   AssetGenImage get shieldContent =>
@@ -668,6 +691,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/shop_torb.png
   AssetGenImage get shopTorb =>
       const AssetGenImage('assets/icons/shop_torb.png');
+
+  /// File path: assets/icons/shopping_mall.png
+  AssetGenImage get shoppingMall =>
+      const AssetGenImage('assets/icons/shopping_mall.png');
 
   /// File path: assets/icons/system_notice.png
   AssetGenImage get systemNotice =>
