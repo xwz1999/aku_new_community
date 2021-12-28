@@ -619,6 +619,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone.png
   AssetGenImage get phone => const AssetGenImage('assets/icons/phone.png');
 
+  /// File path: assets/icons/projection_screen.png
+  AssetGenImage get projectionScreen =>
+      const AssetGenImage('assets/icons/projection_screen.png');
+
   /// File path: assets/icons/property.png
   AssetGenImage get property =>
       const AssetGenImage('assets/icons/property.png');

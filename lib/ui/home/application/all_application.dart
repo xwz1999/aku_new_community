@@ -5,6 +5,7 @@ import 'package:aku_new_community/ui/search/bee_search.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,11 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
 
   PageController _pageController = PageController();
 
-  _buildTile(AO object, {bool editMode = false}) {
+  _buildTile(
+    AO object, {
+    bool editMode = false,
+    bool unComplete = false,
+  }) {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
       padding: EdgeInsets.zero,
@@ -34,7 +39,12 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           : () {
               if (LoginUtil.isNotLogin) return;
               if (!LoginUtil.haveRoom(object.title)) return;
-              Get.to(object.page);
+              if (unComplete) {
+                BotToast.showText(
+                    text: '正在准备上线中，敬请期待', align: Alignment(0, 0.5));
+              } else {
+                Get.to(object.page);
+              }
             },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -84,10 +94,8 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
       itemBuilder: (context, index) {
         return Stack(
           children: [
-            _buildTile(
-              appProvider.myApplications[index],
-              editMode: _editMode,
-            ),
+            _buildTile(appProvider.myApplications[index],
+                editMode: _editMode, unComplete: index > 3),
             Positioned(
               right: 0,
               top: 0,

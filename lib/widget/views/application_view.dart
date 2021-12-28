@@ -37,7 +37,7 @@ class _ApplicationViewState extends State<ApplicationView> {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(object.title)) return;
         if (widget.unComplete) {
-          BotToast.showText(text: '该功能正在准备上线中，敬请期待');
+          BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {
           Get.to(object.page);
         }

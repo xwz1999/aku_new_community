@@ -2,6 +2,7 @@
 
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
@@ -29,6 +30,7 @@ import 'package:aku_new_community/widget/animated/OverlayWidget.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:badges/badges.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -506,30 +508,54 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget getFunction() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Column(
       children: [
-        getFunctionBtn(
-            '报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
-        getFunctionBtn('设施预约', R.ASSETS_ICONS_FUNC_SSYY_PNG,
-            () => FacilityAppointmentPage()),
-        getFunctionBtn(
-            '生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayChoosePage()),
-        getFunctionBtn(
-            '全部应用', R.ASSETS_ICONS_FUNC_ALL_PNG, () => AllApplicationPage()),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            getFunctionBtn(
+                '报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
+            getFunctionBtn('设施预约', R.ASSETS_ICONS_FUNC_SSYY_PNG,
+                () => FacilityAppointmentPage()),
+            getFunctionBtn('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG,
+                () => LifePayChoosePage()),
+            getFunctionBtn('智慧养老', Assets.icons.provideAged.path, null,
+                unComplete: true),
+          ],
+        ),
+        32.hb,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            getFunctionBtn('周边服务', Assets.icons.nearbyService.path, null,
+                unComplete: true),
+            getFunctionBtn('任务发布', Assets.icons.beeTask.path, null,
+                unComplete: true),
+            getFunctionBtn('邻家宠物', Assets.icons.nearbyPet.path, null,
+                unComplete: true),
+            getFunctionBtn('全部应用', R.ASSETS_ICONS_FUNC_ALL_PNG,
+                () => AllApplicationPage()),
+          ],
+        ),
       ],
     );
   }
 
-  Widget getFunctionBtn(String title, String path, dynamic page) {
+  Widget getFunctionBtn(String title, String path, dynamic page,
+      {bool unComplete = false}) {
     return MaterialButton(
       shape: StadiumBorder(),
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(title)) return;
-        Get.to(page);
+        if (unComplete) {
+          BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
+        } else {
+          Get.to(page);
+        }
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -539,7 +565,7 @@ class _HomePageState extends State<HomePage>
             height: 80.w,
             width: 80.w,
           ),
-          8.hb,
+          16.hb,
           title.text.size(22.sp).color(Color(0xA6000000)).bold.make(),
         ],
       ),

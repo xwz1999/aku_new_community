@@ -104,6 +104,7 @@ List<AO> appObjects = [
   AO('邻家宠物', Assets.icons.nearbyPet.path, null),
   AO('共享停车', Assets.icons.sharePark.path, null),
   AO('二手市场', Assets.icons.secondHandMarket.path, null),
+  AO('共享投屏', Assets.icons.projectionScreen.path, null),
 
   // AO(
   //   '小区教育',
@@ -161,6 +162,9 @@ List<String> _recommendApp = [
   '报事报修',
   '建议咨询',
   '一键报警',
+  '共享投屏',
+  '二手市场',
+  '共享停车',
 ];
 
 ///为您推荐
@@ -262,11 +266,11 @@ List<String> _aboutCommunityApp = [
 List<AO> get aboutCommunityApp =>
     _aboutCommunityApp.map((e) => AO.fromRaw(e)).toList();
 
-List<String> _wisdomServiceApp = ['智慧养老', '周边服务', '小蜜蜂任务'];
+List<String> _wisdomServiceApp = ['智慧养老', '周边服务', '小蜜蜂任务', '共享投屏'];
 
 List<AO> get wisdomServiceApp =>
     _wisdomServiceApp.map((e) => AO.fromRaw(e)).toList();
 List<String> _nearbyShoppingApp = ['自营商城', '邻家宠物', '共享停车', '二手市场'];
 
 List<AO> get nearbyShoppingApp =>
-    _wisdomServiceApp.map((e) => AO.fromRaw(e)).toList();
+    _nearbyShoppingApp.map((e) => AO.fromRaw(e)).toList();

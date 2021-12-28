@@ -32,17 +32,24 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: true,
-        brightness: Brightness.light,
         iconTheme: IconThemeData(
           color: Color(0xFF333333),
         ),
-        textTheme: TextTheme(
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        toolbarTextStyle: TextTheme(
           headline6: TextStyle(
             color: Color(0xFF333333),
             fontSize: 36.sp,
             fontWeight: FontWeight.bold,
           ),
-        ),
+        ).bodyText2,
+        titleTextStyle: TextTheme(
+          headline6: TextStyle(
+            color: Color(0xFF333333),
+            fontSize: 36.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ).headline6,
       ),
       tabBarTheme: TabBarTheme(
         labelColor: Color(0xFF333333),

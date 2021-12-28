@@ -166,18 +166,18 @@ class _AddHousePageState extends State<AddHousePage> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              _renderTile(
-                title: '小区名称',
-                item: _renderPicker(
-                  text: S.of(context)!.tempPlotName,
-                  hintText: '请选择小区',
-                  // 跳转到选择小区页面
-                  //
-                  // onTap: () {
-                  //   Get.to(() => PickPlotPage());
-                  // },
-                ),
-              ),
+              // _renderTile(
+              //   title: '小区名称',
+              //   item: _renderPicker(
+              //     text: S.of(context)!.tempPlotName,
+              //     hintText: '请选择小区',
+              //     // 跳转到选择小区页面
+              //     //
+              //     // onTap: () {
+              //     //   Get.to(() => PickPlotPage());
+              //     // },
+              //   ),
+              // ),
               _renderTile(
                 title: '楼栋、单元、室',
                 item: _renderPicker(
