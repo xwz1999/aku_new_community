@@ -8,6 +8,7 @@ import 'package:aku_new_community/model/community/hot_topic_model.dart';
 import 'package:aku_new_community/model/message/message_center_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/model/user/car_parking_model.dart';
+import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/user/passed_house_list_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -17,7 +18,6 @@ import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:power_logger/power_logger.dart';
 
 class AppProvider extends ChangeNotifier {
@@ -326,7 +326,20 @@ class AppProvider extends ChangeNotifier {
         });
       }
     }
-
     notifyListeners();
+  }
+
+  ChinaRegionModel? _cityModel;
+
+  ChinaRegionModel? get cityModel => _cityModel;
+
+  Future<bool> updateCityList() async {
+    var model = await NetUtil().get(API.sarsApi.city.allCity);
+    if (model.status ?? false) {
+      _cityModel = ChinaRegionModel.fromJson(model.data);
+      return true;
+    } else {
+      return false;
+    }
   }
 }

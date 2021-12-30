@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:aku_new_community/pages/tab_navigator.dart';
@@ -12,18 +10,15 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart' show TextUtil;
 import 'package:flustars/flustars.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -282,6 +277,11 @@ class _SignInPageState extends State<SignInPage> {
               ],
             )),
       ),
+      bottomNavi: BottomButton(
+          onPressed: () {
+            Get.to(() => LoginPage());
+          },
+          child: 'child'.text.make()),
     );
   }
 }
