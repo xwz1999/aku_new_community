@@ -1,5 +1,6 @@
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/sign/sign_in_page.dart';
@@ -19,6 +20,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'address/address_list_page.dart';
+import 'intergral/integral_center_page.dart';
 
 class PersonalIndex extends StatefulWidget {
   final bool? isSign;
@@ -199,6 +201,11 @@ class _PersonalIndexState extends State<PersonalIndex>
         Get.to(() => OrderPage(initIndex: index));
       },
     ).expand();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -520,6 +527,44 @@ class _PersonalIndexState extends State<PersonalIndex>
                             ],
                           ),
                         ],
+                      ),
+                    ),
+                    24.w.heightBox,
+                    Container(
+                      width: double.infinity,
+                      height: 100.w,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.w)),
+                      margin: EdgeInsets.symmetric(horizontal: 32.w),
+                      child: Material(
+                        color: Colors.white,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => integralCenterPage());
+                          },
+                          borderRadius: BorderRadius.circular(16.w),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 32.w, vertical: 24.w),
+                            child: Row(
+                              children: [
+                                '我的积分'.text.size(30.sp).black.bold.make(),
+                                Spacer(),
+                                Assets.icons.intergral
+                                    .image(width: 32.w, height: 32.w),
+                                16.w.widthBox,
+                                '123'.text.size(28.sp).black.make(),
+                                16.w.widthBox,
+                                Icon(
+                                  CupertinoIcons.right_chevron,
+                                  size: 24.w,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     Container(

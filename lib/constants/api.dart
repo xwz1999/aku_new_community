@@ -1,3 +1,5 @@
+part 'sars_api.dart';
+
 class API {
   ///HOST
   static const String host = 'http://shop.kaidalai.cn';
@@ -24,6 +26,7 @@ class API {
   static _Search search = _Search();
   static _Pay pay = _Pay();
   static _House house = _House();
+  static _SarsApi sarsApi = _SarsApi();
 }
 
 class _Login {

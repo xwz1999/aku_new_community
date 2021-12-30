@@ -571,8 +571,16 @@ class $AssetsIconsGen {
   AssetGenImage get iconTopicThird =>
       const AssetGenImage('assets/icons/icon_topic_third.png');
 
+  /// File path: assets/icons/identify.png
+  AssetGenImage get identify =>
+      const AssetGenImage('assets/icons/identify.png');
+
   /// File path: assets/icons/img_add.png
   AssetGenImage get imgAdd => const AssetGenImage('assets/icons/img_add.png');
+
+  /// File path: assets/icons/intergral.png
+  AssetGenImage get intergral =>
+      const AssetGenImage('assets/icons/intergral.png');
 
   /// File path: assets/icons/introduce.png
   AssetGenImage get introduce =>
@@ -914,6 +922,21 @@ class $AssetsIconsGen {
   AssetGenImage get userIconWdsqhd =>
       const AssetGenImage('assets/icons/user_icon_wdsqhd.png');
 
+  /// File path: assets/icons/vip1.png
+  AssetGenImage get vip1 => const AssetGenImage('assets/icons/vip1.png');
+
+  /// File path: assets/icons/vip2.png
+  AssetGenImage get vip2 => const AssetGenImage('assets/icons/vip2.png');
+
+  /// File path: assets/icons/vip3.png
+  AssetGenImage get vip3 => const AssetGenImage('assets/icons/vip3.png');
+
+  /// File path: assets/icons/vip4.png
+  AssetGenImage get vip4 => const AssetGenImage('assets/icons/vip4.png');
+
+  /// File path: assets/icons/vip_font.png
+  AssetGenImage get vipFont => const AssetGenImage('assets/icons/vip_font.png');
+
   /// File path: assets/icons/xianshi.png
   AssetGenImage get xianshi => const AssetGenImage('assets/icons/xianshi.png');
 }
@@ -1080,6 +1103,10 @@ class $AssetsStaticGen {
   AssetGenImage get idCardFront =>
       const AssetGenImage('assets/static/id_card_front.png');
 
+  /// File path: assets/static/integral_background.png
+  AssetGenImage get integralBackground =>
+      const AssetGenImage('assets/static/integral_background.png');
+
   /// File path: assets/static/parking_grey.webp
   AssetGenImage get parkingGrey =>
       const AssetGenImage('assets/static/parking_grey.webp');
@@ -1095,6 +1122,10 @@ class $AssetsStaticGen {
   /// File path: assets/static/reviewing.webp
   AssetGenImage get reviewing =>
       const AssetGenImage('assets/static/reviewing.webp');
+
+  /// File path: assets/static/sign_in_background.png
+  AssetGenImage get signInBackground =>
+      const AssetGenImage('assets/static/sign_in_background.png');
 }
 
 class $AssetsTabGen {
