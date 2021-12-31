@@ -1123,6 +1123,10 @@ class $AssetsStaticGen {
   AssetGenImage get reviewing =>
       const AssetGenImage('assets/static/reviewing.webp');
 
+  /// File path: assets/static/rule_explain.png
+  AssetGenImage get ruleExplain =>
+      const AssetGenImage('assets/static/rule_explain.png');
+
   /// File path: assets/static/sign_in_background.png
   AssetGenImage get signInBackground =>
       const AssetGenImage('assets/static/sign_in_background.png');
