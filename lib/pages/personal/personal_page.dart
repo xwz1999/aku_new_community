@@ -21,6 +21,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'address/address_list_page.dart';
+import 'clock_in/clock_success_dialog.dart';
 import 'intergral/integral_center_page.dart';
 
 class PersonalIndex extends StatefulWidget {
@@ -331,8 +332,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                                       )),
                             Spacer(),
                             MaterialButton(
-                              onPressed: () {
-                                Get.to(() => ClockInPage());
+                              onPressed: () async {
+                                await Get.dialog(ClockSuccessDialog(
+                                    todayIntegral: 1, tomorrowIntegral: 2));
                               },
                               elevation: 0,
                               color: Colors.white,
@@ -347,11 +349,50 @@ class _PersonalIndexState extends State<PersonalIndex>
                         ),
                       ),
                     ),
+                    Spacer(),
+                    Container(
+                      width: 686.w,
+                      height: 120.w,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage(Assets.static.vipBackground.path)),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16.w),
+                              topRight: Radius.circular(16.w))),
+                      child: Row(
+                        children: [
+                          32.wb,
+                          Assets.icons.vipFont.image(width: 60.w, height: 60.w),
+                          24.wb,
+                          '当前会员等级：2级'
+                              .text
+                              .size(24.sp)
+                              .color(Color(0xFFFFE0A9))
+                              .make(),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () => Get.to(() => integralCenterPage()),
+                            child: Container(
+                              width: 160.w,
+                              height: 58.w,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFFFE0A9),
+                                  borderRadius: BorderRadius.circular(29.w)),
+                              child: '会员中心'.text.size(24.sp).black.make(),
+                            ),
+                          ),
+                          32.wb,
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 350.w),
+                padding: EdgeInsets.only(top: 450.w),
                 child: Column(
                   children: [
                     Container(
@@ -419,7 +460,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         color: Colors.white,
                         child: InkWell(
                           onTap: () {
-                            Get.to(() => integralCenterPage());
+                            Get.to(() => ClockInPage());
                           },
                           borderRadius: BorderRadius.circular(16.w),
                           child: Padding(

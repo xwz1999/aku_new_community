@@ -1134,6 +1134,10 @@ class $AssetsStaticGen {
   /// File path: assets/static/sign_in_background.png
   AssetGenImage get signInBackground =>
       const AssetGenImage('assets/static/sign_in_background.png');
+
+  /// File path: assets/static/vip_background.png
+  AssetGenImage get vipBackground =>
+      const AssetGenImage('assets/static/vip_background.png');
 }
 
 class $AssetsTabGen {

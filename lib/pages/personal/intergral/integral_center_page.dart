@@ -22,7 +22,9 @@ class _integralCenterPageState extends State<integralCenterPage> {
   void initState() {
     Future.delayed(Duration(milliseconds: 5000), () async {
       _proportion = 0.5;
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
     super.initState();
   }
