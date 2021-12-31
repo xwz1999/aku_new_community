@@ -5,11 +5,13 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/integral/add_integral_config_model.dart';
 import 'package:aku_new_community/models/integral/clocked_record_list_model.dart';
+import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ClockInPage extends StatefulWidget {
@@ -21,7 +23,7 @@ class ClockInPage extends StatefulWidget {
 
 class _ClockInPageState extends State<ClockInPage> {
   List<AddIntegralConfigModel> _configs = [
-    AddIntegralConfigModel(addIntegral: 1, hasClocked: true),
+    AddIntegralConfigModel(addIntegral: 1, hasClocked: false),
     AddIntegralConfigModel(addIntegral: 2, hasClocked: false),
     AddIntegralConfigModel(addIntegral: 3, hasClocked: false),
     AddIntegralConfigModel(addIntegral: 5, hasClocked: false),
@@ -44,6 +46,7 @@ class _ClockInPageState extends State<ClockInPage> {
   ];
 
   bool _openRemind = false; //演示用，之后删除
+  bool get hasClocked => _configs[0].hasClocked;
 
   @override
   Widget build(BuildContext context) {
@@ -195,16 +198,71 @@ class _ClockInPageState extends State<ClockInPage> {
           ),
           Spacer(),
           MaterialButton(
-            onPressed: () {},
+            onPressed: hasClocked
+                ? null
+                : () async {
+                    await Get.dialog(ClockSuccessDialog(
+                        todayIntegral: _configs[0].addIntegral,
+                        tomorrowIntegral: _configs[1].addIntegral));
+                    _configs[0] = AddIntegralConfigModel(
+                        addIntegral: _configs[0].addIntegral, hasClocked: true);
+                    setState(() {});
+                  },
             elevation: 0,
             color: kPrimaryColor,
+            disabledColor: kPrimaryColor.withOpacity(0.4),
             minWidth: 560,
             height: 93.w,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(59.w)),
-            child: '签到'.text.size(32.sp).black.bold.make(),
+            child: (hasClocked ? '已签到' : '签到')
+                .text
+                .size(32.sp)
+                .color(Colors.black.withOpacity(hasClocked ? 0.4 : 1.0))
+                .bold
+                .make(),
           )
         ],
+      ),
+    );
+    var bottomList = Flexible(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30.w),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
+              child: '签到记录'.text.size(32.sp).black.bold.make(),
+            ),
+            24.hb,
+            Flexible(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  ..._records
+                      .mapIndexed((currentValue, index) => recordListTile(
+                          currentValue.day,
+                          currentValue.date,
+                          currentValue.addIntegral))
+                      .toList(),
+                  Container(
+                    width: double.infinity,
+                    height: 82.w,
+                    alignment: Alignment.center,
+                    color: Color(0xFFE5E5E5),
+                    child:
+                        '没有更多记录了~'.text.size(28.sp).color(ktextSubColor).make(),
+                  ),
+                ].sepWidget(separate: 32.hb),
+              ),
+            )
+          ],
+        ),
       ),
     );
     return Scaffold(
@@ -233,51 +291,7 @@ class _ClockInPageState extends State<ClockInPage> {
               80.hb,
               clockInCard,
               40.hb,
-              Flexible(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30.w),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: 32.w, left: 32.w, right: 32.w),
-                        child: '签到记录'.text.size(32.sp).black.bold.make(),
-                      ),
-                      24.hb,
-                      Flexible(
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            ..._records
-                                .mapIndexed((currentValue, index) =>
-                                    recordListTile(
-                                        currentValue.day,
-                                        currentValue.date,
-                                        currentValue.addIntegral))
-                                .toList(),
-                            Container(
-                              width: double.infinity,
-                              height: 82.w,
-                              alignment: Alignment.center,
-                              color: Color(0xFFE5E5E5),
-                              child: '没有更多记录了~'
-                                  .text
-                                  .size(28.sp)
-                                  .color(ktextSubColor)
-                                  .make(),
-                            ),
-                          ].sepWidget(separate: 32.hb),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              bottomList,
             ],
           ),
         ),

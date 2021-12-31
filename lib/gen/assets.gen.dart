@@ -172,6 +172,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/change.png
   AssetGenImage get change => const AssetGenImage('assets/icons/change.png');
 
+  /// File path: assets/icons/clock_success.png
+  AssetGenImage get clockSuccess =>
+      const AssetGenImage('assets/icons/clock_success.png');
+
   /// File path: assets/icons/collect.png
   AssetGenImage get collect => const AssetGenImage('assets/icons/collect.png');
 

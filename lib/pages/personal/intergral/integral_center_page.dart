@@ -200,6 +200,22 @@ class _integralCenterPageState extends State<integralCenterPage> {
             back,
             top,
             midCard,
+            Positioned(
+              right: 0,
+              top: 168.w,
+              child: Container(
+                width: 176.w,
+                height: 58.w,
+                decoration: BoxDecoration(
+                    color: Color(0xFFFFF7E1),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(29.w),
+                        bottomLeft: Radius.circular(29.w))),
+                alignment: Alignment.center,
+                child:
+                    '购物得活跃度'.text.size(24.sp).color(Color(0xFFFE905A)).make(),
+              ),
+            ),
           ],
         ),
       ),
