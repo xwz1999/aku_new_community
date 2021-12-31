@@ -1,6 +1,7 @@
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/sign/sign_in_page.dart';
@@ -223,114 +224,6 @@ class _PersonalIndexState extends State<PersonalIndex>
           },
           child: Stack(
             children: [
-              // Container(
-              //
-              //   width: double.infinity,
-              //   height: 441.w,
-              //   alignment: Alignment.topCenter,
-              //
-              //   decoration: BoxDecoration(
-              //     gradient: LinearGradient(
-              //       begin: Alignment.topCenter,
-              //       end: Alignment.bottomCenter,
-              //       colors: <Color>[
-              //         Color(0xFFF9D57A),
-              //         Color(0xFFF9D57A),
-              //       ],
-              //     ),
-              //   ),
-              //   padding: EdgeInsets.only(top: 130.w),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     children: [
-              //
-              //       MaterialButton(
-              //         padding: EdgeInsets.all(5.w),
-              //         onPressed: () {
-              //           if (!userProvider.isLogin)
-              //             Get.to(() => SignInPage());
-              //           else
-              //             Get.to(() => UserProfilePage());
-              //         },
-              //         child: Container(
-              //           margin: EdgeInsets.only(left: 32.w),
-              //           child: Row(
-              //             children: [
-              //               Hero(
-              //                 tag: 'AVATAR',
-              //                 child: ClipOval(
-              //                   child: FadeInImage.assetNetwork(
-              //                     placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //                     image: API.image(userProvider
-              //                         .userInfoModel!.imgUrls.isNotEmpty
-              //                         ? userProvider
-              //                         .userInfoModel!.imgUrls.first.url
-              //                         : ''),
-              //                     height: 106.w,
-              //                     width: 106.w,
-              //                     fit: BoxFit.cover,
-              //                     imageErrorBuilder: (context, error, stackTrace) {
-              //                       return Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP,height: 106.w,
-              //                         width: 106.w,);
-              //                     },
-              //                   ),
-              //                 ),
-              //               ),
-              //               Container(
-              //                   margin: EdgeInsets.only(left: 16.w),
-              //                   child: userProvider.isLogin
-              //                       ? Text(
-              //                     userProvider.userInfoModel?.nickName ??
-              //                         '',
-              //                     style: TextStyle(
-              //                       fontSize: 32.sp,
-              //                       color: Color(0xffad8940),
-              //                     ),
-              //                   )
-              //                       : Text(
-              //                     '登录/注册',
-              //                     style: TextStyle(
-              //                       fontSize: 32.sp,
-              //                       color: Color(0xffad8940),
-              //                     ),
-              //                   )),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //       // Stack(
-              //       //   children: [
-              //       //     Positioned(
-              //       //       bottom: 0,
-              //       //       left: 0,
-              //       //       right: 0,
-              //       //       child: Container(
-              //       //         height: 41.w,
-              //       //         width: double.infinity,
-              //       //         child: CustomPaint(
-              //       //           painter: UserBottomBarPainter(),
-              //       //         ),
-              //       //       ),
-              //       //     ),
-              //       //     Container(
-              //       //       margin: EdgeInsets.only(
-              //       //         top: 38.w,
-              //       //         left: 36.w,
-              //       //         right: 36.w,
-              //       //         bottom: 18.w,
-              //       //       ),
-              //       //       child: Image.asset(
-              //       //         R.ASSETS_IMAGES_MEMBER_BG_PNG,
-              //       //         width: 678.w,
-              //       //         height: 129.w,
-              //       //       ),
-              //       //     ),
-              //       //   ],
-              //       // ),
-              //     ],
-              //   ),
-              // ),
-
               Container(
                 width: double.infinity,
                 height: 441.w,
@@ -365,7 +258,6 @@ class _PersonalIndexState extends State<PersonalIndex>
                         24.wb,
                       ],
                     ),
-
                     MaterialButton(
                       padding: EdgeInsets.all(5.w),
                       onPressed: () {
@@ -437,39 +329,24 @@ class _PersonalIndexState extends State<PersonalIndex>
                                           color: Color(0xffad8940),
                                         ),
                                       )),
+                            Spacer(),
+                            MaterialButton(
+                              onPressed: () {
+                                Get.to(() => ClockInPage());
+                              },
+                              elevation: 0,
+                              color: Colors.white,
+                              minWidth: 112.w,
+                              height: 58.w,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.w)),
+                              child: '签到'.text.size(22.sp).black.make(),
+                            ),
+                            32.w.widthBox,
                           ],
                         ),
                       ),
                     ),
-                    // Stack(
-                    //   children: [
-                    //     Positioned(
-                    //       bottom: 0,
-                    //       left: 0,
-                    //       right: 0,
-                    //       child: Container(
-                    //         height: 41.w,
-                    //         width: double.infinity,
-                    //         child: CustomPaint(
-                    //           painter: UserBottomBarPainter(),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       margin: EdgeInsets.only(
-                    //         top: 38.w,
-                    //         left: 36.w,
-                    //         right: 36.w,
-                    //         bottom: 18.w,
-                    //       ),
-                    //       child: Image.asset(
-                    //         R.ASSETS_IMAGES_MEMBER_BG_PNG,
-                    //         width: 678.w,
-                    //         height: 129.w,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
@@ -614,12 +491,6 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     canBack: false,
                                   ),
                               ''),
-
-                          //
-                          // ApplicationView.custom(
-                          //   items: userAppObjects,
-                          //   needAllApp: false,
-                          // ),
                         ],
                       ),
                     ),

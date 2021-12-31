@@ -13,7 +13,6 @@ import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:power_logger/power_logger.dart';

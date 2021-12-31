@@ -83,6 +83,74 @@ class _integralCenterPageState extends State<integralCenterPage> {
         ),
       ),
     );
+    var midCard = Positioned(
+        top: 547.w,
+        child: Material(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24.w),
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+            width: 686.w,
+            height: 343.w,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24.w),
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color(0xD9FBB246),
+                      Color(0xE6FF7145),
+                    ])),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 32.w, top: 32.w, right: 32.w),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          '活跃度'.text.size(28.sp).white.make(),
+                          24.w.heightBox,
+                          '2501'.text.size(56.sp).white.make(),
+                        ],
+                      ),
+                      48.w.widthBox,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          '积分'.text.size(28.sp).white.make(),
+                          24.w.heightBox,
+                          '123'.text.size(56.sp).white.make(),
+                        ],
+                      ),
+                      Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          '积分获取比例'.text.size(28.sp).white.make(),
+                          24.w.heightBox,
+                          '5%'.text.size(56.sp).white.make(),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Spacer(),
+                Container(
+                  width: double.infinity,
+                  height: 110.w,
+                  alignment: Alignment.center,
+                  child: ProgressPaint(
+                    activity: 300,
+                    lowLevel: 1,
+                    proportion: _proportion,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
@@ -127,75 +195,7 @@ class _integralCenterPageState extends State<integralCenterPage> {
           children: [
             back,
             top,
-            Positioned(
-                top: 547.w,
-                child: Material(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.w),
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    width: 686.w,
-                    height: 343.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.w),
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Color(0xD9FBB246),
-                              Color(0xE6FF7145),
-                            ])),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: 32.w, top: 32.w, right: 32.w),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  '活跃度'.text.size(28.sp).white.make(),
-                                  24.w.heightBox,
-                                  '2501'.text.size(56.sp).white.make(),
-                                ],
-                              ),
-                              48.w.widthBox,
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  '积分'.text.size(28.sp).white.make(),
-                                  24.w.heightBox,
-                                  '123'.text.size(56.sp).white.make(),
-                                ],
-                              ),
-                              Spacer(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  '积分获取比例'.text.size(28.sp).white.make(),
-                                  24.w.heightBox,
-                                  '5%'.text.size(56.sp).white.make(),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Container(
-                          width: double.infinity,
-                          height: 110.w,
-                          alignment: Alignment.center,
-                          child: ProgressPaint(
-                            activity: 300,
-                            lowLevel: 1,
-                            proportion: _proportion,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )),
+            midCard,
           ],
         ),
       ),
