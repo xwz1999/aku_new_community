@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:aku_new_community/pages/tab_navigator.dart';
@@ -10,7 +9,6 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
@@ -246,42 +244,9 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(height: 59.w),
                 _inkWellLogin(),
                 10.hb,
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     MaterialButton(
-                //       shape: StadiumBorder(),
-                //       padding: EdgeInsets.zero,
-                //       onPressed: () => Get.to(() => AgreementPage()),
-                //       child: Text(
-                //         '《小蜜蜂用户协议》',
-                //         style: TextStyle(
-                //           color: Colors.lightBlue,
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(width: 15.w),
-                //     MaterialButton(
-                //       shape: StadiumBorder(),
-                //       padding: EdgeInsets.zero,
-                //       onPressed: () => Get.to(() => PrivacyPage()),
-                //       child: Text(
-                //         '《小蜜蜂隐私政策》',
-                //         style: TextStyle(
-                //           color: Colors.lightBlue,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
               ],
             )),
       ),
-      bottomNavi: BottomButton(
-          onPressed: () {
-            Get.to(() => LoginPage());
-          },
-          child: 'child'.text.make()),
     );
   }
 }
