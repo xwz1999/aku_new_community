@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/user/user_detail_model.dart';
+import 'package:aku_new_community/models/user/user_config_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -38,6 +39,13 @@ class UserProvider extends ChangeNotifier {
       HiveStore.appBox!.put('login', true);
       await updateProfile();
       await updateUserDetail();
+
+      ///初始化用户配置
+      _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
+          UserConfigModel(
+              userId: _userInfoModel!.id,
+              clockRemind: false,
+              todayClocked: false);
       await appProvider.updateHouses(await HouseFunc.passedHouses);
       if (isLogin) {
         WebSocketUtil().setUser(userInfoModel!.id.toString());
@@ -160,5 +168,26 @@ class UserProvider extends ChangeNotifier {
     if (model.status!) {
       await updateProfile();
     }
+  }
+
+  UserConfigModel _userConfig =
+      UserConfigModel(userId: 0, clockRemind: false, todayClocked: false);
+
+  UserConfigModel get userConfig => _userConfig;
+
+  Future changeClockRemind() async {
+    _userConfig.clockRemind = !_userConfig.clockRemind;
+    await updateUserConfig();
+    notifyListeners();
+  }
+
+  Future changeTodayClocked() async {
+    _userConfig.todayClocked = true;
+    await updateUserConfig();
+    notifyListeners();
+  }
+
+  Future updateUserConfig() async {
+    HiveStore.userBox!.put('${_userConfig.userId}', _userConfig);
   }
 }

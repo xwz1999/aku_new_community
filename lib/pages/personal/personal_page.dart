@@ -335,6 +335,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                               onPressed: () async {
                                 await Get.dialog(ClockSuccessDialog(
                                     todayIntegral: 1, tomorrowIntegral: 2));
+                                await UserTool.userProvider
+                                    .changeTodayClocked();
                               },
                               elevation: 0,
                               color: Colors.white,
@@ -342,7 +344,12 @@ class _PersonalIndexState extends State<PersonalIndex>
                               height: 58.w,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50.w)),
-                              child: '签到'.text.size(22.sp).black.make(),
+                              child:
+                                  '${UserTool.userProvider.userConfig.todayClocked ? '已签到' : '签到'}'
+                                      .text
+                                      .size(22.sp)
+                                      .black
+                                      .make(),
                             ),
                             32.w.widthBox,
                           ],
