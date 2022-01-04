@@ -8,7 +8,6 @@ import 'package:aku_new_community/model/community/hot_topic_model.dart';
 import 'package:aku_new_community/model/message/message_center_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/model/user/car_parking_model.dart';
-import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/user/passed_house_list_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -327,19 +326,5 @@ class AppProvider extends ChangeNotifier {
       }
     }
     notifyListeners();
-  }
-
-  ChinaRegionModel? _cityModel;
-
-  ChinaRegionModel? get cityModel => _cityModel;
-
-  Future<bool> updateCityList() async {
-    var model = await NetUtil().get(API.sarsApi.city.allCity);
-    if (model.status ?? false) {
-      _cityModel = ChinaRegionModel.fromJson(model.data);
-      return true;
-    } else {
-      return false;
-    }
   }
 }

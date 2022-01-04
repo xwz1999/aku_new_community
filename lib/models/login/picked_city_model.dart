@@ -21,7 +21,7 @@ class PickedCityModel {
   factory PickedCityModel.fromId(
       {required int provinceId, required int cityId, required int distrctId}) {
     var provinces =
-        HiveStore.chinaRegionBox!.values.cast<ChinaRegionModel>().toList();
+        HiveStore.dataBox!.get('cities').cast<ChinaRegionModel>().toList();
     final _province =
         provinces.firstWhere((element) => element.id == provinceId);
     final _city =

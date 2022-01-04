@@ -1,4 +1,4 @@
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
                           ),
                         ),
                         onPressed: () {
-                          Get.offAll(() => SignInPage());
+                          Get.offAll(() => LoginPage());
                         },
                       ),
                     ],

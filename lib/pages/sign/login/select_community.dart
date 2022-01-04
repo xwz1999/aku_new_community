@@ -1,5 +1,7 @@
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/picked_city_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_city_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_community_picker.dart';
@@ -77,40 +79,13 @@ class _SelectCommunityState extends State<SelectCommunity> {
             onTap: () async {
               var cancel = BotToast.showLoading();
               List<CommunityModel> _communities = [];
-              // var base = await NetUtil().get(API.sarsApi.login.allCommunity);
-              // if (base.status ?? false) {
-              //   _communities = (base.data as List)
-              //       .map((e) => CommunityModel.fromJson(e))
-              //       .toList();
-              // }
+              var base = await NetUtil().get(API.sarsApi.login.allCommunity);
+              if (base.status ?? false) {
+                _communities = (base.data as List)
+                    .map((e) => CommunityModel.fromJson(e))
+                    .toList();
+              }
               cancel();
-              _communities = [
-                CommunityModel(
-                    id: 0,
-                    name: '111',
-                    address: 'address',
-                    addressDetails: 'addressDetails'),
-                CommunityModel(
-                    id: 0,
-                    name: '2222',
-                    address: 'address',
-                    addressDetails: 'addressDetails'),
-                CommunityModel(
-                    id: 0,
-                    name: '3333',
-                    address: 'address',
-                    addressDetails: 'addressDetails'),
-                CommunityModel(
-                    id: 0,
-                    name: '444',
-                    address: 'address',
-                    addressDetails: 'addressDetails'),
-                CommunityModel(
-                    id: 0,
-                    name: '5555',
-                    address: 'address',
-                    addressDetails: 'addressDetails')
-              ];
               _community = await BeeCommunityPicker.pick(context, _communities);
               setState(() {});
             },

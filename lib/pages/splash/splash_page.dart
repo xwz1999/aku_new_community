@@ -10,6 +10,7 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -132,6 +133,7 @@ class _SplashPageState extends State<SplashPage> {
         await Permission.locationWhenInUse.request();
       }
       await _initOp();
+      UserTool.dataProvider.init();
       AMapFlutterLocation.updatePrivacyShow(true, true);
       AMapFlutterLocation.updatePrivacyAgree(true);
       MainInitialize.initTheme();

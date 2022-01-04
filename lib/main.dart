@@ -2,6 +2,7 @@ import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/splash/splash_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/data_provider.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => AppProvider()),
         ChangeNotifierProvider(create: (context) => SignUpProvider()),
+        ChangeNotifierProvider(create: (context) => DataProvider()),
       ],
       child: GestureDetector(
         onTap: () {

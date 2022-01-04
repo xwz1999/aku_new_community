@@ -4,7 +4,7 @@ import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/painters/user_bottom_bar_painter.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
@@ -66,7 +66,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                       padding: EdgeInsets.all(5.w),
                       onPressed: () {
                         if (!userProvider.isLogin)
-                          Get.to(() => SignInPage());
+                          Get.to(() => LoginPage());
                         else
                           Get.to(() => UserProfilePage());
                       },
@@ -263,7 +263,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                       padding: EdgeInsets.all(5.w),
                       onPressed: () {
                         if (!userProvider.isLogin)
-                          Get.to(() => SignInPage());
+                          Get.to(() => LoginPage());
                         else
                           Get.to(() => UserProfilePage());
                       },
@@ -276,10 +276,14 @@ class _PersonalIndexState extends State<PersonalIndex>
                               child: ClipOval(
                                 child: FadeInImage.assetNetwork(
                                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  image: API.image(userProvider
-                                          .userInfoModel!.imgUrls.isNotEmpty
-                                      ? userProvider
-                                          .userInfoModel!.imgUrls.first.url
+                                  image: API.image((userProvider
+                                                  .userInfoModel?.imgUrls ??
+                                              [])
+                                          .isNotEmpty
+                                      ? (userProvider.userInfoModel?.imgUrls ??
+                                              [])
+                                          .first
+                                          .url
                                       : ''),
                                   height: 106.w,
                                   width: 106.w,
@@ -513,7 +517,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                             R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
                             () => HouseOwnersPage(
                               identify:
-                                  UserTool.userProvider.userDetailModel!.type ??
+                                  UserTool.userProvider.userDetailModel?.type ??
                                       4,
                             ),
                             userProvider.userDetailModel!.estateNames!.isEmpty

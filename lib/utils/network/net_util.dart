@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/network/base_file_model.dart';
@@ -184,7 +184,7 @@ class NetUtil {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (!model.status! && model.message == '登录失效，请登录' && userProvider.isLogin) {
       userProvider.logout();
-      Get.offAll(() => SignInPage());
+      Get.offAll(() => LoginPage());
     }
     if (!model.status! || showMessage) {
       BotToast.showText(text: model.message!);

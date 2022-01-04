@@ -2,7 +2,7 @@ import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/pages/property/property_page.dart';
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/community_page.dart';
 import 'package:aku_new_community/ui/market/market_page.dart';
@@ -155,7 +155,7 @@ class _TabNavigatorState extends State<TabNavigator>
           unselectedFontSize: 20.sp,
           onTap: (index) {
             if (UserTool.userProvider.isLogin == false) {
-              Get.offAll(() => SignInPage());
+              Get.offAll(() => LoginPage());
             } else {
               _tabController!.animateTo(index, curve: Curves.easeInOutCubic);
               setFunc(() => _currentIndex = index);

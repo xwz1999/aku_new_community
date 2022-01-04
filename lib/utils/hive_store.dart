@@ -10,10 +10,10 @@ class HiveStore {
   static Box? _appBox;
 
   static Box? get appBox => _appBox;
-  static Box? _chinaRegionBox;
-  static Box? get chinaRegionBox => _chinaRegionBox;
   static Box? _userBox;
   static Box? get userBox => _userBox;
+  static Box? _dataBox;
+  static Box? get dataBox => _dataBox;
 
   static Future init() async {
     if (!kIsWeb) {
@@ -26,8 +26,8 @@ class HiveStore {
       Hive.registerAdapter(HistoryLoginModelAdapter());
       Hive.registerAdapter(UserConfigModelAdapter());
       _appBox = await Hive.openBox('app');
-      _chinaRegionBox = await Hive.openBox('chinaRegionBox');
       _userBox = await Hive.openBox('userBox');
+      _dataBox = await Hive.openBox('dataBox');
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
@@ -20,7 +20,7 @@ class LoginUtil {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (userProvider.isNotLogin) {
       BotToast.showText(text: '请先登录');
-      Get.to(() => SignInPage());
+      Get.to(() => LoginPage());
       return false;
     }
     return true;

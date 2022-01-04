@@ -2,7 +2,7 @@ part 'sars_api.dart';
 
 class API {
   ///HOST
-  static const String host = 'http://shop.kaidalai.cn';
+  static const String host = 'http://121.41.26.225:8006';
 
   ///接口基础地址
   static const String baseURL = '$host/api/app';

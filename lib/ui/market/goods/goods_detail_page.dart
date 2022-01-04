@@ -4,7 +4,7 @@ import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/market/goods_detail_model.dart';
 import 'package:aku_new_community/models/market/goods_item.dart';
-import 'package:aku_new_community/pages/sign/sign_in_page.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/goods/goods_card.dart';
 import 'package:aku_new_community/ui/market/goods/goods_order_detail_page.dart';
@@ -180,7 +180,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
         onPressed: () {
           if (!UserTool.userProvider.isLogin) {
             BotToast.showText(text: '请先登录！');
-            Get.offAll(() => SignInPage());
+            Get.offAll(() => LoginPage());
             return;
           }
           Get.bottomSheet(Material(
