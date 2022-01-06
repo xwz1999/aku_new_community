@@ -27,6 +27,16 @@ class SignFunc {
       showMessage: true,
     );
     return baseModel;
+  } //发送手机号验证码
+
+  static Future<BaseModel> sendForgotMessageCode(
+      String phone, int communityId) async {
+    BaseModel baseModel = await NetUtil().post(
+      SARSAPI.user.sendForgotTelCode,
+      params: {'tel': phone, 'communityId': communityId},
+      showMessage: true,
+    );
+    return baseModel;
   }
 
   static Future sendNewMessageCode(String newTel) async {
@@ -56,7 +66,7 @@ class SignFunc {
   static Future<Response> loginBySms(
       String phone, String code, int communityId) async {
     Response response = await NetUtil().dio!.post(
-      API.login.login,
+      SARSAPI.login.loginTelCode,
       data: {
         'tel': phone,
         'code': code,
@@ -113,10 +123,35 @@ class SignFunc {
       return false;
   }
 
+  ///更新用户信息
   static Future<UserInfoModel?> getUserInfo() async {
-    BaseModel baseModel = await NetUtil().get(API.user.userProfile);
+    BaseModel baseModel = await NetUtil().get(SARSAPI.user.userProfile);
     if (baseModel.data == null || !baseModel.success) return null;
     return UserInfoModel.fromJson(baseModel.data);
+  }
+
+  ///设置密码（密码不存在时调用
+  static Future<bool> settingPsd(String psd) async {
+    BaseModel baseModel = await NetUtil().get(SARSAPI.user.settingPsd,
+        params: {'password': psd}, showMessage: true);
+    if (baseModel.data == null || !baseModel.success) return false;
+    return true;
+  }
+
+  ///提交修改的新密码（忘记密码）
+  static Future<bool> settingForgotPsd(
+      String psd, String tel, String telcode) async {
+    BaseModel baseModel = await NetUtil().get(SARSAPI.user.settingForgotPsd,
+        params: {
+          'newPassword': psd,
+          'tel': tel,
+          'telCode': telcode,
+          'communityId':
+              UserTool.appProveider.pickedCityAndCommunity!.communityModel!.id
+        },
+        showMessage: true);
+    if (baseModel.data == null || !baseModel.success) return false;
+    return true;
   }
 
   static Future<MyHouseModel?> getMyHouseInfo() async {

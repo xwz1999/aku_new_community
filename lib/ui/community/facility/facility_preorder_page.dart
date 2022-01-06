@@ -178,7 +178,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                 if (model.success == true) {
                   BotToast.showText(text: '预约成功');
                   Get.back(result: true);
-                } else if (model.message == '该时段已被预约') {
+                } else if (model.msg == '该时段已被预约') {
                   await Get.dialog(_hasBeenOrder());
                 } else {
                   BotToast.showText(text: '预约失败');

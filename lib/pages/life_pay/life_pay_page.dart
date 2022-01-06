@@ -209,7 +209,7 @@ class _LifePayPageState extends State<LifePayPage> {
         });
         if (baseModel.success) {
           bool result = await PayUtil()
-              .callAliPay(baseModel.message, API.pay.dailPayMentCheck);
+              .callAliPay(baseModel.msg, API.pay.dailPayMentCheck);
           if (result) {
             Get.off(() => PayFinishPage());
           }

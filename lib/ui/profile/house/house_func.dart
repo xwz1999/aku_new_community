@@ -179,7 +179,7 @@ class HouseFunc {
       "payPrice": price,
     });
     if (baseModel.success) {
-      return baseModel.message;
+      return baseModel.msg;
     } else {
       return '';
     }
@@ -215,7 +215,7 @@ class HouseFunc {
     BaseModel baseModel = await NetUtil().post(API.pay.leaseRentOrderAlipay,
         params: {"sysLeaseId": id, "payType": type, "payPrice": price});
     if (baseModel.success) {
-      return baseModel.message;
+      return baseModel.msg;
     } else {
       return '';
     }
@@ -251,7 +251,7 @@ class HouseFunc {
     BaseModel baseModel = await NetUtil().post(API.pay.leaseRentBillorder,
         params: {"sysLeaseRentId": id, "payType": type, "payPrice": price});
     if (baseModel.success) {
-      return baseModel.message;
+      return baseModel.msg;
     } else {
       return '';
     }

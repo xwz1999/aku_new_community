@@ -269,7 +269,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                     widget.id, _submitModels);
                 Get.to(() => SubmitComplishPage(
                       status: baseModel.success,
-                      message: baseModel.message,
+                      message: baseModel.msg,
                     ));
               },
       ),

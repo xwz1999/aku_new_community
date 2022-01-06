@@ -455,7 +455,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                 if (baseModel.success) {
                   Get.back();
                 } else
-                  BotToast.showText(text: baseModel.message);
+                  BotToast.showText(text: baseModel.msg);
                 cancel();
               }
             : () {

@@ -28,6 +28,15 @@ class _City {
 class _User {
   ///用户资料
   String get userProfile => '/app/user/findDetail';
+
+  ///设置密码（密码不存在时调用）
+  String get settingPsd => '/app/user/settingPassword';
+
+  ///提交修改的新密码（忘记密码）
+  String get settingForgotPsd => '/app/user/forgetPassword';
+
+  ///app用户发送手机号验证码(忘记密码)
+  String get sendForgotTelCode => '/app/user/sendTelCodeForgetPwd';
 }
 
 class _Login {

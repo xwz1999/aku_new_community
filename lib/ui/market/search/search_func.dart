@@ -74,8 +74,8 @@ class SearchFunc {
   static Future<String> addGoodsCar(int jcookGoodsId) async {
     BaseModel model = await NetUtil().post(API.market.insertShoppingCart,
         params: {'jcookGoodsId': jcookGoodsId}, showMessage: true);
-    if (model.message == null) return '';
-    return model.message as String;
+    if (model.msg == null) return '';
+    return model.msg as String;
   }
 
   ///确认收货

@@ -16,7 +16,6 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -27,34 +26,30 @@ class UserProvider extends ChangeNotifier {
   bool get isNotLogin => !_isLogin;
 
   Future setLogin(int token) async {
-    try {
-      final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
-      _isLogin = true;
-      NetUtil()
-          .dio!
-          .options
-          .headers
-          .putIfAbsent('App-Admin-Token', () => token);
-      HiveStore.appBox!.put('token', token);
-      HiveStore.appBox!.put('login', true);
-      await updateUserInfo();
-      await updateMyHouseInfo();
+    // try {
+    final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
+    _isLogin = true;
+    NetUtil().dio!.options.headers['app-login-token'] = token;
+    HiveStore.appBox!.put('token', token);
+    HiveStore.appBox!.put('login', true);
+    await updateUserInfo();
+    await updateMyHouseInfo();
 
-      ///初始化用户配置
-      _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
-          UserConfigModel(
-              userId: _userInfoModel!.id,
-              clockRemind: false,
-              todayClocked: false);
-      await appProvider.updateHouses(await HouseFunc.passedHouses);
-      if (isLogin) {
-        WebSocketUtil().setUser(userInfoModel!.id.toString());
-        WebSocketUtil().startWebSocket();
-      }
-      notifyListeners();
-    } catch (e) {
-      LoggerData.addData(e);
+    ///初始化用户配置
+    _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
+        UserConfigModel(
+            userId: _userInfoModel!.id,
+            clockRemind: false,
+            todayClocked: false);
+    await appProvider.updateHouses(await HouseFunc.passedHouses);
+    if (isLogin) {
+      WebSocketUtil().setUser(userInfoModel!.id.toString());
+      WebSocketUtil().startWebSocket();
     }
+    notifyListeners();
+    // } catch (e) {
+    //   LoggerData.addData(e);
+    // }
   }
 
   logout() {
@@ -66,7 +61,7 @@ class UserProvider extends ChangeNotifier {
     _userInfoModel = null;
     _myHouseInfo = null;
     NetUtil().get(API.user.logout, showMessage: true);
-    NetUtil().dio!.options.headers.remove('App-Admin-Token');
+    NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
     WebSocketUtil().closeWebSocket();
@@ -76,11 +71,14 @@ class UserProvider extends ChangeNotifier {
 
   Future<bool> updateUserInfo() async {
     _userInfoModel = await SignFunc.getUserInfo();
+    print('222');
+
     if (_userInfoModel == null) {
       BotToast.showText(text: '获取用户信息失败');
       return false;
     }
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
+      print('111');
       SignFunc.checkNameAndAccount();
     }
 

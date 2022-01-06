@@ -2,24 +2,24 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class BaseModel {
-  int code;
-  String message;
-  bool success;
-  dynamic data;
+  final int code;
+  final String msg;
+  final bool success;
+  final dynamic data;
+
   factory BaseModel.fromJson(Map<String, dynamic> json) =>
       _$BaseModelFromJson(json);
-  BaseModel.err(
-      {this.message = '未知错误',
-      this.success = false,
-      this.data = null,
-      this.code = 0});
+
+  static BaseModel error(
+          String? message, bool success, dynamic data, int code) =>
+      BaseModel(code: code, msg: message ?? '未知错误', success: success);
 
   BaseModel({
     required this.code,
-    required this.message,
+    required this.msg,
     required this.success,
-    required this.data,
+    this.data,
   });
 }

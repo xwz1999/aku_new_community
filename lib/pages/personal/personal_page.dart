@@ -1,5 +1,4 @@
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
@@ -77,26 +76,26 @@ class _PersonalIndexState extends State<PersonalIndex>
                             Hero(
                               tag: 'AVATAR1',
                               child: ClipOval(
-                                child: FadeInImage.assetNetwork(
-                                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  image: API.image(userProvider
-                                          .userInfoModel!.imgUrls.isNotEmpty
-                                      ? userProvider
-                                          .userInfoModel!.imgUrls.first.url
-                                      : ''),
-                                  height: 106.w,
-                                  width: 106.w,
-                                  fit: BoxFit.cover,
-                                  imageErrorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Image.asset(
-                                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                      height: 106.w,
-                                      width: 106.w,
-                                    );
-                                  },
-                                ),
-                              ),
+                                  // child: FadeInImage.assetNetwork(
+                                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                                  //   image: API.image(userProvider
+                                  //           .userInfoModel!.imgUrls.isNotEmpty
+                                  //       ? userProvider
+                                  //           .userInfoModel!.imgUrls.first.url
+                                  //       : ''),
+                                  //   height: 106.w,
+                                  //   width: 106.w,
+                                  //   fit: BoxFit.cover,
+                                  //   imageErrorBuilder:
+                                  //       (context, error, stackTrace) {
+                                  //     return Image.asset(
+                                  //       R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                                  //       height: 106.w,
+                                  //       width: 106.w,
+                                  //     );
+                                  //   },
+                                  // ),
+                                  ),
                             ),
                             Container(
                                 margin: EdgeInsets.only(left: 16.w),
@@ -274,30 +273,30 @@ class _PersonalIndexState extends State<PersonalIndex>
                             Hero(
                               tag: 'AVATAR',
                               child: ClipOval(
-                                child: FadeInImage.assetNetwork(
-                                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  image: API.image((userProvider
-                                                  .userInfoModel?.imgUrls ??
-                                              [])
-                                          .isNotEmpty
-                                      ? (userProvider.userInfoModel?.imgUrls ??
-                                              [])
-                                          .first
-                                          .url
-                                      : ''),
-                                  height: 106.w,
-                                  width: 106.w,
-                                  fit: BoxFit.cover,
-                                  imageErrorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Image.asset(
-                                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                      height: 106.w,
-                                      width: 106.w,
-                                    );
-                                  },
-                                ),
-                              ),
+                                  // child: FadeInImage.assetNetwork(
+                                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                                  //   image: API.image((userProvider
+                                  //                   .userInfoModel?.imgUrls ??
+                                  //               [])
+                                  //           .isNotEmpty
+                                  //       ? (userProvider.userInfoModel?.imgUrls ??
+                                  //               [])
+                                  //           .first
+                                  //           .url
+                                  //       : ''),
+                                  //   height: 106.w,
+                                  //   width: 106.w,
+                                  //   fit: BoxFit.cover,
+                                  //   imageErrorBuilder:
+                                  //       (context, error, stackTrace) {
+                                  //     return Image.asset(
+                                  //       R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                                  //       height: 106.w,
+                                  //       width: 106.w,
+                                  //     );
+                                  //   },
+                                  // ),
+                                  ),
                             ),
                             Container(
                                 margin: EdgeInsets.only(left: 16.w),

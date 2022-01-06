@@ -162,13 +162,13 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                 "payPrice": _editingController.text
               });
               if (baseModel.success) {
-                bool result = await PayUtil().callAliPay(
-                    baseModel.message, API.pay.dailPaymentPrePayCheck);
+                bool result = await PayUtil()
+                    .callAliPay(baseModel.msg, API.pay.dailPaymentPrePayCheck);
                 if (result) {
                   Get.off(() => PayFinishPage());
                 }
               } else {
-                BotToast.showText(text: baseModel.message);
+                BotToast.showText(text: baseModel.msg);
               }
             } catch (e) {
               LoggerData.addData(e);

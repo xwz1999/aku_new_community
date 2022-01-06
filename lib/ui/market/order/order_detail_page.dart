@@ -63,7 +63,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     });
     if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.message, API.pay.jcookOrderCheckAlipay);
+          .callAliPay(baseModel.msg, API.pay.jcookOrderCheckAlipay);
       if (result) {
         Get.off(() => OrderPage(initIndex: 2));
       } else {

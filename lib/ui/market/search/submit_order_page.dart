@@ -136,7 +136,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
                   });
                   if (baseModel.success) {
                     bool result = await PayUtil().callAliPay(
-                        baseModel.message, API.pay.jcookOrderCheckAlipay);
+                        baseModel.msg, API.pay.jcookOrderCheckAlipay);
                     if (result) {
                       Get.off(() => OrderPage(initIndex: 2));
                     } else {
@@ -729,7 +729,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
     var base = await NetUtil().post(API.market.shopCarChangeNum,
         params: {'jcookGoodsId': jcookGoodsId, 'num': num});
     if (!(base.success)) {
-      BotToast.showText(text: base.message);
+      BotToast.showText(text: base.msg);
     }
     cancel();
     return base.success;

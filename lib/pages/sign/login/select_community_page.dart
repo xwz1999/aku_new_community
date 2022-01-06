@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -93,7 +93,10 @@ class _SelectCommunityState extends State<SelectCommunity> {
       onTap: () async {
         var cancel = BotToast.showLoading();
         List<CommunityModel> _communities = [];
-        var base = await NetUtil().get(API.login.allCommunity);
+        var base = await NetUtil().get(SARSAPI.login.allCommunity, params: {
+          'cityId': UserTool
+              .appProveider.pickedCityAndCommunity!.cityModel.district.id,
+        });
         if (base.success) {
           _communities = (base.data as List)
               .map((e) => CommunityModel.fromJson(e))
@@ -101,6 +104,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
         }
         cancel();
         var _community = await BeeCommunityPicker.pick(context, _communities);
+        print(_community?.name);
         if (_community != null) {
           UserTool.appProveider.setPickedCity(community: _community);
         }

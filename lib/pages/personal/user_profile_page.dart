@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/pages/personal/change_nick_name_page.dart';
 import 'package:aku_new_community/pages/personal/update_tel_page.dart';
@@ -92,31 +91,31 @@ class _UserProfilePageState extends State<UserProfilePage> {
             Hero(
               tag: 'AVATAR',
               child: ClipOval(
-                child:
-                    // CachedNetworkImage(
-                    //   imageUrl: API.image(
-                    //           userProvider.userInfoModel!.imgUrls.isNotEmpty
-                    //               ? userProvider.userInfoModel?.imgUrls.first.url
-                    //               : ''),
-                    //     height: 56.w,
-                    //     width: 56.w,
-                    //   placeholder: (context, url) =>
-                    //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
-                    //   errorWidget: (context, url, error) =>
-                    //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
-                    //   fit: BoxFit.fill,
-                    // ),
-                    FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: API.image(
-                      (userProvider.userInfoModel?.imgUrls ?? []).isNotEmpty
-                          ? userProvider.userInfoModel?.imgUrls.first.url
-                          : ''),
-                  height: 56.w,
-                  width: 56.w,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  // child:
+                  // CachedNetworkImage(
+                  //   imageUrl: API.image(
+                  //           userProvider.userInfoModel!.imgUrls.isNotEmpty
+                  //               ? userProvider.userInfoModel?.imgUrls.first.url
+                  //               : ''),
+                  //     height: 56.w,
+                  //     width: 56.w,
+                  //   placeholder: (context, url) =>
+                  //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
+                  //   errorWidget: (context, url, error) =>
+                  //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
+                  //   fit: BoxFit.fill,
+                  // ),
+                  //     FadeInImage.assetNetwork(
+                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  //   image: API.image(
+                  //       (userProvider.userInfoModel?.imgUrls ?? []).isNotEmpty
+                  //           ? userProvider.userInfoModel?.imgUrls.first.url
+                  //           : ''),
+                  //   height: 56.w,
+                  //   width: 56.w,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  ),
             ),
             onPressed: _pickAvatar,
           ),

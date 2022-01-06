@@ -9,7 +9,7 @@ class UserInfoModel {
   final int communityId;
   final String? name;
   final String tel;
-  final List<ImgModel> imgUrls;
+  // final List<ImgModel> imgUrls;
 
   /// 性别 1.男 2.女 3.保密
   final int? sex;
@@ -40,7 +40,6 @@ class UserInfoModel {
     required this.communityId,
     this.name,
     required this.tel,
-    required this.imgUrls,
     this.sex,
     this.nickName,
     required this.isExistPassword,

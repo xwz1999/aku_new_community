@@ -1,5 +1,4 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -65,26 +64,26 @@ class _ClockInPageState extends State<ClockInPage> {
                 Hero(
                   tag: 'AVATAR',
                   child: ClipOval(
-                    child: FadeInImage.assetNetwork(
-                      placeholder: Assets.images.placeholder.path,
-                      image: API.image(
-                          (UserTool.userProvider.userInfoModel?.imgUrls ?? [])
-                                  .isNotEmpty
-                              ? UserTool
-                                  .userProvider.userInfoModel!.imgUrls.first.url
-                              : ''),
-                      height: 106.w,
-                      width: 106.w,
-                      fit: BoxFit.cover,
-                      imageErrorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          Assets.icons.iconMySetting.path,
-                          height: 106.w,
-                          width: 106.w,
-                        );
-                      },
-                    ),
-                  ),
+                      // child: FadeInImage.assetNetwork(
+                      //   placeholder: Assets.images.placeholder.path,
+                      //   image: API.image(
+                      //       (UserTool.userProvider.userInfoModel?.imgUrls ?? [])
+                      //               .isNotEmpty
+                      //           ? UserTool
+                      //               .userProvider.userInfoModel!.imgUrls.first.url
+                      //           : ''),
+                      //   height: 106.w,
+                      //   width: 106.w,
+                      //   fit: BoxFit.cover,
+                      //   imageErrorBuilder: (context, error, stackTrace) {
+                      //     return Image.asset(
+                      //       Assets.icons.iconMySetting.path,
+                      //       height: 106.w,
+                      //       width: 106.w,
+                      //     );
+                      //   },
+                      // ),
+                      ),
                 ),
                 Container(
                     margin: EdgeInsets.only(left: 16.w),

@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
-import 'package:aku_new_community/pages/sign/login/select_community.dart';
+import 'package:aku_new_community/pages/sign/login/select_community_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -120,21 +120,22 @@ class CommunityWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppProvider appProveider = Provider.of<AppProvider>(context, listen: true);
+    var hasSelect = appProveider.pickedCityAndCommunity != null &&
+        appProveider.pickedCityAndCommunity!.communityModel != null;
     return GestureDetector(
       onTap: () async {
         await Get.to(() => SelectCommunity());
-        // setState();
       },
       child: Row(
         mainAxisAlignment: align ?? MainAxisAlignment.center,
         children: [
-          (appProveider.pickedCityAndCommunity != null
-                  ? '${appProveider.pickedCityAndCommunity?.cityModel.district.name ?? ''} ${appProveider.pickedCityAndCommunity!.communityModel!.name}'
+          (hasSelect
+                  ? '${appProveider.pickedCityAndCommunity!.cityModel.district.name} ${appProveider.pickedCityAndCommunity!.communityModel!.name}'
                   : '')
               .text
               .color(Colors.black)
               .make(),
-          '${appProveider.pickedCityAndCommunity == null ? '请先选择小区' : '  切换'}'
+          '${hasSelect ? '  切换' : '请先选择小区'}'
               .text
               .size(32.sp)
               .color(Color(0xFF5096F1))

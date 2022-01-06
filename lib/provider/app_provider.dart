@@ -343,6 +343,7 @@ class AppProvider extends ChangeNotifier {
     if (community != null) {
       _pickedCityAndCommunity!.communityModel = community;
     }
+    notifyListeners();
   }
 
   void resetPickedCity() {

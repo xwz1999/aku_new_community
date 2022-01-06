@@ -1,4 +1,5 @@
 import 'package:aku_new_community/pages/sign/login/code_message_page.dart';
+import 'package:aku_new_community/pages/sign/login/forgot_psd_page.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
@@ -104,22 +105,24 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                       .appProveider.pickedCityAndCommunity!.communityModel!.id);
               if (response.data['success']) {
                 UserTool.userProvider.setLogin(response.data['data']);
-                var success = await UserTool.userProvider.updateUserInfo();
-                if (!success) {
-                  return;
-                }
               } else {
                 BotToast.showText(text: response.data['message']);
               }
               cancel();
             },
             text: '登录'),
+        24.w.heightBox,
+        TextButton(
+            onPressed: () {
+              Get.to(() => ForgotPsdPage());
+            },
+            child: '忘记密码'.text.size(28.sp).color(Color(0xFF5096F1)).make())
       ],
     );
   }
 
   bool checkInput() {
-    if (!RegexUtil.isTel(_tel.text)) {
+    if (!RegexUtil.isMobileSimple(_tel.text)) {
       BotToast.showText(text: '请输入正确的手机号！');
       return false;
     }
@@ -143,22 +146,24 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
         TelTextField(controller: _tel),
         100.w.heightBox,
         LoginButtonWidget(
-            onTap: () async {
-              var check = checkInput();
-              if (!check) {
-                return;
-              }
-              var base = await SignFunc.sendMessageCode(
-                  _tel.text,
-                  UserTool
-                      .appProveider.pickedCityAndCommunity!.communityModel!.id);
-              if (base.success) {
-                Get.to(() => CodeMessagePage(tel: _tel.text));
-                appProvider.startTimer();
-              } else {
-                BotToast.showText(text: base.message);
-              }
-            },
+            onTap: UserTool.appProveider.second < 60
+                ? () {}
+                : () async {
+                    var check = checkInput();
+                    if (!check) {
+                      return;
+                    }
+                    var base = await SignFunc.sendMessageCode(
+                        _tel.text,
+                        UserTool.appProveider.pickedCityAndCommunity!
+                            .communityModel!.id);
+                    if (base.success) {
+                      Get.to(() => CodeMessagePage(tel: _tel.text));
+                      appProvider.startTimer();
+                    } else {
+                      BotToast.showText(text: base.msg);
+                    }
+                  },
             text: appProvider.timerStart
                 ? '${appProvider.second}秒后重新获取'
                 : '获取验证码'),

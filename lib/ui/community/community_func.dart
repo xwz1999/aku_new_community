@@ -34,9 +34,7 @@ class CommunityFunc {
       params: {'pageNum': 1, 'size': 8},
     );
     if (model.tableList!.length == 0) return [];
-    return model.tableList!
-        .map((e) => MyEventItemModel.fromJson(e))
-        .toList();
+    return model.tableList!.map((e) => MyEventItemModel.fromJson(e)).toList();
   }
 
   ///查询热门资讯
@@ -57,8 +55,8 @@ class CommunityFunc {
         'newsId': newsId,
       },
     );
-    if (model.message == null) return '';
-    return (model.message as String).toString();
+    if (model.msg == null) return '';
+    return (model.msg as String).toString();
   }
 
   ///查询当天上架的商品数量

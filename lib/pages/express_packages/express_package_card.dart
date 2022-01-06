@@ -135,7 +135,7 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
       },
     );
     if (baseModel.success) {
-      BotToast.showText(text: baseModel.message);
+      BotToast.showText(text: baseModel.msg);
     }
     return baseModel.success;
   }

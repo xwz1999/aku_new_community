@@ -610,7 +610,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
     var base = await NetUtil().post(API.market.shopCarChangeNum,
         params: {'jcookGoodsId': jcookGoodsId, 'num': num});
     if (!(base.success)) {
-      BotToast.showText(text: base.message);
+      BotToast.showText(text: base.msg);
     }
     cancel();
     return base.success;

@@ -47,7 +47,7 @@ class NetUtil {
 
   ///call auth after login
   auth(String token) {
-    _dio!.options.headers.putIfAbsent('App-Admin-Token', () => token);
+    _dio!.options.headers['app-login-token'] = token;
   }
 
   static String getDate(DateTime date) =>
@@ -61,15 +61,21 @@ class NetUtil {
     Map<String, dynamic>? params,
     bool showMessage = false,
   }) async {
+    var _baseModel;
     try {
       Response res = await _dio!.get(path, queryParameters: params);
-      BaseModel baseModel = BaseModel.fromJson(res.data);
-      _parseRequestError(baseModel, showMessage: showMessage);
-      return baseModel;
+      if (!res.data['success']) {
+        _baseModel = BaseModel.error(res.data['message'], res.data['success'],
+            res.data['data'], res.data['code']);
+        _parseRequestError(_baseModel, showMessage: showMessage);
+      } else {
+        _baseModel = BaseModel.fromJson(res.data);
+      }
     } on DioError catch (e) {
       _parseErr(e);
+      _baseModel = BaseModel(code: 0, msg: '未知错误', success: false, data: null);
     }
-    return BaseModel.err();
+    return _baseModel;
   }
 
   /// ## alias of Dio().post
@@ -82,17 +88,21 @@ class NetUtil {
     Map<String, dynamic>? params,
     bool showMessage = false,
   }) async {
+    var _baseModel;
     try {
       Response res = await _dio!.post(path, data: params);
-
-      BaseModel baseModel = BaseModel.fromJson(res.data);
-      _parseRequestError(baseModel, showMessage: showMessage);
-
-      return baseModel;
+      if (!res.data['success']) {
+        _baseModel = BaseModel.error(res.data['message'], res.data['success'],
+            res.data['data'], res.data['code']);
+        _parseRequestError(_baseModel, showMessage: showMessage);
+      } else {
+        _baseModel = BaseModel.fromJson(res.data);
+      }
     } on DioError catch (e) {
       _parseErr(e);
+      _baseModel = BaseModel(code: 0, msg: '未知错误', success: false, data: null);
     }
-    return BaseModel.err();
+    return _baseModel;
   }
 
   Future<BaseListModel> getList(
@@ -182,12 +192,14 @@ class NetUtil {
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
-    if (!model.success && model.message == '登录失效，请登录' && userProvider.isLogin) {
+    if (!model.success &&
+        (model.code == 10010 || model.msg == '登录失效，请重新登录') &&
+        userProvider.isLogin) {
       userProvider.logout();
       Get.offAll(() => LoginPage());
     }
     if (!model.success || showMessage) {
-      BotToast.showText(text: model.message);
+      BotToast.showText(text: model.msg);
     }
   }
 }

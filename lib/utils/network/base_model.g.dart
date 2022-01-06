@@ -8,7 +8,7 @@ part of 'base_model.dart';
 
 BaseModel _$BaseModelFromJson(Map<String, dynamic> json) => BaseModel(
       code: json['code'] as int,
-      message: json['message'] as String,
+      msg: json['msg'] as String,
       success: json['success'] as bool,
       data: json['data'],
     );

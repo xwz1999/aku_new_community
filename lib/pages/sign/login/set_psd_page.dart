@@ -1,10 +1,12 @@
+import 'package:aku_new_community/pages/sign/login/forgot_psd_page.dart';
 import 'package:aku_new_community/pages/sign/login/psd_verify.dart';
+import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/pages/sign/widget/psd_text_field.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SetPsdPage extends StatefulWidget {
@@ -20,11 +22,22 @@ class _SetPsdPageState extends State<SetPsdPage> {
 
   PSDVERIFY get psdCheck =>
       PsdVerify.check(_psdController.text, _confirmPsdController.text);
-  bool _psdVisible = false;
-  bool _confirmVisible = false;
+
+  @override
+  void initState() {
+    _psdController.addListener(() {
+      setState(() {});
+    });
+    _confirmPsdController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
+    _psdController.removeListener(() {});
+    _confirmPsdController.removeListener(() {});
     _psdController.dispose();
     _confirmPsdController.dispose();
     super.dispose();
@@ -75,7 +88,16 @@ class _SetPsdPageState extends State<SetPsdPage> {
               .make(),
           37.w.heightBox,
           LoginButtonWidget(
-              onTap: psdCheck == PSDVERIFY.correct ? () {} : null, text: '确认'),
+              onTap: psdCheck == PSDVERIFY.correct
+                  ? () async {
+                      var result =
+                          await SignFunc.settingPsd(_psdController.text);
+                      if (result) {
+                        Get.to(() => ForgotPsdPage());
+                      }
+                    }
+                  : null,
+              text: '确认'),
         ],
       ),
     );

@@ -45,6 +45,9 @@ class _BeeCommunityPickerState extends State<BeeCommunityPicker> {
   @override
   void initState() {
     _communities = widget.communities;
+    if (widget.communities.isNotEmpty) {
+      _pickedCommunity = widget.communities[0];
+    }
     super.initState();
   }
 

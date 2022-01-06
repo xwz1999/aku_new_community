@@ -100,14 +100,14 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
               },
               showMessage: false,
             );
-            if ((baseModel.success) && !baseModel.message.isEmptyOrNull) {
+            if ((baseModel.success) && !baseModel.msg.isEmptyOrNull) {
               bool result = await PayUtil()
-                  .callAliPay(baseModel.message!, API.pay.shoppingCheck);
+                  .callAliPay(baseModel.msg!, API.pay.shoppingCheck);
               if (result) {
                 Get.off(() => PayFinishPage());
               }
             } else {
-              BotToast.showText(text: baseModel.message!);
+              BotToast.showText(text: baseModel.msg!);
             }
             cancel();
           },

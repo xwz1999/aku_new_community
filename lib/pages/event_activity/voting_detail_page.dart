@@ -280,7 +280,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                       _hasVoted = true;
                       setState(() {});
                     } else {
-                      BotToast.showText(text: '${baseModel.message}');
+                      BotToast.showText(text: '${baseModel.msg}');
                     }
                   }
                 },

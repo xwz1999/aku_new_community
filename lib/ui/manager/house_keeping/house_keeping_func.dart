@@ -89,7 +89,7 @@ class HouseKeepingFunc {
       "payPrice": price
     });
     if (baseModel.success) {
-      return baseModel.message;
+      return baseModel.msg;
     } else {
       return '';
     }

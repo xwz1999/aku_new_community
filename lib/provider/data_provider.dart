@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 
 class DataProvider extends ChangeNotifier {
   Future init() async {
-    updateCityList();
     _loginHistories = HiveStore.dataBox!
             .get('historyLogin')
             ?.cast<HistoryLoginModel>()
             .toList() ??
         [];
+    if (_loginHistories.isEmpty) {
+      updateCityList();
+    }
   }
 
   List<ChinaRegionModel> _cityModel = [];

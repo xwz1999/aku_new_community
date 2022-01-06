@@ -20,6 +20,7 @@ class CodeMessagePage extends StatefulWidget {
 class _CodeMessagePageState extends State<CodeMessagePage> {
   String? _errorMessage;
   TextEditingController _controller = TextEditingController();
+  String? _currentCode;
 
   @override
   void initState() {
@@ -53,7 +54,7 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                   .bold
                   .make(),
               16.w.heightBox,
-              _errorMessage == null
+              _errorMessage != null
                   ? '${_errorMessage}'.text.color(Colors.red).size(28.sp).make()
                   : '验证码已发送至'
                       .richText
@@ -69,6 +70,8 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                       .make(),
               80.w.heightBox,
               PinFieldAutoFill(
+                autoFocus: true,
+                currentCode: _currentCode,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 codeLength: 6,
                 onCodeChanged: (code) async {
@@ -79,18 +82,14 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                         UserTool.appProveider.pickedCityAndCommunity!
                             .communityModel!.id);
                     if (re.data['success']) {
-                      UserTool.userProvider.setLogin(re.data['data']);
-                      var success =
-                          await UserTool.userProvider.updateUserInfo();
-                      if (!success) {
-                        return;
-                      }
+                      UserTool.userProvider.setLogin(re.data['data'] as int);
                     } else {
-                      _errorMessage = re.data['message'];
-                      BotToast.showText(text: re.data['message']);
+                      _errorMessage = re.data['msg'];
+                      BotToast.showText(text: re.data['msg']);
                       _controller.clear();
                     }
                   }
+                  _currentCode = code;
                 },
                 decoration: UnderlineDecoration(
                     colorBuilder: FixedColorListBuilder([
@@ -116,7 +115,7 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                           _errorMessage = null;
                           UserTool.appProveider.startTimer();
                         } else {
-                          BotToast.showText(text: base.message);
+                          BotToast.showText(text: base.msg);
                         }
                       },
                       child: (UserTool.appProveider.second >= 60

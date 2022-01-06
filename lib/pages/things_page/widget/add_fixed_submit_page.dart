@@ -198,7 +198,7 @@ class _AddFixedSubmitPageState extends State<AddFixedSubmitPage> {
                   if (baseModel.success) {
                     Get.off(() => FinishFixedSubmitPage());
                   } else
-                    BotToast.showText(text: baseModel.message);
+                    BotToast.showText(text: baseModel.msg);
                   cancel();
                 }
               : () {

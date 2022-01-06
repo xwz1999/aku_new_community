@@ -76,7 +76,7 @@ class _OrderCardState extends State<OrderCard> {
     });
     if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.message, API.pay.sharePayOrderCodeCheck);
+          .callAliPay(baseModel.msg, API.pay.sharePayOrderCodeCheck);
       if (result) {
         Get.off(() => PayFinishPage());
       }

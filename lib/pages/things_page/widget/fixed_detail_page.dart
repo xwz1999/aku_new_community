@@ -406,9 +406,9 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
     BaseModel baseModel = await ManagerFunc.reportRepairAlipay(
         _model.appReportRepairVo.id,
         (_model.appMaintenanceResultVo!.totalCost ?? 0).toDouble());
-    if ((baseModel.success) && !baseModel.message.isEmptyOrNull) {
-      bool result = await PayUtil()
-          .callAliPay(baseModel.message, API.pay.reportReapirCheck);
+    if ((baseModel.success) && !baseModel.msg.isEmptyOrNull) {
+      bool result =
+          await PayUtil().callAliPay(baseModel.msg, API.pay.reportReapirCheck);
       if (result) {
         Get.back();
         Get.off(() => PayFinishPage());
@@ -429,7 +429,7 @@ class _FixedDetailPageState extends State<FixedDetailPage> {
       Get.back();
     } else {
       Get.back();
-      BotToast.showText(text: baseModel.message);
+      BotToast.showText(text: baseModel.msg);
     }
     cancel();
   }

@@ -222,7 +222,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
               if (baseModel.success) {
                 Get.to(() => AdviceEvaluatePage(id: widget.model!.id));
               }
-              BotToast.showText(text: baseModel.message);
+              BotToast.showText(text: baseModel.msg);
             },
             child: '完成沟通'.text.bold.make(),
           ),

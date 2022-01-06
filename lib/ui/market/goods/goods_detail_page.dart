@@ -91,7 +91,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
             _goodsModel = GoodsDetailModel.fromJson(baseModel.data);
           } else {
             _goodsModel = GoodsDetailModel.fail();
-            BotToast.showText(text: baseModel.message ?? '未知错误');
+            BotToast.showText(text: baseModel.msg ?? '未知错误');
           }
           baseModel = await NetUtil().get(API.market.suppliyerHotTop, params: {
             "supplierId": _goodsModel.supplierId,
