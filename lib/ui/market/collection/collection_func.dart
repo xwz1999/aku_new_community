@@ -13,7 +13,7 @@ class CollectionFunc {
   /// 获取此供应商热度最高的商品
   static Future<List<CollectionGoodsModel>> getCollectionList() async {
     BaseModel baseModel = await NetUtil().get(API.market.collectionList);
-    if (baseModel.status == true && baseModel.data != null) {
+    if (baseModel.success == true && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => CollectionGoodsModel.fromJson(e))
           .toList();
@@ -66,7 +66,7 @@ class CollectionFunc {
 //   await NetUtil().get(API.market.suppliyerHotTop, params: {
 //     "supplierId": supplierId,
 //   });
-//   if (baseModel.status == true && baseModel.data != null) {
+//   if (baseModel.success == true && baseModel.data != null) {
 //     return (baseModel.data as List)
 //         .map((e) => GoodsItem.fromJson(e))
 //         .toList();
@@ -78,7 +78,7 @@ class CollectionFunc {
 // static Future getOrderDetail(int goodsAppointmentId) async {
 //   BaseModel baseModel = await NetUtil().get(API.market.orderDetail,
 //       params: {"goodsAppointmentId": goodsAppointmentId});
-//   if (baseModel.status! && baseModel.data != null) {
+//   if (baseModel.success && baseModel.data != null) {
 //     return OrderDetailModel.fromJson(baseModel.data);
 //   }
 // }

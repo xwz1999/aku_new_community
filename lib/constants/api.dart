@@ -1,5 +1,3 @@
-part 'sars_api.dart';
-
 class API {
   ///HOST
   static const String host = 'http://121.41.26.225:8006';
@@ -26,12 +24,17 @@ class API {
   static _Search search = _Search();
   static _Pay pay = _Pay();
   static _House house = _House();
-  static _SarsApi sarsApi = _SarsApi();
 }
 
 class _Login {
-  /// 获取手机验证码
-  String get sendSMSCode => '/login/sendMMSLogin';
+  //查询所有小区信息
+  String get allCommunity => '/app/login/findAllCommunity';
+
+  //账号密码登录
+  String get login => '/app/login/loginTelPwd';
+
+  // 获取手机验证码
+  String get sendSMSCode => '/app/login/sendTelCode';
 
   /// 通过验证码短信登陆
   String get loginBySMS => '/login/loginSMSUser';
@@ -54,10 +57,7 @@ class _Login {
 
 class _User {
   ///用户资料
-  String get userProfile => '/user/personalData/findPersonalData';
-
-  ///用户详细资料
-  String get userDetail => '/user/personalData/getUserDetail';
+  String get userProfile => '/app/user/findDetail';
 
   ///设置用户性别
   String get setSex => '/user/personalData/updateSex';

@@ -898,6 +898,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.1.0"
+  pin_input_text_field:
+    dependency: transitive
+    description:
+      name: pin_input_text_field
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.1"
   platform:
     dependency: transitive
     description:
@@ -1087,6 +1094,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sms_autofill:
+    dependency: "direct main"
+    description:
+      name: sms_autofill
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.0"
   source_gen:
     dependency: transitive
     description:

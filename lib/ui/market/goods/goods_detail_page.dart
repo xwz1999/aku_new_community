@@ -87,7 +87,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
             API.market.goodsDetail,
             params: {"goodsId": widget.id},
           );
-          if (baseModel.status == true && baseModel.data != null) {
+          if (baseModel.success == true && baseModel.data != null) {
             _goodsModel = GoodsDetailModel.fromJson(baseModel.data);
           } else {
             _goodsModel = GoodsDetailModel.fail();
@@ -96,7 +96,7 @@ class _GoodsDetailPageState extends State<GoodsDetailPage> {
           baseModel = await NetUtil().get(API.market.suppliyerHotTop, params: {
             "supplierId": _goodsModel.supplierId,
           });
-          if (baseModel.status == true && baseModel.data != null) {
+          if (baseModel.success == true && baseModel.data != null) {
             _topGoods = (baseModel.data as List)
                 .map((e) => GoodsItem.fromJson(e))
                 .toList();

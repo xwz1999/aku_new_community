@@ -93,7 +93,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
                 header: MaterialHeader(),
                 onRefresh: () async {
                   var base = await NetUtil().get(API.market.shopCarList);
-                  if (base.status ?? false) {
+                  if (base.success) {
                     _models = (base.data as List)
                         .map((e) => ShopCarListModel.fromJson(e))
                         .toList();
@@ -254,8 +254,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
           },
           showMessage: true,
         );
-        if (model.status != null) {
-          if (model.status!) {
+        if (model.success != null) {
+          if (model.success) {
             _selectIndex.clear();
             _refreshController.callRefresh();
           }
@@ -609,11 +609,11 @@ class _ShopCarPageState extends State<ShopCarPage> {
     var cancel = BotToast.showLoading();
     var base = await NetUtil().post(API.market.shopCarChangeNum,
         params: {'jcookGoodsId': jcookGoodsId, 'num': num});
-    if (!(base.status ?? false)) {
-      BotToast.showText(text: base.message ?? '');
+    if (!(base.success)) {
+      BotToast.showText(text: base.message);
     }
     cancel();
-    return base.status ?? false;
+    return base.success;
   }
 
   Future _changeNum() async {
@@ -640,8 +640,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
           },
           showMessage: true,
         );
-        if (model.status != null) {
-          if (model.status!) {
+        if (model.success != null) {
+          if (model.success) {
             _selectIndex.clear();
             _refreshController.callRefresh();
           }

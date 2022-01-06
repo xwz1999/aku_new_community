@@ -9,14 +9,14 @@ part 'history_login_model.g.dart';
 @HiveType(typeId: 4)
 class HistoryLoginModel {
   @HiveField(0)
-  final PickedCityModel cityModel;
+  PickedCityModel cityModel;
   @HiveField(1)
-  final CommunityModel communityModel;
+  CommunityModel? communityModel;
   factory HistoryLoginModel.fromJson(Map<String, dynamic> json) =>
       _$HistoryLoginModelFromJson(json);
 
-  const HistoryLoginModel({
+  HistoryLoginModel({
     required this.cityModel,
-    required this.communityModel,
+    this.communityModel,
   });
 }

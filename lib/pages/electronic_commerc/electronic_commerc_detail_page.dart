@@ -52,7 +52,7 @@ class _ElectronicCommercDetailPageState
               await NetUtil().get(API.manager.electronicCommercDetail, params: {
             "electronicCommerceId": widget.id,
           });
-          if (baseModel.status! && baseModel.data != null) {
+          if (baseModel.success && baseModel.data != null) {
             _detailModel =
                 ElectronicCommercDetailModel.fromJson(baseModel.data);
           } else {

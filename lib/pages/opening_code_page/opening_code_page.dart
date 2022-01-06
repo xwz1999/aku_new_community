@@ -50,7 +50,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
           _currentTime.add(Duration(seconds: seconds)),
           format: 'yyyy/MM/dd HH:mm:ss'),
     });
-    if ((baseModel.status ?? false) && baseModel.data != null) {
+    if ((baseModel.success) && baseModel.data != null) {
       _qrCode = baseModel.data;
       _onload = false;
       _overDate = false;

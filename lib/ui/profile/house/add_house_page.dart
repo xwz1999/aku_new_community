@@ -281,6 +281,6 @@ class _AddHousePageState extends State<AddHousePage> {
       showMessage: true,
     );
     cancel();
-    if (model.status!) Get.back(result: true);
+    if (model.success) Get.back(result: true);
   }
 }

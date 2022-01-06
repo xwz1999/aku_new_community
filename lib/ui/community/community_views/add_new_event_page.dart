@@ -68,7 +68,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
       showMessage: true,
     );
     cancel();
-    if (baseModel.status!) {
+    if (baseModel.success) {
       Get.back(result: true);
     }
   }

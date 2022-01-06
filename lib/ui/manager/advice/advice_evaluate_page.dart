@@ -72,7 +72,7 @@ class _AdviceEvaluatePageState extends State<AdviceEvaluatePage> {
                 params: {'id': widget.id, 'score': _rating},
                 showMessage: true,
               );
-              if (baseModel.status!) {
+              if (baseModel.success) {
                 Get.back();
                 Get.back();
               }

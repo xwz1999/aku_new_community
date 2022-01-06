@@ -175,7 +175,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   },
                 );
                 cancel();
-                if (model.status == true) {
+                if (model.success == true) {
                   BotToast.showText(text: '预约成功');
                   Get.back(result: true);
                 } else if (model.message == '该时段已被预约') {

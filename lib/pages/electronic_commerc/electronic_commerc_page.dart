@@ -47,7 +47,7 @@ class _ElectronicCommercPageState extends State<ElectronicCommercPage>
       final cancel = BotToast.showLoading();
       BaseModel baseModel =
           await NetUtil().get(API.manager.electronicCommercCategory);
-      if (baseModel.status == true && baseModel.data != null) {
+      if (baseModel.success == true && baseModel.data != null) {
         _models = (baseModel.data as List)
             .map((e) => ElectronicCommercCategoryModel.fromJson(e))
             .toList();

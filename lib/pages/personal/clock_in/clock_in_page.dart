@@ -67,11 +67,12 @@ class _ClockInPageState extends State<ClockInPage> {
                   child: ClipOval(
                     child: FadeInImage.assetNetwork(
                       placeholder: Assets.images.placeholder.path,
-                      image: API.image(UserTool
-                              .userProvider.userInfoModel!.imgUrls.isNotEmpty
-                          ? UserTool
-                              .userProvider.userInfoModel!.imgUrls.first.url
-                          : ''),
+                      image: API.image(
+                          (UserTool.userProvider.userInfoModel?.imgUrls ?? [])
+                                  .isNotEmpty
+                              ? UserTool
+                                  .userProvider.userInfoModel!.imgUrls.first.url
+                              : ''),
                       height: 106.w,
                       width: 106.w,
                       fit: BoxFit.cover,

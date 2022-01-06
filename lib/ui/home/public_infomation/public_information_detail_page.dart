@@ -69,7 +69,7 @@ class _PublicInformationDetailPageState
               .get(API.manager.getPublicInformationDetail, params: {
             "newsId": widget.id,
           });
-          if (baseModel.status! && baseModel.data != null) {
+          if (baseModel.success && baseModel.data != null) {
             _detailModel = NewsDetailModel.fromJson(baseModel.data);
             _parasedText = LinkTextParase.stringParase(_detailModel.content);
           } else {

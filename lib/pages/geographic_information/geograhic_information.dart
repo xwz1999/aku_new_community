@@ -36,7 +36,7 @@ class _GeographicInformationPageState extends State<GeographicInformationPage> {
           onRefresh: () async {
             BaseModel baseModel =
                 await NetUtil().get(API.manager.geographyInformation);
-            if (baseModel.status! && baseModel.data != null) {
+            if (baseModel.success && baseModel.data != null) {
               _model = GeographicInformationModel.fromJson(baseModel.data);
             }
             _onload = false;

@@ -73,7 +73,7 @@ class _NewRenovationAddPageState extends State<NewRenovationAddPage> {
                       },
                       showMessage: true);
 
-              if (baseModel.status ?? false) {
+              if (baseModel.success) {
                 Get.back();
               }
             } else {

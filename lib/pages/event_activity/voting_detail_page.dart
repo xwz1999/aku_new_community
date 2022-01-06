@@ -275,7 +275,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   } else {
                     BaseModel baseModel =
                         await ManagerFunc.vote(widget.id, _selectId);
-                    if (baseModel.status!) {
+                    if (baseModel.success) {
                       await Get.dialog(_shouwVoteDialog());
                       _hasVoted = true;
                       setState(() {});

@@ -261,7 +261,7 @@ class _BeeSearchState extends State<BeeSearch> {
         onRefresh: () async {
           BaseModel baseModel = await NetUtil().get(API.search.homeSearch,
               params: {"searchName": _textEditingController.text});
-          if (baseModel.status! && baseModel.data != null) {
+          if (baseModel.success && baseModel.data != null) {
             _searchModel = SearchModel.fromJson(baseModel.data);
           }
           setState(() {});

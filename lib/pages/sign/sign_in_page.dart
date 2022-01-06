@@ -1,21 +1,16 @@
 import 'dart:async';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/pages/sign/sign_func.dart';
-import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
-import 'package:aku_new_community/pages/tab_navigator.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
@@ -55,24 +50,24 @@ class _SignInPageState extends State<SignInPage> {
         Provider.of<SignUpProvider>(Get.context!, listen: false);
     if (!result) return;
     CancelFunc cancel = BotToast.showLoading();
-    Response response = await SignFunc.login(_phone.text, _code.text);
-    LoggerData.addData(response);
-
-    if (response.data['status']) {
-      if (response.data['choose'] == 1) {
-        userProvider.setLogin(response.data['token']);
-        cancel();
-        Get.offAll(() => TabNavigator());
-      } else {
-        cancel();
-        signUpProvider.setTel(_phone.text);
-        await Get.to(() => SignUpSetNicknamePage());
-        signUpProvider.clearAll();
-      }
-    } else {
-      BotToast.showText(text: response.data['message']);
-      cancel();
-    }
+    // Response response = await SignFunc.login(_phone.text, _code.text);
+    // LoggerData.addData(response);
+    //
+    // if (response.data['status']) {
+    //   if (response.data['choose'] == 1) {
+    //     userProvider.setLogin(response.data['token']);
+    //     cancel();
+    //     Get.offAll(() => TabNavigator());
+    //   } else {
+    //     cancel();
+    //     signUpProvider.setTel(_phone.text);
+    //     await Get.to(() => SignUpSetNicknamePage());
+    //     signUpProvider.clearAll();
+    //   }
+    // } else {
+    //   BotToast.showText(text: response.data['message']);
+    //   cancel();
+    // }
   }
 
   Widget _inkWellLogin() {
@@ -235,7 +230,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     onPressed: _canGetCode
                         ? () {
-                            SignFunc.sendMessageCode(_phone.text);
+                            // SignFunc.sendMessageCode(_phone.text);
                             startTick();
                           }
                         : null,

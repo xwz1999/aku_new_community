@@ -1,8 +1,9 @@
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
-import 'package:aku_new_community/models/login/picked_city_model.dart';
+import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_city_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_community_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -21,22 +22,24 @@ class SelectCommunity extends StatefulWidget {
 }
 
 class _SelectCommunityState extends State<SelectCommunity> {
-  PickedCityModel? _model;
-  CommunityModel? _community;
-
   String get cityName {
+    var _model = UserTool.appProveider.pickedCityAndCommunity;
     if (_model == null) {
       return '请选择省、市、县/区';
     } else {
-      return _model!.province.name + _model!.city.name + _model!.district.name;
+      return _model.cityModel.province.name +
+          _model.cityModel.city.name +
+          _model.cityModel.district.name;
     }
   }
 
   String get communityName {
+    var _community =
+        UserTool.appProveider.pickedCityAndCommunity?.communityModel;
     if (_community == null) {
       return '请选择小区';
     } else {
-      return _community!.name;
+      return _community.name;
     }
   }
 
@@ -46,76 +49,142 @@ class _SelectCommunityState extends State<SelectCommunity> {
   }
 
   @override
+  void deactivate() {
+    Future.delayed(Duration(milliseconds: 0), () async {
+      if (UserTool.appProveider.pickedCityAndCommunity != null &&
+          UserTool.appProveider.pickedCityAndCommunity?.communityModel ==
+              null) {
+        UserTool.appProveider.resetPickedCity();
+      }
+    });
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BeeScaffold(
-      title: '选择登录小区',
-      body: ListView(
+    var selectCity = GestureDetector(
+      onTap: () async {
+        var _city = await BeeCityPicker.pick(context);
+        if (_city != null) {
+          UserTool.appProveider.setPickedCity(city: _city);
+        }
+        setState(() {});
+      },
+      child: Container(
+        color: Colors.white,
+        width: double.infinity,
+        height: 88.w,
+        padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+        child: Row(
+          children: [
+            '选择城市'.text.size(28.sp).black.make(),
+            Spacer(),
+            '${cityName}'.text.black.make(),
+            32.w.widthBox,
+            Icon(
+              CupertinoIcons.right_chevron,
+              size: 20.w,
+            )
+          ],
+        ),
+      ),
+    );
+    var selectCommunity = GestureDetector(
+      onTap: () async {
+        var cancel = BotToast.showLoading();
+        List<CommunityModel> _communities = [];
+        var base = await NetUtil().get(API.login.allCommunity);
+        if (base.success) {
+          _communities = (base.data as List)
+              .map((e) => CommunityModel.fromJson(e))
+              .toList();
+        }
+        cancel();
+        var _community = await BeeCommunityPicker.pick(context, _communities);
+        if (_community != null) {
+          UserTool.appProveider.setPickedCity(community: _community);
+        }
+        setState(() {});
+      },
+      child: Container(
+        color: Colors.white,
+        width: double.infinity,
+        height: 88.w,
+        padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+        child: Row(
+          children: [
+            '选择小区'.text.size(28.sp).black.make(),
+            Spacer(),
+            '${communityName}'.text.black.make(),
+            32.w.widthBox,
+            Icon(
+              CupertinoIcons.right_chevron,
+              size: 20.w,
+            )
+          ],
+        ),
+      ),
+    );
+    var history = Offstage(
+      offstage: UserTool.dataProvider.loginHistories.length == 0,
+      child: Container(
+        width: double.infinity,
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            '历史登录'.text.size(28.sp).color(Colors.black.withOpacity(0.2)).make(),
+            24.w.widthBox,
+            ...UserTool.dataProvider.loginHistories
+                .map((e) => _historyTile(e))
+                .toList(),
+          ],
+        ),
+      ),
+    );
+    return WillPopScope(
+      onWillPop: () async {
+        var bool = UserTool.appProveider.pickedCityAndCommunity != null &&
+            UserTool.appProveider.pickedCityAndCommunity?.communityModel ==
+                null;
+        if (bool) {
+          BotToast.showText(text: '请选择小区');
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: BeeScaffold(
+        title: '选择登录小区',
+        body: ListView(
+          children: [
+            selectCity,
+            selectCommunity,
+            10.w.heightBox,
+            history,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _historyTile(HistoryLoginModel model) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+      child: Row(
         children: [
-          GestureDetector(
-            onTap: () async {
-              _model = await BeeCityPicker.pick(context);
-              setState(() {});
-            },
-            child: Container(
-              color: Colors.white,
-              width: double.infinity,
-              height: 88.w,
-              padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-              child: Row(
-                children: [
-                  '选择城市'.text.size(28.sp).black.make(),
-                  Spacer(),
-                  '${cityName}'.text.black.make(),
-                  32.w.widthBox,
-                  Icon(
-                    CupertinoIcons.right_chevron,
-                    size: 20.w,
-                  )
-                ],
-              ),
-            ),
+          Icon(
+            CupertinoIcons.search,
+            size: 30.w,
+            color: Colors.black.withOpacity(0.2),
           ),
-          GestureDetector(
-            onTap: () async {
-              var cancel = BotToast.showLoading();
-              List<CommunityModel> _communities = [];
-              var base = await NetUtil().get(API.sarsApi.login.allCommunity);
-              if (base.status ?? false) {
-                _communities = (base.data as List)
-                    .map((e) => CommunityModel.fromJson(e))
-                    .toList();
-              }
-              cancel();
-              _community = await BeeCommunityPicker.pick(context, _communities);
-              setState(() {});
-            },
-            child: Container(
-              color: Colors.white,
-              width: double.infinity,
-              height: 88.w,
-              padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-              child: Row(
-                children: [
-                  '选择小区'.text.size(28.sp).black.make(),
-                  Spacer(),
-                  '${communityName}'.text.black.make(),
-                  32.w.widthBox,
-                  Icon(
-                    CupertinoIcons.right_chevron,
-                    size: 20.w,
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            color: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-            child: Column(
-              children: [],
-            ),
-          ),
+          24.w.widthBox,
+          '${model.communityModel!.name}(${model.cityModel.province.name}·${model.cityModel.city.name}·${model.cityModel.district.name})'
+              .text
+              .size(28.sp)
+              .color(Colors.black.withOpacity(0.2))
+              .make(),
         ],
       ),
     );

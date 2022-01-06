@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/user/user_detail_model.dart';
+import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_config_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
@@ -11,7 +11,7 @@ import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -37,8 +37,8 @@ class UserProvider extends ChangeNotifier {
           .putIfAbsent('App-Admin-Token', () => token);
       HiveStore.appBox!.put('token', token);
       HiveStore.appBox!.put('login', true);
-      await updateProfile();
-      await updateUserDetail();
+      await updateUserInfo();
+      await updateMyHouseInfo();
 
       ///初始化用户配置
       _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
@@ -64,7 +64,7 @@ class UserProvider extends ChangeNotifier {
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
-    _userDetailModel = null;
+    _myHouseInfo = null;
     NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio!.options.headers.remove('App-Admin-Token');
     HiveStore.appBox!.delete('token');
@@ -74,18 +74,23 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future updateProfile() async {
+  Future<bool> updateUserInfo() async {
     _userInfoModel = await SignFunc.getUserInfo();
-    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
+    if (_userInfoModel == null) {
+      BotToast.showText(text: '获取用户信息失败');
+      return false;
+    }
+    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
+      SignFunc.checkNameAndAccount();
+    }
+
     notifyListeners();
+    return true;
   }
 
-  Future updateUserDetail() async {
-    UserDetailModel? _model = await SignFunc.getUserDetail();
-    if (_model != null) {
-      _userDetailModel = _model;
-      UserTool.appProveider.setCurrentHouseId(_model.nowEstateExamineId);
-    }
+  Future updateMyHouseInfo() async {
+    _myHouseInfo = await SignFunc.getMyHouseInfo();
+    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
     notifyListeners();
   }
 
@@ -97,9 +102,9 @@ class UserProvider extends ChangeNotifier {
 
   UserInfoModel? get userInfoModel => _userInfoModel;
 
-  UserDetailModel? _userDetailModel;
+  MyHouseModel? _myHouseInfo;
 
-  UserDetailModel? get userDetailModel => _userDetailModel;
+  MyHouseModel? get myHouseInfo => _myHouseInfo;
 
   ///设置性别
   Future setSex(int sex) async {
@@ -108,8 +113,8 @@ class UserProvider extends ChangeNotifier {
       params: {'sex': sex},
       showMessage: true,
     );
-    if (baseModel.status!) {
-      _userInfoModel!.sex = sex;
+    if (baseModel.success) {
+      await updateUserInfo();
       notifyListeners();
     }
   }
@@ -123,9 +128,9 @@ class UserProvider extends ChangeNotifier {
       },
       showMessage: true,
     );
-    if (baseModel.status!) {
-      _userInfoModel!.birthday =
-          DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss");
+    if (baseModel.success) {
+      // _userInfoModel!.birthday =
+      //     DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss");
       notifyListeners();
     }
   }
@@ -137,8 +142,8 @@ class UserProvider extends ChangeNotifier {
       params: {'nickName': name},
       showMessage: true,
     );
-    if (baseModel.status!) {
-      _userInfoModel!.nickName = name;
+    if (baseModel.success) {
+      // _userInfoModel!.nickName = name;
       notifyListeners();
     }
   }
@@ -150,8 +155,8 @@ class UserProvider extends ChangeNotifier {
       params: {'oldTel': oldTel, 'newTel': newTel, 'code': code},
       showMessage: true,
     );
-    if (baseModel.status!) {
-      _userInfoModel!.tel = newTel;
+    if (baseModel.success) {
+      await updateUserInfo();
       notifyListeners();
     }
   }
@@ -165,8 +170,8 @@ class UserProvider extends ChangeNotifier {
       },
       showMessage: true,
     );
-    if (model.status!) {
-      await updateProfile();
+    if (model.success) {
+      await updateUserInfo();
     }
   }
 

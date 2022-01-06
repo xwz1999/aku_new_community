@@ -17,7 +17,7 @@ class HouseKeepingFunc {
           "content": content,
           "submitImgUrls": urls
         });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return true;
     } else {
       return false;
@@ -28,7 +28,7 @@ class HouseKeepingFunc {
   static Future getHouseKeepingProcess(int id) async {
     BaseModel baseModel = await NetUtil().get(API.manager.houseKeepingProcess,
         params: {"housekeepingServiceId": id});
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return (baseModel.data as List)
           .map((e) => HouseKeepingProcessModel.fromJson(e))
           .toList();
@@ -43,7 +43,7 @@ class HouseKeepingFunc {
         await NetUtil().get(API.manager.housekeepingCancel, params: {
       "housekeepingServiceId": id,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       BotToast.showText(text: '取消成功');
       return true;
     } else {
@@ -74,7 +74,7 @@ class HouseKeepingFunc {
       "evaluationContent": evaluationContent,
       "evaluationImgUrls": imgs,
     });
-    return baseModel.status ?? false;
+    return baseModel.success;
   }
 
   ///支付宝支付：app 家政服务-服务费用支付 完成订单支付宝支付(生成 APP 支付订单信息)
@@ -88,8 +88,8 @@ class HouseKeepingFunc {
       "payType": type,
       "payPrice": price
     });
-    if (baseModel.status ?? false) {
-      return baseModel.message!;
+    if (baseModel.success) {
+      return baseModel.message;
     } else {
       return '';
     }

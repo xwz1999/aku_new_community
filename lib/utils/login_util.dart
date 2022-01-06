@@ -3,7 +3,6 @@ import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +42,7 @@ class LoginUtil {
     if (appProvider.selectedHouse == null) {
       BotToast.showText(text: '房屋审核中或审核失败');
       Get.to(() => HouseOwnersPage(
-            identify: UserTool.userProvider.userDetailModel!.type ?? 4,
+            identify: 4,
           ));
       return false;
     }

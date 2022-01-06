@@ -67,7 +67,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   bool get isOwner {
-    switch (UserTool.userProvider.userDetailModel!.type) {
+    switch (4) {
       case 1:
         return true;
       case 3:
@@ -79,7 +79,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
   }
 
   bool get isTourist {
-    switch (UserTool.userProvider.userDetailModel!.type) {
+    switch (4) {
       case 1:
         return false;
       case 2:
@@ -106,7 +106,7 @@ class _HouseOwnersPageState extends State<HouseOwnersPage> {
     Future.delayed(Duration(milliseconds: 300), () async {
       Function cancel = BotToast.showLoading();
       try {
-        await UserTool.userProvider.updateUserDetail();
+        await UserTool.userProvider.updateMyHouseInfo();
         UserTool.appProveider.updateHouses(await HouseFunc.passedHouses);
       } catch (e) {
         LoggerData.addData(e);

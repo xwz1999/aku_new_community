@@ -1,21 +1,29 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/user/pick_building_model.dart';
-import 'package:aku_new_community/model/user/user_detail_model.dart';
+import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
+import 'package:aku_new_community/pages/sign/login/set_psd_page.dart';
+import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
 
+import '../tab_navigator.dart';
+
 class SignFunc {
-  static Future sendMessageCode(String phone) async {
+  //发送手机号验证码
+  static Future<BaseModel> sendMessageCode(
+      String phone, int communityId) async {
     BaseModel baseModel = await NetUtil().post(
-      API.login.sendSMSCode,
-      params: {'tel': phone},
+      SARSAPI.login.sendSMSCode,
+      params: {'tel': phone, 'communityId': communityId},
       showMessage: true,
     );
     return baseModel;
@@ -30,10 +38,30 @@ class SignFunc {
     return baseModel;
   }
 
-  static Future<Response> login(String phone, String code) async {
+  //登录
+  static Future<Response> login(
+      String phone, String code, int communityId) async {
     Response response = await NetUtil().dio!.post(
-      API.login.loginBySMS,
-      data: {'tel': phone, 'code': code},
+      API.login.login,
+      data: {
+        'tel': phone,
+        'password': code,
+        'communityId': communityId,
+      },
+    );
+    return response;
+  }
+
+  //验证码登录
+  static Future<Response> loginBySms(
+      String phone, String code, int communityId) async {
+    Response response = await NetUtil().dio!.post(
+      API.login.login,
+      data: {
+        'tel': phone,
+        'code': code,
+        'communityId': communityId,
+      },
     );
     return response;
   }
@@ -87,15 +115,25 @@ class SignFunc {
 
   static Future<UserInfoModel?> getUserInfo() async {
     BaseModel baseModel = await NetUtil().get(API.user.userProfile);
-    if (baseModel.data == null) return null;
+    if (baseModel.data == null || !baseModel.success) return null;
     return UserInfoModel.fromJson(baseModel.data);
   }
 
-  static Future<UserDetailModel?> getUserDetail() async {
+  static Future<MyHouseModel?> getMyHouseInfo() async {
     BaseModel baseModel = await NetUtil().get(
-      API.user.userDetail,
+      SARSAPI.profile.house.userHouse,
     );
     if (baseModel.data == null) return null;
-    return UserDetailModel.fromJson(baseModel.data);
+    return MyHouseModel.fromJson(baseModel.data);
+  }
+
+  static Future checkNameAndAccount() async {
+    if (!UserTool.userProvider.userInfoModel!.isExistPassword) {
+      await Get.to(() => SetPsdPage());
+    } else if (UserTool.userProvider.userInfoModel!.nickName == null) {
+      await Get.to(() => SignUpSetNicknamePage());
+    } else {
+      Get.offAll(() => TabNavigator());
+    }
   }
 }

@@ -50,7 +50,7 @@ class MyOrderFunc {
         await NetUtil().get(API.market.suppliyerHotTop, params: {
       "supplierId": supplierId,
     });
-    if (baseModel.status == true && baseModel.data != null) {
+    if (baseModel.success == true && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => GoodsItem.fromJson(e))
           .toList();
@@ -62,7 +62,7 @@ class MyOrderFunc {
   static Future getOrderDetail(int goodsAppointmentId) async {
     BaseModel baseModel = await NetUtil().get(API.market.orderDetail,
         params: {"goodsAppointmentId": goodsAppointmentId});
-    if (baseModel.status! && baseModel.data != null) {
+    if (baseModel.success && baseModel.data != null) {
       return OrderDetailModel.fromJson(baseModel.data);
     }
   }

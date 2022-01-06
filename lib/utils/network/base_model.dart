@@ -1,21 +1,25 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'base_model.g.dart';
+
+@JsonSerializable()
 class BaseModel {
-  int? code;
-  String? message;
-  bool? status;
+  int code;
+  String message;
+  bool success;
   dynamic data;
+  factory BaseModel.fromJson(Map<String, dynamic> json) =>
+      _$BaseModelFromJson(json);
+  BaseModel.err(
+      {this.message = '未知错误',
+      this.success = false,
+      this.data = null,
+      this.code = 0});
 
   BaseModel({
-    this.code,
-    this.message,
-    this.data,
-    this.status,
+    required this.code,
+    required this.message,
+    required this.success,
+    required this.data,
   });
-
-  BaseModel.err({this.message = '未知错误', this.status = false});
-
-  BaseModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'] ?? '';
-    data = json['data'] ?? null;
-    status = json['status'] ?? false;
-  }
 }

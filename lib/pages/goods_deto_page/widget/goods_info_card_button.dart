@@ -96,7 +96,7 @@ class GoodsInfoCardButton extends StatelessWidget {
                         case '查看二维码':
                           ArticleQRModel _model =
                               await ManagerFunc.getQRcode(id);
-                          if (_model.status!) {
+                          if (_model.status ?? false) {
                             Get.to(() => DetoCodePage(id: id, model: _model));
                           } else {
                             BotToast.showText(text: _model.message!);

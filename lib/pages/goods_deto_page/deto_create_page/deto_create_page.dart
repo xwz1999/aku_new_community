@@ -444,7 +444,7 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                     .uploadFiles(_files, API.upload.uploadRepair);
                 BaseModel baseModel = await ManagerFunc.articleOutSubmit(
                   id: BeeParse.getEstateNameId(
-                      userProvider.userDetailModel!.estateNames![0]),
+                      userProvider.myHouseInfo!.communityName),
                   name: _itemName,
                   weight: _selectWeight! + 1,
                   approach: _selectApproach + 1,
@@ -452,10 +452,10 @@ class _DetoCreatePageState extends State<DetoCreatePage> {
                   time: datetime,
                   urls: urls,
                 );
-                if (baseModel.status!) {
+                if (baseModel.success) {
                   Get.back();
                 } else
-                  BotToast.showText(text: baseModel.message!);
+                  BotToast.showText(text: baseModel.message);
                 cancel();
               }
             : () {

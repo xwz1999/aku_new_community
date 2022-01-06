@@ -219,10 +219,10 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
                   await NetUtil().get(API.manager.completeFeedBack, params: {
                 "adviceId": widget.model!.id,
               });
-              if (baseModel.status ?? false) {
+              if (baseModel.success) {
                 Get.to(() => AdviceEvaluatePage(id: widget.model!.id));
               }
-              BotToast.showText(text: baseModel.message ?? '未知错误');
+              BotToast.showText(text: baseModel.message);
             },
             child: '完成沟通'.text.bold.make(),
           ),

@@ -75,7 +75,7 @@ class _AdviceAddCommentPageState extends State<AdviceAddCommentPage> {
               },
               showMessage: true,
             );
-            if (baseModel.status!) {
+            if (baseModel.success) {
               Get.back(result: true);
             }
           }

@@ -23,7 +23,6 @@ import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -189,13 +188,11 @@ class _CommunityPageState extends State<CommunityPage>
                             16.hb,
                             ..._newItems
                                 .map((e) => ChatCard(
-                                      model: e,onDelete:(){
-                              _easyRefreshController.callRefresh();
-                              setState(() {
-
-                              });
-                              }
-                                    ))
+                                    model: e,
+                                    onDelete: () {
+                                      _easyRefreshController.callRefresh();
+                                      setState(() {});
+                                    }))
                                 .toList()
                           ],
                         ),
@@ -226,13 +223,11 @@ class _CommunityPageState extends State<CommunityPage>
                             16.hb,
                             ..._newItems
                                 .map((e) => ChatCard(
-                                      model: e,onDelete:() {
-                              _easyRefreshController.callRefresh();
-                              setState(() {
-
-                              });
-                            }
-                                    ))
+                                    model: e,
+                                    onDelete: () {
+                                      _easyRefreshController.callRefresh();
+                                      setState(() {});
+                                    }))
                                 .toList()
                           ],
                         ),
@@ -303,7 +298,7 @@ class _CommunityPageState extends State<CommunityPage>
             final cancel = BotToast.showLoading();
             BaseModel model = await NetUtil().get(API.news.category);
             List<NewsCategoryModel>? category;
-            if (model.status == true && model.data != null) {
+            if (model.success == true && model.data != null) {
               category = (model.data as List)
                   .map((e) => NewsCategoryModel.fromJson(e))
                   .toList();
@@ -495,7 +490,7 @@ class _CommunityPageState extends State<CommunityPage>
 
   _geSearch() {
     return Container(
-      padding: EdgeInsets.only(bottom: 20.w,left: 32.w,right: 32.w),
+      padding: EdgeInsets.only(bottom: 20.w, left: 32.w, right: 32.w),
       color: Colors.white,
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

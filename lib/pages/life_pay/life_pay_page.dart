@@ -207,9 +207,9 @@ class _LifePayPageState extends State<LifePayPage> {
           "payType": 1, //暂时写死 等待后续补充
           "payPrice": total.payTotal.toDoubleStringAsFixed()
         });
-        if (baseModel.status ?? false) {
+        if (baseModel.success) {
           bool result = await PayUtil()
-              .callAliPay(baseModel.message!, API.pay.dailPayMentCheck);
+              .callAliPay(baseModel.message, API.pay.dailPayMentCheck);
           if (result) {
             Get.off(() => PayFinishPage());
           }
@@ -263,7 +263,7 @@ class _LifePayPageState extends State<LifePayPage> {
         await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
       "estateId": UserTool.appProveider.selectedHouse!.estateId,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return (baseModel.data as num).toDouble();
     } else {
       return 0;

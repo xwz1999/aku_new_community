@@ -196,9 +196,9 @@ class _SharePayPageState extends State<SharePayPage> {
           "payType": 1, //暂时写死 等待后续补充
           "payPrice": total.payTotal.toDoubleStringAsFixed()
         });
-        if (baseModel.status ?? false) {
+        if (baseModel.success) {
           bool result = await PayUtil()
-              .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);
+              .callAliPay(baseModel.message, API.pay.sharePayOrderCodeCheck);
           if (result) {
             Get.off(() => PayFinishPage());
           }
@@ -252,7 +252,7 @@ class _SharePayPageState extends State<SharePayPage> {
   //       await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
   //     "estateId": UserTool.appProveider.selectedHouse!.estateId,
   //   });
-  //   if (baseModel.status ?? false) {
+  //   if (baseModel.success) {
   //     return (baseModel.data as num).toDouble();
   //   } else {
   //     return 0;

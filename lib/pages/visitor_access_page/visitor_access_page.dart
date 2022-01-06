@@ -360,7 +360,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     SizedBox(height: 64.w),
                     _create(
                       appProvider.selectedHouse!.estateId,
-                      userProvider.userDetailModel!.type,
+                      4,
                       _phoneNum.text,
                     ),
                     _tips(),

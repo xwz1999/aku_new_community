@@ -165,7 +165,7 @@ class _ReturnGoodsDetailPageState extends State<ReturnGoodsDetailPage> {
 
   Future getModels() async {
     BaseModel baseModel = await NetUtil().get(API.manager.articleReturnList);
-    if (baseModel.status! && baseModel.data != null) {
+    if (baseModel.success && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => ArticleReturnListModel.fromJson(e))
           .toList();

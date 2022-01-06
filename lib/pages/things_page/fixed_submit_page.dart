@@ -104,7 +104,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
                         .size(32.sp)
                         .make(),
                     Spacer(),
-                    BeeMap.fixState[model.status!]!.text
+                    BeeMap.fixState[model.status]!.text
                         .color(_getColor(model.status))
                         .size(24.sp)
                         .make(),

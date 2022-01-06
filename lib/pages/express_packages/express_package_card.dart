@@ -134,10 +134,10 @@ class _ExpressPackageCardState extends State<ExpressPackageCard> {
         "packageCollectionId": id,
       },
     );
-    if (baseModel.status ?? false) {
-      BotToast.showText(text: baseModel.message ?? '未知错误');
+    if (baseModel.success) {
+      BotToast.showText(text: baseModel.message);
     }
-    return baseModel.status;
+    return baseModel.success;
   }
 
   Widget _rowTile(String assetPath, String titile, Widget content) {

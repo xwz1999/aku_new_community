@@ -112,7 +112,7 @@ class _FixedEvaluatePageState extends State<FixedEvaluatePage> {
                     widget.model.appReportRepairVo.id,
                     _rating,
                     _textEditingController!.text);
-                if (baseModel.status!) {
+                if (baseModel.success) {
                   Get.back();
                 }
               }

@@ -33,7 +33,7 @@ class _CommunityIntroducePageState extends State<CommunityIntroducePage> {
         onRefresh: () async {
           BaseModel baseModel =
               await NetUtil().get(API.manager.communityIntroduceInfo);
-          if (baseModel.status! && baseModel.data != null) {
+          if (baseModel.success && baseModel.data != null) {
             _model = CommunityIontroduceModel.fromJson(baseModel.data);
           }
           _onload = false;

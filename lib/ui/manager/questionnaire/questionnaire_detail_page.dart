@@ -268,7 +268,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
                 BaseModel baseModel = await ManagerFunc.questionnaireSubmit(
                     widget.id, _submitModels);
                 Get.to(() => SubmitComplishPage(
-                      status: baseModel.status,
+                      status: baseModel.success,
                       message: baseModel.message,
                     ));
               },

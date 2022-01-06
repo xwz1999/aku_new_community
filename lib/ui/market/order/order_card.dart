@@ -74,9 +74,9 @@ class _OrderCardState extends State<OrderCard> {
       "payType": 1, //暂时写死 等待后续补充
       "payPrice": widget.model.payPrice
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.message!, API.pay.sharePayOrderCodeCheck);
+          .callAliPay(baseModel.message, API.pay.sharePayOrderCodeCheck);
       if (result) {
         Get.off(() => PayFinishPage());
       }
@@ -107,7 +107,7 @@ class _OrderCardState extends State<OrderCard> {
           await NetUtil().get(API.market.deleteOrder, params: {
         "orderId": widget.model.id,
       });
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '删除成功');
         widget.callRefresh();
       }
@@ -136,7 +136,7 @@ class _OrderCardState extends State<OrderCard> {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel = await NetUtil().get(API.market.cancelOrder,
           params: {"orderId": widget.model.id, 'cancelReasonCode': 4});
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '取消成功');
         widget.callRefresh();
       }
@@ -167,7 +167,7 @@ class _OrderCardState extends State<OrderCard> {
           await NetUtil().get(API.market.confirmOrder, params: {
         "orderId": widget.model.id,
       });
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '收货成功');
         Get.back();
         widget.callRefresh();

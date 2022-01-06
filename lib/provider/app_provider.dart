@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:aku_new_community/constants/api.dart';
@@ -8,6 +9,9 @@ import 'package:aku_new_community/model/community/hot_topic_model.dart';
 import 'package:aku_new_community/model/message/message_center_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/model/user/car_parking_model.dart';
+import 'package:aku_new_community/models/login/community_model.dart';
+import 'package:aku_new_community/models/login/history_login_model.dart';
+import 'package:aku_new_community/models/login/picked_city_model.dart';
 import 'package:aku_new_community/models/user/passed_house_list_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -327,4 +331,48 @@ class AppProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  HistoryLoginModel? _pickedCityAndCommunity;
+
+  HistoryLoginModel? get pickedCityAndCommunity => _pickedCityAndCommunity;
+
+  void setPickedCity({PickedCityModel? city, CommunityModel? community}) {
+    if (city != null) {
+      _pickedCityAndCommunity = HistoryLoginModel(cityModel: city);
+    }
+    if (community != null) {
+      _pickedCityAndCommunity!.communityModel = community;
+    }
+  }
+
+  void resetPickedCity() {
+    _pickedCityAndCommunity = null;
+    notifyListeners();
+  }
+
+  int second = 60;
+  bool timerStart = false;
+  Timer? timer;
+
+  void startTimer() {
+    timerStart = true;
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (second > 0) {
+        second--;
+        notifyListeners();
+      } else {
+        stopTimer();
+      }
+    });
+  }
+
+  void stopTimer() {
+    second = 60;
+    timerStart = false;
+    timer?.cancel();
+    timer = null;
+    notifyListeners();
+  }
+
+  notifyListeners();
 }

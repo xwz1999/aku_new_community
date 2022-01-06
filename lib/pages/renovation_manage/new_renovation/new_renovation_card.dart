@@ -139,7 +139,7 @@ class _NewRenovationCardState extends State<NewRenovationCard> {
                           "userDecorationNewId": widget.model.id,
                         },
                         showMessage: true);
-                if (baseModel.status ?? false) {
+                if (baseModel.success) {
                   widget.callRefresh();
                 }
               })

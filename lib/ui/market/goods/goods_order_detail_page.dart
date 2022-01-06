@@ -13,7 +13,6 @@ import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_numberic_button.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -62,7 +61,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
         TextButton(
             onPressed: () {
               Get.to(() => HouseOwnersPage(
-                    identify: UserTool.userProvider.userDetailModel!.type ?? 4,
+                    identify: 4,
                   ));
             },
             child: '切换房屋'.text.size(28.sp).color(ktextPrimary).make())
@@ -101,8 +100,7 @@ class _GoodsOrderDetailPageState extends State<GoodsOrderDetailPage> {
               },
               showMessage: false,
             );
-            if ((baseModel.status ?? false) &&
-                !baseModel.message.isEmptyOrNull) {
+            if ((baseModel.success) && !baseModel.message.isEmptyOrNull) {
               bool result = await PayUtil()
                   .callAliPay(baseModel.message!, API.pay.shoppingCheck);
               if (result) {

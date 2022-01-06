@@ -10,7 +10,7 @@ class PropertyFunc {
         await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
       "estateId": UserTool.appProveider.selectedHouse!.estateId,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return (baseModel.data as num).toDouble();
     } else {
       return 0;
@@ -23,7 +23,7 @@ class PropertyFunc {
         await NetUtil().get(API.manager.findUnpaidAmount, params: {
       "estateId": UserTool.appProveider.selectedHouse!.estateId,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return (baseModel.data as num).toDouble();
     } else {
       return 0;

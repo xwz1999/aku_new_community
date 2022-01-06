@@ -8,7 +8,6 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/views/application_view.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -169,10 +168,7 @@ class _PropertyPageState extends State<PropertyPage>
                   ),
                   Spacer(),
                   Text(
-                    userProvider.userDetailModel!.estateNames!.isEmpty
-                        ? '暂未绑定'
-                        : userProvider.userDetailModel!.estateNames?[0] ??
-                            '暂未绑定',
+                    userProvider.myHouseInfo!.communityName,
                     style: TextStyle(
                         fontSize: 28.sp,
                         color: Colors.white.withOpacity(0.85),
@@ -183,8 +179,7 @@ class _PropertyPageState extends State<PropertyPage>
                   GestureDetector(
                     onTap: () {
                       Get.to(HouseOwnersPage(
-                        identify:
-                            UserTool.userProvider.userDetailModel!.type ?? 4,
+                        identify: 4,
                       ));
                     },
                     child: Container(
@@ -419,8 +414,8 @@ class _PropertyPageState extends State<PropertyPage>
       body: EasyRefresh(
         header: MaterialHeader(),
         onRefresh: () async {
-          await userProvider.updateProfile();
-          await userProvider.updateUserDetail();
+          await userProvider.updateUserInfo();
+          await userProvider.updateMyHouseInfo();
         },
         child: CustomScrollView(
           slivers: <Widget>[

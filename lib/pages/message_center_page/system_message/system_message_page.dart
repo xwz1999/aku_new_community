@@ -57,8 +57,8 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
               children: [
                 '系统通知'.text.black.bold.size(32.sp).make(),
                 Spacer(),
-                BeeMap.messageRead[model.status!]!.text
-                    .color(BeeMap.messageIsRead[model.status!]!
+                BeeMap.messageRead[model.status]!.text
+                    .color(BeeMap.messageIsRead[model.status]!
                         ? Color(0xFF999999)
                         : Colors.red)
                     .size(32.sp)

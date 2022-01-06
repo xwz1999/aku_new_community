@@ -220,8 +220,8 @@ class _PersonalIndexState extends State<PersonalIndex>
       body: EasyRefresh(
           header: MaterialHeader(),
           onRefresh: () async {
-            await userProvider.updateProfile();
-            await userProvider.updateUserDetail();
+            await userProvider.updateUserInfo();
+            await userProvider.updateMyHouseInfo();
           },
           child: Stack(
             children: [
@@ -513,19 +513,12 @@ class _PersonalIndexState extends State<PersonalIndex>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _function(
-                            '我的房屋',
-                            R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                            () => HouseOwnersPage(
-                              identify:
-                                  UserTool.userProvider.userDetailModel?.type ??
-                                      4,
-                            ),
-                            userProvider.userDetailModel!.estateNames!.isEmpty
-                                ? ''
-                                : userProvider
-                                        .userDetailModel!.estateNames?[0] ??
-                                    '',
-                          ),
+                              '我的房屋',
+                              R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                              () => HouseOwnersPage(
+                                    identify: 4,
+                                  ),
+                              userProvider.myHouseInfo?.communityName ?? ''),
                           36.hb,
                           _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
                               () => CarParkingPage(), ''),

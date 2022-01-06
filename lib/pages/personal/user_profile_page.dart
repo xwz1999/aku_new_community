@@ -72,7 +72,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       Function cancel = BotToast.showLoading();
       BaseFileModel model =
           await NetUtil().upload(API.upload.uploadAvatar, file);
-      if (model.status!)
+      if (model.status ?? false)
         userProvider.updateAvatar(model.url);
       else
         BotToast.showText(text: model.message!);
@@ -109,7 +109,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: API.image(
-                      userProvider.userInfoModel!.imgUrls.isNotEmpty
+                      (userProvider.userInfoModel?.imgUrls ?? []).isNotEmpty
                           ? userProvider.userInfoModel?.imgUrls.first.url
                           : ''),
                   height: 56.w,
@@ -166,7 +166,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           _buildTile(
             '出生日期',
-            userProvider.userInfoModel!.birthdayValue.text.make(),
+            'userProvider.userInfoModel!.birthdayValue'.text.make(),
             onPressed: () async {
               DateTime? date = await BeeDatePicker.pick(DateTime.now());
               if (date != null) userProvider.setBirthday(date);

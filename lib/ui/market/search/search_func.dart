@@ -121,7 +121,7 @@ class SearchFunc {
   static Future getOrderDetail(int goodsAppointmentId) async {
     BaseModel baseModel = await NetUtil().get(API.market.orderDetail,
         params: {"goodsAppointmentId": goodsAppointmentId});
-    if (baseModel.status! && baseModel.data != null) {
+    if (baseModel.success && baseModel.data != null) {
       return OrderDetailModel.fromJson(baseModel.data);
     }
   }

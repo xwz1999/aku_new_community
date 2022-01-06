@@ -61,9 +61,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       "payType": 1, //暂时写死 等待后续补充
       "payPrice": widget.orderModel.payPrice
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.message!, API.pay.jcookOrderCheckAlipay);
+          .callAliPay(baseModel.message, API.pay.jcookOrderCheckAlipay);
       if (result) {
         Get.off(() => OrderPage(initIndex: 2));
       } else {
@@ -96,7 +96,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           await NetUtil().get(API.market.deleteOrder, params: {
         "orderId": widget.orderModel.id,
       });
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '删除成功');
         Get.back();
         widget.callRefresh();
@@ -126,7 +126,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel = await NetUtil().get(API.market.cancelOrder,
           params: {"orderId": widget.orderModel.id, 'cancelReasonCode': 4});
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '取消成功');
         Get.back();
         widget.callRefresh();
@@ -158,7 +158,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           await NetUtil().get(API.market.confirmOrder, params: {
         "orderId": widget.orderModel.id,
       });
-      if (baseModel.status ?? false) {
+      if (baseModel.success) {
         BotToast.showText(text: '收货成功');
         Get.back();
         widget.callRefresh();
@@ -548,7 +548,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   await NetUtil().get(API.market.findLogistics, params: {
                 "orderId": widget.orderModel.id,
               });
-              if (baseModel.status == true && baseModel.data != null) {
+              if (baseModel.success == true && baseModel.data != null) {
                 logisticsModels = (baseModel.data as List)
                     .map((e) => LogisticsModel.fromJson(e))
                     .toList();

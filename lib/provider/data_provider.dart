@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
@@ -9,9 +9,10 @@ class DataProvider extends ChangeNotifier {
   Future init() async {
     updateCityList();
     _loginHistories = HiveStore.dataBox!
-        .get('historyLogin')
-        .cast<HistoryLoginModel>()
-        .toList();
+            .get('historyLogin')
+            ?.cast<HistoryLoginModel>()
+            .toList() ??
+        [];
   }
 
   List<ChinaRegionModel> _cityModel = [];
@@ -19,8 +20,8 @@ class DataProvider extends ChangeNotifier {
   List<ChinaRegionModel> get cityModel => _cityModel;
 
   Future<bool> updateCityList() async {
-    var model = await NetUtil().get(API.sarsApi.city.allCity);
-    if (model.status ?? false) {
+    var model = await NetUtil().get(SARSAPI.city.allCity);
+    if (model.success) {
       _cityModel = (model.data as List)
           .map((e) => ChinaRegionModel.fromJson(e))
           .toList();

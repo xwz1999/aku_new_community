@@ -25,7 +25,7 @@ class BeeCityPicker extends StatefulWidget {
 
 class _BeeCityPickerState extends State<BeeCityPicker> {
   List<ChinaRegionModel> get provinces =>
-      HiveStore.dataBox!.get('cities').cast<ChinaRegionModel>().toList();
+      HiveStore.dataBox!.get('cities')?.cast<ChinaRegionModel>().toList() ?? [];
 
   late int _pickedProvinceIndex;
   late int _pickedCityIndex;

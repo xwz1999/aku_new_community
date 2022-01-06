@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
@@ -25,10 +25,10 @@ class NetUtil {
 
   NetUtil._internal() {
     BaseOptions options = BaseOptions(
-      baseUrl: API.baseURL,
-      connectTimeout: API.networkTimeOut,
-      receiveTimeout: API.networkTimeOut,
-      sendTimeout: API.networkTimeOut,
+      baseUrl: SARSAPI.baseURL,
+      connectTimeout: SARSAPI.networkTimeOut,
+      receiveTimeout: SARSAPI.networkTimeOut,
+      sendTimeout: SARSAPI.networkTimeOut,
       headers: {},
     );
     if (_dio == null) _dio = Dio(options);
@@ -182,12 +182,12 @@ class NetUtil {
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
-    if (!model.status! && model.message == '登录失效，请登录' && userProvider.isLogin) {
+    if (!model.success && model.message == '登录失效，请登录' && userProvider.isLogin) {
       userProvider.logout();
       Get.offAll(() => LoginPage());
     }
-    if (!model.status! || showMessage) {
-      BotToast.showText(text: model.message!);
+    if (!model.success || showMessage) {
+      BotToast.showText(text: model.message);
     }
   }
 }

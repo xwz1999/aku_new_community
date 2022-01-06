@@ -29,7 +29,7 @@ class Userfunc {
           'isDefault': isDefault
         },
         showMessage: false);
-    if (model.status ?? false) {
+    if (model.success) {
       BotToast.showText(text: '添加成功');
       return true;
     } else {
@@ -51,7 +51,7 @@ class Userfunc {
           'isDefault': isDefault
         },
         showMessage: false);
-    if (model.status ?? false) {
+    if (model.success) {
       BotToast.showText(text: '修改成功');
       return true;
     } else {
@@ -64,7 +64,7 @@ class Userfunc {
   static Future<bool> deleteAddress(int addressId) async {
     BaseModel model = await NetUtil().post(API.user.deleteAddress,
         params: {'addressId': addressId}, showMessage: false);
-    if (model.status ?? false) {
+    if (model.success) {
       BotToast.showText(text: '删除成功');
       return true;
     } else {
@@ -77,7 +77,7 @@ class Userfunc {
   static Future<bool> setIsDefaultAddress(int addressId) async {
     BaseModel model = await NetUtil().post(API.user.settingDefaultAddress,
         params: {'addressId': addressId}, showMessage: false);
-    if (model.status ?? false) {
+    if (model.success) {
       BotToast.showText(text: '设置成功');
       return true;
     } else {

@@ -105,7 +105,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
       showMessage: true,
     );
     cancel();
-    if (baseModel.status!) {
+    if (baseModel.success) {
       Get.back(result: true);
     }
   }

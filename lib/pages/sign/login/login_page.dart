@@ -1,9 +1,12 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/pages/sign/login/select_community.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
@@ -30,17 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.to(() => SelectCommunity());
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      '请先选择小区'.text.size(32.sp).color(Color(0xFF5096F1)).make()
-                    ],
-                  ),
-                ),
+                CommunityWidget(),
                 80.w.heightBox,
                 '${'1547***93018'}'
                     .text
@@ -61,7 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 24.w.heightBox,
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => OtherLoginPage());
+                  },
                   child: Text(
                     '其他登录方式',
                     style: TextStyle(
@@ -73,28 +68,78 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             Spacer(),
-            RichText(
-                text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      color: ktextSubColor,
-                    ),
-                    text: '注册/登记即代表同意',
-                    children: [
-                  WidgetSpan(
-                      child: InkWell(
-                    onTap: () {
-                      //TODO:跳转隐私政策
-                    },
-                    child: '《小蜜蜂隐私政策及用户协议》'
-                        .text
-                        .size(24.sp)
-                        .color(Color(0xFF5096F1))
-                        .make(),
-                  )),
-                ])),
+            BottomTip(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BottomTip extends StatelessWidget {
+  const BottomTip({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 100.w),
+      child: RichText(
+          text: TextSpan(
+              style: TextStyle(
+                fontSize: 24.sp,
+                color: ktextSubColor,
+              ),
+              text: '注册/登记即代表同意',
+              children: [
+            WidgetSpan(
+                child: InkWell(
+              onTap: () {
+                //TODO:跳转隐私政策
+              },
+              child: '《小蜜蜂隐私政策及用户协议》'
+                  .text
+                  .size(24.sp)
+                  .color(Color(0xFF5096F1))
+                  .make(),
+            )),
+          ])),
+    );
+  }
+}
+
+class CommunityWidget extends StatelessWidget {
+  final MainAxisAlignment? align;
+
+  const CommunityWidget({
+    Key? key,
+    this.align,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    AppProvider appProveider = Provider.of<AppProvider>(context, listen: true);
+    return GestureDetector(
+      onTap: () async {
+        await Get.to(() => SelectCommunity());
+        // setState();
+      },
+      child: Row(
+        mainAxisAlignment: align ?? MainAxisAlignment.center,
+        children: [
+          (appProveider.pickedCityAndCommunity != null
+                  ? '${appProveider.pickedCityAndCommunity?.cityModel.district.name ?? ''} ${appProveider.pickedCityAndCommunity!.communityModel!.name}'
+                  : '')
+              .text
+              .color(Colors.black)
+              .make(),
+          '${appProveider.pickedCityAndCommunity == null ? '请先选择小区' : '  切换'}'
+              .text
+              .size(32.sp)
+              .color(Color(0xFF5096F1))
+              .make(),
+        ],
       ),
     );
   }

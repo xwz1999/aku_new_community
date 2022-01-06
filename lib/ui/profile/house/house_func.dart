@@ -15,7 +15,7 @@ class HouseFunc {
   ///查询所有的房屋审核信息
   static Future<List<PassedHouseListModel>> get examineHouses async {
     BaseModel model = await NetUtil().get(API.user.examineHouseList);
-    if (!model.status!) return [];
+    if (!model.success) return [];
     return (model.data as List)
         .map((e) => PassedHouseListModel.fromJson(e))
         .toList();
@@ -24,7 +24,7 @@ class HouseFunc {
   ///查询用户所拥有的房屋信息
   static Future<List<PassedHouseListModel>> get passedHouses async {
     BaseModel model = await NetUtil().get(API.user.passedHouseList);
-    if (!model.status!) return [];
+    if (!model.success) return [];
     return (model.data as List)
         .map((e) => PassedHouseListModel.fromJson(e))
         .toList();
@@ -44,7 +44,7 @@ class HouseFunc {
       "tel": tel,
       "idNumber": idNumber,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       BotToast.showText(text: '提交成功');
       return true;
     }
@@ -54,7 +54,7 @@ class HouseFunc {
   ///租赁认证信息回显
   static Future leaseEcho() async {
     BaseModel baseModel = await NetUtil().get(API.house.leaseEcho);
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return LeaseEchoModel.fromJson(baseModel.data);
     } else {
       return LeaseEchoModel.fail();
@@ -66,7 +66,7 @@ class HouseFunc {
     BaseModel baseModel = await NetUtil().get(API.house.leaseFindByld, params: {
       "leaseId": leaseId,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return LeaseDetailModel.fromJson(baseModel.data);
     } else {
       return null;
@@ -110,7 +110,7 @@ class HouseFunc {
       "idCardFrontImgUrl": model.idCardFrontImgUrl,
       "idCardBackImgUrl": model.idCardBackImgUrl,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return baseModel.data;
     } else {
       return '';
@@ -141,7 +141,7 @@ class HouseFunc {
       "contractSignatureImgUrl": sUrl,
     });
 
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return baseModel.data;
     } else {
       return '';
@@ -166,7 +166,7 @@ class HouseFunc {
       "id": id,
       "leaseContractValidPdfUrl": urls,
     });
-    return baseModel.status!;
+    return baseModel.success;
   }
 
   ///支付宝生成订单
@@ -178,8 +178,8 @@ class HouseFunc {
       "payType": type,
       "payPrice": price,
     });
-    if (baseModel.status ?? false) {
-      return baseModel.message ?? '';
+    if (baseModel.success) {
+      return baseModel.message;
     } else {
       return '';
     }
@@ -201,7 +201,7 @@ class HouseFunc {
     BaseModel baseModel = await NetUtil().post(
         API.house.submitTerminateApplication,
         params: {"id": id, "takeDate": takeDate, "clearingSingleImgUrl": urls});
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return true;
     } else {
       return false;
@@ -214,8 +214,8 @@ class HouseFunc {
   Future<String> leaseRentOrder(int id, int type, double price) async {
     BaseModel baseModel = await NetUtil().post(API.pay.leaseRentOrderAlipay,
         params: {"sysLeaseId": id, "payType": type, "payPrice": price});
-    if (baseModel.status ?? false) {
-      return baseModel.message!;
+    if (baseModel.success) {
+      return baseModel.message;
     } else {
       return '';
     }
@@ -228,7 +228,7 @@ class HouseFunc {
       "sysLeaseId": id,
       "payPrice": price,
     });
-    return baseModel.status ?? false;
+    return baseModel.success;
   }
 
   ///我的房屋-合同终止：保证金退还申请
@@ -237,7 +237,7 @@ class HouseFunc {
         await NetUtil().get(API.house.refundApplication, params: {
       "sysLeaseId": id,
     });
-    if (baseModel.status ?? false) {
+    if (baseModel.success) {
       return true;
     } else {
       return false;
@@ -250,8 +250,8 @@ class HouseFunc {
   Future<String> leaseRentBillOrder(int id, int type, double price) async {
     BaseModel baseModel = await NetUtil().post(API.pay.leaseRentBillorder,
         params: {"sysLeaseRentId": id, "payType": type, "payPrice": price});
-    if (baseModel.status ?? false) {
-      return baseModel.message!;
+    if (baseModel.success) {
+      return baseModel.message;
     } else {
       return '';
     }

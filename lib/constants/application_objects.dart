@@ -30,7 +30,6 @@ import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.da
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 ///应用对象
@@ -138,7 +137,7 @@ List<AO> userAppObjects = [
       '我的房屋',
       R.ASSETS_ICONS_USER_ICON_WDFW_PNG,
       () => HouseOwnersPage(
-            identify: UserTool.userProvider.userDetailModel!.type ?? 4,
+            identify: 4,
           )),
   AO('我的车位', R.ASSETS_ICONS_USER_ICON_WDCW_PNG, () => CarParkingPage()),
   AO('我的车', R.ASSETS_ICONS_USER_ICON_WDC_PNG, () => CarManagePage()),
