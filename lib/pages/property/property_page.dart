@@ -444,13 +444,17 @@ class _PropertyPageState extends State<PropertyPage>
             ),
             SliverToBoxAdapter(
               child: _getFunctionView(
-                  wisdomServiceApp, '智慧服务', Color(0xFFFA5858),
-                  unComplete: true),
+                wisdomServiceApp,
+                '智慧服务',
+                Color(0xFFFA5858),
+              ),
             ),
             SliverToBoxAdapter(
               child: _getFunctionView(
-                  nearbyShoppingApp, '附近市场', Color(0xFFFA5858),
-                  unComplete: true),
+                nearbyShoppingApp,
+                '附近市场',
+                Color(0xFFFA5858),
+              ),
             )
           ],
         ),
@@ -458,8 +462,11 @@ class _PropertyPageState extends State<PropertyPage>
     );
   }
 
-  _getFunctionView(List<AO> item, String title, Color color,
-      {bool unComplete = false}) {
+  _getFunctionView(
+    List<AO> item,
+    String title,
+    Color color,
+  ) {
     return Container(
       margin: EdgeInsets.only(left: 32.w, right: 32.w, top: 32.w),
       decoration: BoxDecoration(
@@ -497,7 +504,6 @@ class _PropertyPageState extends State<PropertyPage>
                 ApplicationView.custom(
                   items: item,
                   needAllApp: false,
-                  unComplete: unComplete,
                 ),
               ],
             ),

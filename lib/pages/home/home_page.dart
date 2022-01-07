@@ -2,23 +2,19 @@
 
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/swiper_model.dart';
 import 'package:aku_new_community/pages/home/widget/animate_app_bar.dart';
-import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
 import 'package:aku_new_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/activity/activity_card.dart';
 import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_new_community/ui/community/community_func.dart';
-import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
-import 'package:aku_new_community/ui/home/application/all_application.dart';
 import 'package:aku_new_community/ui/home/home_notification.dart';
 import 'package:aku_new_community/ui/home/home_title.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
@@ -514,14 +510,10 @@ class _HomePageState extends State<HomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            getFunctionBtn(
-                '报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
-            getFunctionBtn('设施预约', R.ASSETS_ICONS_FUNC_SSYY_PNG,
-                () => FacilityAppointmentPage()),
-            getFunctionBtn('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG,
-                () => LifePayChoosePage()),
-            getFunctionBtn('智慧养老', Assets.icons.provideAged.path, null,
-                unComplete: true),
+            getFunctionBtn(AO.fromRaw('报事报修')),
+            getFunctionBtn(AO.fromRaw('设施预约')),
+            getFunctionBtn(AO.fromRaw('生活缴费')),
+            getFunctionBtn(AO.fromRaw('智慧养老')),
           ],
         ),
         32.hb,
@@ -529,44 +521,39 @@ class _HomePageState extends State<HomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            getFunctionBtn('周边服务', Assets.icons.nearbyService.path, null,
-                unComplete: true),
-            getFunctionBtn('任务发布', Assets.icons.beeTask.path, null,
-                unComplete: true),
-            getFunctionBtn('邻家宠物', Assets.icons.nearbyPet.path, null,
-                unComplete: true),
-            getFunctionBtn('全部应用', R.ASSETS_ICONS_FUNC_ALL_PNG,
-                () => AllApplicationPage()),
+            getFunctionBtn(AO.fromRaw('周边服务')),
+            getFunctionBtn(AO.fromRaw('小蜜蜂任务', replaceTitle: '任务发布')),
+            getFunctionBtn(AO.fromRaw('邻家宠物')),
+            getFunctionBtn(AO.fromRaw('全部应用')),
           ],
         ),
       ],
     );
   }
 
-  Widget getFunctionBtn(String title, String path, dynamic page,
-      {bool unComplete = false}) {
+  Widget getFunctionBtn(AO ao) {
     return MaterialButton(
       shape: StadiumBorder(),
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
-        if (!LoginUtil.haveRoom(title)) return;
-        if (unComplete) {
+        if (!LoginUtil.haveRoom(ao.title)) return;
+        if (ao.page == null) {
           BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {
-          Get.to(page);
+          Get.to(ao.page);
         }
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            path,
+            ao.path,
             height: 80.w,
             width: 80.w,
           ),
           16.hb,
-          title.text.size(22.sp).color(Color(0xA6000000)).bold.make(),
+          ao.title.text.size(22.sp).color(Color(0xA6000000)).bold.make(),
         ],
       ),
     );

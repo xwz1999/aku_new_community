@@ -1111,6 +1111,10 @@ class $AssetsStaticGen {
   AssetGenImage get integralBackground =>
       const AssetGenImage('assets/static/integral_background.png');
 
+  /// File path: assets/static/old_age_back.png
+  AssetGenImage get oldAgeBack =>
+      const AssetGenImage('assets/static/old_age_back.png');
+
   /// File path: assets/static/parking_grey.webp
   AssetGenImage get parkingGrey =>
       const AssetGenImage('assets/static/parking_grey.webp');
