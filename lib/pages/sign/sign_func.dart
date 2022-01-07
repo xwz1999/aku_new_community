@@ -154,12 +154,14 @@ class SignFunc {
     return true;
   }
 
-  static Future<MyHouseModel?> getMyHouseInfo() async {
+  static Future<List<MyHouseModel>> getMyHouseInfo() async {
     BaseModel baseModel = await NetUtil().get(
       SARSAPI.profile.house.userHouse,
     );
-    if ((baseModel.data as List).isEmpty) return null;
-    return MyHouseModel.fromJson(baseModel.data);
+    if ((baseModel.data as List).isEmpty) return [];
+    return (baseModel.data as List)
+        .map((e) => MyHouseModel.fromJson(e))
+        .toList();
   }
 
   static Future checkNameAndAccount() async {

@@ -59,13 +59,12 @@ class UserProvider extends ChangeNotifier {
     _isLogin = false;
     _token = null;
     _userInfoModel = null;
-    _myHouseInfo = null;
+    _myHouses = [];
     NetUtil().get(API.user.logout, showMessage: true);
     NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
     WebSocketUtil().closeWebSocket();
-
     notifyListeners();
   }
 
@@ -84,8 +83,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future updateMyHouseInfo() async {
-    _myHouseInfo = await SignFunc.getMyHouseInfo();
-    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
+    _myHouses = await SignFunc.getMyHouseInfo();
     notifyListeners();
   }
 
@@ -97,9 +95,9 @@ class UserProvider extends ChangeNotifier {
 
   UserInfoModel? get userInfoModel => _userInfoModel;
 
-  MyHouseModel? _myHouseInfo;
+  List<MyHouseModel> _myHouses = [];
 
-  MyHouseModel? get myHouseInfo => _myHouseInfo;
+  List<MyHouseModel> get myHouses => _myHouses;
 
   ///设置性别
   Future setSex(int sex) async {

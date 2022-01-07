@@ -517,7 +517,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                               () => HouseOwnersPage(
                                     identify: 4,
                                   ),
-                              userProvider.myHouseInfo?.communityName ?? ''),
+                              // userProvider.myHouses.first.communityName ??
+                              ''),
                           36.hb,
                           _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
                               () => CarParkingPage(), ''),
