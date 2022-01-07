@@ -12,7 +12,10 @@ class DataProvider extends ChangeNotifier {
             ?.cast<HistoryLoginModel>()
             .toList() ??
         [];
-    if (_loginHistories.isEmpty) {
+    _cityModel =
+        HiveStore.dataBox!.get('cities')?.cast<ChinaRegionModel>().toList() ??
+            [];
+    if (_cityModel.isEmpty) {
       updateCityList();
     }
   }

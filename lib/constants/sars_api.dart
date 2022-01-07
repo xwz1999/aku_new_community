@@ -37,6 +37,12 @@ class _User {
 
   ///app用户发送手机号验证码(忘记密码)
   String get sendForgotTelCode => '/app/user/sendTelCodeForgetPwd';
+
+  ///检测昵称是否重复
+  String get checkNickRepeat => '/app/user/checkNickNameRepeat';
+
+  ///设置昵称
+  String get setNickName => '/app/user/settingNickName';
 }
 
 class _Login {

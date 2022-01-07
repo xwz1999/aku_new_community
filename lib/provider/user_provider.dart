@@ -33,7 +33,7 @@ class UserProvider extends ChangeNotifier {
     HiveStore.appBox!.put('token', token);
     HiveStore.appBox!.put('login', true);
     await updateUserInfo();
-    await updateMyHouseInfo();
+    // await updateMyHouseInfo();
 
     ///初始化用户配置
     _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
@@ -71,14 +71,11 @@ class UserProvider extends ChangeNotifier {
 
   Future<bool> updateUserInfo() async {
     _userInfoModel = await SignFunc.getUserInfo();
-    print('222');
-
     if (_userInfoModel == null) {
       BotToast.showText(text: '获取用户信息失败');
       return false;
     }
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
-      print('111');
       SignFunc.checkNameAndAccount();
     }
 

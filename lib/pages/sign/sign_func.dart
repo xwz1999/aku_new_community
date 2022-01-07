@@ -3,8 +3,8 @@ import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/user/pick_building_model.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
+import 'package:aku_new_community/pages/sign/login/set_nick_name_page.dart';
 import 'package:aku_new_community/pages/sign/login/set_psd_page.dart';
-import 'package:aku_new_community/pages/sign/sign_up/sign_up_set_nickname_page.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -158,7 +158,7 @@ class SignFunc {
     BaseModel baseModel = await NetUtil().get(
       SARSAPI.profile.house.userHouse,
     );
-    if (baseModel.data == null) return null;
+    if ((baseModel.data as List).isEmpty) return null;
     return MyHouseModel.fromJson(baseModel.data);
   }
 
@@ -166,9 +166,31 @@ class SignFunc {
     if (!UserTool.userProvider.userInfoModel!.isExistPassword) {
       await Get.to(() => SetPsdPage());
     } else if (UserTool.userProvider.userInfoModel!.nickName == null) {
-      await Get.to(() => SignUpSetNicknamePage());
+      print('111');
+      await Get.to(() => SetNickNamePage());
     } else {
+      print('222');
       Get.offAll(() => TabNavigator());
     }
+  }
+
+  ///检测昵称是否重复
+  static Future<bool> checkNickRepeat(String nick) async {
+    BaseModel baseModel = await NetUtil().get(SARSAPI.user.checkNickRepeat,
+        params: {
+          'nickName': nick,
+        },
+        showMessage: true);
+    return baseModel.success;
+  }
+
+  ///设置昵称
+  static Future<bool> setNickName(String nick) async {
+    BaseModel baseModel = await NetUtil().get(SARSAPI.user.setNickName,
+        params: {
+          'nickName': nick,
+        },
+        showMessage: true);
+    return baseModel.success;
   }
 }

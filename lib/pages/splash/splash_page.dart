@@ -4,7 +4,6 @@ import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:aku_new_community/pages/tab_navigator.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
@@ -139,7 +138,6 @@ class _SplashPageState extends State<SplashPage> {
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
-      Get.offAll(() => TabNavigator());
     });
   }
 
