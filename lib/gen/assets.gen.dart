@@ -157,6 +157,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bee_task.png
   AssetGenImage get beeTask => const AssetGenImage('assets/icons/bee_task.png');
 
+  /// File path: assets/icons/blood_ressure.png
+  AssetGenImage get bloodRessure =>
+      const AssetGenImage('assets/icons/blood_ressure.png');
+
   /// File path: assets/icons/borrow_failure.png
   AssetGenImage get borrowFailure =>
       const AssetGenImage('assets/icons/borrow_failure.png');
@@ -239,6 +243,10 @@ class $AssetsIconsGen {
   AssetGenImage get facility =>
       const AssetGenImage('assets/icons/facility.png');
 
+  /// File path: assets/icons/falldown.png
+  AssetGenImage get falldown =>
+      const AssetGenImage('assets/icons/falldown.png');
+
   /// File path: assets/icons/file.png
   AssetGenImage get file => const AssetGenImage('assets/icons/file.png');
 
@@ -251,6 +259,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/fire_alarm.png
   AssetGenImage get fireAlarm =>
       const AssetGenImage('assets/icons/fire_alarm.png');
+
+  /// File path: assets/icons/foot.png
+  AssetGenImage get foot => const AssetGenImage('assets/icons/foot.png');
 
   /// File path: assets/icons/func_all.png
   AssetGenImage get funcAll => const AssetGenImage('assets/icons/func_all.png');
@@ -364,6 +375,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/groupbuy_tab_unselected.png
   AssetGenImage get groupbuyTabUnselected =>
       const AssetGenImage('assets/icons/groupbuy_tab_unselected.png');
+
+  /// File path: assets/icons/heartbeat.png
+  AssetGenImage get heartbeat =>
+      const AssetGenImage('assets/icons/heartbeat.png');
 
   /// File path: assets/icons/hot_fire.png
   AssetGenImage get hotFire => const AssetGenImage('assets/icons/hot_fire.png');
@@ -624,6 +639,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/nearby_service.png
   AssetGenImage get nearbyService =>
       const AssetGenImage('assets/icons/nearby_service.png');
+
+  /// File path: assets/icons/oxygen.png
+  AssetGenImage get oxygen => const AssetGenImage('assets/icons/oxygen.png');
 
   /// File path: assets/icons/pay.png
   AssetGenImage get pay => const AssetGenImage('assets/icons/pay.png');
@@ -1078,6 +1096,10 @@ class $AssetsJsonGen {
 
 class $AssetsStaticGen {
   const $AssetsStaticGen();
+
+  /// File path: assets/static/bracelet_header.png
+  AssetGenImage get braceletHeader =>
+      const AssetGenImage('assets/static/bracelet_header.png');
 
   /// File path: assets/static/car_card_grey.webp
   AssetGenImage get carCardGrey =>
