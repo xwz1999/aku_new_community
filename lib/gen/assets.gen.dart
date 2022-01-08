@@ -730,6 +730,9 @@ class $AssetsIconsGen {
   AssetGenImage get shoppingMall =>
       const AssetGenImage('assets/icons/shopping_mall.png');
 
+  /// File path: assets/icons/sos.png
+  AssetGenImage get sos => const AssetGenImage('assets/icons/sos.png');
+
   /// File path: assets/icons/system_notice.png
   AssetGenImage get systemNotice =>
       const AssetGenImage('assets/icons/system_notice.png');

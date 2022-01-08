@@ -1,6 +1,12 @@
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +21,23 @@ class OldAgeSupportPageSimple extends StatefulWidget {
 }
 
 class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
+  BraceletModel? _model;
+  DateTime? _date;
+
+  @override
+  void initState() {
+    var cancel = BotToast.showLoading();
+    getData();
+    cancel();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    BotToast.closeAllLoading();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var open = Row(
@@ -27,7 +50,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           color: Color(0xFF57DAD2),
         ),
         4.w.widthBox,
-        '设备 已开机'
+        '设备 ${_model?.switchTypeString}'
             .text
             .size(26.sp)
             .lineHeight(1.2)
@@ -50,33 +73,47 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
               end: Alignment.bottomCenter,
               colors: [Colors.white, Color(0xFFC0E5DC).withOpacity(0.355)]),
         ),
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 32.w),
-          children: [
-            550.w.heightBox,
-            open,
-            16.w.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                '数据更新自 2022年1月1日 18:21:15'
-                    .text
-                    .size(22.sp)
-                    .color(Colors.black.withOpacity(0.25))
-                    .make(),
-                40.w.heightBox,
-              ],
-            ),
-            40.w.heightBox,
-            overview(),
-            24.w.heightBox,
-            statusCard(),
-            40.w.heightBox,
-            bottomCard(),
-          ],
-        ),
+        child: _model == null
+            ? Container()
+            : ListView(
+                padding: EdgeInsets.symmetric(horizontal: 32.w),
+                children: [
+                  550.w.heightBox,
+                  open,
+                  16.w.heightBox,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
+                          .text
+                          .size(22.sp)
+                          .color(Colors.black.withOpacity(0.25))
+                          .make(),
+                      40.w.heightBox,
+                    ],
+                  ),
+                  40.w.heightBox,
+                  overview(),
+                  24.w.heightBox,
+                  statusCard(),
+                  40.w.heightBox,
+                  bottomCard(),
+                ],
+              ),
       ),
     );
+  }
+
+  Future getData() async {
+    Response base =
+        await NetUtil().dio!.get(API.bracelet.data, queryParameters: {
+      'imei': 863204050238280,
+    });
+    if (base.data != null) {
+      _model = BraceletModel.fromJson(base.data);
+      _date = DateTime.now();
+    }
+    setState(() {});
   }
 
   Container bottomCard() {
@@ -204,7 +241,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
             ],
           ),
           Spacer(),
-          '141'
+          '${_model?.heartRate}'
               .richText
               .withTextSpanChildren([
                 ' 次/分'
@@ -248,7 +285,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
             ],
           ),
           Spacer(),
-          '3'
+          '${_model?.fallNums}'
               .richText
               .withTextSpanChildren([
                 ' 次'
@@ -292,7 +329,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
             ],
           ),
           Spacer(),
-          '1042'
+          '${_model?.todaySteps}'
               .richText
               .withTextSpanChildren([
                 ' 步'
@@ -332,7 +369,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           Spacer(),
           Row(
             children: [
-              '98'
+              '${_model?.bloodOxygen}'
                   .richText
                   .withTextSpanChildren([
                     ' %'
@@ -375,7 +412,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           '剩余电量'.text.size(28.sp).color(Colors.black.withOpacity(0.65)).make(),
-          '58'
+          '${_model?.remainingPower}'
               .richText
               .withTextSpanChildren([
                 ' %'
@@ -401,7 +438,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
                 .size(28.sp)
                 .color(Colors.black.withOpacity(0.45))
                 .make(),
-            '58'
+            '${_model?.detectionDays}'
                 .richText
                 .withTextSpanChildren([
                   ' 天'
@@ -427,7 +464,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
                 .size(28.sp)
                 .color(Colors.black.withOpacity(0.45))
                 .make(),
-            '5'
+            '${_model?.alarmNums}'
                 .richText
                 .withTextSpanChildren([
                   ' 次'
