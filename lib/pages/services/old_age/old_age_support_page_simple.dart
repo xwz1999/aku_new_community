@@ -135,12 +135,12 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
     var mid = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        '141'
+        '${_model?.sbp}'
             .richText
             .withTextSpanChildren([])
             .size(48.sp)
             .bold
-            .color(Colors.red)
+            .color(_model!.sbpNormal ? Color(0xFF37C6BD) : Colors.red)
             .make(),
         8.w.widthBox,
         Column(
@@ -167,12 +167,12 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
     var right = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        '86'
+        '${_model?.dbp}'
             .richText
             .withTextSpanChildren([])
             .size(48.sp)
             .bold
-            .color(Color(0xFF37C6BD))
+            .color(_model!.dbpNormal ? Color(0xFF37C6BD) : Colors.red)
             .make(),
         8.w.widthBox,
         Column(
@@ -252,7 +252,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
               ])
               .size(56.sp)
               .bold
-              .color(Colors.red)
+              .color(_model!.heartNormal ? Color(0xFF37C6BD) : Colors.red)
               .make(),
           Spacer(),
           '正常为60-100次/分'

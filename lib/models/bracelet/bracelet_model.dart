@@ -33,6 +33,12 @@ class BraceletModel {
     }
   }
 
+  bool get heartNormal => heartRate >= 60 && heartRate <= 100;
+
+  bool get sbpNormal => sbp >= 90 && sbp <= 139;
+
+  bool get dbpNormal => dbp >= 60 && dbp <= 89;
+
   const BraceletModel({
     required this.sbp,
     required this.todaySteps,
