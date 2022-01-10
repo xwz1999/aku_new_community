@@ -29,7 +29,6 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
   _buildTile(
     AO object, {
     bool editMode = false,
-    bool unComplete = false,
   }) {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
@@ -39,7 +38,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           : () {
               if (LoginUtil.isNotLogin) return;
               if (!LoginUtil.haveRoom(object.title)) return;
-              if (unComplete) {
+              if (object.page == null) {
                 BotToast.showText(
                     text: '正在准备上线中，敬请期待', align: Alignment(0, 0.5));
               } else {
@@ -94,8 +93,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
       itemBuilder: (context, index) {
         return Stack(
           children: [
-            _buildTile(appProvider.myApplications[index],
-                editMode: _editMode, unComplete: index > 3),
+            _buildTile(appProvider.myApplications[index], editMode: _editMode),
             Positioned(
               right: 0,
               top: 0,

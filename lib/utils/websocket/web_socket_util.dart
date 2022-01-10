@@ -6,7 +6,7 @@ import 'package:power_logger/power_logger.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-const String baseUri = 'wss://test.kaidalai.cn/websocket/app';
+const String baseUri = 'wss://shop.kaidalai.cn/websocket/app';
 enum SOCKETSTATUS {
   CONNECTED, //已连接
   BREAKOFF, //已断开

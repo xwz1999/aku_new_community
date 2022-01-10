@@ -24,6 +24,12 @@ class API {
   static _Search search = _Search();
   static _Pay pay = _Pay();
   static _House house = _House();
+  static _Bracelet bracelet = _Bracelet();
+}
+
+class _Bracelet {
+  ///爱牵挂手环数据
+  String get data => '/user/aqg/getData';
 }
 
 class _Login {

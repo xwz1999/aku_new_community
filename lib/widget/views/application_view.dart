@@ -11,18 +11,18 @@ import 'package:velocity_x/velocity_x.dart';
 class ApplicationView extends StatefulWidget {
   final List<AO>? items;
   final bool needAllApp;
-  final bool unComplete;
 
-  ApplicationView({Key? key, this.needAllApp = true, this.unComplete = false})
-      : items = null,
+  ApplicationView({
+    Key? key,
+    this.needAllApp = true,
+  })  : items = null,
         super(key: key);
 
-  ApplicationView.custom(
-      {Key? key,
-      required List<AO> this.items,
-      this.needAllApp = true,
-      this.unComplete = false})
-      : super(key: key);
+  ApplicationView.custom({
+    Key? key,
+    required List<AO> this.items,
+    this.needAllApp = true,
+  }) : super(key: key);
 
   @override
   _ApplicationViewState createState() => _ApplicationViewState();
@@ -36,7 +36,7 @@ class _ApplicationViewState extends State<ApplicationView> {
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(object.title)) return;
-        if (widget.unComplete) {
+        if (object.page == null) {
           BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {
           Get.to(object.page);

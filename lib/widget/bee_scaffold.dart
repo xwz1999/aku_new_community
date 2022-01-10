@@ -19,6 +19,7 @@ class BeeScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBarBottom;
   final FloatingActionButton? fab;
   final double? titleSpacing;
+  final bool extendBody;
 
   final SystemUiOverlayStyle systemStyle;
 
@@ -35,6 +36,7 @@ class BeeScaffold extends StatelessWidget {
     this.fab,
     this.titleSpacing,
     this.systemStyle = SystemStyle.initial,
+    this.extendBody = false,
   }) : super(key: key);
 
   BeeScaffold.white({
@@ -49,6 +51,7 @@ class BeeScaffold extends StatelessWidget {
     this.fab,
     this.titleSpacing,
     this.systemStyle = SystemStyle.initial,
+    this.extendBody = false,
   })  : this.bodyColor = Colors.white,
         super(key: key);
 
@@ -64,7 +67,7 @@ class BeeScaffold extends StatelessWidget {
     Widget? appBar;
     if (title != null)
       appBar = AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: extendBody ? Colors.transparent : bgColor,
         title: _titleWidget,
         leading: leading ?? BeeBackButton(),
         actions: actions,
@@ -77,6 +80,8 @@ class BeeScaffold extends StatelessWidget {
       child: Scaffold(
         backgroundColor: bodyColor,
         appBar: appBar as PreferredSizeWidget?,
+        extendBodyBehindAppBar: extendBody,
+        extendBody: extendBody,
         body: body,
         bottomNavigationBar: bottomNavi,
         floatingActionButton: fab,

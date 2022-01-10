@@ -17,6 +17,7 @@ import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:aku_new_community/pages/service_browse/service_browse_page.dart';
+import 'package:aku_new_community/pages/services/old_age/old_age_support_page_simple.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/surrounding_enterprises/surrounding_enterprises_page.dart';
 import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
@@ -45,10 +46,10 @@ class AO {
     this.page,
   );
 
-  AO.fromRaw(String raw) {
+  AO.fromRaw(String raw, {String? replaceTitle}) {
     appObjects.forEach((element) {
       if (element.title == raw) {
-        this.title = element.title;
+        this.title = replaceTitle ?? element.title;
         this.path = element.path;
         this.page = element.page;
       }
@@ -96,7 +97,7 @@ List<AO> appObjects = [
   AO('地理信息', R.ASSETS_ICONS_FUNC_DLXX_PNG, () => GeographicInformationPage()),
   AO('周边企业', R.ASSETS_ICONS_FUNC_ZBQY_PNG, () => SurroundingEnterprisesPage()),
   AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
-  AO('智慧养老', Assets.icons.provideAged.path, null),
+  AO('智慧养老', Assets.icons.provideAged.path, () => OldAgeSupportPageSimple()),
   AO('周边服务', Assets.icons.nearbyService.path, null),
   AO('小蜜蜂任务', Assets.icons.beeTask.path, null),
   AO('自营商城', Assets.icons.shoppingMall.path, null),
@@ -104,6 +105,7 @@ List<AO> appObjects = [
   AO('共享停车', Assets.icons.sharePark.path, null),
   AO('二手市场', Assets.icons.secondHandMarket.path, null),
   AO('共享投屏', Assets.icons.projectionScreen.path, null),
+  AO('全部应用', Assets.icons.funcAll.path, () => AllApplicationPage()),
 
   // AO(
   //   '小区教育',
