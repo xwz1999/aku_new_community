@@ -75,30 +75,33 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
         ),
         child: _model == null
             ? Container()
-            : ListView(
-                padding: EdgeInsets.symmetric(horizontal: 32.w),
-                children: [
-                  550.w.heightBox,
-                  open,
-                  16.w.heightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
-                          .text
-                          .size(22.sp)
-                          .color(Colors.black.withOpacity(0.25))
-                          .make(),
-                      40.w.heightBox,
-                    ],
-                  ),
-                  40.w.heightBox,
-                  overview(),
-                  24.w.heightBox,
-                  statusCard(),
-                  40.w.heightBox,
-                  bottomCard(),
-                ],
+            : SafeArea(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 32.w),
+                  children: [
+                    400.w.heightBox,
+                    open,
+                    16.w.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
+                            .text
+                            .size(22.sp)
+                            .color(Colors.black.withOpacity(0.25))
+                            .make(),
+                        40.w.heightBox,
+                      ],
+                    ),
+                    40.w.heightBox,
+                    overview(),
+                    24.w.heightBox,
+                    statusCard(),
+                    40.w.heightBox,
+                    bottomCard(),
+                    40.w.heightBox,
+                  ],
+                ),
               ),
       ),
     );
@@ -380,7 +383,9 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
                   ])
                   .size(56.sp)
                   .bold
-                  .color(Color(0xFF37C6BD))
+                  .color(_model!.bloodOxygen >= 95
+                      ? Color(0xFF37C6BD)
+                      : Colors.red)
                   .make(),
               Spacer(),
               '正常为95%以上'

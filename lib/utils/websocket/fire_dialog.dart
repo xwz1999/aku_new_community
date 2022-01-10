@@ -7,6 +7,7 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fall_model.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fire_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FireDialog {
@@ -19,9 +20,16 @@ class FireDialog {
         title: getImage(type),
         content: Column(
           children: [
-            Text(getTitle(type)),
+            Text(
+              getTitle(type),
+              style: TextStyle(color: Colors.black, fontSize: 34.sp),
+            ),
             10.hb,
-            Text(getContent(json, type)),
+            Text(
+              getContent(json, type),
+              style: TextStyle(color: Colors.black, fontSize: 26.sp),
+              textAlign: TextAlign.start,
+            ),
           ],
         ),
         actions: [
@@ -52,7 +60,7 @@ class FireDialog {
         return '管家端APP报警';
       case 4:
         return '跌倒报警';
-      case 45:
+      case 5:
         return 'SOS紧急联系报警';
       default:
         return '';
@@ -93,35 +101,35 @@ class FireDialog {
           R.ASSETS_ICONS_FIRE_ALARM_PNG,
           width: 110.w,
           height: 110.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         );
       case 2:
         return Image.asset(
           R.ASSETS_ICONS_DEVICE_ALARM_PNG,
           width: 110.w,
           height: 110.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         );
       case 3:
         return Image.asset(
           R.ASSETS_ICONS_APP_ALARM_PNG,
           width: 110.w,
           height: 110.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         );
       case 4:
         return Image.asset(
           R.ASSETS_ICONS_APP_ALARM_PNG,
           width: 110.w,
           height: 110.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         );
       case 5:
         return Image.asset(
           Assets.icons.sos.path,
           width: 110.w,
           height: 110.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         );
       default:
         return SizedBox(width: 110.w, height: 110.w);
