@@ -26,14 +26,12 @@ class UserProvider extends ChangeNotifier {
   bool get isNotLogin => !_isLogin;
 
   Future setLogin(int token) async {
-    // try {
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     _isLogin = true;
     NetUtil().dio!.options.headers['app-login-token'] = token;
     HiveStore.appBox!.put('token', token);
     HiveStore.appBox!.put('login', true);
     await updateUserInfo();
-    // await updateMyHouseInfo();
 
     ///初始化用户配置
     _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
@@ -47,9 +45,6 @@ class UserProvider extends ChangeNotifier {
       WebSocketUtil().startWebSocket();
     }
     notifyListeners();
-    // } catch (e) {
-    //   LoggerData.addData(e);
-    // }
   }
 
   logout() {
@@ -122,8 +117,6 @@ class UserProvider extends ChangeNotifier {
       showMessage: true,
     );
     if (baseModel.success) {
-      // _userInfoModel!.birthday =
-      //     DateUtil.formatDate(date, format: "yyyy-MM-dd HH:mm:ss");
       notifyListeners();
     }
   }
@@ -136,7 +129,6 @@ class UserProvider extends ChangeNotifier {
       showMessage: true,
     );
     if (baseModel.success) {
-      // _userInfoModel!.nickName = name;
       notifyListeners();
     }
   }
@@ -168,6 +160,9 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  ///用户配置
+  ///签到提醒
+  ///今日签到
   UserConfigModel _userConfig =
       UserConfigModel(userId: 0, clockRemind: false, todayClocked: false);
 

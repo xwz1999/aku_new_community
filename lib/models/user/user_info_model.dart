@@ -1,4 +1,3 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_info_model.g.dart';
@@ -8,6 +7,7 @@ class UserInfoModel {
   final int id;
   final int communityId;
   final String? name;
+  final String? idCard;
   final String tel;
   // final List<ImgModel> imgUrls;
 
@@ -39,6 +39,7 @@ class UserInfoModel {
     required this.id,
     required this.communityId,
     this.name,
+    this.idCard,
     required this.tel,
     this.sex,
     this.nickName,

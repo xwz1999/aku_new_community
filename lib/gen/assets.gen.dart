@@ -989,6 +989,10 @@ class $AssetsImagesGen {
   AssetGenImage get cardYellow =>
       const AssetGenImage('assets/images/card_yellow.png');
 
+  /// File path: assets/images/certification.png
+  AssetGenImage get certification =>
+      const AssetGenImage('assets/images/certification.png');
+
   /// File path: assets/images/circle_left_bottom.png
   AssetGenImage get circleLeftBottom =>
       const AssetGenImage('assets/images/circle_left_bottom.png');
@@ -1028,6 +1032,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/house_attestation.png
   AssetGenImage get houseAttestation =>
       const AssetGenImage('assets/images/house_attestation.png');
+
+  /// File path: assets/images/house_empty.png
+  AssetGenImage get houseEmpty =>
+      const AssetGenImage('assets/images/house_empty.png');
 
   /// File path: assets/images/house_header.png
   AssetGenImage get houseHeader =>
@@ -1082,6 +1090,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash_logo.png
   AssetGenImage get splashLogo =>
       const AssetGenImage('assets/images/splash_logo.png');
+
+  /// File path: assets/images/success.png
+  AssetGenImage get success => const AssetGenImage('assets/images/success.png');
 
   /// File path: assets/images/white.png
   AssetGenImage get white => const AssetGenImage('assets/images/white.png');

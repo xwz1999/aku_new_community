@@ -43,6 +43,9 @@ class _User {
 
   ///设置昵称
   String get setNickName => '/app/user/settingNickName';
+
+  ///实名认证
+  String get certification => '/app/user/verified';
 }
 
 class _Login {

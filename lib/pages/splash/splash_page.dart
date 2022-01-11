@@ -49,6 +49,7 @@ class _SplashPageState extends State<SplashPage> {
       appProvider.initApplications();
       appProvider.startLocation();
       if (HiveStore.appBox!.get('login') ?? false) {
+        //更新用户信息后自动跳转首页/设置昵称/设置密码
         await userProvider.setLogin(HiveStore.appBox!.get('token'));
       }
     } catch (e) {

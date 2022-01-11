@@ -65,7 +65,7 @@ class NetUtil {
     try {
       Response res = await _dio!.get(path, queryParameters: params);
       if (!res.data['success']) {
-        _baseModel = BaseModel.error(res.data['message'], res.data['success'],
+        _baseModel = BaseModel.error(res.data['msg'], res.data['success'],
             res.data['data'], res.data['code']);
         _parseRequestError(_baseModel, showMessage: showMessage);
       } else {
@@ -92,7 +92,7 @@ class NetUtil {
     try {
       Response res = await _dio!.post(path, data: params);
       if (!res.data['success']) {
-        _baseModel = BaseModel.error(res.data['message'], res.data['success'],
+        _baseModel = BaseModel.error(res.data['msg'], res.data['success'],
             res.data['data'], res.data['code']);
         _parseRequestError(_baseModel, showMessage: showMessage);
       } else {
@@ -102,6 +102,7 @@ class NetUtil {
       _parseErr(e);
       _baseModel = BaseModel(code: 0, msg: '未知错误', success: false, data: null);
     }
+
     return _baseModel;
   }
 
@@ -198,7 +199,7 @@ class NetUtil {
       userProvider.logout();
       Get.offAll(() => LoginPage());
     }
-    if (!model.success || showMessage) {
+    if (!model.success && showMessage) {
       BotToast.showText(text: model.msg);
     }
   }

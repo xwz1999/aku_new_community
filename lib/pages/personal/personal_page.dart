@@ -9,7 +9,7 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
-import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
@@ -514,9 +514,10 @@ class _PersonalIndexState extends State<PersonalIndex>
                           _function(
                               '我的房屋',
                               R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                              () => HouseOwnersPage(
-                                    identify: 4,
-                                  ),
+                              () => MyHousePage(),
+                              // () => HouseOwnersPage(
+                              //       identify: 4,
+                              //     ),
                               // userProvider.myHouses.first.communityName ??
                               ''),
                           36.hb,
