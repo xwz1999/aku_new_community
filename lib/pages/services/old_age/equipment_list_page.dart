@@ -3,7 +3,6 @@ import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/services/old_age/add_equipment_page.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,10 +52,10 @@ class _EquipmentListPageState extends State<EquipmentListPage> {
       padding: EdgeInsets.only(left: 24.w, bottom: 24.w, right: 24.w),
       child: Row(
         children: [
-          CircleAvatar(
-            child: Image.network(
-                UserTool.userProvider.userInfoModel?.imgUrls.first.url ?? ''),
-          ),
+          // CircleAvatar(
+          //   child: Image.network(
+          //       UserTool.userProvider.userInfoModel?.imgUrls.first.url ?? ''),
+          // ),
           24.w.widthBox,
           '陈东强'.text.size(28.sp).color(Colors.black).make(),
           Spacer(),

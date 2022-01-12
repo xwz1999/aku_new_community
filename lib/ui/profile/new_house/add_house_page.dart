@@ -178,4 +178,17 @@ class _AddHousePageState extends State<AddHousePage> {
       )),
     );
   }
+
+  Widget _propertyRight() {
+    return Container(
+      width: 686.w,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.w),
+      ),
+      child: Column(
+        children: [],
+      ),
+    );
+  }
 }

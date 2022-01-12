@@ -168,7 +168,9 @@ class _PropertyPageState extends State<PropertyPage>
                   ),
                   Spacer(),
                   Text(
-                    userProvider.myHouses.first.communityName,
+                    userProvider.myHouses.isEmpty
+                        ? ''
+                        : userProvider.myHouses.first.communityName,
                     style: TextStyle(
                         fontSize: 28.sp,
                         color: Colors.white.withOpacity(0.85),
