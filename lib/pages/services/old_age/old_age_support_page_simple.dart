@@ -1,6 +1,7 @@
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
+import 'package:aku_new_community/pages/services/old_age/equipment_list_page.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -10,6 +11,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:velocity_x/velocity_x.dart';
 
 class OldAgeSupportPageSimple extends StatefulWidget {
@@ -61,6 +63,16 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
     return BeeScaffold(
       title: 'X5手环',
       extendBody: true,
+      actions: [
+        IconButton(
+          icon: Icon(CupertinoIcons.repeat),
+          iconSize: 30.w,
+          color: Colors.black,
+          onPressed: () {
+            Get.to(() => EquipmentListPage());
+          },
+        )
+      ],
       body: Container(
         width: double.infinity,
         height: double.infinity,

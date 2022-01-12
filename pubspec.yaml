@@ -139,6 +139,7 @@ flutter:
     - assets/applications/
     - assets/static/
     - assets/json/
+    - assets/bracelet/
 
 import_sorter:
   emojis: true
