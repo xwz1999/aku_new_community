@@ -119,9 +119,17 @@ class _OldAgeSupportPageState extends State<OldAgeSupportPage> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: '智慧养老'.text.size(32.sp).black.make(),
+        title: 'x5手环'.text.size(32.sp).black.make(),
         backgroundColor: Colors.transparent,
         leading: BeeBackButton(),
+        actions: [
+          IconButton(
+            icon: Icon(CupertinoIcons.repeat),
+            iconSize: 24.w,
+            color: Colors.black,
+            onPressed: () {},
+          ),
+        ],
       ),
       extendBody: true,
       extendBodyBehindAppBar: true,

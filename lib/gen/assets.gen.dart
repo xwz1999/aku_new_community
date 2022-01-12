@@ -110,6 +110,20 @@ class $AssetsApplicationsGen {
   AssetGenImage get wine => const AssetGenImage('assets/applications/wine.png');
 }
 
+class $AssetsBraceletGen {
+  const $AssetsBraceletGen();
+
+  /// File path: assets/bracelet/x5.png
+  AssetGenImage get x5 => const AssetGenImage('assets/bracelet/x5.png');
+
+  /// File path: assets/bracelet/x8.png
+  AssetGenImage get x8 => const AssetGenImage('assets/bracelet/x8.png');
+
+  /// File path: assets/bracelet/xiaomi6.png
+  AssetGenImage get xiaomi6 =>
+      const AssetGenImage('assets/bracelet/xiaomi6.png');
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -1200,6 +1214,7 @@ class Assets {
   Assets._();
 
   static const $AssetsApplicationsGen applications = $AssetsApplicationsGen();
+  static const $AssetsBraceletGen bracelet = $AssetsBraceletGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
