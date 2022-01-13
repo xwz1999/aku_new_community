@@ -17,5 +17,5 @@ MyHouseModel _$MyHouseModelFromJson(Map<String, dynamic> json) => MyHouseModel(
       identity: json['identity'] as int,
       name: json['name'] as String,
       tel: json['tel'] as String,
-      isDefault: json['isDefault'] as String,
+      isDefault: json['isDefault'] as int,
     );

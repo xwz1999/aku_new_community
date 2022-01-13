@@ -14,7 +14,7 @@ class MyHouseModel {
   final int identity;
   final String name;
   final String tel;
-  final String isDefault;
+  final int isDefault;
   factory MyHouseModel.fromJson(Map<String, dynamic> json) =>
       _$MyHouseModelFromJson(json);
 
