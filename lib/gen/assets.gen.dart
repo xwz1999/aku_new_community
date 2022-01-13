@@ -679,6 +679,9 @@ class $AssetsIconsGen {
   AssetGenImage get provideAged =>
       const AssetGenImage('assets/icons/provide_aged.png');
 
+  /// File path: assets/icons/record.png
+  AssetGenImage get record => const AssetGenImage('assets/icons/record.png');
+
   /// File path: assets/icons/report.png
   AssetGenImage get report => const AssetGenImage('assets/icons/report.png');
 

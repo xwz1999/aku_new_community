@@ -26,13 +26,22 @@ class _MyHousePageState extends State<MyHousePage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '我的房屋',
+      actions: [
+        IconButton(
+            onPressed: () {},
+            icon: Assets.icons.record.image(width: 40.w, height: 40.w))
+      ],
       body: SafeArea(
           child: UserTool.userProvider.myHouses.isEmpty
               ? _emptyWidget()
               : ListView(
                   padding:
                       EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                  children: <Widget>[].sepWidget(separate: 24.w.heightBox),
+                  children: <Widget>[
+                    ...UserTool.userProvider.myHouses
+                        .map((e) => _houseCard(e))
+                        .toList()
+                  ].sepWidget(separate: 24.w.heightBox),
                 )),
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
