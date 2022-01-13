@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:aku_new_community/utils/enum/identify.dart';
+
 class BeeMap {
   static Map<int, String> fixTag = {
     1: '公区报修',
@@ -75,4 +77,17 @@ class BeeMap {
     1: false,
     3: true,
   };
+
+  static String getIdentify(Identify identify) {
+    switch (identify) {
+      case Identify.OWNER:
+        return '业主';
+      case Identify.OWNER_RELATIVES:
+        return '业主家属';
+      case Identify.TENANT:
+        return '租户';
+      case Identify.TENANT_RELATIVES:
+        return '租户家属';
+    }
+  }
 }

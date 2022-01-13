@@ -9,12 +9,12 @@ class UserInfoModel {
   final String? name;
   final String? idCard;
   final String tel;
-  // final List<ImgModel> imgUrls;
 
-  /// 性别 1.男 2.女 3.保密
+  // 性别 1.男 2.女 3.保密
   final int? sex;
   final String? nickName;
   final bool isExistPassword;
+  final bool isPointsSignSetting;
 
   String get sexValue {
     if (sex == 1) return '男';
@@ -41,6 +41,7 @@ class UserInfoModel {
     this.name,
     this.idCard,
     required this.tel,
+    required this.isPointsSignSetting,
     this.sex,
     this.nickName,
     required this.isExistPassword,

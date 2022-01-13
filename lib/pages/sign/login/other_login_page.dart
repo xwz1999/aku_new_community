@@ -104,7 +104,8 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                   UserTool
                       .appProveider.pickedCityAndCommunity!.communityModel!.id);
               if (response.data['success']) {
-                UserTool.userProvider.setLogin(response.data['data']);
+                await UserTool.userProvider.setLogin(response.data['data']);
+                await UserTool.dataProvider.addHistories();
               } else {
                 BotToast.showText(text: response.data['message']);
               }

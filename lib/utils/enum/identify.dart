@@ -1,0 +1,6 @@
+enum Identify {
+  OWNER,
+  OWNER_RELATIVES,
+  TENANT,
+  TENANT_RELATIVES,
+}

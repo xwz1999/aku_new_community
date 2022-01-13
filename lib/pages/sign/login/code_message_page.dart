@@ -82,7 +82,9 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                         UserTool.appProveider.pickedCityAndCommunity!
                             .communityModel!.id);
                     if (re.data['success']) {
-                      UserTool.userProvider.setLogin(re.data['data'] as int);
+                      await UserTool.userProvider
+                          .setLogin(re.data['data'] as int);
+                      await UserTool.dataProvider.addHistories();
                     } else {
                       _errorMessage = re.data['msg'];
                       BotToast.showText(text: re.data['msg']);

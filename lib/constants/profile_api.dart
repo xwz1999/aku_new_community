@@ -7,4 +7,7 @@ class _ProfileApi {
 class _MyHouse {
   ///查询所有我的房屋
   String get userHouse => '/app/user/myEstate/findAllMyEstate';
+
+  ///添加房屋申请
+  String get addHouse => '/app/user/myEstate/insertEstateApply';
 }

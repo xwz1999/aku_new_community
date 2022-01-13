@@ -3,6 +3,7 @@ import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 class DataProvider extends ChangeNotifier {
@@ -41,8 +42,8 @@ class DataProvider extends ChangeNotifier {
 
   List<HistoryLoginModel> get loginHistories => _loginHistories;
 
-  Future addHistories(HistoryLoginModel model) async {
-    _loginHistories.insert(0, model);
+  Future addHistories() async {
+    _loginHistories.insert(0, UserTool.appProveider.pickedCityAndCommunity!);
     if (_loginHistories.length > 4) {
       _loginHistories.removeAt(_loginHistories.length - 1);
     }

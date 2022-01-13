@@ -18,6 +18,7 @@ class SARSAPI {
   static _ProfileApi profile = _ProfileApi();
   static _Login login = _Login();
   static _User user = _User();
+  static _House house = _House();
 }
 
 class _City {
@@ -60,4 +61,9 @@ class _Login {
 
   ///app用户（手机号验证码）登录
   String get loginTelCode => '/app/login/loginTelCode';
+}
+
+class _House {
+  ///查询所有的房屋(级联)
+  String get allHouses => '/app/estate/findEstateCascade';
 }
