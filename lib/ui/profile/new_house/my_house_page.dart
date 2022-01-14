@@ -3,6 +3,7 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/ui/profile/new_house/add_house_page.dart';
+import 'package:aku_new_community/ui/profile/new_house/apply_record_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -28,7 +29,9 @@ class _MyHousePageState extends State<MyHousePage> {
       title: '我的房屋',
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => ApplyRecordPage());
+            },
             icon: Assets.icons.record.image(width: 40.w, height: 40.w))
       ],
       body: SafeArea(

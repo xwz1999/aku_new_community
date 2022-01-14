@@ -15,7 +15,7 @@ class MyHouseApplyRecordListModel {
   final String name;
   final String tel;
   final int status;
-  final String remark;
+  final String? remarks;
   factory MyHouseApplyRecordListModel.fromJson(Map<String, dynamic> json) =>
       _$MyHouseApplyRecordListModelFromJson(json);
 
@@ -31,6 +31,6 @@ class MyHouseApplyRecordListModel {
     required this.name,
     required this.tel,
     required this.status,
-    required this.remark,
+    this.remarks,
   });
 }

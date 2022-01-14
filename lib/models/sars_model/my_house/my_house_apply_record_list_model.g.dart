@@ -20,5 +20,5 @@ MyHouseApplyRecordListModel _$MyHouseApplyRecordListModelFromJson(
       name: json['name'] as String,
       tel: json['tel'] as String,
       status: json['status'] as int,
-      remark: json['remark'] as String,
+      remarks: json['remarks'] as String?,
     );

@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/sars_model/my_house/my_house_apply_record_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -18,6 +19,8 @@ class ApplyRecordPage extends StatefulWidget {
 }
 
 class _ApplyRecordPageState extends State<ApplyRecordPage> {
+  List<MyHouseApplyRecordListModel> _models = [];
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -29,13 +32,25 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
         footer: MaterialFooter(),
         onRefresh: () async {
           var base = await NetUtil().get(SARSAPI.profile.house.applyRecord);
-          if (base.success) {}
+          if (base.success) {
+            _models = (base.data as List)
+                .map((e) => MyHouseApplyRecordListModel.fromJson(e))
+                .toList();
+            setState(() {});
+          }
         },
         onLoad: () async {},
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-          children: [],
-        ),
+        child: !_models.isEmpty
+            ? Container()
+            : ListView(
+                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+                children: [
+                  ..._models
+                      .map((e) => _houseCard(e))
+                      .toList()
+                      .sepWidget(separate: 24.w.heightBox),
+                ],
+              ),
       )),
     );
   }
@@ -88,7 +103,14 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
             ],
           ),
         ),
-        Positioned(child: Image.asset(_getStatusIconPath(model.status))),
+        Positioned(
+            top: 0,
+            right: 0,
+            child: Image.asset(
+              _getStatusIconPath(model.status),
+              width: 160.w,
+              height: 160.w,
+            )),
       ],
     );
   }
