@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class BeeHouseCascadePicker extends StatefulWidget {
   final List<EstateCascadeModel> buildings;
+
   static Future<PickedHouseModel> pick(
       BuildContext context, List<EstateCascadeModel> buildings) async {
     var result = await showModalBottomSheet(
@@ -29,15 +30,26 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
   List<EstateCascadeModel> _buildings = [];
   int _pickBuildingIndex = 0;
 
-  EstateCascadeModel get _pickedBuilding => _buildings[_pickBuildingIndex];
+  EstateCascadeModel? get _pickedBuilding {
+    if (_buildings.isEmpty) {
+      return null;
+    }
+    return _buildings[_pickBuildingIndex];
+  }
+
   int _pickUnitIndex = 0;
 
-  Unit get _pickedUnit => _pickedBuilding.childList[_pickUnitIndex];
+  Unit? get _pickedUnit {
+    if ((_pickedBuilding?.childList ?? []).isEmpty) {
+      return null;
+    }
+    return _pickedBuilding?.childList[_pickUnitIndex];
+  }
 
-  Floor get _pickedFloor => _pickedUnit.floors[_pickFloorIndex];
+  Floor? get _pickedFloor => _pickedUnit?.floors[_pickFloorIndex];
   int _pickFloorIndex = 0;
 
-  House get _pickedHouse => _pickedFloor.houses[_pickHouseIndex];
+  House? get _pickedHouse => _pickedFloor?.houses[_pickHouseIndex];
   int _pickHouseIndex = 0;
 
   PickedHouseModel get pickedHouseModel => PickedHouseModel(
@@ -76,12 +88,15 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickBuildingIndex = value;
+                  // _pickUnitIndex = 0;
+                  // _pickFloorIndex = 0;
+                  // _pickHouseIndex = 0;
                   _unitController.jumpToItem(0);
                   _floorController.jumpToItem(0);
                   _houseController.jumpToItem(0);
                   setState(() {});
                 },
-                itemExtent: 80.w,
+                itemExtent: 100.w,
                 children: _buildings
                     .map((e) => Center(
                           child: Padding(
@@ -96,12 +111,14 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickUnitIndex = value;
+                  // _pickFloorIndex = 0;
+                  // _pickHouseIndex = 0;
                   _floorController.jumpToItem(0);
                   _houseController.jumpToItem(0);
                   setState(() {});
                 },
-                itemExtent: 80.w,
-                children: _pickedBuilding.childList
+                itemExtent: 100.w,
+                children: (_pickedBuilding?.childList ?? [])
                     .map((e) => Center(
                           child: Padding(
                             padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -115,11 +132,12 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickFloorIndex = value;
+                  // _pickHouseIndex = 0;
                   _houseController.jumpToItem(0);
                   setState(() {});
                 },
                 itemExtent: 80.w,
-                children: _pickedUnit.floors
+                children: (_pickedUnit?.floors ?? [])
                     .map((e) => Center(
                           child: Padding(
                             padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -136,7 +154,7 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
                   setState(() {});
                 },
                 itemExtent: 80.w,
-                children: _pickedFloor.houses
+                children: (_pickedFloor?.houses ?? [])
                     .map((e) => Center(
                           child: Padding(
                             padding: EdgeInsets.only(left: 20.w, right: 20.w),

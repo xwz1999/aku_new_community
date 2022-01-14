@@ -10,4 +10,7 @@ class _MyHouse {
 
   ///添加房屋申请
   String get addHouse => '/app/user/myEstate/insertEstateApply';
+
+  //查询所有我的房屋申请列表信息
+  String get applyRecord => '/app/user/myEstate/findAllMyEstateApply';
 }

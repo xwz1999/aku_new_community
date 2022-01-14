@@ -32,6 +32,13 @@ class _AddHousePageState extends State<AddHousePage> {
   PickedHouseModel? _otherPickHouse;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _telController = TextEditingController();
+  List<int> get manageEstateIds {
+    if (_identify == Identify.OWNER) {
+      return _pickedHouses.map((e) => e.house!.id).toList();
+    } else {
+      return [_otherPickHouse!.house!.id];
+    }
+  }
 
   @override
   void dispose() {
@@ -213,9 +220,7 @@ class _AddHousePageState extends State<AddHousePage> {
               var base = await NetUtil().post(SARSAPI.profile.house.addHouse,
                   params: {
                     'identity': _identify.index + 1,
-                    'manageEstateIds': _identify.index == 0
-                        ? _pickedHouses
-                        : [_otherPickHouse],
+                    'manageEstateIds': manageEstateIds,
                     'ownerName': _nameController.text,
                     'ownerTel': _telController.text,
                     'tenantName': _nameController.text,
@@ -297,14 +302,21 @@ class _AddHousePageState extends State<AddHousePage> {
     var house = GestureDetector(
       onTap: () async {
         var cancel = BotToast.showLoading();
-        var base = await NetUtil().get(SARSAPI.house.allHouses);
+        var base = await NetUtil().get(SARSAPI.house.allHouses, params: {
+          'communityId': UserTool.userProvider.userInfoModel!.communityId
+        });
         cancel();
         if (base.success) {
-          var _buildings = (base.data as List)
-              .map((e) => EstateCascadeModel.fromJson(e))
-              .toList();
-          _otherPickHouse =
-              await BeeHouseCascadePicker.pick(context, _buildings);
+          if ((base.data as List).isNotEmpty) {
+            var _buildings = (base.data as List)
+                .map((e) => EstateCascadeModel.fromJson(e))
+                .toList();
+            _otherPickHouse =
+                await BeeHouseCascadePicker.pick(context, _buildings);
+            setState(() {});
+          } else {
+            BotToast.showText(text: '房屋列表为空');
+          }
         } else {
           BotToast.showText(text: base.msg);
         }
@@ -323,12 +335,15 @@ class _AddHousePageState extends State<AddHousePage> {
                   .color(Colors.black.withOpacity(0.65))
                   .make(),
               56.w.widthBox,
-              '${_otherPickHouse == null ? '请选择楼层房号' : '${_otherPickHouse!.building!.name}-${_otherPickHouse!.unit!.name}-${_otherPickHouse!.floor!.name}层-${_otherPickHouse!.house!.name}'}'
-                  .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.25))
-                  .make(),
-              Spacer(),
+              Expanded(
+                child:
+                    '${_otherPickHouse == null ? '请选择楼层房号' : '${_otherPickHouse!.building!.name}-${_otherPickHouse!.unit!.name}-${_otherPickHouse!.floor!.name}-${_otherPickHouse!.house!.name}'}'
+                        .text
+                        .size(28.sp)
+                        .color(Colors.black.withOpacity(0.25))
+                        .maxLines(2)
+                        .make(),
+              ),
               Icon(
                 CupertinoIcons.chevron_right,
                 size: 25.w,
@@ -454,7 +469,9 @@ class _AddHousePageState extends State<AddHousePage> {
         GestureDetector(
           onTap: () async {
             var cancel = BotToast.showLoading();
-            var base = await NetUtil().get(SARSAPI.house.allHouses);
+            var base = await NetUtil().get(SARSAPI.house.allHouses, params: {
+              'communityId': UserTool.userProvider.userInfoModel!.communityId
+            });
             cancel();
             if (base.success) {
               var _buildings = (base.data as List)
@@ -462,6 +479,7 @@ class _AddHousePageState extends State<AddHousePage> {
                   .toList();
               _pickedHouses[index] =
                   await BeeHouseCascadePicker.pick(context, _buildings);
+              setState(() {});
             } else {
               BotToast.showText(text: base.msg);
             }
@@ -480,12 +498,14 @@ class _AddHousePageState extends State<AddHousePage> {
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
                   56.w.widthBox,
-                  '${model.house == null ? '请选择楼层房号' : '${model.building!.name}-${model.unit!.name}-${model.floor!.name}层-${model.house!.name}'}'
-                      .text
-                      .size(28.sp)
-                      .color(Colors.black.withOpacity(0.25))
-                      .make(),
-                  Spacer(),
+                  Expanded(
+                    child:
+                        '${model.house == null ? '请选择楼层房号' : '${model.building!.name}-${model.unit!.name}-${model.floor!.name}-${model.house!.name}'}'
+                            .text
+                            .size(28.sp)
+                            .color(Colors.black.withOpacity(0.25))
+                            .make(),
+                  ),
                   Icon(
                     CupertinoIcons.chevron_right,
                     size: 25.w,

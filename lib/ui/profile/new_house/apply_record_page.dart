@@ -1,4 +1,7 @@
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/sars_model/my_house/my_house_apply_record_list_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
@@ -24,7 +27,10 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
         firstRefresh: true,
         header: MaterialHeader(),
         footer: MaterialFooter(),
-        onRefresh: () async {},
+        onRefresh: () async {
+          var base = await NetUtil().get(SARSAPI.profile.house.applyRecord);
+          if (base.success) {}
+        },
         onLoad: () async {},
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
@@ -82,7 +88,21 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
             ],
           ),
         ),
+        Positioned(child: Image.asset(_getStatusIconPath(model.status))),
       ],
     );
+  }
+
+  String _getStatusIconPath(int status) {
+    switch (status) {
+      case 1:
+        return Assets.icons.examining.path;
+      case 2:
+        return Assets.icons.reject.path;
+      case 3:
+        return Assets.icons.pass.path;
+      default:
+        return '';
+    }
   }
 }

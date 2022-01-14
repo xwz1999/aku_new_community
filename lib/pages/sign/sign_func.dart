@@ -168,10 +168,8 @@ class SignFunc {
     if (!UserTool.userProvider.userInfoModel!.isExistPassword) {
       await Get.to(() => SetPsdPage());
     } else if (UserTool.userProvider.userInfoModel!.nickName == null) {
-      print('111');
       await Get.to(() => SetNickNamePage());
     } else {
-      print('222');
       Get.offAll(() => TabNavigator());
     }
   }

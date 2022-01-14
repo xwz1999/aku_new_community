@@ -249,6 +249,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/examine.png
   AssetGenImage get examine => const AssetGenImage('assets/icons/examine.png');
 
+  /// File path: assets/icons/examining.png
+  AssetGenImage get examining =>
+      const AssetGenImage('assets/icons/examining.png');
+
   /// File path: assets/icons/eye_close.png
   AssetGenImage get eyeClose =>
       const AssetGenImage('assets/icons/eye_close.png');
@@ -657,6 +661,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/oxygen.png
   AssetGenImage get oxygen => const AssetGenImage('assets/icons/oxygen.png');
 
+  /// File path: assets/icons/pass.png
+  AssetGenImage get pass => const AssetGenImage('assets/icons/pass.png');
+
   /// File path: assets/icons/pay.png
   AssetGenImage get pay => const AssetGenImage('assets/icons/pay.png');
 
@@ -681,6 +688,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/record.png
   AssetGenImage get record => const AssetGenImage('assets/icons/record.png');
+
+  /// File path: assets/icons/reject.png
+  AssetGenImage get reject => const AssetGenImage('assets/icons/reject.png');
 
   /// File path: assets/icons/report.png
   AssetGenImage get report => const AssetGenImage('assets/icons/report.png');
