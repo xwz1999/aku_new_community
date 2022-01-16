@@ -1,6 +1,7 @@
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
+import 'package:aku_new_community/pages/services/old_age/add_equipment_page.dart';
 import 'package:aku_new_community/pages/services/old_age/equipment_list_page.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -60,63 +61,68 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
             .make(),
       ],
     );
-    return BeeScaffold(
-      title: 'X5手环',
-      extendBody: true,
-      actions: [
-        IconButton(
-          icon: Icon(CupertinoIcons.repeat),
-          iconSize: 30.w,
-          color: Colors.black,
-          onPressed: () {
-            Get.to(() => EquipmentListPage());
-          },
-        )
-      ],
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              alignment: Alignment.topCenter,
-              image: AssetImage(Assets.static.braceletHeader.path)),
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.white, Color(0xFFC0E5DC).withOpacity(0.355)]),
-        ),
-        child: _model == null
-            ? Container()
-            : SafeArea(
-                child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 32.w),
-                  children: [
-                    400.w.heightBox,
-                    open,
-                    16.w.heightBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
-                            .text
-                            .size(22.sp)
-                            .color(Colors.black.withOpacity(0.25))
-                            .make(),
-                        40.w.heightBox,
-                      ],
-                    ),
-                    40.w.heightBox,
-                    overview(),
-                    24.w.heightBox,
-                    statusCard(),
-                    40.w.heightBox,
-                    bottomCard(),
-                    40.w.heightBox,
-                  ],
-                ),
+    return _model == null
+        ? _emptyScaffold()
+        : BeeScaffold(
+            title: 'X5手环',
+            extendBody: true,
+            actions: [
+              IconButton(
+                icon: Icon(CupertinoIcons.repeat),
+                iconSize: 30.w,
+                color: Colors.black,
+                onPressed: () {
+                  Get.to(() => EquipmentListPage());
+                },
+              )
+            ],
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    alignment: Alignment.topCenter,
+                    image: AssetImage(Assets.static.braceletHeader.path)),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white,
+                      Color(0xFFC0E5DC).withOpacity(0.355)
+                    ]),
               ),
-      ),
-    );
+              child: _model == null
+                  ? Container()
+                  : SafeArea(
+                      child: ListView(
+                        padding: EdgeInsets.symmetric(horizontal: 32.w),
+                        children: [
+                          400.w.heightBox,
+                          open,
+                          16.w.heightBox,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
+                                  .text
+                                  .size(22.sp)
+                                  .color(Colors.black.withOpacity(0.25))
+                                  .make(),
+                              40.w.heightBox,
+                            ],
+                          ),
+                          40.w.heightBox,
+                          overview(),
+                          24.w.heightBox,
+                          statusCard(),
+                          40.w.heightBox,
+                          bottomCard(),
+                          40.w.heightBox,
+                        ],
+                      ),
+                    ),
+            ),
+          );
   }
 
   Future getData() async {
@@ -514,6 +520,41 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           BeeDivider.vertical(),
           right
         ],
+      ),
+    );
+  }
+
+  Widget _emptyScaffold() {
+    return BeeScaffold(
+      title: '智慧养老',
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Assets.images.equipmentEmpty.image(width: 480.w, height: 480.w),
+              '当前没有绑定任何设备'
+                  .text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.25))
+                  .make(),
+            ],
+          ),
+        ),
+      ),
+      bottomNavi: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+        child: MaterialButton(
+          onPressed: () {
+            Get.to(() => AddEquipmentPage());
+          },
+          color: Color(0xFF5096F1),
+          padding: EdgeInsets.symmetric(vertical: 24.w),
+          minWidth: 686.w,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.w),
+          ),
+          child: '添加设备'.text.size(28.sp).white.make(),
+        ),
       ),
     );
   }
