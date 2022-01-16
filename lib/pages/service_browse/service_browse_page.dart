@@ -3,6 +3,7 @@ import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/models/service_browse/service_browse_list_mode.dart';
 import 'package:aku_new_community/pages/service_browse/service_browse_detail_page.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,11 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
           32.w.heightBox,
           Row(
             children: [
-              '南宁人才公寓'.text.size(20.sp).color(ktextSubColor).make(),
+              '${S.of(context)!.tempPlotName}'
+                  .text
+                  .size(20.sp)
+                  .color(ktextSubColor)
+                  .make(),
               Spacer(),
               '发布于 ${DateUtil.formatDateStr(model.createDate, format: 'MM-dd HH:mm')}'
                   .text

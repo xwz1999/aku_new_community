@@ -3,6 +3,7 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
 
+@Deprecated('弃用')
 class RenovationManagePage extends StatefulWidget {
   RenovationManagePage({Key? key}) : super(key: key);
 

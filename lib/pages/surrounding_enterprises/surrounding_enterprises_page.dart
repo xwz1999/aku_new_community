@@ -26,6 +26,7 @@ class _SurroundingEnterprisesPageState
   EasyRefreshController _refreshController = EasyRefreshController();
   int _page = 1;
   int _size = 10;
+
   @override
   void initState() {
     super.initState();
@@ -94,7 +95,11 @@ class _SurroundingEnterprisesPageState
                 Spacer(),
                 Row(
                   children: [
-                    '南宁人才公寓'.text.size(20.sp).color(ktextThirdColor).make(),
+                    '${S.of(context)!.tempPlotName}'
+                        .text
+                        .size(20.sp)
+                        .color(ktextThirdColor)
+                        .make(),
                     Spacer(),
                     '发布于：${model.getReleaseDate}'
                         .text

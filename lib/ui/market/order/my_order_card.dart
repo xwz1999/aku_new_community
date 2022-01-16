@@ -8,6 +8,7 @@ import 'package:aku_new_community/ui/market/order/my_order_detail_page.dart';
 import 'package:aku_new_community/ui/market/order/my_order_evaluation_page.dart';
 import 'package:aku_new_community/ui/market/order/my_order_func.dart';
 import 'package:aku_new_community/ui/market/order/my_order_refund_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:flutter/material.dart';
@@ -128,7 +129,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
             40.w.heightBox,
             ...[
               _rowTile('下单时间', widget.model.arrivalDateString),
-              _rowTile('到达地点', '人才公寓小区北侧门口'),
+              _rowTile('到达地点', '${S.of(context)!.tempPlotName}北侧门口'),
               _rowTile('发货时间', widget.model.sendDateString),
             ].sepWidget(separate: 16.w.heightBox),
             ..._bottomWidget(),

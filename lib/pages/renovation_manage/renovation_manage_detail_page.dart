@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/pages/renovation_manage/renovation_map.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
@@ -197,7 +198,7 @@ class _RenovationManageDetailPageState
       [
         _buildInfoCard(
           tag: '家',
-          midTop: '人才公寓',
+          midTop: '${S.of(context)!.tempPlotName}',
           midBottom: '1幢-1单元-302',
           name: '业主：' + '马泽鹏',
           phone: '13720183183',
