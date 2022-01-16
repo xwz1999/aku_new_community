@@ -1,4 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -33,17 +34,9 @@ class _ClockInPageState extends State<ClockInPage> {
   bool get hasClocked => _integralModel?.isSign ?? false;
 
   Future getData() async {
-    var base = await NetUtil().get(API.intergral.info);
-    if (base.status ?? false) {
+    var base = await NetUtil().get(SARSAPI.profile.integral.info);
+    if (base.success) {
       _integralModel = IntegralInfoModel.fromJson(base.data);
-    } else {
-      BotToast.showText(text: base.message!);
-    }
-  }
-
-  @override
-  void initState() {
-    getData().then((value) {
       if (_integralModel != null) {
         _records = _integralModel!.signRecordList;
         _configs = _integralModel!.rewardSetting
@@ -54,7 +47,14 @@ class _ClockInPageState extends State<ClockInPage> {
             .toList();
         setState(() {});
       }
-    });
+    } else {
+      BotToast.showText(text: base.msg);
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
     super.initState();
   }
 
@@ -221,14 +221,15 @@ class _ClockInPageState extends State<ClockInPage> {
             onPressed: hasClocked
                 ? null
                 : () async {
-                    var base = await NetUtil().get(API.intergral.sign);
-                    if (base.status ?? false) {
+                    var base =
+                        await NetUtil().get(SARSAPI.profile.integral.sign);
+                    if (base.success) {
                       await Get.dialog(ClockSuccessDialog(
                           todayIntegral: 1, tomorrowIntegral: 2));
                       await UserTool.userProvider.changeTodayClocked();
                       await getData();
                     } else {
-                      BotToast.showText(text: base.message!);
+                      BotToast.showText(text: base.msg);
                     }
                   },
             elevation: 0,

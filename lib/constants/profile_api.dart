@@ -3,6 +3,7 @@ part of 'sars_api.dart';
 class _ProfileApi {
   _MyHouse house = _MyHouse();
   _MyFamily family = _MyFamily();
+  _Integral integral = _Integral();
 }
 
 class _MyHouse {
@@ -25,4 +26,12 @@ class _MyFamily {
 
   ///通过/驳回房屋审核
   String get myFamilyReview => '/app/user/myFamily/review';
+}
+
+class _Integral {
+  ///获取积分页面详情
+  String get info => '/app/user/points/getPointsInfo';
+
+  ///积分签到
+  String get sign => '/app/user/points/sign';
 }

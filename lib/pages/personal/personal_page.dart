@@ -1,4 +1,5 @@
 import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
@@ -338,15 +339,15 @@ class _PersonalIndexState extends State<PersonalIndex>
                             Spacer(),
                             MaterialButton(
                               onPressed: () async {
-                                var base =
-                                    await NetUtil().get(API.intergral.sign);
-                                if (base.status ?? false) {
+                                var base = await NetUtil()
+                                    .get(SARSAPI.profile.integral.sign);
+                                if (base.success) {
                                   await Get.dialog(ClockSuccessDialog(
                                       todayIntegral: 1, tomorrowIntegral: 2));
                                   await UserTool.userProvider
                                       .changeTodayClocked();
                                 } else {
-                                  BotToast.showText(text: base.message!);
+                                  BotToast.showText(text: base.msg);
                                 }
                               },
                               elevation: 0,
