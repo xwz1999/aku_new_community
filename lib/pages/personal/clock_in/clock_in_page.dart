@@ -4,9 +4,12 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/integral/add_integral_config_model.dart';
 import 'package:aku_new_community/models/integral/clocked_record_list_model.dart';
+import 'package:aku_new_community/models/integral/integral_info_model.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,31 +24,39 @@ class ClockInPage extends StatefulWidget {
 }
 
 class _ClockInPageState extends State<ClockInPage> {
-  List<AddIntegralConfigModel> _configs = [
-    AddIntegralConfigModel(addIntegral: 1, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 2, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 3, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 5, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 8, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 15, hasClocked: false),
-    AddIntegralConfigModel(addIntegral: 50, hasClocked: false),
-  ];
+  IntegralInfoModel? _integralModel;
+  List<AddIntegralConfigModel> _configs = [];
 
-  List<ClockedRecordListModel> _records = [
-    ClockedRecordListModel(day: 1, date: '2021-12-29 13:29:24', addIntegral: 1),
-    ClockedRecordListModel(day: 2, date: '2021-12-28 13:29:24', addIntegral: 2),
-    ClockedRecordListModel(day: 3, date: '2021-12-27 13:29:24', addIntegral: 3),
-    ClockedRecordListModel(day: 4, date: '2021-12-26 13:29:24', addIntegral: 5),
-    ClockedRecordListModel(day: 5, date: '2021-12-25 13:29:24', addIntegral: 8),
-    ClockedRecordListModel(
-        day: 6, date: '2021-12-24 13:29:24', addIntegral: 15),
-    ClockedRecordListModel(
-        day: 7, date: '2021-12-23 13:29:24', addIntegral: 50),
-    ClockedRecordListModel(day: 1, date: '2021-12-22 13:29:24', addIntegral: 1),
-  ];
+  List<ClockedRecordListModel> _records = [];
 
   bool _openRemind = false; //演示用，之后删除
-  bool get hasClocked => _configs[0].hasClocked;
+  bool get hasClocked => _integralModel?.isSign ?? false;
+
+  Future getData() async {
+    var base = await NetUtil().get(API.intergral.info);
+    if (base.status ?? false) {
+      _integralModel = IntegralInfoModel.fromJson(base.data);
+    } else {
+      BotToast.showText(text: base.message!);
+    }
+  }
+
+  @override
+  void initState() {
+    getData().then((value) {
+      if (_integralModel != null) {
+        _records = _integralModel!.signRecordList;
+        _configs = _integralModel!.rewardSetting
+            .split(',')
+            .mapIndexed((currentValue, index) => AddIntegralConfigModel(
+                addIntegral: int.parse(currentValue),
+                hasClocked: index < _integralModel!.serialNumber))
+            .toList();
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +105,10 @@ class _ClockInPageState extends State<ClockInPage> {
                               Text.rich(
                                 TextSpan(children: [
                                   '已连续签到 '.textSpan.make(),
-                                  '1'.textSpan.size(40.sp).make(),
+                                  '${_integralModel?.serialNumber ?? 0}'
+                                      .textSpan
+                                      .size(40.sp)
+                                      .make(),
                                   ' 天'.textSpan.make(),
                                 ]),
                                 style: TextStyle(
@@ -104,7 +118,9 @@ class _ClockInPageState extends State<ClockInPage> {
                               ),
                               4.hb,
                               Text(
-                                '明日签到即可获得2积分',
+                                '明日签到即可获得'
+                                '${_configs.isNotEmpty ? _configs[_integralModel!.serialNumber != 7 ? _integralModel!.serialNumber : 0].addIntegral : 0}'
+                                '积分',
                                 style: TextStyle(
                                   fontSize: 24.sp,
                                   color: Colors.black.withOpacity(0.45),
@@ -132,7 +148,11 @@ class _ClockInPageState extends State<ClockInPage> {
                     children: [
                       Assets.icons.intergral.image(width: 36.w, height: 36.w),
                       12.wb,
-                      '123'.text.size(32.sp).white.make(),
+                      '${_integralModel?.points ?? 0}'
+                          .text
+                          .size(32.sp)
+                          .white
+                          .make(),
                     ],
                   ),
                 ),
@@ -175,9 +195,9 @@ class _ClockInPageState extends State<ClockInPage> {
                   width: 72.w,
                   height: 40.w,
                   child: Switch(
-                    value: _openRemind,
+                    value: UserTool.userProvider.userConfig.clockRemind,
                     onChanged: (value) {
-                      _openRemind = value;
+                      UserTool.userProvider.changeClockRemind();
                       setState(() {});
                     },
                   )),
@@ -201,12 +221,15 @@ class _ClockInPageState extends State<ClockInPage> {
             onPressed: hasClocked
                 ? null
                 : () async {
-                    await Get.dialog(ClockSuccessDialog(
-                        todayIntegral: _configs[0].addIntegral,
-                        tomorrowIntegral: _configs[1].addIntegral));
-                    _configs[0] = AddIntegralConfigModel(
-                        addIntegral: _configs[0].addIntegral, hasClocked: true);
-                    setState(() {});
+                    var base = await NetUtil().get(API.intergral.sign);
+                    if (base.status ?? false) {
+                      await Get.dialog(ClockSuccessDialog(
+                          todayIntegral: 1, tomorrowIntegral: 2));
+                      await UserTool.userProvider.changeTodayClocked();
+                      await getData();
+                    } else {
+                      BotToast.showText(text: base.message!);
+                    }
                   },
             elevation: 0,
             color: kPrimaryColor,
@@ -246,9 +269,9 @@ class _ClockInPageState extends State<ClockInPage> {
                 children: [
                   ..._records
                       .mapIndexed((currentValue, index) => recordListTile(
-                          currentValue.day,
-                          currentValue.date,
-                          currentValue.addIntegral))
+                          currentValue.serialNumber,
+                          currentValue.signDate,
+                          currentValue.addNums))
                       .toList(),
                   Container(
                     width: double.infinity,

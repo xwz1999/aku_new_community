@@ -9,7 +9,8 @@ part of 'clocked_record_list_model.dart';
 ClockedRecordListModel _$ClockedRecordListModelFromJson(
         Map<String, dynamic> json) =>
     ClockedRecordListModel(
-      day: json['day'] as int,
-      date: json['date'] as String,
-      addIntegral: json['addIntegral'] as int,
+      id: json['id'] as int,
+      addNums: json['addNums'] as int,
+      serialNumber: json['serialNumber'] as int,
+      signDate: json['signDate'] as String,
     );

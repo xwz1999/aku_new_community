@@ -12,7 +12,9 @@ import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -336,10 +338,16 @@ class _PersonalIndexState extends State<PersonalIndex>
                             Spacer(),
                             MaterialButton(
                               onPressed: () async {
-                                await Get.dialog(ClockSuccessDialog(
-                                    todayIntegral: 1, tomorrowIntegral: 2));
-                                await UserTool.userProvider
-                                    .changeTodayClocked();
+                                var base =
+                                    await NetUtil().get(API.intergral.sign);
+                                if (base.status ?? false) {
+                                  await Get.dialog(ClockSuccessDialog(
+                                      todayIntegral: 1, tomorrowIntegral: 2));
+                                  await UserTool.userProvider
+                                      .changeTodayClocked();
+                                } else {
+                                  BotToast.showText(text: base.message!);
+                                }
                               },
                               elevation: 0,
                               color: Colors.white,

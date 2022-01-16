@@ -25,11 +25,21 @@ class API {
   static _Pay pay = _Pay();
   static _House house = _House();
   static _Bracelet bracelet = _Bracelet();
+
+  static _Intergral intergral = _Intergral();
 }
 
 class _Bracelet {
   ///爱牵挂手环数据
   String get data => '/user/aqg/getData';
+}
+
+class _Intergral {
+  ///积分签到
+  String get sign => '/user/points/sign';
+
+  ///获取积分页面详情
+  String get info => '/user/points/getPointsInfo';
 }
 
 class _Login {

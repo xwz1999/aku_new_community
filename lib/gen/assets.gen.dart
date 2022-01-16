@@ -1056,6 +1056,10 @@ class $AssetsImagesGen {
   AssetGenImage get drawings =>
       const AssetGenImage('assets/images/drawings.png');
 
+  /// File path: assets/images/equipment_empty.png
+  AssetGenImage get equipmentEmpty =>
+      const AssetGenImage('assets/images/equipment_empty.png');
+
   /// File path: assets/images/house_attestation.png
   AssetGenImage get houseAttestation =>
       const AssetGenImage('assets/images/house_attestation.png');
