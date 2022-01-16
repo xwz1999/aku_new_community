@@ -37,14 +37,6 @@ class _ClockInPageState extends State<ClockInPage> {
     var base = await NetUtil().get(API.intergral.info);
     if (base.status ?? false) {
       _integralModel = IntegralInfoModel.fromJson(base.data);
-    } else {
-      BotToast.showText(text: base.message!);
-    }
-  }
-
-  @override
-  void initState() {
-    getData().then((value) {
       if (_integralModel != null) {
         _records = _integralModel!.signRecordList;
         _configs = _integralModel!.rewardSetting
@@ -55,7 +47,14 @@ class _ClockInPageState extends State<ClockInPage> {
             .toList();
         setState(() {});
       }
-    });
+    } else {
+      BotToast.showText(text: base.message!);
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
     super.initState();
   }
 
