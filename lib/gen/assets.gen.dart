@@ -1154,6 +1154,9 @@ class $AssetsStaticGen {
   AssetGenImage get carParkEmpty =>
       const AssetGenImage('assets/static/car_park_empty.webp');
 
+  /// File path: assets/static/family.png
+  AssetGenImage get family => const AssetGenImage('assets/static/family.png');
+
   /// File path: assets/static/house_auth_fail.webp
   AssetGenImage get houseAuthFail =>
       const AssetGenImage('assets/static/house_auth_fail.webp');

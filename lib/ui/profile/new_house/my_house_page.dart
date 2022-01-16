@@ -36,7 +36,7 @@ class _MyHousePageState extends State<MyHousePage> {
       ],
       body: SafeArea(
           child: UserTool.userProvider.myHouses.isEmpty
-              ? _emptyWidget()
+              ? HouseEmptyWidget()
               : ListView(
                   padding:
                       EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
@@ -142,8 +142,15 @@ class _MyHousePageState extends State<MyHousePage> {
       ],
     );
   }
+}
 
-  Widget _emptyWidget() {
+class HouseEmptyWidget extends StatelessWidget {
+  const HouseEmptyWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [

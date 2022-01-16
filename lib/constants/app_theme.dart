@@ -5,8 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(primarySwatch: Colors.blue).copyWith(
+      progressIndicatorTheme:
+          ProgressIndicatorThemeData(color: Color(0xFFFFD000)),
       primaryColor: Color(0xFFFFD000),
-      accentColor: Color(0xFFFFD000),
       textTheme: ThemeData.light().textTheme.copyWith(
             headline3: TextStyle(
               fontSize: 40.sp,
@@ -115,6 +116,8 @@ class AppTheme {
       ),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       dividerColor: Color(0xFFE8E8E8),
+      colorScheme:
+          ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFFFD000)),
     );
   }
 }

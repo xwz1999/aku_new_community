@@ -1,4 +1,3 @@
-import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -20,7 +19,7 @@ class AddHouseButton extends StatelessWidget {
     return MaterialButton(
       minWidth: 686.w,
       height: 93.w,
-      color: hollow ? Colors.white : kPrimaryColor,
+      color: hollow ? Colors.white : Color(0xFFFAC058),
       elevation: 0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.w),

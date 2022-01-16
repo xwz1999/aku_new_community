@@ -32,7 +32,11 @@ class _AddHousePageState extends State<AddHousePage> {
   PickedHouseModel? _otherPickHouse;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _telController = TextEditingController();
+
   List<int> get manageEstateIds {
+    if (_otherPickHouse == null || _pickedHouses.first.house == null) {
+      return [];
+    }
     if (_identify == Identify.OWNER) {
       return _pickedHouses.map((e) => e.house!.id).toList();
     } else {
@@ -216,6 +220,10 @@ class _AddHousePageState extends State<AddHousePage> {
         child: AddHouseButton(
             text: '提交',
             onTap: () async {
+              if (manageEstateIds.isEmpty) {
+                BotToast.showText(text: '请选择房屋');
+                return;
+              }
               var cancel = BotToast.showLoading();
               var base = await NetUtil().post(SARSAPI.profile.house.addHouse,
                   params: {

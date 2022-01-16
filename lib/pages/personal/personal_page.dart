@@ -9,13 +9,13 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -512,14 +512,20 @@ class _PersonalIndexState extends State<PersonalIndex>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _function(
-                              '我的房屋',
-                              R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                              () => MyHousePage(),
-                              // () => HouseOwnersPage(
-                              //       identify: 4,
-                              //     ),
-                              // userProvider.myHouses.first.communityName ??
-                              ''),
+                            '我的房屋',
+                            R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                            () => MyHousePage(),
+                            // () => HouseOwnersPage(
+                            //       identify: 4,
+                            //     ),
+                            '${UserTool.userProvider.defaultHouse?.communityName ?? ''} '
+                                '${UserTool.userProvider.defaultHouse?.buildingName ?? ''}'
+                                '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
+                                '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
+                          ),
+                          36.hb,
+                          _function('我的家庭', R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                              () => MyFamilyPage(), ''),
                           36.hb,
                           _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
                               () => CarParkingPage(), ''),

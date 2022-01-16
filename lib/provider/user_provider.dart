@@ -69,9 +69,9 @@ class UserProvider extends ChangeNotifier {
       BotToast.showText(text: '获取用户信息失败');
       return false;
     }
-    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {
-      SignFunc.checkNameAndAccount();
-    }
+    if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
+
+    SignFunc.checkNameAndAccount();
 
     notifyListeners();
     return true;
@@ -79,6 +79,15 @@ class UserProvider extends ChangeNotifier {
 
   Future updateMyHouseInfo() async {
     _myHouses = await SignFunc.getMyHouseInfo();
+    if (_myHouses.isEmpty) {
+      _defaultHouse = null;
+    } else {
+      for (var item in _myHouses) {
+        if (item.isDefault == 1) {
+          _defaultHouse = item;
+        }
+      }
+    }
     notifyListeners();
   }
 
@@ -93,6 +102,9 @@ class UserProvider extends ChangeNotifier {
   List<MyHouseModel> _myHouses = [];
 
   List<MyHouseModel> get myHouses => _myHouses;
+  MyHouseModel? _defaultHouse;
+
+  MyHouseModel? get defaultHouse => _defaultHouse;
 
   ///设置性别
   Future setSex(int sex) async {
