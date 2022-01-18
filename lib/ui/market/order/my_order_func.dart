@@ -6,9 +6,10 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 
 class MyOrderFunc {
   ///确认收货
-  static Future confirmReceive(int goodsAppointmentId) async {
-    await NetUtil().get(API.market.confirmReceive,
+  static Future<bool> confirmReceive(int goodsAppointmentId) async {
+    var result = await NetUtil().get(API.market.confirmReceive,
         params: {"goodsAppointmentId": goodsAppointmentId}, showMessage: true);
+    return result.status ?? false;
   }
 
   ///申请退换
