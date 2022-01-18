@@ -15,24 +15,8 @@ class UserDetailModel {
   String? nickName;
   List<String>? estateNames;
   int? nowEstateExamineId;
-
-  UserDetailModel(
-      {this.id,
-      this.name,
-      this.type,
-      this.tel,
-      this.idType,
-      this.idNumber,
-      this.pwd,
-      this.confuse,
-      this.email,
-      this.createId,
-      this.createDate,
-      this.identity,
-      this.roomStatus,
-      this.nickName,
-      this.estateNames,
-      this.nowEstateExamineId});
+  int? points;
+  bool? isSign;
 
   UserDetailModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -57,6 +41,16 @@ class UserDetailModel {
       estateNames = [];
     }
     nowEstateExamineId = json['nowEstateExamineId'];
+    if (json['points'] != null) {
+      points = json['points'];
+    } else {
+      points = 0;
+    }
+    if (json['isSign'] != null) {
+      isSign = json['isSign'];
+    } else {
+      isSign = false;
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -77,6 +71,29 @@ class UserDetailModel {
     data['nickName'] = this.nickName;
     data['estateNames'] = this.estateNames;
     data['nowEstateExamineId'] = this.nowEstateExamineId;
+    data['points'] = this.points;
+    data['isSign'] = this.isSign;
     return data;
   }
+
+  UserDetailModel({
+    this.id,
+    this.name,
+    this.type,
+    this.tel,
+    this.idType,
+    this.idNumber,
+    this.pwd,
+    this.confuse,
+    this.email,
+    this.createId,
+    this.createDate,
+    this.identity,
+    this.roomStatus,
+    this.nickName,
+    this.estateNames,
+    this.nowEstateExamineId,
+    required this.points,
+    required this.isSign,
+  });
 }

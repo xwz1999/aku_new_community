@@ -1,7 +1,10 @@
 // import 'package:aku_new_community/base/base_style.dart';
 
+import 'dart:ui' as ui;
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
@@ -10,6 +13,8 @@ import 'package:aku_new_community/models/market/goods_popular_model.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_func.dart';
+import 'package:aku_new_community/ui/market/integral/integral_exchange_page.dart';
+import 'package:aku_new_community/ui/market/integral/integral_sku_model.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
@@ -43,6 +48,7 @@ class _MarketPageState extends State<MarketPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late EasyRefreshController _refreshController;
   late ScrollController _sliverListController;
+  late ScrollController _horListController;
   GlobalKey<HomeSliverAppBarState> _sliverAppBarGlobalKey = GlobalKey();
   GlobalKey<AnimatedHomeBackgroundState> _animatedBackgroundState = GlobalKey();
   int _pageNum = 1;
@@ -72,6 +78,8 @@ class _MarketPageState extends State<MarketPage>
   List<GoodsHomeModel> _goodsHomeModelList = [];
 
   List<GoodsPopularModel> _goodsPopularModelList = [];
+
+  List<IntegralSkuModel> get _integralModelList => IntegralSkuModel.examples;
 
   int? orderBySalesVolume;
   int? orderByPrice;
@@ -124,10 +132,10 @@ class _MarketPageState extends State<MarketPage>
       _goodsPopularModelList.add(
           GoodsPopularModel(id: 0, skuName: '', mainPhoto: '', viewsNum: 0));
     }
-
-    _refreshController = EasyRefreshController();
     _sliverListController = ScrollController();
+    _horListController = ScrollController();
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+    _refreshController = EasyRefreshController();
 
     ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
     Future.delayed(Duration(milliseconds: 0), () async {
@@ -150,11 +158,14 @@ class _MarketPageState extends State<MarketPage>
     final mediaWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: EasyRefresh(
+      body: EasyRefresh.custom(
         firstRefresh: false,
         enableControlFinishLoad: false,
-        header: MaterialHeader(),
+        header: BallPulseHeader(
+            backgroundColor: Colors.red.withOpacity(0.8), color: Colors.white),
         footer: MaterialFooter(),
+        topBouncing: false,
+        scrollController: _sliverListController,
         controller: _refreshController,
         onRefresh: () async {
           _refresh();
@@ -167,7 +178,7 @@ class _MarketPageState extends State<MarketPage>
           }
           setState(() {});
         },
-        child: _buildBody(context),
+        slivers: _buildBody(context),
       ),
     );
   }
@@ -191,7 +202,7 @@ class _MarketPageState extends State<MarketPage>
     setState(() {});
   }
 
-  Widget _buildBody(BuildContext context) {
+  List<Widget> _buildBody(BuildContext context) {
     final normalTypeButton = MaterialButton(
       onPressed: () async {
         _orderType = OrderType.NORMAL;
@@ -292,39 +303,37 @@ class _MarketPageState extends State<MarketPage>
       height: 80.w,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-    return CustomScrollView(
-      controller: _sliverListController,
-      slivers: <Widget>[
-        HomeSliverAppBar(
-            key: _sliverAppBarGlobalKey,
-            actions: _actionsWidget(),
-            title: _buildTitle(),
-            backgroundColor: Colors.red,
-            expandedHeight: MessageHeight +
-                bannerHeight +
-                buttonsHeight +
-                searchHeight +
-                tabBarHeight +
-                ScreenUtil().statusBarHeight +
-                kToolbarHeight +
-                280.w,
-            flexibleSpace: _flexibleSpaceBar(context),
-            bottom: PreferredSize(
-                preferredSize: Size.fromHeight(tabBarHeight),
-                child: _goodsTitle(
-                  normalTypeButton,
-                  salesTypeButton,
-                  priceButton,
-                ))),
-        SliverPadding(
-          padding: EdgeInsets.all(10.w),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w),
-          sliver: buildSliverGrid(),
-        ),
-      ],
-    );
+    return <Widget>[
+      HomeSliverAppBar(
+          key: _sliverAppBarGlobalKey,
+          actions: _actionsWidget(),
+          title: _buildTitle(),
+          backgroundColor: Colors.red,
+          expandedHeight: MessageHeight +
+              bannerHeight +
+              buttonsHeight +
+              searchHeight +
+              tabBarHeight +
+              ScreenUtil().statusBarHeight +
+              kToolbarHeight +
+              280.w +
+              172 * 2.w,
+          flexibleSpace: _flexibleSpaceBar(context),
+          bottom: PreferredSize(
+              preferredSize: Size.fromHeight(tabBarHeight),
+              child: _goodsTitle(
+                normalTypeButton,
+                salesTypeButton,
+                priceButton,
+              ))),
+      SliverPadding(
+        padding: EdgeInsets.all(10.w),
+      ),
+      SliverPadding(
+        padding: EdgeInsets.only(left: 20.w, right: 20.w),
+        sliver: buildSliverGrid(),
+      ),
+    ];
   }
 
   SliverGrid buildSliverGrid() {
@@ -474,10 +483,115 @@ class _MarketPageState extends State<MarketPage>
                   _buttonTitle(),
                   20.hb,
                   _recommend(),
+                  20.hb,
+                  _integralMarket(),
                 ],
               ),
             ],
           )),
+    );
+  }
+
+  Widget _integralMarket() {
+    return Container(
+      width: 720.w,
+      height: 172 * 2.w,
+      padding: EdgeInsets.all(16.w),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24.w),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              '积分商城'.richText.size(28.sp).italic.bold.black.make(),
+              8.wb,
+              Text(
+                '限时兑换',
+                style: TextStyle(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    foreground: Paint()
+                      ..shader = ui.Gradient.linear(
+                          Offset(150, 690), Offset(150, 695), [
+                        Color(0xFFF94B4B),
+                        Color(0xFFF7B86F),
+                      ])),
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => IntegralExchangePage());
+                },
+                child: Row(
+                  children: [
+                    '查看更多'
+                        .text
+                        .size(24.sp)
+                        .color(Colors.black.withOpacity(0.45))
+                        .make(),
+                    4.wb,
+                    Icon(
+                      CupertinoIcons.chevron_right,
+                      size: 20.w,
+                      color: Colors.black.withOpacity(0.45),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          18.hb,
+          Flexible(
+            child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                controller: _horListController,
+                itemBuilder: (context, index) {
+                  return _horizontalListCard(_integralModelList[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return 24.wb;
+                },
+                itemCount: 4),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _horizontalListCard(IntegralSkuModel model) {
+    return GestureDetector(
+      onTap: () {},
+      child: SizedBox(
+        width: 148.w,
+        child: Column(
+          children: [
+            Image.network(
+              model.imgPath,
+              width: 148.w,
+              height: 148.w,
+            ),
+            '${model.skuName}'
+                .text
+                .size(24.sp)
+                .color(Colors.black.withOpacity(0.65))
+                .maxLines(2)
+                .overflow(TextOverflow.ellipsis)
+                .make(),
+            10.hb,
+            Row(
+              children: [
+                Assets.icons.intergral.image(width: 24.w, height: 24.w),
+                4.wb,
+                '${model.integral}'.text.size(24.sp).color(Colors.red).make()
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 
