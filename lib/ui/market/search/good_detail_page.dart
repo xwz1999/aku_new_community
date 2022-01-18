@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/good/good_detail_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
@@ -8,6 +11,7 @@ import 'package:aku_new_community/ui/market/search/search_func.dart';
 import 'package:aku_new_community/ui/market/search/submit_order_page_normal.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,8 +24,15 @@ import 'good_detail_bottomSheet.dart';
 
 class GoodDetailPage extends StatefulWidget {
   final int goodId;
+  final bool integralGood;
+  final int integral;
 
-  GoodDetailPage({Key? key, required this.goodId}) : super(key: key);
+  GoodDetailPage({
+    Key? key,
+    required this.goodId,
+    this.integral = 0,
+    this.integralGood = false,
+  }) : super(key: key);
 
   @override
   _GoodDetailPageState createState() => _GoodDetailPageState();
@@ -29,7 +40,6 @@ class GoodDetailPage extends StatefulWidget {
 
 class _GoodDetailPageState extends State<GoodDetailPage> {
   late EasyRefreshController _refreshController;
-  bool _showList = true;
 
   late PageController _pageController;
   int _currentIndex = 0;
@@ -39,16 +49,29 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
   AddressModel? _addressModel;
   List _imageList = [];
 
+  DateTime _deadline = DateTime(2022, 4, 17, 0, 0, 0, 0, 0).toUtc();
+
+  int get days => _deadline.difference(DateTime.now().toUtc()).inDays;
+
+  int get hours =>
+      _deadline.difference(DateTime.now().toUtc()).inHours - days * 24;
+
+  int get mins =>
+      _deadline.difference(DateTime.now().toUtc()).inMinutes -
+      days * 1440 -
+      hours * 60;
+
+  int get seconds => (_deadline.difference(DateTime.now().toUtc()).inSeconds -
+      days * 86400 -
+      hours * 3600 -
+      mins * 60);
+
+  Timer? _timer;
+
   @override
   void initState() {
     final appProvider = Provider.of<AppProvider>(Get.context!);
     super.initState();
-    // Future.delayed(Duration(milliseconds: 0), () async {
-    //   _imageList = await SearchFunc.getGoodDetailImage(widget.goodId);
-    //   setState(() {
-    //
-    //   });
-    // });
     _pageController = PageController();
     _sliverListController = ScrollController();
     _refreshController = EasyRefreshController();
@@ -57,6 +80,11 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     } else {
       _addressModel = null;
     }
+    if (widget.integralGood) {
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {});
+      });
+    }
   }
 
   @override
@@ -64,21 +92,19 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     _refreshController.dispose();
     _pageController.dispose();
     _sliverListController.dispose();
+    _timer?.cancel();
+    _timer == null;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
+      title: '',
       titleSpacing: 0,
       bgColor: Color(0xFFF9F9F9),
       bodyColor: Color(0xFFF9F9F9),
-      // title: Row(
-      //   children: [
-      //   ],
-      // ),
       bottomNavi: _onload ? SizedBox() : _bottomButton(),
-
       body: Stack(
         children: [
           EasyRefresh(
@@ -91,7 +117,6 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                 if (_goodDetail != GoodDetailModel.fail()) {
                   _onload = false;
                 }
-
                 setState(() {});
               },
               child: _onload ? SizedBox() : _buildBody(context)),
@@ -129,13 +154,140 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     return Column(
       children: [
         _imageView(_goodDetail!.goodsDetailImageVos ?? []),
-        20.hb,
-        _goodInfo(),
+        widget.integralGood ? _integralExchange() : 20.hb,
+        widget.integralGood ? _integralGoodInfo() : _goodInfo(),
         20.hb,
         _address(context),
         20.hb,
         _getDetailImage(),
       ],
+    );
+  }
+
+  Widget _integralExchange() {
+    return Container(
+      width: double.infinity,
+      height: 152.w,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Assets.images.goodDetailIntegralBack.path))),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+      child: Row(
+        children: [
+          Assets.icons.intergral.image(width: 40.w, height: 40.w),
+          8.w.widthBox,
+          '${widget.integral}'.text.size(40.sp).color(Colors.white).make(),
+          Spacer(),
+          BeeDivider.vertical(
+            indent: 20.w,
+            endIndent: 20.w,
+          ),
+          24.wb,
+          Column(
+            children: [
+              SizedBox(
+                width: 272.w,
+                child: Text(
+                  '限时兑换',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              8.hb,
+              Row(
+                children: [
+                  '距结束'.text.size(24.sp).color(Colors.white).make(),
+                  16.wb,
+                  _timerContainer(days),
+                  8.wb,
+                  '天'.text.size(24.sp).white.make(),
+                  8.wb,
+                  _timerContainer(hours),
+                  8.wb,
+                  ':'.text.white.size(24.sp).make(),
+                  8.wb,
+                  _timerContainer(mins),
+                  8.wb,
+                  ':'.text.white.size(24.sp).make(),
+                  8.wb,
+                  _timerContainer(seconds),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _timerContainer(int num) {
+    return Container(
+      width: 27.w,
+      height: 27.w,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.w),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.white, Colors.white.withOpacity(0.5)])),
+      child: num.text.size(20.sp).color(Color(0xFFE52E2E)).make(),
+    );
+  }
+
+  _integralGoodInfo() {
+    return Container(
+      padding: EdgeInsets.all(20.w),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      width: double.infinity,
+      // height: 256.w,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(24.w)),
+          color: Colors.white),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            height: 100.w,
+            width: double.infinity,
+            child: Text(
+              (_goodDetail!.skuName ?? ''),
+              style: TextStyle(
+                  fontSize: 36.sp,
+                  fontWeight: FontWeight.bold,
+                  color: ktextPrimary),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          _getIcon(_goodDetail!.kind ?? 0),
+          24.hb,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              16.wb,
+              '原价：¥'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
+              Text(
+                _goodDetail!.sellPrice == null
+                    ? ''
+                    : (_goodDetail!.sellPrice!).toStringAsFixed(2),
+                style: TextStyle(
+                    fontSize: 24.sp,
+                    decoration: TextDecoration.lineThrough,
+                    decorationThickness: 2,
+                    decorationStyle: TextDecorationStyle.solid,
+                    color: Color(0xFFBBBBBB)),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -449,10 +601,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             blurRadius: 0, //阴影模糊程度
             spreadRadius: 0 //阴影扩散程度
             )
-      ]
-          // border: Border(top:BorderSide( width: 2.w,
-          //   color: kPrimaryColor,))
-          ),
+      ]),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -534,6 +683,8 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                   } else {
                     Get.to(() => SubmitOrderNormalPage(
                           goodModel: _goodDetail!,
+                          integralGood: widget.integralGood,
+                          integral: widget.integral,
                         ));
                   }
                 },

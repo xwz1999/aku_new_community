@@ -713,6 +713,10 @@ class _Pay {
   ///app jcook商品创建订单(生成APP支付订单消息)
   String get jcookOrderCreateOrder => '/user/alipay/jcookOrderCreateOrder';
 
+  ///app jcook商品创建订单（积分兑换）
+  String get jcookOrderCreateByIntegral =>
+      '/user/points/jcookPointConvertOrder';
+
   ///支付宝支付：jcook商品 向支付宝发起订单查询请求
   String get jcookOrderCheckAlipay => '/user/alipay/jcookOrderCheckAlipay';
 }

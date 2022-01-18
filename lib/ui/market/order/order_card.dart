@@ -3,6 +3,7 @@ import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
+import 'package:aku_new_community/ui/market/order/receive_success.dart';
 import 'package:aku_new_community/ui/market/search/settlementGoodsDTO.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -169,7 +170,10 @@ class _OrderCardState extends State<OrderCard> {
       });
       if (baseModel.success) {
         BotToast.showText(text: '收货成功');
-        Get.back();
+        Get.off(() => ReceiveSuccess(
+              integralGood: widget.model.payType == 10,
+              integral: widget.model.payPrice!.toInt(),
+            ));
         widget.callRefresh();
       }
       cancel();

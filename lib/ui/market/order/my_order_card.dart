@@ -8,6 +8,7 @@ import 'package:aku_new_community/ui/market/order/my_order_detail_page.dart';
 import 'package:aku_new_community/ui/market/order/my_order_evaluation_page.dart';
 import 'package:aku_new_community/ui/market/order/my_order_func.dart';
 import 'package:aku_new_community/ui/market/order/my_order_refund_page.dart';
+import 'package:aku_new_community/ui/market/order/receive_success.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:flutter/material.dart';
@@ -110,16 +111,6 @@ class _MyOrderCardState extends State<MyOrderCard> {
                               .make()
                         ],
                       ),
-                      // 12.w.heightBox,
-                      // Row(
-                      //   children: [
-                      //     ('${widget.model.levelTwoCategory}')
-                      //         .text
-                      //         .size(24.sp)
-                      //         .color(ktextSubColor)
-                      //         .make()
-                      //   ],
-                      // ),
                     ],
                   ),
                 ).expand()
@@ -175,8 +166,11 @@ class _MyOrderCardState extends State<MyOrderCard> {
           CardBottomButton.yellow(
               text: '确认收货',
               onPressed: () async {
-                await MyOrderFunc.confirmReceive(widget.model.id);
+                var re = await MyOrderFunc.confirmReceive(widget.model.id);
                 widget.callRefresh();
+                if (re) {
+                  Get.to(() => ReceiveSuccess());
+                }
               }),
         ].sepWidget(separate: 24.w.widthBox);
       case 4:

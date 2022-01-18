@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/good/good_detail_model.dart';
 import 'package:aku_new_community/model/order/create_order_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
@@ -19,15 +19,21 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SubmitOrderNormalPage extends StatefulWidget {
   final GoodDetailModel goodModel;
+  final bool integralGood;
+  final int? integral;
 
-  SubmitOrderNormalPage({Key? key, required this.goodModel}) : super(key: key);
+  SubmitOrderNormalPage(
+      {Key? key,
+      required this.goodModel,
+      this.integralGood = false,
+      this.integral})
+      : assert(!integralGood || integral != null),
+        super(key: key);
 
   @override
   _SubmitOrderNormalPageState createState() => _SubmitOrderNormalPageState();
@@ -95,49 +101,124 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
           20.hb,
           _goodCard(widget.goodModel),
           20.hb,
-          _priceView(),
+          if (!widget.integralGood) _priceView(),
           20.hb,
-          _payWay(),
+          widget.integralGood ? _integralTile() : _payWay(),
           20.hb,
         ],
       ),
-      bottomNavi: Container(
-        width: double.infinity,
-        height: 120.w,
-        color: Colors.white,
-        child: Row(
-          children: [
-            Spacer(),
-            EndButton(
-                onPressed: () async {
-                  if (_addressModel == null) {
-                    BotToast.showText(text: '请先选择地址');
+      bottomNavi: widget.integralGood ? _integralBottom() : _normalBottom(),
+    );
+  }
+
+  Container _integralBottom() {
+    return Container(
+      width: double.infinity,
+      height: 120.w,
+      color: Colors.white,
+      child: Row(
+        children: [
+          if (widget.integralGood)
+            Row(
+              children: [
+                20.w.widthBox,
+                '应付积分:'.text.size(32.sp).color(Colors.black).bold.make(),
+                24.w.widthBox,
+                Assets.icons.intergral.image(width: 40.w, height: 40.w),
+                8.w.widthBox,
+                widget.integral
+                    .toString()
+                    .text
+                    .size(28.sp)
+                    .color(Colors.red)
+                    .make(),
+              ],
+            ),
+          Spacer(),
+          EndButton(
+              onPressed: () async {
+                if (_addressModel == null) {
+                  BotToast.showText(text: '请先选择地址');
+                }
+                Function cancel = BotToast.showLoading();
+                BaseModel baseModel = await NetUtil()
+                    .post(API.pay.jcookOrderCreateByIntegral, params: {
+                  "addressId": _addressModel!.id!,
+                  "settlementGoodsDTOList":
+                      _goodsList.map((v) => v.toJson()).toList(),
+                  "payType": 10, //暂时写死 等待后续补充
+                  "payPrice": _allPrice,
+                  'points': widget.integral,
+                });
+                if (baseModel.success) {
+                  Get.off(() => OrderPage(initIndex: 2));
+                }
+                cancel();
+              },
+              text: '提交订单'.text.size(32.sp).color(Colors.white).make()),
+          10.widthBox,
+        ],
+      ),
+    );
+  }
+
+  Container _normalBottom() {
+    return Container(
+      width: double.infinity,
+      height: 120.w,
+      color: Colors.white,
+      child: Row(
+        children: [
+          Spacer(),
+          EndButton(
+              onPressed: () async {
+                if (_addressModel == null) {
+                  BotToast.showText(text: '请先选择地址');
+                }
+                Function cancel = BotToast.showLoading();
+                BaseModel baseModel = await NetUtil()
+                    .post(API.pay.jcookOrderCreateOrder, params: {
+                  "addressId": _addressModel!.id!,
+                  "settlementGoodsDTOList":
+                      _goodsList.map((v) => v.toJson()).toList(),
+                  "payType": 1, //暂时写死 等待后续补充
+                  "payPrice": _allPrice
+                });
+                if (baseModel.success) {
+                  bool result = await PayUtil()
+                      .callAliPay(baseModel.msg, API.pay.jcookOrderCheckAlipay);
+                  if (result) {
+                    Get.off(() => OrderPage(initIndex: 2));
+                  } else {
+                    ///跳到待付款页面
+                    Get.off(() => OrderPage(initIndex: 1));
                   }
-                  Function cancel = BotToast.showLoading();
-                  BaseModel baseModel = await NetUtil()
-                      .post(API.pay.jcookOrderCreateOrder, params: {
-                    "addressId": _addressModel!.id!,
-                    "settlementGoodsDTOList":
-                        _goodsList.map((v) => v.toJson()).toList(),
-                    "payType": 1, //暂时写死 等待后续补充
-                    "payPrice": _allPrice
-                  });
-                  if (baseModel.success) {
-                    bool result = await PayUtil().callAliPay(
-                        baseModel.msg, API.pay.jcookOrderCheckAlipay);
-                    if (result) {
-                      Get.off(() => OrderPage(initIndex: 2));
-                    } else {
-                      ///跳到待付款页面
-                      Get.off(() => OrderPage(initIndex: 1));
-                    }
-                  }
-                  cancel();
-                },
-                text: '提交订单'.text.size(32.sp).color(Colors.white).make()),
-            10.widthBox,
-          ],
-        ),
+                }
+                cancel();
+              },
+              text: '提交订单'.text.size(32.sp).color(Colors.white).make()),
+          10.widthBox,
+        ],
+      ),
+    );
+  }
+
+  Widget _integralTile() {
+    return Container(
+      width: 710.w,
+      height: 96.w,
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(24.w)),
+      child: Row(
+        children: [
+          Assets.icons.intergral.image(width: 40.w, height: 40.w),
+          8.w.widthBox,
+          '当前积分'.text.size(28.sp).color(Color(0xFF4F4F4F)).make(),
+          Spacer(),
+          // (UserTool.userProvider.userInfoModel!.points ?? 0)
+          (0).text.size(28.sp).color(Colors.red).make(),
+        ],
       ),
     );
   }
@@ -308,17 +389,6 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                 )
               : SizedBox(),
           16.hb,
-          // Row(
-          //   children: [
-          //     Spacer(),
-          //     '(小提示：京东自营商品加入购物车后一起下单，运费会更划算)'
-          //         .text
-          //         .size(18.sp)
-          //         .color(Color(0xFFBBBBBB))
-          //         .make(),
-          //   ],
-          // ),
-          //16.hb,
           Row(
             children: [
               Spacer(),
@@ -521,8 +591,13 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
           ),
           bottom,
           Spacer(),
-          price,
-          30.hb,
+          if (!widget.integralGood)
+            Column(
+              children: [
+                price,
+                30.hb,
+              ],
+            ),
         ],
       ),
     );
