@@ -474,6 +474,7 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
+//积分商城
   Widget _integralMarket() {
     return Container(
       width: 720.w,
@@ -823,7 +824,7 @@ class _MarketPageState extends State<MarketPage>
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
             width: 88.w,
             height: 88.w,
-            image: API.image(item.imgUrls.first),
+            image: item.imgUrls.isNotEmpty ? item.imgUrls.first : '',
             imageErrorBuilder: (context, error, stackTrace) {
               return Image.asset(
                 R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -957,7 +958,9 @@ class _MarketPageState extends State<MarketPage>
                         key: UniqueKey(),
                         child: FadeInImage.assetNetwork(
                           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                          image: _goodsPopularModelList[index].mainPhoto ?? '',
+                          image: _goodsPopularModelList.isEmpty
+                              ? ''
+                              : _goodsPopularModelList[index].mainPhoto ?? '',
                           imageErrorBuilder: (context, error, stackTrace) {
                             return Image.asset(
                               R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

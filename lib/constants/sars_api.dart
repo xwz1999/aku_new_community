@@ -1,6 +1,5 @@
-part 'profile_api.dart';
-
 part 'market_api.dart';
+part 'profile_api.dart';
 
 class SARSAPI {
   ///HOST
@@ -16,12 +15,16 @@ class SARSAPI {
 
   static String file(String? path) => '$resource$path';
   static const int networkTimeOut = 10000;
+
+  ///根分类
   static _City city = _City();
-  static _ProfileApi profile = _ProfileApi();
-  static _MarketApi market = _MarketApi();
   static _Login login = _Login();
   static _User user = _User();
   static _House house = _House();
+
+  ///二级分类
+  static _ProfileApi profile = _ProfileApi();
+  static _MarketApi market = _MarketApi();
 }
 
 class _City {

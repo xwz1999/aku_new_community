@@ -60,7 +60,7 @@ class _Good {
   String get brand => '/app/user/shop/brand/list';
 
   ///查询综合推荐商品列表
-  String get recommend => '查询综合推荐商品列表';
+  String get recommend => '/app/user/shop/goods/findRecommendGoodsList';
 
   ///查询商品详情
   String get goodDetail => '/app/user/shop/goods/findGoodsDetail';
@@ -81,5 +81,5 @@ class _Home {
 
 class _Rotation {
   ///查询app商城首页轮播图
-  String get rotation => '/app/user/rotation/shop/list';
+  String get rotation => '/app/user/shop/rotation/list';
 }
