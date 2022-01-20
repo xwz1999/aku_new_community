@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/swiper_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
@@ -11,7 +12,7 @@ class Userfunc {
   ///查询我的收货地址列表
   static Future<List<AddressModel>> getMyAddress() async {
     BaseModel model = await NetUtil().get(
-      API.user.myAddressList,
+      SARSAPI.market.address.myAddress,
     );
     if (model.data!.length == 0) return [];
     return (model.data as List).map((e) => AddressModel.fromJson(e)).toList();
@@ -20,7 +21,7 @@ class Userfunc {
   ///添加收货地址
   static Future<bool> insertAddress(String name, String tel, int? location,
       String addressDetail, int? isDefault) async {
-    BaseModel model = await NetUtil().post(API.user.insertAddress,
+    BaseModel model = await NetUtil().post(SARSAPI.market.address.insert,
         params: {
           'name': name,
           'tel': tel,
@@ -41,7 +42,7 @@ class Userfunc {
   ///修改收货地址
   static Future<bool> updateAddress(int id, String name, String tel,
       int? location, String addressDetail, int? isDefault) async {
-    BaseModel model = await NetUtil().post(API.user.updateAddress,
+    BaseModel model = await NetUtil().post(SARSAPI.market.address.update,
         params: {
           'id': id,
           'name': name,
@@ -62,8 +63,8 @@ class Userfunc {
 
   ///删除收货地址
   static Future<bool> deleteAddress(int addressId) async {
-    BaseModel model = await NetUtil().post(API.user.deleteAddress,
-        params: {'addressId': addressId}, showMessage: false);
+    BaseModel model = await NetUtil().post(SARSAPI.market.address.delete,
+        params: {'id': addressId}, showMessage: false);
     if (model.success) {
       BotToast.showText(text: '删除成功');
       return true;
@@ -75,8 +76,8 @@ class Userfunc {
 
   ///设置默认收货地址
   static Future<bool> setIsDefaultAddress(int addressId) async {
-    BaseModel model = await NetUtil().post(API.user.settingDefaultAddress,
-        params: {'addressId': addressId}, showMessage: false);
+    BaseModel model = await NetUtil().post(SARSAPI.market.address.setDefault,
+        params: {'id': addressId}, showMessage: false);
     if (model.success) {
       BotToast.showText(text: '设置成功');
       return true;

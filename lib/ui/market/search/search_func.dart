@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/models/market/order/order_detail_model.dart';
 import 'package:aku_new_community/models/search/search_goods_model.dart';
@@ -53,8 +54,8 @@ class SearchFunc {
   ///查询商品详情
   static Future<GoodDetailModel> getGoodDetail(int shopId) async {
     BaseModel model = await NetUtil().get(
-      API.market.findGoodsDetail,
-      params: {'shopId': shopId},
+      SARSAPI.market.good.goodDetail,
+      params: {'appGoodsPushId': shopId},
     );
     if (model.data == null) return GoodDetailModel.fail();
     return GoodDetailModel.fromJson(model.data);
@@ -72,8 +73,8 @@ class SearchFunc {
 
   ///加入购物车
   static Future<String> addGoodsCar(int jcookGoodsId) async {
-    BaseModel model = await NetUtil().post(API.market.insertShoppingCart,
-        params: {'jcookGoodsId': jcookGoodsId}, showMessage: true);
+    BaseModel model = await NetUtil().post(SARSAPI.market.shopCart.insert,
+        params: {'appGoodsPushId': jcookGoodsId}, showMessage: true);
     if (model.msg == null) return '';
     return model.msg as String;
   }

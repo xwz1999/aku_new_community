@@ -6,6 +6,42 @@ class _MarketApi {
   _Category category = _Category();
   _Home home = _Home();
   _Rotation rotation = _Rotation();
+  _ShopCart shopCart = _ShopCart();
+  _Address address = _Address();
+}
+
+class _ShopCart {
+  ///加入购物车
+  String get insert => '/app/user/shop/cart/insertShoppingCart';
+
+  ///我的购物车
+  String get myCart => '/app/user/shop/cart/myShoppingCart';
+
+  ///更改购物车商品数量
+  String get updateNum => '/app/user/shop/cart/updateShoppingCartNum';
+
+  ///删除购物车商品
+  String get delete => '/app/user/shop/cart/deleteShoppingCart';
+
+  ///购物车结算
+  String get settlement => '/app/user/shop/cart/settlement';
+}
+
+class _Address {
+  ///添加收货地址
+  String get insert => '/app/user/shop/address/insert';
+
+  ///修改收货地址
+  String get update => '/app/user/shop/address/update';
+
+  ///我的收货地址
+  String get myAddress => '/app/user/shop/address/myAddress';
+
+  ///删除收货地址
+  String get delete => '/app/user/shop/address/delete';
+
+  ///设置默认收货地址
+  String get setDefault => '/app/user/shop/address/settingDefaultAddress';
 }
 
 class _Collection {

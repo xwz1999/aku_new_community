@@ -1,20 +1,20 @@
 class SettlementGoodsDTO {
-  int? jcookGoodsId;
+  int? appGoodsPushId;
   int? num;
 
   SettlementGoodsDTO({
-    this.jcookGoodsId,
+    this.appGoodsPushId,
     this.num,
   });
 
   SettlementGoodsDTO.fromJson(Map<String, dynamic> json) {
-    jcookGoodsId = json['jcookGoodsId'];
+    appGoodsPushId = json['jcookGoodsId'];
     num = json['num'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['jcookGoodsId'] = this.jcookGoodsId;
+    data['jcookGoodsId'] = this.appGoodsPushId;
     data['num'] = this.num;
 
     return data;

@@ -172,7 +172,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     super.initState();
     widget.orderModel.myOrderListVoList!.forEach((element) {
       _goodsList.add(SettlementGoodsDTO(
-          jcookGoodsId: element.jcookGoodsId, num: element.num));
+          appGoodsPushId: element.jcookGoodsId, num: element.num));
     });
     if (widget.orderModel.tradeStatus == 0) {
       timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _checkTime());

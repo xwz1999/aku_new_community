@@ -62,7 +62,7 @@ class _OrderCardState extends State<OrderCard> {
     super.initState();
     widget.model.myOrderListVoList!.forEach((element) {
       _goodsList.add(SettlementGoodsDTO(
-          jcookGoodsId: element.jcookGoodsId, num: element.num));
+          appGoodsPushId: element.jcookGoodsId, num: element.num));
     });
   }
 

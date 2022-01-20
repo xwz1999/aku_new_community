@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/order/create_order_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
@@ -53,7 +54,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     _controllers = TextEditingController(text: '1');
 
     _goodsList
-        .add(SettlementGoodsDTO(jcookGoodsId: widget.goodModel.id, num: 1));
+        .add(SettlementGoodsDTO(appGoodsPushId: widget.goodModel.id, num: 1));
 
     if (appProvider.addressModel != null) {
       _addressModel = appProvider.addressModel!;
@@ -72,7 +73,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
   Future<bool> createOrder(
       int addressId, List<SettlementGoodsDTO> goodsList) async {
     BaseModel model = await NetUtil().post(
-      API.market.shopCarSettlement,
+      SARSAPI.market.shopCart.settlement,
       params: {
         'addressId': addressId,
         'settlementGoodsDTOList': goodsList.map((v) => v.toJson()).toList()
@@ -758,8 +759,8 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
 
   Future<bool> changeNum(int jcookGoodsId, int num) async {
     var cancel = BotToast.showLoading();
-    var base = await NetUtil().post(API.market.shopCarChangeNum,
-        params: {'jcookGoodsId': jcookGoodsId, 'num': num});
+    var base = await NetUtil().post(SARSAPI.market.shopCart.updateNum,
+        params: {'appGoodsPushId': jcookGoodsId, 'num': num});
     if (!(base.success)) {
       BotToast.showText(text: base.msg);
     }

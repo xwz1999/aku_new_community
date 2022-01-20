@@ -16,6 +16,8 @@ class ShopCarListModel {
   final int? shopStatus;
   final double? sellPrice;
   final double? discountPrice;
+  //	库存状态(1.有货，0.无货)
+  final int stockStatus;
   final String? unit;
 
   // 0=未知 1=自营 2=其 他,商品类别
@@ -37,6 +39,7 @@ class ShopCarListModel {
     this.shopStatus,
     this.sellPrice,
     this.discountPrice,
+    required this.stockStatus,
     this.unit,
     this.kind,
     this.weight,

@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/shop_car/shop_car_list_model.dart';
 import 'package:aku_new_community/ui/market/search/submit_order_page.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
@@ -92,15 +92,12 @@ class _ShopCarPageState extends State<ShopCarPage> {
                 controller: _refreshController,
                 header: MaterialHeader(),
                 onRefresh: () async {
-                  var base = await NetUtil().get(API.market.shopCarList);
+                  var base =
+                      await NetUtil().get(SARSAPI.market.shopCart.myCart);
                   if (base.success) {
                     _models = (base.data as List)
                         .map((e) => ShopCarListModel.fromJson(e))
                         .toList();
-                    // _controllers.forEach((element) {
-                    //   element.dispose();
-                    // });
-                    // _controllers.clear();
                     if (_first) {
                       _models.forEach((element) {
                         _controllers.add(TextEditingController(
@@ -248,9 +245,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
 
       if (result == true) {
         BaseModel model = await NetUtil().post(
-          API.market.shopCarDelete,
+          SARSAPI.market.shopCart.delete,
           params: {
-            'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
+            'appGoodsPushIds': _selectIndex.map((e) => _models[e].id).toList()
           },
           showMessage: true,
         );
@@ -607,8 +604,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
 
   Future<bool> changeNum(int jcookGoodsId, int num) async {
     var cancel = BotToast.showLoading();
-    var base = await NetUtil().post(API.market.shopCarChangeNum,
-        params: {'jcookGoodsId': jcookGoodsId, 'num': num});
+    var base = await NetUtil().post(SARSAPI.market.shopCart.updateNum,
+        params: {'appGoodsPushId': jcookGoodsId, 'num': num});
     if (!(base.success)) {
       BotToast.showText(text: base.msg);
     }
@@ -634,9 +631,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
 
       if (result == true) {
         BaseModel model = await NetUtil().post(
-          API.market.shopCarDelete,
+          SARSAPI.market.shopCart.delete,
           params: {
-            'jcookGoodsIds': _selectIndex.map((e) => _models[e].id).toList()
+            'appGoodsPushIds': _selectIndex.map((e) => _models[e].id).toList()
           },
           showMessage: true,
         );

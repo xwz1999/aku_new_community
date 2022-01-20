@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/collection/collection_goods_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -6,13 +6,14 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 class CollectionFunc {
   ///加入和取消收藏
   static Future collection(int jcookGoodsId) async {
-    await NetUtil().get(API.market.addCollection,
-        params: {"jcookGoodsId": jcookGoodsId}, showMessage: true);
+    await NetUtil().get(SARSAPI.market.collection.changeCollection,
+        params: {"appGoodsPushId": jcookGoodsId}, showMessage: true);
   }
 
   /// 获取此供应商热度最高的商品
   static Future<List<CollectionGoodsModel>> getCollectionList() async {
-    BaseModel baseModel = await NetUtil().get(API.market.collectionList);
+    BaseModel baseModel =
+        await NetUtil().get(SARSAPI.market.collection.myCollection);
     if (baseModel.success == true && baseModel.data != null) {
       return (baseModel.data as List)
           .map((e) => CollectionGoodsModel.fromJson(e))
