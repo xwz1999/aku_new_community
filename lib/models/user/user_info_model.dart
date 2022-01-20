@@ -15,6 +15,8 @@ class UserInfoModel {
   final String? nickName;
   final bool isExistPassword;
   final bool isPointsSignSetting;
+  final bool isSign;
+  final int? points;
 
   String get sexValue {
     if (sex == 1) return '男';
@@ -41,9 +43,11 @@ class UserInfoModel {
     this.name,
     this.idCard,
     required this.tel,
-    required this.isPointsSignSetting,
     this.sex,
     this.nickName,
     required this.isExistPassword,
+    required this.isPointsSignSetting,
+    required this.isSign,
+    this.points,
   });
 }

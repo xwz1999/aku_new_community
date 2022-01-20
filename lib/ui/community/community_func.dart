@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/community_topic_model.dart';
@@ -9,10 +10,12 @@ import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_classification.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/market_statistics_model.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 class CommunityFunc {
   ///查询热门话题
@@ -55,35 +58,21 @@ class CommunityFunc {
         'newsId': newsId,
       },
     );
-    if (model.msg == null) return '';
-    return (model.msg as String).toString();
+    if (model.success) return '';
+    return model.msg;
   }
 
-  ///查询当天上架的商品数量
-  static Future<String> getNewProductsTodayNum() async {
+  ///查询顶部统计信息
+  static Future<MarketStatisticsModel?> getMarketStatistics() async {
     BaseModel model = await NetUtil().get(
-      API.market.newProductsTodayNum,
+      SARSAPI.market.home.topInfo,
     );
-    if (model.data! == null) return '0';
-    return (model.data as int).toString();
-  }
-
-  ///查询当前所有的品牌数量
-  static Future<String> getSettledBrandsNum() async {
-    BaseModel model = await NetUtil().get(
-      API.market.settledBrandsNum,
-    );
-    if (model.data! == null) return '0';
-    return (model.data as int).toString();
-  }
-
-  ///查询SKU总数
-  static Future<String> getSkuTotal() async {
-    BaseModel model = await NetUtil().get(
-      API.market.skuTotal,
-    );
-    if (model.data! == null) return '0';
-    return (model.data as int).toString();
+    if (model.success) {
+      return MarketStatisticsModel.fromJson(model.data);
+    } else {
+      BotToast.showText(text: model.msg);
+      return null;
+    }
   }
 
   ///获取商品分类
@@ -148,7 +137,7 @@ class CommunityFunc {
   ///获取商城的轮播图
   static Future<List<MarketSwiperModel>> marketSwiper() async {
     BaseModel model = await NetUtil().get(
-      API.market.findRotationList,
+      SARSAPI.market.rotation.rotation,
     );
     if (model.data!.length == 0) return [];
     return (model.data as List)

@@ -4,12 +4,14 @@ import 'dart:ui' as ui;
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_classification.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/market_statistics_model.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_func.dart';
@@ -58,9 +60,7 @@ class _MarketPageState extends State<MarketPage>
   double bannerHeight = 354.w;
   double buttonsHeight = 334.w;
   double searchHeight = 74.w;
-  String _total = '';
-  String _newTotal = '';
-  String _brandTotal = '';
+  MarketStatisticsModel? _statistics;
 
   double tabBarHeight = 40.w;
   late TabController _tabController;
@@ -87,7 +87,7 @@ class _MarketPageState extends State<MarketPage>
   Future updateMarketInfo() async {
     _pageNum = 1;
     BaseListModel baseListModel = await NetUtil().getList(
-      API.market.findRecommendGoodsList,
+      SARSAPI.market.good.recommend,
       params: {
         'pageNum': _pageNum,
         'size': _size,
@@ -187,9 +187,7 @@ class _MarketPageState extends State<MarketPage>
     await updateMarketInfo();
     //_swiperModels = await CommunityFunc.swiper();
     _marketSwiperModels = await CommunityFunc.marketSwiper();
-    _newTotal = await CommunityFunc.getNewProductsTodayNum();
-    _total = await CommunityFunc.getSkuTotal();
-    _brandTotal = await CommunityFunc.getSettledBrandsNum();
+    _statistics = await CommunityFunc.getMarketStatistics();
 
     _categoryModels = await CommunityFunc.getCategory();
 
@@ -677,7 +675,7 @@ class _MarketPageState extends State<MarketPage>
                       ),
                       20.wb,
                       Text(
-                        '今日上新${_total}件',
+                        '今日上新${_statistics?.newProductsTodayNum ?? 0}件',
                         style: TextStyle(
                             color: Color(0xFFD0564B),
                             fontSize: 24.sp,
@@ -707,11 +705,11 @@ class _MarketPageState extends State<MarketPage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'SKU总数：${_newTotal}',
+                      'SKU总数：${_statistics?.skuTotal ?? 0}',
                       style: TextStyle(color: Colors.white, fontSize: 24.sp),
                     ),
                     Text(
-                      '入驻品牌数：${_brandTotal}',
+                      '入驻品牌数：${_statistics?.settledBrandsNum ?? 0}',
                       style: TextStyle(color: Colors.white, fontSize: 24.sp),
                     )
                   ],

@@ -13,8 +13,10 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       idCard: json['idCard'] as String?,
       tel: json['tel'] as String,
-      isPointsSignSetting: json['isPointsSignSetting'] as bool,
       sex: json['sex'] as int?,
       nickName: json['nickName'] as String?,
       isExistPassword: json['isExistPassword'] as bool,
+      isPointsSignSetting: json['isPointsSignSetting'] as bool,
+      isSign: json['isSign'] as bool,
+      points: json['points'] as int?,
     );

@@ -1,5 +1,7 @@
 part 'profile_api.dart';
 
+part 'market_api.dart';
+
 class SARSAPI {
   ///HOST
   static const String host = 'http://121.41.26.225:8006';
@@ -16,6 +18,7 @@ class SARSAPI {
   static const int networkTimeOut = 10000;
   static _City city = _City();
   static _ProfileApi profile = _ProfileApi();
+  static _MarketApi market = _MarketApi();
   static _Login login = _Login();
   static _User user = _User();
   static _House house = _House();
