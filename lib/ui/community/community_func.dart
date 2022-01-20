@@ -6,12 +6,11 @@ import 'package:aku_new_community/model/community/community_topic_model.dart';
 import 'package:aku_new_community/model/community/hot_news_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/model/community/swiper_model.dart';
-import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
-import 'package:aku_new_community/models/market/goods_classification.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
+import 'package:aku_new_community/models/market/market_category_model.dart';
 import 'package:aku_new_community/models/market/market_statistics_model.dart';
-import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -76,42 +75,22 @@ class CommunityFunc {
   }
 
   ///获取商品分类
-  static Future<List<GoodsClassification>> getGoodsClassificationList(
+  static Future<List<MarketCategoryModel>> getGoodsClassificationList(
       int parentId) async {
     BaseListModel model = await NetUtil().getList(
-      API.market.findAllCategoryByParentId,
+      SARSAPI.market.category.category,
       params: {'pageNum': 1, 'size': 9, 'parentId': parentId},
     );
     if (model.tableList!.length == 0) return [];
     return model.tableList!
-        .map((e) => GoodsClassification.fromJson(e))
+        .map((e) => MarketCategoryModel.fromJson(e))
         .toList();
-  }
-
-  ///商场首页的商品列表
-  static Future<List<GoodsHomeModel>> getGoodsHomeModelList(
-    int PageNum,
-    int size,
-    int orderBySalesVolume,
-    int orderByPrice,
-  ) async {
-    BaseListModel model = await NetUtil().getList(
-      API.market.findRecommendGoodsList,
-      params: {
-        'pageNum': PageNum,
-        'size': size,
-        'orderBySalesVolume': orderBySalesVolume,
-        'orderByPrice': orderByPrice,
-      },
-    );
-    if (model.tableList!.length == 0) return [];
-    return model.tableList!.map((e) => GoodsHomeModel.fromJson(e)).toList();
   }
 
   ///查询爆款推荐
   static Future<List<GoodsPopularModel>> getGoodsPopularModel(int num) async {
     BaseModel model = await NetUtil().get(
-      API.market.findMaxPopularity,
+      SARSAPI.market.good.popular,
       params: {'num': num},
     );
     if (model.data!.length == 0) return [];
@@ -121,15 +100,15 @@ class CommunityFunc {
   }
 
   ///获取所有商品的分类
-  static Future<List<CategoryModel>> getCategory() async {
+  static Future<List<MarketAllCategoryModel>> getCategory() async {
     BaseModel model = await NetUtil().get(
-      API.market.findAllCategoryInfo,
+      SARSAPI.market.category.categoryInfo,
     );
     if (model.data!.length == 0)
       return [];
     else {
       return (model.data as List)
-          .map((e) => CategoryModel.fromJson(e))
+          .map((e) => MarketAllCategoryModel.fromJson(e))
           .toList();
     }
   }

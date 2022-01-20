@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/model/good/good_detail_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/market/collection/collection_func.dart';
@@ -153,7 +153,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
   Widget _buildBody(BuildContext context) {
     return Column(
       children: [
-        _imageView(_goodDetail!.goodsDetailImageVos ?? []),
+        _imageView(_goodDetail!.jcookImageVoList ?? []),
         widget.integralGood ? _integralExchange() : 20.hb,
         widget.integralGood ? _integralGoodInfo() : _goodInfo(),
         20.hb,
@@ -353,8 +353,8 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               Text(
                 (_goodDetail!.discountPrice ?? 0) >
                         (_goodDetail!.sellPrice ?? 0)
-                    ? _getDiscount(_goodDetail!.sellPrice ?? -1,
-                        _goodDetail!.discountPrice ?? -1)
+                    ? _getDiscount(_goodDetail!.sellPrice.toDouble() ?? -1,
+                        _goodDetail!.discountPrice.toDouble() ?? -1)
                     : '暂无折扣',
                 style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
@@ -710,7 +710,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     );
   }
 
-  Widget _imageView(List<GoodsDetailImageVos> imgList) {
+  Widget _imageView(List<JcookImageVoList> imgList) {
     return Stack(
       children: [
         SizedBox(

@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/good/good_detail_model.dart';
+import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/models/market/order/order_detail_model.dart';
 import 'package:aku_new_community/models/search/search_goods_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';

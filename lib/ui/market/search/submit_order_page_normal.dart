@@ -1,9 +1,9 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/model/good/good_detail_model.dart';
 import 'package:aku_new_community/model/order/create_order_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
 import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -523,7 +523,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                     ),
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: model.goodsDetailImageVos![0].url ?? '',
+                      image: model.jcookImageVoList![0].url ?? '',
                       height: 188.w,
                       width: 188.w,
                     ),

@@ -7,7 +7,7 @@
  * ====================================================
  */
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/model/good/good_detail_model.dart';
+import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,8 +34,8 @@ class _GoodDetailBottomSheetState extends State<GoodDetailBottomSheet>
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-    if (widget.goodDetail.goodsDetailSpecificationVoList != null) {
-      widget.goodDetail.goodsDetailSpecificationVoList!.forEach((element) {
+    if (widget.goodDetail.jcookSpecificationVoList != null) {
+      widget.goodDetail.jcookSpecificationVoList!.forEach((element) {
         if (element.attribute != null) {
           attributes.addAll(element.attribute!);
         }
@@ -70,7 +70,7 @@ class _GoodDetailBottomSheetState extends State<GoodDetailBottomSheet>
         children: <Widget>[
           _header(),
           10.hb,
-          widget.goodDetail.goodsDetailSpecificationVoList != null
+          widget.goodDetail.jcookSpecificationVoList != null
               ? _list()
               : SizedBox()
         ],

@@ -1,5 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/model/good/category_model.dart';
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'new_category_sub_view.dart';
 
 class NewCategoryPage extends StatefulWidget {
-  final List<CategoryModel> models;
+  final List<MarketAllCategoryModel> models;
   final int index;
 
   NewCategoryPage({Key? key, required this.models, required this.index})

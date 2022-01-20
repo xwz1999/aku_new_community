@@ -1,11 +1,11 @@
-import 'package:aku_new_community/model/good/category_model.dart';
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 
 import 'new_category_sub_card.dart';
 
 class NewCategorySubView extends StatefulWidget {
-  final CategoryModel model;
+  final MarketAllCategoryModel model;
 
   NewCategorySubView({Key? key, required this.model}) : super(key: key);
 
@@ -26,7 +26,7 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
     );
   }
 
-  _SecondCard(CategoryList item) {
+  _SecondCard(MarketAllCategoryModel item) {
     return Container(
       padding: EdgeInsets.only(top: 20.w),
       decoration: BoxDecoration(
@@ -56,10 +56,10 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return NewCategorySubCard(
-                subModels: item.categoryListSecond![index],
+                subModels: item.categoryList![index],
               );
             },
-            itemCount: item.categoryListSecond!.length,
+            itemCount: item.categoryList!.length,
           ),
         ],
       ),

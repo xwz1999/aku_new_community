@@ -1,12 +1,12 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/good/category_model.dart';
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NewCategorySubCard extends StatelessWidget {
-  final CategoryListSecond subModels;
+  final MarketAllCategoryModel subModels;
 
   const NewCategorySubCard({
     Key? key,

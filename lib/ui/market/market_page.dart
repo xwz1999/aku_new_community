@@ -6,11 +6,10 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/good/category_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
-import 'package:aku_new_community/models/market/goods_classification.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
+import 'package:aku_new_community/models/market/market_category_model.dart';
 import 'package:aku_new_community/models/market/market_statistics_model.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -64,16 +63,14 @@ class _MarketPageState extends State<MarketPage>
 
   double tabBarHeight = 40.w;
   late TabController _tabController;
-
-  // List<SwiperModel> _swiperModels = [];
   List<MarketSwiperModel> _marketSwiperModels = [];
 
-  List<CategoryModel> _categoryModels = [];
+  List<MarketAllCategoryModel> _categoryModels = [];
 
   OrderType _orderType = OrderType.NORMAL;
   String priceIcon = R.ASSETS_ICONS_ICON_PRICE_NORMAL_PNG;
 
-  List<GoodsClassification> _goodsClassificationList = [];
+  List<MarketCategoryModel> _goodsClassificationList = [];
 
   List<GoodsHomeModel> _goodsHomeModelList = [];
 
@@ -105,7 +102,7 @@ class _MarketPageState extends State<MarketPage>
 
   Future loadMarketInfo() async {
     BaseListModel baseListModel = await NetUtil().getList(
-      API.market.findRecommendGoodsList,
+      SARSAPI.market.good.recommend,
       params: {
         'pageNum': _pageNum,
         'size': _size,
@@ -126,7 +123,7 @@ class _MarketPageState extends State<MarketPage>
     super.initState();
     for (int i = 0; i < 10; i++) {
       _goodsClassificationList
-          .add(GoodsClassification(id: 0, name: '', imgUrls: []));
+          .add(MarketCategoryModel(id: 0, name: '', imgUrls: []));
     }
     for (int i = 0; i < 6; i++) {
       _goodsPopularModelList.add(
@@ -336,19 +333,6 @@ class _MarketPageState extends State<MarketPage>
 
   SliverGrid buildSliverGrid() {
     return SliverGrid(
-      // child: WaterfallFlow.builder(
-      //   gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-      //     crossAxisCount: 2,
-      //     mainAxisSpacing: 20.w,
-      //     crossAxisSpacing: 20.w,
-      //   ),
-      //   padding: EdgeInsets.all(32.w),
-      //   itemBuilder: (context, index) {
-      //     final item = _hotItems[index];
-      //     return GoodsCard(item: item);
-      //   },
-      //   itemCount: _hotItems.length,
-      // ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 20.w,
@@ -824,7 +808,7 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-  _buildTile(GoodsClassification item, int index) {
+  _buildTile(MarketCategoryModel item, int index) {
     return GestureDetector(
       onTap: () {
         Get.to(() => NewCategoryPage(
@@ -839,7 +823,7 @@ class _MarketPageState extends State<MarketPage>
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
             width: 88.w,
             height: 88.w,
-            image: API.image(ImgModel.first(item.imgUrls)),
+            image: API.image(item.imgUrls.first),
             imageErrorBuilder: (context, error, stackTrace) {
               return Image.asset(
                 R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -908,9 +892,6 @@ class _MarketPageState extends State<MarketPage>
                 width: 88.w,
                 height: 88.w,
               ),
-              // FadeInImage.assetNetwork(
-              //   placeholder:  R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              //   image: Api.getImgUrl(kingCoin.url),)
             ),
             Container(
               margin: EdgeInsets.only(top: 6.w),
