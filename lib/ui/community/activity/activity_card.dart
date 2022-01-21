@@ -2,12 +2,13 @@ import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
-import 'package:aku_new_community/ui/community/activity/activity_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'activity_detail_page_old.dart';
 
 class ActivityCard extends StatelessWidget {
   final ActivityItemModel? model;

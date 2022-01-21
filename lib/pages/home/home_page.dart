@@ -136,20 +136,6 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //
-      //   child: Container(
-      //     decoration: BoxDecoration(
-      //         image: DecorationImage(
-      //           fit: BoxFit.fill,
-      //           image:
-      //           AssetImage(R.ASSETS_ICONS_ICON_MAIN_OPEN_PNG),)
-      //     ),
-      //   ),
-      //   onPressed: (){
-      //     print('FloatingActionButton');
-      //   },
-      // ),
       body: Stack(
         children: [
           EasyRefresh(
@@ -381,23 +367,6 @@ class _HomePageState extends State<HomePage>
                 SliverToBoxAdapter(
                     child: Column(
                   children: [
-                    // HomeTitle(
-                    //   title: '公共资讯',
-                    //   suffixTitle: '更多资讯',
-                    //   onTap: () async {
-                    //     final cancel = BotToast.showLoading();
-                    //     BaseModel model = await NetUtil().get(API.news.category);
-                    //     List<NewsCategoryModel>? category;
-                    //     if (model.status == true && model.data != null) {
-                    //       category = (model.data as List)
-                    //           .map((e) => NewsCategoryModel.fromJson(e))
-                    //           .toList();
-                    //     }
-                    //     cancel();
-                    //     Get.to(
-                    //         () => PublicInfomationPage(models: category ?? []));
-                    //   },
-                    // ),
                     HomeTitle(
                       title: '社区活动',
                       suffixTitle: '查看全部',

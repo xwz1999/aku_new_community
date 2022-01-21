@@ -5,7 +5,7 @@ import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/community_topic_model.dart';
 import 'package:aku_new_community/models/search/search_model.dart';
-import 'package:aku_new_community/ui/community/activity/activity_detail_page.dart';
+import 'package:aku_new_community/ui/community/activity/activity_detail_page_old.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';

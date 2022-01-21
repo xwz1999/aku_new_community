@@ -6,6 +6,9 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
+import 'activity_detail_page_old.dart';
 
 class ActivityListPage extends StatefulWidget {
   ActivityListPage({Key? key}) : super(key: key);
@@ -27,6 +30,13 @@ class _ActivityListPageState extends State<ActivityListPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '往期精彩',
+      actions: [
+        IconButton(
+            onPressed: () {
+              Get.to(() => ActivityDetailPage(id: 0));
+            },
+            icon: Icon(Icons.delete))
+      ],
       body: BeeListView<ActivityItemModel>(
         controller: _refreshController,
         path: API.community.activityList,
