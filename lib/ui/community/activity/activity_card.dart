@@ -28,9 +28,9 @@ class ActivityCard extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24.w),
-        side: BorderSide(
-          color: Colors.grey,
-        ),
+        // side: BorderSide(
+        //   color: Colors.grey,
+        // ),
       ),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       child: Column(
@@ -77,12 +77,18 @@ class ActivityCard extends StatelessWidget {
                     height: 39.w,
                     width: 98.w,
                     decoration: BoxDecoration(
-                      color: outdate ? Color(0xFFABABAB) : Color(0x80FEBF76),
+                      color: outdate
+                          ? Colors.black.withOpacity(0.06)
+                          : Color(0x80FEBF76),
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
 
                     child: outdate
-                        ? '已结束'.text.size(22.sp).color(Color(0xFF666666)).make()
+                        ? '已结束'
+                            .text
+                            .size(22.sp)
+                            .color(Colors.black.withOpacity(0.25))
+                            .make()
                         : '报名中'
                             .text
                             .size(22.sp)

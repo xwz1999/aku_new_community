@@ -109,6 +109,8 @@ dependencies:
   carousel_slider: ^4.0.0-nullsafety.0
   #跳转索引列表
   scroll_to_index: ^2.1.1
+  #提取图片主色
+  palette_generator: ^0.3.2
 
 
 dev_dependencies:
