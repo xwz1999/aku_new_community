@@ -104,7 +104,7 @@ dependencies:
   #加载网络图片
   cached_network_image: ^3.1.0
   #轮播图
-  flutter_swiper_null_safety: ^1.0.2
+  card_swiper: ^2.0.1
   #划动组件
   carousel_slider: ^4.0.0-nullsafety.0
   #跳转索引列表

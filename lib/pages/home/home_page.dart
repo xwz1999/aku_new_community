@@ -26,10 +26,10 @@ import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:badges/badges.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -58,12 +58,14 @@ class _HomePageState extends State<HomePage>
   int sysCount = 0;
   int sum = 0;
 
+  int _currentSwiperIndex = 0;
+
   // ActivityItemModel? _activityItemModel;
   List<ActivityItemModel> _activityItemModels = [];
   List<BoardItemModel> _boardItemModels = [];
   List<SwiperModel> _swiperModels = [];
-  SwiperController _swiperController = SwiperController();
 
+  SwiperController _swiperController = SwiperController();
   ValueNotifier<Color> _barColor = ValueNotifier(Colors.transparent);
 
   @override
@@ -80,6 +82,10 @@ class _HomePageState extends State<HomePage>
     }
     _scrollController = ScrollController();
     _refreshController = EasyRefreshController();
+    _swiperController.addListener(() {
+      //由于先触发监听后，再执行onChangeIndex函数，所以_currentSwiperIndex会比当前index少1，用+1并求余的方式获得真正当前index;
+      _swiperBarColor((_currentSwiperIndex + 1) % 3);
+    });
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
@@ -487,18 +493,9 @@ class _HomePageState extends State<HomePage>
         aspectRatio: 375 / 160,
         child: Swiper(
           key: UniqueKey(),
+          controller: _swiperController,
           onIndexChanged: (index) async {
-            if (_swiperModels.isNotEmpty) {
-              var color = await PaletteGenerator.fromImageProvider(
-                  CachedNetworkImageProvider(
-                API.image(
-                    ImgModel.first(_swiperModels[index].voResourcesImgList)),
-              ));
-              _barColor.value =
-                  color.dominantColor?.color ?? Colors.transparent;
-            } else {
-              _barColor.value = Colors.transparent;
-            }
+            _currentSwiperIndex = index;
           },
           itemBuilder: (BuildContext context, int index) {
             return getSwiperImage(_swiperModels[index]);
@@ -534,6 +531,18 @@ class _HomePageState extends State<HomePage>
         ),
       ),
     );
+  }
+
+  Future _swiperBarColor(int index) async {
+    if (_swiperModels.isNotEmpty) {
+      var color =
+          await PaletteGenerator.fromImageProvider(CachedNetworkImageProvider(
+        API.image(ImgModel.first(_swiperModels[index].voResourcesImgList)),
+      ));
+      _barColor.value = color.dominantColor?.color ?? Colors.transparent;
+    } else {
+      _barColor.value = Colors.transparent;
+    }
   }
 
   Widget getSwiperImage(SwiperModel swiperModel) {
