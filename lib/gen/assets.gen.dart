@@ -190,6 +190,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/change.png
   AssetGenImage get change => const AssetGenImage('assets/icons/change.png');
 
+  /// File path: assets/icons/clock_circle.png
+  AssetGenImage get clockCircle =>
+      const AssetGenImage('assets/icons/clock_circle.png');
+
   /// File path: assets/icons/clock_success.png
   AssetGenImage get clockSuccess =>
       const AssetGenImage('assets/icons/clock_success.png');
@@ -245,6 +249,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/device_alarm.png
   AssetGenImage get deviceAlarm =>
       const AssetGenImage('assets/icons/device_alarm.png');
+
+  /// File path: assets/icons/edit.png
+  AssetGenImage get edit => const AssetGenImage('assets/icons/edit.png');
+
+  /// File path: assets/icons/environment.png
+  AssetGenImage get environment =>
+      const AssetGenImage('assets/icons/environment.png');
 
   /// File path: assets/icons/examine.png
   AssetGenImage get examine => const AssetGenImage('assets/icons/examine.png');
@@ -663,6 +674,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone.png
   AssetGenImage get phone => const AssetGenImage('assets/icons/phone.png');
 
+  /// File path: assets/icons/phone_circle.png
+  AssetGenImage get phoneCircle =>
+      const AssetGenImage('assets/icons/phone_circle.png');
+
   /// File path: assets/icons/projection_screen.png
   AssetGenImage get projectionScreen =>
       const AssetGenImage('assets/icons/projection_screen.png');
@@ -681,6 +696,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/report.png
   AssetGenImage get report => const AssetGenImage('assets/icons/report.png');
+
+  /// File path: assets/icons/reward.png
+  AssetGenImage get reward => const AssetGenImage('assets/icons/reward.png');
 
   /// File path: assets/icons/second_hand.png
   AssetGenImage get secondHand =>
@@ -790,6 +808,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/tabbar_user_no.png
   AssetGenImage get tabbarUserNo =>
       const AssetGenImage('assets/icons/tabbar_user_no.png');
+
+  /// File path: assets/icons/tag.png
+  AssetGenImage get tag => const AssetGenImage('assets/icons/tag.png');
 
   /// File path: assets/icons/test_kingcion.png
   AssetGenImage get testKingcion =>
