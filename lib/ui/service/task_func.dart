@@ -31,7 +31,7 @@ class TaskFunc {
   static Future<bool> cancel({
     required int taskId,
   }) async {
-    var base = await NetUtil().post(API.manager.task.cancel, params: {
+    var base = await NetUtil().get(API.manager.task.cancel, params: {
       'taskId': taskId,
     });
     return base.status ?? false;
@@ -42,7 +42,7 @@ class TaskFunc {
   static Future<bool> take({
     required int taskId,
   }) async {
-    var base = await NetUtil().post(API.manager.task.take, params: {
+    var base = await NetUtil().get(API.manager.task.take, params: {
       'taskId': taskId,
     });
     return base.status ?? false;
@@ -53,7 +53,7 @@ class TaskFunc {
   static Future<bool> finish({
     required int taskId,
   }) async {
-    var base = await NetUtil().post(API.manager.task.finish, params: {
+    var base = await NetUtil().get(API.manager.task.finish, params: {
       'taskId': taskId,
     });
     return base.status ?? false;

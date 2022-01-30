@@ -1,5 +1,5 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class HallDetailPage extends StatefulWidget {
-  final HallListModel model;
+class MyTakeTaskDetailPage extends StatefulWidget {
+  final MyTakeTaskListModel model;
 
-  const HallDetailPage({Key? key, required this.model}) : super(key: key);
+  const MyTakeTaskDetailPage({Key? key, required this.model}) : super(key: key);
 
   @override
-  _HallDetailPageState createState() => _HallDetailPageState();
+  _MyTakeTaskDetailPageState createState() => _MyTakeTaskDetailPageState();
 }
 
-class _HallDetailPageState extends State<HallDetailPage> {
+class _MyTakeTaskDetailPageState extends State<MyTakeTaskDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(

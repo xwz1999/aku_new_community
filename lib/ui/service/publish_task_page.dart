@@ -266,7 +266,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                                 Get.back();
                                 setState(() {});
                               },
-                              child: '业主'
+                              child: '物业'
                                   .text
                                   .size(28.sp)
                                   .isIntrinsic

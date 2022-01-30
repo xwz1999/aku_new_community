@@ -9,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../task_func.dart';
+
 class HallCard extends StatelessWidget {
   final HallListModel model;
   final VoidCallback refresh;
@@ -109,7 +111,14 @@ class HallCard extends StatelessWidget {
                 Row(
                   children: [
                     Spacer(),
-                    CardBottomButton.yellow(text: '领取任务', onPressed: () {}),
+                    CardBottomButton.yellow(
+                        text: '领取任务',
+                        onPressed: () async {
+                          var re = await TaskFunc.take(taskId: model.id);
+                          if (re) {
+                            refresh();
+                          }
+                        }),
                   ],
                 ),
               ],
@@ -128,8 +137,22 @@ class HallCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             40.w.heightBox,
-            CardBottomButton.white(text: '取消订单', onPressed: () {}),
-            CardBottomButton.yellow(text: '确认完成', onPressed: () {}),
+            CardBottomButton.white(
+                text: '取消订单',
+                onPressed: () async {
+                  var re = await TaskFunc.cancel(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                }),
+            CardBottomButton.yellow(
+                text: '确认完成',
+                onPressed: () async {
+                  var re = await TaskFunc.finish(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                }),
           ],
         );
       case 4:
