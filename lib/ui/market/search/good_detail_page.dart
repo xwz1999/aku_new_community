@@ -274,9 +274,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '原价：¥'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                _goodDetail!.sellPrice == null
-                    ? ''
-                    : (_goodDetail!.sellPrice!).toStringAsFixed(2),
+                (_goodDetail!.sellPrice).toStringAsFixed(2),
                 style: TextStyle(
                     fontSize: 24.sp,
                     decoration: TextDecoration.lineThrough,
@@ -309,9 +307,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '¥'.text.color(Color(0xFFE52E2E)).size(28.sp).make(),
               Text(
-                _goodDetail!.sellPrice == null
-                    ? ''
-                    : (_goodDetail!.sellPrice!).toStringAsFixed(2),
+                (_goodDetail!.sellPrice).toStringAsFixed(2),
                 style: TextStyle(fontSize: 40.sp, color: Color(0xFFE52E2E)),
               ),
               Spacer(),
@@ -343,18 +339,15 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '原价：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                _goodDetail!.discountPrice == null
-                    ? ''
-                    : (_goodDetail!.discountPrice!).toStringAsFixed(2),
+                (_goodDetail!.discountPrice).toStringAsFixed(2),
                 style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
               50.wb,
               '折扣：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                (_goodDetail!.discountPrice ?? 0) >
-                        (_goodDetail!.sellPrice ?? 0)
-                    ? _getDiscount(_goodDetail!.sellPrice.toDouble() ?? -1,
-                        _goodDetail!.discountPrice.toDouble() ?? -1)
+                (_goodDetail!.discountPrice) > (_goodDetail!.sellPrice)
+                    ? _getDiscount(_goodDetail!.sellPrice.toDouble(),
+                        _goodDetail!.discountPrice.toDouble())
                     : '暂无折扣',
                 style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
@@ -608,7 +601,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
           40.wb,
           GestureDetector(
             onTap: () async {
-              await CollectionFunc.collection(_goodDetail!.id!);
+              await CollectionFunc.collection(_goodDetail!.id);
               _refreshController.callRefresh();
             },
             child: Column(
@@ -656,7 +649,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  await SearchFunc.addGoodsCar(_goodDetail!.id!);
+                  await SearchFunc.addGoodsCar(_goodDetail!.id);
                 },
                 child: Container(
                   width: 230.w,
@@ -731,7 +724,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                   child: FadeInImage.assetNetwork(
                       fit: BoxFit.fill,
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: imgList[index].url ?? ''),
+                      image: imgList[index].url),
                 );
               }),
         ),

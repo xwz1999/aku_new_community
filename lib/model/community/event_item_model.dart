@@ -1,5 +1,5 @@
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 
 class EventItemModel {
   int? id;
@@ -30,10 +30,12 @@ class EventItemModel {
       this.gambitTitle,
       this.createDate,
       this.likeNames,
-        this.likeNamesNum,
+      this.likeNamesNum,
       this.imgUrls,
       this.headSculptureImgUrl,
-      this.gambitThemeCommentVoList,this.gambitThemeCommentNum,this.views});
+      this.gambitThemeCommentVoList,
+      this.gambitThemeCommentNum,
+      this.views});
 
   EventItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -1,5 +1,5 @@
+import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flustars/flustars.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'facility_order_date_list_model.g.dart';

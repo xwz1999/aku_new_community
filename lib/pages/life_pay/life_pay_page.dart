@@ -25,7 +25,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class LifePayPage extends StatefulWidget {
   LifePayPage({Key? key}) : super(key: key);

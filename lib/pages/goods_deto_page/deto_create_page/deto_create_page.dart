@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/pages/goods_deto_page/select_move_company_page.dart';
@@ -22,7 +21,7 @@ import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

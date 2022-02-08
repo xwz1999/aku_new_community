@@ -21,7 +21,7 @@ class NewCategorySubCard extends StatelessWidget {
           Spacer(),
           FadeInImage.assetNetwork(
             image: API.image(
-                subModels.imgUrls!.isNotEmpty ? subModels.imgUrls!.first : ''),
+                subModels.imgUrls.isNotEmpty ? subModels.imgUrls.first : ''),
             //subModels.imgUrls!.isNotEmpty? subModels.imgUrls!.first :'',
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
             height: 75.w,

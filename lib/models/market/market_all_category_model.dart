@@ -5,7 +5,7 @@ part 'market_all_category_model.g.dart';
 @JsonSerializable()
 class MarketAllCategoryModel {
   final int id;
-  final String name;
+  final String? name;
   final List<String> imgUrls;
   final List<MarketAllCategoryModel> categoryList;
   factory MarketAllCategoryModel.fromJson(Map<String, dynamic> json) =>

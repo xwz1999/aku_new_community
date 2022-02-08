@@ -51,31 +51,37 @@ class _MyAppState extends State<MyApp> {
             FocusManager.instance.primaryFocus!.unfocus();
           }
         },
-        child: ScreenUtilInit(
-          designSize: Size(750, 1334),
-          builder: () => GetMaterialApp(
-            onGenerateTitle: (context) => S.of(context)!.appName,
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.theme,
-            home: SplashPage(),
-            //国际化支持
-            localizationsDelegates: [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: [const Locale('zh')],
-            locale: Locale('zh'),
-            //builder: BotToastInit(),
-            builder: (context, child) {
-              return MediaQuery(
-                //设置文字大小不随系统设置改变
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: BotToastInit().call(context, child),
-              );
-            },
-            navigatorObservers: [BotToastNavigatorObserver()],
+        child: MediaQuery(
+          data: MediaQueryData.fromWindow(WidgetsBinding.instance!.window),
+          child: ScreenUtilInit(
+            designSize: Size(750, 1334),
+            // minTextAdapt: true,
+            // splitScreenMode: true,
+            builder: () => GetMaterialApp(
+              onGenerateTitle: (context) => S.of(context)!.appName,
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.theme,
+              home: SplashPage(),
+              //国际化支持
+              localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [const Locale('zh')],
+              locale: Locale('zh'),
+              //builder: BotToastInit(),
+              builder: (context, child) {
+                ScreenUtil.setContext(context);
+                return MediaQuery(
+                  //设置文字大小不随系统设置改变
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: BotToastInit().call(context, child),
+                );
+              },
+              navigatorObservers: [BotToastNavigatorObserver()],
+            ),
           ),
         ),
       ),

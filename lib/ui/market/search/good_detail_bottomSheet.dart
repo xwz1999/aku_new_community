@@ -34,13 +34,9 @@ class _GoodDetailBottomSheetState extends State<GoodDetailBottomSheet>
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-    if (widget.goodDetail.jcookSpecificationVoList != null) {
-      widget.goodDetail.jcookSpecificationVoList!.forEach((element) {
-        if (element.attribute != null) {
-          attributes.addAll(element.attribute!);
-        }
-      });
-    }
+    widget.goodDetail.jcookSpecificationVoList.forEach((element) {
+      attributes.addAll(element.attribute);
+    });
   }
 
   @override

@@ -1,5 +1,4 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
 import 'package:aku_new_community/pages/property/property_func.dart';
@@ -13,7 +12,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 

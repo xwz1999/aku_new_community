@@ -1,4 +1,4 @@
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 
 enum PSDVERIFY { shorLength, Insufficient, different, correct, empty }
 

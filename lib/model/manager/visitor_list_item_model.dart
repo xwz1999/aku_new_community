@@ -1,4 +1,4 @@
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 
 class VisitorListItemModel {
   int? id;

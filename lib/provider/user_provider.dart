@@ -12,7 +12,7 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';

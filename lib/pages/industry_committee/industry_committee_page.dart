@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
   IndustryCommitteePage({Key? key}) : super(key: key);

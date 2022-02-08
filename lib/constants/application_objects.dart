@@ -31,6 +31,7 @@ import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.da
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/ui/service/task_page.dart';
 import 'package:flutter/material.dart';
 
 ///应用对象
@@ -99,7 +100,7 @@ List<AO> appObjects = [
   AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
   AO('智慧养老', Assets.icons.provideAged.path, () => OldAgeSupportPageSimple()),
   AO('周边服务', Assets.icons.nearbyService.path, null),
-  AO('小蜜蜂任务', Assets.icons.beeTask.path, null),
+  AO('小蜜蜂任务', Assets.icons.beeTask.path, () => TaskPage()),
   AO('自营商城', Assets.icons.shoppingMall.path, null),
   AO('邻家宠物', Assets.icons.nearbyPet.path, null),
   AO('共享停车', Assets.icons.sharePark.path, null),

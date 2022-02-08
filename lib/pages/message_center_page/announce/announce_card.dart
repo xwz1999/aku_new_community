@@ -2,7 +2,7 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/message/announce_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

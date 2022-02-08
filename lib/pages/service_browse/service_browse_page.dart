@@ -4,7 +4,7 @@ import 'package:aku_new_community/models/service_browse/service_browse_list_mode
 import 'package:aku_new_community/pages/service_browse/service_browse_detail_page.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

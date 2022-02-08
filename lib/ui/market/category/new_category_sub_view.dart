@@ -20,9 +20,9 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
     super.build(context);
     return ListView.builder(
       itemBuilder: (context, index) {
-        return _SecondCard(widget.model.categoryList![index]);
+        return _SecondCard(widget.model.categoryList[index]);
       },
-      itemCount: widget.model.categoryList!.length,
+      itemCount: widget.model.categoryList.length,
     );
   }
 
@@ -56,10 +56,10 @@ class _NewCategorySubViewState extends State<NewCategorySubView>
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return NewCategorySubCard(
-                subModels: item.categoryList![index],
+                subModels: item.categoryList[index],
               );
             },
-            itemCount: item.categoryList!.length,
+            itemCount: item.categoryList.length,
           ),
         ],
       ),

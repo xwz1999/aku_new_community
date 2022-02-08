@@ -1,4 +1,4 @@
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'announce_list_model.g.dart';

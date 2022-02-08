@@ -1,5 +1,5 @@
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 
 class MyEventItemModel {
   int? id;

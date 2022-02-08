@@ -6,14 +6,14 @@ part 'good_detail_model.g.dart';
 @JsonSerializable()
 class GoodDetailModel {
   final int id;
-  final List<JcookImageVoList> jcookImageVoList;
+  final List<JcookImageVoList>? jcookImageVoList;
   final num sellPrice;
   final num discountPrice;
-  final String skuName;
+  final String? skuName;
   final int status;
   final int shopStatus;
-  final int sellNum;
-  final int kind;
+  final int? sellNum;
+  final int? kind;
   final String defaultLocation;
   final String defaultAddressDetail;
   final int stockStatus;
@@ -25,8 +25,7 @@ class GoodDetailModel {
   factory GoodDetailModel.fromJson(Map<String, dynamic> json) =>
       _$GoodDetailModelFromJson(json);
 
-  GoodStatus get goodStatus =>
-      ShopCarFunc.getGoodsStatus(status ?? 1, shopStatus ?? 1);
+  GoodStatus get goodStatus => ShopCarFunc.getGoodsStatus(status, shopStatus);
 
   static GoodDetailModel fail() => GoodDetailModel(
       id: 0,
@@ -102,8 +101,8 @@ class JcookSpecificationVoList {
 
 @JsonSerializable()
 class Attribute {
-  final String name;
-  final String value;
+  final String? name;
+  final String? value;
 
   factory Attribute.fromJson(Map<String, dynamic> json) =>
       _$AttributeFromJson(json);

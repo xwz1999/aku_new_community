@@ -26,7 +26,9 @@ dependencies:
   #超链接 跳转拨号等
   url_launcher: ^6.0.3
   #常用工具类
-  flustars: ^2.0.1
+  common_utils:
+    git:
+      url: https://github.com/meng-fucius/common_utils
   flutter_icons:
     git:
       url: https://git.oa00.com/flutter_third/flutter-icons.git
@@ -104,13 +106,15 @@ dependencies:
   #加载网络图片
   cached_network_image: ^3.1.0
   #轮播图
-  flutter_swiper_null_safety: ^1.0.2
+  card_swiper: ^2.0.1
   #划动组件
   carousel_slider: ^4.0.0-nullsafety.0
   #跳转索引列表
   scroll_to_index: ^2.1.1
   #验证码自动填充
   sms_autofill: ^2.2.0
+  #提取图片主色
+  palette_generator: ^0.3.2
 
 
 dev_dependencies:

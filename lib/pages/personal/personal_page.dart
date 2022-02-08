@@ -1,4 +1,3 @@
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';

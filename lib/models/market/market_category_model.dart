@@ -6,7 +6,7 @@ part 'market_category_model.g.dart';
 @JsonSerializable()
 class MarketCategoryModel extends Equatable {
   final int id;
-  final String name;
+  final String? name;
   final List<String> imgUrls;
 
   @override

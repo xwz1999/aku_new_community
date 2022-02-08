@@ -4,7 +4,7 @@ import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_list_model.dart';
 import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_detail_page.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

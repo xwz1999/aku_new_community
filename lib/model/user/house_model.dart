@@ -1,4 +1,4 @@
-// import 'package:flustars/flustars.dart';
+// import 'package:common_utils/common_utils.dart';
 // import 'package:flutter/material.dart';
 //
 // class HouseModel {

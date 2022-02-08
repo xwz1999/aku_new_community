@@ -156,7 +156,7 @@ class CollectionListCard extends StatelessWidget {
                         // 24.wb,
                         GestureDetector(
                             onTap: () async {
-                              await CollectionFunc.collection(model.id!);
+                              await CollectionFunc.collection(model.id);
 
                               refreshController.callRefresh();
                             },

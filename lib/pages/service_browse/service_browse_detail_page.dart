@@ -2,7 +2,7 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/service_browse/service_browse_list_mode.dart';
 import 'package:aku_new_community/utils/link_text_parase.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

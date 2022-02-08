@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/pages/manager_func.dart';
 import 'package:aku_new_community/pages/things_page/widget/finish_fixed_submit_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -16,12 +15,9 @@ import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/others/house_head_card.dart';
 import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AddFixedSubmitPage extends StatefulWidget {
   AddFixedSubmitPage({Key? key}) : super(key: key);

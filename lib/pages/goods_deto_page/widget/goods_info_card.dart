@@ -3,7 +3,6 @@ import 'package:aku_new_community/model/manager/goods_out_model.dart';
 import 'package:aku_new_community/utils/bee_map.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/views/horizontal_image_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'goods_info_card_button.dart';

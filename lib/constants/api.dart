@@ -153,8 +153,32 @@ class _Search {
   String get homeSearch => "/user/search/search";
 }
 
+class _Task {
+  ///查询所有的任务发布信息
+  String get hallList => '/user/taskRelease/list';
+
+  ///查询我的任务发布信息
+  String get myTask => '/user/taskRelease/myList';
+
+  ///查询我的任务接单信息
+  String get myTakeTask => '/user/taskRelease/myOrder';
+
+  ///发布任务
+  String get publish => '/user/taskRelease/insert';
+
+  ///取消任务
+  String get cancel => '/user/taskRelease/cancel';
+
+  ///接取任务
+  String get take => '/user/taskRelease/access';
+
+  ///完成任务
+  String get finish => '/user/taskRelease/finish';
+}
+
 class _Manager {
   _Facility facility = _Facility();
+  _Task task = _Task();
 
   ///获取业委会列表
   String get commiteeStaff => '/ownersCommittee/findAll';

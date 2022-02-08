@@ -345,7 +345,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     int num = int.parse(_controllers.text);
     print(num);
     allNum += num;
-    allPrice += (widget.goodModel.sellPrice! * num);
+    allPrice += (widget.goodModel.sellPrice * num);
 
     _allPrice = allPrice + fee;
 
@@ -465,7 +465,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
             92.wb,
             '购买数量'.text.size(28.sp).color(Color(0xFF333333)).make(),
             Spacer(),
-            _getBottomSuffix(GoodStatus.onSell, model.id!)
+            _getBottomSuffix(GoodStatus.onSell, model.id)
           ],
         ),
         48.hb,
@@ -491,7 +491,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
             .make(),
         5.wb,
         '商品金额：'.text.size(28.sp).color(Color(0xFF333333)).make(),
-        '¥${(num * model.sellPrice!).toStringAsFixed(2)}'
+        '¥${(num * model.sellPrice).toStringAsFixed(2)}'
             .text
             .size(28.sp)
             .color(Color(0xFF333333))
@@ -524,7 +524,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                     ),
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: model.jcookImageVoList![0].url ?? '',
+                      image: model.jcookImageVoList![0].url,
                       height: 188.w,
                       width: 188.w,
                     ),
@@ -549,7 +549,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                   children: [
                     Container(
                       child: top,
-                      width: model.sellPrice! > 9999 ? 300.w : 320.w,
+                      width: model.sellPrice > 9999 ? 300.w : 320.w,
                       alignment: Alignment.topCenter,
                     ),
 
@@ -570,7 +570,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                     '¥'
                         .richText
                         .withTextSpanChildren([
-                          model.sellPrice!
+                          model.sellPrice
                               .toStringAsFixed(2)
                               .textSpan
                               .size(28.sp)
