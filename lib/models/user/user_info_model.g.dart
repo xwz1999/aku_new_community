@@ -10,6 +10,7 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
     UserInfoModel(
       id: json['id'] as int,
       communityId: json['communityId'] as int,
+      communityCode: json['communityCode'] as String,
       name: json['name'] as String?,
       idCard: json['idCard'] as String?,
       tel: json['tel'] as String,
@@ -19,4 +20,7 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
       isPointsSignSetting: json['isPointsSignSetting'] as bool,
       isSign: json['isSign'] as bool,
       points: json['points'] as int?,
+      imgList: (json['imgList'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

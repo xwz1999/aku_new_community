@@ -20,6 +20,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 
+import '../tab_navigator.dart';
+
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
 
@@ -136,6 +138,7 @@ class _SplashPageState extends State<SplashPage> {
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
+      Get.offAll(() => TabNavigator());
     });
   }
 

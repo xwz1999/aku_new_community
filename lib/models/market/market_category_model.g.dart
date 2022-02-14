@@ -9,7 +9,7 @@ part of 'market_category_model.dart';
 MarketCategoryModel _$MarketCategoryModelFromJson(Map<String, dynamic> json) =>
     MarketCategoryModel(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['name'] as String?,
       imgUrls:
           (json['imgUrls'] as List<dynamic>).map((e) => e as String).toList(),
     );

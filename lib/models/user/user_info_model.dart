@@ -1,3 +1,4 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_info_model.g.dart';
@@ -6,6 +7,7 @@ part 'user_info_model.g.dart';
 class UserInfoModel {
   final int id;
   final int communityId;
+  final String communityCode;
   final String? name;
   final String? idCard;
   final String tel;
@@ -17,6 +19,7 @@ class UserInfoModel {
   final bool isPointsSignSetting;
   final bool isSign;
   final int? points;
+  final List<ImgModel> imgList;
 
   String get sexValue {
     if (sex == 1) return '男';
@@ -40,6 +43,7 @@ class UserInfoModel {
   const UserInfoModel({
     required this.id,
     required this.communityId,
+    required this.communityCode,
     this.name,
     this.idCard,
     required this.tel,
@@ -49,5 +53,6 @@ class UserInfoModel {
     required this.isPointsSignSetting,
     required this.isSign,
     this.points,
+    required this.imgList,
   });
 }

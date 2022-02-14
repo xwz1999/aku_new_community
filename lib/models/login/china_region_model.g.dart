@@ -19,19 +19,22 @@ class ChinaRegionModelAdapter extends TypeAdapter<ChinaRegionModel> {
     return ChinaRegionModel(
       id: fields[0] as int,
       name: fields[1] as String,
-      cityList: (fields[2] as List).cast<ChinaRegionModel>(),
+      parentId: fields[2] as int,
+      cityList: (fields[3] as List?)?.cast<ChinaRegionModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, ChinaRegionModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
+      ..write(obj.parentId)
+      ..writeByte(3)
       ..write(obj.cityList);
   }
 
@@ -54,7 +57,8 @@ ChinaRegionModel _$ChinaRegionModelFromJson(Map<String, dynamic> json) =>
     ChinaRegionModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      cityList: (json['cityList'] as List<dynamic>)
-          .map((e) => ChinaRegionModel.fromJson(e as Map<String, dynamic>))
+      parentId: json['parentId'] as int,
+      cityList: (json['cityList'] as List<dynamic>?)
+          ?.map((e) => ChinaRegionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

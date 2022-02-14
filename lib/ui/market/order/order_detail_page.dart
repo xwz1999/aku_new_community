@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/order/logistics_model.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
@@ -56,7 +57,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     Function cancel = BotToast.showLoading();
     BaseModel baseModel =
         await NetUtil().post(API.pay.jcookOrderCreateOrder, params: {
-      "addressId": widget.orderModel.jcookAddressId,
+      "addressId": widget.orderModel.appGoodsAddressId,
       "settlementGoodsDTOList": _goodsList.map((v) => v.toJson()).toList(),
       "payType": 1, //暂时写死 等待后续补充
       "payPrice": widget.orderModel.payPrice
@@ -93,7 +94,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     if (result == true) {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel =
-          await NetUtil().get(API.market.deleteOrder, params: {
+          await NetUtil().get(SARSAPI.market.order.delete, params: {
         "orderId": widget.orderModel.id,
       });
       if (baseModel.success) {
@@ -124,7 +125,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     );
     if (result == true) {
       Function cancel = BotToast.showLoading();
-      BaseModel baseModel = await NetUtil().get(API.market.cancelOrder,
+      BaseModel baseModel = await NetUtil().get(SARSAPI.market.order.cancel,
           params: {"orderId": widget.orderModel.id, 'cancelReasonCode': 4});
       if (baseModel.success) {
         BotToast.showText(text: '取消成功');
@@ -155,7 +156,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
     if (result == true) {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel =
-          await NetUtil().get(API.market.confirmOrder, params: {
+          await NetUtil().get(SARSAPI.market.order.confirm, params: {
         "orderId": widget.orderModel.id,
       });
       if (baseModel.success) {
@@ -170,9 +171,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   @override
   void initState() {
     super.initState();
-    widget.orderModel.myOrderListVoList!.forEach((element) {
+    widget.orderModel.orderList!.forEach((element) {
       _goodsList.add(SettlementGoodsDTO(
-          appGoodsPushId: element.jcookGoodsId, num: element.num));
+          appGoodsPushId: element.goodsPushId, num: element.num));
     });
     if (widget.orderModel.tradeStatus == 0) {
       timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _checkTime());
@@ -294,7 +295,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       ),
       child: Column(
         children: [
-          ...widget.orderModel.myOrderListVoList!.map((e) => _goodCard(e)),
+          ...widget.orderModel.orderList!.map((e) => _goodCard(e)),
           _priceView(),
         ],
       ),
@@ -544,8 +545,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           Spacer(),
           LineButton(
             onPressed: () async {
-              BaseModel baseModel =
-                  await NetUtil().get(API.market.findLogistics, params: {
+              BaseModel baseModel = await NetUtil()
+                  .get(SARSAPI.market.order.findLogistics, params: {
                 "orderId": widget.orderModel.id,
               });
               if (baseModel.success == true && baseModel.data != null) {
@@ -555,7 +556,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 if (logisticsModels.isNotEmpty) {
                   Get.to(() => LogisticsPage(
                       models: logisticsModels,
-                      goods: widget.orderModel.myOrderListVoList!.first,
+                      goods: widget.orderModel.orderList!.first,
                       orderModel: widget.orderModel));
                 } else {
                   BotToast.showText(text: '未获取到物流信息');

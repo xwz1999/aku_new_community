@@ -9,16 +9,16 @@ part of 'good_detail_model.dart';
 GoodDetailModel _$GoodDetailModelFromJson(Map<String, dynamic> json) =>
     GoodDetailModel(
       id: json['id'] as int,
-      jcookImageVoList: (json['jcookImageVoList'] as List<dynamic>)
-          .map((e) => JcookImageVoList.fromJson(e as Map<String, dynamic>))
+      jcookImageVoList: (json['jcookImageVoList'] as List<dynamic>?)
+          ?.map((e) => JcookImageVoList.fromJson(e as Map<String, dynamic>))
           .toList(),
       sellPrice: json['sellPrice'] as num,
       discountPrice: json['discountPrice'] as num,
-      skuName: json['skuName'] as String,
+      skuName: json['skuName'] as String?,
       status: json['status'] as int,
       shopStatus: json['shopStatus'] as int,
-      sellNum: json['sellNum'] as int,
-      kind: json['kind'] as int,
+      sellNum: json['sellNum'] as int?,
+      kind: json['kind'] as int?,
       defaultLocation: json['defaultLocation'] as String,
       defaultAddressDetail: json['defaultAddressDetail'] as String,
       stockStatus: json['stockStatus'] as int,
@@ -51,6 +51,6 @@ JcookSpecificationVoList _$JcookSpecificationVoListFromJson(
     );
 
 Attribute _$AttributeFromJson(Map<String, dynamic> json) => Attribute(
-      name: json['name'] as String,
-      value: json['value'] as String,
+      name: json['name'] as String?,
+      value: json['value'] as String?,
     );

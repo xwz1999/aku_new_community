@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_config_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
@@ -161,7 +162,7 @@ class UserProvider extends ChangeNotifier {
   ///修改头像
   Future updateAvatar(String? path) async {
     BaseModel model = await NetUtil().post(
-      API.user.udpdateAvatar,
+      SARSAPI.user.updateAvatar,
       params: {
         'fileUrls': [path]
       },

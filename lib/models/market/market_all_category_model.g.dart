@@ -10,7 +10,7 @@ MarketAllCategoryModel _$MarketAllCategoryModelFromJson(
         Map<String, dynamic> json) =>
     MarketAllCategoryModel(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['name'] as String?,
       imgUrls:
           (json['imgUrls'] as List<dynamic>).map((e) => e as String).toList(),
       categoryList: (json['categoryList'] as List<dynamic>)

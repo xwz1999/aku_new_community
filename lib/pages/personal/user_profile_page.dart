@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/pages/personal/change_nick_name_page.dart';
 import 'package:aku_new_community/pages/personal/update_tel_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -69,7 +69,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       //Upload Avatar
       Function cancel = BotToast.showLoading();
       BaseFileModel model =
-          await NetUtil().upload(API.upload.uploadAvatar, file);
+          await NetUtil().upload(SARSAPI.uploadFile.uploadImg, file);
       if (model.status ?? false)
         userProvider.updateAvatar(model.url);
       else

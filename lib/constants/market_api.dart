@@ -8,6 +8,7 @@ class _MarketApi {
   _Rotation rotation = _Rotation();
   _ShopCart shopCart = _ShopCart();
   _Address address = _Address();
+  _Order order = _Order();
 }
 
 class _ShopCart {
@@ -82,4 +83,21 @@ class _Home {
 class _Rotation {
   ///查询app商城首页轮播图
   String get rotation => '/app/user/shop/rotation/list';
+}
+
+class _Order {
+  ///查询订单物流
+  String get findLogistics => '/app/user/shop/order/findLogistics';
+
+  ///app确认收货
+  String get confirm => '/app/user/shop/order/confirm';
+
+  ///app删除订单
+  String get delete => '/app/user/shop/order/appDelete';
+
+  ///app取消订单
+  String get cancel => '/app/user/shop/order/cancel';
+
+  ///我的订单
+  String get myOrder => '/app/user/shop/order/myOrder';
 }

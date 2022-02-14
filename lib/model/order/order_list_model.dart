@@ -5,13 +5,14 @@ class OrderListModel {
   int? payType;
   double? payPrice;
   double? freightFee;
-  int? jcookAddressId;
+  int? appGoodsAddressId;
   String? receiverName;
   String? receiverTel;
   String? locationName;
   String? addressDetail;
   String? createDate;
-  List<MyOrderListVoList>? myOrderListVoList;
+  String? remake;
+  List<MyOrderListVoList>? orderList;
 
   OrderListModel(
       {this.id,
@@ -25,8 +26,9 @@ class OrderListModel {
       this.locationName,
       this.addressDetail,
       this.createDate,
-      this.myOrderListVoList,
-      this.jcookAddressId});
+      this.remake,
+      this.appGoodsAddressId,
+      this.orderList});
 
   OrderListModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,14 +42,15 @@ class OrderListModel {
     locationName = json['locationName'];
     addressDetail = json['addressDetail'];
     createDate = json['createDate'];
-    jcookAddressId = json['jcookAddressId'];
-    if (json['myOrderListVoList'] != null) {
-      myOrderListVoList = [];
-      json['myOrderListVoList'].forEach((v) {
-        myOrderListVoList!.add(new MyOrderListVoList.fromJson(v));
+    remake = json['remake'];
+    appGoodsAddressId = json['appGoodsAddressId'];
+    if (json['orderList'] != null) {
+      orderList = [];
+      json['orderList'].forEach((v) {
+        orderList!.add(new MyOrderListVoList.fromJson(v));
       });
     } else {
-      myOrderListVoList = [];
+      orderList = [];
     }
   }
 
@@ -64,10 +67,11 @@ class OrderListModel {
     data['locationName'] = this.locationName;
     data['addressDetail'] = this.addressDetail;
     data['createDate'] = this.createDate;
-    data['jcookAddressId'] = this.jcookAddressId;
-    if (this.myOrderListVoList != null) {
+    data['jcookAddressId'] = this.appGoodsAddressId;
+    data['remake'] = this.remake;
+    if (this.orderList != null) {
       data['myOrderListVoList'] =
-          this.myOrderListVoList!.map((v) => v.toJson()).toList();
+          this.orderList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -75,7 +79,8 @@ class OrderListModel {
 
 class MyOrderListVoList {
   int? id;
-  int? jcookGoodsId;
+  int? goodsPushId;
+  int? appSkuId;
   String? skuName;
   String? mainPhoto;
   double? sellPrice;
@@ -87,7 +92,8 @@ class MyOrderListVoList {
 
   MyOrderListVoList(
       {this.id,
-      this.jcookGoodsId,
+      this.appSkuId,
+      this.goodsPushId,
       this.skuName,
       this.mainPhoto,
       this.sellPrice,
@@ -99,7 +105,8 @@ class MyOrderListVoList {
 
   MyOrderListVoList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    jcookGoodsId = json['jcookGoodsId'];
+    goodsPushId = json['goodsPushId'];
+    appSkuId = json['appSkuId'];
     skuName = json['skuName'];
     mainPhoto = json['mainPhoto'];
     sellPrice = json['sellPrice'];
@@ -113,7 +120,8 @@ class MyOrderListVoList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['jcookGoodsId'] = this.jcookGoodsId;
+    data['appSkuId'] = this.appSkuId;
+    data['goodsPushId'] = this.goodsPushId;
     data['skuName'] = this.skuName;
     data['mainPhoto'] = this.mainPhoto;
     data['sellPrice'] = this.sellPrice;

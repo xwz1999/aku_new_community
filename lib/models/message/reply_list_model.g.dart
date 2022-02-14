@@ -9,10 +9,15 @@ part of 'reply_list_model.dart';
 ReplyListModel _$ReplyListModelFromJson(Map<String, dynamic> json) =>
     ReplyListModel(
       id: json['id'] as int,
-      name: json['name'] as String,
-      date: json['date'] as String,
+      status: json['status'] as int,
       content: json['content'] as String,
-      img: ImgModel.fromJson(json['img'] as Map<String, dynamic>),
-      title: json['title'] as String,
-      pic: ImgModel.fromJson(json['pic'] as Map<String, dynamic>),
+      sendId: json['sendId'] as int,
+      sendName: json['sendName'] as String,
+      sendDate: json['sendDate'] as String,
+      avatarImgList: (json['avatarImgList'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dynamicImgList: (json['dynamicImgList'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

@@ -39,9 +39,9 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
       ? ChinaRegionModel.empty(_pickedCity.id)
       : districts[_pickedDistrictIndex];
 
-  List<ChinaRegionModel> get cities => _pickedProvince.cityList;
+  List<ChinaRegionModel> get cities => _pickedProvince.cityList ?? [];
 
-  List<ChinaRegionModel> get districts => _pickedCity.cityList;
+  List<ChinaRegionModel> get districts => _pickedCity.cityList ?? [];
 
   final FixedExtentScrollController _cityController =
       FixedExtentScrollController();

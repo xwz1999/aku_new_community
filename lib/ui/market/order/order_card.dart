@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
@@ -60,9 +61,9 @@ class _OrderCardState extends State<OrderCard> {
   @override
   void initState() {
     super.initState();
-    widget.model.myOrderListVoList!.forEach((element) {
+    widget.model.orderList!.forEach((element) {
       _goodsList.add(SettlementGoodsDTO(
-          appGoodsPushId: element.jcookGoodsId, num: element.num));
+          appGoodsPushId: element.goodsPushId, num: element.num));
     });
   }
 
@@ -70,7 +71,7 @@ class _OrderCardState extends State<OrderCard> {
     Function cancel = BotToast.showLoading();
     BaseModel baseModel =
         await NetUtil().post(API.pay.jcookOrderCreateOrder, params: {
-      "addressId": widget.model.jcookAddressId,
+      "addressId": widget.model.appGoodsAddressId,
       "settlementGoodsDTOList": _goodsList.map((v) => v.toJson()).toList(),
       "payType": 1, //暂时写死 等待后续补充
       "payPrice": widget.model.payPrice
@@ -105,7 +106,7 @@ class _OrderCardState extends State<OrderCard> {
     if (result == true) {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel =
-          await NetUtil().get(API.market.deleteOrder, params: {
+          await NetUtil().get(SARSAPI.market.order.delete, params: {
         "orderId": widget.model.id,
       });
       if (baseModel.success) {
@@ -135,7 +136,7 @@ class _OrderCardState extends State<OrderCard> {
     );
     if (result == true) {
       Function cancel = BotToast.showLoading();
-      BaseModel baseModel = await NetUtil().get(API.market.cancelOrder,
+      BaseModel baseModel = await NetUtil().get(SARSAPI.market.order.cancel,
           params: {"orderId": widget.model.id, 'cancelReasonCode': 4});
       if (baseModel.success) {
         BotToast.showText(text: '取消成功');
@@ -165,7 +166,7 @@ class _OrderCardState extends State<OrderCard> {
     if (result == true) {
       Function cancel = BotToast.showLoading();
       BaseModel baseModel =
-          await NetUtil().get(API.market.confirmOrder, params: {
+          await NetUtil().get(SARSAPI.market.order.confirm, params: {
         "orderId": widget.model.id,
       });
       if (baseModel.success) {
@@ -211,7 +212,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,
@@ -265,7 +266,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,
@@ -319,7 +320,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,
@@ -379,7 +380,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,
@@ -433,7 +434,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,
@@ -487,7 +488,7 @@ class _OrderCardState extends State<OrderCard> {
               color: Color(0xFFD9D9D9),
             ),
             16.hb,
-            ...widget.model.myOrderListVoList!.map((e) => _goodCard(e)),
+            ...widget.model.orderList!.map((e) => _goodCard(e)),
             20.hb,
             _priceView(),
             20.hb,

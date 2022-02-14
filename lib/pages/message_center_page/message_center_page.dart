@@ -1,11 +1,15 @@
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
 import 'package:aku_new_community/pages/message_center_page/reply/replay_view.dart';
 import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_view.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/buttons/all_select_button.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key? key}) : super(key: key);
@@ -16,10 +20,10 @@ class MessageCenterPage extends StatefulWidget {
 
 class _MessageCenterPageState extends State<MessageCenterPage>
     with TickerProviderStateMixin {
-  EasyRefreshController _refreshController = EasyRefreshController();
+  List<EasyRefreshController> _controllers =
+      List.generate(2, (index) => EasyRefreshController());
   List<String> _tabs = ['回复我的', '收到的赞', '通知公告'];
   late final TabController _tabController;
-  bool inEdit = false;
 
   @override
   void initState() {
@@ -34,7 +38,9 @@ class _MessageCenterPageState extends State<MessageCenterPage>
 
   @override
   void dispose() {
-    _refreshController.dispose();
+    for (var item in _controllers) {
+      item.dispose();
+    }
     super.dispose();
   }
 
@@ -43,13 +49,21 @@ class _MessageCenterPageState extends State<MessageCenterPage>
     return BeeScaffold(
       title: '消息',
       actions: [
-        // MaterialButton(
-        //   onPressed: () async {
-        //     setState(() {});
-        //   },
-        //   child: '${inEdit ? '取消' : '编辑'}'.text.size(28.sp).black.make(),
-        //   padding: EdgeInsets.symmetric(horizontal: 32.w),
-        // ),
+        MaterialButton(
+          onPressed: () async {
+            var res = await NetUtil().get(SARSAPI.message.allRead, params: {
+              'type': _tabController.index + 1,
+            });
+            if (res.success) {
+              _controllers[_tabController.index].callRefresh();
+              setState(() {});
+            } else {
+              BotToast.showText(text: res.msg);
+            }
+          },
+          child: '全部已读'.text.size(28.sp).black.make(),
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+        ),
       ],
       appBarBottom: BeeTabBar(
         controller: _tabController,
@@ -57,18 +71,16 @@ class _MessageCenterPageState extends State<MessageCenterPage>
       ),
       body: TabBarView(
         children: [
-          ReplayView(),
-          ThumbsUpView(),
+          ReplayView(
+            controller: _controllers[0],
+          ),
+          ThumbsUpView(
+            controller: _controllers[1],
+          ),
           AnnounceView(),
         ],
         controller: _tabController,
       ),
-      bottomNavi: Offstage(
-          offstage: !inEdit,
-          child: AllSelectButton(
-            onPressed: () {},
-            selected: true,
-          )),
     );
   }
 }

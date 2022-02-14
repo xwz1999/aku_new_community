@@ -15,8 +15,6 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:provider/provider.dart';
 
-import '../tab_navigator.dart';
-
 class SignFunc {
   //发送手机号验证码
   static Future<BaseModel> sendMessageCode(
@@ -169,8 +167,6 @@ class SignFunc {
       await Get.to(() => SetPsdPage());
     } else if (UserTool.userProvider.userInfoModel!.nickName == null) {
       await Get.to(() => SetNickNamePage());
-    } else {
-      Get.offAll(() => TabNavigator());
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class _OrderViewState extends State<OrderView> {
   @override
   Widget build(BuildContext context) {
     return BeeListView(
-        path: API.market.myOrder,
+        path: SARSAPI.market.order.myOrder,
         controller: _refreshController,
         extraParams: {"tradeStatus": widget.index, 'orderCode': null},
         convert: (models) {

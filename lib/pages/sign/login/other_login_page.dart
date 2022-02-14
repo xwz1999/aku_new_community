@@ -16,6 +16,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../tab_navigator.dart';
+
 class OtherLoginPage extends StatefulWidget {
   const OtherLoginPage({Key? key}) : super(key: key);
 
@@ -106,6 +108,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
               if (response.data['success']) {
                 await UserTool.userProvider.setLogin(response.data['data']);
                 await UserTool.dataProvider.addHistories();
+                Get.offAll(() => TabNavigator());
               } else {
                 BotToast.showText(text: response.data['message']);
               }
@@ -129,6 +132,10 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
     }
     if (UserTool.appProveider.pickedCityAndCommunity == null) {
       BotToast.showText(text: '请先选择小区！');
+      return false;
+    }
+    if (_currentIndex == 0 && _psd.text.isEmpty) {
+      BotToast.showText(text: '密码不能为空');
       return false;
     }
     return true;

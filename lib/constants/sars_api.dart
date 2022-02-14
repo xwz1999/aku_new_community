@@ -21,6 +21,8 @@ class SARSAPI {
   static _Login login = _Login();
   static _User user = _User();
   static _House house = _House();
+  static _File uploadFile = _File();
+  static _Message message = _Message();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -53,6 +55,9 @@ class _User {
 
   ///实名认证
   String get certification => '/app/user/verified';
+
+  ///修改用户头像
+  String get updateAvatar => '/app/user/updateAvatarImg';
 }
 
 class _Login {
@@ -72,4 +77,58 @@ class _Login {
 class _House {
   ///查询所有的房屋(级联)
   String get allHouses => '/app/estate/findEstateCascade';
+}
+
+class _File {
+  ///上传app照片
+  String get uploadImg => '/app/user/upload/uploadImg';
+}
+
+class _Message {
+  ///全部已读
+  String get allRead => '/app/user/message/allRead';
+
+  ///已读
+  String get read => '/app/user/message/read';
+
+  ///所有点赞消息
+  String get allLikes => '/app/user/message/likesMessage';
+
+  ///所有评论消息
+  String get allComment => '/app/user/message/commentMessage';
+}
+
+class _Community {
+  ///动态信息详情
+  String get dynamicDetail => '/app/user/community/dynamic/details';
+
+  ///点赞动态
+  String get dynamicLike => '/app/user/community/dynamic/likes';
+
+  ///点赞评论
+  String get commentLike => '/app/user/community/comment/likes';
+
+  ///发送评论
+  String get commentInsert => '/app/user/community/comment/insert';
+
+  ///查询动态下的评论信息列表
+  String get commentList => '/app/user/community/comment/list';
+
+  ///发布动态
+  String get dynamicInsert => '/app/user/community/dynamic/insert';
+
+  ///我的动态资料部分(头部)
+  String get dynamicMyListH => '/app/user/community/dynamic/myListH';
+
+  ///我的动态信息部分(底部)
+  String get dynamicMyListL => '/app/user/community/dynamic/myListL';
+
+  ///所有动态信息
+  String get dynamicList => '/app/user/community/dynamic/list';
+
+  ///所有话题
+  String get topicList => '/app/user/community/topic/list';
+
+  ///新鲜话题
+  String get topNewList => '/app/user/community/topic/newList';
 }
