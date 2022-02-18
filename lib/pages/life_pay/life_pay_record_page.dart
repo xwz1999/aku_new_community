@@ -49,7 +49,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
         },
         controller: _refreshController,
         convert: (models) {
-          return models.tableList!
+          return models.rows
               .map((e) => LifePayRecordModel.fromJson(e))
               .toList();
         },

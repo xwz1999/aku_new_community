@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/pages/express_packages/express_package_view.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
 
 class ExpressPackagePage extends StatefulWidget {
   ExpressPackagePage({Key? key}) : super(key: key);

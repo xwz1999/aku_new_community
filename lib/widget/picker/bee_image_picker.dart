@@ -1,10 +1,12 @@
 import 'dart:io';
 
-import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/utils/headers.dart';
 
 class BeeImagePicker {
   static Future<File?> pick(

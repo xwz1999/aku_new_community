@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/community_topic_model.dart';
-import 'package:aku_new_community/model/community/event_item_model.dart';
 import 'package:aku_new_community/model/community/hot_news_model.dart';
+import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
+import 'package:aku_new_community/models/community/topic_model.dart';
 import 'package:aku_new_community/models/news/news_category_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -14,7 +15,6 @@ import 'package:aku_new_community/ui/community/community_views/add_new_event_pag
 import 'package:aku_new_community/ui/community/community_views/my_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/new_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_community_view.dart';
-import 'package:aku_new_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_page.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
@@ -23,6 +23,7 @@ import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,13 +48,12 @@ class _CommunityPageState extends State<CommunityPage>
   GlobalKey<MyCommunityViewState> myKey = GlobalKey<MyCommunityViewState>();
   GlobalKey<NewCommunityViewState> newKey = GlobalKey<NewCommunityViewState>();
 
-  List<EventItemModel> _newItems = [];
-  List<CommunityTopicModel> _gambitModels = [];
+  List<AllDynamicListModel> _newItems = [];
+  List<TopicModel> _gambitModels = [];
   List<HotNewsModel> _hotNewsModels = [];
 
   int _pageNum = 1;
   int _size = 4;
-  int _pageCount = 0;
   bool _onload = true;
 
   @override
@@ -108,17 +108,6 @@ class _CommunityPageState extends State<CommunityPage>
                 isScrollable: true,
               ),
             )),
-        // Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        //   Text(
-        //     '附近社区',
-        //     style: TextStyle(
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 32.sp,
-        //       color: Color(0xff333333),
-        //     ),
-        //     textAlign: TextAlign.center,
-        //   ),
-        // ]),
         backgroundColor: Colors.white,
         actions: [
           Padding(
@@ -144,133 +133,57 @@ class _CommunityPageState extends State<CommunityPage>
             ),
           )
         ],
-        // bottom: _tabController!.index==0?PreferredSize(
-        //     preferredSize: Size.fromHeight(90.w), child: _geSearch()):
-        // PreferredSize(
-        //     preferredSize: Size.fromHeight(311.w), child: Container(
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.center,
-        //     children: [
-        //       Image.asset(R.ASSETS_ICONS_ICON_LOGISTICS_PNG,width: 132.w,height: 132.w,),
-        //       32.hb,
-        //       '吼姆拉'.text.size(32.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
-        //       12.hb,
-        //       '当一个新时代的天之圣杯'.text.size(24.sp).color(Color(0x73000000)).make(),
-        //
-        //     ],
-        //   ),
-        // )),
       ),
-
       body: TabBarView(
-        children: userProvider.isLogin
-            ? [
-                EasyRefresh(
-                  firstRefresh: true,
-                  header: MaterialHeader(),
-                  controller: _easyRefreshController,
-                  onRefresh: () async {
-                    await (getNewInfo());
-                    _gambitModels = await CommunityFunc.getListGambit();
-                    _hotNewsModels = await CommunityFunc.getHotNews();
-                    _onload = false;
-                    setState(() {});
-                  },
-                  child: _onload
-                      ? SizedBox()
-                      : ListView(
-                          children: [
-                            _geSearch(),
-                            2.hb,
-                            _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
-                            16.hb,
-                            _gambitModels.isEmpty ? SizedBox() : _getNews(),
-                            16.hb,
-                            ..._newItems
-                                .map((e) => ChatCard(
-                                    model: e,
-                                    onDelete: () {
-                                      _easyRefreshController.callRefresh();
-                                      setState(() {});
-                                    }))
-                                .toList()
-                          ],
-                        ),
-                ),
-                MyCommunityView(key: myKey),
-              ]
-            : [
-                EasyRefresh(
-                  firstRefresh: true,
-                  header: MaterialHeader(),
-                  controller: _easyRefreshController,
-                  onRefresh: () async {
-                    await (getNewInfo());
-                    _gambitModels = await CommunityFunc.getListGambit();
-                    _hotNewsModels = await CommunityFunc.getHotNews();
-                    _onload = false;
-                    setState(() {});
-                  },
-                  child: _onload
-                      ? SizedBox()
-                      : ListView(
-                          children: [
-                            _geSearch(),
-                            2.hb,
-                            _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
-                            16.hb,
-                            _gambitModels.isEmpty ? SizedBox() : _getNews(),
-                            16.hb,
-                            ..._newItems
-                                .map((e) => ChatCard(
-                                    model: e,
-                                    onDelete: () {
-                                      _easyRefreshController.callRefresh();
-                                      setState(() {});
-                                    }))
-                                .toList()
-                          ],
-                        ),
-                ),
-              ],
+        children: [
+          EasyRefresh(
+            firstRefresh: true,
+            header: MaterialHeader(),
+            controller: _easyRefreshController,
+            onRefresh: () async {
+              await (getNewInfo());
+              _gambitModels = await CommunityFunc.getListGambit();
+              _hotNewsModels = await CommunityFunc.getHotNews();
+              _onload = false;
+              setState(() {});
+            },
+            child: _onload
+                ? SizedBox()
+                : ListView(
+                    children: [
+                      _geSearch(),
+                      2.hb,
+                      _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
+                      16.hb,
+                      _gambitModels.isEmpty ? SizedBox() : _getNews(),
+                      16.hb,
+                      ..._newItems
+                          .map((e) => ChatCard(
+                              model: e,
+                              onDelete: () {
+                                _easyRefreshController.callRefresh();
+                                setState(() {});
+                              }))
+                          .toList()
+                    ],
+                  ),
+          ),
+          if (UserTool.userProvider.isLogin) MyCommunityView(key: myKey),
+        ],
         controller: _tabController,
       ),
-
-      // ListView(
-      //   children: [
-
-      //   ],
-      // )
-
-      // TabBarView(
-      //   children: userProvider.isLogin
-      //       ? [
-      //           NewCommunityView(key: newKey),
-      //           TopicCommunityView(key: topicKey),
-      //           MyCommunityView(key: myKey),
-      //         ]
-      //       : [
-      //           NewCommunityView(key: newKey),
-      //           TopicCommunityView(key: topicKey),
-      //         ],
-      //   controller: _tabController,
-      // ),
-      // bodyColor: Colors.white,
     );
   }
 
   Future getNewInfo() async {
-    BaseListModel baseListModel =
-        await NetUtil().getList(API.community.newEventList, params: {
-      "pageNum": _pageNum,
-      "size": _size,
-    });
-    if (baseListModel.tableList!.isNotEmpty) {
-      _newItems = (baseListModel.tableList as List)
-          .map((e) => EventItemModel.fromJson(e))
+    BaseListModel baseListModel = await NetUtil().getList(
+        SARSAPI.community.dynamicList,
+        params: {"pageNum": _pageNum, "size": _size, 'type': 1});
+    if (baseListModel.rows.isNotEmpty) {
+      _newItems = (baseListModel.rows)
+          .map((e) => AllDynamicListModel.fromJson(e))
           .toList();
     }
-    _pageCount = baseListModel.pageCount!;
   }
 
   Future loadNewInfo() async {
@@ -279,14 +192,14 @@ class _CommunityPageState extends State<CommunityPage>
       "pageNum": _pageNum,
       "size": _size,
     });
-    if (baseListModel.tableList!.isNotEmpty) {
-      _newItems.addAll((baseListModel.tableList as List)
-          .map((e) => EventItemModel.fromJson(e))
+    if (baseListModel.rows.isNotEmpty) {
+      _newItems.addAll((baseListModel.rows)
+          .map((e) => AllDynamicListModel.fromJson(e))
           .toList());
     }
-    _pageCount = baseListModel.pageCount!;
   }
 
+  ///热门资讯
   _getInfo() {
     return Container(
       color: Colors.white,
@@ -375,7 +288,6 @@ class _CommunityPageState extends State<CommunityPage>
       onTap: () async {
         var result =
             await Get.to(() => PublicInformationDetailPage(id: item.id!));
-
         CommunityFunc.addViews(item.id!);
         if (result) {
           _easyRefreshController.callRefresh();
@@ -393,7 +305,7 @@ class _CommunityPageState extends State<CommunityPage>
               ),
               image: DecorationImage(
                 image: NetworkImage(
-                  API.image(ImgModel.first(item.imgList)),
+                  SARSAPI.image(ImgModel.first(item.imgList)),
                 ),
                 fit: BoxFit.cover,
               ),
@@ -519,16 +431,12 @@ class _CommunityPageState extends State<CommunityPage>
 
   _searchHistoryWidget() {
     return Container(
-      //margin: EdgeInsets.symmetric(horizontal: 32.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            //width: MediaQuery.of(context).size.width,
-            //padding: EdgeInsets.only(left: 10, right: 10),
-            child: Wrap(children: [
-              ..._gambitModels.map((e) => _choiceChip(e, 0)).toList()
-            ]
+            child: Wrap(
+                children: [..._gambitModels.map((e) => _choiceChip(e)).toList()]
                 // [_choiceChip('EDG夺冠',1),_choiceChip('双十一',2),
                 //   _choiceChip('11月吃土',2),_choiceChip('成都疫情',0),_choiceChip('万圣节',0)],
                 ),
@@ -539,7 +447,7 @@ class _CommunityPageState extends State<CommunityPage>
     );
   }
 
-  _choiceChip(CommunityTopicModel item, int type) {
+  _choiceChip(TopicModel item) {
     return Padding(
       padding: EdgeInsets.only(right: 12.w, bottom: 24.w),
       child: ChoiceChip(
@@ -550,20 +458,20 @@ class _CommunityPageState extends State<CommunityPage>
         labelPadding: EdgeInsets.only(right: 12.w, left: 12.w),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         onSelected: (bool value) {
-          Get.to(() => TopicDetailPage(model: item));
+          // Get.to(() => TopicDetailPage(model: item));
         },
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '#  ${item.summary ?? ''}',
+              '# ${item.title}',
               style: TextStyle(
                   color: Colors.black.withOpacity(0.65),
                   fontSize: 28.sp,
                   fontWeight: FontWeight.w500),
             ),
-            type == 1 || type == 2 ? 8.wb : SizedBox(),
-            type == 1 || type == 2 ? _chipType(type) : SizedBox()
+            item.type != 1 ? 8.wb : SizedBox(),
+            item.type != 1 ? _chipType(item.type) : SizedBox()
           ],
         ),
         selected: false,

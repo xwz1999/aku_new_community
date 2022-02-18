@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class IdentifyCardPicker extends StatefulWidget {
   static Widget front(Function(File? file) onChange) {

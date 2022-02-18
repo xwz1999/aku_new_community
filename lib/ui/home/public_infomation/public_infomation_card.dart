@@ -1,12 +1,15 @@
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/news/news_item_model.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PublicInfomationCard extends StatelessWidget {
   final NewsItemModel model;
@@ -59,7 +62,7 @@ class PublicInfomationCard extends StatelessWidget {
               width: 240.w,
               height: 200.w,
               fit: BoxFit.cover,
-              image: API.image(ImgModel.first(model.imgList)),
+              image: SARSAPI.image(ImgModel.first(model.imgList)),
             ),
           ],
         ),

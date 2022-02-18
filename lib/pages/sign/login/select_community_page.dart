@@ -1,3 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
@@ -6,11 +14,6 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_city_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_community_picker.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SelectCommunity extends StatefulWidget {
   const SelectCommunity({

@@ -1,5 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
 import 'package:aku_new_community/models/search/search_goods_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -10,13 +19,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
 import '../search_goods_card.dart';
 import 'good_detail_page.dart';
 import 'goods_list_card.dart';
@@ -376,7 +378,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                               //   path: API.market.search,
                               //   controller: _refreshController,
                               //   extraParams: {'searchName': ''},
-                              //   convert: (model) => model.tableList!
+                              //   convert: (model) => model.rows!
                               //       .map((e) => GoodsItem.fromJson(e))
                               //       .toList(),
                               //   builder: (items) {
@@ -446,7 +448,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                             "maxPrice": maxPrice,
                             'categoryThirdId': widget.categoryId,
                           },
-                          convert: (model) => model.tableList!
+                          convert: (model) => model.rows
                               .map((e) => SearchGoodsModel.fromJson(e))
                               .toList(),
                           builder: (items) {

@@ -1,6 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/model/user/fixed_submit_model.dart';
 import 'package:aku_new_community/pages/manager_func.dart';
@@ -12,12 +21,6 @@ import 'package:aku_new_community/utils/bee_map.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/views/horizontal_image_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class FixedSubmitPage extends StatefulWidget {
   FixedSubmitPage({Key? key}) : super(key: key);
@@ -227,9 +230,7 @@ class _FixedSubmitPageState extends State<FixedSubmitPage> {
         controller: _easyRefreshController,
         path: API.manager.fixedSubmit,
         convert: (model) {
-          return model.tableList!
-              .map((e) => FixedSubmitModel.fromJson(e))
-              .toList();
+          return model.rows.map((e) => FixedSubmitModel.fromJson(e)).toList();
         },
         builder: (items) {
           return ListView.separated(

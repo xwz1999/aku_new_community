@@ -1,5 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/life_pay/share_pay_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
@@ -7,10 +13,6 @@ import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class SharePayDetailPage extends StatefulWidget {
   final SharePayListModel model;

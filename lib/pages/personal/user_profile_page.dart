@@ -6,7 +6,7 @@ import 'package:aku_new_community/pages/personal/change_nick_name_page.dart';
 import 'package:aku_new_community/pages/personal/update_tel_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/base_file_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_custom_picker.dart';
@@ -68,12 +68,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
     else {
       //Upload Avatar
       Function cancel = BotToast.showLoading();
-      BaseFileModel model =
+      BaseModel model =
           await NetUtil().upload(SARSAPI.uploadFile.uploadImg, file);
-      if (model.status ?? false)
-        userProvider.updateAvatar(model.url);
+      if (model.success)
+        userProvider.updateAvatar(model.data as String);
       else
-        BotToast.showText(text: model.message!);
+        BotToast.showText(text: model.msg);
       cancel();
     }
   }
@@ -92,7 +92,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               child: ClipOval(
                   // child:
                   // CachedNetworkImage(
-                  //   imageUrl: API.image(
+                  //   imageUrl: SARSAPI.image(
                   //           userProvider.userInfoModel!.imgUrls.isNotEmpty
                   //               ? userProvider.userInfoModel?.imgUrls.first.url
                   //               : ''),
@@ -106,7 +106,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   // ),
                   //     FadeInImage.assetNetwork(
                   //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  //   image: API.image(
+                  //   image: SARSAPI.image(
                   //       (userProvider.userInfoModel?.imgUrls ?? []).isNotEmpty
                   //           ? userProvider.userInfoModel?.imgUrls.first.url
                   //           : ''),

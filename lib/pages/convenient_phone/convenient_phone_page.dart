@@ -124,7 +124,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               controller: _easyRefreshController,
               path: API.manager.convenientPhone,
               convert: (model) {
-                return model.tableList!
+                return model.rows
                     .map((e) => ConvenientPhoneModel.fromJson(e))
                     .toList();
               },

@@ -1,8 +1,10 @@
-import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:aku_new_community/utils/headers.dart';
 
 class PropertyCard extends StatelessWidget {
   PropertyCard({Key? key}) : super(key: key);

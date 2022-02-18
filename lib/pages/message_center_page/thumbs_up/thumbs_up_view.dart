@@ -27,7 +27,7 @@ class _ThumbsUpViewState extends State<ThumbsUpView> {
         path: SARSAPI.message.allLikes,
         controller: widget.controller,
         convert: (models) =>
-            models.tableList!.map((e) => ReplyListModel.fromJson(e)).toList(),
+            models.rows.map((e) => ReplyListModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
               itemBuilder: (context, index) {

@@ -1,6 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/user/committee_item_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -8,11 +16,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
   IndustryCommitteePage({Key? key}) : super(key: key);
@@ -94,7 +97,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
             borderRadius: BorderRadius.circular(4.w),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(ImgModel.first(model.imgUrls)),
+              image: SARSAPI.image(ImgModel.first(model.imgUrls)),
               height: 150.w,
               width: 150.w,
               fit: BoxFit.cover,
@@ -150,9 +153,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
       body: BeeListView<CommitteeItemModel>(
         path: API.manager.commiteeStaff,
         convert: (model) {
-          return model.tableList!
-              .map((e) => CommitteeItemModel.fromJson(e))
-              .toList();
+          return model.rows.map((e) => CommitteeItemModel.fromJson(e)).toList();
         },
         controller: _refreshController,
         builder: (items) {

@@ -1,10 +1,12 @@
-import 'package:aku_new_community/models/message/announce_list_model.dart';
-import 'package:aku_new_community/pages/message_center_page/announce/announce_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+
+import 'package:aku_new_community/models/message/announce_list_model.dart';
+import 'package:aku_new_community/pages/message_center_page/announce/announce_card.dart';
 
 class ListDateModel {
   final String month;

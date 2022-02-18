@@ -1,3 +1,12 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/ui/service/task_func.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -5,13 +14,6 @@ import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class PublishTaskPage extends StatefulWidget {
   const PublishTaskPage({Key? key}) : super(key: key);

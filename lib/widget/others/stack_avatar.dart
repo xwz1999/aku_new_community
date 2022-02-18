@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:flutter/material.dart';
 
 class StackAvatar extends StatelessWidget {
   final List<String?> avatars;
@@ -34,7 +36,7 @@ class StackAvatar extends StatelessWidget {
                 height: 44.w,
                 width: 44.w,
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(avatars[index]),
+                image: SARSAPI.image(avatars[index]),
                 fit: BoxFit.cover,
               ),
             ),

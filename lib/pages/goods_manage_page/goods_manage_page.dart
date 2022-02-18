@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/article_borrow_model.dart';
 import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_goods_page.dart';
@@ -52,7 +53,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             child: ClipRRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model.imgUrls)),
+                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
                 imageErrorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -106,7 +107,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
           path: API.manager.articleBorrow,
           controller: _easyRefreshController,
           convert: (models) {
-            return models.tableList!
+            return models.rows
                 .map((e) => ArticleBorrowModel.fromJson(e))
                 .toList();
           },

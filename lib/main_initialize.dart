@@ -1,18 +1,20 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+
+import 'package:fluwx/fluwx.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/config.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/message_parser.dart';
 import 'package:aku_new_community/utils/websocket/fire_dialog.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:fluwx/fluwx.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
 
 class MainInitialize {
   ///初始化firebase

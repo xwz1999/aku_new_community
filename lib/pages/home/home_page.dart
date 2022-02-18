@@ -1,7 +1,21 @@
 // Dart imports:
 
-import 'package:aku_new_community/constants/api.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:badges/badges.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:palette_generator/palette_generator.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/constants/application_objects.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/color_ext.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
@@ -24,18 +38,6 @@ import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/widget/animated/OverlayWidget.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:badges/badges.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:palette_generator/palette_generator.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -524,7 +526,7 @@ class _HomePageState extends State<HomePage>
     if (_swiperModels.isNotEmpty) {
       var color =
           await PaletteGenerator.fromImageProvider(CachedNetworkImageProvider(
-        API.image(ImgModel.first(_swiperModels[index].voResourcesImgList)),
+        SARSAPI.image(ImgModel.first(_swiperModels[index].voResourcesImgList)),
       ));
       _barColor.value = color.dominantColor?.color ?? Colors.transparent;
     } else {
@@ -536,7 +538,7 @@ class _HomePageState extends State<HomePage>
     return Container(
       child: FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-        image: API.image(ImgModel.first(swiperModel.voResourcesImgList)),
+        image: SARSAPI.image(ImgModel.first(swiperModel.voResourcesImgList)),
         fit: BoxFit.fill,
         imageErrorBuilder: (context, error, stackTrace) {
           return Image.asset(

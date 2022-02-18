@@ -1,5 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/message/reply_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_func.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class ReplyCard extends StatelessWidget {
           children: [
             ClipOval(
               child: Image.network(
-                API.image(model.avatar),
+                SARSAPI.image(model.avatar),
                 width: 100.w,
                 height: 100.w,
               ),
@@ -47,7 +47,7 @@ class ReplyCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(9.w),
               child: Image.network(
-                API.image(model.pic),
+                SARSAPI.image(model.pic),
                 width: 128.w,
                 height: 128.w,
               ),

@@ -2,8 +2,18 @@
 
 import 'dart:ui' as ui;
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
@@ -25,13 +35,6 @@ import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'category/new_category_page.dart';
 import 'market_home_goods_card.dart';
 import 'order/order_page.dart';
@@ -90,12 +93,11 @@ class _MarketPageState extends State<MarketPage>
         'orderByPrice': orderByPrice,
       },
     );
-    if (baseListModel.tableList!.isNotEmpty) {
-      _goodsHomeModelList = (baseListModel.tableList as List)
-          .map((e) => GoodsHomeModel.fromJson(e))
-          .toList();
+    if (baseListModel.rows.isNotEmpty) {
+      _goodsHomeModelList =
+          (baseListModel.rows).map((e) => GoodsHomeModel.fromJson(e)).toList();
     }
-    _pageCount = baseListModel.pageCount!;
+    _pageCount = baseListModel.total;
   }
 
   Future loadMarketInfo() async {
@@ -108,12 +110,11 @@ class _MarketPageState extends State<MarketPage>
         'orderByPrice': orderByPrice,
       },
     );
-    if (baseListModel.tableList!.isNotEmpty) {
-      _goodsHomeModelList.addAll((baseListModel.tableList as List)
-          .map((e) => GoodsHomeModel.fromJson(e))
-          .toList());
+    if (baseListModel.rows.isNotEmpty) {
+      _goodsHomeModelList.addAll(
+          (baseListModel.rows).map((e) => GoodsHomeModel.fromJson(e)).toList());
     }
-    _pageCount = baseListModel.pageCount!;
+    _pageCount = baseListModel.total;
   }
 
   @override
@@ -168,7 +169,7 @@ class _MarketPageState extends State<MarketPage>
         onLoad: () async {
           _pageNum++;
           await loadMarketInfo();
-          if (_pageCount <= _pageNum) {
+          if (_goodsHomeModelList.length >= _pageCount) {
             _refreshController.finishLoad(noMore: false);
           }
           setState(() {});
@@ -760,7 +761,7 @@ class _MarketPageState extends State<MarketPage>
       ),
       child: FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-        image: API.image(swiperModel.imgList!.isNotEmpty
+        image: SARSAPI.image(swiperModel.imgList!.isNotEmpty
             ? swiperModel.imgList!.first.url
             : ''),
         fit: BoxFit.fill,

@@ -1,9 +1,11 @@
-import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class SubmitEquipmentCodePage extends StatefulWidget {
   const SubmitEquipmentCodePage({Key? key}) : super(key: key);

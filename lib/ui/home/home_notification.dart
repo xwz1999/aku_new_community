@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/ui/community/notice/notice_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class HomeNotification extends StatefulWidget {
   final List<BoardItemModel> items;

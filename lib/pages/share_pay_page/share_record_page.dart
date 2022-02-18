@@ -1,13 +1,16 @@
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/life_pay/share_pay_record_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ShareRecordPage extends StatefulWidget {
   const ShareRecordPage({Key? key}) : super(key: key);
@@ -47,7 +50,7 @@ class _ShareRecordPageState extends State<ShareRecordPage> {
         extraParams: {"tel": UserTool.userProvider.userInfoModel!.tel},
         controller: _refreshController,
         convert: (models) {
-          return models.tableList!
+          return models.rows
               .map((e) => SharePayRecordModel.fromJson(e))
               .toList();
         },

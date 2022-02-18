@@ -40,7 +40,7 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
           path: API.manager.serviceBrowseList,
           controller: _easyRefreshController,
           convert: (models) {
-            return models.tableList!
+            return models.rows
                 .map((e) => ServiceBrowseListModel.fromJson(e))
                 .toList();
           },

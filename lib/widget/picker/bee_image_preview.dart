@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 
 ///图片点击放大预览
 class BeeImagePreview extends StatefulWidget {
@@ -66,7 +69,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
         tag: widget.tag ?? widget.path!,
         child: FadeInImage.assetNetwork(
           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-          image: API.image(widget.path),
+          image: SARSAPI.image(widget.path),
         ),
       );
     else

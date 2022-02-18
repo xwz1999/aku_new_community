@@ -1,10 +1,12 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 
 class SendAChat extends StatefulWidget {
   final FocusNode? node;
@@ -12,8 +14,9 @@ class SendAChat extends StatefulWidget {
   SendAChat({Key? key, this.node}) : super(key: key);
 
   static Future<bool> send({
+    required int? rootId,
     required int? parentId,
-    required int? themeId,
+    required int? dynamicId,
   }) async {
     FocusNode node = FocusNode();
     node.requestFocus();
@@ -23,10 +26,11 @@ class SendAChat extends StatefulWidget {
     );
     if (result != null) {
       await NetUtil().post(
-        API.community.sendAComment,
+        SARSAPI.community.commentInsert,
         params: {
+          'rootId': rootId,
           'parentId': parentId,
-          'gambitThemeId': themeId,
+          'dynamicId': dynamicId,
           'content': result,
         },
         showMessage: true,
@@ -70,7 +74,7 @@ class _SendAChatState extends State<SendAChat> {
 
               //
               enabledBorder: OutlineInputBorder(
-               borderSide: BorderSide.none,
+                borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(40.w),
               ),
               focusedBorder: OutlineInputBorder(
@@ -81,7 +85,7 @@ class _SendAChatState extends State<SendAChat> {
           ).p(16.w).expand(),
           16.wb,
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Get.back(result: _textEditingController.text);
             },
             child: Container(
@@ -92,11 +96,7 @@ class _SendAChatState extends State<SendAChat> {
                 borderRadius: BorderRadius.all(Radius.circular(34.w)),
               ),
               alignment: Alignment.center,
-              child:   '发布'
-                  .text
-                  .size(28.sp)
-                  .color(Color(0xD9000000))
-                  .make(),
+              child: '发布'.text.size(28.sp).color(Color(0xD9000000)).make(),
             ),
           ),
           // MaterialButton(

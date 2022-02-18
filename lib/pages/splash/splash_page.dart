@@ -1,5 +1,17 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
@@ -9,17 +21,6 @@ import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:amap_flutter_location/amap_flutter_location.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
 import '../tab_navigator.dart';
 
 class SplashPage extends StatefulWidget {

@@ -1,3 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/models/house/lease_detail_model.dart';
@@ -8,12 +16,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class HouseInformationCheckPage extends StatefulWidget {
   final SubmitModel submitModel;

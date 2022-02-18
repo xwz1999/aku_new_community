@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MarketHomeGoodsCard extends StatelessWidget {
   final GoodsHomeModel item;

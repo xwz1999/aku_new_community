@@ -1,7 +1,14 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/pages/tab_navigator.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -10,11 +17,6 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/end_button.dart';
 import 'package:aku_new_community/widget/buttons/line_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
 import '../market_home_goods_card.dart';
 
 class MarketSuccessPage extends StatefulWidget {
@@ -32,7 +34,6 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
   bool _onload = true;
   List<GoodsHomeModel> _goodsHomeModelList = [];
   int _pageNum = 1;
-  int _pageCount = 0;
   int _size = 10;
 
   @override
@@ -162,12 +163,10 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
         'orderByPrice': null,
       },
     );
-    if (baseListModel.tableList!.isNotEmpty) {
-      _goodsHomeModelList = (baseListModel.tableList as List)
-          .map((e) => GoodsHomeModel.fromJson(e))
-          .toList();
+    if (baseListModel.rows.isNotEmpty) {
+      _goodsHomeModelList =
+          (baseListModel.rows).map((e) => GoodsHomeModel.fromJson(e)).toList();
     }
-    _pageCount = baseListModel.pageCount!;
   }
 
   Future loadMarketInfo() async {
@@ -180,12 +179,10 @@ class _MarketSuccessPageState extends State<MarketSuccessPage>
         'orderByPrice': null,
       },
     );
-    if (baseListModel.tableList!.isNotEmpty) {
-      _goodsHomeModelList.addAll((baseListModel.tableList as List)
-          .map((e) => GoodsHomeModel.fromJson(e))
-          .toList());
+    if (baseListModel.rows.isNotEmpty) {
+      _goodsHomeModelList.addAll(
+          (baseListModel.rows).map((e) => GoodsHomeModel.fromJson(e)).toList());
     }
-    _pageCount = baseListModel.pageCount!;
   }
 
   _getTitle(int index) {

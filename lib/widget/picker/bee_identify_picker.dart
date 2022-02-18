@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/utils/bee_map.dart';
 import 'package:aku_new_community/utils/enum/identify.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class BeeIdentifyPicker extends StatefulWidget {
   static Future<Identify> pick(BuildContext context) async {

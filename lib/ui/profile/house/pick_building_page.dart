@@ -1,12 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/model/user/pick_building_model.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/ui/profile/house/house_item.dart';
 import 'package:aku_new_community/ui/profile/house/pick_unit_page.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class PickBuildingPage extends StatefulWidget {
   PickBuildingPage({Key? key}) : super(key: key);

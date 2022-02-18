@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:aku_new_community/model/manager/article_QR_code_model.dart';
 import 'package:aku_new_community/pages/goods_deto_page/deto_code_page/deto_code_page.dart';
 import 'package:aku_new_community/pages/manager_func.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class GoodsInfoCardButton extends StatelessWidget {
   final String? tel;

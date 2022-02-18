@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/search/search_goods_model.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import 'collection/collection_func.dart';
 
 class SearchGoodsCard extends StatefulWidget {

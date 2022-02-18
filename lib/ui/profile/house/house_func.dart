@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:bot_toast/bot_toast.dart';
+
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/house/lease_detail_model.dart';
 import 'package:aku_new_community/models/house/lease_echo_model.dart';
 import 'package:aku_new_community/models/house/submit_model.dart';
 import 'package:aku_new_community/models/user/passed_house_list_model.dart';
-import 'package:aku_new_community/utils/network/base_file_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 
 class HouseFunc {
   ///查询所有的房屋审核信息
@@ -75,10 +76,10 @@ class HouseFunc {
 
   ///上传身份证照片正面
   Future<String> uploadIdCardFront(File file) async {
-    BaseFileModel baseFileModel =
+    BaseModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardFront, file);
-    if (baseFileModel.status ?? false) {
-      return baseFileModel.url ?? '';
+    if (baseFileModel.success) {
+      return baseFileModel.data as String;
     } else {
       return '';
     }
@@ -86,10 +87,10 @@ class HouseFunc {
 
   ///上传身份证照片背面
   Future<String> uploadIdCardBack(File file) async {
-    BaseFileModel baseFileModel =
+    BaseModel baseFileModel =
         await NetUtil().upload(API.upload.uploadCardBack, file);
-    if (baseFileModel.status ?? false) {
-      return baseFileModel.url ?? '';
+    if (baseFileModel.success) {
+      return baseFileModel.data as String;
     } else {
       return '';
     }
@@ -119,15 +120,15 @@ class HouseFunc {
 
   ///上传合同签名
   Future<String> uploadSignName(Uint8List bytes) async {
-    BaseFileModel baseFileModel = await NetUtil().uploadUnit8List(
+    BaseModel baseFileModel = await NetUtil().uploadUnit8List(
       API.upload.uploadSignName,
       bytes,
     );
-    if (baseFileModel.status ?? false) {
-      BotToast.showText(text: baseFileModel.message!);
-      return baseFileModel.url ?? '';
+    if (baseFileModel.success) {
+      BotToast.showText(text: baseFileModel.msg);
+      return baseFileModel.data as String;
     } else {
-      BotToast.showText(text: baseFileModel.message!);
+      BotToast.showText(text: baseFileModel.msg);
       return '';
     }
   }
@@ -150,10 +151,10 @@ class HouseFunc {
 
   ///上传盖章后正式有效合同
   Future<String> uploadFormalContract(File file) async {
-    BaseFileModel baseModel =
+    BaseModel baseModel =
         await NetUtil().upload(API.upload.uploadFormalContract, file);
-    if (baseModel.status ?? false) {
-      return baseModel.url ?? '';
+    if (baseModel.success) {
+      return baseModel.data as String;
     } else {
       return '';
     }

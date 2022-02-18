@@ -1,5 +1,7 @@
 // import 'package:aku_new_community/widget/bee_scaffold.dart';
 
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/community_introduce/community_introduce_page.dart';
@@ -32,7 +34,6 @@ import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_new_community/ui/service/task_page.dart';
-import 'package:flutter/material.dart';
 
 ///应用对象
 ///Application Object

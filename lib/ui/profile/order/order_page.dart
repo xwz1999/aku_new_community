@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:flutter/material.dart';
 
 class OrderPage extends StatefulWidget {
   final int initIndex;

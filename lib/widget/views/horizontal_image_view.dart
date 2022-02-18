@@ -1,10 +1,13 @@
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 
 class HorizontalImageView extends StatelessWidget {
   final List<String?> urls;
@@ -36,7 +39,7 @@ class HorizontalImageView extends StatelessWidget {
                   height: 184.w,
                   width: 184.w,
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: API.image(urls[index]),
+                  image: SARSAPI.image(urls[index]),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/news/news_category_model.dart';
 import 'package:aku_new_community/models/news/news_item_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class PublicInfomationView extends StatefulWidget {
   final NewsCategoryModel model;
@@ -28,7 +31,7 @@ class _PublicInfomationViewState extends State<PublicInfomationView>
       controller: _refreshController,
       extraParams: {'newsCategoryId': widget.model.id},
       convert: (model) =>
-          model.tableList!.map((e) => NewsItemModel.fromJson(e)).toList(),
+          model.rows.map((e) => NewsItemModel.fromJson(e)).toList(),
       builder: (items) {
         return ListView.separated(
           padding: EdgeInsets.symmetric(vertical: 24.w),

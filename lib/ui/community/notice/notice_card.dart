@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class NoticeCard extends StatelessWidget {
   final BoardItemModel model;
@@ -101,7 +104,7 @@ class NoticeCard extends StatelessWidget {
                               '${ImgModel.first(model.imgUrls)}${model.hashCode}',
                           child: FadeInImage.assetNetwork(
                             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: API.image(ImgModel.first(model.imgUrls)),
+                            image: SARSAPI.image(ImgModel.first(model.imgUrls)),
                             width: 152.w,
                             height: 152.w,
                             fit: BoxFit.cover,

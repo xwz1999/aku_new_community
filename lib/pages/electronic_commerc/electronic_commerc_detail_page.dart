@@ -70,7 +70,7 @@ class _ElectronicCommercDetailPageState
                   //   width: double.infinity,
                   //   child: FadeInImage.assetNetwork(
                   //       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  //       image: API.image(ImgModel.first(_detailModel.imgList))),
+                  //       image: SARSAPI.image(ImgModel.first(_detailModel.imgList))),
                   // ),
                   // 24.w.heightBox,
                   _detailModel.title.text

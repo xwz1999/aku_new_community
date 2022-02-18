@@ -1,7 +1,7 @@
-import 'package:aku_new_community/models/market/market_all_category_model.dart';
-import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 
+import 'package:aku_new_community/models/market/market_all_category_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'new_category_sub_card.dart';
 
 class NewCategorySubView extends StatefulWidget {

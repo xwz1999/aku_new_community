@@ -1,6 +1,6 @@
-import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:aku_new_community/utils/hive_store.dart';
 import 'china_region_model.dart';
 
 part 'picked_city_model.g.dart';

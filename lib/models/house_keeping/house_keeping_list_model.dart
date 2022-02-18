@@ -1,7 +1,9 @@
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
 
 part 'house_keeping_list_model.g.dart';
 

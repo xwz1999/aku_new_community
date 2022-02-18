@@ -1,5 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
@@ -11,12 +20,6 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/views/horizontal_image_view.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FixedDetailPage extends StatefulWidget {
   final int id;

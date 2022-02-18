@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +9,16 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
   final String? title;
   final String? subTitle;
   final int? id;
+  final int? dynamicNum;
+  final int? commentNum;
 
-  TopicSliverHeader({
-    this.imgPath,
-    this.title,
-    this.subTitle,
-    required this.id,
-  });
+  TopicSliverHeader(
+      {this.imgPath,
+      this.title,
+      this.subTitle,
+      required this.id,
+      this.commentNum,
+      this.dynamicNum});
 
   _buildOverlay(double shrinkOffset) {
     return Positioned(
@@ -43,9 +46,21 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
 
   _buildTitle(double shrinkOffset) {
     return Positioned(
-      bottom: 202.w - 195.w * _filterOffset(shrinkOffset),
+      bottom: 248.w - 248.w * _filterOffset(shrinkOffset),
       left: 32.w + (95.w - 32.w) * _offset(shrinkOffset),
       child: '#$title'.text.bold.white.size(52.sp).make(),
+    );
+  }
+
+  _buildNum(double shrinkOffset) {
+    return Positioned(
+      bottom: 206.w - 206.w * _offset(shrinkOffset) * 2,
+      left: 32.w + (95.w - 32.w) * _offset(shrinkOffset),
+      child: '${dynamicNum ?? 0}条动态  ${commentNum ?? 0}人讨论'
+          .text
+          .size(24.sp)
+          .white
+          .make(),
     );
   }
 
@@ -80,7 +95,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
             tag: "$imgPath\_$id",
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(imgPath),
+              image: SARSAPI.image(imgPath),
               fit: BoxFit.cover,
             ),
           ),
@@ -91,9 +106,10 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
             bottom: 0,
             child: Material(color: Colors.black.withOpacity(0.4)),
           ),
-          _buildOverlay(shrinkOffset),
+          // _buildOverlay(shrinkOffset),
           _buildBackButton(),
           _buildTitle(shrinkOffset),
+          _buildNum(shrinkOffset),
           _buildSubTitle(shrinkOffset),
         ],
       ),
@@ -117,10 +133,10 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 460.w + ScreenUtil().statusBarHeight;
+  double get maxExtent => 500.w + ScreenUtil().statusBarHeight;
 
   @override
-  double get minExtent => 48 + ScreenUtil().statusBarHeight;
+  double get minExtent => 50 + ScreenUtil().statusBarHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

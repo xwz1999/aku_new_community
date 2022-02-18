@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/event_voting_model.dart';
 import 'package:aku_new_community/pages/event_activity/voting_detail_page.dart';
@@ -60,7 +61,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
             child: ClipRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model.imgUrls)),
+                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
                 fit: BoxFit.cover,
               ),
             ),
@@ -137,9 +138,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
           path: API.manager.enventVotingList,
           controller: _controller,
           convert: (model) {
-            return model.tableList!
-                .map((e) => EventVotingModel.fromJson(e))
-                .toList();
+            return model.rows.map((e) => EventVotingModel.fromJson(e)).toList();
           },
           builder: (items) {
             return ListView.separated(

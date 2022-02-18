@@ -1,10 +1,12 @@
-import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/order/order_list_model.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'order_card.dart';
 
 class OrderView extends StatefulWidget {
@@ -38,9 +40,7 @@ class _OrderViewState extends State<OrderView> {
         controller: _refreshController,
         extraParams: {"tradeStatus": widget.index, 'orderCode': null},
         convert: (models) {
-          return models.tableList!
-              .map((e) => OrderListModel.fromJson(e))
-              .toList();
+          return models.rows.map((e) => OrderListModel.fromJson(e)).toList();
         },
         builder: (items) {
           return ListView.builder(

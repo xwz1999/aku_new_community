@@ -1,5 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/pages/property/property_page.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
@@ -12,12 +20,6 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'home/home_page.dart';
 import 'personal/personal_page.dart';
 

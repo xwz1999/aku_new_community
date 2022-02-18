@@ -40,10 +40,9 @@ class _ExpressPackageViewState extends State<ExpressPackageView> {
           "packageCollectionStatus": widget.index + 1,
         },
         convert: (models) {
-          return models.tableList
-                  ?.map((e) => ExpressPackageListModel.fromJson(e))
-                  .toList() ??
-              [];
+          return models.rows
+              .map((e) => ExpressPackageListModel.fromJson(e))
+              .toList();
         },
         builder: (items) {
           return ListView.separated(

@@ -1,8 +1,9 @@
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'order_view.dart';
 
 class OrderPage extends StatefulWidget {

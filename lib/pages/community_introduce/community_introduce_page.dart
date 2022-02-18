@@ -1,6 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community_introduce/community_introduce_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -47,7 +48,7 @@ class _CommunityIntroducePageState extends State<CommunityIntroducePage> {
                     child: FadeInImage.assetNetwork(
                         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                         fit: BoxFit.cover,
-                        image: API.image(ImgModel.first(_model.imgList))),
+                        image: SARSAPI.image(ImgModel.first(_model.imgList))),
                     width: double.infinity,
                     height: 424.w,
                   ),

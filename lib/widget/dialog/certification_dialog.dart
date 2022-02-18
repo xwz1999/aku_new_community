@@ -1,9 +1,11 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/ui/profile/new_house/certification/certification_page.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/ui/profile/new_house/certification/certification_page.dart';
 
 class CertificationDialog extends StatelessWidget {
   const CertificationDialog({Key? key}) : super(key: key);

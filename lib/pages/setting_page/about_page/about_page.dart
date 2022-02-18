@@ -1,7 +1,8 @@
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);

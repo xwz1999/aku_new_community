@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/ui/profile/new_house/examine_view.dart';
@@ -6,11 +12,6 @@ import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'add_house_page.dart';
 
 class MyFamilyPage extends StatefulWidget {

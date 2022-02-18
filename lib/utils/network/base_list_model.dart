@@ -1,29 +1,29 @@
-class BaseListModel {
-  int? pageCount;
-  int? rowCount;
-  List<dynamic>? tableList;
+import 'package:json_annotation/json_annotation.dart';
 
-  BaseListModel({
-    this.pageCount,
-    this.rowCount,
-    this.tableList,
-  });
+part 'base_list_model.g.dart';
+
+@JsonSerializable()
+class BaseListModel {
+  final int pages;
+  final List<dynamic> rows;
+  final int total;
 
   BaseListModel.zero({
-    this.pageCount = 0,
-    this.rowCount = 0,
-    this.tableList = const [],
+    this.total = 0,
+    this.pages = 0,
+    this.rows = const [],
   });
 
   BaseListModel.err({
-    this.pageCount = 0,
-    this.rowCount = 0,
-    this.tableList = const [],
+    this.pages = 0,
+    this.total = 0,
+    this.rows = const [],
   });
-
-  BaseListModel.fromJson(Map<String, dynamic> json) {
-    pageCount = json['pageCount'] ?? 0;
-    rowCount = json['rowCount'] ?? 0;
-    tableList = json['tableList'] ?? [];
-  }
+  factory BaseListModel.fromJson(Map<String, dynamic> json) =>
+      _$BaseListModelFromJson(json);
+  const BaseListModel({
+    required this.pages,
+    required this.rows,
+    required this.total,
+  });
 }

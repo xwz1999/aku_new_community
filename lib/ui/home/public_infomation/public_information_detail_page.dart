@@ -1,20 +1,23 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/models/news/news_detail_model.dart';
-import 'package:aku_new_community/utils/link_text_parase.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/models/news/news_detail_model.dart';
+import 'package:aku_new_community/utils/link_text_parase.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class PublicInformationDetailPage extends StatefulWidget {
   final int id;

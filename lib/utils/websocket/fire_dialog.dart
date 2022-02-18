@@ -1,14 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/tab_navigator.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fall_model.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fire_model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class FireDialog {
   static fireAlarm(String content) async {

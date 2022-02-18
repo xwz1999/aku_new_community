@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/notice/notice_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class NoticePage extends StatefulWidget {
   NoticePage({Key? key}) : super(key: key);
@@ -25,7 +28,7 @@ class _NoticePageState extends State<NoticePage> {
         controller: _refreshController,
         path: API.community.boardList,
         convert: (model) =>
-            model.tableList!.map((e) => BoardItemModel.fromJson(e)).toList(),
+            model.rows.map((e) => BoardItemModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
             padding: EdgeInsets.symmetric(vertical: 32.w),

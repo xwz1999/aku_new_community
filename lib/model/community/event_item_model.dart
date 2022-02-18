@@ -1,6 +1,8 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
 
+import 'package:aku_new_community/model/common/img_model.dart';
+
+@Deprecated('old model to deprecate')
 class EventItemModel {
   int? id;
   int? createId;

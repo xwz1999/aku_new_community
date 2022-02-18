@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/electronic_commerc/electronic_commerc_list_model.dart';
 import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_detail_page.dart';
@@ -70,7 +70,7 @@ class _ElectronicCommercCardState extends State<ElectronicCommercCard> {
               width: 240.w,
               height: 200.w,
               fit: BoxFit.cover,
-              image: API.image(ImgModel.first(model.imgList)),
+              image: SARSAPI.image(ImgModel.first(model.imgList)),
             ),
           ],
         ),

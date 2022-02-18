@@ -1,11 +1,12 @@
-import 'package:aku_new_community/models/collection/collection_goods_model.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
+import 'package:aku_new_community/models/collection/collection_goods_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'collection_func.dart';
 import 'collection_list_card.dart';
 
@@ -84,7 +85,7 @@ class MyCollectionPageState extends State<MyCollectionPage> {
           //   extraParams: {
           //     "keyword":_searchText,
           //     },
-          //   convert: (model) => model.tableList!
+          //   convert: (model) => model.rows!
           //       .map((e) => CollectionGoodsModel.fromJson(e))
           //       .toList(),
           //   builder: (items) {

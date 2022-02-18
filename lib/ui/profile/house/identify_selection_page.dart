@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/ui/profile/house/lease_relevation/user_identify_page.dart';
 import 'package:aku_new_community/ui/profile/house/my_house_list.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class IdentifySelectionPage extends StatelessWidget {
   const IdentifySelectionPage({Key? key}) : super(key: key);

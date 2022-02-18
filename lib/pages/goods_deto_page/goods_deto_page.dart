@@ -77,9 +77,7 @@ class _GoodsDetoPageState extends State<GoodsDetoPage> {
           controller: _refreshController,
           path: API.manager.articleOut,
           convert: (model) {
-            return model.tableList!
-                .map((e) => GoodsOutModel.fromJson(e))
-                .toList();
+            return model.rows.map((e) => GoodsOutModel.fromJson(e)).toList();
           },
           builder: (items) {
             return ListView.builder(

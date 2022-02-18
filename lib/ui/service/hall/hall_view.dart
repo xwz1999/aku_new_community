@@ -1,11 +1,13 @@
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/models/task/hall_list_model.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/src/extensions/num_ext.dart';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'hall_card.dart';
 
 class HallView extends StatefulWidget {
@@ -31,7 +33,7 @@ class _HallViewState extends State<HallView> {
         controller: _refreshController,
         extraParams: {},
         convert: (json) =>
-            json.tableList!.map((e) => HallListModel.fromJson(e)).toList(),
+            json.rows.map((e) => HallListModel.fromJson(e)).toList(),
         builder: (models) {
           return ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),

@@ -1,6 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/geographic_information/geographic_information_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -50,7 +51,7 @@ class _GeographicInformationPageState extends State<GeographicInformationPage> {
                       child: FadeInImage.assetNetwork(
                           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                           fit: BoxFit.cover,
-                          image: API.image(ImgModel.first(_model.imgUrls))),
+                          image: SARSAPI.image(ImgModel.first(_model.imgUrls))),
                       width: double.infinity,
                       height: 424.w,
                     ),

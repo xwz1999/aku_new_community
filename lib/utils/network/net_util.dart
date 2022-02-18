@@ -1,19 +1,20 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
-import 'package:aku_new_community/utils/network/base_file_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
 
 class NetUtil {
   Dio? _dio;
@@ -65,8 +66,11 @@ class NetUtil {
     try {
       Response res = await _dio!.get(path, queryParameters: params);
       if (!res.data['success']) {
-        _baseModel = BaseModel.error(res.data['msg'], res.data['success'],
-            res.data['data'], res.data['code']);
+        _baseModel = BaseModel.error(
+            message: res.data['msg'],
+            success: res.data['success'],
+            data: res.data['data'],
+            code: res.data['code']);
         _parseRequestError(_baseModel, showMessage: showMessage);
       } else {
         _baseModel = BaseModel.fromJson(res.data);
@@ -92,8 +96,11 @@ class NetUtil {
     try {
       Response res = await _dio!.post(path, data: params);
       if (!res.data['success']) {
-        _baseModel = BaseModel.error(res.data['msg'], res.data['success'],
-            res.data['data'], res.data['code']);
+        _baseModel = BaseModel.error(
+            message: res.data['msg'],
+            success: res.data['success'],
+            data: res.data['data'],
+            code: res.data['code']);
         _parseRequestError(_baseModel, showMessage: showMessage);
       } else {
         _baseModel = BaseModel.fromJson(res.data);
@@ -112,41 +119,46 @@ class NetUtil {
   }) async {
     try {
       Response res = await _dio!.get(path, queryParameters: params);
-      BaseListModel baseListModel = BaseListModel.fromJson(res.data);
-      return baseListModel;
+      var base = BaseModel.fromJson(res.data);
+      if (base.success) {
+        BaseListModel baseListModel = BaseListModel.fromJson(base.data);
+        return baseListModel;
+      } else {
+        return BaseListModel.err();
+      }
     } on DioError catch (e) {
       _parseErr(e);
     }
     return BaseListModel.err();
   }
 
-  Future<BaseFileModel> upload(String path, File file) async {
+  Future<BaseModel> upload(String path, File file) async {
     try {
       Response res = await _dio!.post(path,
           data: FormData.fromMap({
             'file': await MultipartFile.fromFile(file.path),
           }));
-      BaseFileModel baseListModel = BaseFileModel.fromJson(res.data);
+      BaseModel baseListModel = BaseModel.fromJson(res.data);
       return baseListModel;
     } on DioError catch (e) {
       print(e);
     }
-    return BaseFileModel.err();
+    return BaseModel.error();
   }
 
-  Future<BaseFileModel> uploadUnit8List(String path, Uint8List bytes) async {
+  Future<BaseModel> uploadUnit8List(String path, Uint8List bytes) async {
     try {
       Response res = await _dio!.post(path,
           data: FormData.fromMap({
             'file':
                 await MultipartFile.fromBytes(bytes, filename: 'signName.png'),
           }));
-      BaseFileModel baseListModel = BaseFileModel.fromJson(res.data);
+      BaseModel baseListModel = BaseModel.fromJson(res.data);
       return baseListModel;
     } on DioError catch (e) {
       print(e);
     }
-    return BaseFileModel.err();
+    return BaseModel.error();
   }
 
   Future<List<String>> uploadFiles(List<File> files, String api) async {
@@ -155,13 +167,12 @@ class NetUtil {
       return [];
     } else {
       for (var item in files) {
-        BaseFileModel model = await NetUtil().upload(api, item);
-        if (model.url != null) {
-          urls.add(model.url!);
+        BaseModel model = await NetUtil().upload(api, item);
+        if (model.data != null) {
+          urls.add(model.data as String);
         }
       }
     }
-
     return urls;
   }
 

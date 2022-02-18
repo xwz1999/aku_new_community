@@ -6,7 +6,6 @@ import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/constants/config.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/real_time_weather_model.dart';
-import 'package:aku_new_community/model/community/hot_topic_model.dart';
 import 'package:aku_new_community/model/message/message_center_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/model/user/car_parking_model.dart';
@@ -80,17 +79,17 @@ class AppProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  List<HotTopicModel> _hotTopicModels = [];
-
-  List<HotTopicModel> get hotTopicModels => _hotTopicModels;
-
-  updateHotTopicModel() async {
-    BaseModel model = await NetUtil().get(API.community.hotTopic);
-    _hotTopicModels =
-        (model.data as List).map((e) => HotTopicModel.fromJson(e)).toList();
-    notifyListeners();
-  }
+  //
+  // List<HotTopicModel> _hotTopicModels = [];
+  //
+  // List<HotTopicModel> get hotTopicModels => _hotTopicModels;
+  //
+  // updateHotTopicModel() async {
+  //   BaseModel model = await NetUtil().get(API.community.hotTopic);
+  //   _hotTopicModels =
+  //       (model.data as List).map((e) => HotTopicModel.fromJson(e)).toList();
+  //   notifyListeners();
+  // }
 
   RealTimeWeatherModel? _weatherModel;
 

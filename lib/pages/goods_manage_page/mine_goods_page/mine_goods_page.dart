@@ -261,9 +261,7 @@ class _MineGoodsPageState extends State<MineGoodsPage> {
           path: API.manager.articleBorrowMylist,
           controller: _controller,
           convert: (model) {
-            return model.tableList!
-                .map((e) => MineGoodsModel.fromJson(e))
-                .toList();
+            return model.rows.map((e) => MineGoodsModel.fromJson(e)).toList();
           },
           builder: (items) {
             return ListView.builder(

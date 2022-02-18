@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:flutter/material.dart';
 
 class DataProvider extends ChangeNotifier {
   Future init() async {

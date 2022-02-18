@@ -1,13 +1,15 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/activity/activity_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import 'activity_detail_page_old.dart';
 
 class ActivityListPage extends StatefulWidget {
@@ -41,7 +43,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
         controller: _refreshController,
         path: API.community.activityList,
         convert: (model) =>
-            model.tableList!.map((e) => ActivityItemModel.fromJson(e)).toList(),
+            model.rows.map((e) => ActivityItemModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),

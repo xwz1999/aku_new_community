@@ -1,5 +1,6 @@
 import 'package:aku_new_community/model/common/img_model.dart';
 
+@Deprecated('old model to deprecate')
 class CommunityTopicModel {
   int? id;
   String? title;

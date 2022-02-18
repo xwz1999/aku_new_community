@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/models/house/lease_list_model.dart';
@@ -6,10 +12,6 @@ import 'package:aku_new_community/ui/profile/house/lease_relevation/supplement_i
 import 'package:aku_new_community/ui/profile/house/lease_relevation/upload_contracts_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class LeaseHouseCard extends StatelessWidget {
   final LeaseListModel model;

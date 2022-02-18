@@ -1,3 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
@@ -8,12 +16,6 @@ import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/views/application_view.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class PropertyPage extends StatefulWidget {
   final bool? isSign;

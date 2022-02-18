@@ -1,15 +1,17 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/house_introduce/house_introduce_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import 'house_detail_page.dart';
 
 class HouseIntroducePage extends StatefulWidget {
@@ -54,7 +56,7 @@ class _HouseIntroducePageState extends State<HouseIntroducePage> {
               borderRadius: BorderRadius.circular(4.w),
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model.imgUrls)),
+                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
                 height: 200.w,
                 width: 240.w,
                 fit: BoxFit.fill,
@@ -98,7 +100,7 @@ class _HouseIntroducePageState extends State<HouseIntroducePage> {
       body: BeeListView<HouseIntroduceModel>(
         path: API.manager.houseType,
         convert: (model) {
-          return model.tableList!
+          return model.rows
               .map((e) => HouseIntroduceModel.fromJson(e))
               .toList();
         },

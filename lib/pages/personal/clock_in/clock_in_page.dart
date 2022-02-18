@@ -1,4 +1,13 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
@@ -10,12 +19,6 @@ import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.d
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ClockInPage extends StatefulWidget {
   const ClockInPage({Key? key}) : super(key: key);
@@ -77,7 +80,7 @@ class _ClockInPageState extends State<ClockInPage> {
                   child: ClipOval(
                       // child: FadeInImage.assetNetwork(
                       //   placeholder: Assets.images.placeholder.path,
-                      //   image: API.image(
+                      //   image: SARSAPI.image(
                       //       (UserTool.userProvider.userInfoModel?.imgUrls ?? [])
                       //               .isNotEmpty
                       //           ? UserTool

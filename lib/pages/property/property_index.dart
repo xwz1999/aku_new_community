@@ -43,8 +43,8 @@ class _PropertyIndexState extends State<PropertyIndex>
         'size': 10,
       },
     );
-    _pageCount = model.pageCount;
-    return model.tableList!.map((e) => BoardItemModel.fromJson(e)).toList();
+    _pageCount = model.total;
+    return model.rows.map((e) => BoardItemModel.fromJson(e)).toList();
   }
 
   @override

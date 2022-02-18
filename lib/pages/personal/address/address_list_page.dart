@@ -1,11 +1,12 @@
-import 'package:aku_new_community/model/user/adress_model.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
+import 'package:aku_new_community/model/user/adress_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import '../item_my_address.dart';
 import '../user_func.dart';
 import 'new_address_page.dart';

@@ -1,20 +1,20 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/main_initialize.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/my_event_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/line/vertical_line_painter.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import '../community_func.dart';
 
 class MyCommunityView extends StatefulWidget {
@@ -50,86 +50,125 @@ class MyCommunityViewState extends State<MyCommunityView>
       child: _onload
           ? SizedBox()
           : ListView(
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage(R.ASSETS_IMAGES_COMMUNITY_MY_BG_PNG,),
-                fit: BoxFit.fitWidth
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                12.hb,
-                Image.asset(R.ASSETS_ICONS_ICON_LOGISTICS_PNG,width: 132.w,height: 132.w,),
-                32.hb,
-                '吼姆拉'.text.size(32.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
-                12.hb,
-                '当一个新时代的天之圣杯'.text.size(24.sp).color(Color(0x73000000)).make(),
-                32.hb,
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: new DecorationImage(
+                        image: new AssetImage(
+                          R.ASSETS_IMAGES_COMMUNITY_MY_BG_PNG,
+                        ),
+                        fit: BoxFit.fitWidth),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      12.hb,
+                      Image.asset(
+                        R.ASSETS_ICONS_ICON_LOGISTICS_PNG,
+                        width: 132.w,
+                        height: 132.w,
+                      ),
+                      32.hb,
+                      '吼姆拉'
+                          .text
+                          .size(32.sp)
+                          .fontWeight(FontWeight.bold)
+                          .color(Color(0xD9000000))
+                          .make(),
+                      12.hb,
+                      '当一个新时代的天之圣杯'
+                          .text
+                          .size(24.sp)
+                          .color(Color(0x73000000))
+                          .make(),
+                      32.hb,
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 156.w,
+                  color: Colors.white,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            '111'
+                                .text
+                                .size(40.sp)
+                                .fontWeight(FontWeight.bold)
+                                .color(Color(0xD9000000))
+                                .make(),
+                            '动态'
+                                .text
+                                .size(24.sp)
+                                .color(Color(0x73000000))
+                                .make(),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            '111'
+                                .text
+                                .size(40.sp)
+                                .fontWeight(FontWeight.bold)
+                                .color(Color(0xD9000000))
+                                .make(),
+                            '动态'
+                                .text
+                                .size(24.sp)
+                                .color(Color(0x73000000))
+                                .make(),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            '111'
+                                .text
+                                .size(40.sp)
+                                .fontWeight(FontWeight.bold)
+                                .color(Color(0xD9000000))
+                                .make(),
+                            '动态'
+                                .text
+                                .size(24.sp)
+                                .color(Color(0x73000000))
+                                .make(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ..._myEventItems.map(
+                  (e) => _getMoments(e),
+                ),
+
+                //_getMoments(),
+                // _getMoments(),
               ],
             ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 156.w,
-            color: Colors.white,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      '111'.text.size(40.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
-                      '动态'.text.size(24.sp).color(Color(0x73000000)).make(),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      '111'.text.size(40.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
-                      '动态'.text.size(24.sp).color(Color(0x73000000)).make(),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      '111'.text.size(40.sp).fontWeight(FontWeight.bold).color(Color(0xD9000000)).make(),
-                      '动态'.text.size(24.sp).color(Color(0x73000000)).make(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ..._myEventItems.map((e) =>   _getMoments(e),),
-
-           //_getMoments(),
-          // _getMoments(),
-
-        ],
-      ),
     );
 
-
-      BeeListView<MyEventItemModel>(
+    BeeListView<MyEventItemModel>(
       path: API.community.myEvent,
       controller: _refreshController,
       convert: (model) {
-        return model.tableList!
-            .map((e) => MyEventItemModel.fromJson(e))
-            .toList();
+        return model.rows.map((e) => MyEventItemModel.fromJson(e)).toList();
       },
       builder: (items) {
         return ListView.separated(
@@ -145,114 +184,131 @@ class MyCommunityViewState extends State<MyCommunityView>
         );
       },
     );
-
   }
-  Widget _getMoments( MyEventItemModel item){
+
+  Widget _getMoments(MyEventItemModel item) {
     return Container(
-      padding: EdgeInsets.only(top: 32.w,left: 25.w,right: 32.w,bottom: 32.w),
+      padding:
+          EdgeInsets.only(top: 32.w, left: 25.w, right: 32.w, bottom: 32.w),
       color: Colors.white,
       child: CustomPaint(
         painter: VerticalLinePainter(
-            color: Color(0x0F000000),//最后一个调整为透明
-            width: 4.w,//根据UI调整即可
-            paddingTop: 100.w,//根据UI调整即可
-            paddingLeft: 0,//根据UI调整即可
-            paddingBottom: 100.w),//根据UI
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  '11.15'.text.size(32.sp).color(Color(0xA6000000)).bold.isIntrinsic.make(),
-                  '2021'.text.size(24.sp).color(Color(0x73000000)).bold.isIntrinsic.make(),
-                ],
-              ),
-              50.wb,
-              Column(
-                children: [
-                  Container(
-                    width: 552.w,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        '25.61'.text.size(28.sp).color(Color(0xA6000000)).isIntrinsic.make(),
+            color: Color(0x0F000000), //最后一个调整为透明
+            width: 4.w, //根据UI调整即可
+            paddingTop: 100.w, //根据UI调整即可
+            paddingLeft: 0, //根据UI调整即可
+            paddingBottom: 100.w), //根据UI
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                '11.15'
+                    .text
+                    .size(32.sp)
+                    .color(Color(0xA6000000))
+                    .bold
+                    .isIntrinsic
+                    .make(),
+                '2021'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0x73000000))
+                    .bold
+                    .isIntrinsic
+                    .make(),
+              ],
+            ),
+            50.wb,
+            Column(
+              children: [
+                Container(
+                  width: 552.w,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      '25.61'
+                          .text
+                          .size(28.sp)
+                          .color(Color(0xA6000000))
+                          .isIntrinsic
+                          .make(),
+                      PopupMenuButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.w)),
+                        itemBuilder: (context) {
+                          return [
+                            PopupMenuItem(
+                              child: '删除'.text.isIntrinsic.make(),
+                              value: 0,
+                            )
+                          ];
+                        },
+                        onSelected: (dynamic _) async {
+                          if (LoginUtil.isNotLogin) return;
+                          bool? result = await Get.dialog(CupertinoAlertDialog(
+                            title: '你确定删除吗'.text.isIntrinsic.make(),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: '取消'.text.black.isIntrinsic.make(),
+                                onPressed: () => Get.back(),
+                              ),
+                              CupertinoDialogAction(
+                                child: '确定'
+                                    .text
+                                    .color(Colors.orange)
+                                    .isIntrinsic
+                                    .make(),
+                                onPressed: () => Get.back(result: true),
+                              ),
+                            ],
+                          ));
 
-                        PopupMenuButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.w)),
-                          itemBuilder: (context) {
-                            return [
-                              PopupMenuItem(
-                                child: '删除'.text.isIntrinsic.make(),
-                                value: 0,
-                              )
-                            ];
-                          },
-                          onSelected: (dynamic _) async {
-                            if (LoginUtil.isNotLogin) return;
-                              bool? result =
-                              await Get.dialog(CupertinoAlertDialog(
-                                title: '你确定删除吗'.text.isIntrinsic.make(),
-                                actions: [
-                                  CupertinoDialogAction(
-                                    child: '取消'.text.black.isIntrinsic.make(),
-                                    onPressed: () => Get.back(),
-                                  ),
-                                  CupertinoDialogAction(
-                                    child: '确定'
-                                        .text
-                                        .color(Colors.orange)
-                                        .isIntrinsic
-                                        .make(),
-                                    onPressed: () => Get.back(result: true),
-                                  ),
-                                ],
-                              ));
-
-                              // if (result == true) {
-                              //   await NetUtil().get(
-                              //     API.community.deleteMyEvent,
-                              //     params: {'themeId': widget.model!.id},
-                              //     showMessage: true,
-                              //   );
-                              //
-                              // }
-
-
-
-                          },
-                          child: Container(
+                          // if (result == true) {
+                          //   await NetUtil().get(
+                          //     API.community.deleteMyEvent,
+                          //     params: {'themeId': widget.model!.id},
+                          //     showMessage: true,
+                          //   );
+                          //
+                          // }
+                        },
+                        child: Container(
+                            width: 32.w,
+                            height: 32.w,
+                            child: Image.asset(
+                              R.ASSETS_ICONS_ICON_MORE_PNG,
                               width: 32.w,
                               height: 32.w,
-                              child: Image.asset(
-                                R.ASSETS_ICONS_ICON_MORE_PNG,
-                                width: 32.w,
-                                height: 32.w,
-                                fit: BoxFit.fitHeight,
-                              )),
-                        ),
-                      ],
-                    ),
+                              fit: BoxFit.fitHeight,
+                            )),
+                      ),
+                    ],
                   ),
-                  32.hb,
-                  Container(
-                    width: 552.w,
-                    child: item.content!.text.size(28.sp).color(Color(0xA6000000)).isIntrinsic.black.make(),),
-                  40.hb,
-                  _renderImage(item)
-
-                ],
-              ),
-            ],
-          ),
+                ),
+                32.hb,
+                Container(
+                  width: 552.w,
+                  child: item.content!.text
+                      .size(28.sp)
+                      .color(Color(0xA6000000))
+                      .isIntrinsic
+                      .black
+                      .make(),
+                ),
+                40.hb,
+                _renderImage(item)
+              ],
+            ),
+          ],
         ),
+      ),
     );
   }
-
 
   _renderImage(MyEventItemModel item) {
     if (item.imgUrl!.isEmpty) return SizedBox();
@@ -280,7 +336,7 @@ class MyCommunityViewState extends State<MyCommunityView>
             tag: ImgModel.first(item.imgUrl),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(ImgModel.first(item.imgUrl)),
+              image: SARSAPI.image(ImgModel.first(item.imgUrl)),
               imageErrorBuilder: (context, error, stackTrace) {
                 return Image.asset(
                   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -295,9 +351,7 @@ class MyCommunityViewState extends State<MyCommunityView>
     else
       return Container(
         width: 552.w,
-
-        child: BeeGridImageView(
-            urls: item.imgUrl!.map((e) => e.url).toList()),
+        child: BeeGridImageView(urls: item.imgUrl!.map((e) => e.url).toList()),
       );
   }
 

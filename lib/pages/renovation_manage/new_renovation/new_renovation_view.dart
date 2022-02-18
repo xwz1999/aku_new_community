@@ -41,7 +41,7 @@ class _NewRenovationViewState extends State<NewRenovationView>
         },
         controller: _refreshController,
         convert: (models) {
-          return models.tableList!
+          return models.rows
               .map((e) => NewRenovationListModel.fromJson(e))
               .toList();
         },

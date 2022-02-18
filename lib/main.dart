@@ -1,3 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/splash/splash_page.dart';
@@ -7,12 +15,6 @@ import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   const buildType = const String.fromEnvironment('BUILD_TYPE');

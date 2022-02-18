@@ -1,8 +1,7 @@
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/event_item_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
+import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -66,13 +65,16 @@ class MyEventCard extends StatelessWidget {
                 .paddingOnly(left: 32.w, top: isFirst ? 0 : 64.w, bottom: 32.w)
             : SizedBox(),
         MaterialButton(
-          onPressed: () async{
+          onPressed: () async {
             BaseModel models = await NetUtil().get(
-              API.community.getEventDetail,
-              params: {'themeId': model.id},
+              SARSAPI.community.dynamicDetail,
+              params: {'dynamicId': model.id},
             );
-            EventItemModel  eventItemModel = EventItemModel.fromJson(models.data);
-            Get.to(() => EventDetailPage(themeId: model.id, eventItemModel: eventItemModel,));
+            DynamicDetailModel eventItemModel =
+                DynamicDetailModel.fromJson(models.data);
+            Get.to(() => EventDetailPage(
+                  dynamicId: model.id ?? 0,
+                ));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +102,7 @@ class MyEventCard extends StatelessWidget {
                         ),
                         child: FadeInImage.assetNetwork(
                           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                          image: API.image(ImgModel.first(model.imgUrl)),
+                          image: SARSAPI.image(ImgModel.first(model.imgUrl)),
                           width: 152.w,
                           height: 152.w,
                           fit: BoxFit.cover,

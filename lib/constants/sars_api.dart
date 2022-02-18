@@ -1,3 +1,5 @@
+import 'package:aku_new_community/widget/others/user_tool.dart';
+
 part 'market_api.dart';
 part 'profile_api.dart';
 
@@ -9,7 +11,8 @@ class SARSAPI {
   static const String baseURL = '$host';
 
   ///静态资源路径
-  static String get resource => '$host/static';
+  static String get resource =>
+      'https://saas.kaidalai.cn/resource/${UserTool.userProvider.userInfoModel!.communityCode}/';
 
   static String image(String? path) => '$resource$path';
 
@@ -23,6 +26,7 @@ class SARSAPI {
   static _House house = _House();
   static _File uploadFile = _File();
   static _Message message = _Message();
+  static _Community community = _Community();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -99,6 +103,9 @@ class _Message {
 }
 
 class _Community {
+  ///话题详情
+  String get topicDetail => '/app/user/community/topic/findById';
+
   ///动态信息详情
   String get dynamicDetail => '/app/user/community/dynamic/details';
 

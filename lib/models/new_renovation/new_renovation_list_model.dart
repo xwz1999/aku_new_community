@@ -1,8 +1,10 @@
-import 'package:aku_new_community/base/base_style.dart';
+import 'package:flutter/material.dart';
+
 import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
 
 part 'new_renovation_list_model.g.dart';
 

@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/model/message/system_message_detail_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_func.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class SystemMessageDetailPage extends StatefulWidget {
   final int? id;

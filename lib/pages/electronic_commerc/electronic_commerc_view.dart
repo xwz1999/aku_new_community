@@ -44,7 +44,7 @@ class _ElectronicCommercViewState extends State<ElectronicCommercView> {
         controller: _refreshController,
         extraParams: {"electronicCommerceCategoryId": widget.id},
         convert: (models) {
-          return models.tableList!
+          return models.rows
               .map((e) => ElectronicCommercListModel.fromJson(e))
               .toList();
         },

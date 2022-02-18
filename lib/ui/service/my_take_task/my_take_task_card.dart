@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
@@ -5,12 +12,6 @@ import 'package:aku_new_community/ui/service/my_take_task/my_take_task_detail_pa
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import '../task_func.dart';
 
 class MyTakeTaskCard extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/models/market/order/order_detail_model.dart';
@@ -47,8 +49,8 @@ class SearchFunc {
       API.market.findGoodsList,
       params: params,
     );
-    if (model.tableList!.length == 0) return [];
-    return model.tableList!.map((e) => SearchGoodsModel.fromJson(e)).toList();
+    if (model.rows.length == 0) return [];
+    return model.rows.map((e) => SearchGoodsModel.fromJson(e)).toList();
   }
 
   ///查询商品详情

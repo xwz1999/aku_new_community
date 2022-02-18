@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/community/event_item_model.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class NewCommunityView extends StatefulWidget {
   NewCommunityView({Key? key}) : super(key: key);
@@ -30,15 +33,15 @@ class NewCommunityViewState extends State<NewCommunityView>
   Widget build(BuildContext context) {
     super.build(context);
     return BeeListView(
-      path: API.community.newEventList,
+      path: SARSAPI.community.dynamicList,
       controller: _refreshController,
       convert: (model) {
-        return model.tableList!.map((e) => EventItemModel.fromJson(e)).toList();
+        return model.rows.map((e) => AllDynamicListModel.fromJson(e)).toList();
       },
       builder: (items) {
         return ListView.builder(
           itemBuilder: (context, index) {
-            final item = items[index] as EventItemModel;
+            final item = items[index] as AllDynamicListModel;
             return ChatCard(
               model: item,
               onDelete: () {

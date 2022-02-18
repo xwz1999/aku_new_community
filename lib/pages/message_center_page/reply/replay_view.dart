@@ -32,7 +32,7 @@ class _ReplayViewState extends State<ReplayView> {
         path: SARSAPI.message.allComment,
         controller: widget.controller,
         convert: (models) =>
-            models.tableList!.map((e) => ReplyListModel.fromJson(e)).toList(),
+            models.rows.map((e) => ReplyListModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
               itemBuilder: (context, index) {

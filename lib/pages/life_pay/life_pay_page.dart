@@ -299,7 +299,7 @@ class _LifePayPageState extends State<LifePayPage> {
             "size": _size,
             'estateId': appProvider.selectedHouse!.estateId
           });
-          _models = baseListModel.tableList!
+          _models = baseListModel.rows
               .map((e) => LifePayListModel.fromJson(e))
               .toList();
           // _selectPay.clear();

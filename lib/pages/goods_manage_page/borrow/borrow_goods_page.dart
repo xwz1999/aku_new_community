@@ -1,6 +1,16 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/article_borrow_model.dart';
 import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_goods_detail_page.dart';
@@ -8,14 +18,6 @@ import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'borrow_examine_page.dart';
 
 class BorrowGoodsSubmitModel {
@@ -85,10 +87,9 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           BaseListModel _listModel = await NetUtil().getList(
               API.manager.articleBorrow,
               params: {'pageNum': _page, 'size': _size});
-          _borrowModels = _listModel.tableList
-                  ?.map((e) => ArticleBorrowModel.fromJson(e))
-                  .toList() ??
-              [];
+          _borrowModels = _listModel.rows
+              .map((e) => ArticleBorrowModel.fromJson(e))
+              .toList();
           _receiveIds =
               _borrowModels.map((e) => BorrowGoodsSubmitModel.init()).toList();
           setState(() {});
@@ -98,14 +99,12 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           BaseListModel _listModel = await NetUtil().getList(
               API.manager.articleBorrow,
               params: {'pageNum': _page, 'size': _size});
-          _borrowModels.addAll(_listModel.tableList
-                  ?.map((e) => ArticleBorrowModel.fromJson(e))
-                  .toList() ??
-              []);
-          _receiveIds.addAll(_listModel.tableList
-                  ?.map((e) => BorrowGoodsSubmitModel.init())
-                  .toList() ??
-              []);
+          _borrowModels.addAll(_listModel.rows
+              .map((e) => ArticleBorrowModel.fromJson(e))
+              .toList());
+          _receiveIds.addAll(_listModel.rows
+              .map((e) => BorrowGoodsSubmitModel.init())
+              .toList());
           setState(() {});
         },
         child: _borrowModels.isEmpty
@@ -173,7 +172,7 @@ class _BorrowGoodsPageState extends State<BorrowGoodsPage> {
           child: ClipRRect(
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: API.image(ImgModel.first(model.imgUrls)),
+              image: SARSAPI.image(ImgModel.first(model.imgUrls)),
               imageErrorBuilder: (context, error, stackTrace) {
                 return Image.asset(
                   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

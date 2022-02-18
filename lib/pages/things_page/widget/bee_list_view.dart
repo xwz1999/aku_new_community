@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 /// ## BeeListView
 ///```dart
 ///BeeListView(
 ///   path: API.someAPI,
 ///   convert: (model) {
-///     return model.tableList
+///     return model.rows
 ///     .map((e) => SomeModel.fromJson(e))
 ///     .toList();
 ///   },
@@ -34,12 +36,12 @@ class BeeListView<T> extends StatefulWidget {
   ///
   ///BaseListModel to T
   ///
-  ///T is a tableList item.
+  ///T is a rows item.
   ///
   ///```dart
   ///...
   ///convert: (model) {
-  ///   return model.tableList
+  ///   return model.rows
   ///   .map((e) => SomeModel.fromJson(e))
   ///   .toList();
   ///},
@@ -113,7 +115,7 @@ class _BeeListViewState<T> extends State<BeeListView> {
           params: _params,
         );
         _models.addAll(widget.convert(_model) as List<T?>);
-        if (_pageNum >= _model.pageCount!)
+        if (_models.length >= _model.total)
           widget.controller!.finishLoad(noMore: true);
         setState(() {});
       },

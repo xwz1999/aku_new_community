@@ -106,7 +106,7 @@ class _SystemMessagePageState extends State<SystemMessagePage> {
           path: API.message.sysMessageList,
           controller: _refreshController,
           convert: (models) {
-            return models.tableList!
+            return models.rows
                 .map((e) => SystemMessageModel.fromJson(e))
                 .toList();
           },

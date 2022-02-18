@@ -6,6 +6,7 @@
  * remark    : 
  * ====================================================
  */
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -27,9 +28,7 @@ class AddressSelector extends StatefulWidget {
       this.province = "",
       this.city = "",
       this.district = "",
-      required this.callback})
-      : assert(model != null),
-        assert(callback != null);
+      required this.callback});
 
   @override
   _AddressSelectorState createState() => _AddressSelectorState();

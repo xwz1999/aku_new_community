@@ -1,13 +1,15 @@
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/activity_item_model.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/model/community/activity_item_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'activity_detail_page_old.dart';
 
 class ActivityCard extends StatelessWidget {
@@ -43,7 +45,7 @@ class ActivityCard extends StatelessWidget {
               color: Colors.grey,
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: API.image(ImgModel.first(model!.imgUrls)),
+                image: SARSAPI.image(ImgModel.first(model!.imgUrls)),
                 height: 197.w,
                 width: double.infinity,
                 fit: BoxFit.cover,

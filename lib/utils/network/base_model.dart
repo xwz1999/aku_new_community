@@ -13,8 +13,9 @@ class BaseModel {
       _$BaseModelFromJson(json);
 
   static BaseModel error(
-          String? message, bool success, dynamic data, int code) =>
-      BaseModel(code: code, msg: message ?? '未知错误', success: success);
+          {String? message, bool? success, dynamic data, int? code}) =>
+      BaseModel(
+          code: code ?? 0, msg: message ?? '未知错误', success: success ?? false);
 
   BaseModel({
     required this.code,

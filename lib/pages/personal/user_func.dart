@@ -101,8 +101,8 @@ class Userfunc {
       API.community.boardList,
       params: {'pageNum': 1, 'size': 5},
     );
-    if (model.tableList!.length == 0) return [];
-    return model.tableList!.map((e) => BoardItemModel.fromJson(e)).toList();
+    if (model.rows.length == 0) return [];
+    return model.rows.map((e) => BoardItemModel.fromJson(e)).toList();
   }
 
   static Future<List<SwiperModel>> swiper() async {

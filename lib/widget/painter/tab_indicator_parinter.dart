@@ -1,5 +1,6 @@
-import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
 
 class TabIndicatorPainter extends CustomPainter {
   @override
