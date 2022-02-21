@@ -3,9 +3,9 @@ import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/community/activity_item_model.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/hot_news_model.dart';
-import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/model/community/swiper_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
+import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
 import 'package:aku_new_community/models/community/topic_model.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
@@ -28,13 +28,13 @@ class CommunityFunc {
   }
 
   ///我的动态
-  static Future<List<MyEventItemModel>> getMyEventItem() async {
+  static Future<List<DynamicMyListBody>> getMyEventItem() async {
     BaseListModel model = await NetUtil().getList(
-      API.community.myEvent,
+      SARSAPI.community.dynamicMyListL,
       params: {'pageNum': 1, 'size': 8},
     );
     if (model.rows.length == 0) return [];
-    return model.rows.map((e) => MyEventItemModel.fromJson(e)).toList();
+    return model.rows.map((e) => DynamicMyListBody.fromJson(e)).toList();
   }
 
   ///查询热门资讯

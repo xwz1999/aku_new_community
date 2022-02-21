@@ -103,6 +103,9 @@ class _Message {
 }
 
 class _Community {
+  ///查询动态下的单个评论信息
+  String get singleComment => '/app/user/community/comment/findById';
+
   ///话题详情
   String get topicDetail => '/app/user/community/topic/findById';
 

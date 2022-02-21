@@ -32,7 +32,7 @@ CommentTwoList _$CommentTwoListFromJson(Map<String, dynamic> json) =>
       createId: json['createId'] as int,
       createName: json['createName'] as String,
       parentId: json['parentId'] as int,
-      parentName: json['parentName'] as String,
+      parentName: json['parentName'] as String?,
       createDate: json['createDate'] as String,
       avatarImgList: (json['avatarImgList'] as List<dynamic>)
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))

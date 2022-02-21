@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/comment_list_model.dart';
@@ -14,6 +13,7 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
@@ -47,33 +47,42 @@ class _EventDetailPageState extends State<EventDetailPage> {
   }
 
   TextEditingController _textEditingController = TextEditingController();
-  int rootId = 0;
-  int parentId = 0;
+
+  //评论根id
+  int _rootId = 0;
+
+  //回复的id
+  int _parentId = 0;
 
   int _page = 1;
   int _type = 1;
   int _size = 10;
+  int _currentCommentIndex = 0;
   List<CommentListModel> _comments = [];
+  List<bool> _folds = [];
+  List<bool> _likes = [];
 
   //评论输入框焦点
   FocusNode _focusNode = FocusNode();
 
   Map<String, dynamic> get params => {
-        'rootId': rootId,
-        'parentId': parentId,
+        'rootId': _rootId,
+        'parentId': _parentId,
         'dynamicId': widget.dynamicId,
         'content': _textEditingController.text
       };
 
   Future updateComments() async {
-    var base = await NetUtil().getList(SARSAPI.community.commentList, params: {
-      'pageNum': _page,
-      'size': _size,
-      'dynamicId': widget.dynamicId,
-      'type': _type,
+    var base = await NetUtil().get(SARSAPI.community.singleComment, params: {
+      'commentId': _comments[_currentCommentIndex].id,
     });
-    _comments.replaceRange((_page - 1) * _size, _page * _size,
-        base.rows.map((e) => CommentListModel.fromJson(e)).toList());
+    if (base.success) {
+      _comments.removeAt(_currentCommentIndex);
+      _comments.insert(
+          _currentCommentIndex, CommentListModel.fromJson(base.data));
+    } else {
+      BotToast.showText(text: base.msg);
+    }
     setState(() {});
   }
 
@@ -120,11 +129,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ));
 
               if (result == true) {
-                await NetUtil().get(
-                  API.community.deleteMyEvent,
-                  params: {'dynamicId': widget.dynamicId},
-                  showMessage: true,
-                );
                 if (widget.onDelete != null) {
                   widget.onDelete!();
                   Get.back();
@@ -145,7 +149,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
           );
           _model = DynamicDetailModel.fromJson(model.data);
           _page = 1;
-
           var base =
               await NetUtil().getList(SARSAPI.community.commentList, params: {
             'pageNum': _page,
@@ -155,6 +158,14 @@ class _EventDetailPageState extends State<EventDetailPage> {
           });
           _comments =
               base.rows.map((e) => CommentListModel.fromJson(e)).toList();
+          _folds = List.filled(_size, true);
+          _comments.forEach((element) {
+            if (element.isLike) {
+              _likes.add(true);
+            } else {
+              _likes.add(false);
+            }
+          });
           setState(() {});
         },
         onLoad: () async {
@@ -167,8 +178,17 @@ class _EventDetailPageState extends State<EventDetailPage> {
             'type': _type,
           });
           if (_comments.length < base.total) {
-            _comments.addAll(
-                base.rows.map((e) => CommentListModel.fromJson(e)).toList());
+            var _list =
+                base.rows.map((e) => CommentListModel.fromJson(e)).toList();
+            _comments.addAll(_list);
+            _folds.addAll(List.filled(_list.length, true));
+            _list.forEach((element) {
+              if (element.isLike) {
+                _likes.add(true);
+              } else {
+                _likes.add(false);
+              }
+            });
           }
           setState(() {});
         },
@@ -178,18 +198,30 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      ChatCardDetail(
-                        model: _model!,
-                        hideLine: true,
-                        canTap: false,
+                      GestureDetector(
+                        onTap: () {
+                          _rootId = 0;
+                          _parentId = 0;
+                        },
+                        child: ChatCardDetail(
+                          model: _model!,
+                          hideLine: true,
+                          canTap: false,
+                        ),
                       ),
                       _renderLikeAndCommentWidget(),
                     ],
                   ),
                 ),
                 SliverList(
-                    delegate: SliverChildListDelegate(
-                        _comments.map((e) => _commentWidget(e)).toList()))
+                    delegate: SliverChildListDelegate(_comments
+                        .mapIndexed((e, index) => _commentWidget(e, index))
+                        .toList()
+                        .sepWidget(
+                            separate: BeeDivider.horizontal(
+                          indent: 32.w,
+                          endIndent: 32.w,
+                        ))))
               ],
       ),
     );
@@ -257,8 +289,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
     );
   }
 
-  Widget _commentWidget(CommentListModel model) {
+  Widget _commentWidget(CommentListModel model, int rootIndex) {
     return Container(
+      // key: UniqueKey(),
       color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
       width: double.infinity,
@@ -313,34 +346,63 @@ class _EventDetailPageState extends State<EventDetailPage> {
           40.hb,
           model.content.text.size(28.sp).color(ktextSubColor).make(),
           30.hb,
-          Row(
-            children: [
-              Spacer(),
-              Image.asset(
-                R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
-                width: 40.w,
-                height: 40.w,
-              ),
-              5.wb,
-              '${model.likes}'.text.size(24.sp).color(Color(0xFF999999)).make(),
-              32.wb,
-              Image.asset(
-                R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
-                width: 40.w,
-                height: 40.w,
-              ),
-              5.wb,
-              '${model.commentNum}'
-                  .text
-                  .size(24.sp)
-                  .color(Color(0xFF999999))
-                  .make(),
-            ],
+          GestureDetector(
+            onTap: () async {
+              var res =
+                  await NetUtil().get(SARSAPI.community.commentLike, params: {
+                'commentId': model.id,
+              });
+              if (res.success) {
+                _likes[rootIndex] = !_likes[rootIndex];
+                setState(() {});
+              }
+            },
+            child: Row(
+              children: [
+                Spacer(),
+                Image.asset(
+                  R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
+                  width: 40.w,
+                  height: 40.w,
+                ),
+                5.wb,
+                '${model.likes}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
+                32.wb,
+                GestureDetector(
+                  onTap: () {
+                    _rootId = model.id;
+                    _parentId = model.id;
+                    _focusNode.requestFocus();
+                    _currentCommentIndex = rootIndex;
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
+                        width: 40.w,
+                        height: 40.w,
+                      ),
+                    ],
+                  ),
+                ),
+                5.wb,
+                '${model.commentNum}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
+              ],
+            ),
           ),
           40.hb,
           model.commentTwoList.isEmpty
               ? SizedBox.shrink()
               : Container(
+                  alignment: Alignment.topLeft,
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.06),
                       borderRadius: BorderRadius.circular(16.w)),
@@ -349,11 +411,20 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   padding:
                       EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
                   child: Column(
-                    children: model.commentTwoList
-                        .map((e) =>
-                            _subCommentWidget(e, model.createId, model.id))
-                        .toList()
-                        .sepWidget(separate: 24.hb),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ...List.generate(
+                          model.commentTwoList.length < 3
+                              ? model.commentTwoList.length
+                              : 3,
+                          (index) => _subCommentWidget(
+                              model.commentTwoList[index],
+                              model.createId,
+                              model.id,
+                              rootIndex)),
+                      if (model.commentTwoList.length > 3)
+                        _foldComment(model, rootIndex)
+                    ].sepWidget(separate: 24.hb),
                   ),
                 ),
         ],
@@ -361,12 +432,43 @@ class _EventDetailPageState extends State<EventDetailPage> {
     );
   }
 
-  Widget _subCommentWidget(CommentTwoList model, int createId, int rootId) {
+  Widget _foldComment(CommentListModel model, int rootIndex) {
+    return _folds[rootIndex]
+        ? Row(
+            children: [
+              '共有${model.commentNum}条回复'
+                  .text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              Spacer(),
+              TextButton(
+                  onPressed: () {
+                    _folds[rootIndex] = false;
+                    setState(() {});
+                  },
+                  child: '展开'.text.size(28.sp).color(Color(0xFF5D98F9)).make())
+            ],
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...List.generate(
+                  model.commentTwoList.length - 3,
+                  (index) => _subCommentWidget(model.commentTwoList[index + 3],
+                      model.createId, model.id, rootIndex))
+            ].sepWidget(separate: 24.hb),
+          );
+  }
+
+  Widget _subCommentWidget(
+      CommentTwoList model, int createId, int rootId, int rootIndex) {
     return GestureDetector(
       onTap: () {
-        rootId = rootId;
-        parentId = model.id;
+        _rootId = rootId;
+        _parentId = model.id;
         _focusNode.requestFocus();
+        _currentCommentIndex = rootIndex;
       },
       child: RichText(
           text: TextSpan(
@@ -376,11 +478,13 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 fontSize: 28.sp,
               ),
               children: [
-            if (rootId == model.createId)
+            if (createId == model.createId)
               WidgetSpan(
                   child: Container(
                 width: 56.w,
                 height: 28.w,
+                margin: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 4.w),
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Color(0xFFF8B133),
                     borderRadius: BorderRadius.circular(4.w)),
@@ -423,6 +527,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
         width: double.infinity,
         height: 100.w,
         padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 32.w),
+        margin:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         decoration: BoxDecoration(
           color: Colors.white,
         ),
@@ -438,6 +544,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 child: TextField(
                   controller: _textEditingController,
                   focusNode: _focusNode,
+                  autofocus: false,
                   decoration: InputDecoration(
                       hintText: '参与评论',
                       contentPadding:
@@ -465,7 +572,12 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     .post(SARSAPI.community.commentInsert, params: params);
                 if (res.success) {
                   _textEditingController.clear();
-                  await updateComments();
+                  if (_rootId == 0) {
+                    _refreshController.callRefresh();
+                  } else {
+                    await updateComments();
+                    _focusNode.unfocus();
+                  }
                   setState(() {});
                 } else {
                   BotToast.showText(text: res.msg);
