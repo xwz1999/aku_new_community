@@ -27,6 +27,7 @@ class SARSAPI {
   static _File uploadFile = _File();
   static _Message message = _Message();
   static _Community community = _Community();
+  static _Task task = _Task();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -141,4 +142,30 @@ class _Community {
 
   ///新鲜话题
   String get topNewList => '/app/user/community/topic/newList';
+}
+
+class _Task {
+  ///取消任务（发布者,接单者）
+  String get cancel => '/app/user/taskRelease/cancel';
+
+  ///任务评价（发布者）
+  String get evaluation => '/app/user/taskRelease/evaluation';
+
+  ///确认任务（发布者）
+  String get confirm => '/app/user/taskRelease/confirm';
+
+  ///完成任务（接单者）
+  String get finish => '/app/user/taskRelease/finish';
+
+  ///开始服务（接单者）
+  String get startService => '/app/user/taskRelease/startService';
+
+  ///领取任务（接单者）
+  String get receive => '/app/user/taskRelease/receive';
+
+  ///发布任务
+  String get insert => '/app/user/taskRelease/insert';
+
+  ///查询任务发布信息列表
+  String get list => '/app/user/taskRelease/list';
 }
