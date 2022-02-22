@@ -3,10 +3,13 @@ import 'package:aku_new_community/models/task/my_task_list_model.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../task_func.dart';
 
 class MyTaskDetailPage extends StatefulWidget {
   final MyTaskListModel model;
@@ -118,6 +121,14 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
               )),
         ],
       ),
+      bottomNavi: widget.model.status != 3
+          ? SizedBox()
+          : BottomButton(
+              onPressed: () async {
+                await TaskFunc.finish(taskId: widget.model.id);
+              },
+              child: Text('完成任务'),
+            ),
     );
   }
 
