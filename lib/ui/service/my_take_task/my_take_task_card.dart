@@ -171,7 +171,7 @@ class MyTakeTaskCard extends StatelessWidget {
             )
           ],
         );
-      case 4:
+      case 9:
         return Column(
           children: [
             32.w.heightBox,

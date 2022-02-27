@@ -140,25 +140,7 @@ class MyTaskCard extends StatelessWidget {
                 )
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                40.w.heightBox,
-                Row(
-                  children: [
-                    Spacer(),
-                    CardBottomButton.yellow(
-                        text: '取消订单',
-                        onPressed: () async {
-                          var re = await TaskFunc.cancel(taskId: model.id);
-                          if (re) {
-                            refresh();
-                          }
-                        }),
-                  ],
-                ),
-              ],
-            ),
+            _cardBottom(model.status),
           ],
         ),
       ),
@@ -173,11 +155,32 @@ class MyTaskCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             40.w.heightBox,
-            CardBottomButton.white(text: '取消订单', onPressed: () {}),
-            CardBottomButton.yellow(text: '确认完成', onPressed: () {}),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CardBottomButton.white(text: '取消订单', onPressed: () {}),
+              ],
+            ),
           ],
         );
-      case 4:
+      case 3:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            40.w.heightBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CardBottomButton.yellow(
+                    text: '确认完成',
+                    onPressed: () async {
+                      await TaskFunc.confirm(taskId: model.id);
+                    }),
+              ],
+            ),
+          ],
+        );
+      case 9:
         return Column(
           children: [
             32.w.heightBox,

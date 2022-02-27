@@ -125,7 +125,7 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
           ? SizedBox()
           : BottomButton(
               onPressed: () async {
-                await TaskFunc.finish(taskId: widget.model.id);
+                await TaskFunc.confirm(taskId: widget.model.id);
               },
               child: Text('完成任务'),
             ),

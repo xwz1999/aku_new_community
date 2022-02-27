@@ -58,4 +58,15 @@ class TaskFunc {
     });
     return base.status ?? false;
   }
+
+  ///完成任务
+
+  static Future<bool> confirm({
+    required int taskId,
+  }) async {
+    var base = await NetUtil().get(API.manager.task.confirm, params: {
+      'taskId': taskId,
+    });
+    return base.status ?? false;
+  }
 }

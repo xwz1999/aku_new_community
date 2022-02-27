@@ -174,6 +174,9 @@ class _Task {
 
   ///完成任务
   String get finish => '/user/taskRelease/finish';
+
+  ///确认任务
+  String get confirm => '/user/taskRelease/confirm';
 }
 
 class _Manager {
