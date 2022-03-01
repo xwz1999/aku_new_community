@@ -1,20 +1,17 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
-
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/community/board_detail_model.dart';
+import 'package:aku_new_community/models/home/announce_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_download_view.dart';
 import 'package:aku_new_community/widget/views/doc_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int? id;
@@ -27,7 +24,7 @@ class NoticeDetailPage extends StatefulWidget {
 
 class _NoticeDetailPageState extends State<NoticeDetailPage> {
   EasyRefreshController _refreshController = EasyRefreshController();
-  BoardDetailModel? model;
+  AnnounceDetailModel? model;
 
   Widget get emptyWidget => Column(
         children: [],
@@ -42,11 +39,11 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
         header: MaterialHeader(),
         onRefresh: () async {
           BaseModel baseModel = await NetUtil().get(
-            API.community.boardDetail,
+            SARSAPI.announce.detail,
             params: {'announcementId': widget.id},
           );
           if (baseModel.data != null) {
-            model = BoardDetailModel.fromJson(baseModel.data);
+            model = AnnounceDetailModel.fromJson(baseModel.data);
           }
           setState(() {});
         },
@@ -57,9 +54,9 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
             : ListView(
                 padding: EdgeInsets.all(32.w),
                 children: [
-                  model!.title!.text.size(32.sp).bold.make(),
+                  model!.title.text.size(32.sp).bold.make(),
                   50.hb,
-                  ...model!.imgUrls!
+                  ...model!.annexImgList
                       .map(
                         (e) => GestureDetector(
                           onTap: () {
@@ -76,10 +73,9 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                                 borderRadius: BorderRadius.circular(8.w),
                                 color: Colors.black12,
                               ),
-                              child: FadeInImage.assetNetwork(
-                                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                image: SARSAPI.image(e.url),
-                                fit: BoxFit.cover,
+                              child: BeeImageNetwork(
+                                urls: [e.url ?? ''],
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
@@ -87,17 +83,19 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                       )
                       .toList(),
                   44.hb,
-                  model!.content!.text.size(28.sp).make(),
+                  model!.content.text.size(28.sp).make(),
                   43.hb,
-                  DocViw(
-                    title: model?.fileDocName ?? '',
-                    onPressed: () async {
-                      String? result = await Get.dialog(BeeDownloadView(
-                        file: model!.fileDocUrl,
-                      ));
-                      if (result != null) OpenFile.open(result);
-                    },
-                  ),
+                  ...model!.annexImgList
+                      .map((e) => DocViw(
+                            title: e.url ?? '',
+                            onPressed: () async {
+                              String? result = await Get.dialog(BeeDownloadView(
+                                file: SARSAPI.image(e.url),
+                              ));
+                              if (result != null) OpenFile.open(result);
+                            },
+                          ))
+                      .toList(),
                 ],
               ),
       ).material(color: Colors.white),

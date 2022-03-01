@@ -1,12 +1,12 @@
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/community/activity_item_model.dart';
-import 'package:aku_new_community/model/community/board_model.dart';
 import 'package:aku_new_community/model/community/hot_news_model.dart';
-import 'package:aku_new_community/model/community/swiper_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
 import 'package:aku_new_community/models/community/topic_model.dart';
+import 'package:aku_new_community/models/home/home_activity_model.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/models/home/home_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/models/market/market_category_model.dart';
@@ -120,38 +120,31 @@ class CommunityFunc {
         .toList();
   }
 
-  static Future<ActivityItemModel?> activity() async {
+  static Future<List<HomeActivityModel>> activityList() async {
     BaseListModel model = await NetUtil().getList(
-      API.community.activityList,
-      params: {'pageNum': 1, 'size': 5},
-    );
-    if (model.rows.length == 0) return null;
-    return ActivityItemModel.fromJson(model.rows.first);
-  }
-
-  static Future<List<ActivityItemModel>> activityList() async {
-    BaseListModel model = await NetUtil().getList(
-      API.community.activityList,
+      SARSAPI.activity.list,
       params: {'pageNum': 1, 'size': 5},
     );
     if (model.rows.length == 0) return [];
-    return model.rows.map((e) => ActivityItemModel.fromJson(e)).toList();
+    return model.rows.map((e) => HomeActivityModel.fromJson(e)).toList();
   }
 
-  static Future<List<BoardItemModel>> board() async {
+  static Future<List<HomeAnnounceModel>> board() async {
     BaseListModel model = await NetUtil().getList(
-      API.community.boardList,
+      SARSAPI.announce.list,
       params: {'pageNum': 1, 'size': 5},
     );
     if (model.rows.length == 0) return [];
-    return model.rows.map((e) => BoardItemModel.fromJson(e)).toList();
+    return model.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
   }
 
-  static Future<List<SwiperModel>> swiper() async {
+  static Future<List<HomeSwiperModel>> swiper() async {
     BaseModel model = await NetUtil().get(
-      API.community.getSwiper,
+      SARSAPI.homeCarouse.list,
     );
     if (model.data!.length == 0) return [];
-    return (model.data as List).map((e) => SwiperModel.fromJson(e)).toList();
+    return (model.data as List)
+        .map((e) => HomeSwiperModel.fromJson(e))
+        .toList();
   }
 }

@@ -1,26 +1,12 @@
 // Dart imports:
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:badges/badges.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:palette_generator/palette_generator.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/color_ext.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/activity_item_model.dart';
-import 'package:aku_new_community/model/community/board_model.dart';
-import 'package:aku_new_community/model/community/swiper_model.dart';
+import 'package:aku_new_community/models/home/home_activity_model.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/models/home/home_swiper_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
@@ -30,14 +16,28 @@ import 'package:aku_new_community/ui/community/activity/activity_list_page.dart'
 import 'package:aku_new_community/ui/community/community_func.dart';
 import 'package:aku_new_community/ui/home/home_notification.dart';
 import 'package:aku_new_community/ui/home/home_title.dart';
-import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
+import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/ui/search/bee_search.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/widget/animated/OverlayWidget.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:badges/badges.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:palette_generator/palette_generator.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage>
   int _currentSwiperIndex = 0;
 
   // ActivityItemModel? _activityItemModel;
-  List<ActivityItemModel> _activityItemModels = [];
-  List<BoardItemModel> _boardItemModels = [];
-  List<SwiperModel> _swiperModels = [];
+  List<HomeActivityModel> _activityItemModels = [];
+  List<HomeAnnounceModel> _boardItemModels = [];
+  List<HomeSwiperModel> _swiperModels = [];
 
   SwiperController _swiperController = SwiperController();
   ValueNotifier<Color> _barColor = ValueNotifier(Colors.transparent);
@@ -200,7 +200,6 @@ class _HomePageState extends State<HomePage>
                 header: BeeBallPauseHeader(bgColor: _barColor),
                 firstRefresh: true,
                 onRefresh: () async {
-                  //_activityItemModel = await CommunityFunc.activity();
                   _activityItemModels = await CommunityFunc.activityList();
                   _boardItemModels = await CommunityFunc.board();
                   _swiperModels = await CommunityFunc.swiper();
@@ -214,6 +213,7 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          head,
                           HomeSwiper(), //要做点击事件
                           // SizedBox(height: 100.w),
                           Container(
@@ -434,7 +434,7 @@ class _HomePageState extends State<HomePage>
                         _activityItemModels == []
                             ? SizedBox()
                             : Container(
-                                height: 400.w,
+                                height: 480.w,
                                 padding: EdgeInsets.only(left: 32.w),
                                 child: ListView.separated(
                                   padding: EdgeInsets.zero,
@@ -513,8 +513,7 @@ class _HomePageState extends State<HomePage>
           // control: new SwiperControl(),
           autoplay: true,
           onTap: (index) {
-            Get.to(() =>
-                PublicInformationDetailPage(id: _swiperModels[index].newsId!));
+            swiperNavigate(_swiperModels[index]);
           },
           itemCount: _swiperModels.length,
         ),
@@ -522,11 +521,31 @@ class _HomePageState extends State<HomePage>
     );
   }
 
+  void swiperNavigate(HomeSwiperModel model) {
+    switch (model.type) {
+      case 1:
+        launch(model.customizeUrl ?? '');
+        break;
+      case 2:
+        Get.to(GoodDetailPage(goodId: model.id));
+        break;
+      case 3:
+        // Get.to(page)
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      default:
+        BotToast.showText(text: '类型错误');
+    }
+  }
+
   Future _swiperBarColor(int index) async {
     if (_swiperModels.isNotEmpty) {
       var color =
           await PaletteGenerator.fromImageProvider(CachedNetworkImageProvider(
-        SARSAPI.image(ImgModel.first(_swiperModels[index].voResourcesImgList)),
+        SARSAPI.image(ImgModel.first(_swiperModels[index].imgList)),
       ));
       _barColor.value = color.dominantColor?.color ?? Colors.transparent;
     } else {
@@ -534,18 +553,10 @@ class _HomePageState extends State<HomePage>
     }
   }
 
-  Widget getSwiperImage(SwiperModel swiperModel) {
+  Widget getSwiperImage(HomeSwiperModel swiperModel) {
     return Container(
-      child: FadeInImage.assetNetwork(
-        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-        image: SARSAPI.image(ImgModel.first(swiperModel.voResourcesImgList)),
-        fit: BoxFit.fill,
-        imageErrorBuilder: (context, error, stackTrace) {
-          return Image.asset(
-            R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            fit: BoxFit.fill,
-          );
-        },
+      child: BeeImageNetwork(
+        imgs: swiperModel.imgList ?? [],
       ),
     );
   }

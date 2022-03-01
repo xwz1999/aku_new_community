@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:flutter/material.dart';
 
 class StackAvatar extends StatelessWidget {
   final List<String?> avatars;
@@ -32,12 +29,10 @@ class StackAvatar extends StatelessWidget {
                 border: Border.all(color: Color(0xFF999999)),
               ),
               clipBehavior: Clip.antiAlias,
-              child: FadeInImage.assetNetwork(
-                height: 44.w,
+              child: BeeImageNetwork(
                 width: 44.w,
-                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(avatars[index]),
-                fit: BoxFit.cover,
+                height: 44.w,
+                urls: [avatars[index] ?? ''],
               ),
             ),
           );

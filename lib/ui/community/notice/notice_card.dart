@@ -1,21 +1,18 @@
-import 'package:flutter/material.dart';
-
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/board_model.dart';
-import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
-
+@Deprecated('旧设计，暂时弃用')
 class NoticeCard extends StatelessWidget {
-  final BoardItemModel model;
-  final BoardItemModel? preModel;
+  final HomeAnnounceModel model;
+  final HomeAnnounceModel? preModel;
 
   const NoticeCard({
     Key? key,
@@ -24,25 +21,26 @@ class NoticeCard extends StatelessWidget {
   }) : super(key: key);
 
   bool get sameDay =>
-      model.releaseDate!.year == (preModel?.releaseDate?.year ?? 0) &&
-      model.releaseDate!.month == (preModel?.releaseDate?.month ?? 0) &&
-      model.releaseDate!.day == (preModel?.releaseDate?.day ?? 0);
+      model.createDateString?.year == (preModel?.createDateString?.year ?? 0) &&
+      model.createDateString?.month ==
+          (preModel?.createDateString?.month ?? 0) &&
+      model.createDateString?.day == (preModel?.createDateString?.day ?? 0);
 
   bool get isYesterday {
     DateTime now = DateTime.now();
-    DateTime yestoday = DateTime(now.year, now.month, now.day - 1);
-    return yestoday.year == model.releaseDate!.year &&
-        yestoday.month == model.releaseDate!.month &&
-        yestoday.day == model.releaseDate!.day;
+    DateTime yesterday = DateTime(now.year, now.month, now.day - 1);
+    return yesterday.year == model.createDateString?.year &&
+        yesterday.month == model.createDateString?.month &&
+        yesterday.day == model.createDateString?.day;
   }
 
   bool get isFirst => preModel == null;
 
   bool get notSameYear =>
-      model.releaseDate!.year != (preModel?.releaseDate?.year ?? 0);
+      model.createDateString?.year != (preModel?.createDateString?.year ?? 0);
 
   Widget title() {
-    if (DateUtil.isToday(model.releaseDate!.millisecond))
+    if (DateUtil.isToday(model.createDateString?.millisecond))
       return '今天'.text.size(52.sp).bold.make();
     if (isYesterday)
       return '昨天'.text.size(52.sp).bold.make();
@@ -50,8 +48,12 @@ class NoticeCard extends StatelessWidget {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          model.releaseDate!.day.toString().text.size(52.sp).bold.make(),
-          '${model.releaseDate!.month}月'.text.size(36.sp).make(),
+          (model.createDateString?.day.toString() ?? '')
+              .text
+              .size(52.sp)
+              .bold
+              .make(),
+          '${model.createDateString?.month}月'.text.size(36.sp).make(),
         ],
       );
   }
@@ -62,8 +64,8 @@ class NoticeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        (notSameYear && model.releaseDate!.year != DateTime.now().year)
-            ? '${model.releaseDate!.year}年'
+        (notSameYear && model.createDateString?.year != DateTime.now().year)
+            ? '${model.createDateString?.year}年'
                 .text
                 .bold
                 .size(52.sp)
@@ -83,14 +85,14 @@ class NoticeCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: sameDay ? SizedBox() : title(),
               ),
-              model.imgUrls!.length == 0
+              model.imgList.length == 0
                   ? SizedBox(height: 152.w)
                   : GestureDetector(
                       onTap: () {
                         BeeImagePreview.toPath(
-                          path: ImgModel.first(model.imgUrls),
+                          path: ImgModel.first(model.imgList),
                           tag:
-                              '${ImgModel.first(model.imgUrls)}${model.hashCode}',
+                              '${ImgModel.first(model.imgList)}${model.hashCode}',
                         );
                       },
                       child: Container(
@@ -101,19 +103,15 @@ class NoticeCard extends StatelessWidget {
                         ),
                         child: Hero(
                           tag:
-                              '${ImgModel.first(model.imgUrls)}${model.hashCode}',
-                          child: FadeInImage.assetNetwork(
-                            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                            image: SARSAPI.image(ImgModel.first(model.imgUrls)),
-                            width: 152.w,
-                            height: 152.w,
-                            fit: BoxFit.cover,
+                              '${ImgModel.first(model.imgList)}${model.hashCode}',
+                          child: BeeImageNetwork(
+                            imgs: model.imgList,
                           ),
                         ),
                       ),
                     ),
               10.wb,
-              model.title!.text.make().expand(),
+              model.title.text.make().expand(),
             ],
           ),
         ),

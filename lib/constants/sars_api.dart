@@ -28,6 +28,10 @@ class SARSAPI {
   static _Message message = _Message();
   static _Community community = _Community();
   static _Task task = _Task();
+  static _HomeCarouse homeCarouse = _HomeCarouse();
+  static _Activity activity = _Activity();
+  static _Announce announce = _Announce();
+  static _Information information = _Information();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -168,4 +172,39 @@ class _Task {
 
   ///查询任务发布信息列表
   String get list => '/app/user/taskRelease/list';
+}
+
+class _HomeCarouse {
+  ///获取首页轮播图列表
+  String get list => '/app/user/homepageCarousel/list';
+}
+
+class _Activity {
+  ///查询活动详情
+  String get detail => '/app/user/activity/findById';
+
+  ///活动报名
+  String get registration => '/app/user/activity/registration';
+
+  ///查询所有的活动列表
+  String get list => '/app/user/activity/list';
+}
+
+class _Announce {
+  ///查询通知公告列表
+  String get list => '/app/user/announcement/list';
+
+  ///查询通知公告详情
+  String get detail => '/app/user/announcement/detail';
+}
+
+class _Information {
+  ///查询app资讯推荐阅读列表信息
+  String get recommendList => '/app/user/information/recommendList';
+
+  ///查询app资讯列表信息
+  String get list => '/app/user/information/list';
+
+  ///查询app所有的资讯分类信息
+  String get categoryList => '/app/user/information/categoryList';
 }

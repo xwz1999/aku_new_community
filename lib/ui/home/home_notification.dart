@@ -1,19 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/model/community/board_model.dart';
-import 'package:aku_new_community/ui/community/notice/notice_page.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeNotification extends StatefulWidget {
-  final List<BoardItemModel> items;
+  final List<HomeAnnounceModel> items;
 
   HomeNotification({Key? key, required this.items}) : super(key: key);
 
@@ -22,17 +18,15 @@ class HomeNotification extends StatefulWidget {
 }
 
 class _HomeNotificationState extends State<HomeNotification> {
-  late BoardItemModel boardItemModel;
+  late HomeAnnounceModel boardItemModel;
 
   bool isDate = true;
 
   @override
   void initState() {
     super.initState();
-    if (widget.items != null) {
-      if (widget.items.length > 0) {
-        boardItemModel = widget.items[0];
-      }
+    if (widget.items.length > 0) {
+      boardItemModel = widget.items[0];
     }
   }
 
@@ -69,10 +63,10 @@ class _HomeNotificationState extends State<HomeNotification> {
     );
   }
 
-  Widget getText(BoardItemModel e) {
+  Widget getText(HomeAnnounceModel e) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => NoticePage());
+        Get.to(() => NoticeDetailPage(id: e.id));
       },
       child: Container(
         color: Colors.transparent,
@@ -81,7 +75,7 @@ class _HomeNotificationState extends State<HomeNotification> {
             Container(
                 constraints: BoxConstraints(maxWidth: 190),
                 child: Text(
-                  e.title ?? '',
+                  e.title,
                   style: TextStyle(
                     color: Color(0xA6000000),
                     fontSize: 22.sp,
@@ -93,7 +87,7 @@ class _HomeNotificationState extends State<HomeNotification> {
             Spacer(),
             Container(
                 child: Text(
-              e.releaseDate != null ? BeeDateUtil(e.releaseDate).timeAgo : '',
+              BeeDateUtil(DateUtil.getDateTime(e.createDate)).timeAgo,
               style: TextStyle(
                 color: Color(0x73000000),
                 fontSize: 20.sp,

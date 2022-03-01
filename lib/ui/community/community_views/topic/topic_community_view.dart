@@ -119,7 +119,7 @@ class TopicCommunityViewState extends State<TopicCommunityView> {
                     ),
                     child: Stack(
                       children: [
-                        BeeImageNetwork(urls: model.imgList),
+                        BeeImageNetwork(imgs: model.imgList),
                       ],
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:aku_new_community/model/common/img_model.dart';
 
+@Deprecated('弃用')
 class SwiperModel {
   int? newsId;
   String? title;

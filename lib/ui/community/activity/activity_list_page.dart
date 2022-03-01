@@ -1,16 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/community/activity_item_model.dart';
+import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/activity/activity_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'activity_detail_page_old.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ActivityListPage extends StatefulWidget {
   ActivityListPage({Key? key}) : super(key: key);
@@ -31,24 +26,24 @@ class _ActivityListPageState extends State<ActivityListPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '往期精彩',
+      title: '社区活动',
       actions: [
-        IconButton(
-            onPressed: () {
-              Get.to(() => ActivityDetailPage(id: 0));
-            },
-            icon: Icon(Icons.delete))
+        // IconButton(
+        //     onPressed: () {
+        //       Get.to(() => ActivityDetailPage(id: 0));
+        //     },
+        //     icon: Icon(Icons.delete))
       ],
-      body: BeeListView<ActivityItemModel>(
+      body: BeeListView<HomeActivityModel>(
         controller: _refreshController,
-        path: API.community.activityList,
+        path: SARSAPI.activity.list,
         convert: (model) =>
-            model.rows.map((e) => ActivityItemModel.fromJson(e)).toList(),
+            model.rows.map((e) => HomeActivityModel.fromJson(e)).toList(),
         builder: (items) {
           return ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
             itemBuilder: (context, index) {
-              final ActivityItemModel model = items[index];
+              final HomeActivityModel model = items[index];
               return ActivityCard(model: model);
             },
             separatorBuilder: (_, __) => 20.hb,
