@@ -1,23 +1,23 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/models/community/recommend_read_model.dart';
+import 'package:aku_new_community/models/news/news_detail_model.dart';
+import 'package:aku_new_community/utils/bee_date_util.dart';
+import 'package:aku_new_community/utils/link_text_parase.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/models/news/news_detail_model.dart';
-import 'package:aku_new_community/utils/link_text_parase.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class PublicInformationDetailPage extends StatefulWidget {
   final int id;
@@ -138,5 +138,79 @@ class _PublicInformationDetailPageState
 
   Widget _emptyWidget() {
     return Container();
+  }
+
+  Widget _recommendReading() {
+    var head = Padding(
+      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 36.w),
+      child: Row(
+        children: [
+          Container(
+            width: 8.w,
+            color: Colors.amber,
+          ),
+          24.w.widthBox,
+          '推荐阅读'.text.size(28.sp).color(Colors.black).bold.make(),
+        ],
+      ),
+    );
+    return Container(
+      decoration: BoxDecoration(color: Colors.white),
+      width: double.infinity,
+      child: Column(
+        children: [
+          head,
+        ],
+      ),
+    );
+  }
+
+  Widget _recommendCard(RecommendReadModel model) {
+    return Padding(
+      padding: EdgeInsets.all(32.w),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 420.w,
+            height: 150.w,
+            child: Expanded(
+              child: Column(
+                children: [
+                  model.title.text.black.bold.maxLines(2).make(),
+                  Spacer(),
+                  Row(
+                    children: [
+                      '${model.viewsNum}浏览'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.45))
+                          .make(),
+                      Spacer(),
+                      BeeDateUtil(model.createDateDT)
+                          .timeAgo
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.45))
+                          .make(),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          32.w.widthBox,
+          Container(
+            width: 240.w,
+            height: 150.w,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(16.w)),
+            clipBehavior: Clip.antiAlias,
+            child: BeeImageNetwork(
+              imgs: model.imgList,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

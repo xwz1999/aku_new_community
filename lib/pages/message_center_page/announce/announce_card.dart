@@ -1,22 +1,25 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
-import 'package:aku_new_community/models/message/announce_list_model.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
+import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class AnnounceCard extends StatelessWidget {
   final ListDateModel modelList;
   final int index;
+  final bool visible;
+
   const AnnounceCard({
     Key? key,
     required this.modelList,
     required this.index,
+    required this.visible,
   }) : super(key: key);
 
   @override
@@ -24,13 +27,19 @@ class AnnounceCard extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 32.w),
-          alignment: Alignment.centerLeft,
-          width: double.infinity,
-          height: 98.w,
-          child: modelList.month.text.size(36.sp).black.make(),
-        ),
+        !visible
+            ? SizedBox()
+            : Container(
+                padding: EdgeInsets.symmetric(horizontal: 32.w),
+                alignment: Alignment.centerLeft,
+                width: double.infinity,
+                height: 98.w,
+                child: '${modelList.year}年${modelList.month}月'
+                    .text
+                    .size(36.sp)
+                    .black
+                    .make(),
+              ),
         ...modelList.models
             .map((e) => _card(e))
             .toList()
@@ -39,7 +48,7 @@ class AnnounceCard extends StatelessWidget {
     );
   }
 
-  Widget _card(AnnounceListModel model) {
+  Widget _card(HomeAnnounceModel model) {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
@@ -47,7 +56,7 @@ class AnnounceCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          '${DateUtil.formatDateStr(model.date, format: 'dd日 HH:mm')}'
+          '${DateUtil.formatDateStr(model.createDate, format: 'dd日 HH:mm')}'
               .text
               .size(28.sp)
               .color(ktextSubColor)
@@ -67,13 +76,15 @@ class AnnounceCard extends StatelessWidget {
               ),
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => NoticeDetailPage(id: model.id));
+              },
               child: Row(
                 children: [
                   '查看详情'.text.size(24.w).color(ktextSubColor).make(),
                   Spacer(),
                   Icon(
-                    CupertinoIcons.chevron_down,
+                    CupertinoIcons.chevron_right,
                     size: 20.w,
                   )
                 ],

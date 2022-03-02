@@ -1,19 +1,20 @@
+import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/pages/message_center_page/announce/announce_card.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
-import 'package:aku_new_community/models/message/announce_list_model.dart';
-import 'package:aku_new_community/pages/message_center_page/announce/announce_card.dart';
-
 class ListDateModel {
   final String month;
   final int index;
-  final List<AnnounceListModel> models;
+  final String year;
+  final List<HomeAnnounceModel> models;
 
-  ListDateModel(this.month, this.models, this.index);
+  ListDateModel(this.month, this.models, this.index, this.year);
 }
 
 class AnnounceView extends StatefulWidget {
@@ -30,18 +31,34 @@ class _AnnounceViewState extends State<AnnounceView> {
   late AutoScrollController _autoScrollController;
 
   List<ListDateModel> _modelLists = [];
+  List<HomeAnnounceModel> _innerModelList = [];
   String _headMonth = '';
 
-  void monthListDepart(List<AnnounceListModel> models) {
+  void monthListDepart(List<HomeAnnounceModel> models) {
     for (var item in models) {
       var index =
           _modelLists.indexWhere((element) => element.month == item.month);
       if (index >= 0) {
         _modelLists[index].models.add(item.copyWith());
       } else {
-        _modelLists.insert(_modelLists.length,
-            ListDateModel(item.month, [item.copyWith()], _modelLists.length));
+        _modelLists.insert(
+            _modelLists.length,
+            ListDateModel(item.month.toString(), [item.copyWith()],
+                _modelLists.length, item.year.toString()));
       }
+    }
+  }
+
+  int _page = 1;
+  int _size = 5;
+
+  bool visible(int index) {
+    if (index == 0) {
+      return true;
+    } else if (_modelLists[index].month == _modelLists[index - 1].month) {
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -91,14 +108,35 @@ class _AnnounceViewState extends State<AnnounceView> {
             footer: MaterialFooter(),
             scrollController: _autoScrollController,
             onRefresh: () async {
+              _page = 1;
               _modelLists.clear();
-              // monthListDepart();
+              _innerModelList.clear();
+              var base =
+                  await NetUtil().getList(SARSAPI.announce.list, params: {
+                'page': _page,
+                'size': _size,
+              });
+              _innerModelList =
+                  base.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
+              monthListDepart(_innerModelList);
               if (_modelLists.isNotEmpty) {
                 _headMonth = _modelLists[0].month;
               }
+
               setState(() {});
             },
-            onLoad: () async {},
+            onLoad: () async {
+              _page++;
+              var base =
+                  await NetUtil().getList(SARSAPI.announce.list, params: {
+                'page': _page,
+                'size': _size,
+              });
+              if (base.total > _innerModelList.length) {}
+              _innerModelList =
+                  base.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
+              monthListDepart(_innerModelList);
+            },
             child: _modelLists.isEmpty
                 ? Container()
                 : ListView.separated(
@@ -112,6 +150,7 @@ class _AnnounceViewState extends State<AnnounceView> {
                         child: AnnounceCard(
                           modelList: _modelLists[index],
                           index: index,
+                          visible: visible(index),
                         ),
                       );
                     },

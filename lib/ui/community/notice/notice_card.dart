@@ -21,26 +21,25 @@ class NoticeCard extends StatelessWidget {
   }) : super(key: key);
 
   bool get sameDay =>
-      model.createDateString?.year == (preModel?.createDateString?.year ?? 0) &&
-      model.createDateString?.month ==
-          (preModel?.createDateString?.month ?? 0) &&
-      model.createDateString?.day == (preModel?.createDateString?.day ?? 0);
+      model.createDateDT?.year == (preModel?.createDateDT?.year ?? 0) &&
+      model.createDateDT?.month == (preModel?.createDateDT?.month ?? 0) &&
+      model.createDateDT?.day == (preModel?.createDateDT?.day ?? 0);
 
   bool get isYesterday {
     DateTime now = DateTime.now();
     DateTime yesterday = DateTime(now.year, now.month, now.day - 1);
-    return yesterday.year == model.createDateString?.year &&
-        yesterday.month == model.createDateString?.month &&
-        yesterday.day == model.createDateString?.day;
+    return yesterday.year == model.createDateDT?.year &&
+        yesterday.month == model.createDateDT?.month &&
+        yesterday.day == model.createDateDT?.day;
   }
 
   bool get isFirst => preModel == null;
 
   bool get notSameYear =>
-      model.createDateString?.year != (preModel?.createDateString?.year ?? 0);
+      model.createDateDT?.year != (preModel?.createDateDT?.year ?? 0);
 
   Widget title() {
-    if (DateUtil.isToday(model.createDateString?.millisecond))
+    if (DateUtil.isToday(model.createDateDT?.millisecond))
       return '今天'.text.size(52.sp).bold.make();
     if (isYesterday)
       return '昨天'.text.size(52.sp).bold.make();
@@ -48,12 +47,12 @@ class NoticeCard extends StatelessWidget {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          (model.createDateString?.day.toString() ?? '')
+          (model.createDateDT?.day.toString() ?? '')
               .text
               .size(52.sp)
               .bold
               .make(),
-          '${model.createDateString?.month}月'.text.size(36.sp).make(),
+          '${model.createDateDT?.month}月'.text.size(36.sp).make(),
         ],
       );
   }
@@ -64,8 +63,8 @@ class NoticeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        (notSameYear && model.createDateString?.year != DateTime.now().year)
-            ? '${model.createDateString?.year}年'
+        (notSameYear && model.createDateDT?.year != DateTime.now().year)
+            ? '${model.createDateDT?.year}年'
                 .text
                 .bold
                 .size(52.sp)

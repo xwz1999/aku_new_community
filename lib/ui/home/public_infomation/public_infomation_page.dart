@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:aku_new_community/models/news/news_category_model.dart';
+import 'package:aku_new_community/models/community/information_category_list_model.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_view.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
+import 'package:flutter/material.dart';
 
 class PublicInfomationPage extends StatefulWidget {
-  final List<NewsCategoryModel> models;
+  final List<InformationCategoryListModel> models;
 
   PublicInfomationPage({
     Key? key,

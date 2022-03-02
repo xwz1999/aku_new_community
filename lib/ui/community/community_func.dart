@@ -1,8 +1,8 @@
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/community/hot_news_model.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
+import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/models/community/topic_model.dart';
 import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
@@ -38,13 +38,13 @@ class CommunityFunc {
   }
 
   ///查询热门资讯
-  static Future<List<HotNewsModel>> getHotNews() async {
+  static Future<List<InformationListModel>> getHotNews() async {
     BaseListModel model = await NetUtil().getList(
-      API.community.findHotNews,
+      SARSAPI.information.list,
       params: {'pageNum': 1, 'size': 4},
     );
     if (model.rows.length == 0) return [];
-    return model.rows.map((e) => HotNewsModel.fromJson(e)).toList();
+    return model.rows.map((e) => InformationListModel.fromJson(e)).toList();
   }
 
   ///给单个资讯增加浏览量

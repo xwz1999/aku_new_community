@@ -4,10 +4,10 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/hot_news_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
+import 'package:aku_new_community/models/community/information_category_list_model.dart';
+import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/models/community/topic_model.dart';
-import 'package:aku_new_community/models/news/news_category_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/community_func.dart';
@@ -50,7 +50,7 @@ class _CommunityPageState extends State<CommunityPage>
 
   List<AllDynamicListModel> _newItems = [];
   List<TopicModel> _gambitModels = [];
-  List<HotNewsModel> _hotNewsModels = [];
+  List<InformationListModel> _hotNewsModels = [];
 
   int _pageNum = 1;
   int _size = 4;
@@ -209,15 +209,16 @@ class _CommunityPageState extends State<CommunityPage>
         children: [
           _homeTitle('热门资讯', () async {
             final cancel = BotToast.showLoading();
-            BaseModel model = await NetUtil().get(API.news.category);
-            List<NewsCategoryModel>? category;
+            BaseModel model =
+                await NetUtil().get(SARSAPI.information.categoryList);
+            var category = <InformationCategoryListModel>[];
             if (model.success == true && model.data != null) {
               category = (model.data as List)
-                  .map((e) => NewsCategoryModel.fromJson(e))
+                  .map((e) => InformationCategoryListModel.fromJson(e))
                   .toList();
             }
             cancel();
-            Get.to(() => PublicInfomationPage(models: category ?? []));
+            Get.to(() => PublicInfomationPage(models: category));
           }, '更多'),
           32.hb,
           Container(
@@ -283,12 +284,12 @@ class _CommunityPageState extends State<CommunityPage>
     return result;
   }
 
-  _infoCard(HotNewsModel item) {
+  _infoCard(InformationListModel item) {
     return GestureDetector(
       onTap: () async {
         var result =
-            await Get.to(() => PublicInformationDetailPage(id: item.id!));
-        CommunityFunc.addViews(item.id!);
+            await Get.to(() => PublicInformationDetailPage(id: item.id));
+        CommunityFunc.addViews(item.id);
         if (result) {
           _easyRefreshController.callRefresh();
         }
@@ -337,7 +338,7 @@ class _CommunityPageState extends State<CommunityPage>
                       width: 316.w,
                       alignment: Alignment.center,
                       child: Text(
-                        item.title ?? '',
+                        item.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -349,7 +350,7 @@ class _CommunityPageState extends State<CommunityPage>
                   Row(
                     children: [
                       Text(
-                        '${item.views ?? 0}浏览',
+                        '${item.viewsNum}浏览',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -359,7 +360,7 @@ class _CommunityPageState extends State<CommunityPage>
                       ),
                       Spacer(),
                       Text(
-                        item.createDate?.substring(0, 10) ?? '',
+                        item.createDate,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

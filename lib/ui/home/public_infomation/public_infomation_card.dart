@@ -1,18 +1,14 @@
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/models/news/news_item_model.dart';
+import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PublicInfomationCard extends StatelessWidget {
-  final NewsItemModel model;
+  final InformationListModel model;
 
   const PublicInfomationCard({Key? key, required this.model}) : super(key: key);
 
@@ -47,7 +43,7 @@ class PublicInfomationCard extends StatelessWidget {
                         // Text('测试'),
                         Spacer(),
                         Text('发布于 ${DateUtil.formatDate(
-                          model.create,
+                          model.createDateDT,
                           format: 'yyyy-MM-dd HH:mm',
                         )}'),
                       ],
@@ -57,12 +53,10 @@ class PublicInfomationCard extends StatelessWidget {
               ),
             ),
             32.wb,
-            FadeInImage.assetNetwork(
-              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            BeeImageNetwork(
               width: 240.w,
               height: 200.w,
-              fit: BoxFit.cover,
-              image: SARSAPI.image(ImgModel.first(model.imgList)),
+              imgs: model.imgList,
             ),
           ],
         ),

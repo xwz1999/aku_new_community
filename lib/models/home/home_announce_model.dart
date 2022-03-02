@@ -13,7 +13,10 @@ class HomeAnnounceModel {
   final String createDate;
   factory HomeAnnounceModel.fromJson(Map<String, dynamic> json) =>
       _$HomeAnnounceModelFromJson(json);
-  DateTime? get createDateString => DateUtil.getDateTime(createDate);
+  DateTime? get createDateDT => DateUtil.getDateTime(createDate);
+  int? get month => createDateDT?.month;
+
+  int? get year => createDateDT?.year;
   const HomeAnnounceModel({
     required this.id,
     required this.title,
@@ -21,4 +24,20 @@ class HomeAnnounceModel {
     required this.imgList,
     required this.createDate,
   });
+
+  HomeAnnounceModel copyWith({
+    int? id,
+    String? title,
+    String? content,
+    List<ImgModel>? imgList,
+    String? createDate,
+  }) {
+    return HomeAnnounceModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      imgList: imgList ?? this.imgList,
+      createDate: createDate ?? this.createDate,
+    );
+  }
 }
