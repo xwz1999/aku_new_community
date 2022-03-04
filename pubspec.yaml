@@ -115,6 +115,8 @@ dependencies:
   sms_autofill: ^2.2.0
   #提取图片主色
   palette_generator: ^0.3.2
+  #音频播放
+  just_audio: ^0.9.20
 
 
 dev_dependencies:

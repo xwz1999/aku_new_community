@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/my_task_list_model.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyTaskDetailPage extends StatefulWidget {
   final MyTaskListModel model;
@@ -150,7 +148,7 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '${DateUtil.formatDateStr(widget.model.createDate)}'
+              '${DateUtil.formatDateStr(widget.model.updateDate)}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
@@ -201,7 +199,7 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
             children: [
               Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
               24.w.widthBox,
-              '${DateUtil.formatDateStr(widget.model.appointmentDate)}'
+              '${DateUtil.formatDateStr(widget.model.readyEndTime)}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.65))
@@ -213,7 +211,7 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
             children: [
               Assets.icons.environment.image(width: 36.w, height: 36.w),
               24.w.widthBox,
-              '${widget.model.appointmentAddress}'
+              '${widget.model.accessAddress}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.65))
@@ -236,7 +234,7 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
                     .color(Colors.black.withOpacity(0.85))
                     .make(),
                 16.w.heightBox,
-                widget.model.content.text
+                widget.model.remarks.text
                     .size(28.sp)
                     .color(Colors.black.withOpacity(0.65))
                     .make(),

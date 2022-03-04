@@ -9,17 +9,21 @@ part of 'my_task_list_model.dart';
 MyTaskListModel _$MyTaskListModelFromJson(Map<String, dynamic> json) =>
     MyTaskListModel(
       id: json['id'] as int,
-      title: json['title'] as String,
+      code: json['code'] as String,
       status: json['status'] as int,
+      updateDate: json['updateDate'] as String,
       type: json['type'] as int,
       sex: json['sex'] as int,
-      serviceObject: json['serviceObject'] as int,
-      content: json['content'] as String,
-      appointmentDate: json['appointmentDate'] as String,
-      appointmentAddress: json['appointmentAddress'] as String,
+      readyStartTime: json['readyStartTime'] as String,
+      readyEndTime: json['readyEndTime'] as String,
+      accessAddress: json['accessAddress'] as String?,
+      accessAddressDetail: json['accessAddressDetail'] as String?,
+      serviceTime: json['serviceTime'] as int?,
+      remarks: json['remarks'] as String,
+      voiceUrl: json['voiceUrl'] as String,
+      imgList: (json['imgList'] as List<dynamic>?)
+          ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rewardType: json['rewardType'] as int,
       reward: json['reward'] as int,
-      createType: json['createType'] as int,
-      createName: json['createName'] as String?,
-      createDate: json['createDate'] as String,
     );

@@ -1,14 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/service/my_take_task/my_take_task_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyTakeTaskView extends StatefulWidget {
   const MyTakeTaskView({Key? key}) : super(key: key);
@@ -29,8 +26,11 @@ class _MyTakeTaskViewState extends State<MyTakeTaskView> {
   @override
   Widget build(BuildContext context) {
     return BeeListView(
-        path: API.manager.task.myTakeTask,
+        path: SARSAPI.task.list,
         controller: _refreshController,
+        extraParams: {
+          'taskModel': 2,
+        },
         convert: (json) =>
             json.rows.map((e) => MyTakeTaskListModel.fromJson(e)).toList(),
         builder: (models) {

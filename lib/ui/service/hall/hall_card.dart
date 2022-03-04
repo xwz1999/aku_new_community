@@ -1,15 +1,18 @@
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/hall_list_model.dart';
 import 'package:aku_new_community/ui/service/hall/hall_detail_page.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_new_community/widget/voice_player.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import '../task_func.dart';
 
 class HallCard extends StatelessWidget {
@@ -27,10 +30,7 @@ class HallCard extends StatelessWidget {
           width: 100.w,
           height: 50.w,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color(0xFFFFF7E6),
-            borderRadius: BorderRadius.circular(8.w),
-          ),
+          color: Color(0xFFFFF7E6),
           child: '#${TaskMap.typeToString[model.type]}'
               .text
               .size(28.sp)
@@ -41,6 +41,28 @@ class HallCard extends StatelessWidget {
         Assets.icons.intergral.image(width: 24.w, height: 24.w),
         8.w.widthBox,
         '${model.reward}'.text.size(32.sp).color(Colors.red).make()
+      ],
+    );
+    var appointment = Row(
+      children: [
+        Container(
+          width: 40.w,
+          height: 40.w,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Color(0xFFFA8C16),
+              borderRadius: BorderRadius.circular(8.w)),
+          child: Text(
+            '预',
+            style: TextStyle(color: Colors.white, fontSize: 24.sp),
+          ),
+        ),
+        24.w.widthBox,
+        '${DateUtil.formatDateStr(model.readyEndTime, format: 'MM月dd日 HH:mm')}前'
+            .text
+            .size(24.sp)
+            .color(Colors.black.withOpacity(0.65))
+            .make(),
       ],
     );
     return GestureDetector(
@@ -57,24 +79,31 @@ class HallCard extends StatelessWidget {
         child: Column(
           children: [
             head,
-            34.w.heightBox,
+            24.w.heightBox,
+            BeeDivider.horizontal(),
+            24.w.heightBox,
+            appointment,
+            20.w.heightBox,
             Row(
               children: [
-                Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
+                Assets.icons.watch.image(width: 40.w, height: 40.w),
                 24.w.widthBox,
-                '${DateUtil.formatDateStr(model.appointmentDate)}'
-                    .text
-                    .size(24.sp)
-                    .color(Colors.black.withOpacity(0.65))
+                '${model.serviceTime ?? '0'}'
+                    .richText
+                    .withTextSpanChildren([
+                      ' 分钟'.textSpan.size(28.sp).color(Colors.black).make(),
+                    ])
+                    .size(28.sp)
+                    .color(Color(0xFFFA8C16))
                     .make(),
               ],
             ),
-            20.w.heightBox,
+            24.w.heightBox,
             Row(
               children: [
                 Assets.icons.environment.image(width: 36.w, height: 36.w),
                 24.w.widthBox,
-                '${model.appointmentAddress}'
+                '${model.accessAddress}'
                     .text
                     .size(24.sp)
                     .color(Colors.black.withOpacity(0.65))
@@ -91,20 +120,22 @@ class HallCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  '#${TaskMap.typeToString[model.type]}'
-                      .text
-                      .size(28.sp)
-                      .color(Colors.black.withOpacity(0.85))
-                      .make(),
-                  16.w.heightBox,
-                  model.content.text
+                  model.remarks.text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
+                  24.w.heightBox,
+                  VoicePlayer(
+                    url: model.voiceUrl,
+                  ),
+                  24.w.heightBox,
+                  BeeGridImageView(
+                      urls: model.imgList?.map((e) => e.url).toList() ?? []),
                 ],
               ),
             ),
-            40.w.heightBox,
+            24.w.heightBox,
+            BeeDivider.horizontal(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

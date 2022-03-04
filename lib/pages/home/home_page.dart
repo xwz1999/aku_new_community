@@ -87,7 +87,11 @@ class _HomePageState extends State<HomePage>
     _refreshController = EasyRefreshController();
     _swiperController.addListener(() {
       //由于先触发监听后，再执行onChangeIndex函数，所以_currentSwiperIndex会比当前index少1，用+1并求余的方式获得真正当前index;
-      _swiperBarColor((_currentSwiperIndex + 1) % 3);
+      if (_swiperModels.length <= 1) {
+        _swiperBarColor(0);
+      } else {
+        _swiperBarColor((_currentSwiperIndex + 1) % 3);
+      }
     });
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));

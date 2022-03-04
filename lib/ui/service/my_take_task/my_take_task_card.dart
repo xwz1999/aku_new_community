@@ -1,10 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
@@ -12,6 +5,12 @@ import 'package:aku_new_community/ui/service/my_take_task/my_take_task_detail_pa
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import '../task_func.dart';
 
 class MyTakeTaskCard extends StatelessWidget {
@@ -38,7 +37,7 @@ class MyTakeTaskCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                '接单时间  ${DateUtil.formatDateStr(model.createDate)}'
+                '接单时间  ${DateUtil.formatDateStr(model.updateDate)}'
                     .text
                     .size(26.sp)
                     .color(Colors.black.withOpacity(0.45))
@@ -59,7 +58,7 @@ class MyTakeTaskCard extends StatelessWidget {
               children: [
                 Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
                 24.w.widthBox,
-                '${DateUtil.formatDateStr(model.appointmentDate)}'
+                '${DateUtil.formatDateStr(model.readyEndTime)}'
                     .text
                     .size(24.sp)
                     .color(Colors.black.withOpacity(0.65))
@@ -71,7 +70,7 @@ class MyTakeTaskCard extends StatelessWidget {
               children: [
                 Assets.icons.environment.image(width: 36.w, height: 36.w),
                 24.w.widthBox,
-                '${model.appointmentAddress}'
+                '${model.accessAddress}'
                     .text
                     .size(24.sp)
                     .color(Colors.black.withOpacity(0.65))
@@ -94,7 +93,7 @@ class MyTakeTaskCard extends StatelessWidget {
                       .color(Colors.black.withOpacity(0.85))
                       .make(),
                   16.w.heightBox,
-                  model.content.text
+                  model.remarks.text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
