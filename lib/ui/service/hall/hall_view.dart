@@ -39,6 +39,7 @@ class _HallViewState extends State<HallView> {
               padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
               itemBuilder: (context, index) {
                 return HallCard(
+                    key: ValueKey(models[index].id),
                     model: models[index],
                     refresh: () => _refreshController.callRefresh());
               },

@@ -3,14 +3,19 @@ import 'dart:math';
 
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
 
 class VoicePlayer extends StatefulWidget {
   final String url;
+  final VoidCallback? onDelete;
+  final bool showXmark;
 
-  const VoicePlayer({Key? key, required this.url}) : super(key: key);
+  const VoicePlayer(
+      {Key? key, required this.url, this.onDelete, this.showXmark = false})
+      : super(key: key);
 
   @override
   _VoicePlayerState createState() => _VoicePlayerState();
@@ -26,12 +31,13 @@ class _VoicePlayerState extends State<VoicePlayer>
   bool inAnimate = false;
   final player = AudioPlayer();
   Timer? _timer;
-  int _voiceLength = 0;
+  Duration? _voiceLength;
+  int _currentLength = 0;
 
   void stopPlay() {
     inAnimate = false;
     controller.stop();
-    player.stop();
+    player.pause();
     _timer?.cancel();
     _timer = null;
     if (mounted) {
@@ -39,23 +45,43 @@ class _VoicePlayerState extends State<VoicePlayer>
     }
   }
 
-  void startPlay() {
+  void startPlay() async {
     inAnimate = true;
     controller.forward();
     player.play();
     _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
-      _voiceLength--;
-      if (_voiceLength <= 0) {
-        _voiceLength = (player.duration?.inSeconds) ?? 0;
-        _timer?.cancel();
-        _timer = null;
-        controller.stop();
-        inAnimate = false;
-      }
-      if (mounted) {
-        setState(() {});
+      _currentLength--;
+      if (_currentLength <= 0) {
+        resetPlay();
+      } else {
+        if (mounted) {
+          setState(() {});
+        }
       }
     });
+  }
+
+  Future initVoice() async {
+    await player.setUrl(SARSAPI.image(widget.url));
+    _voiceLength = await player.load();
+    _currentLength = _voiceLength?.inSeconds ?? 0;
+    await player.setClip(start: Duration(seconds: 0), end: _voiceLength);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future resetPlay() async {
+    _timer?.cancel();
+    _timer = null;
+    controller.stop();
+    inAnimate = false;
+    player.stop();
+    _currentLength = _voiceLength?.inSeconds ?? 0;
+    await player.setClip(start: Duration(seconds: 0), end: _voiceLength);
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -80,15 +106,14 @@ class _VoicePlayerState extends State<VoicePlayer>
           controller.forward();
         }
       });
-    Future.delayed(Duration(milliseconds: 0), () async {
-      await player.setUrl(SARSAPI.image(widget.url));
-      var length = await player.load();
-      _voiceLength = length?.inSeconds ?? 0;
-      if (mounted) {
-        setState(() {});
-      }
-    });
+    initVoice();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant VoicePlayer oldWidget) {
+    resetPlay();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -113,22 +138,40 @@ class _VoicePlayerState extends State<VoicePlayer>
       },
       child: Material(
         color: Colors.transparent,
-        child: Container(
-          width: width,
-          // height: height,
-          padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 20.w),
-          decoration: BoxDecoration(
-              color: Color(0xFFFFE7BA),
-              borderRadius: BorderRadius.circular(8.w)),
-          child: Row(
-            children: [
-              CustomPaint(
-                painter: VoicePlayerPainter(inAnimate ? animation.value : 3),
+        child: Stack(
+          fit: StackFit.passthrough,
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: width,
+              // height: height,
+              padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 20.w),
+              decoration: BoxDecoration(
+                  color: Color(0xFFFFE7BA),
+                  borderRadius: BorderRadius.circular(8.w)),
+              child: Row(
+                children: [
+                  CustomPaint(
+                    painter:
+                        VoicePlayerPainter(inAnimate ? animation.value : 3),
+                  ),
+                  40.wb,
+                  Text('${_currentLength}\"'),
+                ],
               ),
-              40.wb,
-              Text('${_voiceLength}\"'),
-            ],
-          ),
+            ),
+            if (widget.showXmark)
+              Positioned(
+                  top: -10.w,
+                  right: -10.w,
+                  child: GestureDetector(
+                    onTap: widget.onDelete,
+                    child: Icon(
+                      CupertinoIcons.xmark_circle_fill,
+                      size: 30.w,
+                    ),
+                  ))
+          ],
         ),
       ),
     );

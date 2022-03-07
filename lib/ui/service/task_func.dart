@@ -32,7 +32,7 @@ class TaskFunc {
   static Future<bool> cancel({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(API.manager.task.cancel, params: {
+    var base = await NetUtil().get(SARSAPI.task.cancel, params: {
       'taskId': taskId,
     });
     return base.success;
@@ -43,9 +43,11 @@ class TaskFunc {
   static Future<bool> take({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(API.manager.task.take, params: {
-      'taskId': taskId,
-    });
+    var base = await NetUtil().get(SARSAPI.task.receive,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 
@@ -54,9 +56,40 @@ class TaskFunc {
   static Future<bool> finish({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(API.manager.task.finish, params: {
+    var base = await NetUtil().get(SARSAPI.task.finish, params: {
       'taskId': taskId,
     });
+    return base.success;
+  }
+
+  /// 确认任务
+  static Future<bool> confirm({
+    required int taskId,
+  }) async {
+    var base = await NetUtil().get(SARSAPI.task.confirm, params: {
+      'taskId': taskId,
+    });
+    return base.success;
+  }
+
+  ///开始服务
+  static Future<bool> start({
+    required int taskId,
+  }) async {
+    var base = await NetUtil().get(SARSAPI.task.startService, params: {
+      'taskId': taskId,
+    });
+    return base.success;
+  }
+
+  ///任务评价
+  static Future<bool> evaluate({
+    required int taskId,
+    required int star,
+    required String evaluation,
+  }) async {
+    var base = await NetUtil().get(SARSAPI.task.evaluation,
+        params: {'taskId': taskId, 'star': star, 'evaluation': evaluation});
     return base.success;
   }
 }

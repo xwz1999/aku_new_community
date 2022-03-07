@@ -18,7 +18,7 @@ dependencies:
   #包信息
   package_info: ^2.0.0
   #状态管理
-  provider: ^5.0.0
+  provider: ^6.0.0
   #屏幕适配
   flutter_screenutil: ^5.0.0+2
   #图标集合
@@ -117,6 +117,8 @@ dependencies:
   palette_generator: ^0.3.2
   #音频播放
   just_audio: ^0.9.20
+  #录音
+  flutter_sound: ^9.1.3
 
 
 dev_dependencies:
