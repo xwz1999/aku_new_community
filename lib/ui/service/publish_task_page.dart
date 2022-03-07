@@ -6,6 +6,7 @@ import 'package:aku_new_community/ui/service/task_func.dart';
 import 'package:aku_new_community/ui/service/task_remark_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_record_voice_widget.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_pick_image_widget.dart';
@@ -817,7 +818,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
           24.w.heightBox,
           GestureDetector(
             onTap: () async {
-              await Get.bottomSheet(Container());
+              await Get.bottomSheet(BeeRecordVoiceWidget());
             },
             child: Material(
               color: Colors.transparent,
