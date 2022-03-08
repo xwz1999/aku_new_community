@@ -9,13 +9,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
 
 class VoicePlayer extends StatefulWidget {
-  final String url;
+  final String? url;
   final VoidCallback? onDelete;
   final bool showXmark;
+  final String? path;
 
   const VoicePlayer(
-      {Key? key, required this.url, this.onDelete, this.showXmark = false})
-      : super(key: key);
+      {Key? key, this.url, this.onDelete, this.showXmark = false, this.path})
+      : assert(url != null || path != null),
+        super(key: key);
 
   @override
   _VoicePlayerState createState() => _VoicePlayerState();
@@ -62,7 +64,11 @@ class _VoicePlayerState extends State<VoicePlayer>
   }
 
   Future initVoice() async {
-    await player.setUrl(SARSAPI.image(widget.url));
+    if (widget.url != null) {
+      await player.setUrl(SARSAPI.image(widget.url));
+    } else {
+      await player.setFilePath(widget.path!);
+    }
     _voiceLength = await player.load();
     _currentLength = _voiceLength?.inSeconds ?? 0;
     await player.setClip(start: Duration(seconds: 0), end: _voiceLength);

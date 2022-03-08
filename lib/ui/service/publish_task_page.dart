@@ -44,6 +44,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
   TextEditingController _telController = TextEditingController();
   String? _content;
   List<File> _photos = [];
+  String? _voiceUri;
 
   @override
   void dispose() {
@@ -818,7 +819,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
           24.w.heightBox,
           GestureDetector(
             onTap: () async {
-              await Get.bottomSheet(BeeRecordVoiceWidget());
+              var re = await Get.bottomSheet(BeeRecordVoiceWidget());
+              if (re != null) {
+                _voiceUri = re;
+              }
+              setState(() {});
             },
             child: Material(
               color: Colors.transparent,
@@ -832,11 +837,15 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                         .color(Colors.black.withOpacity(0.45))
                         .make(),
                   ),
-                  VoicePlayer(
-                    url: '5d143e1b735b0.mp3',
-                    showXmark: true,
-                    onDelete: () {},
-                  ),
+                  if (_voiceUri != null)
+                    VoicePlayer(
+                      path: _voiceUri,
+                      showXmark: true,
+                      onDelete: () {
+                        _voiceUri = null;
+                        setState(() {});
+                      },
+                    ),
                   Spacer(),
                   Icon(
                     CupertinoIcons.chevron_right,

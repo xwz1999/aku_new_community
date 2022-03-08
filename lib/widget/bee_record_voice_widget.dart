@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_sound/public/flutter_sound_recorder.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
@@ -18,17 +20,78 @@ class BeeRecordVoiceWidget extends StatefulWidget {
 
 class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
   bool _inRecordVoice = false;
-  var myPlayer = FlutterSoundRecorder();
+  var myRecorder = FlutterSoundRecorder();
+  var myPlayer = FlutterSoundPlayer();
+  String? filePath;
+  String fileName = 'record.aac';
+
+  bool get reclaim => !_inRecordVoice && filePath != null;
+
+  bool get play => !_inRecordVoice && filePath != null;
+
+  Timer? _timer;
+  int _recordSeconds = 0;
+  int _maxSeconds = 0;
+
+  String get _recordTime {
+    var min = (_recordSeconds ~/ 60).toString();
+    if (min.length < 2) {
+      min = '0$min';
+    }
+    var sec = (_recordSeconds % 60).toString();
+    if (sec.length < 2) {
+      sec = '0$sec';
+    }
+    return '$min:$sec';
+  }
 
   @override
   void initState() {
-    myPlayer.openRecorder();
+    myRecorder.openRecorder();
+    myPlayer.openPlayer();
+    Future.delayed(Duration(seconds: 0), () async {
+      var permission = await Permission.microphone.isGranted;
+      print(permission);
+      if (!permission) {
+        await Permission.microphone.request();
+      }
+    });
     super.initState();
+  }
+
+  void cancelTimer() {
+    _timer?.cancel();
+    _timer = null;
+  }
+
+  void startRecord() {
+    cancelTimer();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      _recordSeconds++;
+      setState(() {});
+    });
+  }
+
+  void startPlay() {
+    cancelTimer();
+    _maxSeconds = _recordSeconds;
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_recordSeconds == 0) {
+        cancelTimer();
+        _recordSeconds = _maxSeconds;
+        setState(() {});
+      } else {
+        _recordSeconds--;
+        setState(() {});
+      }
+    });
   }
 
   @override
   void dispose() {
-    myPlayer.closeRecorder();
+    myRecorder.closeRecorder();
+    myPlayer.closePlayer();
+    cancelTimer();
     super.dispose();
   }
 
@@ -50,8 +113,7 @@ class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
               .color(Colors.black.withOpacity(0.85))
               .make(),
           20.hb,
-          '00:00'
-              .text
+          _recordTime.text
               .size(24.sp)
               .isIntrinsic
               .bold
@@ -65,27 +127,38 @@ class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
                   .text
                   .size(24.sp)
                   .isIntrinsic
-                  .color(Colors.black.withOpacity(0.45))
+                  .color(
+                      reclaim ? kPrimaryColor : Colors.black.withOpacity(0.45))
                   .make(),
               12.wb,
-              Icon(
-                CupertinoIcons.mic_circle,
-                size: 60.w,
-                color: Colors.black.withOpacity(0.45),
+              GestureDetector(
+                onTap: reclaim
+                    ? () async {
+                        myRecorder.deleteRecord(fileName: fileName);
+                        filePath = null;
+                        _recordSeconds = 0;
+                        setState(() {});
+                      }
+                    : null,
+                child: Icon(
+                  CupertinoIcons.mic_circle,
+                  size: 60.w,
+                  color:
+                      reclaim ? kPrimaryColor : Colors.black.withOpacity(0.45),
+                ),
               ),
               40.wb,
               GestureDetector(
                 onTap: () async {
-                  var permission = await Permission.microphone.isGranted;
-                  if (!permission) {
-                    await Permission.microphone.request();
-                  }
-                  if (myPlayer.isRecording) {
-                    await myPlayer.pauseRecorder();
-                  } else if (myPlayer.isPaused) {
-                    await myPlayer.resumeRecorder();
+                  if (myRecorder.isRecording) {
+                    filePath = await myRecorder.stopRecorder();
+                    cancelTimer();
                   } else {
-                    await myPlayer.startRecorder();
+                    if (filePath != null) {
+                      myRecorder.deleteRecord(fileName: fileName);
+                    }
+                    await myRecorder.startRecorder(toFile: fileName);
+                    startRecord();
                   }
                   _inRecordVoice = !_inRecordVoice;
                   setState(() {});
@@ -113,16 +186,31 @@ class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
                 ),
               ),
               40.wb,
-              Icon(
-                CupertinoIcons.play_circle,
-                size: 60.w,
-                color: Colors.black.withOpacity(0.45),
+              GestureDetector(
+                onTap: play
+                    ? () async {
+                        if (myPlayer.isPlaying) {
+                          myPlayer.stopPlayer();
+                          cancelTimer();
+                          _recordSeconds = _maxSeconds;
+                          setState(() {});
+                        } else {
+                          await myPlayer.startPlayer(fromURI: filePath);
+                          startPlay();
+                        }
+                      }
+                    : null,
+                child: Icon(
+                  CupertinoIcons.play_circle,
+                  size: 60.w,
+                  color: play ? kPrimaryColor : Colors.black.withOpacity(0.45),
+                ),
               ),
               12.wb,
               '试听'
                   .text
                   .size(24.sp)
-                  .color(Colors.black.withOpacity(0.45))
+                  .color(play ? kPrimaryColor : Colors.black.withOpacity(0.45))
                   .isIntrinsic
                   .make()
             ],
@@ -136,15 +224,18 @@ class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
                   onTap: () {
                     Get.back();
                   },
-                  child: Container(
-                    height: 80.w,
-                    alignment: Alignment.center,
-                    child: '取消'
-                        .text
-                        .size(28.sp)
-                        .color(Colors.black.withOpacity(0.85))
-                        .isIntrinsic
-                        .make(),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      height: 80.w,
+                      alignment: Alignment.center,
+                      child: '取消'
+                          .text
+                          .size(28.sp)
+                          .color(Colors.black.withOpacity(0.85))
+                          .isIntrinsic
+                          .make(),
+                    ),
                   ),
                 ),
               ),
@@ -156,17 +247,20 @@ class _BeeRecordVoiceWidgetState extends State<BeeRecordVoiceWidget> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    Get.back();
+                    Get.back(result: filePath);
                   },
-                  child: Container(
-                    height: 80.w,
-                    alignment: Alignment.center,
-                    child: '确定'
-                        .text
-                        .size(28.sp)
-                        .color(kPrimaryColor)
-                        .isIntrinsic
-                        .make(),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      height: 80.w,
+                      alignment: Alignment.center,
+                      child: '确定'
+                          .text
+                          .size(28.sp)
+                          .color(kPrimaryColor)
+                          .isIntrinsic
+                          .make(),
+                    ),
                   ),
                 ),
               )
