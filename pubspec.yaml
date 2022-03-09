@@ -86,6 +86,7 @@ dependencies:
   amap_flutter_map: ^3.0.0
   amap_flutter_location: ^3.0.0
   amap_flutter_base: ^3.0.0
+#  amap_search_fluttify: 0.17.0-dev.0
   #动态文字
   animated_text_kit: ^4.2.1
   #分享功能

@@ -1,10 +1,11 @@
-import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/src/extensions/num_ext.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class TaskRemarkPage extends StatefulWidget {
   const TaskRemarkPage({Key? key}) : super(key: key);
@@ -15,6 +16,14 @@ class TaskRemarkPage extends StatefulWidget {
 
 class _TaskRemarkPageState extends State<TaskRemarkPage> {
   TextEditingController _contentController = TextEditingController();
+  List<String> _shortcutLabel = [];
+  bool _edit = false;
+
+  @override
+  void initState() {
+    _shortcutLabel = HiveStore.shortcutBox!.values.cast<String>().toList();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -29,54 +38,152 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              '任务内容'
-                  .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.45))
-                  .make(),
-            ],
-          ),
-          32.w.heightBox,
           Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: EdgeInsets.all(32.w),
             decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.06),
-                borderRadius: BorderRadius.circular(16.w)),
-            child: TextField(
-              controller: _contentController,
-              autofocus: false,
-              onChanged: (text) => setState(() {}),
-              minLines: 5,
-              maxLength: 200,
-              maxLines: 20,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-              ),
+                color: Colors.white, borderRadius: BorderRadius.circular(16.w)),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    '任务内容'
+                        .text
+                        .size(28.sp)
+                        .color(Colors.black.withOpacity(0.45))
+                        .make(),
+                  ],
+                ),
+                32.w.heightBox,
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.06),
+                      borderRadius: BorderRadius.circular(16.w)),
+                  child: TextField(
+                    controller: _contentController,
+                    autofocus: false,
+                    onChanged: (text) => setState(() {}),
+                    minLines: 5,
+                    maxLength: 200,
+                    maxLines: 20,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                32.w.heightBox,
+                Row(
+                  children: [
+                    '快捷标签'
+                        .text
+                        .size(24.sp)
+                        .color(Colors.black.withOpacity(0.45))
+                        .make(),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        _edit = !_edit;
+                        setState(() {});
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Row(
+                          children: [
+                            '${_edit ? '保存' : '编辑'}'
+                                .text
+                                .size(24.sp)
+                                .color(Colors.black.withOpacity(0.45))
+                                .make(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                32.w.heightBox,
+                Wrap(
+                  spacing: 12.w,
+                  runSpacing: 12.w,
+                  children: _shortcutLabel
+                      .mapIndexed((currentValue, index) =>
+                          label(currentValue, _edit, index))
+                      .toList(),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
-        child: MaterialButton(
-          elevation: 0,
-          height: 93.w,
-          disabledColor: Colors.black.withOpacity(0.06),
-          disabledTextColor: Colors.black.withOpacity(0.25),
-          textColor: Colors.black.withOpacity(0.85),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(65.w)),
-          color: kPrimaryColor,
+        child: BeeLongButton(
           onPressed: () async {
+            var inBox = _shortcutLabel.contains(_contentController.text);
+            if (!inBox&&_contentController.text.isNotEmpty) {
+              await HiveStore.shortcutBox!.add(_contentController.text);
+            }
             Get.back(result: _contentController.text);
           },
-          child: '完成'.text.size(32.sp).bold.make(),
+          text: '完成',
         ),
       ),
+    );
+  }
+
+  Widget label(String text, bool edit, int index) {
+    var textHandled = '';
+    if (text.length > 10) {
+      textHandled = text.replaceRange(10, null, '…');
+    } else {
+      textHandled = text;
+    }
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        GestureDetector(
+          onTap: () {
+            _contentController.text = text;
+            setState(() {});
+          },
+          child: Material(
+            color: Colors.transparent,
+            child: FittedBox(
+              child: Container(
+                height: 60.w,
+                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.w),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black.withOpacity(0.25)),
+                    borderRadius: BorderRadius.circular(8.w)),
+                child: textHandled.text
+                    .size(22.sp)
+                    .color(Colors.black.withOpacity(0.45))
+                    .make(),
+              ),
+            ),
+          ),
+        ),
+        if (edit)
+          Positioned(
+              top: -10.w,
+              right: -10.w,
+              child: GestureDetector(
+                onTap: () {
+                  _shortcutLabel.removeAt(index);
+                  HiveStore.shortcutBox!.deleteAt(index);
+                  setState(() {});
+                },
+                child: Material(
+                  child: Icon(
+                    CupertinoIcons.xmark_circle_fill,
+                    size: 40.w,
+                    color: Colors.black.withOpacity(0.45),
+                  ),
+                ),
+              ))
+      ],
     );
   }
 }

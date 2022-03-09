@@ -10,6 +10,7 @@ import Flutter
     // if #available(iOS 10.0, *) {
     //   UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     // }
+    AMapServices.shared().apiKey ="84041703f7ecb242685325796897eff4"
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

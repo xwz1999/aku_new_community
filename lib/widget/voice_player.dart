@@ -124,7 +124,8 @@ class _VoicePlayerState extends State<VoicePlayer>
 
   @override
   void dispose() {
-    stopPlay();
+    _timer?.cancel();
+    _timer = null;
     player.dispose();
     controller.dispose();
     animation.removeListener(() {});

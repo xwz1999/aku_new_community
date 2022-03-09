@@ -1,13 +1,17 @@
 import 'dart:io';
 
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/ui/service/add_appointment_address_page.dart';
 import 'package:aku_new_community/ui/service/task_func.dart';
 import 'package:aku_new_community/ui/service/task_remark_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_record_voice_widget.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_pick_image_widget.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
@@ -29,28 +33,38 @@ class PublishTaskPage extends StatefulWidget {
 
 class _PublishTaskPageState extends State<PublishTaskPage> {
   List<String> _types = ['跑腿', '代驾', '装修', '陪玩', '家政', '维修', '搬家', '家教', '其他'];
+
+  //类型
   int _type = 0;
   List<String> _sexStr = ['男', '女', '不限'];
   int _sex = 0;
+
+  //服务人员
   int _service = 0;
   List<String> _serviceObject = ['住户', '物业', '不限'];
   List<String> _rewardTypes = ['赏金', '积分'];
+
+  //报酬类型
   int _rewardType = 0;
-  DateTime? _appointDate = DateTime.now();
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
+  DateTime? _appointDate;
+
+  DateTime? _appointEndDate;
   TextEditingController _rewardController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _telController = TextEditingController();
   String? _content;
   List<File> _photos = [];
   String? _voiceUri;
+  String? _accessAddress;
+  String? _accessAddressDetail;
+  String? _serviceAddress;
+  String? _serviceAddressDetail;
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _addressController.dispose();
     _rewardController.dispose();
+    _nameController.dispose();
+    _telController.dispose();
     super.dispose();
   }
 
@@ -88,27 +102,45 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
       ),
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
-        child: MaterialButton(
-          elevation: 0,
-          height: 93.w,
-          disabledColor: Colors.black.withOpacity(0.06),
-          disabledTextColor: Colors.black.withOpacity(0.25),
-          textColor: Colors.black.withOpacity(0.85),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(65.w)),
-          color: kPrimaryColor,
+        child: BeeLongButton(
           onPressed: !canTap
               ? null
               : () async {
                   var cancel = BotToast.showLoading();
+                  var _voiceUrl;
+                  if (_voiceUri != null) {
+                    try {
+                      _voiceUrl = await NetUtil().upload(
+                          SARSAPI.uploadFile.uploadImg,
+                          File.fromUri(Uri(path: _voiceUri)));
+                    } catch (e) {
+                      print(e.toString());
+                    }
+                  }
+                  var imgs;
+                  if (_photos.isNotEmpty) {
+                    try {
+                      imgs = await NetUtil()
+                          .uploadFiles(_photos, SARSAPI.uploadFile.uploadImg);
+                    } catch (e) {
+                      print(e.toString());
+                    }
+                  }
                   var re = await TaskFunc.publish(
-                      title: _titleController.text,
-                      taskType: _type,
-                      taskSex: _sex,
-                      serviceObject: _service,
-                      taskContent: _content ?? '',
-                      taskDate: _appointDate.toString(),
-                      taskAddress: _addressController.text,
+                      type: _type,
+                      sex: _sex,
+                      servicePersonnel: _service,
+                      readyStartTime: _appointDate.toString(),
+                      readyEndTime: _appointEndDate.toString(),
+                      contact: _nameController.text,
+                      tel: _telController.text,
+                      accessAddress: _accessAddress!,
+                      accessAddressDetail: _accessAddressDetail!,
+                      serviceAddress: _serviceAddress,
+                      serviceAddressDetail: _serviceAddressDetail,
+                      remarks: _content,
+                      voiceUrl: _voiceUrl,
+                      imgUrls: imgs,
                       rewardType: _rewardType,
                       reward: _rewardController.text);
                   if (re) {
@@ -116,7 +148,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   }
                   cancel();
                 },
-          child: '确认发布'.text.size(32.sp).bold.make(),
+          text: '确认发布',
         ),
       ),
     );
@@ -363,35 +395,57 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
   }
 
   Container _dateAndAddress() {
-    var date = GestureDetector(
-      onTap: () async {
-        _appointDate = await BeeDatePicker.timePicker(DateTime.now());
-      },
-      child: Material(
-        color: Colors.transparent,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 170.w,
-              child: '预计时间'
-                  .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.45))
-                  .make(),
-            ),
-            '${DateUtil.formatDate(_appointDate)}'
-                .text
-                .size(28.sp)
-                .color(Colors.black.withOpacity(_type == 0 ? 0.25 : 0.85))
-                .make(),
-            Spacer(),
-            Icon(
-              CupertinoIcons.chevron_right,
-              size: 24.w,
-            ),
-          ],
+    var date = Row(
+      children: [
+        SizedBox(
+          width: 170.w,
+          child: '预计时间'
+              .text
+              .size(28.sp)
+              .color(Colors.black.withOpacity(0.45))
+              .make(),
         ),
-      ),
+        Expanded(
+          child: GestureDetector(
+            onTap: () async {
+              _appointDate = await BeeDatePicker.timePicker(DateTime.now());
+              setState(() {});
+            },
+            child: Material(
+              color: Colors.transparent,
+              child:
+                  '${DateUtil.formatDate(_appointDate, format: DateFormats.zh_mo_d_h_m)}'
+                      .text
+                      .size(28.sp)
+                      .color(Colors.black.withOpacity(0.85))
+                      .make(),
+            ),
+          ),
+        ),
+        '-'.text.size(28.sp).color(Colors.black.withOpacity(0.85)).make(),
+        Expanded(
+          child: GestureDetector(
+            onTap: () async {
+              _appointEndDate = await BeeDatePicker.timePicker(DateTime.now());
+              setState(() {});
+            },
+            child: Material(
+              color: Colors.transparent,
+              child:
+                  '${DateUtil.formatDate(_appointEndDate, format: DateFormats.zh_mo_d_h_m)}'
+                      .text
+                      .size(28.sp)
+                      .color(Colors.black.withOpacity(_type == 0 ? 0.25 : 0.85))
+                      .make(),
+            ),
+          ),
+        ),
+        Spacer(),
+        Icon(
+          CupertinoIcons.chevron_right,
+          size: 24.w,
+        ),
+      ],
     );
     var contact = Row(
       children: [
@@ -476,7 +530,14 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
           BeeDivider.horizontal(),
           32.w.heightBox,
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              var re = await Get.to(() => AddAppointmentAddressPage());
+              if (re != null) {
+                _accessAddress = re['address'];
+                _accessAddressDetail = re['addressDetail'];
+                setState(() {});
+              }
+            },
             child: Material(
               color: Colors.transparent,
               child: Row(
@@ -508,7 +569,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                       children: [
                         '鲍汁牛肉饭'.text.size(32.sp).black.bold.make(),
                         12.w.heightBox,
-                        '江西省萍乡市莲花县良坊镇 19 幢 252 室daidjwoajdiowajdoiwa'
+                        '${_accessAddress ?? ''}'
                             .text
                             .maxLines(1)
                             .overflow(TextOverflow.ellipsis)
@@ -545,7 +606,14 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             ],
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              var re = await Get.to(() => AddAppointmentAddressPage());
+              if (re != null) {
+                _serviceAddress = re['address'];
+                _serviceAddressDetail = re['addressDetail'];
+                setState(() {});
+              }
+            },
             child: Material(
               color: Colors.transparent,
               child: Row(
@@ -583,7 +651,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                             .bold
                             .make(),
                         12.w.heightBox,
-                        '江西省萍乡市莲花县良坊镇 19 幢 252 室daidjwoajdiowajdoiwa'
+                        '${_serviceAddress ?? ''}'
                             .text
                             .maxLines(1)
                             .overflow(TextOverflow.ellipsis)
@@ -628,6 +696,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
           GestureDetector(
             onTap: () async {
               _content = await Get.to(() => TaskRemarkPage());
+              setState(() {});
             },
             child: Material(
               color: Colors.transparent,
@@ -641,13 +710,15 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                         .color(Colors.black.withOpacity(0.45))
                         .make(),
                   ),
-                  '${_content == null ? '请输入任务备注' : _content}'
-                      .text
-                      .size(28.sp)
-                      .color(Colors.black
-                          .withOpacity(_rewardType == 0 ? 0.25 : 0.85))
-                      .make(),
-                  Spacer(),
+                  Expanded(
+                    child: '${_content == null ? '请输入任务备注' : _content}'
+                        .text
+                        .size(28.sp)
+                        .color(Colors.black
+                            .withOpacity(_rewardType == 0 ? 0.25 : 0.85))
+                        .make(),
+                  ),
+                  20.wb,
                   Icon(
                     CupertinoIcons.chevron_right,
                     size: 24.w,
@@ -861,10 +932,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
   }
 
   bool get canTap {
-    if (_titleController.text.isEmpty) {
+    if (_type == 0) {
       return false;
     }
-    if (_type == 0) {
+    if (_service == 0) {
       return false;
     }
     if (_rewardType == 0) {
@@ -876,13 +947,22 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
     if (_appointDate == null) {
       return false;
     }
-    if (_content == null) {
+    if (_appointEndDate == null) {
       return false;
     }
-    if (_addressController.text.isEmpty) {
+    if (_accessAddress == null) {
+      return false;
+    }
+    if (_accessAddressDetail == null) {
       return false;
     }
     if (_rewardController.text.isEmpty) {
+      return false;
+    }
+    if (_nameController.text.isEmpty) {
+      return false;
+    }
+    if (_telController.text.isEmpty) {
       return false;
     }
     return true;

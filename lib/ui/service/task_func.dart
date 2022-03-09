@@ -4,26 +4,41 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 
 class TaskFunc {
   ///确认发布
-  static Future<bool> publish(
-      {required String title,
-      required int taskType,
-      required int taskSex,
-      required int serviceObject,
-      required String taskContent,
-      required String taskDate,
-      required String taskAddress,
-      required int rewardType,
-      required String reward}) async {
+  static Future<bool> publish({
+    required int type,
+    required int sex,
+    required int servicePersonnel,
+    required String readyStartTime,
+    required String readyEndTime,
+    required String contact,
+    required String tel,
+    required String accessAddress,
+    required String accessAddressDetail,
+    required String? serviceAddress,
+    required String? serviceAddressDetail,
+    required String? remarks,
+    required String voiceUrl,
+    required List<String> imgUrls,
+    required int rewardType,
+    required String reward,
+  }) async {
     var base = await NetUtil().post(API.manager.task.publish, params: {
-      'title': title,
-      'taskType': taskType,
-      'taskSex': taskSex,
-      'serviceObject': serviceObject,
-      'taskContent': taskContent,
-      'taskDate': taskDate,
-      'taskAddress': taskAddress,
+      'type': type,
+      'sex': sex,
+      'servicePersonnel': servicePersonnel,
+      'readyStartTime': readyStartTime,
+      'readyEndTime': readyEndTime,
+      'contact': contact,
+      'tel': tel,
+      'accessAddress': accessAddress,
+      'accessAddressDetail': accessAddressDetail,
+      'serviceAddress': serviceAddress,
+      'serviceAddressDetail': serviceAddressDetail,
+      'remarks': remarks,
+      'voiceUrl': voiceUrl,
+      'imgUrls': imgUrls,
       'rewardType': rewardType,
-      'reward': int.parse(reward),
+      'reward': reward,
     });
     return base.success;
   }
