@@ -5,6 +5,8 @@ import 'package:aku_new_community/ui/service/my_take_task/my_take_task_detail_pa
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_new_community/widget/voice_player.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +24,28 @@ class MyTakeTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appointment = Row(
+      children: [
+        Container(
+          width: 40.w,
+          height: 40.w,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Color(0xFFFA8C16),
+              borderRadius: BorderRadius.circular(8.w)),
+          child: Text(
+            '预',
+            style: TextStyle(color: Colors.white, fontSize: 24.sp),
+          ),
+        ),
+        24.w.widthBox,
+        '${DateUtil.formatDateStr(model.readyEndTime, format: 'MM月dd日 HH:mm')}前'
+            .text
+            .size(24.sp)
+            .color(Colors.black.withOpacity(0.65))
+            .make(),
+      ],
+    );
     return GestureDetector(
       onTap: () {
         Get.to(() => MyTakeTaskDetailPage(model: model));
@@ -53,7 +77,9 @@ class MyTakeTaskCard extends StatelessWidget {
             ),
             20.w.heightBox,
             BeeDivider.horizontal(),
-            34.w.heightBox,
+            24.w.heightBox,
+            appointment,
+            20.w.heightBox,
             Row(
               children: [
                 Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
@@ -77,6 +103,32 @@ class MyTakeTaskCard extends StatelessWidget {
                     .make(),
               ],
             ),
+            Row(
+              children: [
+                Assets.icons.watch.image(width: 40.w, height: 40.w),
+                24.w.widthBox,
+                '${model.serviceTime ?? '0'}'
+                    .richText
+                    .withTextSpanChildren([
+                      ' 分钟'.textSpan.size(28.sp).color(Colors.black).make(),
+                    ])
+                    .size(28.sp)
+                    .color(Color(0xFFFA8C16))
+                    .make(),
+              ],
+            ),
+            24.w.heightBox,
+            Row(
+              children: [
+                Assets.icons.environment.image(width: 36.w, height: 36.w),
+                24.w.widthBox,
+                '${model.accessAddress}'
+                    .text
+                    .size(24.sp)
+                    .color(Colors.black.withOpacity(0.65))
+                    .make(),
+              ],
+            ),
             34.w.heightBox,
             Container(
               width: 638.w,
@@ -87,16 +139,17 @@ class MyTakeTaskCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  '#${TaskMap.typeToString[model.type]}'
-                      .text
-                      .size(28.sp)
-                      .color(Colors.black.withOpacity(0.85))
-                      .make(),
-                  16.w.heightBox,
                   model.remarks.text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
+                  24.w.heightBox,
+                  VoicePlayer(
+                    url: model.voiceUrl,
+                  ),
+                  24.w.heightBox,
+                  BeeGridImageView(
+                      urls: model.imgList?.map((e) => e.url).toList() ?? []),
                 ],
               ),
             ),

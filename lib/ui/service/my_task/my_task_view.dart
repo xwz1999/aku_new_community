@@ -8,18 +8,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyTaskView extends StatefulWidget {
-  const MyTaskView({Key? key}) : super(key: key);
+  final EasyRefreshController refreshController;
+  final int type;
+  const MyTaskView(
+      {Key? key, required this.refreshController, required this.type})
+      : super(key: key);
 
   @override
   _MyTaskViewState createState() => _MyTaskViewState();
 }
 
 class _MyTaskViewState extends State<MyTaskView> {
-  EasyRefreshController _refreshController = EasyRefreshController();
-
   @override
   void dispose() {
-    _refreshController.dispose();
     super.dispose();
   }
 
@@ -27,9 +28,10 @@ class _MyTaskViewState extends State<MyTaskView> {
   Widget build(BuildContext context) {
     return BeeListView(
         path: SARSAPI.task.list,
-        controller: _refreshController,
+        controller: widget.refreshController,
         extraParams: {
           'taskModel': 2,
+          'type': widget.type + 1,
         },
         convert: (json) =>
             json.rows.map((e) => MyTaskListModel.fromJson(e)).toList(),
@@ -39,7 +41,7 @@ class _MyTaskViewState extends State<MyTaskView> {
               itemBuilder: (context, index) {
                 return MyTaskCard(
                     model: models[index],
-                    refresh: () => _refreshController.callRefresh());
+                    refresh: () => widget.refreshController.callRefresh());
               },
               separatorBuilder: (_, __) {
                 return 24.w.heightBox;

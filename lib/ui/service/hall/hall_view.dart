@@ -9,18 +9,19 @@ import 'package:velocity_x/src/extensions/num_ext.dart';
 import 'hall_card.dart';
 
 class HallView extends StatefulWidget {
-  const HallView({Key? key}) : super(key: key);
+  final EasyRefreshController refreshController;
+  final int type;
+  const HallView(
+      {Key? key, required this.refreshController, required this.type})
+      : super(key: key);
 
   @override
   _HallViewState createState() => _HallViewState();
 }
 
 class _HallViewState extends State<HallView> {
-  EasyRefreshController _refreshController = EasyRefreshController();
-
   @override
   void dispose() {
-    _refreshController.dispose();
     super.dispose();
   }
 
@@ -28,9 +29,10 @@ class _HallViewState extends State<HallView> {
   Widget build(BuildContext context) {
     return BeeListView(
         path: SARSAPI.task.list,
-        controller: _refreshController,
+        controller: widget.refreshController,
         extraParams: {
           'taskModel': 1,
+          'type': widget.type + 1,
         },
         convert: (json) =>
             json.rows.map((e) => HallListModel.fromJson(e)).toList(),
@@ -41,7 +43,7 @@ class _HallViewState extends State<HallView> {
                 return HallCard(
                     key: ValueKey(models[index].id),
                     model: models[index],
-                    refresh: () => _refreshController.callRefresh());
+                    refresh: () => widget.refreshController.callRefresh());
               },
               separatorBuilder: (_, __) {
                 return 24.w.heightBox;

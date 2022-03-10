@@ -8,18 +8,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyTakeTaskView extends StatefulWidget {
-  const MyTakeTaskView({Key? key}) : super(key: key);
+  final EasyRefreshController refreshController;
+  final int type;
+  const MyTakeTaskView(
+      {Key? key, required this.refreshController, required this.type})
+      : super(key: key);
 
   @override
   _MyTakeTaskViewState createState() => _MyTakeTaskViewState();
 }
 
 class _MyTakeTaskViewState extends State<MyTakeTaskView> {
-  EasyRefreshController _refreshController = EasyRefreshController();
-
   @override
   void dispose() {
-    _refreshController.dispose();
     super.dispose();
   }
 
@@ -27,9 +28,10 @@ class _MyTakeTaskViewState extends State<MyTakeTaskView> {
   Widget build(BuildContext context) {
     return BeeListView(
         path: SARSAPI.task.list,
-        controller: _refreshController,
+        controller: widget.refreshController,
         extraParams: {
           'taskModel': 2,
+          'type': widget.type + 1,
         },
         convert: (json) =>
             json.rows.map((e) => MyTakeTaskListModel.fromJson(e)).toList(),
@@ -39,7 +41,7 @@ class _MyTakeTaskViewState extends State<MyTakeTaskView> {
               itemBuilder: (context, index) {
                 return MyTakeTaskCard(
                     model: models[index],
-                    refresh: () => _refreshController.callRefresh());
+                    refresh: () => widget.refreshController.callRefresh());
               },
               separatorBuilder: (_, __) {
                 return 24.w.heightBox;

@@ -32,7 +32,7 @@ class PublishTaskPage extends StatefulWidget {
 }
 
 class _PublishTaskPageState extends State<PublishTaskPage> {
-  List<String> _types = ['跑腿', '代驾', '装修', '陪玩', '家政', '维修', '搬家', '家教', '其他'];
+  List<String> _types = ['跑腿', '家政', '维修', '家教', '其他'];
 
   //类型
   int _type = 0;
@@ -41,7 +41,9 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
 
   //服务人员
   int _service = 0;
-  List<String> _serviceObject = ['住户', '物业', '不限'];
+  List<String> _serviceObject = [
+    '住户',
+  ];
   List<String> _rewardTypes = ['赏金', '积分'];
 
   //报酬类型
@@ -305,6 +307,20 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .color(Colors.black.withOpacity(0.85))
                   .make()),
           actions: [
+            ..._serviceObject
+                .mapIndexed((e, index) => CupertinoActionSheetAction(
+                    onPressed: () {
+                      _service = index + 1;
+                      Get.back();
+                      setState(() {});
+                    },
+                    child: 'e'
+                        .text
+                        .size(28.sp)
+                        .isIntrinsic
+                        .color(Colors.black.withOpacity(0.85))
+                        .make()))
+                .toList(),
             CupertinoActionSheetAction(
                 onPressed: () {
                   _service = 1;
