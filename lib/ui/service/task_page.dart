@@ -2,6 +2,7 @@ import 'package:aku_new_community/ui/service/hall/hall_view.dart';
 import 'package:aku_new_community/ui/service/my_take_task/my_take_task_view.dart';
 import 'package:aku_new_community/ui/service/my_task/my_task_view.dart';
 import 'package:aku_new_community/ui/service/publish_task_page.dart';
+import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/painter/tab_indicator.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +20,15 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
   late TabController _tabController;
-
-  List<String> _tabs = ['大厅', '我服务的', '我发布的'];
-  List<String> _types = ['跑腿', '家政', '维修', '家教', '其他'];
   List<EasyRefreshController> _refreshControllers = [];
   int _currentType = 0;
 
   @override
   void initState() {
-    _tabController = TabController(length: _tabs.length, vsync: this);
-    _refreshControllers = _tabs.map((e) => EasyRefreshController()).toList();
+    _tabController =
+        TabController(length: TaskMap.taskMode.values.length, vsync: this);
+    _refreshControllers =
+        TaskMap.taskMode.values.map((e) => EasyRefreshController()).toList();
     super.initState();
   }
 
@@ -46,8 +46,10 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
       title: '',
       actions: [
         IconButton(
-            onPressed: () {
-              Get.to(() => PublishTaskPage());
+            onPressed: () async {
+              await Get.to(() => PublishTaskPage());
+              _tabController.animateTo(0);
+              _refreshControllers[0].callRefresh();
             },
             icon: Icon(
               Icons.add_circle_outline,
@@ -64,7 +66,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
                   children: [
-                    ..._tabs
+                    ...TaskMap.taskMode.values
                         .mapIndexed((currentValue, index) =>
                             _tabCard(currentValue, index))
                         .toList(),
@@ -74,7 +76,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
                 child: Row(
-                  children: _types
+                  children: TaskMap.taskType.values
                       .mapIndexed((currentValue, index) =>
                           _typeBar(currentValue, index))
                       .toList(),

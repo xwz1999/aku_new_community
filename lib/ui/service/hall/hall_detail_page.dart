@@ -1,11 +1,20 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/ui/service/task_func.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_new_community/widget/voice_player.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HallDetailPage extends StatefulWidget {
@@ -18,6 +27,9 @@ class HallDetailPage extends StatefulWidget {
 }
 
 class _HallDetailPageState extends State<HallDetailPage> {
+  bool get myself =>
+      UserTool.userProvider.userInfoModel!.id == widget.model.createId;
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -34,15 +46,10 @@ class _HallDetailPageState extends State<HallDetailPage> {
                   gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: widget.model.status == 4
-                          ? [
-                              Colors.white,
-                              Color(0xFFADACAC),
-                            ]
-                          : [
-                              Color(0xFFFFB737),
-                              Color(0xFFFFD361),
-                            ]),
+                      colors: [
+                        Color(0xFFFFB737),
+                        Color(0xFFFFD361),
+                      ]),
                 ),
                 child: Column(
                   children: [
@@ -54,13 +61,13 @@ class _HallDetailPageState extends State<HallDetailPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              '${TaskMap.detailStatusToString[widget.model.status]}'
+                              '未领取'
                                   .text
                                   .size(40.sp)
                                   .color(Colors.black)
                                   .bold
                                   .make(),
-                              '${TaskMap.subStatus[widget.model.status]}'
+                              '正在等待其他人接单'
                                   .text
                                   .size(24.sp)
                                   .color(Colors.black.withOpacity(0.45))
@@ -96,6 +103,29 @@ class _HallDetailPageState extends State<HallDetailPage> {
               )),
         ],
       ),
+      bottomNavi: Container(
+        width: double.infinity,
+        color: Colors.white,
+        padding: EdgeInsets.all(32.w),
+        child: myself
+            ? BeeLongButton.white(
+                onPressed: () async {
+                  var re = await TaskFunc.cancel(taskId: widget.model.id);
+                  if (re) {
+                    Get.back();
+                  }
+                },
+                text: '取消任务')
+            : BeeLongButton(
+                onPressed: () async {
+                  var re = await TaskFunc.take(taskId: widget.model.id);
+                  if (re) {
+                    Get.back();
+                  }
+                },
+                text: '领取任务',
+              ),
+      ),
     );
   }
 
@@ -126,13 +156,38 @@ class _HallDetailPageState extends State<HallDetailPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '${DateUtil.formatDateStr(widget.model.updateDate)}'
+              '${DateUtil.formatDateStr(widget.model.createDate)}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
-                  .make()
+                  .make(),
+              64.w.widthBox,
             ],
           ),
+          24.w.heightBox,
+          Row(
+            children: [
+              '任务单号'
+                  .text
+                  .size(24.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              Spacer(),
+              '${widget.model.code}'
+                  .text
+                  .size(24.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              24.w.widthBox,
+              GestureDetector(
+                  onTap: () async {
+                    await Clipboard.setData(
+                        ClipboardData(text: widget.model.code));
+                    BotToast.showText(text: '已复制到粘贴板');
+                  },
+                  child: Assets.icons.copy.image(width: 40.w, height: 40.w)),
+            ],
+          )
         ],
       ),
     );
@@ -149,21 +204,18 @@ class _HallDetailPageState extends State<HallDetailPage> {
             color: Color(0xFFFFF7E6),
             borderRadius: BorderRadius.circular(8.w),
           ),
-          child: '#${TaskMap.typeToString[widget.model.type]}'
+          child: '#${TaskMap.taskType[widget.model.type]}'
               .text
               .size(28.sp)
               .color(Color(0xFFFA8C16))
               .make(),
         ),
         Spacer(),
-        Assets.icons.intergral.image(width: 24.w, height: 24.w),
-        8.w.widthBox,
-        '${widget.model.reward}'.text.size(32.sp).color(Colors.red).make()
       ],
     );
     return Container(
       width: 686.w,
-      height: 500.w,
+      // height: 500.w,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.w),
@@ -175,16 +227,19 @@ class _HallDetailPageState extends State<HallDetailPage> {
           34.w.heightBox,
           Row(
             children: [
-              Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
+              Assets.icons.watch.image(width: 40.w, height: 40.w),
               24.w.widthBox,
-              '${DateUtil.formatDateStr(widget.model.readyEndTime)}'
-                  .text
-                  .size(24.sp)
-                  .color(Colors.black.withOpacity(0.65))
+              '${widget.model.serviceTime ?? '0'}'
+                  .richText
+                  .withTextSpanChildren([
+                    ' 分钟'.textSpan.size(28.sp).color(Colors.black).make(),
+                  ])
+                  .size(28.sp)
+                  .color(Color(0xFFFA8C16))
                   .make(),
             ],
           ),
-          20.w.heightBox,
+          24.w.heightBox,
           Row(
             children: [
               Assets.icons.environment.image(width: 36.w, height: 36.w),
@@ -206,16 +261,18 @@ class _HallDetailPageState extends State<HallDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                '#${TaskMap.typeToString[widget.model.type]}'
-                    .text
-                    .size(28.sp)
-                    .color(Colors.black.withOpacity(0.85))
-                    .make(),
-                16.w.heightBox,
                 widget.model.remarks.text
                     .size(28.sp)
                     .color(Colors.black.withOpacity(0.65))
                     .make(),
+                24.w.heightBox,
+                VoicePlayer(
+                  url: widget.model.voiceUrl,
+                ),
+                24.w.heightBox,
+                BeeGridImageView(
+                    urls:
+                        widget.model.imgList?.map((e) => e.url).toList() ?? []),
               ],
             ),
           ),
@@ -232,11 +289,14 @@ class _HallDetailPageState extends State<HallDetailPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '¥${widget.model.reward}'
-                  .text
-                  .size(32.sp)
-                  .color(Colors.red)
-                  .make(),
+              widget.model.rewardType == 1
+                  ? Text(
+                      '¥ ',
+                      style: TextStyle(color: Colors.red, fontSize: 32.sp),
+                    )
+                  : Assets.icons.intergral.image(width: 24.w, height: 24.w),
+              8.w.widthBox,
+              '${widget.model.reward}'.text.size(32.sp).color(Colors.red).make()
             ],
           ),
         ],

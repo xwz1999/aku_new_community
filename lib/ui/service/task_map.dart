@@ -1,4 +1,12 @@
 class TaskMap {
+  static Map<int, String> taskMode = {1: '大厅', 2: '我服务的', 3: '我发布的'};
+  static Map<int, String> taskType = {
+    1: '跑腿',
+    2: '家政',
+    3: '维修',
+    4: '家教',
+    9: '其他'
+  };
   static Map<int, String> statusToString = {
     1: '未接单',
     2: '待处理',

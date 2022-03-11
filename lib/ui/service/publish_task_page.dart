@@ -5,6 +5,7 @@ import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/ui/service/add_appointment_address_page.dart';
 import 'package:aku_new_community/ui/service/task_func.dart';
+import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/ui/service/task_remark_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -20,6 +21,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -32,8 +34,6 @@ class PublishTaskPage extends StatefulWidget {
 }
 
 class _PublishTaskPageState extends State<PublishTaskPage> {
-  List<String> _types = ['跑腿', '家政', '维修', '家教', '其他'];
-
   //类型
   int _type = 0;
   List<String> _sexStr = ['男', '女', '不限'];
@@ -75,6 +75,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
     return BeeScaffold(
       title: '发布任务',
       extendBody: true,
+      bodyColor: Color(0xFFE5E5E5),
       body: Stack(
         children: [
           ClipPath(
@@ -112,9 +113,14 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   var _voiceUrl;
                   if (_voiceUri != null) {
                     try {
-                      _voiceUrl = await NetUtil().upload(
+                      var base = await NetUtil().upload(
                           SARSAPI.uploadFile.uploadImg,
                           File.fromUri(Uri(path: _voiceUri)));
+                      if (base.success) {
+                        _voiceUrl = base.data;
+                      } else {
+                        BotToast.showText(text: base.msg);
+                      }
                     } catch (e) {
                       print(e.toString());
                     }
@@ -171,18 +177,19 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                 },
                 child: CupertinoPicker.builder(
                     itemExtent: 60.w,
-                    childCount: _types.length,
+                    childCount: TaskMap.taskType.values.length,
                     onSelectedItemChanged: (index) {
-                      _type = index + 1;
+                      var typeStr = TaskMap.taskType.values.toList()[index];
+                      TaskMap.taskType.forEach((key, value) {
+                        if (value == typeStr) {
+                          _type = key;
+                        }
+                      });
                     },
                     itemBuilder: (context, index) {
+                      var str = TaskMap.taskType.values.toList()[index];
                       return Center(
-                        child: _types[index]
-                            .text
-                            .size(32.sp)
-                            .isIntrinsic
-                            .color(Colors.black.withOpacity(0.25))
-                            .make(),
+                        child: str.text.size(32.sp).isIntrinsic.make(),
                       );
                     }));
           },
@@ -200,7 +207,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
             ),
-            '${_type == 0 ? '请选择分类' : _types[_type - 1]}'
+            '${_type == 0 ? '请选择分类' : TaskMap.taskType[_type]}'
                 .text
                 .size(28.sp)
                 .color(Colors.black.withOpacity(_type == 0 ? 0.25 : 0.85))
@@ -314,49 +321,12 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                       Get.back();
                       setState(() {});
                     },
-                    child: 'e'
-                        .text
+                    child: e.text
                         .size(28.sp)
                         .isIntrinsic
                         .color(Colors.black.withOpacity(0.85))
                         .make()))
                 .toList(),
-            CupertinoActionSheetAction(
-                onPressed: () {
-                  _service = 1;
-                  Get.back();
-                  setState(() {});
-                },
-                child: '住户'
-                    .text
-                    .size(28.sp)
-                    .isIntrinsic
-                    .color(Colors.black.withOpacity(0.85))
-                    .make()),
-            CupertinoActionSheetAction(
-                onPressed: () {
-                  _service = 2;
-                  Get.back();
-                  setState(() {});
-                },
-                child: '物业'
-                    .text
-                    .size(28.sp)
-                    .isIntrinsic
-                    .color(Colors.black.withOpacity(0.85))
-                    .make()),
-            CupertinoActionSheetAction(
-                onPressed: () {
-                  _service = 3;
-                  Get.back();
-                  setState(() {});
-                },
-                child: '不限'
-                    .text
-                    .size(28.sp)
-                    .isIntrinsic
-                    .color(Colors.black.withOpacity(0.85))
-                    .make())
           ],
         ));
       },
@@ -432,7 +402,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
               child:
                   '${DateUtil.formatDate(_appointDate, format: DateFormats.zh_mo_d_h_m)}'
                       .text
-                      .size(28.sp)
+                      .size(24.sp)
                       .color(Colors.black.withOpacity(0.85))
                       .make(),
             ),
@@ -450,13 +420,12 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
               child:
                   '${DateUtil.formatDate(_appointEndDate, format: DateFormats.zh_mo_d_h_m)}'
                       .text
-                      .size(28.sp)
+                      .size(24.sp)
                       .color(Colors.black.withOpacity(_type == 0 ? 0.25 : 0.85))
                       .make(),
             ),
           ),
         ),
-        Spacer(),
         Icon(
           CupertinoIcons.chevron_right,
           size: 24.w,
@@ -479,7 +448,6 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             onChanged: (text) => setState(() {}),
             autofocus: false,
             controller: _nameController,
-            style: TextStyle(color: Colors.red),
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 isDense: true,
@@ -509,7 +477,8 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             onChanged: (text) => setState(() {}),
             autofocus: false,
             controller: _telController,
-            style: TextStyle(color: Colors.red),
+            keyboardType: TextInputType.phone,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 isDense: true,
@@ -521,6 +490,163 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                 )),
           ),
         ),
+      ],
+    );
+    var doubleAddress = Column(
+      children: [
+        GestureDetector(
+          onTap: () async {
+            var re = await Get.to(() => AddAppointmentAddressPage());
+            if (re != null) {
+              _accessAddress = re['address'];
+              _accessAddressDetail = re['addressDetail'];
+              setState(() {});
+            }
+          },
+          child: Material(
+            color: Colors.transparent,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 8.w),
+                      width: 32.w,
+                      height: 32.w,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(20.w)),
+                      child: '取'.text.size(20.w).black.bold.make(),
+                    ),
+                    8.w.heightBox,
+                    _connect(5),
+                    8.w.heightBox,
+                  ],
+                ),
+                20.w.widthBox,
+                SizedBox(
+                  width: 430.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      '${_accessAddress ?? ''}'
+                          .text
+                          .size(32.sp)
+                          .black
+                          .bold
+                          .make(),
+                      12.w.heightBox,
+                      '${_accessAddressDetail ?? ''}'
+                          .text
+                          .maxLines(1)
+                          .overflow(TextOverflow.ellipsis)
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.45))
+                          .make(),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    20.hb,
+                    Icon(
+                      CupertinoIcons.chevron_right,
+                      size: 40.w,
+                      color: Colors.black.withOpacity(0.45),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 2.w),
+              child: Assets.icons.connect.image(width: 40.w, height: 40.w),
+            ),
+            20.wb,
+            BeeDivider.horizontal().expand(),
+          ],
+        ),
+        GestureDetector(
+          onTap: () async {
+            var re = await Get.to(() => AddAppointmentAddressPage());
+            if (re != null) {
+              _serviceAddress = re['address'];
+              _serviceAddressDetail = re['addressDetail'];
+              setState(() {});
+            }
+          },
+          child: Material(
+            color: Colors.transparent,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                  children: [
+                    8.w.heightBox,
+                    _connect(5),
+                    8.w.heightBox,
+                    Container(
+                      margin: EdgeInsets.only(left: 8.w),
+                      width: 32.w,
+                      height: 32.w,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(20.w)),
+                      child: '送'.text.size(20.w).white.bold.make(),
+                    ),
+                  ],
+                ),
+                20.w.widthBox,
+                SizedBox(
+                  width: 430.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      '${_serviceAddress ?? ''}'
+                          .text
+                          .size(32.sp)
+                          .black
+                          .lineHeight(1.1)
+                          .bold
+                          .make(),
+                      12.w.heightBox,
+                      '${_serviceAddressDetail ?? ''}'
+                          .text
+                          .maxLines(1)
+                          .overflow(TextOverflow.ellipsis)
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.45))
+                          .make(),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    20.hb,
+                    Icon(
+                      CupertinoIcons.chevron_right,
+                      size: 40.w,
+                      color: Colors.black.withOpacity(0.45),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        )
       ],
     );
     return Container(
@@ -545,151 +671,68 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
           32.w.heightBox,
           BeeDivider.horizontal(),
           32.w.heightBox,
-          GestureDetector(
-            onTap: () async {
-              var re = await Get.to(() => AddAppointmentAddressPage());
-              if (re != null) {
-                _accessAddress = re['address'];
-                _accessAddressDetail = re['addressDetail'];
-                setState(() {});
-              }
-            },
-            child: Material(
-              color: Colors.transparent,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 8.w),
-                        width: 32.w,
-                        height: 32.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(20.w)),
-                        child: '取'.text.size(20.w).black.bold.make(),
-                      ),
-                      8.w.heightBox,
-                      _connect(5),
-                      8.w.heightBox,
-                    ],
-                  ),
-                  20.w.widthBox,
-                  SizedBox(
-                    width: 430.w,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        '鲍汁牛肉饭'.text.size(32.sp).black.bold.make(),
-                        12.w.heightBox,
-                        '${_accessAddress ?? ''}'
-                            .text
-                            .maxLines(1)
-                            .overflow(TextOverflow.ellipsis)
-                            .size(24.sp)
-                            .color(Colors.black.withOpacity(0.45))
-                            .make(),
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      20.hb,
-                      Icon(
-                        CupertinoIcons.chevron_right,
-                        size: 40.w,
-                        color: Colors.black.withOpacity(0.45),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+          Offstage(
+            offstage: _type != 1,
+            child: doubleAddress,
           ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 2.w),
-                child: Assets.icons.connect.image(width: 40.w, height: 40.w),
-              ),
-              20.wb,
-              BeeDivider.horizontal().expand(),
-            ],
-          ),
-          GestureDetector(
-            onTap: () async {
-              var re = await Get.to(() => AddAppointmentAddressPage());
-              if (re != null) {
-                _serviceAddress = re['address'];
-                _serviceAddressDetail = re['addressDetail'];
-                setState(() {});
-              }
-            },
-            child: Material(
-              color: Colors.transparent,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    children: [
-                      8.w.heightBox,
-                      _connect(5),
-                      8.w.heightBox,
-                      Container(
-                        margin: EdgeInsets.only(left: 8.w),
-                        width: 32.w,
-                        height: 32.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(20.w)),
-                        child: '送'.text.size(20.w).white.bold.make(),
-                      ),
-                    ],
-                  ),
-                  20.w.widthBox,
-                  SizedBox(
-                    width: 430.w,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        '鲍汁牛肉饭'
-                            .text
-                            .size(32.sp)
-                            .black
-                            .lineHeight(1.1)
-                            .bold
-                            .make(),
-                        12.w.heightBox,
-                        '${_serviceAddress ?? ''}'
-                            .text
-                            .maxLines(1)
-                            .overflow(TextOverflow.ellipsis)
-                            .size(24.sp)
-                            .color(Colors.black.withOpacity(0.45))
-                            .make(),
-                      ],
+          Offstage(
+            offstage: _type == 1,
+            child: GestureDetector(
+              onTap: () async {
+                var re = await Get.to(() => AddAppointmentAddressPage());
+                if (re != null) {
+                  _accessAddress = re['address'];
+                  _accessAddressDetail = re['addressDetail'];
+                  setState(() {});
+                }
+              },
+              child: Material(
+                color: Colors.transparent,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      CupertinoIcons.location,
+                      size: 40.w,
                     ),
-                  ),
-                  Spacer(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      20.hb,
-                      Icon(
-                        CupertinoIcons.chevron_right,
-                        size: 40.w,
-                        color: Colors.black.withOpacity(0.45),
-                      )
-                    ],
-                  )
-                ],
+                    20.w.widthBox,
+                    SizedBox(
+                      width: 430.w,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          '${_accessAddress ?? ''}'
+                              .text
+                              .size(32.sp)
+                              .black
+                              .bold
+                              .make(),
+                          12.w.heightBox,
+                          '${_accessAddressDetail ?? ''}'
+                              .text
+                              .maxLines(1)
+                              .overflow(TextOverflow.ellipsis)
+                              .size(24.sp)
+                              .color(Colors.black.withOpacity(0.45))
+                              .make(),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        20.hb,
+                        Icon(
+                          CupertinoIcons.chevron_right,
+                          size: 40.w,
+                          color: Colors.black.withOpacity(0.45),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           )
@@ -832,6 +875,8 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             onChanged: (text) => setState(() {}),
             autofocus: false,
             controller: _rewardController,
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             style: TextStyle(color: Colors.red),
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,

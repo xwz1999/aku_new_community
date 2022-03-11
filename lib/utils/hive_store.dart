@@ -18,7 +18,7 @@ class HiveStore {
   static Box? get dataBox => _dataBox;
   static Box? _shortcutBox;
 
-  static Box? get shortcutBox => _dataBox;
+  static Box? get shortcutBox => _shortcutBox;
 
   static Future init() async {
     if (!kIsWeb) {

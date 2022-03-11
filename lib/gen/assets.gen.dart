@@ -190,6 +190,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/camera.png
   AssetGenImage get camera => const AssetGenImage('assets/icons/camera.png');
 
+  /// File path: assets/icons/cancel_task.png
+  AssetGenImage get cancelTask =>
+      const AssetGenImage('assets/icons/cancel_task.png');
+
   /// File path: assets/icons/change.png
   AssetGenImage get change => const AssetGenImage('assets/icons/change.png');
 
@@ -249,12 +253,19 @@ class $AssetsIconsGen {
   AssetGenImage get contract =>
       const AssetGenImage('assets/icons/contract.png');
 
+  /// File path: assets/icons/copy.png
+  AssetGenImage get copy => const AssetGenImage('assets/icons/copy.png');
+
   /// File path: assets/icons/delete.png
   AssetGenImage get delete => const AssetGenImage('assets/icons/delete.png');
 
   /// File path: assets/icons/device_alarm.png
   AssetGenImage get deviceAlarm =>
       const AssetGenImage('assets/icons/device_alarm.png');
+
+  /// File path: assets/icons/dissatisfied.png
+  AssetGenImage get dissatisfied =>
+      const AssetGenImage('assets/icons/dissatisfied.png');
 
   /// File path: assets/icons/edit.png
   AssetGenImage get edit => const AssetGenImage('assets/icons/edit.png');
@@ -675,6 +686,9 @@ class $AssetsIconsGen {
   AssetGenImage get nearbyService =>
       const AssetGenImage('assets/icons/nearby_service.png');
 
+  /// File path: assets/icons/normal.png
+  AssetGenImage get normal => const AssetGenImage('assets/icons/normal.png');
+
   /// File path: assets/icons/oxygen.png
   AssetGenImage get oxygen => const AssetGenImage('assets/icons/oxygen.png');
 
@@ -718,6 +732,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/reward.png
   AssetGenImage get reward => const AssetGenImage('assets/icons/reward.png');
+
+  /// File path: assets/icons/satisfied.png
+  AssetGenImage get satisfied =>
+      const AssetGenImage('assets/icons/satisfied.png');
 
   /// File path: assets/icons/second_hand.png
   AssetGenImage get secondHand =>

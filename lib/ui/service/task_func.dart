@@ -1,4 +1,3 @@
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 
@@ -22,24 +21,26 @@ class TaskFunc {
     required int rewardType,
     required String reward,
   }) async {
-    var base = await NetUtil().post(API.manager.task.publish, params: {
-      'type': type,
-      'sex': sex,
-      'servicePersonnel': servicePersonnel,
-      'readyStartTime': readyStartTime,
-      'readyEndTime': readyEndTime,
-      'contact': contact,
-      'tel': tel,
-      'accessAddress': accessAddress,
-      'accessAddressDetail': accessAddressDetail,
-      'serviceAddress': serviceAddress,
-      'serviceAddressDetail': serviceAddressDetail,
-      'remarks': remarks,
-      'voiceUrl': voiceUrl,
-      'imgUrls': imgUrls,
-      'rewardType': rewardType,
-      'reward': reward,
-    });
+    var base = await NetUtil().post(SARSAPI.task.insert,
+        params: {
+          'type': type,
+          'sex': sex,
+          'servicePersonnel': servicePersonnel,
+          'readyStartTime': readyStartTime,
+          'readyEndTime': readyEndTime,
+          'contact': contact,
+          'tel': tel,
+          'accessAddress': accessAddress,
+          'accessAddressDetail': accessAddressDetail,
+          'serviceAddress': serviceAddress,
+          'serviceAddressDetail': serviceAddressDetail,
+          'remarks': remarks,
+          'voiceUrl': voiceUrl,
+          'imgUrls': imgUrls,
+          'rewardType': rewardType,
+          'reward': reward,
+        },
+        showMessage: true);
     return base.success;
   }
 

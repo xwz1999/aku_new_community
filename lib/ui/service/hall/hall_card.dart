@@ -4,6 +4,7 @@ import 'package:aku_new_community/ui/service/hall/hall_detail_page.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:aku_new_community/widget/voice_player.dart';
 import 'package:common_utils/common_utils.dart';
@@ -22,6 +23,8 @@ class HallCard extends StatelessWidget {
   const HallCard({Key? key, required this.model, required this.refresh})
       : super(key: key);
 
+  bool get myself => UserTool.userProvider.userInfoModel!.id == model.createId;
+
   @override
   Widget build(BuildContext context) {
     var head = Row(
@@ -36,6 +39,23 @@ class HallCard extends StatelessWidget {
               .size(28.sp)
               .color(Color(0xFFFA8C16))
               .make(),
+        ),
+        8.w.widthBox,
+        Offstage(
+          offstage: !myself,
+          child: Container(
+            width: 128.w,
+            height: 50.w,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: Color(0xFFFFE7BA),
+                borderRadius: BorderRadius.circular(8.w)),
+            child: '我发布的'
+                .text
+                .size(28.sp)
+                .color(Colors.black.withOpacity(0.85))
+                .make(),
+          ),
         ),
         Spacer(),
         Assets.icons.intergral.image(width: 24.w, height: 24.w),
@@ -66,8 +86,9 @@ class HallCard extends StatelessWidget {
       ],
     );
     return GestureDetector(
-      onTap: () {
-        Get.to(() => HallDetailPage(model: model));
+      onTap: () async {
+        await Get.to(() => HallDetailPage(model: model));
+        refresh();
       },
       child: Container(
         width: double.infinity,
@@ -143,14 +164,28 @@ class HallCard extends StatelessWidget {
                 Row(
                   children: [
                     Spacer(),
-                    CardBottomButton.yellow(
-                        text: '领取任务',
-                        onPressed: () async {
-                          var re = await TaskFunc.take(taskId: model.id);
-                          if (re) {
-                            refresh();
-                          }
-                        }),
+                    Offstage(
+                      offstage: !myself,
+                      child: CardBottomButton.white(
+                          text: '取消发布',
+                          onPressed: () async {
+                            var re = await TaskFunc.cancel(taskId: model.id);
+                            if (re) {
+                              refresh();
+                            }
+                          }),
+                    ),
+                    Offstage(
+                      offstage: myself,
+                      child: CardBottomButton.yellow(
+                          text: '领取任务',
+                          onPressed: () async {
+                            var re = await TaskFunc.take(taskId: model.id);
+                            if (re) {
+                              refresh();
+                            }
+                          }),
+                    ),
                   ],
                 ),
               ],

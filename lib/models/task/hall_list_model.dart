@@ -21,6 +21,8 @@ class HallListModel {
   final List<ImgModel>? imgList;
   final int rewardType;
   final int reward;
+  final int createId;
+  final String createDate;
   factory HallListModel.fromJson(Map<String, dynamic> json) =>
       _$HallListModelFromJson(json);
 
@@ -41,5 +43,7 @@ class HallListModel {
     this.imgList,
     required this.rewardType,
     required this.reward,
+    required this.createId,
+    required this.createDate,
   });
 }
