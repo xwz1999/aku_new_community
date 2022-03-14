@@ -926,6 +926,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
         borderRadius: BorderRadius.circular(16.w),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [

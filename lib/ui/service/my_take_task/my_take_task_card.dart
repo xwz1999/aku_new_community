@@ -5,7 +5,7 @@ import 'package:aku_new_community/ui/service/my_take_task/my_take_task_detail_pa
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
-import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_new_community/widget/views/bee_hor_image_view.dart';
 import 'package:aku_new_community/widget/voice_player.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
@@ -148,8 +148,14 @@ class MyTakeTaskCard extends StatelessWidget {
                     url: model.voiceUrl,
                   ),
                   24.w.heightBox,
-                  BeeGridImageView(
-                      urls: model.imgList?.map((e) => e.url).toList() ?? []),
+                  BeeHorImageView(
+                      maxCount: 4,
+                      onPressed: () {
+                        Get.to(() => MyTakeTaskDetailPage(model: model));
+                      },
+                      imgs: model.imgList ?? [],
+                      imgWidth: 135.w,
+                      imgHeight: 135.w),
                 ],
               ),
             ),

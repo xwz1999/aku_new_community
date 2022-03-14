@@ -16,7 +16,7 @@ class TaskFunc {
     required String? serviceAddress,
     required String? serviceAddressDetail,
     required String? remarks,
-    required String voiceUrl,
+    required String? voiceUrl,
     required List<String> imgUrls,
     required int rewardType,
     required String reward,

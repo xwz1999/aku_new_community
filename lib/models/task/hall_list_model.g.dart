@@ -19,8 +19,8 @@ HallListModel _$HallListModelFromJson(Map<String, dynamic> json) =>
       accessAddress: json['accessAddress'] as String?,
       accessAddressDetail: json['accessAddressDetail'] as String?,
       serviceTime: json['serviceTime'] as int?,
-      remarks: json['remarks'] as String,
-      voiceUrl: json['voiceUrl'] as String,
+      remarks: json['remarks'] as String?,
+      voiceUrl: json['voiceUrl'] as String?,
       imgList: (json['imgList'] as List<dynamic>?)
           ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),

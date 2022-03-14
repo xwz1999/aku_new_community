@@ -5,7 +5,7 @@ import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:aku_new_community/widget/views/bee_hor_image_view.dart';
 import 'package:aku_new_community/widget/voice_player.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -141,7 +141,8 @@ class HallCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  model.remarks.text
+                  '${model.remarks ?? ''}'
+                      .text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
@@ -150,8 +151,14 @@ class HallCard extends StatelessWidget {
                     url: model.voiceUrl,
                   ),
                   24.w.heightBox,
-                  BeeGridImageView(
-                      urls: model.imgList?.map((e) => e.url).toList() ?? []),
+                  BeeHorImageView(
+                      maxCount: 4,
+                      onPressed: () {
+                        Get.to(() => HallDetailPage(model: model));
+                      },
+                      imgs: model.imgList ?? [],
+                      imgWidth: 135.w,
+                      imgHeight: 135.w),
                 ],
               ),
             ),

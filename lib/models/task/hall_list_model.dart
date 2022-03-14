@@ -16,8 +16,8 @@ class HallListModel {
   final String? accessAddress;
   final String? accessAddressDetail;
   final int? serviceTime;
-  final String remarks;
-  final String voiceUrl;
+  final String? remarks;
+  final String? voiceUrl;
   final List<ImgModel>? imgList;
   final int rewardType;
   final int reward;

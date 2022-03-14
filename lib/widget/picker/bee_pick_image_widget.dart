@@ -1,7 +1,6 @@
 // Dart imports:
 import 'dart:io';
 
-import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
 // Package imports:
@@ -29,7 +28,11 @@ class _BeePickImageWidgetState extends State<BeePickImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.start,
+      alignment: WrapAlignment.start,
+      spacing: 10.w,
+      runSpacing: 10.w,
       children: [
         ..._files.map((e) => showImage(e)).toList(),
         GestureDetector(
@@ -75,7 +78,7 @@ class _BeePickImageWidgetState extends State<BeePickImageWidget> {
             ),
           ).material(color: Colors.transparent),
         )
-      ].sepWidget(separate: 10.w.widthBox),
+      ],
     );
   }
 

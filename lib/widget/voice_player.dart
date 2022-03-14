@@ -16,8 +16,7 @@ class VoicePlayer extends StatefulWidget {
 
   const VoicePlayer(
       {Key? key, this.url, this.onDelete, this.showXmark = false, this.path})
-      : assert(url != null || path != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _VoicePlayerState createState() => _VoicePlayerState();
@@ -25,6 +24,7 @@ class VoicePlayer extends StatefulWidget {
 
 class _VoicePlayerState extends State<VoicePlayer>
     with SingleTickerProviderStateMixin {
+  bool get nullVoice => widget.url == null && widget.path == null;
   final double width = 150.w;
   final double height = 45.w;
   late Animation<int> animation;
@@ -64,6 +64,9 @@ class _VoicePlayerState extends State<VoicePlayer>
   }
 
   Future initVoice() async {
+    if (nullVoice) {
+      return;
+    }
     if (widget.url != null) {
       await player.setUrl(SARSAPI.image(widget.url));
     } else {
@@ -78,6 +81,9 @@ class _VoicePlayerState extends State<VoicePlayer>
   }
 
   Future resetPlay() async {
+    if (nullVoice) {
+      return;
+    }
     _timer?.cancel();
     _timer = null;
     controller.stop();
@@ -135,53 +141,56 @@ class _VoicePlayerState extends State<VoicePlayer>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (player.playing) {
-          stopPlay();
-        } else {
-          startPlay();
-        }
-      },
-      child: Material(
-        color: Colors.transparent,
-        child: Stack(
-          fit: StackFit.passthrough,
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              width: width,
-              // height: height,
-              padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 20.w),
-              decoration: BoxDecoration(
-                  color: Color(0xFFFFE7BA),
-                  borderRadius: BorderRadius.circular(8.w)),
-              child: Row(
+    return nullVoice
+        ? SizedBox.shrink()
+        : GestureDetector(
+            onTap: () {
+              if (player.playing) {
+                stopPlay();
+              } else {
+                startPlay();
+              }
+            },
+            child: Material(
+              color: Colors.transparent,
+              child: Stack(
+                fit: StackFit.passthrough,
+                clipBehavior: Clip.none,
                 children: [
-                  CustomPaint(
-                    painter:
-                        VoicePlayerPainter(inAnimate ? animation.value : 3),
+                  Container(
+                    width: width,
+                    // height: height,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 14.w, horizontal: 20.w),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFFE7BA),
+                        borderRadius: BorderRadius.circular(8.w)),
+                    child: Row(
+                      children: [
+                        CustomPaint(
+                          painter: VoicePlayerPainter(
+                              inAnimate ? animation.value : 3),
+                        ),
+                        40.wb,
+                        Text('${_currentLength}\"'),
+                      ],
+                    ),
                   ),
-                  40.wb,
-                  Text('${_currentLength}\"'),
+                  if (widget.showXmark)
+                    Positioned(
+                        top: -10.w,
+                        right: -10.w,
+                        child: GestureDetector(
+                          onTap: widget.onDelete,
+                          child: Icon(
+                            CupertinoIcons.xmark_circle_fill,
+                            size: 30.w,
+                          ),
+                        ))
                 ],
               ),
             ),
-            if (widget.showXmark)
-              Positioned(
-                  top: -10.w,
-                  right: -10.w,
-                  child: GestureDetector(
-                    onTap: widget.onDelete,
-                    child: Icon(
-                      CupertinoIcons.xmark_circle_fill,
-                      size: 30.w,
-                    ),
-                  ))
-          ],
-        ),
-      ),
-    );
+          );
   }
 }
 

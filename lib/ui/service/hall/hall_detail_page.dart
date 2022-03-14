@@ -38,70 +38,58 @@ class _HallDetailPageState extends State<HallDetailPage> {
       title: '',
       body: Stack(
         children: [
-          Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 380.w,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Color(0xFFFFB737),
-                        Color(0xFFFFD361),
-                      ]),
-                ),
-                child: Column(
+          Container(
+            width: double.infinity,
+            height: 380.w,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color(0xFFFFB737),
+                    Color(0xFFFFD361),
+                  ]),
+            ),
+            child: Column(
+              children: [
+                150.w.heightBox,
+                Row(
                   children: [
-                    150.w.heightBox,
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 32.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              '未领取'
-                                  .text
-                                  .size(40.sp)
-                                  .color(Colors.black)
-                                  .bold
-                                  .make(),
-                              '正在等待其他人接单'
-                                  .text
-                                  .size(24.sp)
-                                  .color(Colors.black.withOpacity(0.45))
-                                  .make(),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          '未领取'
+                              .text
+                              .size(40.sp)
+                              .color(Colors.black)
+                              .bold
+                              .make(),
+                          '正在等待其他人接单'
+                              .text
+                              .size(24.sp)
+                              .color(Colors.black.withOpacity(0.45))
+                              .make(),
+                        ],
+                      ),
                     ),
+                    Spacer(),
                   ],
                 ),
-              ),
-              Flexible(
-                child: Container(
-                  width: double.infinity,
-                  color: Color(0xFFE5E5E5),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Positioned(
-              top: 280.w,
-              left: 32.w,
-              right: 32.w,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _content(),
-                  24.w.heightBox,
-                  _taskInfo(),
-                ],
-              )),
+          SafeArea(
+            child: ListView(
+              padding: EdgeInsets.only(top: 120.w, left: 32.w, right: 32.w),
+              children: [
+                _content(),
+                24.w.heightBox,
+                _taskInfo(),
+              ],
+            ),
+          )
         ],
       ),
       bottomNavi: Container(
@@ -263,7 +251,8 @@ class _HallDetailPageState extends State<HallDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.model.remarks.text
+                '${widget.model.remarks ?? ''}'
+                    .text
                     .size(28.sp)
                     .color(Colors.black.withOpacity(0.65))
                     .make(),
