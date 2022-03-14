@@ -218,7 +218,7 @@ class _HomePageState extends State<HomePage>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           head,
-                          // HomeSwiper(), //要做点击事件
+                          HomeSwiper(), //要做点击事件
                           // SizedBox(height: 100.w),
                           Container(
                             padding: EdgeInsets.only(top: 24.w, bottom: 32.w),

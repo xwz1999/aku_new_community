@@ -26,4 +26,6 @@ MyTaskListModel _$MyTaskListModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       rewardType: json['rewardType'] as int,
       reward: json['reward'] as int,
+      createId: json['createId'] as int,
+      createDate: json['createDate'] as String,
     );

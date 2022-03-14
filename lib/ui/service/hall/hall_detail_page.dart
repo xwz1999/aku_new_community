@@ -1,5 +1,6 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/ui/service/dialogs/task_cancel_dialog.dart';
 import 'package:aku_new_community/ui/service/task_func.dart';
 import 'package:aku_new_community/ui/service/task_map.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -110,7 +111,8 @@ class _HallDetailPageState extends State<HallDetailPage> {
         child: myself
             ? BeeLongButton.white(
                 onPressed: () async {
-                  var re = await TaskFunc.cancel(taskId: widget.model.id);
+                  var re = await Get.bottomSheet(
+                      TaskCancelDialog(taskId: widget.model.id));
                   if (re) {
                     Get.back();
                   }

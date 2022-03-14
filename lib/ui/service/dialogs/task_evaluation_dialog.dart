@@ -1,13 +1,20 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
+import '../task_func.dart';
+
 class TaskEvaluationDialog extends StatefulWidget {
-  const TaskEvaluationDialog({Key? key}) : super(key: key);
+  final int taskId;
+
+  const TaskEvaluationDialog({Key? key, required this.taskId})
+      : super(key: key);
 
   @override
   _TaskEvaluationDialogState createState() => _TaskEvaluationDialogState();
@@ -88,14 +95,26 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
                   side: BorderSide(color: Colors.black.withOpacity(0.25)),
                 ),
                 child: Text(
-                  '',
+                  '暂不评价',
                   style: TextStyle(
                       fontSize: 28.sp, color: Colors.black.withOpacity(0.65)),
                 ),
               ),
               Spacer(),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (_currentIndex == null) {
+                    BotToast.showText(text: '请选择评价满意度');
+                    return;
+                  }
+                  var re = await TaskFunc.evaluate(
+                      taskId: widget.taskId,
+                      star: _currentIndex!,
+                      evaluation: _controller.text);
+                  if (re) {
+                    Get.back();
+                  }
+                },
                 minWidth: 330.w,
                 height: 80.w,
                 elevation: 0,
@@ -104,7 +123,7 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
                   borderRadius: BorderRadius.circular(40.w),
                 ),
                 child: Text(
-                  '暂不评价',
+                  '确认提交',
                   style: TextStyle(
                       fontSize: 28.sp, color: Colors.black.withOpacity(0.85)),
                 ),

@@ -1,4 +1,5 @@
 import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'my_task_list_model.g.dart';
@@ -21,9 +22,12 @@ class MyTaskListModel {
   final List<ImgModel>? imgList;
   final int rewardType;
   final int reward;
+  final int createId;
+  final String createDate;
   factory MyTaskListModel.fromJson(Map<String, dynamic> json) =>
       _$MyTaskListModelFromJson(json);
 
+  DateTime? get endTime => DateUtil.getDateTime(readyEndTime);
   const MyTaskListModel({
     required this.id,
     required this.code,
@@ -41,5 +45,7 @@ class MyTaskListModel {
     this.imgList,
     required this.rewardType,
     required this.reward,
+    required this.createId,
+    required this.createDate,
   });
 }
