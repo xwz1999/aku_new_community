@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/ui/service/add_appointment_address_page.dart';
-import 'package:aku_new_community/ui/service/task_func.dart';
-import 'package:aku_new_community/ui/service/task_map.dart';
-import 'package:aku_new_community/ui/service/task_remark_page.dart';
+import 'package:aku_new_community/ui/function_and_service/task/task_func.dart';
+import 'package:aku_new_community/ui/function_and_service/task/task_map.dart';
+import 'package:aku_new_community/ui/function_and_service/task/task_remark_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -25,6 +24,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'add_appointment_address_page.dart';
 
 class PublishTaskPage extends StatefulWidget {
   const PublishTaskPage({Key? key}) : super(key: key);

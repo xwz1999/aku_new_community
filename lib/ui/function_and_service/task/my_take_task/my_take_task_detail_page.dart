@@ -1,8 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
-import 'package:aku_new_community/ui/service/dialogs/task_cancel_dialog.dart';
-import 'package:aku_new_community/ui/service/task_map.dart';
+import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_cancel_dialog.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
@@ -17,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../task_func.dart';
+import '../task_map.dart';
 
 class MyTakeTaskDetailPage extends StatefulWidget {
   final MyTakeTaskListModel model;

@@ -1,7 +1,5 @@
 // import 'package:aku_new_community/widget/bee_scaffold.dart';
 
-import 'package:flutter/material.dart';
-
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/community_introduce/community_introduce_page.dart';
@@ -26,6 +24,7 @@ import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
+import 'package:aku_new_community/ui/function_and_service/task/task_page.dart';
 import 'package:aku_new_community/ui/home/application/all_application.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_page.dart';
@@ -33,7 +32,7 @@ import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.da
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
-import 'package:aku_new_community/ui/service/task_page.dart';
+import 'package:flutter/material.dart';
 
 ///应用对象
 ///Application Object

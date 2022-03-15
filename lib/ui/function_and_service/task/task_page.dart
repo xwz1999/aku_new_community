@@ -1,8 +1,5 @@
-import 'package:aku_new_community/ui/service/hall/hall_view.dart';
-import 'package:aku_new_community/ui/service/my_take_task/my_take_task_view.dart';
-import 'package:aku_new_community/ui/service/my_task/my_task_view.dart';
-import 'package:aku_new_community/ui/service/publish_task_page.dart';
-import 'package:aku_new_community/ui/service/task_map.dart';
+import 'package:aku_new_community/ui/function_and_service/task/publish_task_page.dart';
+import 'package:aku_new_community/ui/function_and_service/task/task_map.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/painter/tab_indicator.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +7,10 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'hall/hall_view.dart';
+import 'my_take_task/my_take_task_view.dart';
+import 'my_task/my_task_view.dart';
 
 class TaskPage extends StatefulWidget {
   const TaskPage({Key? key}) : super(key: key);

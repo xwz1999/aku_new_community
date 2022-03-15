@@ -1,6 +1,4 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/models/market/order/order_detail_model.dart';
