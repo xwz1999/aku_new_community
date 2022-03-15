@@ -133,6 +133,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/alarm.png
   AssetGenImage get alarm => const AssetGenImage('assets/icons/alarm.png');
 
+  /// File path: assets/icons/alarm_clock.png
+  AssetGenImage get alarmClock =>
+      const AssetGenImage('assets/icons/alarm_clock.png');
+
   /// File path: assets/icons/alipay_round.png
   AssetGenImage get alipayRound =>
       const AssetGenImage('assets/icons/alipay_round.png');
@@ -848,6 +852,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/tag.png
   AssetGenImage get tag => const AssetGenImage('assets/icons/tag.png');
+
+  /// File path: assets/icons/task_location.png
+  AssetGenImage get taskLocation =>
+      const AssetGenImage('assets/icons/task_location.png');
 
   /// File path: assets/icons/test_kingcion.png
   AssetGenImage get testKingcion =>

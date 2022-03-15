@@ -20,11 +20,11 @@ import 'package:aku_new_community/pages/service_browse/service_browse_page.dart'
 import 'package:aku_new_community/pages/services/old_age/old_age_support_page_simple.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/surrounding_enterprises/surrounding_enterprises_page.dart';
-import 'package:aku_new_community/pages/things_page/fixed_submit_page.dart';
 import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_new_community/ui/community/activity/activity_list_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
 import 'package:aku_new_community/ui/function_and_service/task/task_page.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/work_order_page.dart';
 import 'package:aku_new_community/ui/home/application/all_application.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_page.dart';
@@ -74,7 +74,7 @@ List<AO> appObjects = [
 
   AO('开门码', R.ASSETS_ICONS_FUNC_KMM_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => VisitorAccessPage()),
-  AO('报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => FixedSubmitPage()),
+  AO('报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => WorkOrderPage()),
   AO('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayChoosePage()),
   AO('业委会', R.ASSETS_ICONS_FUNC_YWH_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,

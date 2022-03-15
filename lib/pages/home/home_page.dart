@@ -599,7 +599,7 @@ class _HomePageState extends State<HomePage>
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
-        if (!LoginUtil.haveRoom(ao.title)) return;
+        // if (!LoginUtil.haveRoom(ao.title)) return;
         if (ao.page == null) {
           BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {
