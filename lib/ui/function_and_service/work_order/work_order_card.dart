@@ -117,7 +117,7 @@ class WorkOrderCard extends StatelessWidget {
                         .size(24.sp)
                         .color(Colors.black.withOpacity(0.45))
                         .make(),
-                    280.wb,
+                    Spacer(),
                     CardBottomButton.yellow(text: '催促进度', onPressed: () {}),
                     24.wb,
                     GestureDetector(

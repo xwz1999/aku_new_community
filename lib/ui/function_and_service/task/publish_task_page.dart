@@ -49,8 +49,9 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
 
   //报酬类型
   int _rewardType = 0;
+  //预约开始时间
   DateTime? _appointDate;
-
+//预约结束时间
   DateTime? _appointEndDate;
   TextEditingController _rewardController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
@@ -58,8 +59,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
   String? _content;
   List<File> _photos = [];
   String? _voiceUri;
+  //送达地址
   String? _accessAddress;
   String? _accessAddressDetail;
+  //接取地址
   String? _serviceAddress;
   String? _serviceAddressDetail;
 

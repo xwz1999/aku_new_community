@@ -1,3 +1,4 @@
+import 'package:aku_new_community/ui/function_and_service/work_order/publish_work_order_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_card.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class WorkOrderPage extends StatefulWidget {
@@ -31,9 +33,11 @@ class _WorkOrderPageState extends State<WorkOrderPage>
       title: '报事报修',
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => PublishWorkOrderPage());
+            },
             icon: Icon(
-              CupertinoIcons.question_circle,
+              CupertinoIcons.plus_circle,
               size: 40.w,
             ))
       ],
