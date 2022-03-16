@@ -72,7 +72,7 @@ class UserProvider extends ChangeNotifier {
     }
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
 
-    SignFunc.checkNameAndAccount();
+    await SignFunc.checkNameAndAccount();
 
     notifyListeners();
     return true;

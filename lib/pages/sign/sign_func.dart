@@ -177,7 +177,7 @@ class SignFunc {
           'nickName': nick,
         },
         showMessage: true);
-    return baseModel.success;
+    return baseModel.msg == '昵称可用';
   }
 
   ///设置昵称
@@ -187,6 +187,6 @@ class SignFunc {
           'nickName': nick,
         },
         showMessage: true);
-    return baseModel.success;
+    return baseModel.msg == '设置成功';
   }
 }

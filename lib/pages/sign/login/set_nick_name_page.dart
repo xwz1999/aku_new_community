@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
+import 'package:aku_new_community/pages/home/home_page.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SetNickNamePage extends StatefulWidget {
   const SetNickNamePage({Key? key}) : super(key: key);
@@ -30,8 +30,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
     return BeeScaffold(
       title: '',
       bodyColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
         children: [
           24.w.heightBox,
           Row(
@@ -62,6 +61,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
           Container(
             width: 686.w,
             height: 94.w,
+            margin: EdgeInsets.symmetric(horizontal: 32.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(60.w),
               color: Colors.black.withOpacity(0.06),
@@ -91,6 +91,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                 if (result) {
                   UserTool.userProvider.updateUserInfo();
                 }
+                Get.offAll(HomePage());
               },
               text: '确定'),
         ],
@@ -124,19 +125,26 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
     );
   }
 
-  Container otherNick(String extra) {
-    return Container(
-      height: 70.w,
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.w),
-      alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.03),
-          borderRadius: BorderRadius.circular(42.sp)),
-      child: '${_nickController.text}$extra'
-          .text
-          .size(28.sp)
-          .color(Color(0xFF5096F1))
-          .make(),
+  Widget otherNick(String extra) {
+    return GestureDetector(
+      onTap: () {
+        _nickController.text = '${_nickController.text}$extra';
+      },
+      child: Material(
+        child: Container(
+          height: 70.w,
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.w),
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.03),
+              borderRadius: BorderRadius.circular(42.sp)),
+          child: '${_nickController.text}$extra'
+              .text
+              .size(28.sp)
+              .color(Color(0xFF5096F1))
+              .make(),
+        ),
+      ),
     );
   }
 }
