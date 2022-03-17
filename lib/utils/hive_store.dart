@@ -24,12 +24,12 @@ class HiveStore {
     if (!kIsWeb) {
       var dir = await getApplicationDocumentsDirectory();
       Hive.init(dir.path);
-      Hive.registerAdapter(ProvinceModelAdapter());
-      Hive.registerAdapter(CityAdapter());
-      Hive.registerAdapter(DistrictAdapter());
-      Hive.registerAdapter(ChinaRegionModelAdapter());
-      Hive.registerAdapter(HistoryLoginModelAdapter());
-      Hive.registerAdapter(UserConfigModelAdapter());
+      Hive.registerAdapter(ProvinceModelAdapter()); //HiveTypeId:0
+      Hive.registerAdapter(CityAdapter()); //HiveTypeId:1
+      Hive.registerAdapter(DistrictAdapter()); //HiveTypeId:2
+      Hive.registerAdapter(ChinaRegionModelAdapter()); //HiveTypeId:3
+      Hive.registerAdapter(HistoryLoginModelAdapter()); //HiveTypeId:4
+      Hive.registerAdapter(UserConfigModelAdapter()); //HiveTypeId:5
       _appBox = await Hive.openBox('app');
       _userBox = await Hive.openBox('userBox');
       _dataBox = await Hive.openBox('dataBox');

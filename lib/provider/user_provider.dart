@@ -7,7 +7,6 @@ import 'package:aku_new_community/models/user/user_config_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/ui/profile/house/house_func.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -26,25 +25,28 @@ class UserProvider extends ChangeNotifier {
 
   bool get isNotLogin => !_isLogin;
 
+  Future init() async {
+    if (isLogin) {
+      await updateUserInfo();
+      WebSocketUtil().setUser(userInfoModel!.id.toString());
+      WebSocketUtil().startWebSocket();
+
+      ///初始化用户配置
+      _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
+          UserConfigModel(
+              userId: _userInfoModel!.id,
+              clockRemind: false,
+              todayClocked: false);
+    }
+  }
+
   Future setLogin(int token) async {
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     _isLogin = true;
     NetUtil().dio!.options.headers['app-login-token'] = token;
     HiveStore.appBox!.put('token', token);
     HiveStore.appBox!.put('login', true);
-    await updateUserInfo();
-
-    ///初始化用户配置
-    _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
-        UserConfigModel(
-            userId: _userInfoModel!.id,
-            clockRemind: false,
-            todayClocked: false);
-    await appProvider.updateHouses(await HouseFunc.passedHouses);
-    if (isLogin) {
-      WebSocketUtil().setUser(userInfoModel!.id.toString());
-      WebSocketUtil().startWebSocket();
-    }
+    await init();
     notifyListeners();
   }
 
@@ -64,18 +66,15 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> updateUserInfo() async {
+  ///更新用户信息
+  Future updateUserInfo() async {
     _userInfoModel = await SignFunc.getUserInfo();
     if (_userInfoModel == null) {
       BotToast.showText(text: '获取用户信息失败');
-      return false;
     }
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
-
-    await SignFunc.checkNameAndAccount();
-
+    SignFunc.checkNameAndAccount();
     notifyListeners();
-    return true;
   }
 
   Future updateMyHouseInfo() async {

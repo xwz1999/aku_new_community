@@ -200,8 +200,8 @@ class AppProvider extends ChangeNotifier {
       _messageCenterModel ?? MessageCenterModel.zero();
 
   getMessageCenter() async {
-    Response response = await NetUtil().dio!.get(API.message.center);
-    _messageCenterModel = MessageCenterModel.fromJson(response.data);
+    // Response response = await NetUtil().dio!.get(API.message.center);
+    // _messageCenterModel = MessageCenterModel.fromJson(response.data);
     notifyListeners();
   }
 
@@ -311,7 +311,7 @@ class AppProvider extends ChangeNotifier {
   ///保存默认收货地址
   Future getMyAddress() async {
     BaseModel model = await NetUtil().get(SARSAPI.market.address.myAddress);
-    if (model.data!.length == 0)
+    if (model.data?.length == 0)
       return [];
     else {
       _addressModels =

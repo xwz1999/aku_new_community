@@ -1,14 +1,19 @@
+import 'package:aku_new_community/utils/hive_store.dart';
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:aku_new_community/utils/hive_store.dart';
 import 'china_region_model.dart';
 
 part 'picked_city_model.g.dart';
 
 @JsonSerializable()
+@HiveType(typeId: 6)
 class PickedCityModel {
+  @HiveField(0)
   final ChinaRegionModel province;
+  @HiveField(1)
   final ChinaRegionModel city;
+  @HiveField(2)
   final ChinaRegionModel district;
   factory PickedCityModel.fromJson(Map<String, dynamic> json) =>
       _$PickedCityModelFromJson(json);

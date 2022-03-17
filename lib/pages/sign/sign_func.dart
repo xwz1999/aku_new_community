@@ -5,6 +5,7 @@ import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
 import 'package:aku_new_community/pages/sign/login/set_nick_name_page.dart';
 import 'package:aku_new_community/pages/sign/login/set_psd_page.dart';
+import 'package:aku_new_community/pages/tab_navigator.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -167,6 +168,8 @@ class SignFunc {
       await Get.to(() => SetPsdPage());
     } else if (UserTool.userProvider.userInfoModel!.nickName == null) {
       await Get.to(() => SetNickNamePage());
+    } else {
+      Get.offAll(() => TabNavigator());
     }
   }
 

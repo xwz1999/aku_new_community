@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
@@ -19,9 +18,6 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
-import '../tab_navigator.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
@@ -33,30 +29,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   TapGestureRecognizer _agreementRecognizer = TapGestureRecognizer();
   TapGestureRecognizer _privacyRecognizer = TapGestureRecognizer();
-
-  ///原生端耗时加载
-  Future _originOp() async {
-    //初始化HiveStore
-    await Hive.initFlutter();
-    await HiveStore.init();
-  }
-
-  Future _initOp() async {
-    //ensure call _originOp first.
-    try {
-      final userProvider = Provider.of<UserProvider>(context, listen: false);
-      final appProvider = Provider.of<AppProvider>(context, listen: false);
-      appProvider.initApplications();
-      appProvider.startLocation();
-      // await AmapCore.init('84041703f7ecb242685325796897eff4');
-      if (HiveStore.appBox!.get('login') ?? false) {
-        //更新用户信息后自动跳转首页/设置昵称/设置密码
-        await userProvider.setLogin(HiveStore.appBox!.get('token'));
-      }
-    } catch (e) {
-      LoggerData.addData(e);
-    }
-  }
 
   Future<bool?> _showLoginVerify() async {
     return await showCupertinoDialog(
@@ -117,7 +89,9 @@ class _SplashPageState extends State<SplashPage> {
     );
 
     Future.delayed(Duration(milliseconds: 0), () async {
-      await _originOp();
+      //本地存储初始化在最前
+      await Hive.initFlutter();
+      await HiveStore.init();
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
       if (!agreement) {
         var result = await _showLoginVerify();
@@ -133,14 +107,28 @@ class _SplashPageState extends State<SplashPage> {
       if (Platform.isAndroid || Platform.isIOS) {
         await Permission.locationWhenInUse.request();
       }
-      await _initOp();
-      UserTool.dataProvider.init();
+      //第三方加载
       AMapFlutterLocation.updatePrivacyShow(true, true);
       AMapFlutterLocation.updatePrivacyAgree(true);
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
-      Get.offAll(() => TabNavigator());
+      UserTool.appProveider.startLocation();
+      UserTool.appProveider.initApplications();
+      //获取城市列表等信息
+      await UserTool.dataProvider.init();
+      //从本地获取是否登录记录
+      try {
+        // await AmapCore.init('84041703f7ecb242685325796897eff4');
+        if (HiveStore.appBox!.get('login') ?? false) {
+          //更新用户信息后自动跳转首页/设置昵称/设置密码
+          UserTool.userProvider.setLogin(HiveStore.appBox!.get('token'));
+        } else {
+          await Get.offAll(() => LoginPage());
+        }
+      } catch (e) {
+        LoggerData.addData(e);
+      }
     });
   }
 

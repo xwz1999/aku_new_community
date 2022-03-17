@@ -1,20 +1,18 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/sars_api.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
 
 class NetUtil {
   Dio? _dio;
@@ -204,14 +202,12 @@ class NetUtil {
 
   _parseRequestError(BaseModel model, {bool showMessage = false}) {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
-    if (!model.success &&
-        (model.code == 10010 || model.msg == '登录失效，请重新登录') &&
-        userProvider.isLogin) {
+    if (!model.success && (model.code == 10010 || model.msg == '登录失效，请重新登录')) {
       userProvider.logout();
       Get.offAll(() => LoginPage());
-    }
-    if (!model.success && showMessage) {
-      BotToast.showText(text: model.msg);
+      if (userProvider.isLogin) {
+        BotToast.showText(text: model.msg);
+      }
     }
   }
 }
