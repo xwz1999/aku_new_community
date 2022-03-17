@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,8 @@ class BeeImageNetwork extends StatelessWidget {
     return FadeInImage.assetNetwork(
       placeholder: Assets.images.placeholder.path,
       image: imgs == null
-          ? SARSAPI.image(urls!.isEmpty ? '' : urls!.first)
-          : SARSAPI.image(ImgModel.first(imgs)),
+          ? SAASAPI.image(urls!.isEmpty ? '' : urls!.first)
+          : SAASAPI.image(ImgModel.first(imgs)),
       imageErrorBuilder: (context, obj, stackTrace) {
         return Image.asset(
           Assets.images.placeholder.path,

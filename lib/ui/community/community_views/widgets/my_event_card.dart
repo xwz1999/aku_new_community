@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
@@ -67,7 +67,7 @@ class MyEventCard extends StatelessWidget {
         MaterialButton(
           onPressed: () async {
             BaseModel models = await NetUtil().get(
-              SARSAPI.community.dynamicDetail,
+              SAASAPI.community.dynamicDetail,
               params: {'dynamicId': model.id},
             );
             DynamicDetailModel eventItemModel =
@@ -102,7 +102,7 @@ class MyEventCard extends StatelessWidget {
                         ),
                         child: FadeInImage.assetNetwork(
                           placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                          image: SARSAPI.image(ImgModel.first(model.imgUrl)),
+                          image: SAASAPI.image(ImgModel.first(model.imgUrl)),
                           width: 152.w,
                           height: 152.w,
                           fit: BoxFit.cover,

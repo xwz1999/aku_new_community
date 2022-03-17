@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,7 +66,7 @@ class _BeeImagePreviewState extends State<BeeImagePreview> {
         tag: widget.tag ?? widget.path!,
         child: FadeInImage.assetNetwork(
           placeholder: Assets.images.placeholder.path,
-          image: SARSAPI.image(widget.path),
+          image: SAASAPI.image(widget.path),
           imageErrorBuilder: (context, obj, stackTrace) {
             return Image.asset(
               Assets.images.placeholder.path,

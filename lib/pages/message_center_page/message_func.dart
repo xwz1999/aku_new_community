@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/message/system_message_detail_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -16,7 +16,7 @@ class MessageFunc {
   }
 
   static Future<bool> readMessage(int? id) async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.message.read, params: {
+    BaseModel baseModel = await NetUtil().get(SAASAPI.message.read, params: {
       'messageId': id,
     });
     if (baseModel.success) {

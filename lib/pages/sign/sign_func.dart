@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/user/pick_building_model.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/models/user/user_info_model.dart';
@@ -21,7 +21,7 @@ class SignFunc {
   static Future<BaseModel> sendMessageCode(
       String phone, int communityId) async {
     BaseModel baseModel = await NetUtil().post(
-      SARSAPI.login.sendSMSCode,
+      SAASAPI.login.sendSMSCode,
       params: {'tel': phone, 'communityId': communityId},
       showMessage: true,
     );
@@ -31,7 +31,7 @@ class SignFunc {
   static Future<BaseModel> sendForgotMessageCode(
       String phone, int communityId) async {
     BaseModel baseModel = await NetUtil().post(
-      SARSAPI.user.sendForgotTelCode,
+      SAASAPI.user.sendForgotTelCode,
       params: {'tel': phone, 'communityId': communityId},
       showMessage: true,
     );
@@ -65,7 +65,7 @@ class SignFunc {
   static Future<Response> loginBySms(
       String phone, String code, int communityId) async {
     Response response = await NetUtil().dio!.post(
-      SARSAPI.login.loginTelCode,
+      SAASAPI.login.loginTelCode,
       data: {
         'tel': phone,
         'code': code,
@@ -124,14 +124,14 @@ class SignFunc {
 
   ///更新用户信息
   static Future<UserInfoModel?> getUserInfo() async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.user.userProfile);
+    BaseModel baseModel = await NetUtil().get(SAASAPI.user.userProfile);
     if (baseModel.data == null || !baseModel.success) return null;
     return UserInfoModel.fromJson(baseModel.data);
   }
 
   ///设置密码（密码不存在时调用
   static Future<bool> settingPsd(String psd) async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.user.settingPsd,
+    BaseModel baseModel = await NetUtil().get(SAASAPI.user.settingPsd,
         params: {'password': psd}, showMessage: true);
     if (baseModel.data == null || !baseModel.success) return false;
     return true;
@@ -140,7 +140,7 @@ class SignFunc {
   ///提交修改的新密码（忘记密码）
   static Future<bool> settingForgotPsd(
       String psd, String tel, String telcode) async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.user.settingForgotPsd,
+    BaseModel baseModel = await NetUtil().get(SAASAPI.user.settingForgotPsd,
         params: {
           'newPassword': psd,
           'tel': tel,
@@ -155,7 +155,7 @@ class SignFunc {
 
   static Future<List<MyHouseModel>> getMyHouseInfo() async {
     BaseModel baseModel = await NetUtil().get(
-      SARSAPI.profile.house.userHouse,
+      SAASAPI.profile.house.userHouse,
     );
     if ((baseModel.data as List).isEmpty) return [];
     return (baseModel.data as List)
@@ -175,7 +175,7 @@ class SignFunc {
 
   ///检测昵称是否重复
   static Future<bool> checkNickRepeat(String nick) async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.user.checkNickRepeat,
+    BaseModel baseModel = await NetUtil().get(SAASAPI.user.checkNickRepeat,
         params: {
           'nickName': nick,
         },
@@ -185,7 +185,7 @@ class SignFunc {
 
   ///设置昵称
   static Future<bool> setNickName(String nick) async {
-    BaseModel baseModel = await NetUtil().get(SARSAPI.user.setNickName,
+    BaseModel baseModel = await NetUtil().get(SAASAPI.user.setNickName,
         params: {
           'nickName': nick,
         },

@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/voting_detail_model.dart';
 import 'package:aku_new_community/pages/manager_func.dart';
@@ -133,7 +133,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
               borderRadius: BorderRadius.circular(4.w),
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(
+                image: SAASAPI.image(
                   ImgModel.first(model.imgUrls),
                 ),
                 fit: BoxFit.cover,
@@ -232,7 +232,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                     borderRadius: BorderRadius.circular(8.w),
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: SARSAPI.image(ImgModel.first(_model.imgUrls)),
+                      image: SAASAPI.image(ImgModel.first(_model.imgUrls)),
                     ),
                   ),
                   44.w.heightBox,

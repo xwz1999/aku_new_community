@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
@@ -24,10 +24,10 @@ class NetUtil {
 
   NetUtil._internal() {
     BaseOptions options = BaseOptions(
-      baseUrl: SARSAPI.baseURL,
-      connectTimeout: SARSAPI.networkTimeOut,
-      receiveTimeout: SARSAPI.networkTimeOut,
-      sendTimeout: SARSAPI.networkTimeOut,
+      baseUrl: SAASAPI.baseURL,
+      connectTimeout: SAASAPI.networkTimeOut,
+      receiveTimeout: SAASAPI.networkTimeOut,
+      sendTimeout: SAASAPI.networkTimeOut,
       headers: {},
     );
     if (_dio == null) _dio = Dio(options);

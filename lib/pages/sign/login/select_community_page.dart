@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -96,7 +96,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
       onTap: () async {
         var cancel = BotToast.showLoading();
         List<CommunityModel> _communities = [];
-        var base = await NetUtil().get(SARSAPI.login.allCommunity, params: {
+        var base = await NetUtil().get(SAASAPI.login.allCommunity, params: {
           'cityId': UserTool
               .appProveider.pickedCityAndCommunity!.cityModel.district.id,
         });

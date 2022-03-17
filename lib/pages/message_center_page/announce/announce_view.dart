@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_card.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -112,7 +112,7 @@ class _AnnounceViewState extends State<AnnounceView> {
               _modelLists.clear();
               _innerModelList.clear();
               var base =
-                  await NetUtil().getList(SARSAPI.announce.list, params: {
+                  await NetUtil().getList(SAASAPI.announce.list, params: {
                 'page': _page,
                 'size': _size,
               });
@@ -128,7 +128,7 @@ class _AnnounceViewState extends State<AnnounceView> {
             onLoad: () async {
               _page++;
               var base =
-                  await NetUtil().getList(SARSAPI.announce.list, params: {
+                  await NetUtil().getList(SAASAPI.announce.list, params: {
                 'page': _page,
                 'size': _size,
               });

@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/home/announce_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -39,7 +39,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
         header: MaterialHeader(),
         onRefresh: () async {
           BaseModel baseModel = await NetUtil().get(
-            SARSAPI.announce.detail,
+            SAASAPI.announce.detail,
             params: {'announcementId': widget.id},
           );
           if (baseModel.data != null) {
@@ -90,7 +90,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                             title: e.url ?? '',
                             onPressed: () async {
                               String? result = await Get.dialog(BeeDownloadView(
-                                file: SARSAPI.image(e.url),
+                                file: SAASAPI.image(e.url),
                               ));
                               if (result != null) OpenFile.open(result);
                             },

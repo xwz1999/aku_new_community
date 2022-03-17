@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/questinnaire_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -16,6 +10,10 @@ import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
 
 class QuestionnairePage extends StatefulWidget {
   QuestionnairePage({Key? key}) : super(key: key);
@@ -82,7 +80,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                   child: ClipRRect(
                     child: FadeInImage.assetNetwork(
                       placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: SARSAPI.image(ImgModel.first(model.imgUrls)),
+                      image: SAASAPI.image(ImgModel.first(model.imgUrls)),
                     ),
                   ),
                 ),

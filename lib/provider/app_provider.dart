@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/constants/config.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/real_time_weather_model.dart';
 import 'package:aku_new_community/model/message/message_center_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
@@ -310,7 +310,7 @@ class AppProvider extends ChangeNotifier {
 
   ///保存默认收货地址
   Future getMyAddress() async {
-    BaseModel model = await NetUtil().get(SARSAPI.market.address.myAddress);
+    BaseModel model = await NetUtil().get(SAASAPI.market.address.myAddress);
     if (model.data?.length == 0)
       return [];
     else {

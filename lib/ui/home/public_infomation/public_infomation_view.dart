@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/information_category_list_model.dart';
 import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -24,7 +24,7 @@ class _PublicInfomationViewState extends State<PublicInfomationView>
   Widget build(BuildContext context) {
     super.build(context);
     return BeeListView(
-      path: SARSAPI.information.list,
+      path: SAASAPI.information.list,
       controller: _refreshController,
       extraParams: {'categoryId': widget.model.id},
       convert: (model) =>

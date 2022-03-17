@@ -1,7 +1,7 @@
 // Dart imports:
 
 import 'package:aku_new_community/constants/application_objects.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/color_ext.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/home_activity_model.dart';
@@ -549,7 +549,7 @@ class _HomePageState extends State<HomePage>
     if (_swiperModels.isNotEmpty) {
       var color =
           await PaletteGenerator.fromImageProvider(CachedNetworkImageProvider(
-        SARSAPI.image(ImgModel.first(_swiperModels[index].imgList)),
+        SAASAPI.image(ImgModel.first(_swiperModels[index].imgList)),
       ));
       _barColor.value = color.dominantColor?.color ?? Colors.transparent;
     } else {

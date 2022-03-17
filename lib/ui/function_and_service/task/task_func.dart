@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 
 class TaskFunc {
@@ -21,7 +21,7 @@ class TaskFunc {
     required int rewardType,
     required String reward,
   }) async {
-    var base = await NetUtil().post(SARSAPI.task.insert,
+    var base = await NetUtil().post(SAASAPI.task.insert,
         params: {
           'type': type,
           'sex': sex,
@@ -48,7 +48,7 @@ class TaskFunc {
   static Future<bool> cancel({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.cancel, params: {
+    var base = await NetUtil().get(SAASAPI.task.cancel, params: {
       'taskId': taskId,
     });
     return base.success;
@@ -59,7 +59,7 @@ class TaskFunc {
   static Future<bool> take({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.receive,
+    var base = await NetUtil().get(SAASAPI.task.receive,
         params: {
           'taskId': taskId,
         },
@@ -72,7 +72,7 @@ class TaskFunc {
   static Future<bool> finish({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.finish, params: {
+    var base = await NetUtil().get(SAASAPI.task.finish, params: {
       'taskId': taskId,
     });
     return base.success;
@@ -82,7 +82,7 @@ class TaskFunc {
   static Future<bool> confirm({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.confirm, params: {
+    var base = await NetUtil().get(SAASAPI.task.confirm, params: {
       'taskId': taskId,
     });
     return base.success;
@@ -92,7 +92,7 @@ class TaskFunc {
   static Future<bool> start({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.startService, params: {
+    var base = await NetUtil().get(SAASAPI.task.startService, params: {
       'taskId': taskId,
     });
     return base.success;
@@ -104,7 +104,7 @@ class TaskFunc {
     required int star,
     required String evaluation,
   }) async {
-    var base = await NetUtil().get(SARSAPI.task.evaluation,
+    var base = await NetUtil().get(SAASAPI.task.evaluation,
         params: {'taskId': taskId, 'star': star, 'evaluation': evaluation});
     return base.success;
   }

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/topic_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_detail_page.dart';
@@ -147,7 +147,7 @@ class TopicCommunityViewState extends State<TopicCommunityView> {
     return BeeScaffold(
       title: '所有话题'.text.color(ktextPrimary).size(32.sp).normal.make(),
       body: BeeListView<TopicListModel>(
-        path: SARSAPI.community.topicList,
+        path: SAASAPI.community.topicList,
         controller: _refreshController,
         convert: (model) {
           return model.rows.map((e) => TopicListModel.fromJson(e)).toList();

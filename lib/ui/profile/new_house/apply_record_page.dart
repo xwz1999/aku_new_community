@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/sars_model/my_house/my_house_apply_record_list_model.dart';
@@ -13,6 +6,10 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ApplyRecordPage extends StatefulWidget {
   const ApplyRecordPage({Key? key}) : super(key: key);
@@ -34,7 +31,7 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
         header: MaterialHeader(),
         footer: MaterialFooter(),
         onRefresh: () async {
-          var base = await NetUtil().get(SARSAPI.profile.house.applyRecord);
+          var base = await NetUtil().get(SAASAPI.profile.house.applyRecord);
           if (base.success) {
             _models = (base.data as List)
                 .map((e) => MyHouseApplyRecordListModel.fromJson(e))

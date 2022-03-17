@@ -1,5 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -67,7 +67,7 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
             tag: ImgModel.first(widget.model.dynamicImgList),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SARSAPI.image(ImgModel.first(widget.model.dynamicImgList)),
+              image: SAASAPI.image(ImgModel.first(widget.model.dynamicImgList)),
               imageErrorBuilder: (context, error, stackTrace) {
                 return Image.asset(
                   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -100,7 +100,7 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image:
-                      SARSAPI.image(ImgModel.first(widget.model.avatarImgList)),
+                      SAASAPI.image(ImgModel.first(widget.model.avatarImgList)),
                   height: 96.w,
                   width: 96.w,
                   fit: BoxFit.cover,

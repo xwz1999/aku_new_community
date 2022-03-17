@@ -1,12 +1,5 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/sars_model/my_house/my_family_member_list_model.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
@@ -14,6 +7,10 @@ import 'package:aku_new_community/utils/bee_map.dart';
 import 'package:aku_new_community/utils/enum/identify.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MemberView extends StatefulWidget {
   const MemberView({Key? key}) : super(key: key);
@@ -32,7 +29,7 @@ class _MemberViewState extends State<MemberView> {
       header: MaterialHeader(),
       footer: MaterialFooter(),
       onRefresh: () async {
-        var base = await NetUtil().get(SARSAPI.profile.family.myFamilyMember);
+        var base = await NetUtil().get(SAASAPI.profile.family.myFamilyMember);
         if (base.success) {
           _memberModels = (base.data as List)
               .map((e) => MyFamilyMemberListModel.fromJson(e))

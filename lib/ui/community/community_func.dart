@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
 import 'package:aku_new_community/models/community/information_list_model.dart';
@@ -20,7 +20,7 @@ class CommunityFunc {
   ///查询热门话题
   static Future<List<TopicModel>> getListGambit() async {
     var model = await NetUtil().get(
-      SARSAPI.community.topNewList,
+      SAASAPI.community.topNewList,
       params: {'hotShowNum': 3, 'showNum': 3},
     );
     if ((model.data as List).length == 0) return [];
@@ -30,7 +30,7 @@ class CommunityFunc {
   ///我的动态
   static Future<List<DynamicMyListBody>> getMyEventItem() async {
     BaseListModel model = await NetUtil().getList(
-      SARSAPI.community.dynamicMyListL,
+      SAASAPI.community.dynamicMyListL,
       params: {'pageNum': 1, 'size': 8},
     );
     if (model.rows.length == 0) return [];
@@ -40,7 +40,7 @@ class CommunityFunc {
   ///查询热门资讯
   static Future<List<InformationListModel>> getHotNews() async {
     BaseListModel model = await NetUtil().getList(
-      SARSAPI.information.list,
+      SAASAPI.information.list,
       params: {'pageNum': 1, 'size': 4},
     );
     if (model.rows.length == 0) return [];
@@ -62,7 +62,7 @@ class CommunityFunc {
   ///查询顶部统计信息
   static Future<MarketStatisticsModel?> getMarketStatistics() async {
     BaseModel model = await NetUtil().get(
-      SARSAPI.market.home.topInfo,
+      SAASAPI.market.home.topInfo,
     );
     if (model.success) {
       return MarketStatisticsModel.fromJson(model.data);
@@ -76,7 +76,7 @@ class CommunityFunc {
   static Future<List<MarketCategoryModel>> getGoodsClassificationList(
       int parentId) async {
     BaseListModel model = await NetUtil().getList(
-      SARSAPI.market.category.category,
+      SAASAPI.market.category.category,
       params: {'pageNum': 1, 'size': 9, 'parentId': parentId},
     );
     if (model.rows.length == 0) return [];
@@ -86,7 +86,7 @@ class CommunityFunc {
   ///查询爆款推荐
   static Future<List<GoodsPopularModel>> getGoodsPopularModel(int num) async {
     BaseModel model = await NetUtil().get(
-      SARSAPI.market.good.popular,
+      SAASAPI.market.good.popular,
       params: {'num': num},
     );
     if (model.data!.length == 0) return [];
@@ -98,7 +98,7 @@ class CommunityFunc {
   ///获取所有商品的分类
   static Future<List<MarketAllCategoryModel>> getCategory() async {
     BaseModel model = await NetUtil().get(
-      SARSAPI.market.category.categoryInfo,
+      SAASAPI.market.category.categoryInfo,
     );
     if (model.data!.length == 0)
       return [];
@@ -112,7 +112,7 @@ class CommunityFunc {
   ///获取商城的轮播图
   static Future<List<MarketSwiperModel>> marketSwiper() async {
     BaseModel model = await NetUtil().get(
-      SARSAPI.market.rotation.rotation,
+      SAASAPI.market.rotation.rotation,
     );
     if (model.data!.length == 0) return [];
     return (model.data as List)
@@ -122,7 +122,7 @@ class CommunityFunc {
 
   static Future<List<HomeActivityModel>> activityList() async {
     BaseListModel model = await NetUtil().getList(
-      SARSAPI.activity.list,
+      SAASAPI.activity.list,
       params: {'pageNum': 1, 'size': 5},
     );
     if (model.rows.length == 0) return [];
@@ -131,7 +131,7 @@ class CommunityFunc {
 
   static Future<List<HomeAnnounceModel>> board() async {
     BaseListModel model = await NetUtil().getList(
-      SARSAPI.announce.list,
+      SAASAPI.announce.list,
       params: {'pageNum': 1, 'size': 5},
     );
     if (model.rows.length == 0) return [];
@@ -140,7 +140,7 @@ class CommunityFunc {
 
   static Future<List<HomeSwiperModel>> swiper() async {
     BaseModel model = await NetUtil().get(
-      SARSAPI.homeCarouse.list,
+      SAASAPI.homeCarouse.list,
     );
     if (model.data!.length == 0) return [];
     return (model.data as List)

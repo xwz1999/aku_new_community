@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/message/reply_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_card.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -24,7 +24,7 @@ class _ThumbsUpViewState extends State<ThumbsUpView> {
   @override
   Widget build(BuildContext context) {
     return BeeListView(
-        path: SARSAPI.message.allLikes,
+        path: SAASAPI.message.allLikes,
         controller: widget.controller,
         convert: (models) =>
             models.rows.map((e) => ReplyListModel.fromJson(e)).toList(),

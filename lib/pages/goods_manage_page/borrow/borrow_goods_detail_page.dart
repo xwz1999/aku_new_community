@@ -1,7 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/article_borrow_detail_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -197,7 +197,7 @@ class _BorrowGoodsDetailPageState extends State<BorrowGoodsDetailPage> {
             child: ClipRRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(ImgModel.first(model.imgList)),
+                image: SAASAPI.image(ImgModel.first(model.imgList)),
                 imageErrorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/house_introduce/house_introduce_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'house_detail_page.dart';
 
 class HouseIntroducePage extends StatefulWidget {
@@ -56,7 +55,7 @@ class _HouseIntroducePageState extends State<HouseIntroducePage> {
               borderRadius: BorderRadius.circular(4.w),
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
+                image: SAASAPI.image(ImgModel.first(model.imgUrls)),
                 height: 200.w,
                 width: 240.w,
                 fit: BoxFit.fill,

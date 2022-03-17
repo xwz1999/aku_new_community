@@ -3,7 +3,7 @@ import 'package:aku_new_community/widget/others/user_tool.dart';
 part 'market_api.dart';
 part 'profile_api.dart';
 
-class SARSAPI {
+class SAASAPI {
   ///HOST
   static const String host = 'http://121.41.26.225:8006';
 

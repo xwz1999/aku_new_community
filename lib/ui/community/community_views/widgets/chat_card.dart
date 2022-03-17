@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -73,7 +73,7 @@ class _ChatCardState extends State<ChatCard> {
           ),
           child: FadeInImage.assetNetwork(
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            image: SARSAPI.image(ImgModel.first(widget.model.dynamicList)),
+            image: SAASAPI.image(ImgModel.first(widget.model.dynamicList)),
             imageErrorBuilder: (context, error, stackTrace) {
               return Image.asset(
                 R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
@@ -102,7 +102,7 @@ class _ChatCardState extends State<ChatCard> {
           Spacer(),
           GestureDetector(
             onTap: () async {
-              var res = await NetUtil().get(SARSAPI.community.dynamicLike,
+              var res = await NetUtil().get(SAASAPI.community.dynamicLike,
                   params: {'dynamicId': widget.model.id});
               if (res.success) {
                 _isLiked = !_isLiked;
@@ -192,7 +192,7 @@ class _ChatCardState extends State<ChatCard> {
                 child: FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image:
-                      SARSAPI.image(ImgModel.first(widget.model.avatarImgList)),
+                      SAASAPI.image(ImgModel.first(widget.model.avatarImgList)),
                   height: 96.w,
                   width: 96.w,
                   fit: BoxFit.cover,

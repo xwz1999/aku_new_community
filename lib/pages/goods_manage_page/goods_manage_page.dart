@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/article_borrow_model.dart';
 import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_goods_page.dart';
@@ -53,7 +53,7 @@ class _GoodsManagePageState extends State<GoodsManagePage> {
             child: ClipRRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
+                image: SAASAPI.image(ImgModel.first(model.imgUrls)),
                 imageErrorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

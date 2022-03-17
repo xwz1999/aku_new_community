@@ -1,17 +1,14 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/src/extensions/num_ext.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
-
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/community/topic_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/src/extensions/num_ext.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class TopicSearchPage extends StatefulWidget {
   const TopicSearchPage({
@@ -27,7 +24,7 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
   bool isHot = true;
 
   Future _getModels() async {
-    var re = await NetUtil().get(SARSAPI.community.topicList, params: {
+    var re = await NetUtil().get(SAASAPI.community.topicList, params: {
       'pageNum': 1,
       'size': 10,
     });
@@ -80,7 +77,7 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
                             return;
                           }
                           var re = await NetUtil()
-                              .get(SARSAPI.community.topicList, params: {
+                              .get(SAASAPI.community.topicList, params: {
                             'pageNum': 1,
                             'size': 20,
                           });

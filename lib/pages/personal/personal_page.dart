@@ -1,13 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
@@ -23,6 +14,13 @@ import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'address/address_list_page.dart';
 import 'clock_in/clock_success_dialog.dart';
 import 'intergral/integral_center_page.dart';
@@ -341,7 +339,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                             MaterialButton(
                               onPressed: () async {
                                 var base = await NetUtil()
-                                    .get(SARSAPI.profile.integral.sign);
+                                    .get(SAASAPI.profile.integral.sign);
                                 if (base.success) {
                                   await Get.dialog(ClockSuccessDialog(
                                       todayIntegral: 1, tomorrowIntegral: 2));

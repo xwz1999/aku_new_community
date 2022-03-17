@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/activity/activity_card.dart';
@@ -36,7 +36,7 @@ class _ActivityListPageState extends State<ActivityListPage> {
       ],
       body: BeeListView<HomeActivityModel>(
         controller: _refreshController,
-        path: SARSAPI.activity.list,
+        path: SAASAPI.activity.list,
         convert: (model) =>
             model.rows.map((e) => HomeActivityModel.fromJson(e)).toList(),
         builder: (items) {

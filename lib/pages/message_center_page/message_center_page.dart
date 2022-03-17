@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
 import 'package:aku_new_community/pages/message_center_page/reply/replay_view.dart';
 import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_view.dart';
@@ -51,7 +51,7 @@ class _MessageCenterPageState extends State<MessageCenterPage>
       actions: [
         MaterialButton(
           onPressed: () async {
-            var res = await NetUtil().get(SARSAPI.message.allRead, params: {
+            var res = await NetUtil().get(SAASAPI.message.allRead, params: {
               'type': _tabController.index + 1,
             });
             if (res.success) {

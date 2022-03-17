@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewCategorySubCard extends StatelessWidget {
   final MarketAllCategoryModel subModels;
@@ -23,7 +20,7 @@ class NewCategorySubCard extends StatelessWidget {
         children: [
           Spacer(),
           FadeInImage.assetNetwork(
-            image: SARSAPI.image(
+            image: SAASAPI.image(
                 subModels.imgUrls.isNotEmpty ? subModels.imgUrls.first : ''),
             //subModels.imgUrls!.isNotEmpty? subModels.imgUrls!.first :'',
             placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

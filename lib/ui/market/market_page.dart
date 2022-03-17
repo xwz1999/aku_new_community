@@ -3,7 +3,7 @@
 import 'dart:ui' as ui;
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
@@ -81,7 +81,7 @@ class _MarketPageState extends State<MarketPage>
   Future updateMarketInfo() async {
     _pageNum = 1;
     BaseListModel baseListModel = await NetUtil().getList(
-      SARSAPI.market.good.recommend,
+      SAASAPI.market.good.recommend,
       params: {
         'pageNum': _pageNum,
         'size': _size,
@@ -98,7 +98,7 @@ class _MarketPageState extends State<MarketPage>
 
   Future loadMarketInfo() async {
     BaseListModel baseListModel = await NetUtil().getList(
-      SARSAPI.market.good.recommend,
+      SAASAPI.market.good.recommend,
       params: {
         'pageNum': _pageNum,
         'size': _size,
@@ -757,7 +757,7 @@ class _MarketPageState extends State<MarketPage>
       ),
       child: FadeInImage.assetNetwork(
         placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-        image: SARSAPI.image(swiperModel.imgList!.isNotEmpty
+        image: SAASAPI.image(swiperModel.imgList!.isNotEmpty
             ? swiperModel.imgList!.first.url
             : ''),
         fit: BoxFit.fill,

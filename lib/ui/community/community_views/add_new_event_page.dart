@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/models/community/topic_list_model.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_search_page.dart';
@@ -53,7 +53,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
     List<String?>? imgs;
     print(_files.length);
     if (_files.isNotEmpty) {
-      imgs = await NetUtil().uploadFiles(_files, SARSAPI.uploadFile.uploadImg);
+      imgs = await NetUtil().uploadFiles(_files, SAASAPI.uploadFile.uploadImg);
     }
 
     Map<String, dynamic> params = {
@@ -70,7 +70,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
     }
 
     BaseModel baseModel = await NetUtil().post(
-      SARSAPI.community.dynamicInsert,
+      SAASAPI.community.dynamicInsert,
       params: params,
       showMessage: true,
     );

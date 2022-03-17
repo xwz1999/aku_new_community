@@ -1,7 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/order/create_order_model.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/models/market/shop_car/shop_car_list_model.dart';
@@ -73,7 +73,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
   Future<bool> createOrder(
       int addressId, List<SettlementGoodsDTO> goodsList) async {
     BaseModel model = await NetUtil().post(
-      SARSAPI.market.shopCart.settlement,
+      SAASAPI.market.shopCart.settlement,
       params: {
         'addressId': addressId,
         'settlementGoodsDTOList': goodsList.map((v) => v.toJson()).toList()
@@ -727,7 +727,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
 
   Future<bool> changeNum(int jcookGoodsId, int num) async {
     var cancel = BotToast.showLoading();
-    var base = await NetUtil().post(SARSAPI.market.shopCart.updateNum,
+    var base = await NetUtil().post(SAASAPI.market.shopCart.updateNum,
         params: {'appGoodsPushId': jcookGoodsId, 'num': num});
     if (!(base.success)) {
       BotToast.showText(text: base.msg);

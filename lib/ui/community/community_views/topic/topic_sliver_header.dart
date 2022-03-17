@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +95,7 @@ class TopicSliverHeader extends SliverPersistentHeaderDelegate {
             tag: "$imgPath\_$id",
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SARSAPI.image(imgPath),
+              image: SAASAPI.image(imgPath),
               fit: BoxFit.cover,
             ),
           ),

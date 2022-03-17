@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
@@ -133,7 +133,7 @@ class MyCommunityViewState extends State<MyCommunityView>
       controller: _refreshController,
       onRefresh: () async {
         _myEventItems = await CommunityFunc.getMyEventItem();
-        var base = await NetUtil().get(SARSAPI.community.dynamicMyListH);
+        var base = await NetUtil().get(SAASAPI.community.dynamicMyListH);
         if (base.success) {
           _head = DynamicMyListHead.fromJson(base.data);
         }
@@ -336,7 +336,7 @@ class MyCommunityViewState extends State<MyCommunityView>
             tag: ImgModel.first(item.dynamicImgList),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SARSAPI.image(ImgModel.first(item.dynamicImgList)),
+              image: SAASAPI.image(ImgModel.first(item.dynamicImgList)),
               imageErrorBuilder: (context, error, stackTrace) {
                 return Image.asset(
                   R.ASSETS_IMAGES_PLACEHOLDER_WEBP,

@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class NewCommunityView extends StatefulWidget {
   NewCommunityView({Key? key}) : super(key: key);
@@ -33,7 +30,7 @@ class NewCommunityViewState extends State<NewCommunityView>
   Widget build(BuildContext context) {
     super.build(context);
     return BeeListView(
-      path: SARSAPI.community.dynamicList,
+      path: SAASAPI.community.dynamicList,
       controller: _refreshController,
       convert: (model) {
         return model.rows.map((e) => AllDynamicListModel.fromJson(e)).toList();

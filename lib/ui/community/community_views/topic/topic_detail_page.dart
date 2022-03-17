@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
@@ -65,13 +65,13 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
             footer: MaterialFooter(),
             onRefresh: () async {
               _page = 1;
-              var res = await NetUtil().get(SARSAPI.community.topicDetail,
+              var res = await NetUtil().get(SAASAPI.community.topicDetail,
                   params: {'topicId': widget.topicId});
               if (res.success) {
                 _detailModel = TopDetailModel.fromJson(res.data);
               }
               var baseList = await NetUtil()
-                  .getList(SARSAPI.community.dynamicList, params: {
+                  .getList(SAASAPI.community.dynamicList, params: {
                 'pageNum': _page,
                 'size': 4,
                 'topicId': widget.topicId,
@@ -86,7 +86,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
             onLoad: () async {
               _page++;
               BaseListModel baseList = await NetUtil()
-                  .getList(SARSAPI.community.dynamicList, params: {
+                  .getList(SAASAPI.community.dynamicList, params: {
                 'pageNum': _page,
                 'size': 4,
                 'topicId': widget.topicId,

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class _VoicePlayerState extends State<VoicePlayer>
       return;
     }
     if (widget.url != null) {
-      await player.setUrl(SARSAPI.image(widget.url));
+      await player.setUrl(SAASAPI.image(widget.url));
     } else {
       await player.setFilePath(widget.path!);
     }

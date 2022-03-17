@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/activity_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -77,7 +77,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
         firstRefresh: true,
         onRefresh: () async {
           BaseModel baseModel = await NetUtil().get(
-            SARSAPI.activity.detail,
+            SAASAPI.activity.detail,
             params: {'activityId': widget.id},
           );
           _model = ActivityDetailModel.fromJson(baseModel.data);
@@ -151,7 +151,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
       bottomNavi: BottomButton(
         child: '立即报名'.text.size(32.sp).color(Colors.black).bold.make(),
         onPressed: () async {
-          await NetUtil().post(SARSAPI.activity.registration,
+          await NetUtil().post(SAASAPI.activity.registration,
               params: {'activityId': _model!.id}, showMessage: true);
         },
       ),

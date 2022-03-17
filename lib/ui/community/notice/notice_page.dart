@@ -1,4 +1,4 @@
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/notice/notice_card.dart';
@@ -24,7 +24,7 @@ class _NoticePageState extends State<NoticePage> {
       title: '社区公告',
       body: BeeListView<HomeAnnounceModel>(
         controller: _refreshController,
-        path: SARSAPI.announce.list,
+        path: SAASAPI.announce.list,
         convert: (model) =>
             model.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList(),
         builder: (items) {

@@ -1,6 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/event_voting_model.dart';
 import 'package:aku_new_community/pages/event_activity/voting_detail_page.dart';
@@ -61,7 +61,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
             child: ClipRect(
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(ImgModel.first(model.imgUrls)),
+                image: SAASAPI.image(ImgModel.first(model.imgUrls)),
                 fit: BoxFit.cover,
               ),
             ),

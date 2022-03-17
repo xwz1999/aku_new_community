@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/models/community/information_category_list_model.dart';
@@ -177,7 +177,7 @@ class _CommunityPageState extends State<CommunityPage>
 
   Future getNewInfo() async {
     BaseListModel baseListModel = await NetUtil().getList(
-        SARSAPI.community.dynamicList,
+        SAASAPI.community.dynamicList,
         params: {"pageNum": _pageNum, "size": _size, 'type': 1});
     if (baseListModel.rows.isNotEmpty) {
       _newItems = (baseListModel.rows)
@@ -210,7 +210,7 @@ class _CommunityPageState extends State<CommunityPage>
           _homeTitle('热门资讯', () async {
             final cancel = BotToast.showLoading();
             BaseModel model =
-                await NetUtil().get(SARSAPI.information.categoryList);
+                await NetUtil().get(SAASAPI.information.categoryList);
             var category = <InformationCategoryListModel>[];
             if (model.success == true && model.data != null) {
               category = (model.data as List)
@@ -306,7 +306,7 @@ class _CommunityPageState extends State<CommunityPage>
               ),
               image: DecorationImage(
                 image: NetworkImage(
-                  SARSAPI.image(ImgModel.first(item.imgList)),
+                  SAASAPI.image(ImgModel.first(item.imgList)),
                 ),
                 fit: BoxFit.cover,
               ),

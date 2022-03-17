@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/comment_list_model.dart';
 import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
@@ -73,7 +73,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
       };
 
   Future updateComments() async {
-    var base = await NetUtil().get(SARSAPI.community.singleComment, params: {
+    var base = await NetUtil().get(SAASAPI.community.singleComment, params: {
       'commentId': _comments[_currentCommentIndex].id,
     });
     if (base.success) {
@@ -144,13 +144,13 @@ class _EventDetailPageState extends State<EventDetailPage> {
         firstRefresh: true,
         onRefresh: () async {
           BaseModel model = await NetUtil().get(
-            SARSAPI.community.dynamicDetail,
+            SAASAPI.community.dynamicDetail,
             params: {'dynamicId': widget.dynamicId},
           );
           _model = DynamicDetailModel.fromJson(model.data);
           _page = 1;
           var base =
-              await NetUtil().getList(SARSAPI.community.commentList, params: {
+              await NetUtil().getList(SAASAPI.community.commentList, params: {
             'pageNum': _page,
             'size': _size,
             'dynamicId': widget.dynamicId,
@@ -171,7 +171,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
         onLoad: () async {
           _page++;
           var base =
-              await NetUtil().getList(SARSAPI.community.commentList, params: {
+              await NetUtil().getList(SAASAPI.community.commentList, params: {
             'pageNum': _page,
             'size': _size,
             'dynamicId': widget.dynamicId,
@@ -305,7 +305,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               clipBehavior: Clip.antiAlias,
               child: FadeInImage.assetNetwork(
                 placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SARSAPI.image(ImgModel.first(model.avatarImgList)),
+                image: SAASAPI.image(ImgModel.first(model.avatarImgList)),
                 height: 96.w,
                 width: 96.w,
                 fit: BoxFit.cover,
@@ -349,7 +349,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
           GestureDetector(
             onTap: () async {
               var res =
-                  await NetUtil().get(SARSAPI.community.commentLike, params: {
+                  await NetUtil().get(SAASAPI.community.commentLike, params: {
                 'commentId': model.id,
               });
               if (res.success) {
@@ -569,7 +569,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               height: 55.w,
               onPressed: () async {
                 var res = await NetUtil()
-                    .post(SARSAPI.community.commentInsert, params: params);
+                    .post(SAASAPI.community.commentInsert, params: params);
                 if (res.success) {
                   _textEditingController.clear();
                   if (_rootId == 0) {

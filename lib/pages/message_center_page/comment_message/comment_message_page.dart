@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
-
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/message/comment_message_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
@@ -12,6 +7,9 @@ import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class CommentMessagePage extends StatefulWidget {
   CommentMessagePage({Key? key}) : super(key: key);
@@ -75,7 +73,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             clipBehavior: Clip.antiAlias,
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SARSAPI.image(ImgModel.first(model.headSculpture)),
+              image: SAASAPI.image(ImgModel.first(model.headSculpture)),
               fit: BoxFit.cover,
             ),
           ),
@@ -99,7 +97,7 @@ class _CommentMessagePageState extends State<CommentMessagePage> {
             height: 160.w,
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SARSAPI.image(ImgModel.first(model.imgUrls)),
+              image: SAASAPI.image(ImgModel.first(model.imgUrls)),
               fit: BoxFit.cover,
             ),
           ),

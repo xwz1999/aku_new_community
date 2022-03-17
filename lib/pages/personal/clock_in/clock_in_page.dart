@@ -1,14 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/sars_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -19,6 +10,12 @@ import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.d
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ClockInPage extends StatefulWidget {
   const ClockInPage({Key? key}) : super(key: key);
@@ -37,7 +34,7 @@ class _ClockInPageState extends State<ClockInPage> {
   bool get hasClocked => _integralModel?.isSign ?? false;
 
   Future getData() async {
-    var base = await NetUtil().get(SARSAPI.profile.integral.info);
+    var base = await NetUtil().get(SAASAPI.profile.integral.info);
     if (base.success) {
       _integralModel = IntegralInfoModel.fromJson(base.data);
       if (_integralModel != null) {
@@ -225,7 +222,7 @@ class _ClockInPageState extends State<ClockInPage> {
                 ? null
                 : () async {
                     var base =
-                        await NetUtil().get(SARSAPI.profile.integral.sign);
+                        await NetUtil().get(SAASAPI.profile.integral.sign);
                     if (base.success) {
                       await Get.dialog(ClockSuccessDialog(
                           todayIntegral: 1, tomorrowIntegral: 2));
