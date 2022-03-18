@@ -260,7 +260,7 @@ class _LifePayPageState extends State<LifePayPage> {
   Future<double> _dailyPaymentPrePay() async {
     BaseModel baseModel =
         await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
-      "estateId": UserTool.appProveider.selectedHouse!.estateId,
+      "estateId": UserTool.appProvider.selectedHouse!.estateId,
     });
     if (baseModel.success) {
       return (baseModel.data as num).toDouble();

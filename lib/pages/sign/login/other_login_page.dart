@@ -102,7 +102,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                   _tel.text,
                   _psd.text,
                   UserTool
-                      .appProveider.pickedCityAndCommunity!.communityModel!.id);
+                      .appProvider.pickedCityAndCommunity!.communityModel!.id);
               if (response.data['success']) {
                 await UserTool.userProvider.setLogin(response.data['data']);
                 await UserTool.dataProvider.addHistories();
@@ -127,7 +127,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
       BotToast.showText(text: '请输入正确的手机号！');
       return false;
     }
-    if (UserTool.appProveider.pickedCityAndCommunity == null) {
+    if (UserTool.appProvider.pickedCityAndCommunity == null) {
       BotToast.showText(text: '请先选择小区！');
       return false;
     }
@@ -151,7 +151,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
         TelTextField(controller: _tel),
         100.w.heightBox,
         LoginButtonWidget(
-            onTap: UserTool.appProveider.second < 60
+            onTap: UserTool.appProvider.second < 60
                 ? () {}
                 : () async {
                     var check = checkInput();
@@ -160,7 +160,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                     }
                     var base = await SignFunc.sendMessageCode(
                         _tel.text,
-                        UserTool.appProveider.pickedCityAndCommunity!
+                        UserTool.appProvider.pickedCityAndCommunity!
                             .communityModel!.id);
                     if (base.success) {
                       Get.to(() => CodeMessagePage(tel: _tel.text));

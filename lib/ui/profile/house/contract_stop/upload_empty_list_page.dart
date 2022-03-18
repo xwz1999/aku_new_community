@@ -1,15 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/ui/profile/house/house_func.dart';
@@ -21,6 +11,14 @@ import 'package:aku_new_community/widget/others/upload_widget.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/views/doc_view.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class UploadEmptyListPage extends StatefulWidget {
   UploadEmptyListPage({Key? key}) : super(key: key);
@@ -33,7 +31,7 @@ class _UploadEmptyListPageState extends State<UploadEmptyListPage> {
   List<File> _files = [];
   List<String> _urls = [];
 
-  int get sysLeaseId => UserTool.appProveider.selectedHouse!.sysLeaseId ?? 0;
+  int get sysLeaseId => UserTool.appProvider.selectedHouse!.sysLeaseId ?? 0;
   DateTime? _date = DateTime.now();
 
   @override

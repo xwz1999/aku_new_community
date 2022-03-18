@@ -1,11 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
@@ -14,6 +6,11 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_city_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_community_picker.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SelectCommunity extends StatefulWidget {
   const SelectCommunity({
@@ -26,7 +23,7 @@ class SelectCommunity extends StatefulWidget {
 
 class _SelectCommunityState extends State<SelectCommunity> {
   String get cityName {
-    var _model = UserTool.appProveider.pickedCityAndCommunity;
+    var _model = UserTool.appProvider.pickedCityAndCommunity;
     if (_model == null) {
       return '请选择省、市、县/区';
     } else {
@@ -38,7 +35,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
 
   String get communityName {
     var _community =
-        UserTool.appProveider.pickedCityAndCommunity?.communityModel;
+        UserTool.appProvider.pickedCityAndCommunity?.communityModel;
     if (_community == null) {
       return '请选择小区';
     } else {
@@ -54,10 +51,9 @@ class _SelectCommunityState extends State<SelectCommunity> {
   @override
   void deactivate() {
     Future.delayed(Duration(milliseconds: 0), () async {
-      if (UserTool.appProveider.pickedCityAndCommunity != null &&
-          UserTool.appProveider.pickedCityAndCommunity?.communityModel ==
-              null) {
-        UserTool.appProveider.resetPickedCity();
+      if (UserTool.appProvider.pickedCityAndCommunity != null &&
+          UserTool.appProvider.pickedCityAndCommunity?.communityModel == null) {
+        UserTool.appProvider.resetPickedCity();
       }
     });
     super.deactivate();
@@ -69,7 +65,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
       onTap: () async {
         var _city = await BeeCityPicker.pick(context);
         if (_city != null) {
-          UserTool.appProveider.setPickedCity(city: _city);
+          UserTool.appProvider.setPickedCity(city: _city);
         }
         setState(() {});
       },
@@ -98,7 +94,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
         List<CommunityModel> _communities = [];
         var base = await NetUtil().get(SAASAPI.login.allCommunity, params: {
           'cityId': UserTool
-              .appProveider.pickedCityAndCommunity!.cityModel.district.id,
+              .appProvider.pickedCityAndCommunity!.cityModel.district.id,
         });
         if (base.success) {
           _communities = (base.data as List)
@@ -109,7 +105,7 @@ class _SelectCommunityState extends State<SelectCommunity> {
         var _community = await BeeCommunityPicker.pick(context, _communities);
         print(_community?.name);
         if (_community != null) {
-          UserTool.appProveider.setPickedCity(community: _community);
+          UserTool.appProvider.setPickedCity(community: _community);
         }
         setState(() {});
       },
@@ -152,9 +148,8 @@ class _SelectCommunityState extends State<SelectCommunity> {
     );
     return WillPopScope(
       onWillPop: () async {
-        var bool = UserTool.appProveider.pickedCityAndCommunity != null &&
-            UserTool.appProveider.pickedCityAndCommunity?.communityModel ==
-                null;
+        var bool = UserTool.appProvider.pickedCityAndCommunity != null &&
+            UserTool.appProvider.pickedCityAndCommunity?.communityModel == null;
         if (bool) {
           BotToast.showText(text: '请选择小区');
           return false;

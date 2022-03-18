@@ -146,7 +146,7 @@ class SignFunc {
           'tel': tel,
           'telCode': telcode,
           'communityId':
-              UserTool.appProveider.pickedCityAndCommunity!.communityModel!.id
+              UserTool.appProvider.pickedCityAndCommunity!.communityModel!.id
         },
         showMessage: true);
     if (baseModel.data == null || !baseModel.success) return false;

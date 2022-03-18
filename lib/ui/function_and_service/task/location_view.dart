@@ -27,8 +27,8 @@ class _LocationViewState extends State<LocationView> {
         await Permission.locationWhenInUse.request();
       }
       _target = LatLng(
-        (UserTool.appProveider.location?['latitude'] ?? 0) as double,
-        (UserTool.appProveider.location?['longitude'] ?? 0) as double,
+        (UserTool.appProvider.location?['latitude'] ?? 0) as double,
+        (UserTool.appProvider.location?['longitude'] ?? 0) as double,
       );
       // poiList = await search.AmapSearch.instance.searchAround(search.LatLng(
       //   (UserTool.appProveider.location?['latitude'] ?? 0) as double,

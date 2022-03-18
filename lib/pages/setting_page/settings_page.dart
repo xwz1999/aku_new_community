@@ -1,11 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
@@ -20,6 +12,12 @@ import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -179,7 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           '接收火灾报警通知'.text.size(28.sp).color(ktextPrimary).bold.make().expand(),
           CupertinoSwitch(
-              value: UserTool.appProveider.fireAlert,
+              value: UserTool.appProvider.fireAlert,
               onChanged: (value) {
                 if (value) {
                   WebSocketUtil().startWebSocket();

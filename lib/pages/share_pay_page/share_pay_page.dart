@@ -281,7 +281,7 @@ class _SharePayPageState extends State<SharePayPage> {
         onRefresh: () async {
           BaseModel baseModel =
               await NetUtil().get(API.manager.sharePayList, params: {
-            'estateId': UserTool.appProveider.selectedHouse?.estateId,
+            'estateId': UserTool.appProvider.selectedHouse?.estateId,
           });
           _models = (baseModel.data as List)
               .map((e) => SharePayListModel.fromJson(e))

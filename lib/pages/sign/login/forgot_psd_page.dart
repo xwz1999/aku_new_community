@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/pages/sign/login/forgot_set_psd_page.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/pages/sign/widget/tel_text_field.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import '../sign_func.dart';
 
 class ForgotPsdPage extends StatefulWidget {
@@ -74,13 +73,13 @@ class _ForgotPsdPageState extends State<ForgotPsdPage> {
                       }
                       var base = await SignFunc.sendForgotMessageCode(
                           _telController.text,
-                          UserTool.appProveider.pickedCityAndCommunity!
+                          UserTool.appProvider.pickedCityAndCommunity!
                               .communityModel!.id);
                       if (base.success) {
                         Get.to(() => ForgotSetPsdPage(
                               tel: _telController.text,
                             ));
-                        UserTool.appProveider.startTimer();
+                        UserTool.appProvider.startTimer();
                       } else {
                         BotToast.showText(text: base.msg);
                       }

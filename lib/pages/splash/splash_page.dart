@@ -9,6 +9,7 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:equatable/equatable.dart';
 // import 'package:amap_search_fluttify/amap_search_fluttify.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -108,13 +109,14 @@ class _SplashPageState extends State<SplashPage> {
         await Permission.locationWhenInUse.request();
       }
       //第三方加载
+      EquatableConfig.stringify = true;
       AMapFlutterLocation.updatePrivacyShow(true, true);
       AMapFlutterLocation.updatePrivacyAgree(true);
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
-      UserTool.appProveider.startLocation();
-      UserTool.appProveider.initApplications();
+      UserTool.appProvider.startLocation();
+      UserTool.appProvider.initApplications();
       //获取城市列表等信息
       await UserTool.dataProvider.init();
       //从本地获取是否登录记录

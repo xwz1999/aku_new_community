@@ -65,7 +65,7 @@ class _AddHouseKeepingPageState extends State<AddHouseKeepingPage> {
                   List<String> urls = await NetUtil()
                       .uploadFiles(_files, API.upload.uploadHouseKeepingPhotos);
                   bool result = await HouseKeepingFunc.submitHouseKeeping(
-                      UserTool.appProveider.selectedHouse!.estateId,
+                      UserTool.appProvider.selectedHouse!.estateId,
                       _selectType! + 1,
                       _editingController.text,
                       urls);

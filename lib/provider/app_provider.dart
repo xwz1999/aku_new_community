@@ -330,6 +330,7 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///记录历史登录信息
   HistoryLoginModel? _pickedCityAndCommunity;
 
   HistoryLoginModel? get pickedCityAndCommunity => _pickedCityAndCommunity;

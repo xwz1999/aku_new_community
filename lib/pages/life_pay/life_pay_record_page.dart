@@ -44,9 +44,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
       title: '生活缴费',
       body: BeeListView(
         path: API.manager.paymentRecord,
-        extraParams: {
-          "estateId": UserTool.appProveider.selectedHouse!.estateId
-        },
+        extraParams: {"estateId": UserTool.appProvider.selectedHouse!.estateId},
         controller: _refreshController,
         convert: (models) {
           return models.rows

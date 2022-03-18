@@ -79,7 +79,7 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                     var re = await SignFunc.loginBySms(
                         widget.tel,
                         code,
-                        UserTool.appProveider.pickedCityAndCommunity!
+                        UserTool.appProvider.pickedCityAndCommunity!
                             .communityModel!.id);
                     if (re.data['success']) {
                       await UserTool.userProvider
@@ -111,18 +111,18 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                       onPressed: () async {
                         var base = await SignFunc.sendMessageCode(
                             widget.tel,
-                            UserTool.appProveider.pickedCityAndCommunity!
+                            UserTool.appProvider.pickedCityAndCommunity!
                                 .communityModel!.id);
                         if (base.success) {
                           _errorMessage = null;
-                          UserTool.appProveider.startTimer();
+                          UserTool.appProvider.startTimer();
                         } else {
                           BotToast.showText(text: base.msg);
                         }
                       },
-                      child: (UserTool.appProveider.second >= 60
+                      child: (UserTool.appProvider.second >= 60
                               ? '重新发送验证码'
-                              : '${UserTool.appProveider.second}秒后可重新发送')
+                              : '${UserTool.appProvider.second}秒后可重新发送')
                           .text
                           .size(28.sp)
                           .color(Color(0xFF5096F1))

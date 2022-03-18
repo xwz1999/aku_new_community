@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-
-import 'package:aku_new_community/widget/others/user_tool.dart';
 
 const String baseUri = 'wss://shop.kaidalai.cn/websocket/app';
 enum SOCKETSTATUS {
@@ -108,7 +107,7 @@ class WebSocketUtil {
     }
 
     WebSocketUtil().setPrintHeart(true);
-    UserTool.appProveider.setFireAlert(true);
+    UserTool.appProvider.setFireAlert(true);
   }
 
   //接收消息回调
@@ -183,7 +182,7 @@ class WebSocketUtil {
     }
     endReconnect();
     destoryHeart();
-    UserTool.appProveider.setFireAlert(false);
+    UserTool.appProvider.setFireAlert(false);
     _socketStatus = SOCKETSTATUS.CLOSED;
   }
 

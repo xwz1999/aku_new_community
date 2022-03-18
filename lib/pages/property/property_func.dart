@@ -8,7 +8,7 @@ class PropertyFunc {
   static Future<double> getDailyPaymentPrePay() async {
     BaseModel baseModel =
         await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
-      "estateId": UserTool.appProveider.selectedHouse!.estateId,
+      "estateId": UserTool.appProvider.selectedHouse!.estateId,
     });
     if (baseModel.success) {
       return (baseModel.data as num).toDouble();
@@ -21,7 +21,7 @@ class PropertyFunc {
   static Future<double> getFindUnpaidAmount() async {
     BaseModel baseModel =
         await NetUtil().get(API.manager.findUnpaidAmount, params: {
-      "estateId": UserTool.appProveider.selectedHouse!.estateId,
+      "estateId": UserTool.appProvider.selectedHouse!.estateId,
     });
     if (baseModel.success) {
       return (baseModel.data as num).toDouble();

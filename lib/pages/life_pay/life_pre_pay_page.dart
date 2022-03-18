@@ -157,7 +157,7 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
             try {
               BaseModel baseModel =
                   await NetUtil().post(API.pay.dailPaymentPrePay, params: {
-                "estateId": UserTool.appProveider.selectedHouse!.estateId,
+                "estateId": UserTool.appProvider.selectedHouse!.estateId,
                 "payType": 1,
                 "payPrice": _editingController.text
               });

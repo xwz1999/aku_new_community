@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/pages/sign/login/psd_verify.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/pages/sign/widget/psd_text_field.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'login_page.dart';
 
 class ForgotSetPsdPage extends StatefulWidget {
@@ -125,13 +124,13 @@ class _ForgotSetPsdPageState extends State<ForgotSetPsdPage> {
                     onTap: () async {
                       var base = await SignFunc.sendMessageCode(
                           widget.tel,
-                          UserTool.appProveider.pickedCityAndCommunity!
+                          UserTool.appProvider.pickedCityAndCommunity!
                               .communityModel!.id);
                       if (base.success) {
                         Get.to(() => ForgotSetPsdPage(
                               tel: widget.tel,
                             ));
-                        UserTool.appProveider.startTimer();
+                        UserTool.appProvider.startTimer();
                       } else {
                         BotToast.showText(text: base.msg);
                       }
@@ -139,7 +138,7 @@ class _ForgotSetPsdPageState extends State<ForgotSetPsdPage> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        '｜${UserTool.appProveider.second < 60 ? '${UserTool.appProveider.second}秒后重新获取' : '获取验证码'}'
+                        '｜${UserTool.appProvider.second < 60 ? '${UserTool.appProvider.second}秒后重新获取' : '获取验证码'}'
                             .text
                             .size(28.sp)
                             .color(Color(0xFF5096F1))

@@ -186,7 +186,7 @@ class _LeasePayQueryPageState extends State<LeasePayQueryPage> {
             children: [
               model.typeString.text.size(28.sp).black.bold.make(),
               Spacer(),
-              '${S.of(context)!.tempPlotName} ${UserTool.appProveider.selectedHouse!.roomName}'
+              '${S.of(context)!.tempPlotName} ${UserTool.appProvider.selectedHouse!.roomName}'
                   .text
                   .size(24.sp)
                   .color(ktextSubColor)

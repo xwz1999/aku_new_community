@@ -43,7 +43,7 @@ class DataProvider extends ChangeNotifier {
   List<HistoryLoginModel> get loginHistories => _loginHistories;
 
   Future addHistories() async {
-    _loginHistories.insert(0, UserTool.appProveider.pickedCityAndCommunity!);
+    _loginHistories.insert(0, UserTool.appProvider.pickedCityAndCommunity!);
     if (_loginHistories.length > 4) {
       _loginHistories.removeAt(_loginHistories.length - 1);
     }
