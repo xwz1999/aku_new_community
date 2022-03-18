@@ -171,7 +171,7 @@ class _ForgotSetPsdPageState extends State<ForgotSetPsdPage> {
                           widget.tel,
                           _codeController.text);
                       if (result) {
-                        Get.to(() => LoginPage());
+                        Get.offAll(() => LoginPage());
                       }
                     }
                   : null,

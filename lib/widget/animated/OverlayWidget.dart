@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class OverlayLivingBtnWidget extends StatefulWidget {
   OverlayLivingBtnWidget({
@@ -67,7 +65,7 @@ class _OverlayLivingBtnWidgetState extends State<OverlayLivingBtnWidget>
             ),
             GestureDetector(
               onTap: () {
-                Get.to(OpeningCodePage());
+                Get.to(() => OpeningCodePage());
               },
               onPanUpdate: (detail) {
                 setState(() {

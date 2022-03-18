@@ -350,6 +350,7 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///登录页验证码计时器
   int second = 60;
   bool timerStart = false;
   Timer? timer;

@@ -51,7 +51,7 @@ class SignFunc {
   static Future<Response> login(
       String phone, String code, int communityId) async {
     Response response = await NetUtil().dio!.post(
-      API.login.login,
+      SAASAPI.login.login,
       data: {
         'tel': phone,
         'password': code,

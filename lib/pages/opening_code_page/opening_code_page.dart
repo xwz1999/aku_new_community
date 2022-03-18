@@ -1,15 +1,20 @@
 import 'dart:async';
 
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/ui/profile/new_house/certification/certification_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class OpeningCodePage extends StatefulWidget {
@@ -79,95 +84,201 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
     return BeeScaffold(
       bgColor: Colors.white,
       title: '开门码',
-      body: EasyRefresh(
-        firstRefresh: true,
-        header: MaterialHeader(),
-        onRefresh: () async {
-          await getQrcode();
-        },
-        child: _onload
-            ? Container()
-            : ListView(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: 70.w,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                Color(0xFFFFD487),
+                Color(0xFFFFD76F).withOpacity(0.19)
+              ])),
+          child: EasyRefresh(
+            firstRefresh: true,
+            header: MaterialHeader(),
+            onRefresh: () async {
+              // await getQrcode();
+              _qrCode = DateTime.now().toString();
+              _overDate = true;
+              _onload = false;
+              setState(() {});
+            },
+            child: _onload
+                ? Container()
+                : ListView(
+                    padding: EdgeInsets.only(
+                      top: 123.w,
                       left: 32.w,
                       right: 32.w,
-                      bottom: 76.w,
                     ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
-                      vertical: 32.w,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.all(Radius.circular(8.w)),
-                    ),
-                    height: 746.w,
-                    width: 686.w,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(
-                            top: 44.w,
-                            bottom: 32.w,
-                          ),
-                          height: 460.w,
-                          width: 460.w,
-                          child: QrImage(
-                            padding: EdgeInsets.zero,
-                            data: _qrCode,
-                            size: 460.w,
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 29.w,
-                            vertical: 33.w,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color(0xfffffbf6),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.w)),
-                          ),
-                          width: 646.w,
-                          height: 146.w,
-                          child: Text(
-                            '扫一扫，你的专属二维码，人人文明出行，路路畅通安宁，智慧小区祝您一路顺风',
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 28.sp,
-                              color: Color(0xff666666),
+                    children: [
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20.w,
+                              vertical: 32.w,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFEFDF3),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(32.w)),
+                            ),
+                            height: 952.w,
+                            child: Column(
+                              children: [
+                                107.hb,
+                                Container(
+                                  width: 192.w,
+                                  height: 42.w,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.06),
+                                      borderRadius:
+                                          BorderRadius.circular(45.w)),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    UserTool.userProvider.userInfoModel!
+                                            .nickName ??
+                                        "",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 24.sp),
+                                  ),
+                                ),
+                                48.hb,
+                                Text(
+                                  '2栋 1单元 1402室',
+                                  style: TextStyle(
+                                    fontSize: 32.sp,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                24.hb,
+                                Container(
+                                  margin:
+                                      EdgeInsets.symmetric(horizontal: 65.w),
+                                  height: 556.w,
+                                  width: 556.w,
+                                  color: Colors.white,
+                                  padding: EdgeInsets.all(56.w),
+                                  child: QrImage(
+                                    padding: EdgeInsets.zero,
+                                    data: _qrCode,
+                                    size: 460.w,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          AntDesign.checkcircleo,
-                          color: Color(0xffffc40c),
-                          size: 32.sp,
-                        ),
-                        SizedBox(width: 19.w),
-                        Text(
-                          _overDate ? '已过期' : '已刷新',
-                          style: TextStyle(
-                            fontSize: 32.sp,
-                            color: Color(0xff999999),
+                          Positioned(
+                            top: -80.w,
+                            left: 257.w,
+                            child: Container(
+                              width: 160.w,
+                              height: 160.w,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFEFDF3),
+                                borderRadius: BorderRadius.circular(80.w),
+                              ),
+                              alignment: Alignment.center,
+                              child: Container(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                width: 146.w,
+                                height: 146.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(73.w),
+                                ),
+                                child: BeeImageNetwork(
+                                  width: 146.w,
+                                  height: 146.w,
+                                  imgs: UserTool
+                                      .userProvider.userInfoModel!.imgList,
+                                ),
+                              ),
+                            ),
                           ),
+                        ],
+                      ),
+                      32.hb,
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.w),
                         ),
-                      ],
-                    ),
+                        child: Column(
+                          children: [
+                            buildRow(
+                                onTap: () {
+                                  BotToast.showText(text: '当前小区未接入开门码功能');
+                                },
+                                text: '开门记录',
+                                suffix: ''),
+                            buildRow(
+                                onTap: () {
+                                  BotToast.showText(text: '当前小区未接入开门码功能');
+                                },
+                                text: '人脸识别',
+                                suffix: ''),
+                            buildRow(
+                                onTap: () {
+                                  UserTool.userProvider.userInfoModel!.idCard ==
+                                          null
+                                      ? Get.off(() => CertificationPage())
+                                      : BotToast.showText(text: '已实名认证');
+                                },
+                                text: '开门记录',
+                                suffix: UserTool.userProvider.userInfoModel!
+                                            .idCard ==
+                                        null
+                                    ? '未认证'
+                                    : '已认证')
+                          ].sepWidget(
+                              separate: BeeDivider.horizontal(
+                            indent: 32.w,
+                            endIndent: 32.w,
+                          )),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  GestureDetector buildRow(
+      {required VoidCallback onTap,
+      required String text,
+      required String suffix}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Material(
+        color: Colors.transparent,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+          child: Row(
+            children: [
+              text.text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.85))
+                  .make(),
+              Spacer(),
+              suffix.text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              24.wb,
+              Icon(
+                CupertinoIcons.chevron_right,
+                size: 24.w,
+                color: Colors.black.withOpacity(0.25),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
