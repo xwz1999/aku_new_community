@@ -32,6 +32,7 @@ class SAASAPI {
   static _Activity activity = _Activity();
   static _Announce announce = _Announce();
   static _Information information = _Information();
+  static _WorkOrder workOrder = _WorkOrder();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -207,4 +208,42 @@ class _Information {
 
   ///查询app所有的资讯分类信息
   String get categoryList => '/app/user/information/categoryList';
+}
+
+class _WorkOrder {
+  ///根据工单主键id查询工单账单
+  String get workOrderBill => '/app/user/workOrder/workOrderBill';
+
+  ///根据工单主键id查询工单报告列表
+  String get findRRById => '/app/user/workOrder/findRRById';
+
+  ///根据工单主键id查询工单信息
+  String get findById => '/app/user/workOrder/findById';
+
+  ///根据工单主键id查询工单进度列表
+  String get findScheduleById => '/app/user/workOrder/findScheduleById';
+
+  ///评价
+  String get evaluate => '/app/user/workOrder/evaluate';
+
+  ///确认完成
+  String get confirmCompletion => '/app/user/workOrder/confirmCompletion';
+
+  ///催促进度
+  String get promotionRate => '/app/user/workOrder/promotionRate';
+
+  ///取消工单
+  String get cancel => '/app/user/workOrder/cancel';
+
+  ///查询服务团队名单
+  String get findServiceTeamList => '/app/user/workOrder/findServiceTeamList';
+
+  ///发布工单
+  String get insert => '/app/user/workOrder/insert';
+
+  ///查询所有的工单类型信息
+  String get typeList => '/app/user/workOrder/typeList';
+
+  ///查询所有的工单信息
+  String get list => '/app/user/workOrder/list';
 }

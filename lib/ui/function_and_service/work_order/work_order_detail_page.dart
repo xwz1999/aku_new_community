@@ -1,7 +1,19 @@
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/models/work_order/work_order_detail_model.dart';
+import 'package:aku_new_community/models/work_order/work_order_list_model.dart';
+import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/urge_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_bill_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_finish_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/team_list_page.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/work_order_map.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -9,18 +21,32 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/src/extensions/num_ext.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class WorkOrderDetailPage extends StatefulWidget {
-  const WorkOrderDetailPage({Key? key}) : super(key: key);
+  final WorkOrderListModel model;
+
+  const WorkOrderDetailPage({Key? key, required this.model}) : super(key: key);
 
   @override
   _WorkOrderDetailPageState createState() => _WorkOrderDetailPageState();
 }
 
 class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
+  WorkOrderDetailModel? _model;
+  EasyRefreshController _refreshController = EasyRefreshController();
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -31,18 +57,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
             width: double.infinity,
             height: 380.w,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: false
-                      ? [
-                          Colors.white,
-                          Color(0xFFADACAC),
-                        ]
-                      : [
-                          Color(0xFFFFB737),
-                          Color(0xFFFFD361),
-                        ]),
+              gradient: _getLiner,
             ),
             child: Column(
               children: [
@@ -54,13 +69,24 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          'detailStatusToString'
-                              .text
-                              .size(40.sp)
-                              .color(Colors.black)
-                              .bold
-                              .make(),
-                          'subStatusString'
+                          GestureDetector(
+                            onTap: () async {},
+                            child: Material(
+                              color: Colors.transparent,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  '${WorkOrderMap.orderStatus[_model?.status] ?? ''}'
+                                      .text
+                                      .size(40.sp)
+                                      .color(Colors.black)
+                                      .bold
+                                      .make(),
+                                ],
+                              ),
+                            ),
+                          ),
+                          '${WorkOrderMap.subStatusString[_model?.status] ?? ''}'
                               .text
                               .size(24.sp)
                               .color(Colors.black.withOpacity(0.45))
@@ -75,17 +101,169 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
             ),
           ),
           SafeArea(
-              child: ListView(
-            padding: EdgeInsets.only(top: 120.w, left: 32.w, right: 32.w),
-            children: [
-              _head(),
-              24.hb,
-              _content(),
-              24.w.heightBox,
-              _taskInfo(),
-            ],
+              child: EasyRefresh(
+            firstRefresh: true,
+            header: MaterialHeader(),
+            onRefresh: () async {
+              var base = await NetUtil().get(SAASAPI.workOrder.findById);
+              if (base.success) {
+                _model = WorkOrderDetailModel.fromJson(base.data);
+                setState(() {});
+              }
+            },
+            child: _model == null
+                ? Container()
+                : ListView(
+                    padding:
+                        EdgeInsets.only(top: 120.w, left: 32.w, right: 32.w),
+                    children: [
+                      Offstage(
+                          offstage: _model!.servicePersonnelImgList == null,
+                          child: Column(
+                            children: [
+                              _servicePeople(),
+                              24.hb,
+                            ],
+                          )),
+                      _head(),
+                      24.hb,
+                      _content(),
+                      24.w.heightBox,
+                      _taskInfo(),
+                    ],
+                  ),
           )),
         ],
+      ),
+      bottomNavi: _getBottomButton(),
+    );
+  }
+
+  LinearGradient get _getLiner {
+    switch (_model?.status) {
+      case 7:
+      case 8:
+        return LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFA5A5A6).withOpacity(0),
+              Color(0xFFE0DDDE),
+            ]);
+      case 9:
+        return LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFFF0000).withOpacity(0),
+              Color(0xFFFC5757),
+            ]);
+      default:
+        return LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFFFD589).withOpacity(0),
+              Color(0xFFFAC058),
+            ]);
+    }
+  }
+
+  Widget _getBottomButton() {
+    switch (_model?.status) {
+      case 1:
+        return BeeLongButton(
+            onPressed: () {
+              launch('tel:');
+            },
+            text: '联系物业');
+      case 2:
+      case 3:
+      case 4:
+        return BeeLongButton(
+          onPressed: () async {
+            await Get.bottomSheet(UrgeDialog(onConfirm: () async {
+              var re = await WorkOrderFuc.promotionRate(_model!.id);
+              if (re) {
+                _refreshController.callRefresh();
+              }
+            }));
+          },
+          text: '催促进度',
+        );
+      case 5:
+        return BeeLongButton(
+            onPressed: () async {
+              await Get.bottomSheet(WorkOrderFinishDialog(onConfirm: () async {
+                var re = await WorkOrderFuc.confirmComplete(_model!.id);
+                if (re) {
+                  Get.back();
+                  _refreshController.callRefresh();
+                }
+              }));
+            },
+            text: '确认完成');
+      case 6:
+        return BeeLongButton(
+            onPressed: () async {
+              var bills = await WorkOrderFuc.getBill(workOrderId: _model!.id);
+              await Get.bottomSheet(WorkOrderBillDialog(models: bills));
+            },
+            text: '确认支付');
+      case 7:
+        return BeeLongButton(
+            onPressed: () async {
+              await Get.bottomSheet(TaskEvaluationDialog(
+                evaluate: (star, content) async {
+                  return await WorkOrderFuc.evaluate(
+                      workOrderId: widget.model.id,
+                      star: star,
+                      evaluation: content);
+                },
+              ));
+            },
+            text: '点击评价');
+      case 8:
+        return SizedBox.shrink();
+      case 9:
+        return SizedBox.shrink();
+      default:
+        return SizedBox.shrink();
+    }
+  }
+
+  Widget _historyReport() {
+    return GestureDetector(
+      onTap: () {},
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(16.w)),
+          padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
+          child: Row(
+            children: [
+              '历史报告'
+                  .text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.85))
+                  .make(),
+              Spacer(),
+              '点击查看'
+                  .text
+                  .size(24.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              24.wb,
+              Icon(
+                CupertinoIcons.chevron_right,
+                size: 24.w,
+                color: Colors.black.withOpacity(0.45),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -109,12 +287,19 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
           BeeDivider.horizontal(),
           24.hb,
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => TeamListPage(
+                    workOderId: _model!.id,
+                  ));
+            },
             child: Material(
               color: Colors.transparent,
               child: Row(
                 children: [
-                  StackAvatar(avatars: []),
+                  StackAvatar(
+                      avatars: (_model!.servicePersonnelImgList ?? [])
+                          .map((e) => e.url)
+                          .toList()),
                   Spacer(),
                   '点击查看'
                       .text
@@ -153,7 +338,11 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                   color: Color(0xFFFFFBE6),
                   borderRadius: BorderRadius.circular(8.w),
                 ),
-                child: '家政服务'.text.size(24.sp).color(Color(0xFFD48806)).make(),
+                child: '${_model!.workOrderTypeName}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFFD48806))
+                    .make(),
               ),
             ],
           ),
@@ -162,7 +351,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
             children: [
               Assets.icons.alarmClock.image(width: 40.w, height: 40.w),
               24.wb,
-              '2022.02.21 15:30'
+              '${DateUtil.formatDateStr(_model!.reserveDate)}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
@@ -174,7 +363,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
             children: [
               Assets.icons.taskLocation.image(width: 40.w, height: 40.w),
               24.wb,
-              '绿城·碧桂园3好楼门外'
+              '${_model!.reserveAddress}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
@@ -198,7 +387,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          'xxxxxxxxxxxxxxxxxxxxxxxx'
+          '${_model!.content}'
               .text
               .size(28.sp)
               .color(Colors.black.withOpacity(0.65))
@@ -240,7 +429,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '${DateUtil.formatDateStr('')}'
+              '${DateUtil.formatDateStr(_model!.createDate)}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
@@ -251,13 +440,13 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
           24.w.heightBox,
           Row(
             children: [
-              '任务单号'
+              '工单编号'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              'widget.model.code}'
+              '${_model!.code}'
                   .text
                   .size(24.sp)
                   .color(Colors.black.withOpacity(0.45))
@@ -265,8 +454,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
               24.w.widthBox,
               GestureDetector(
                   onTap: () async {
-                    await Clipboard.setData(
-                        ClipboardData(text: 'widget.model.code'));
+                    await Clipboard.setData(ClipboardData(text: _model!.code));
                     BotToast.showText(text: '已复制到粘贴板');
                   },
                   child: Assets.icons.copy.image(width: 40.w, height: 40.w)),

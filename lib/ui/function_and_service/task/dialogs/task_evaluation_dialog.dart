@@ -8,12 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
-import '../task_func.dart';
-
 class TaskEvaluationDialog extends StatefulWidget {
-  final int taskId;
+  final Future<bool> Function(int star, String content) evaluate;
 
-  const TaskEvaluationDialog({Key? key, required this.taskId})
+  const TaskEvaluationDialog({Key? key, required this.evaluate})
       : super(key: key);
 
   @override
@@ -107,10 +105,8 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
                     BotToast.showText(text: '请选择评价满意度');
                     return;
                   }
-                  var re = await TaskFunc.evaluate(
-                      taskId: widget.taskId,
-                      star: _currentIndex!,
-                      evaluation: _controller.text);
+                  var re =
+                      await widget.evaluate(_currentIndex!, _controller.text);
                   if (re) {
                     Get.back();
                   }
