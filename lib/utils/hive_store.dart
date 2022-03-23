@@ -1,6 +1,7 @@
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/models/login/china_region_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
+import 'package:aku_new_community/models/login/picked_city_model.dart';
 import 'package:aku_new_community/models/user/user_config_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
@@ -20,6 +21,10 @@ class HiveStore {
 
   static Box? get shortcutBox => _shortcutBox;
 
+  static Box? _workOrderShortBox;
+
+  static Box? get workOrderShortBox => _workOrderShortBox;
+
   static Future init() async {
     if (!kIsWeb) {
       var dir = await getApplicationDocumentsDirectory();
@@ -30,10 +35,12 @@ class HiveStore {
       Hive.registerAdapter(ChinaRegionModelAdapter()); //HiveTypeId:3
       Hive.registerAdapter(HistoryLoginModelAdapter()); //HiveTypeId:4
       Hive.registerAdapter(UserConfigModelAdapter()); //HiveTypeId:5
+      Hive.registerAdapter(PickedCityModelAdapter()); //HiveTypeId:6
       _appBox = await Hive.openBox('app');
       _userBox = await Hive.openBox('userBox');
       _dataBox = await Hive.openBox('dataBox');
       _shortcutBox = await Hive.openBox('shortcut');
+      _workOrderShortBox = await Hive.openBox('workOrderShort');
     }
   }
 }

@@ -1,7 +1,9 @@
-import 'dart:math';
-
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/work_order/work_order_report_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/dotted_line.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
@@ -38,27 +40,16 @@ class _HistoryReportPageState extends State<HistoryReportPage> {
           firstRefresh: true,
           header: MaterialHeader(),
           onRefresh: () async {
-            // var base =
-            //     await NetUtil().get(SAASAPI.workOrder.findRRById, params: {
-            //   'workOrderId': widget.id,
-            // });
-            // if (base.success) {
-            //   _models = (base.data as List)
-            //       .map((e) => WorkOrderReportModel.fromJson(e))
-            //       .toList();
-            //   setState(() {});
-            // }
-            _models.add(WorkOrderReportModel(
-                id: Random().nextInt(100),
-                type: Random().nextInt(100),
-                content: '${List.filled(Random().nextInt(50), 'aabb')}',
-                userType: Random().nextInt(2),
-                createId: Random().nextInt(100),
-                createName: 'xxx',
-                createDate: DateTime.now().toString(),
-                totalCost: '300',
-                imgList: [],
-                reportRecordVoList: []));
+            var base =
+                await NetUtil().get(SAASAPI.workOrder.findRRById, params: {
+              'workOrderId': widget.id,
+            });
+            if (base.success) {
+              _models = (base.data as List)
+                  .map((e) => WorkOrderReportModel.fromJson(e))
+                  .toList();
+              setState(() {});
+            }
             setState(() {});
           },
           child: _models.isEmpty
@@ -103,6 +94,14 @@ class LineCard extends StatefulWidget {
 
 class _LineCardState extends State<LineCard> {
   double _height = 0;
+
+  double get total {
+    double sum = 0;
+    for (var item in widget.model.reportRecordVoList) {
+      sum = sum + item.price;
+    }
+    return sum;
+  }
 
   @override
   void didChangeDependencies() {
@@ -232,6 +231,7 @@ class _LineCardState extends State<LineCard> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    24.hb,
                     ...widget.model.reportRecordVoList
                         .map((e) => Row(
                               children: [
@@ -250,7 +250,28 @@ class _LineCardState extends State<LineCard> {
                                     .make(),
                               ],
                             ))
-                        .toList(),
+                        .toList()
+                        .sepWidget(
+                          separate: 16.hb,
+                        ),
+                    24.hb,
+                    BeeDivider.horizontal(),
+                    24.hb,
+                    Row(
+                      children: [
+                        '工单总费用'
+                            .text
+                            .size(28.sp)
+                            .color(Colors.black.withOpacity(0.65))
+                            .make(),
+                        Spacer(),
+                        '¥${total}'
+                            .text
+                            .size(28.sp)
+                            .color(Color(0xFFF5222D))
+                            .make(),
+                      ],
+                    )
                   ],
                 ),
               )

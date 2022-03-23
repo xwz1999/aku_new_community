@@ -1,7 +1,4 @@
 class WorkOrderMap {
-  static Map<int, String> orderType = {
-    1: '报事报修',
-  };
   static Map<int, String> orderStatus = {
     1: '待分配',
     2: '工单池',

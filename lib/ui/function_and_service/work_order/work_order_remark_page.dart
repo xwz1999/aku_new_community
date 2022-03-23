@@ -7,22 +7,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class TaskRemarkPage extends StatefulWidget {
+class WorkOrderRemarkPage extends StatefulWidget {
   final String? text;
-  const TaskRemarkPage({Key? key, this.text}) : super(key: key);
+
+  const WorkOrderRemarkPage({Key? key, this.text}) : super(key: key);
 
   @override
-  _TaskRemarkPageState createState() => _TaskRemarkPageState();
+  _WorkOrderRemarkPageState createState() => _WorkOrderRemarkPageState();
 }
 
-class _TaskRemarkPageState extends State<TaskRemarkPage> {
+class _WorkOrderRemarkPageState extends State<WorkOrderRemarkPage> {
   TextEditingController _contentController = TextEditingController();
   List<String> _shortcutLabel = [];
   bool _edit = false;
 
   @override
   void initState() {
-    _shortcutLabel = HiveStore.shortcutBox!.values.cast<String>().toList();
+    _shortcutLabel =
+        HiveStore.workOrderShortBox!.values.cast<String>().toList();
     if (widget.text != null) {
       _contentController.text = widget.text!;
     }
@@ -38,7 +40,7 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '添加备注',
+      title: '添加需求',
       body: ListView(
         padding: EdgeInsets.all(32.w),
         children: [
@@ -52,7 +54,7 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    '任务内容'
+                    '具体需求'
                         .text
                         .size(28.sp)
                         .color(Colors.black.withOpacity(0.45))
@@ -127,7 +129,7 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
           onPressed: () async {
             var inBox = _shortcutLabel.contains(_contentController.text);
             if (!inBox && _contentController.text.isNotEmpty) {
-              await HiveStore.shortcutBox!.add(_contentController.text);
+              await HiveStore.workOrderShortBox!.add(_contentController.text);
             }
             Get.back(result: _contentController.text);
           },
@@ -177,7 +179,7 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
               child: GestureDetector(
                 onTap: () {
                   _shortcutLabel.removeAt(index);
-                  HiveStore.shortcutBox!.deleteAt(index);
+                  HiveStore.workOrderShortBox!.deleteAt(index);
                   setState(() {});
                 },
                 child: Material(

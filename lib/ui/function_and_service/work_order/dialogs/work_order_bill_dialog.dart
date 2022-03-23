@@ -1,4 +1,5 @@
 import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/work_order/work_order_bill_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
@@ -52,7 +53,10 @@ class WorkOrderBillDialog extends StatelessWidget {
                           .make(),
                     ],
                   ))
-              .toList(),
+              .toList()
+              .sepWidget(
+                separate: 16.hb,
+              ),
           BeeDivider.horizontal(),
           Row(
             children: [

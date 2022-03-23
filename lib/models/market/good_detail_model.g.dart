@@ -13,14 +13,14 @@ GoodDetailModel _$GoodDetailModelFromJson(Map<String, dynamic> json) =>
           ?.map((e) => JcookImageVoList.fromJson(e as Map<String, dynamic>))
           .toList(),
       sellPrice: json['sellPrice'] as num,
-      discountPrice: json['discountPrice'] as num,
-      skuName: json['skuName'] as String?,
+      discountPrice: json['discountPrice'] as num?,
+      skuName: json['skuName'] as String,
       status: json['status'] as int,
       shopStatus: json['shopStatus'] as int,
       sellNum: json['sellNum'] as int?,
-      kind: json['kind'] as int?,
-      defaultLocation: json['defaultLocation'] as String,
-      defaultAddressDetail: json['defaultAddressDetail'] as String,
+      kind: json['kind'] as int,
+      defaultLocation: json['defaultLocation'] as String?,
+      defaultAddressDetail: json['defaultAddressDetail'] as String?,
       stockStatus: json['stockStatus'] as int,
       jcookSpecificationVoList:
           (json['jcookSpecificationVoList'] as List<dynamic>)

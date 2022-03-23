@@ -4,7 +4,6 @@ import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
-import 'package:aku_new_community/painters/user_bottom_bar_painter.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
@@ -13,6 +12,7 @@ import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,150 +36,6 @@ class PersonalIndex extends StatefulWidget {
 
 class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  SliverAppBar _sliverAppBar(double height) {
-    final userProvider = Provider.of<UserProvider>(context);
-    return SliverAppBar(
-      pinned: false,
-      toolbarHeight: 0,
-      elevation: 0,
-      floating: false,
-      expandedHeight: 450.w - height,
-      backgroundColor: Colors.white,
-      flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                // decoration: BoxDecoration(
-                //   image: DecorationImage(
-                //     image: AssetImage(R.ASSETS_ICONS_ICON_MY_SETTING_PNG),
-                //     fit: BoxFit.cover,
-                //   ),
-                // ),
-                child: Column(
-                  children: [
-                    Spacer(),
-                    MaterialButton(
-                      padding: EdgeInsets.all(5.w),
-                      onPressed: () {
-                        if (!userProvider.isLogin)
-                          Get.to(() => LoginPage());
-                        else
-                          Get.to(() => UserProfilePage());
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(left: 32.w),
-                        child: Row(
-                          children: [
-                            Hero(
-                              tag: 'AVATAR1',
-                              child: ClipOval(
-                                  // child: FadeInImage.assetNetwork(
-                                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  //   image: SARSAPI.image(userProvider
-                                  //           .userInfoModel!.imgUrls.isNotEmpty
-                                  //       ? userProvider
-                                  //           .userInfoModel!.imgUrls.first.url
-                                  //       : ''),
-                                  //   height: 106.w,
-                                  //   width: 106.w,
-                                  //   fit: BoxFit.cover,
-                                  //   imageErrorBuilder:
-                                  //       (context, error, stackTrace) {
-                                  //     return Image.asset(
-                                  //       R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  //       height: 106.w,
-                                  //       width: 106.w,
-                                  //     );
-                                  //   },
-                                  // ),
-                                  ),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(left: 16.w),
-                                child: userProvider.isLogin
-                                    ? Text(
-                                        userProvider.userInfoModel?.nickName ??
-                                            '',
-                                        style: TextStyle(
-                                          fontSize: 32.sp,
-                                          color: Color(0xffad8940),
-                                        ),
-                                      )
-                                    : Text(
-                                        '登录/注册',
-                                        style: TextStyle(
-                                          fontSize: 32.sp,
-                                          color: Color(0xffad8940),
-                                        ),
-                                      )),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Stack(
-                      children: [
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            height: 41.w,
-                            width: double.infinity,
-                            child: CustomPaint(
-                              painter: UserBottomBarPainter(),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            top: 38.w,
-                            left: 36.w,
-                            right: 36.w,
-                            bottom: 18.w,
-                          ),
-                          child: Image.asset(
-                            R.ASSETS_IMAGES_MEMBER_BG_PNG,
-                            width: 678.w,
-                            height: 129.w,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Container _containerBar(String title) {
-  //   return Container(
-  //     color: title == '我的物业' ? Colors.white : BaseStyle.colorf9f9f9,
-  //     padding: EdgeInsets.all(title == '我的物业' ? 0 : 32.w),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: [
-  //         Text(
-  //           title,
-  //           style: TextStyle(
-  //             fontWeight: FontWeight.w600,
-  //             fontSize: BaseStyle.fontSize34,
-  //             color: ktextPrimary,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _orderButton({
     required String name,
     required String path,
@@ -275,30 +131,14 @@ class _PersonalIndexState extends State<PersonalIndex>
                             Hero(
                               tag: 'AVATAR',
                               child: ClipOval(
-                                  // child: FadeInImage.assetNetwork(
-                                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  //   image: SARSAPI.image((userProvider
-                                  //                   .userInfoModel?.imgUrls ??
-                                  //               [])
-                                  //           .isNotEmpty
-                                  //       ? (userProvider.userInfoModel?.imgUrls ??
-                                  //               [])
-                                  //           .first
-                                  //           .url
-                                  //       : ''),
-                                  //   height: 106.w,
-                                  //   width: 106.w,
-                                  //   fit: BoxFit.cover,
-                                  //   imageErrorBuilder:
-                                  //       (context, error, stackTrace) {
-                                  //     return Image.asset(
-                                  //       R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                                  //       height: 106.w,
-                                  //       width: 106.w,
-                                  //     );
-                                  //   },
-                                  // ),
-                                  ),
+                                child: BeeImageNetwork(
+                                  width: 106.w,
+                                  height: 106.w,
+                                  imgs: UserTool.userProvider.userInfoModel
+                                          ?.imgList ??
+                                      [],
+                                ),
+                              ),
                             ),
                             Container(
                                 margin: EdgeInsets.only(left: 16.w),

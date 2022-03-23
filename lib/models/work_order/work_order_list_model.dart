@@ -1,3 +1,4 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -15,10 +16,13 @@ class WorkOrderListModel extends Equatable {
   final String content;
   final String updateDate;
   final String createDate;
+  final List<ImgModel>? imgList;
 
   factory WorkOrderListModel.fromJson(Map<String, dynamic> json) =>
       _$WorkOrderListModelFromJson(json);
+
   DateTime? get updateDateDT => DateUtil.getDateTime(updateDate);
+
   DateTime? get createDateDT => DateUtil.getDateTime(createDate);
 
   @override
@@ -32,6 +36,7 @@ class WorkOrderListModel extends Equatable {
         content,
         updateDate,
         createDate,
+        imgList
       ];
 
   const WorkOrderListModel({
@@ -44,5 +49,6 @@ class WorkOrderListModel extends Equatable {
     required this.content,
     required this.updateDate,
     required this.createDate,
+    this.imgList,
   });
 }

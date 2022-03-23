@@ -56,7 +56,7 @@ class WorkOrderCard extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Get.to(() => WorkOrderDetailPage(
-                  model: model,
+                  id: model.id,
                 ));
           },
           child: ClipPath(
@@ -124,7 +124,10 @@ class WorkOrderCard extends StatelessWidget {
                       .make(),
                   24.hb,
                   BeeHorImageView(
-                      maxCount: 4, imgs: [], imgWidth: 146.w, imgHeight: 146.w),
+                      maxCount: 4,
+                      imgs: model.imgList ?? [],
+                      imgWidth: 146.w,
+                      imgHeight: 146.w),
                   24.hb,
                   Row(
                     children: [
@@ -135,14 +138,6 @@ class WorkOrderCard extends StatelessWidget {
                           .color(Colors.black.withOpacity(0.45))
                           .make(),
                       Spacer(),
-                      24.wb,
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(
-                          CupertinoIcons.ellipsis_vertical,
-                          size: 40.w,
-                        ),
-                      )
                     ],
                   ),
                 ],

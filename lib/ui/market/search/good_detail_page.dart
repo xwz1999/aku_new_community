@@ -1,13 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
@@ -21,6 +13,13 @@ import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'good_detail_bottomSheet.dart';
 
 class GoodDetailPage extends StatefulWidget {
@@ -340,15 +339,15 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               16.wb,
               '原价：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                (_goodDetail!.discountPrice).toStringAsFixed(2),
+                (_goodDetail!.discountPrice)?.toStringAsFixed(2) ?? '0.0',
                 style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),
               50.wb,
               '折扣：'.text.color(Color(0xFFBBBBBB)).size(24.sp).make(),
               Text(
-                (_goodDetail!.discountPrice) > (_goodDetail!.sellPrice)
+                ((_goodDetail!.discountPrice) ?? 0.0) > (_goodDetail!.sellPrice)
                     ? _getDiscount(_goodDetail!.sellPrice.toDouble(),
-                        _goodDetail!.discountPrice.toDouble())
+                        _goodDetail!.discountPrice?.toDouble() ?? 0.0)
                     : '暂无折扣',
                 style: TextStyle(fontSize: 24.sp, color: Color(0xFFBBBBBB)),
               ),

@@ -17,4 +17,7 @@ WorkOrderListModel _$WorkOrderListModelFromJson(Map<String, dynamic> json) =>
       content: json['content'] as String,
       updateDate: json['updateDate'] as String,
       createDate: json['createDate'] as String,
+      imgList: (json['imgList'] as List<dynamic>?)
+          ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

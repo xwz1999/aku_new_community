@@ -63,4 +63,27 @@ class WorkOrderFuc {
     }
     return models;
   }
+
+  ///发布工单
+  static Future<bool> publish({
+    required int estateId,
+    required int workOrderTypeId,
+    required String reserveDate,
+    required String reserveAddress,
+    required String content,
+    required List<String> imgUrls,
+  }) async {
+    var base = await NetUtil().post(SAASAPI.workOrder.insert,
+        params: {
+          'estateId': estateId,
+          'workOrderTypeId': workOrderTypeId,
+          'reserveDate': reserveDate,
+          'reserveAddress': reserveAddress,
+          'content': content,
+          'imgUrls': imgUrls,
+        },
+        showMessage: true);
+
+    return base.success;
+  }
 }
