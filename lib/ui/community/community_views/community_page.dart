@@ -25,10 +25,12 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CommunityPage extends StatefulWidget {
@@ -336,7 +338,7 @@ class _CommunityPageState extends State<CommunityPage>
                 children: [
                   Container(
                       width: 316.w,
-                      alignment: Alignment.center,
+                      alignment: Alignment.centerLeft,
                       child: Text(
                         item.title,
                         maxLines: 2,
@@ -360,7 +362,7 @@ class _CommunityPageState extends State<CommunityPage>
                       ),
                       Spacer(),
                       Text(
-                        item.createDate,
+                        DateUtil.formatDateStr(item.createDate,format: 'MM-dd'),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -432,6 +434,8 @@ class _CommunityPageState extends State<CommunityPage>
 
   _searchHistoryWidget() {
     return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.only(left: 32.w, right: 32.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[

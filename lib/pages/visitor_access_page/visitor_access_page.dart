@@ -328,7 +328,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                   children: [
                     _buildHouseCard(
                       S.of(context)!.tempPlotName,
-                      appProvider.selectedHouse!.roomName,
+                      appProvider.selectedHouse?.roomName??'',
                     ),
                     _input(
                       '访客姓名',
@@ -359,7 +359,7 @@ class _VisitorAccessPageState extends State<VisitorAccessPage> {
                     _selectTime(),
                     SizedBox(height: 64.w),
                     _create(
-                      appProvider.selectedHouse!.estateId,
+                      appProvider.selectedHouse?.estateId,
                       4,
                       _phoneNum.text,
                     ),

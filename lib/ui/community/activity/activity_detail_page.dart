@@ -333,8 +333,11 @@ class AvatarsParticipate extends StatelessWidget {
       child: Container(
         child: Row(
           children: [
-            StackAvatar(
-              avatars: avatars,
+            Offstage(
+              offstage: avatars.isEmpty,
+              child: StackAvatar(
+                avatars: avatars,
+              ),
             ),
             16.w.heightBox,
             '${pNum}'
