@@ -239,7 +239,10 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
         return BeeLongButton(
           onPressed: () async {
             var re = await Get.bottomSheet(TaskEvaluationDialog(
-              taskId: widget.model.id,
+              evaluate: (star, content) async {
+                return await TaskFunc.evaluate(
+                    taskId: widget.model.id, star: star, evaluation: content);
+              },
             ));
           },
           text: '点击评价',

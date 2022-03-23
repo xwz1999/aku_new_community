@@ -13,6 +13,7 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -98,17 +99,24 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                 return;
               }
               var cancel = BotToast.showLoading();
-              var response = await SignFunc.login(
-                  _tel.text,
-                  _psd.text,
-                  UserTool
-                      .appProvider.pickedCityAndCommunity!.communityModel!.id);
-              if (response.data['success']) {
-                await UserTool.userProvider.setLogin(response.data['data']);
-                await UserTool.dataProvider.addHistories();
-              } else {
-                BotToast.showText(text: response.data['message']);
+
+              try {
+                var response = await SignFunc.login(
+                    _tel.text,
+                    _psd.text,
+                    UserTool.appProvider.pickedCityAndCommunity!.communityModel!
+                        .id);
+                if (response.data['success']) {
+                  await UserTool.userProvider.setLogin(response.data['data']);
+                  await UserTool.dataProvider.addHistories();
+                } else {
+                  BotToast.showText(text: response.data['message']);
+                }
+              } catch (e) {
+                print(e.toString());
+                LoggerData.addData(e.toString());
               }
+
               cancel();
             },
             text: '登录'),

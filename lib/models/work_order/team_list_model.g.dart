@@ -9,10 +9,12 @@ part of 'team_list_model.dart';
 TeamListModel _$TeamListModelFromJson(Map<String, dynamic> json) =>
     TeamListModel(
       id: json['id'] as int,
-      name: json['name'] as String,
-      imgs: (json['imgs'] as List<dynamic>)
-          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      tel: json['tel'] as String,
-      position: json['position'] as String,
+      userType: json['userType'] as int,
+      manageUserId: json['manageUserId'] as int,
+      manageUserName: json['manageUserName'] as String,
+      manageUserTel: json['manageUserTel'] as String,
+      departmentId: json['departmentId'] as int,
+      departmentName: json['departmentName'] as String,
+      positionId: json['positionId'] as int,
+      positionName: json['positionName'] as String,
     );

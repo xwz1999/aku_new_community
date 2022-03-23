@@ -44,7 +44,12 @@ class _CommunityPageState extends State<CommunityPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController? _tabController;
   late EasyRefreshController _easyRefreshController;
-  List<String> _tabs = [];
+
+  List<String> get _tabs {
+    if (UserTool.userProvider.isLogin) return ['附近社区', '我的动态'];
+    return ['附近社区'];
+  }
+
   GlobalKey<TopicCommunityViewState> topicKey =
       GlobalKey<TopicCommunityViewState>();
   GlobalKey<MyCommunityViewState> myKey = GlobalKey<MyCommunityViewState>();
@@ -62,9 +67,6 @@ class _CommunityPageState extends State<CommunityPage>
   void initState() {
     super.initState();
     _easyRefreshController = EasyRefreshController();
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    if (userProvider.isLogin) _tabs = ['附近社区', '我的动态'];
-    if (userProvider.isNotLogin) _tabs = ['附近社区'];
     _tabController = TabController(
       vsync: this,
       length: _tabs.length,
@@ -103,7 +105,7 @@ class _CommunityPageState extends State<CommunityPage>
                 indicator: const BoxDecoration(),
                 tabs: _tabs.map((e) => Tab(text: e)).toList(),
                 labelStyle:
-                    TextStyle(fontSize: 32.sp, fontWeight: FontWeight.bold),
+                    TextStyle(fontSize: 36.sp, fontWeight: FontWeight.bold),
                 labelColor: Color(0xD9000000),
                 unselectedLabelStyle: TextStyle(fontSize: 32.sp),
                 unselectedLabelColor: Color(0x73000000),

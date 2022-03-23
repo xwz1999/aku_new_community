@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 class BeeGridImageView extends StatelessWidget {
   final List<String?> urls;
   final EdgeInsetsGeometry padding;
-
+  final int? crossCount;
   const BeeGridImageView({
     Key? key,
     required this.urls,
     this.padding = EdgeInsets.zero,
+    this.crossCount = 3,
   }) : super(key: key);
 
   @override
@@ -19,7 +20,7 @@ class BeeGridImageView extends StatelessWidget {
     return GridView.builder(
       padding: padding,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: crossCount!,
         crossAxisSpacing: 16.w,
         mainAxisSpacing: 16.w,
       ),
