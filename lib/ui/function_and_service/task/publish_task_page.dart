@@ -796,11 +796,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                         .make(),
                   ),
                   Expanded(
-                    child: '${_content == '' ? '请输入任务备注' : _content}'
+                    child: '${_content.isEmptyOrNull ? '请输入任务备注' : _content}'
                         .text
                         .size(28.sp)
                         .color(Colors.black
-                            .withOpacity(_content == '' ? 0.25 : 0.85))
+                            .withOpacity(_content.isEmptyOrNull ? 0.25 : 0.85))
                         .make(),
                   ),
                   20.wb,
