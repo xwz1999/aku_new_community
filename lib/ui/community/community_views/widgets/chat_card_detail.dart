@@ -156,6 +156,7 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     32.hb,
+                    if(!widget.model.content!.isEmptyOrNull)
                     widget.model.content!.text
                         .size(28.sp)
                         .color(ktextSubColor)
