@@ -273,7 +273,8 @@ class _ChatCardState extends State<ChatCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     32.hb,
-                    widget.model.content!.text.size(32.sp).black.make(),
+                    if(!widget.model.content!.isEmptyOrNull)
+                      widget.model.content!.text.size(32.sp).black.make(),
                     32.hb,
                     _renderImage(),
                     widget.model.topicTags.isEmpty

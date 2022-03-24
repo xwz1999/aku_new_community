@@ -16,6 +16,7 @@ import 'package:aku_new_community/ui/community/community_views/my_community_view
 import 'package:aku_new_community/ui/community/community_views/new_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
+import 'package:aku_new_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_page.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -87,7 +88,7 @@ class _CommunityPageState extends State<CommunityPage>
     final appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 10.0,
+        titleSpacing: 0,
         title: Align(
             alignment: Alignment.centerLeft,
             child: Theme(
@@ -364,7 +365,7 @@ class _CommunityPageState extends State<CommunityPage>
                       ),
                       Spacer(),
                       Text(
-                        DateUtil.formatDateStr(item.createDate,format: 'MM-dd'),
+                        RelativeDateFormat.format(item.createDate.toDate()),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

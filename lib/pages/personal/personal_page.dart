@@ -17,6 +17,7 @@ import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -73,333 +74,337 @@ class _PersonalIndexState extends State<PersonalIndex>
     final double _statusHeight = MediaQuery.of(context).padding.top;
     final userProvider = Provider.of<UserProvider>(context);
 
-    return Scaffold(
-      body: EasyRefresh(
-          header: MaterialHeader(),
-          onRefresh: () async {
-            await userProvider.updateUserInfo();
-            await userProvider.updateMyHouseInfo();
-          },
-          child: Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 441.w,
-                alignment: Alignment.topCenter,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(R.ASSETS_IMAGES_MY_BG_PNG),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                padding: EdgeInsets.only(top: 100.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(SettingsPage());
-                          },
-                          child: Container(
-                            width: 72.w,
-                            height: 40.w,
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                                R.ASSETS_ICONS_ICON_MY_SETTING_PNG,
-                                width: 40.w,
-                                height: 40.w),
-                          ),
-                        ),
-                        24.wb,
-                      ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+        child:Scaffold(
+          body: EasyRefresh(
+              header: MaterialHeader(),
+              onRefresh: () async {
+                await userProvider.updateUserInfo();
+                await userProvider.updateMyHouseInfo();
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 441.w,
+                    alignment: Alignment.topCenter,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(R.ASSETS_IMAGES_MY_BG_PNG),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    MaterialButton(
-                      padding: EdgeInsets.all(5.w),
-                      onPressed: () {
-                        if (!userProvider.isLogin)
-                          Get.to(() => LoginPage());
-                        else
-                          Get.to(() => UserProfilePage());
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(left: 32.w),
-                        child: Row(
+                    padding: EdgeInsets.only(top: 100.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            Hero(
-                              tag: 'AVATAR',
-                              child: ClipOval(
-                                child: BeeImageNetwork(
-                                  width: 106.w,
-                                  height: 106.w,
-                                  imgs: UserTool.userProvider.userInfoModel
-                                          ?.imgList ??
-                                      [],
-                                ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(SettingsPage());
+                              },
+                              child: Container(
+                                width: 72.w,
+                                height: 40.w,
+                                alignment: Alignment.center,
+                                child: Image.asset(
+                                    R.ASSETS_ICONS_ICON_MY_SETTING_PNG,
+                                    width: 40.w,
+                                    height: 40.w),
                               ),
                             ),
-                            Container(
-                                margin: EdgeInsets.only(left: 16.w),
-                                child: userProvider.isLogin
-                                    ? Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            userProvider
-                                                    .userInfoModel?.nickName ??
-                                                '',
-                                            style: TextStyle(
-                                              fontSize: 40.sp,
-                                              color: Colors.black
-                                                  .withOpacity(0.85),
-                                            ),
+                            24.wb,
+                          ],
+                        ),
+                        MaterialButton(
+                          padding: EdgeInsets.all(5.w),
+                          onPressed: () {
+                            if (!userProvider.isLogin)
+                              Get.to(() => LoginPage());
+                            else
+                              Get.to(() => UserProfilePage());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(left: 32.w),
+                            child: Row(
+                              children: [
+                                Hero(
+                                  tag: 'AVATAR',
+                                  child: ClipOval(
+                                    child: BeeImageNetwork(
+                                      width: 106.w,
+                                      height: 106.w,
+                                      imgs: UserTool.userProvider.userInfoModel
+                                          ?.imgList ??
+                                          [],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                    margin: EdgeInsets.only(left: 16.w),
+                                    child: userProvider.isLogin
+                                        ? Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          userProvider
+                                              .userInfoModel?.nickName ??
+                                              '',
+                                          style: TextStyle(
+                                            fontSize: 40.sp,
+                                            color: Colors.black
+                                                .withOpacity(0.85),
                                           ),
-                                          4.hb,
-                                          Text(
-                                            '当一个新时代的有志青年',
-                                            style: TextStyle(
-                                              fontSize: 24.sp,
-                                              color: Colors.black
-                                                  .withOpacity(0.45),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : Text(
-                                        '登录/注册',
-                                        style: TextStyle(
-                                          fontSize: 32.sp,
-                                          color: Color(0xffad8940),
                                         ),
-                                      )),
-                            Spacer(),
-                            MaterialButton(
-                              onPressed: () async {
-                                var base = await NetUtil()
-                                    .get(SAASAPI.profile.integral.sign);
-                                if (base.success) {
-                                  await Get.dialog(ClockSuccessDialog(
-                                      todayIntegral: 1, tomorrowIntegral: 2));
-                                  await UserTool.userProvider
-                                      .changeTodayClocked();
-                                } else {
-                                  BotToast.showText(text: base.msg);
-                                }
-                              },
-                              elevation: 0,
-                              color: Colors.white,
-                              minWidth: 112.w,
-                              height: 58.w,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.w)),
-                              child:
+                                        4.hb,
+                                        Text(
+                                          '当一个新时代的有志青年',
+                                          style: TextStyle(
+                                            fontSize: 24.sp,
+                                            color: Colors.black
+                                                .withOpacity(0.45),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                        : Text(
+                                      '登录/注册',
+                                      style: TextStyle(
+                                        fontSize: 32.sp,
+                                        color: Color(0xffad8940),
+                                      ),
+                                    )),
+                                Spacer(),
+                                MaterialButton(
+                                  onPressed: () async {
+                                    var base = await NetUtil()
+                                        .get(SAASAPI.profile.integral.sign);
+                                    if (base.success) {
+                                      await Get.dialog(ClockSuccessDialog(
+                                          todayIntegral: 1, tomorrowIntegral: 2));
+                                      await UserTool.userProvider
+                                          .changeTodayClocked();
+                                    } else {
+                                      BotToast.showText(text: base.msg);
+                                    }
+                                  },
+                                  elevation: 0,
+                                  color: Colors.white,
+                                  minWidth: 112.w,
+                                  height: 58.w,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50.w)),
+                                  child:
                                   '${UserTool.userProvider.userConfig.todayClocked ? '已签到' : '签到'}'
                                       .text
                                       .size(22.sp)
                                       .black
                                       .make(),
-                            ),
-                            32.w.widthBox,
-                          ],
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Container(
-                      width: 686.w,
-                      height: 120.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage(Assets.static.vipBackground.path)),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16.w),
-                              topRight: Radius.circular(16.w))),
-                      child: Row(
-                        children: [
-                          32.wb,
-                          Assets.icons.vipFont.image(width: 60.w, height: 60.w),
-                          24.wb,
-                          '当前会员等级：2级'
-                              .text
-                              .size(24.sp)
-                              .color(Color(0xFFFFE0A9))
-                              .make(),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: () => Get.to(() => integralCenterPage()),
-                            child: Container(
-                              width: 160.w,
-                              height: 58.w,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFFFFE0A9),
-                                  borderRadius: BorderRadius.circular(29.w)),
-                              child: '会员中心'.text.size(24.sp).black.make(),
-                            ),
-                          ),
-                          32.wb,
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 450.w),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 686.w,
-                      height: 282.w,
-                      decoration: BoxDecoration(
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            offset: Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                      margin: EdgeInsets.only(left: 32.w, right: 32.w),
-                      padding:
-                          EdgeInsets.only(top: 24.w, left: 32.w, right: 32.w),
-                      child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _homeTitle('我的订单', () {
-                            Get.to(() => OrderPage(initIndex: 0));
-                          }, '查看全部'),
-                          50.hb,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              _orderButton(
-                                name: '待付款',
-                                path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
-                                index: 1,
-                              ),
-                              _orderButton(
-                                name: '待发货',
-                                path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
-                                index: 2,
-                              ),
-                              _orderButton(
-                                name: '待收货',
-                                path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
-                                index: 3,
-                              ),
-                              _orderButton(
-                                name: '已完成',
-                                path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
-                                index: 4,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    24.w.heightBox,
-                    Container(
-                      width: double.infinity,
-                      height: 100.w,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          // color: Colors.white,
-                          borderRadius: BorderRadius.circular(16.w)),
-                      margin: EdgeInsets.symmetric(horizontal: 32.w),
-                      child: Material(
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => ClockInPage());
-                          },
-                          borderRadius: BorderRadius.circular(16.w),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 32.w, vertical: 24.w),
-                            child: Row(
-                              children: [
-                                '我的积分'.text.size(30.sp).black.bold.make(),
-                                Spacer(),
-                                // Assets.icons.intergral
-                                //     .image(width: 32.w, height: 32.w),
-                                // 16.w.widthBox,
-                                // '123'.text.size(28.sp).black.make(),
-                                // 16.w.widthBox,
-                                Icon(
-                                  CupertinoIcons.right_chevron,
-                                  size: 24.w,
                                 ),
+                                32.w.widthBox,
                               ],
                             ),
                           ),
                         ),
-                      ),
+                        Spacer(),
+                        Container(
+                          width: 686.w,
+                          height: 120.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                  AssetImage(Assets.static.vipBackground.path)),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16.w),
+                                  topRight: Radius.circular(16.w))),
+                          child: Row(
+                            children: [
+                              32.wb,
+                              Assets.icons.vipFont.image(width: 60.w, height: 60.w),
+                              24.wb,
+                              '当前会员等级：2级'
+                                  .text
+                                  .size(24.sp)
+                                  .color(Color(0xFFFFE0A9))
+                                  .make(),
+                              Spacer(),
+                              GestureDetector(
+                                onTap: () => Get.to(() => integralCenterPage()),
+                                child: Container(
+                                  width: 160.w,
+                                  height: 58.w,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFFFFE0A9),
+                                      borderRadius: BorderRadius.circular(29.w)),
+                                  child: '会员中心'.text.size(24.sp).black.make(),
+                                ),
+                              ),
+                              32.wb,
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            offset: Offset(1, 1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 450.w),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 686.w,
+                          height: 282.w,
+                          decoration: BoxDecoration(
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                offset: Offset(1, 1),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      margin: EdgeInsets.all(32.w),
-                      padding: EdgeInsets.all(32.w),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _function(
-                            '我的房屋',
-                            R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                            () => MyHousePage(),
-                            // () => HouseOwnersPage(
-                            //       identify: 4,
-                            //     ),
-                            '${UserTool.userProvider.defaultHouse?.communityName ?? ''} '
-                                '${UserTool.userProvider.defaultHouse?.buildingName ?? ''}'
-                                '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
-                                '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
+                          margin: EdgeInsets.only(left: 32.w, right: 32.w),
+                          padding:
+                          EdgeInsets.only(top: 24.w, left: 32.w, right: 32.w),
+                          child: Column(
+                            //mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _homeTitle('我的订单', () {
+                                Get.to(() => OrderPage(initIndex: 0));
+                              }, '查看全部'),
+                              50.hb,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  _orderButton(
+                                    name: '待付款',
+                                    path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
+                                    index: 1,
+                                  ),
+                                  _orderButton(
+                                    name: '待发货',
+                                    path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
+                                    index: 2,
+                                  ),
+                                  _orderButton(
+                                    name: '待收货',
+                                    path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
+                                    index: 3,
+                                  ),
+                                  _orderButton(
+                                    name: '已完成',
+                                    path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
+                                    index: 4,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          36.hb,
-                          _function('我的家庭', R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                              () => MyFamilyPage(), ''),
-                          36.hb,
-                          // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
-                          //     () => CarParkingPage(), ''),
-                          // 36.hb,
-                          // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
-                          //     () => CarManagePage(), ''),
-                          // 36.hb,
-                          _function('我的访客', R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
-                              () => CarManagePage(), ''),
-                          36.hb,
-                          _function(
-                              '收货地址设置',
-                              R.ASSETS_ICONS_ICON_MY_LOCATION_PNG,
-                              () => AddressListPage(
+                        ),
+                        24.w.heightBox,
+                        Container(
+                          width: double.infinity,
+                          height: 100.w,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            // color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.w)),
+                          margin: EdgeInsets.symmetric(horizontal: 32.w),
+                          child: Material(
+                            color: Colors.white,
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => ClockInPage());
+                              },
+                              borderRadius: BorderRadius.circular(16.w),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 32.w, vertical: 24.w),
+                                child: Row(
+                                  children: [
+                                    '我的积分'.text.size(30.sp).black.bold.make(),
+                                    Spacer(),
+                                    // Assets.icons.intergral
+                                    //     .image(width: 32.w, height: 32.w),
+                                    // 16.w.widthBox,
+                                    // '123'.text.size(28.sp).black.make(),
+                                    // 16.w.widthBox,
+                                    Icon(
+                                      CupertinoIcons.right_chevron,
+                                      size: 24.w,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                offset: Offset(1, 1),
+                              ),
+                            ],
+                          ),
+                          margin: EdgeInsets.all(32.w),
+                          padding: EdgeInsets.all(32.w),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _function(
+                                '我的房屋',
+                                R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                                    () => MyHousePage(),
+                                // () => HouseOwnersPage(
+                                //       identify: 4,
+                                //     ),
+                                '${UserTool.userProvider.defaultHouse?.communityName ?? ''} '
+                                    '${UserTool.userProvider.defaultHouse?.buildingName ?? ''}'
+                                    '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
+                                    '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
+                              ),
+                              36.hb,
+                              _function('我的家庭', R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                                      () => MyFamilyPage(), ''),
+                              36.hb,
+                              // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
+                              //     () => CarParkingPage(), ''),
+                              // 36.hb,
+                              // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
+                              //     () => CarManagePage(), ''),
+                              // 36.hb,
+                              _function('我的访客', R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
+                                      () => CarManagePage(), ''),
+                              36.hb,
+                              _function(
+                                  '收货地址设置',
+                                  R.ASSETS_ICONS_ICON_MY_LOCATION_PNG,
+                                      () => AddressListPage(
                                     canBack: false,
                                   ),
-                              ''),
-                        ],
-                      ),
+                                  ''),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ],
-          )),
+                  ),
+                ],
+              )),
+        )
     );
+
   }
 
   _homeTitle(String title, VoidCallback onTap, String suffixTitle) {
