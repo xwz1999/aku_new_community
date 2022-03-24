@@ -963,11 +963,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '建议上传图片不超过6张'
-                  .text
-                  .size(24.sp)
-                  .color(Colors.black.withOpacity(0.25))
-                  .make(),
+              // '建议上传图片不超过6张'
+              //     .text
+              //     .size(24.sp)
+              //     .color(Colors.black.withOpacity(0.25))
+              //     .make(),
             ],
           ),
           24.w.heightBox,
