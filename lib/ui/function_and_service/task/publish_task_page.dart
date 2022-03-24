@@ -780,7 +780,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
               _content = await Get.to(() => TaskRemarkPage(
                         text: _content,
                       )) ??
-                  '';
+                  _content;
               setState(() {});
             },
             child: Material(
@@ -796,11 +796,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                         .make(),
                   ),
                   Expanded(
-                    child: '${_content == null ? '请输入任务备注' : _content}'
+                    child: '${_content.isEmptyOrNull ? '请输入任务备注' : _content}'
                         .text
                         .size(28.sp)
                         .color(Colors.black
-                            .withOpacity(_rewardType == 0 ? 0.25 : 0.85))
+                            .withOpacity(_content.isEmptyOrNull ? 0.25 : 0.85))
                         .make(),
                   ),
                   20.wb,
@@ -963,11 +963,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '建议上传图片不超过6张'
-                  .text
-                  .size(24.sp)
-                  .color(Colors.black.withOpacity(0.25))
-                  .make(),
+              // '建议上传图片不超过6张'
+              //     .text
+              //     .size(24.sp)
+              //     .color(Colors.black.withOpacity(0.25))
+              //     .make(),
             ],
           ),
           24.w.heightBox,
