@@ -163,7 +163,7 @@ class UserProvider extends ChangeNotifier {
     BaseModel model = await NetUtil().post(
       SAASAPI.user.updateAvatar,
       params: {
-        'fileUrls': [path]
+        'imgUrls': [path]
       },
       showMessage: true,
     );
