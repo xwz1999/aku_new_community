@@ -43,6 +43,7 @@ class _TaskRemarkPageState extends State<TaskRemarkPage> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(16.w)),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

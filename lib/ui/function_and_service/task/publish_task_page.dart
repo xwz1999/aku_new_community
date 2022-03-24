@@ -220,6 +220,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             Icon(
               CupertinoIcons.chevron_right,
               size: 24.w,
+              color: Colors.black.withOpacity(0.45),
             ),
           ],
         ),
@@ -299,6 +300,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             Icon(
               CupertinoIcons.chevron_right,
               size: 24.w,
+              color: Colors.black.withOpacity(0.45),
             ),
           ],
         ),
@@ -355,6 +357,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             Icon(
               CupertinoIcons.chevron_right,
               size: 24.w,
+              color: Colors.black.withOpacity(0.45),
             ),
           ],
         ),
@@ -403,17 +406,17 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             },
             child: Material(
               color: Colors.transparent,
-              child:
-                  '${DateUtil.formatDate(_appointDate, format: DateFormats.zh_mo_d_h_m)}'
+              child:'${_appointDate==null ? '请选择开始时间' : DateUtil.formatDate(_appointDate, format: 'MM月dd日 HH:mm')}'
                       .text
-                      .size(24.sp)
-                      .color(Colors.black.withOpacity(0.85))
+                      .size(28.sp)
+                      .color(Colors.black.withOpacity(_appointDate == null ? 0.25 : 0.85))
                       .make(),
             ),
           ),
         ),
-        '-'.text.size(28.sp).color(Colors.black.withOpacity(0.85)).make(),
+        '- '.text.size(28.sp).color(Colors.black.withOpacity(0.85)).make(),
         Expanded(
+
           child: GestureDetector(
             onTap: () async {
               _appointEndDate = await BeeDatePicker.timePicker(DateTime.now());
@@ -421,11 +424,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             },
             child: Material(
               color: Colors.transparent,
-              child:
-                  '${DateUtil.formatDate(_appointEndDate, format: DateFormats.zh_mo_d_h_m)}'
+              child:'${_appointEndDate==null ? '请选择结束时间' : DateUtil.formatDate(_appointEndDate, format: 'MM月dd日 HH:mm')}'
                       .text
-                      .size(24.sp)
-                      .color(Colors.black.withOpacity(_type == 0 ? 0.25 : 0.85))
+                      .size(28.sp)
+                      .color(Colors.black.withOpacity(_appointEndDate == null ? 0.25 : 0.85))
                       .make(),
             ),
           ),
@@ -433,6 +435,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
         Icon(
           CupertinoIcons.chevron_right,
           size: 24.w,
+          color: Colors.black.withOpacity(0.45),
         ),
       ],
     );
@@ -695,9 +698,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      CupertinoIcons.location,
-                      size: 40.w,
+                    Image.asset(
+                      R.ASSETS_ICONS_ICON_MAIN_LOCATION_PNG,
+                      width: 40.w,
+                      height: 40.w,
+                      color: Colors.black.withOpacity(0.45),
                     ),
                     20.w.widthBox,
                     SizedBox(
@@ -706,6 +711,13 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          if(_accessAddress.isEmptyOrNull && _accessAddressDetail.isEmptyOrNull)
+                            '请输入任务地址'
+                                .text
+                                .size(32.sp)
+                                .black
+                                .color(Colors.black.withOpacity(0.25))
+                                .make(),
                           '${_accessAddress ?? ''}'
                               .text
                               .size(32.sp)
@@ -727,11 +739,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        20.hb,
+                        10.hb,
                         Icon(
                           CupertinoIcons.chevron_right,
-                          size: 40.w,
                           color: Colors.black.withOpacity(0.45),
+                          size: 24.w,
                         )
                       ],
                     )
@@ -785,6 +797,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   Icon(
                     CupertinoIcons.chevron_right,
                     size: 24.w,
+                    color: Colors.black.withOpacity(0.45),
                   ),
                 ],
               ),
@@ -940,11 +953,6 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .color(Colors.black.withOpacity(0.45))
                   .make(),
               Spacer(),
-              '建议上传图片不超过6张'
-                  .text
-                  .size(24.sp)
-                  .color(Colors.black.withOpacity(0.25))
-                  .make(),
             ],
           ),
           24.w.heightBox,

@@ -90,7 +90,7 @@ class _BeePickImageWidgetState extends State<BeePickImageWidget> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.w),
             color: Colors.black.withOpacity(0.03)),
-        child: Image.file(file),
+        child: Image.file(file,fit: BoxFit.cover,),
       ),
       Positioned(
         top: 8.w,
