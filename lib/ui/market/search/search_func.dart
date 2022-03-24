@@ -7,6 +7,7 @@ import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 class SearchFunc {
   /// 搜索商品 根据关键字
@@ -73,11 +74,15 @@ class SearchFunc {
   }
 
   ///加入购物车
-  static Future<String> addGoodsCar(int jcookGoodsId) async {
-    BaseModel model = await NetUtil().post(SAASAPI.market.shopCart.insert,
-        params: {'appGoodsPushId': jcookGoodsId}, showMessage: true);
-    if (model.msg == null) return '';
-    return model.msg as String;
+  static Future<bool> addGoodsCar(int jcookGoodsId) async {
+    BaseModel model = await NetUtil().get(
+      SAASAPI.market.shopCart.insert,
+      params: {'appGoodsPushId': jcookGoodsId},
+    );
+    if (!model.success) {
+      BotToast.showText(text: model.msg);
+    }
+    return model.success;
   }
 
   ///确认收货

@@ -9,6 +9,7 @@ import 'package:aku_new_community/pages/life_pay/pay_util.dart';
 import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
+import 'package:aku_new_community/ui/market/search/search_func.dart';
 import 'package:aku_new_community/ui/market/search/settlementGoodsDTO.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -18,6 +19,7 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/end_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,7 +48,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
   List<SettlementGoodsDTO> _goodsList = [];
   AddressModel? _addressModel;
   CreateOrderModel? _createOrderModel;
-  double _allPrice = 0;
+  double totalPrice = 0;
 
   @override
   void initState() {
@@ -73,11 +75,18 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
 
   Future<bool> createOrder(
       int addressId, List<SettlementGoodsDTO> goodsList) async {
+    try {
+      for (var item in goodsList) {
+        await SearchFunc.addGoodsCar(item.appGoodsPushId!);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
     BaseModel model = await NetUtil().post(
       SAASAPI.market.shopCart.settlement,
       params: {
         'addressId': addressId,
-        'settlementGoodsDTOList': goodsList.map((v) => v.toJson()).toList()
+        'settlementGoodsList': goodsList.map((v) => v.toJson()).toList()
       },
     );
     if (model.data == null) {
@@ -149,7 +158,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                   "settlementGoodsDTOList":
                       _goodsList.map((v) => v.toJson()).toList(),
                   "payType": 10, //暂时写死 等待后续补充
-                  "payPrice": _allPrice,
+                  "payPrice": totalPrice,
                   'points': widget.integral,
                 });
                 if (baseModel.success) {
@@ -185,7 +194,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                           "settlementGoodsDTOList":
                               _goodsList.map((v) => v.toJson()).toList(),
                           "payType": 1, //暂时写死 等待后续补充
-                          "payPrice": _allPrice,
+                          "payPrice": totalPrice,
                           // 'points': widget.integral,
                           "residentId": UserTool.userProvider.userInfoModel!.id,
                           "payname": UserTool.userProvider.userInfoModel!.name,
@@ -350,10 +359,11 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     }
 
     int num = int.parse(_controllers.text);
-    allNum += num;
-    allPrice += (widget.goodModel.sellPrice * num);
+    allNum = NumUtil.add(allNum, num).toInt();
+    allPrice = NumUtil.add(
+        allPrice, NumUtil.multiply(widget.goodModel.sellPrice, num));
 
-    _allPrice = allPrice + fee;
+    totalPrice = NumUtil.add(allPrice, fee);
 
     return Container(
       padding:
@@ -400,7 +410,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
             children: [
               Spacer(),
               '应付金额：'.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
-              '¥${allPrice + fee}'
+              '¥${totalPrice}'
                   .text
                   .size(32.sp)
                   .color(Color(0xFFE52E2E))

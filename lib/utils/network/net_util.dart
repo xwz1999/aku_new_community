@@ -124,9 +124,8 @@ class NetUtil {
   }) async {
     try {
       Response res = await _dio!.get(path, queryParameters: params);
-      var base = BaseModel.fromJson(res.data);
-      if (base.success) {
-        BaseListModel baseListModel = BaseListModel.fromJson(base.data);
+      if (res.data['success']) {
+        BaseListModel baseListModel = BaseListModel.fromJson(res.data['data']);
         return baseListModel;
       } else {
         return BaseListModel.err();

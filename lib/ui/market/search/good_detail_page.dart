@@ -123,7 +123,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               controller: _refreshController,
               onRefresh: () async {
                 _goodDetail = await SearchFunc.getGoodDetail(
-                    widget.goodId, _addressModel?.location);
+                    widget.goodId, _addressModel?.id);
                 // _imageList = await SearchFunc.getGoodDetailImage(widget.goodId);
                 if (_goodDetail != GoodDetailModel.fail()) {
                   _onload = false;
