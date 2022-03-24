@@ -1,6 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'good_detail_model.g.dart';
 
@@ -9,14 +8,14 @@ class GoodDetailModel {
   final int id;
   final List<JcookImageVoList>? jcookImageVoList;
   final num sellPrice;
-  final num discountPrice;
-  final String? skuName;
+  final num? discountPrice;
+  final String skuName;
   final int status;
   final int shopStatus;
   final int? sellNum;
-  final int? kind;
-  final String defaultLocation;
-  final String defaultAddressDetail;
+  final int kind;
+  final String? defaultLocation;
+  final String? defaultAddressDetail;
   final int stockStatus;
   final List<JcookSpecificationVoList> jcookSpecificationVoList;
   final int isCollection;

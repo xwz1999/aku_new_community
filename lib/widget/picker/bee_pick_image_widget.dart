@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
+import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 // Package imports:
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,9 +15,13 @@ class BeePickImageWidget extends StatefulWidget {
   final double? size;
   final Function(List<File> files) onChanged;
   final String description;
-
+  final int? maxCount;
   BeePickImageWidget(
-      {Key? key, this.size, required this.onChanged, this.description = '上传照片'})
+      {Key? key,
+      this.size,
+      required this.onChanged,
+      this.description = '上传照片',
+      this.maxCount})
       : super(key: key);
 
   @override
@@ -35,48 +40,52 @@ class _BeePickImageWidgetState extends State<BeePickImageWidget> {
       runSpacing: 10.w,
       children: [
         ..._files.map((e) => showImage(e)).toList(),
-        GestureDetector(
-          onTap: () async {
-            await BeeImagePicker.pick(title: '选择图片').then(
-              (value) {
-                if (value != null) {
-                  _files.add(
-                    File(value.path),
-                  );
-                }
-              },
-            );
-            widget.onChanged(_files);
-            setState(() {});
-          },
-          child: DottedBorder(
-            color: Colors.black.withOpacity(0.25),
-            borderType: BorderType.RRect,
-            strokeWidth: 2.w,
-            dashPattern: [6, 3],
-            radius: Radius.circular(8.w),
-            child: Container(
-              width: widget.size ?? 160.w,
-              height: widget.size ?? 160.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    Assets.icons.camera.path,
-                    width: 60.w,
-                    height: 60.w,
-                    color: Color(0xFF999999),
-                  ),
-                  4.w.heightBox,
-                  widget.description.text
-                      .color(Colors.black.withOpacity(0.45))
-                      .size(22.sp)
-                      .make(),
-                ],
+        Offstage(
+          offstage:
+              widget.maxCount != null && _files.length >= widget.maxCount!,
+          child: GestureDetector(
+            onTap: () async {
+              await BeeImagePicker.pick(title: '选择图片').then(
+                (value) {
+                  if (value != null) {
+                    _files.add(
+                      File(value.path),
+                    );
+                  }
+                },
+              );
+              widget.onChanged(_files);
+              setState(() {});
+            },
+            child: DottedBorder(
+              color: Colors.black.withOpacity(0.25),
+              borderType: BorderType.RRect,
+              strokeWidth: 2.w,
+              dashPattern: [6, 3],
+              radius: Radius.circular(8.w),
+              child: Container(
+                width: widget.size ?? 160.w,
+                height: widget.size ?? 160.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Assets.icons.camera.path,
+                      width: 60.w,
+                      height: 60.w,
+                      color: Color(0xFF999999),
+                    ),
+                    4.w.heightBox,
+                    widget.description.text
+                        .color(Colors.black.withOpacity(0.45))
+                        .size(22.sp)
+                        .make(),
+                  ],
+                ),
               ),
-            ),
-          ).material(color: Colors.transparent),
+            ).material(color: Colors.transparent),
+          ),
         )
       ],
     );
@@ -84,17 +93,25 @@ class _BeePickImageWidgetState extends State<BeePickImageWidget> {
 
   Widget showImage(File file) {
     return Stack(children: [
-      Container(
-        width: widget.size ?? 160.w,
-        height: widget.size ?? 160.w,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.w),
-            color: Colors.black.withOpacity(0.03)),
-        child: Image.file(file,fit: BoxFit.cover,),
+      GestureDetector(
+        onTap: () async {
+          await BeeImagePreview.toFile(file: file);
+        },
+        child: Container(
+          width: widget.size ?? 160.w,
+          height: widget.size ?? 160.w,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.w),
+              color: Colors.black.withOpacity(0.03)),
+          child: Image.file(
+            file,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
       Positioned(
-        top: 8.w,
-        right: 8.w,
+        top: 0.w,
+        right: 0.w,
         child: Container(
           width: 40.w,
           height: 40.w,

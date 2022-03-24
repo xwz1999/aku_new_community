@@ -439,7 +439,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     var top = RichText(
       text: TextSpan(children: [
         WidgetSpan(
-          child: _getKindWd(model.kind ?? 0),
+          child: _getKindWd(model.kind),
         ),
         TextSpan(
             text: model.skuName,

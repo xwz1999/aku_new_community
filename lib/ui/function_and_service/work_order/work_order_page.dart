@@ -1,6 +1,6 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/work_order/work_order_list_model.dart';
-import 'package:aku_new_community/ui/function_and_service/work_order/history_report_page.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/publish_work_order_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_card.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -48,10 +48,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
       actions: [
         IconButton(
             onPressed: () {
-              // Get.to(() => PublishWorkOrderPage());
-              Get.to(() => HistoryReportPage(
-                    id: 1,
-                  ));
+              Get.to(() => PublishWorkOrderPage());
             },
             icon: Icon(
               CupertinoIcons.plus_circle,
@@ -71,12 +68,14 @@ class _WorkOrderPageState extends State<WorkOrderPage>
 
   Widget _getOrderView(int index) {
     return EasyRefresh(
+        firstRefresh: true,
+        header: MaterialHeader(),
         onRefresh: () async {
           _page = 1;
           var base = await NetUtil().getList(SAASAPI.workOrder.list, params: {
             'pageNum': _page,
             'size': _size,
-            'status': index,
+            'status': index == 0 ? null : index,
           });
           _models =
               base.rows.map((e) => WorkOrderListModel.fromJson(e)).toList();
@@ -87,7 +86,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
           var base = await NetUtil().getList(SAASAPI.workOrder.list, params: {
             'pageNum': _page,
             'size': _size,
-            'status': index + 1,
+            'status': index == 0 ? null : index,
           });
           if (_models.length < base.total) {
             _models.addAll(

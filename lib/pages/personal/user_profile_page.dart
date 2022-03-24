@@ -8,9 +8,10 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_custom_picker.dart';
-import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
@@ -90,31 +91,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
             Hero(
               tag: 'AVATAR',
               child: ClipOval(
-                  // child:
-                  // CachedNetworkImage(
-                  //   imageUrl: SARSAPI.image(
-                  //           userProvider.userInfoModel!.imgUrls.isNotEmpty
-                  //               ? userProvider.userInfoModel?.imgUrls.first.url
-                  //               : ''),
-                  //     height: 56.w,
-                  //     width: 56.w,
-                  //   placeholder: (context, url) =>
-                  //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
-                  //   errorWidget: (context, url, error) =>
-                  //       Image.asset(R.ASSETS_IMAGES_PLACEHOLDER_WEBP),
-                  //   fit: BoxFit.fill,
-                  // ),
-                  //     FadeInImage.assetNetwork(
-                  //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  //   image: SARSAPI.image(
-                  //       (userProvider.userInfoModel?.imgUrls ?? []).isNotEmpty
-                  //           ? userProvider.userInfoModel?.imgUrls.first.url
-                  //           : ''),
-                  //   height: 56.w,
-                  //   width: 56.w,
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+                child: BeeImageNetwork(
+                  width: 56.w,
+                  height: 56.w,
+                  imgs: UserTool.userProvider.userInfoModel?.imgList ?? [],
+                ),
+              ),
             ),
             onPressed: _pickAvatar,
           ),
@@ -162,14 +144,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
               }
             },
           ),
-          _buildTile(
-            '出生日期',
-            'userProvider.userInfoModel!.birthdayValue'.text.make(),
-            onPressed: () async {
-              DateTime? date = await BeeDatePicker.pick(DateTime.now());
-              if (date != null) userProvider.setBirthday(date);
-            },
-          ),
+          // _buildTile(
+          //   '出生日期',
+          //   'userProvider.userInfoModel!.birthdayValue'.text.make(),
+          //   onPressed: () async {
+          //     DateTime? date = await BeeDatePicker.pick(DateTime.now());
+          //     if (date != null) userProvider.setBirthday(date);
+          //   },
+          // ),
         ].sepWidget(
             separate: Divider(
           indent: 104.w,

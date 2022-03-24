@@ -49,8 +49,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
 
   //报酬类型
   int _rewardType = 0;
+
   //预约开始时间
   DateTime? _appointDate;
+
 //预约结束时间
   DateTime? _appointEndDate;
   TextEditingController _rewardController = TextEditingController();
@@ -59,9 +61,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
   String? _content;
   List<File> _photos = [];
   String? _voiceUri;
+
   //送达地址
   String? _accessAddress;
   String? _accessAddressDetail;
+
   //接取地址
   String? _serviceAddress;
   String? _serviceAddressDetail;
@@ -110,56 +114,56 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
         child: BeeLongButton(
-          onPressed: !canTap
-              ? null
-              : () async {
-                  var cancel = BotToast.showLoading();
-                  var _voiceUrl;
-                  if (_voiceUri != null) {
-                    try {
-                      var base = await NetUtil().upload(
-                          SAASAPI.uploadFile.uploadImg,
-                          File.fromUri(Uri(path: _voiceUri)));
-                      if (base.success) {
-                        _voiceUrl = base.data;
-                      } else {
-                        BotToast.showText(text: base.msg);
-                      }
-                    } catch (e) {
-                      print(e.toString());
-                    }
-                  }
-                  var imgs;
-                  if (_photos.isNotEmpty) {
-                    try {
-                      imgs = await NetUtil()
-                          .uploadFiles(_photos, SAASAPI.uploadFile.uploadImg);
-                    } catch (e) {
-                      print(e.toString());
-                    }
-                  }
-                  var re = await TaskFunc.publish(
-                      type: _type,
-                      sex: _sex,
-                      servicePersonnel: _service,
-                      readyStartTime: _appointDate.toString(),
-                      readyEndTime: _appointEndDate.toString(),
-                      contact: _nameController.text,
-                      tel: _telController.text,
-                      accessAddress: _accessAddress!,
-                      accessAddressDetail: _accessAddressDetail!,
-                      serviceAddress: _serviceAddress,
-                      serviceAddressDetail: _serviceAddressDetail,
-                      remarks: _content,
-                      voiceUrl: _voiceUrl,
-                      imgUrls: imgs,
-                      rewardType: _rewardType,
-                      reward: _rewardController.text);
-                  if (re) {
-                    Get.back();
-                  }
-                  cancel();
-                },
+          onPressed: () async {
+            if (!canTap) {
+              return;
+            }
+            var cancel = BotToast.showLoading();
+            var _voiceUrl;
+            if (_voiceUri != null) {
+              try {
+                var base = await NetUtil().upload(SAASAPI.uploadFile.uploadImg,
+                    File.fromUri(Uri(path: _voiceUri)));
+                if (base.success) {
+                  _voiceUrl = base.data;
+                } else {
+                  BotToast.showText(text: base.msg);
+                }
+              } catch (e) {
+                print(e.toString());
+              }
+            }
+            var imgs;
+            if (_photos.isNotEmpty) {
+              try {
+                imgs = await NetUtil()
+                    .uploadFiles(_photos, SAASAPI.uploadFile.uploadImg);
+              } catch (e) {
+                print(e.toString());
+              }
+            }
+            var re = await TaskFunc.publish(
+                type: _type,
+                sex: _sex,
+                servicePersonnel: _service,
+                readyStartTime: _appointDate.toString(),
+                readyEndTime: _appointEndDate.toString(),
+                contact: _nameController.text,
+                tel: _telController.text,
+                accessAddress: _accessAddress!,
+                accessAddressDetail: _accessAddressDetail!,
+                serviceAddress: _serviceAddress,
+                serviceAddressDetail: _serviceAddressDetail,
+                remarks: _content,
+                voiceUrl: _voiceUrl,
+                imgUrls: imgs,
+                rewardType: _rewardType,
+                reward: _rewardController.text);
+            if (re) {
+              Get.back();
+            }
+            cancel();
+          },
           text: '确认发布',
         ),
       ),
@@ -176,7 +180,6 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             return BeePickerBox(
                 onPressed: () {
                   Get.back();
-                  print(_type);
                   setState(() {});
                 },
                 child: CupertinoPicker.builder(
@@ -770,7 +773,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
         children: [
           GestureDetector(
             onTap: () async {
-              _content = await Get.to(() => TaskRemarkPage());
+              _content = await Get.to(() => TaskRemarkPage(
+                        text: _content,
+                      )) ??
+                  '';
               setState(() {});
             },
             child: Material(
@@ -1007,36 +1013,59 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
 
   bool get canTap {
     if (_type == 0) {
+      BotToast.showText(text: '请选择类型');
       return false;
     }
     if (_service == 0) {
+      BotToast.showText(text: '请选择服务人员');
       return false;
     }
     if (_rewardType == 0) {
+      BotToast.showText(text: '请选择赏金类型');
       return false;
     }
     if (_sex == 0) {
+      BotToast.showText(text: '请选择性别');
       return false;
     }
     if (_appointDate == null) {
+      BotToast.showText(text: '请选择预约开始时间');
       return false;
     }
     if (_appointEndDate == null) {
+      BotToast.showText(text: '请选择预约结束时间');
       return false;
     }
     if (_accessAddress == null) {
+      BotToast.showText(text: '请填写收取地址');
       return false;
     }
     if (_accessAddressDetail == null) {
+      BotToast.showText(text: '请填写收取详细地址');
+      return false;
+    }
+    if (_type == 1 && _serviceAddress == null) {
+      BotToast.showText(text: '请填写服务地址');
+      return false;
+    }
+    if (_type == 1 && _accessAddressDetail == null) {
+      BotToast.showText(text: '请填写服务详细地址');
       return false;
     }
     if (_rewardController.text.isEmpty) {
+      BotToast.showText(text: '请填写赏金');
+      return false;
+    }
+    if (int.parse(_rewardController.text) == 0) {
+      BotToast.showText(text: '赏金不能为0');
       return false;
     }
     if (_nameController.text.isEmpty) {
+      BotToast.showText(text: '请填写联系人姓名');
       return false;
     }
     if (_telController.text.isEmpty) {
+      BotToast.showText(text: '请填写联系人电话');
       return false;
     }
     return true;

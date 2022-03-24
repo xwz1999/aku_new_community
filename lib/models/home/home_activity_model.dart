@@ -1,13 +1,14 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'home_activity_model.g.dart';
 
 @JsonSerializable()
-class HomeActivityModel {
+class HomeActivityModel extends Equatable {
   final int id;
   final String title;
   final int status;
@@ -17,12 +18,15 @@ class HomeActivityModel {
   final String activityEndTime;
   final List<ImgModel>? imgList;
   final int? registrationNum;
+  final List<ImgModel>? avatarImgList;
+
   factory HomeActivityModel.fromJson(Map<String, dynamic> json) =>
       _$HomeActivityModelFromJson(json);
 
   DateTime? get begin => DateUtil.getDateTime(registrationStartTime);
 
   DateTime? get end => DateUtil.getDateTime(registrationEndTime);
+
   String get statusString {
     switch (this.status) {
       case 1:
@@ -53,6 +57,20 @@ class HomeActivityModel {
     }
   }
 
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        status,
+        registrationStartTime,
+        registrationEndTime,
+        activityStartTime,
+        activityEndTime,
+        imgList,
+        registrationNum,
+        avatarImgList,
+      ];
+
   const HomeActivityModel({
     required this.id,
     required this.title,
@@ -62,6 +80,7 @@ class HomeActivityModel {
     required this.activityStartTime,
     required this.activityEndTime,
     this.imgList,
-    this.registrationNum,
+    required this.registrationNum,
+    this.avatarImgList,
   });
 }

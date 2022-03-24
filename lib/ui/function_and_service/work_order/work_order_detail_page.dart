@@ -2,11 +2,12 @@ import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/work_order/work_order_detail_model.dart';
-import 'package:aku_new_community/models/work_order/work_order_list_model.dart';
+import 'package:aku_new_community/models/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/urge_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_bill_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_finish_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_progress_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/team_list_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_map.dart';
@@ -29,9 +30,12 @@ import 'package:velocity_x/src/extensions/num_ext.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class WorkOrderDetailPage extends StatefulWidget {
-  final WorkOrderListModel model;
+  final int id;
 
-  const WorkOrderDetailPage({Key? key, required this.model}) : super(key: key);
+  const WorkOrderDetailPage({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   _WorkOrderDetailPageState createState() => _WorkOrderDetailPageState();
@@ -51,61 +55,87 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '',
+      extendBody: true,
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: 380.w,
-            decoration: BoxDecoration(
-              gradient: _getLiner,
-            ),
-            child: Column(
-              children: [
-                150.w.heightBox,
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 32.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          _model == null
+              ? Container()
+              : Container(
+                  width: double.infinity,
+                  height: 380.w,
+                  decoration: BoxDecoration(
+                    gradient: _getLiner,
+                  ),
+                  child: Column(
+                    children: [
+                      150.w.heightBox,
+                      Row(
                         children: [
-                          GestureDetector(
-                            onTap: () async {},
-                            child: Material(
-                              color: Colors.transparent,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  '${WorkOrderMap.orderStatus[_model?.status] ?? ''}'
-                                      .text
-                                      .size(40.sp)
-                                      .color(Colors.black)
-                                      .bold
-                                      .make(),
-                                ],
-                              ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 32.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    var base = await NetUtil().get(
+                                        SAASAPI.workOrder.findScheduleById,
+                                        params: {'workOrderId': widget.id});
+                                    if (base.success) {
+                                      var models = (base.data as List)
+                                          .map((e) =>
+                                              WorkOrderProgressModel.fromJson(
+                                                  e))
+                                          .toList();
+                                      await Get.bottomSheet(
+                                          WorkOrderProgressDialog(
+                                              models: models));
+                                    } else {
+                                      BotToast.showText(text: base.msg);
+                                    }
+                                  },
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        '${WorkOrderMap.orderStatus[_model?.status] ?? ''}'
+                                            .text
+                                            .size(40.sp)
+                                            .color(Colors.black)
+                                            .bold
+                                            .make(),
+                                        16.wb,
+                                        Icon(
+                                          CupertinoIcons.chevron_right,
+                                          size: 32.w,
+                                          color: Colors.black.withOpacity(0.65),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                '${WorkOrderMap.subStatusString[_model?.status] ?? ''}'
+                                    .text
+                                    .size(24.sp)
+                                    .color(Colors.black.withOpacity(0.45))
+                                    .make(),
+                              ],
                             ),
                           ),
-                          '${WorkOrderMap.subStatusString[_model?.status] ?? ''}'
-                              .text
-                              .size(24.sp)
-                              .color(Colors.black.withOpacity(0.45))
-                              .make(),
+                          Spacer(),
                         ],
                       ),
-                    ),
-                    Spacer(),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
           SafeArea(
               child: EasyRefresh(
             firstRefresh: true,
             header: MaterialHeader(),
             onRefresh: () async {
-              var base = await NetUtil().get(SAASAPI.workOrder.findById);
+              var base = await NetUtil().get(SAASAPI.workOrder.findById,
+                  params: {'workOrderId': widget.id});
               if (base.success) {
                 _model = WorkOrderDetailModel.fromJson(base.data);
                 setState(() {});
@@ -118,7 +148,8 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                         EdgeInsets.only(top: 120.w, left: 32.w, right: 32.w),
                     children: [
                       Offstage(
-                          offstage: _model!.servicePersonnelImgList == null,
+                          offstage: _model!.servicePersonnelImgList == null ||
+                              _model!.servicePersonnelImgList!.isEmpty,
                           child: Column(
                             children: [
                               _servicePeople(),
@@ -135,7 +166,12 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
           )),
         ],
       ),
-      bottomNavi: _getBottomButton(),
+      bottomNavi: Padding(
+          padding: EdgeInsets.only(
+              left: 32.w,
+              right: 32.w,
+              bottom: MediaQuery.of(context).padding.bottom + 32.w),
+          child: _getBottomButton()),
     );
   }
 
@@ -183,7 +219,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
         return BeeLongButton(
           onPressed: () async {
             await Get.bottomSheet(UrgeDialog(onConfirm: () async {
-              var re = await WorkOrderFuc.promotionRate(_model!.id);
+              var re = await WorkOrderFuc.promotionRate(widget.id);
               if (re) {
                 _refreshController.callRefresh();
               }
@@ -195,7 +231,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
         return BeeLongButton(
             onPressed: () async {
               await Get.bottomSheet(WorkOrderFinishDialog(onConfirm: () async {
-                var re = await WorkOrderFuc.confirmComplete(_model!.id);
+                var re = await WorkOrderFuc.confirmComplete(widget.id);
                 if (re) {
                   Get.back();
                   _refreshController.callRefresh();
@@ -206,7 +242,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
       case 6:
         return BeeLongButton(
             onPressed: () async {
-              var bills = await WorkOrderFuc.getBill(workOrderId: _model!.id);
+              var bills = await WorkOrderFuc.getBill(workOrderId: widget.id);
               await Get.bottomSheet(WorkOrderBillDialog(models: bills));
             },
             text: '确认支付');
@@ -216,9 +252,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
               await Get.bottomSheet(TaskEvaluationDialog(
                 evaluate: (star, content) async {
                   return await WorkOrderFuc.evaluate(
-                      workOrderId: widget.model.id,
-                      star: star,
-                      evaluation: content);
+                      workOrderId: widget.id, star: star, evaluation: content);
                 },
               ));
             },
@@ -277,6 +311,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
         borderRadius: BorderRadius.circular(12.w),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           '服务人员名单'
               .text
@@ -394,7 +429,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
               .make(),
           24.hb,
           BeeGridImageView(
-            urls: [],
+            urls: (_model!.imgList ?? []).map((e) => e.url).toList(),
           ),
           24.hb,
         ],
