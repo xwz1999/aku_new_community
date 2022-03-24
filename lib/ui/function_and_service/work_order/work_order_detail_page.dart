@@ -429,7 +429,7 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
               .make(),
           24.hb,
           BeeGridImageView(
-            urls: [],
+            urls: (_model!.imgList ?? []).map((e) => e.url).toList(),
           ),
           24.hb,
         ],

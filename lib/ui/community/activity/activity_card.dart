@@ -18,7 +18,7 @@ class ActivityCard extends StatelessWidget {
     this.home = false,
   }) : super(key: key);
 
-  bool get outdate => model!.end!.compareTo(DateTime.now()) == -1;
+  bool get outdate => ActivityFunc.dateCheck(model!.end) == '';
 
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -109,7 +109,8 @@ class ActivityCard extends StatelessWidget {
             [
               Flexible(
                 child: AvatarsParticipate(
-                  avatars: (model?.imgList?.map((e) => e.url).toList() ?? []),
+                  avatars:
+                      (model?.avatarImgList?.map((e) => e.url).toList() ?? []),
                   pNum: model?.registrationNum ?? 0,
                   hasIcon: false,
                 ),

@@ -19,4 +19,7 @@ HomeActivityModel _$HomeActivityModelFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       registrationNum: json['registrationNum'] as int?,
+      avatarImgList: (json['avatarImgList'] as List<dynamic>?)
+          ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

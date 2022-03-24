@@ -14,6 +14,7 @@ class WorkOrderDetailModel extends Equatable {
   final String reserveDate;
   final String content;
   final String createDate;
+  final List<ImgModel>? imgList;
   final List<ImgModel>? servicePersonnelImgList;
   final int newReportNum;
   final int? evaluateLevel;
@@ -22,22 +23,6 @@ class WorkOrderDetailModel extends Equatable {
 
   factory WorkOrderDetailModel.fromJson(Map<String, dynamic> json) =>
       _$WorkOrderDetailModelFromJson(json);
-
-  const WorkOrderDetailModel({
-    required this.id,
-    required this.code,
-    required this.status,
-    required this.workOrderTypeName,
-    required this.reserveAddress,
-    required this.reserveDate,
-    required this.content,
-    required this.createDate,
-    this.servicePersonnelImgList,
-    required this.newReportNum,
-    this.evaluateLevel,
-    this.evaluateContent,
-    this.evaluateDate,
-  });
 
   @override
   List<Object?> get props => [
@@ -54,5 +39,23 @@ class WorkOrderDetailModel extends Equatable {
         evaluateLevel,
         evaluateContent,
         evaluateDate,
+        imgList
       ];
+
+  const WorkOrderDetailModel({
+    required this.id,
+    required this.code,
+    required this.status,
+    required this.workOrderTypeName,
+    required this.reserveAddress,
+    required this.reserveDate,
+    required this.content,
+    required this.createDate,
+    this.imgList,
+    this.servicePersonnelImgList,
+    required this.newReportNum,
+    this.evaluateLevel,
+    this.evaluateContent,
+    this.evaluateDate,
+  });
 }

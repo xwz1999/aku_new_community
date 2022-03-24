@@ -257,7 +257,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             height: 100.w,
             width: double.infinity,
             child: Text(
-              (_goodDetail!.skuName ?? ''),
+              (_goodDetail!.skuName),
               style: TextStyle(
                   fontSize: 36.sp,
                   fontWeight: FontWeight.bold,
@@ -266,7 +266,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          _getIcon(_goodDetail!.kind ?? 0),
+          _getIcon(_goodDetail!.kind),
           24.hb,
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -325,13 +325,13 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             height: 80.w,
             width: double.infinity,
             child: Text(
-              (_goodDetail!.skuName ?? ''),
+              (_goodDetail!.skuName),
               style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          _getIcon(_goodDetail!.kind ?? 0),
+          _getIcon(_goodDetail!.kind),
           Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
