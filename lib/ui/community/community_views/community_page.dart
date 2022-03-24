@@ -88,7 +88,7 @@ class _CommunityPageState extends State<CommunityPage>
     final appProvider = Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 10.0,
+        titleSpacing: 0,
         title: Align(
             alignment: Alignment.centerLeft,
             child: Theme(
