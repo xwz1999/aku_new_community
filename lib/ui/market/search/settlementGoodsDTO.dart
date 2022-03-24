@@ -8,13 +8,13 @@ class SettlementGoodsDTO {
   });
 
   SettlementGoodsDTO.fromJson(Map<String, dynamic> json) {
-    appGoodsPushId = json['jcookGoodsId'];
+    appGoodsPushId = json['appGoodsPushId'];
     num = json['num'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['jcookGoodsId'] = this.appGoodsPushId;
+    data['appGoodsPushId'] = this.appGoodsPushId;
     data['num'] = this.num;
 
     return data;

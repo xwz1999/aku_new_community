@@ -1198,9 +1198,6 @@ class $AssetsImagesGen {
 
 class $AssetsJsonGen {
   const $AssetsJsonGen();
-
-  /// File path: assets/json/province.json
-  String get province => 'assets/json/province.json';
 }
 
 class $AssetsStaticGen {

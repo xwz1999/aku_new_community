@@ -68,6 +68,16 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
 
   Timer? _timer;
 
+  String get receiveAddress {
+    if (_addressModel == null) {
+      return (_goodDetail!.defaultLocation ?? '') +
+          (_goodDetail!.defaultAddressDetail ?? '');
+    } else {
+      return (_addressModel!.locationName ?? '') +
+          (_addressModel!.addressDetail ?? '');
+    }
+  }
+
   @override
   void initState() {
     final appProvider = Provider.of<AppProvider>(Get.context!);
@@ -112,8 +122,9 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               header: MaterialHeader(),
               controller: _refreshController,
               onRefresh: () async {
-                _goodDetail = await SearchFunc.getGoodDetail(widget.goodId);
-                _imageList = await SearchFunc.getGoodDetailImage(widget.goodId);
+                _goodDetail = await SearchFunc.getGoodDetail(
+                    widget.goodId, _addressModel?.location);
+                // _imageList = await SearchFunc.getGoodDetailImage(widget.goodId);
                 if (_goodDetail != GoodDetailModel.fail()) {
                   _onload = false;
                 }
@@ -380,6 +391,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                   ));
               if (result != null) {
                 _addressModel = result;
+                _refreshController.callRefresh();
               }
               setState(() {});
             },

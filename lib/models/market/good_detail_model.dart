@@ -1,10 +1,11 @@
 import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'good_detail_model.g.dart';
 
 @JsonSerializable()
-class GoodDetailModel {
+class GoodDetailModel extends Equatable {
   final int id;
   final List<JcookImageVoList>? jcookImageVoList;
   final num sellPrice;
@@ -63,10 +64,29 @@ class GoodDetailModel {
     required this.unit,
     required this.weight,
   });
+
+  @override
+  List<Object?> get props => [
+        jcookImageVoList,
+        sellPrice,
+        discountPrice,
+        skuName,
+        status,
+        shopStatus,
+        sellNum,
+        kind,
+        defaultLocation,
+        defaultAddressDetail,
+        stockStatus,
+        jcookSpecificationVoList,
+        isCollection,
+        unit,
+        weight,
+      ];
 }
 
 @JsonSerializable()
-class JcookImageVoList {
+class JcookImageVoList extends Equatable {
   final int id;
   final int jcookGoodsId;
   final String url;
@@ -83,10 +103,18 @@ class JcookImageVoList {
     required this.isPrimer,
     required this.orderSort,
   });
+
+  @override
+  List<Object?> get props => [
+        jcookGoodsId,
+        url,
+        isPrimer,
+        orderSort,
+      ];
 }
 
 @JsonSerializable()
-class JcookSpecificationVoList {
+class JcookSpecificationVoList extends Equatable {
   final String groupName;
   final List<Attribute> attribute;
 
@@ -97,10 +125,16 @@ class JcookSpecificationVoList {
     required this.groupName,
     required this.attribute,
   });
+
+  @override
+  List<Object?> get props => [
+        groupName,
+        attribute,
+      ];
 }
 
 @JsonSerializable()
-class Attribute {
+class Attribute extends Equatable {
   final String? name;
   final String? value;
 
@@ -111,4 +145,10 @@ class Attribute {
     required this.name,
     required this.value,
   });
+
+  @override
+  List<Object?> get props => [
+        name,
+        value,
+      ];
 }

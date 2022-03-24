@@ -77,6 +77,10 @@ class NetUtil {
       _parseErr(e);
       _baseModel = BaseModel(code: 0, msg: '未知错误', success: false, data: null);
     }
+
+    if (showMessage) {
+      BotToast.showText(text: _baseModel.msg);
+    }
     return _baseModel;
   }
 
@@ -108,6 +112,9 @@ class NetUtil {
       _baseModel = BaseModel(code: 0, msg: '未知错误', success: false, data: null);
     }
 
+    if (showMessage) {
+      BotToast.showText(text: _baseModel.msg);
+    }
     return _baseModel;
   }
 

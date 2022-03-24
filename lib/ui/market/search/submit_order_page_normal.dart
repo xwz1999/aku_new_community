@@ -16,6 +16,7 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/end_button.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -177,17 +178,23 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                   BotToast.showText(text: '请先选择地址');
                 }
                 Function cancel = BotToast.showLoading();
-                BaseModel baseModel = await NetUtil()
-                    .post(API.pay.jcookOrderCreateOrder, params: {
-                  "addressId": _addressModel!.id!,
-                  "settlementGoodsDTOList":
-                      _goodsList.map((v) => v.toJson()).toList(),
-                  "payType": 1, //暂时写死 等待后续补充
-                  "payPrice": _allPrice
-                });
+                BaseModel baseModel =
+                    await NetUtil().post(SAASAPI.pay.createGoodsOrder,
+                        params: {
+                          "addressId": _addressModel!.id!,
+                          "settlementGoodsDTOList":
+                              _goodsList.map((v) => v.toJson()).toList(),
+                          "payType": 1, //暂时写死 等待后续补充
+                          "payPrice": _allPrice,
+                          // 'points': widget.integral,
+                          "residentId": UserTool.userProvider.userInfoModel!.id,
+                          "payname": UserTool.userProvider.userInfoModel!.name,
+                          "payTel": UserTool.userProvider.userInfoModel!.tel,
+                        },
+                        showMessage: true);
                 if (baseModel.success) {
-                  bool result = await PayUtil()
-                      .callAliPay(baseModel.msg, API.pay.jcookOrderCheckAlipay);
+                  bool result = await PayUtil().callAliPay(
+                      baseModel.msg, SAASAPI.pay.jcookOrderCheckAlipay);
                   if (result) {
                     Get.off(() => OrderPage(initIndex: 2));
                   } else {
@@ -343,7 +350,6 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     }
 
     int num = int.parse(_controllers.text);
-    print(num);
     allNum += num;
     allPrice += (widget.goodModel.sellPrice * num);
 

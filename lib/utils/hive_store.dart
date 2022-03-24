@@ -1,5 +1,6 @@
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/models/login/china_region_model.dart';
+import 'package:aku_new_community/models/login/community_model.dart';
 import 'package:aku_new_community/models/login/history_login_model.dart';
 import 'package:aku_new_community/models/login/picked_city_model.dart';
 import 'package:aku_new_community/models/user/user_config_model.dart';
@@ -36,6 +37,7 @@ class HiveStore {
       Hive.registerAdapter(HistoryLoginModelAdapter()); //HiveTypeId:4
       Hive.registerAdapter(UserConfigModelAdapter()); //HiveTypeId:5
       Hive.registerAdapter(PickedCityModelAdapter()); //HiveTypeId:6
+      Hive.registerAdapter(CommunityModelAdapter());
       _appBox = await Hive.openBox('app');
       _userBox = await Hive.openBox('userBox');
       _dataBox = await Hive.openBox('dataBox');

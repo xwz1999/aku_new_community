@@ -151,8 +151,11 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
       bottomNavi: BottomButton(
         child: '立即报名'.text.size(32.sp).color(Colors.black).bold.make(),
         onPressed: () async {
-          await NetUtil().post(SAASAPI.activity.registration,
+          var re = await NetUtil().get(SAASAPI.activity.registration,
               params: {'activityId': _model!.id}, showMessage: true);
+          if (re.success) {
+            _refreshController.callRefresh();
+          }
         },
       ),
     );
@@ -189,8 +192,8 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      width: 104.w,
-                      height: 42.w,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.w),
                       decoration: BoxDecoration(
                           color: Color(0xFFFEC076).withOpacity(0.5),
                           borderRadius: BorderRadius.circular(10.w)),
@@ -198,7 +201,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                       child: '${ActivityFunc.dateCheck(_model!.regisEndTime)}'
                           .text
                           .size(24.sp)
-                          .color(Color(0xFFF481170))
+                          .color(Color(0xFFF48117))
                           .make(),
                     ),
                   ],

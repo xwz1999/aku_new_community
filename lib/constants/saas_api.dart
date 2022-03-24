@@ -33,6 +33,7 @@ class SAASAPI {
   static _Announce announce = _Announce();
   static _Information information = _Information();
   static _WorkOrder workOrder = _WorkOrder();
+  static _Pay pay = _Pay();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -246,4 +247,12 @@ class _WorkOrder {
 
   ///查询所有的工单信息
   String get list => '/app/user/workOrder/list';
+}
+
+class _Pay {
+  ///创建商品订单
+  String get createGoodsOrder => '/app/user/alipay/createGoodsOrder';
+
+  ///app商品 向支付宝发起订单查询请求
+  String get jcookOrderCheckAlipay => '/app/user/alipay/jcookOrderCheckAlipay';
 }

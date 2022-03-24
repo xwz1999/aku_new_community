@@ -52,10 +52,11 @@ class SearchFunc {
   }
 
   ///查询商品详情
-  static Future<GoodDetailModel> getGoodDetail(int shopId) async {
+  static Future<GoodDetailModel> getGoodDetail(
+      int shopId, int? addressId) async {
     BaseModel model = await NetUtil().get(
       SAASAPI.market.good.goodDetail,
-      params: {'appGoodsPushId': shopId},
+      params: {'appGoodsPushId': shopId, 'appGoodsAddressId': addressId},
     );
     if (model.data == null) return GoodDetailModel.fail();
     return GoodDetailModel.fromJson(model.data);

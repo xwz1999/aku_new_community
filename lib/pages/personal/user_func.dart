@@ -76,7 +76,7 @@ class Userfunc {
 
   ///设置默认收货地址
   static Future<bool> setIsDefaultAddress(int addressId) async {
-    BaseModel model = await NetUtil().post(SAASAPI.market.address.setDefault,
+    BaseModel model = await NetUtil().get(SAASAPI.market.address.setDefault,
         params: {'id': addressId}, showMessage: false);
     if (model.success) {
       BotToast.showText(text: '设置成功');
