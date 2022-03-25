@@ -103,7 +103,7 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
               ),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: Get.back,
                 child: '取消'
                     .text
                     .size(28.sp)
