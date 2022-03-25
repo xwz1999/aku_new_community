@@ -567,6 +567,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               color: kPrimaryColor,
               minWidth: 120.w,
               height: 55.w,
+
               onPressed: () async {
                 var res = await NetUtil()
                     .post(SAASAPI.community.commentInsert, params: params);
@@ -582,6 +583,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 } else {
                   BotToast.showText(text: res.msg);
                 }
+                FocusScope.of(context).requestFocus(FocusNode());
               },
               child: Text(
                 '发布',
@@ -592,6 +594,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
             )
           ],
-        ));
+        )
+    );
   }
 }
