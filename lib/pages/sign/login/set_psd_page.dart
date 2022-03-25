@@ -93,6 +93,7 @@ class _SetPsdPageState extends State<SetPsdPage> {
                           await SignFunc.settingPsd(_psdController.text);
                       if (result) {
                         await UserTool.userProvider.updateUserInfo();
+                        await SignFunc.checkNameAndAccount();
                       }
                     }
                   : null,

@@ -37,6 +37,7 @@ class UserProvider extends ChangeNotifier {
               userId: _userInfoModel!.id,
               clockRemind: false,
               todayClocked: false);
+      SignFunc.checkNameAndAccount();
     }
   }
 
@@ -58,7 +59,7 @@ class UserProvider extends ChangeNotifier {
     _token = null;
     _userInfoModel = null;
     _myHouses = [];
-    NetUtil().get(API.user.logout, showMessage: true);
+    NetUtil().get(SAASAPI.login.logOut, showMessage: true);
     NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
@@ -73,7 +74,6 @@ class UserProvider extends ChangeNotifier {
       BotToast.showText(text: '获取用户信息失败');
     }
     if (_userInfoModel != null && !kIsWeb && !Platform.isMacOS) {}
-    SignFunc.checkNameAndAccount();
     notifyListeners();
   }
 
@@ -129,6 +129,7 @@ class UserProvider extends ChangeNotifier {
       showMessage: true,
     );
     if (baseModel.success) {
+      await updateUserInfo();
       notifyListeners();
     }
   }
@@ -141,6 +142,7 @@ class UserProvider extends ChangeNotifier {
       showMessage: true,
     );
     if (baseModel.success) {
+      await updateUserInfo();
       notifyListeners();
     }
   }
@@ -170,6 +172,7 @@ class UserProvider extends ChangeNotifier {
     if (model.success) {
       await updateUserInfo();
     }
+    notifyListeners();
   }
 
   ///用户配置

@@ -90,6 +90,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                   var result = await SignFunc.setNickName(_nickController.text);
                   if (result) {
                     await UserTool.userProvider.updateUserInfo();
+                    await SignFunc.checkNameAndAccount();
                   }
                 },
                 text: '确定'),
