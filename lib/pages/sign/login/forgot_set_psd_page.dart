@@ -1,3 +1,4 @@
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/pages/sign/login/psd_verify.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
@@ -10,8 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'login_page.dart';
 
 class ForgotSetPsdPage extends StatefulWidget {
   final String tel;
@@ -171,7 +170,8 @@ class _ForgotSetPsdPageState extends State<ForgotSetPsdPage> {
                           widget.tel,
                           _codeController.text);
                       if (result) {
-                        Get.offAll(() => LoginPage());
+                        //暂时隐去一键登录页
+                        Get.offAll(() => OtherLoginPage());
                       }
                     }
                   : null,

@@ -59,6 +59,9 @@ class SearchFunc {
       SAASAPI.market.good.goodDetail,
       params: {'appGoodsPushId': shopId, 'appGoodsAddressId': addressId},
     );
+    if (!model.success) {
+      BotToast.showText(text: model.msg);
+    }
     if (model.data == null) return GoodDetailModel.fail();
     return GoodDetailModel.fromJson(model.data);
   }

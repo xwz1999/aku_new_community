@@ -22,6 +22,7 @@ import 'package:aku_new_community/ui/market/widget/animated_home_background.dart
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -815,18 +816,10 @@ class _MarketPageState extends State<MarketPage>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FadeInImage.assetNetwork(
-            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+          BeeImageNetwork(
             width: 88.w,
             height: 88.w,
-            image: item.imgUrls.isNotEmpty ? item.imgUrls.first : '',
-            imageErrorBuilder: (context, error, stackTrace) {
-              return Image.asset(
-                R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                height: 88.w,
-                width: 88.w,
-              );
-            },
+            urls: item.imgUrls,
           ),
           8.hb,
           Text(

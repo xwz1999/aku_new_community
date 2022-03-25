@@ -3,11 +3,10 @@ import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
-import 'package:aku_new_community/pages/sign/login/login_page.dart';
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
-import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -75,8 +74,8 @@ class _PersonalIndexState extends State<PersonalIndex>
     final userProvider = Provider.of<UserProvider>(context);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark,
-        child:Scaffold(
+        value: SystemUiOverlayStyle.dark,
+        child: Scaffold(
           body: EasyRefresh(
               header: MaterialHeader(),
               onRefresh: () async {
@@ -123,7 +122,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                           padding: EdgeInsets.all(5.w),
                           onPressed: () {
                             if (!userProvider.isLogin)
-                              Get.to(() => LoginPage());
+                              //暂时隐去一键登录页
+                              Get.to(() => OtherLoginPage());
                             else
                               Get.to(() => UserProfilePage());
                           },
@@ -138,7 +138,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                       width: 106.w,
                                       height: 106.w,
                                       imgs: UserTool.userProvider.userInfoModel
-                                          ?.imgList ??
+                                              ?.imgList ??
                                           [],
                                     ),
                                   ),
@@ -147,37 +147,37 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     margin: EdgeInsets.only(left: 16.w),
                                     child: userProvider.isLogin
                                         ? Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          userProvider
-                                              .userInfoModel?.nickName ??
-                                              '',
-                                          style: TextStyle(
-                                            fontSize: 40.sp,
-                                            color: Colors.black
-                                                .withOpacity(0.85),
-                                          ),
-                                        ),
-                                        4.hb,
-                                        Text(
-                                          '当一个新时代的有志青年',
-                                          style: TextStyle(
-                                            fontSize: 24.sp,
-                                            color: Colors.black
-                                                .withOpacity(0.45),
-                                          ),
-                                        ),
-                                      ],
-                                    )
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                userProvider.userInfoModel
+                                                        ?.nickName ??
+                                                    '',
+                                                style: TextStyle(
+                                                  fontSize: 40.sp,
+                                                  color: Colors.black
+                                                      .withOpacity(0.85),
+                                                ),
+                                              ),
+                                              4.hb,
+                                              Text(
+                                                '当一个新时代的有志青年',
+                                                style: TextStyle(
+                                                  fontSize: 24.sp,
+                                                  color: Colors.black
+                                                      .withOpacity(0.45),
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         : Text(
-                                      '登录/注册',
-                                      style: TextStyle(
-                                        fontSize: 32.sp,
-                                        color: Color(0xffad8940),
-                                      ),
-                                    )),
+                                            '登录/注册',
+                                            style: TextStyle(
+                                              fontSize: 32.sp,
+                                              color: Color(0xffad8940),
+                                            ),
+                                          )),
                                 Spacer(),
                                 MaterialButton(
                                   onPressed: () async {
@@ -185,7 +185,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                                         .get(SAASAPI.profile.integral.sign);
                                     if (base.success) {
                                       await Get.dialog(ClockSuccessDialog(
-                                          todayIntegral: 1, tomorrowIntegral: 2));
+                                          todayIntegral: 1,
+                                          tomorrowIntegral: 2));
                                       await UserTool.userProvider
                                           .changeTodayClocked();
                                     } else {
@@ -197,13 +198,14 @@ class _PersonalIndexState extends State<PersonalIndex>
                                   minWidth: 112.w,
                                   height: 58.w,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50.w)),
+                                      borderRadius:
+                                          BorderRadius.circular(50.w)),
                                   child:
-                                  '${UserTool.userProvider.userConfig.todayClocked ? '已签到' : '签到'}'
-                                      .text
-                                      .size(22.sp)
-                                      .black
-                                      .make(),
+                                      '${UserTool.userProvider.userConfig.todayClocked ? '已签到' : '签到'}'
+                                          .text
+                                          .size(22.sp)
+                                          .black
+                                          .make(),
                                 ),
                                 32.w.widthBox,
                               ],
@@ -217,15 +219,16 @@ class _PersonalIndexState extends State<PersonalIndex>
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image:
-                                  AssetImage(Assets.static.vipBackground.path)),
+                                  image: AssetImage(
+                                      Assets.static.vipBackground.path)),
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(16.w),
                                   topRight: Radius.circular(16.w))),
                           child: Row(
                             children: [
                               32.wb,
-                              Assets.icons.vipFont.image(width: 60.w, height: 60.w),
+                              Assets.icons.vipFont
+                                  .image(width: 60.w, height: 60.w),
                               24.wb,
                               '当前会员等级：2级'
                                   .text
@@ -241,7 +244,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       color: Color(0xFFFFE0A9),
-                                      borderRadius: BorderRadius.circular(29.w)),
+                                      borderRadius:
+                                          BorderRadius.circular(29.w)),
                                   child: '会员中心'.text.size(24.sp).black.make(),
                                 ),
                               ),
@@ -270,8 +274,8 @@ class _PersonalIndexState extends State<PersonalIndex>
                             ],
                           ),
                           margin: EdgeInsets.only(left: 32.w, right: 32.w),
-                          padding:
-                          EdgeInsets.only(top: 24.w, left: 32.w, right: 32.w),
+                          padding: EdgeInsets.only(
+                              top: 24.w, left: 32.w, right: 32.w),
                           child: Column(
                             //mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -314,7 +318,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                           height: 100.w,
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
-                            // color: Colors.white,
+                              // color: Colors.white,
                               borderRadius: BorderRadius.circular(16.w)),
                           margin: EdgeInsets.symmetric(horizontal: 32.w),
                           child: Material(
@@ -365,7 +369,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                               _function(
                                 '我的房屋',
                                 R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                                    () => MyHousePage(),
+                                () => MyHousePage(),
                                 // () => HouseOwnersPage(
                                 //       identify: 4,
                                 //     ),
@@ -375,8 +379,11 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
                               ),
                               36.hb,
-                              _function('我的家庭', R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                                      () => MyFamilyPage(), ''),
+                              _function(
+                                  '我的家庭',
+                                  R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
+                                  () => MyFamilyPage(),
+                                  ''),
                               36.hb,
                               // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
                               //     () => CarParkingPage(), ''),
@@ -384,15 +391,18 @@ class _PersonalIndexState extends State<PersonalIndex>
                               // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
                               //     () => CarManagePage(), ''),
                               // 36.hb,
-                              _function('我的访客', R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
-                                      () => CarManagePage(), ''),
+                              _function(
+                                  '我的访客',
+                                  R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
+                                  () => CarManagePage(),
+                                  ''),
                               36.hb,
                               _function(
                                   '收货地址设置',
                                   R.ASSETS_ICONS_ICON_MY_LOCATION_PNG,
-                                      () => AddressListPage(
-                                    canBack: false,
-                                  ),
+                                  () => AddressListPage(
+                                        canBack: false,
+                                      ),
                                   ''),
                             ],
                           ),
@@ -402,9 +412,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                   ),
                 ],
               )),
-        )
-    );
-
+        ));
   }
 
   _homeTitle(String title, VoidCallback onTap, String suffixTitle) {

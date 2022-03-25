@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:aku_new_community/pages/sign/login/login_page.dart';
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
@@ -126,7 +126,8 @@ class _SplashPageState extends State<SplashPage> {
           //更新用户信息后自动跳转首页/设置昵称/设置密码
           UserTool.userProvider.setLogin(HiveStore.appBox!.get('token'));
         } else {
-          await Get.offAll(() => LoginPage());
+          //暂时隐去一键登录页
+          await Get.offAll(() => OtherLoginPage());
         }
       } catch (e) {
         LoggerData.addData(e);

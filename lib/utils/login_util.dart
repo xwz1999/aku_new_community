@@ -1,12 +1,11 @@
-import 'package:bot_toast/bot_toast.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
-import 'package:aku_new_community/pages/sign/login/login_page.dart';
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 /// | 名称 | 函数 |
 /// |-----|------|
@@ -20,7 +19,8 @@ class LoginUtil {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (userProvider.isNotLogin) {
       BotToast.showText(text: '请先登录');
-      Get.to(() => LoginPage());
+      //暂时隐去一键登录页
+      Get.to(() => OtherLoginPage());
       return false;
     }
     return true;
