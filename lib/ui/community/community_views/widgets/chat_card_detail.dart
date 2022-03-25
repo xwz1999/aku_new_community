@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -12,6 +13,7 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -136,17 +138,25 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                 ],
               ),
               Spacer(),
-              Image.asset(
-                R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
-                width: 40.w,
-                height: 40.w,
+              LikeButton(
+                size: 40.w,
+                likeBuilder: (bool isLiked){
+                  return Image.asset(
+                    isLiked ? Assets.icons.communityLikeIs.path : Assets.icons.communityLike.path,);
+                },
+                likeCount:widget.model.likes,
               ),
-              5.wb,
-              '${widget.model.likes}'
-                  .text
-                  .size(24.sp)
-                  .color(Color(0xFF999999))
-                  .make(),
+              // Image.asset(
+              //   Assets.icons.communityLikeIs.path,
+              //   width: 40.w,
+              //   height: 40.w,
+              // ),
+              // 5.wb,
+              // '${widget.model.likes}'
+              //     .text
+              //     .size(24.sp)
+              //     .color(Color(0xFF999999))
+              //     .make(),
               32.wb,
             ].row(),
             Column(
@@ -190,6 +200,7 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
       ).marginOnly(top: 12.w, bottom: 12.w),
     ]).paddingOnly(bottom: 16.w);
   }
+
 
   // _renderLikeAndComment() {
   //   if (widget.model!.likeNames!.isEmpty &&
