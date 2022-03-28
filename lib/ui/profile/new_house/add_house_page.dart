@@ -34,7 +34,7 @@ class _AddHousePageState extends State<AddHousePage> {
   TextEditingController _telController = TextEditingController();
 
   List<int> get manageEstateIds {
-    if (_otherPickHouse == null || _pickedHouses.first.house == null) {
+    if (_otherPickHouse == null && _pickedHouses.first.house == null) {
       return [];
     }
     if (_identify == Identify.OWNER) {

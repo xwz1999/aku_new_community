@@ -8,6 +8,7 @@ import 'package:aku_new_community/models/integral/clocked_record_list_model.dart
 import 'package:aku_new_community/models/integral/integral_info_model.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -75,26 +76,11 @@ class _ClockInPageState extends State<ClockInPage> {
                 Hero(
                   tag: 'AVATAR',
                   child: ClipOval(
-                      // child: FadeInImage.assetNetwork(
-                      //   placeholder: Assets.images.placeholder.path,
-                      //   image: SARSAPI.image(
-                      //       (UserTool.userProvider.userInfoModel?.imgUrls ?? [])
-                      //               .isNotEmpty
-                      //           ? UserTool
-                      //               .userProvider.userInfoModel!.imgUrls.first.url
-                      //           : ''),
-                      //   height: 106.w,
-                      //   width: 106.w,
-                      //   fit: BoxFit.cover,
-                      //   imageErrorBuilder: (context, error, stackTrace) {
-                      //     return Image.asset(
-                      //       Assets.icons.iconMySetting.path,
-                      //       height: 106.w,
-                      //       width: 106.w,
-                      //     );
-                      //   },
-                      // ),
-                      ),
+                    child: BeeImageNetwork(
+                      height: 106.w,
+                      width: 106.w,
+                    ),
+                  ),
                 ),
                 Container(
                     margin: EdgeInsets.only(left: 16.w),
@@ -254,7 +240,7 @@ class _ClockInPageState extends State<ClockInPage> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30.w),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30.w)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

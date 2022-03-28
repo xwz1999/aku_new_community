@@ -155,7 +155,10 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
                     GestureDetector(
                       onTap: () async {
                         var res = await Get.to(() => TopicSearchPage());
-                        _hotTopicModels.add(res as TopicListModel);
+                        var _repeat = _checkRepeatTopic(res as TopicListModel);
+                        if (!_repeat) {
+                          _hotTopicModels.add(res);
+                        }
                         setState(() {});
                       },
                       child: Container(
@@ -215,6 +218,15 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
       ),
     );
   }
+
+  bool _checkRepeatTopic(TopicListModel model) {
+    for (var item in _hotTopicModels) {
+      if (item.id == model.id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 class TopicWidgets extends StatelessWidget {
@@ -227,8 +239,10 @@ class TopicWidgets extends StatelessWidget {
 
   final List<TopicListModel>? hotTopicModels;
   final List<TopicTag>? topicTags;
+
   List<dynamic> get models =>
       hotTopicModels == null ? topicTags! : hotTopicModels!;
+
   @override
   Widget build(BuildContext context) {
     return Wrap(

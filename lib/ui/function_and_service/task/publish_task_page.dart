@@ -21,9 +21,8 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:power_logger/power_logger.dart';
 
 import 'add_appointment_address_page.dart';
 
@@ -75,6 +74,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
     _rewardController.dispose();
     _nameController.dispose();
     _telController.dispose();
+    BotToast.closeAllLoading();
     super.dispose();
   }
 
@@ -142,25 +142,30 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                 print(e.toString());
               }
             }
-            var re = await TaskFunc.publish(
-                type: _type,
-                sex: _sex,
-                servicePersonnel: _service,
-                readyStartTime: _appointDate.toString(),
-                readyEndTime: _appointEndDate.toString(),
-                contact: _nameController.text,
-                tel: _telController.text,
-                accessAddress: _accessAddress!,
-                accessAddressDetail: _accessAddressDetail!,
-                serviceAddress: _serviceAddress,
-                serviceAddressDetail: _serviceAddressDetail,
-                remarks: _content,
-                voiceUrl: _voiceUrl,
-                imgUrls: imgs,
-                rewardType: _rewardType,
-                reward: _rewardController.text);
-            if (re) {
-              Get.back();
+            try {
+              var re = await TaskFunc.publish(
+                  type: _type,
+                  sex: _sex,
+                  servicePersonnel: _service,
+                  readyStartTime: _appointDate.toString(),
+                  readyEndTime: _appointEndDate.toString(),
+                  contact: _nameController.text,
+                  tel: _telController.text,
+                  accessAddress: _accessAddress!,
+                  accessAddressDetail: _accessAddressDetail!,
+                  serviceAddress: _serviceAddress,
+                  serviceAddressDetail: _serviceAddressDetail,
+                  remarks: _content,
+                  voiceUrl: _voiceUrl,
+                  imgUrls: imgs,
+                  rewardType: _rewardType,
+                  reward: _rewardController.text);
+              if (re) {
+                Get.back();
+              }
+            } catch (e) {
+              print(e.toString());
+              LoggerData.addData(e.toString());
             }
             cancel();
           },
