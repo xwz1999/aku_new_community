@@ -203,7 +203,8 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                         showMessage: true);
                 if (baseModel.success) {
                   bool result = await PayUtil().callAliPay(
-                      baseModel.msg, SAASAPI.pay.jcookOrderCheckAlipay);
+                      (baseModel.data as String),
+                      SAASAPI.pay.jcookOrderCheckAlipay);
                   if (result) {
                     Get.off(() => OrderPage(initIndex: 2));
                   } else {

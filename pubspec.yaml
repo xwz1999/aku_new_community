@@ -53,7 +53,7 @@ dependencies:
   signature: ^4.1.1
 
   #支付宝支付功能
-  tobias: ^2.1.0
+  tobias: ^2.4.0+2
   #微信支付
   fluwx: ^3.4.2
   #路由相关
