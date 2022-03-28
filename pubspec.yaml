@@ -2,7 +2,7 @@ name: aku_new_community
 description: A new Flutter project.
 publish_to: "none"
 
-version: 1.8.9-dev+49
+version: 1.8.10-dev+50
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
