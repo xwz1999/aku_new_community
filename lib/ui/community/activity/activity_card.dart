@@ -118,8 +118,8 @@ class ActivityCard extends StatelessWidget {
               // Spacer(),
               ActivityFunc.dateCheck(model!.end)
                   .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.45))
+                  .size(24.sp)
+                  .black
                   .make(),
             ].row().pSymmetric(h: 24.w),
             20.hb,
