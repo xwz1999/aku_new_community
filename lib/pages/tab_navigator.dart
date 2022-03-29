@@ -1,5 +1,4 @@
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/pages/property/property_page.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/community_page.dart';
@@ -47,7 +46,7 @@ class _TabNavigatorState extends State<TabNavigator>
     _pages = [
       HomePage(),
       MarketPage(),
-      PropertyPage(),
+      // PropertyPage(),
       CommunityPage(),
       PersonalIndex()
     ];
@@ -91,11 +90,11 @@ class _TabNavigatorState extends State<TabNavigator>
         R.ASSETS_ICONS_TABBAR_MARKET_NO_PNG,
         R.ASSETS_ICONS_TABBAR_MARKET_PNG,
       ),
-      _buildBottomBar(
-        '物业',
-        R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
-        R.ASSETS_ICONS_TABBAR_HOUSE_PNG,
-      ),
+      // _buildBottomBar(
+      //   '物业',
+      //   R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
+      //   R.ASSETS_ICONS_TABBAR_HOUSE_PNG,
+      // ),
       _buildBottomBar(
         '社区',
         R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,
