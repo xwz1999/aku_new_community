@@ -30,10 +30,16 @@ class _PublicInfomationPageState extends State<PublicInfomationPage>
   Widget build(BuildContext context) {
     return BeeScaffold(
       title: '公共资讯',
-      appBarBottom: BeeTabBar(
-        controller: _tabController,
-        tabs: widget.models.map((e) => e.name).toList(),
-        scrollable: true,
+      appBarBottom: PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.of(context).padding.top),
+        child: Container(
+          alignment: Alignment.centerLeft,
+          child: BeeTabBar(
+            controller: _tabController,
+            tabs: widget.models.map((e) => e.name).toList(),
+            scrollable: true,
+          ),
+        ),
       ),
       body: TabBarView(
         children:

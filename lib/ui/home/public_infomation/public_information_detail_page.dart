@@ -1,7 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/recommend_read_model.dart';
-import 'package:aku_new_community/models/news/news_detail_model.dart';
+import 'package:aku_new_community/saas_model/information/information_detail_model.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/link_text_parase.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -33,7 +33,7 @@ class _PublicInformationDetailPageState
     extends State<PublicInformationDetailPage> {
   late EasyRefreshController _easyRefreshController;
   bool _onload = true;
-  late NewsDetailModel _detailModel;
+  late InformationDetailModel _detailModel;
   late List<String> _parasedText;
   late TapGestureRecognizer _tapLinkUrlLancher; //设置单击手势识别器
   @override
@@ -62,7 +62,7 @@ class _PublicInformationDetailPageState
               ),
             )
           : SizedBox(),
-      title: _onload ? '' : _detailModel.newsCategoryName,
+      title: '文章详情',
       bodyColor: Colors.white,
       body: EasyRefresh(
         firstRefresh: true,
@@ -73,7 +73,7 @@ class _PublicInformationDetailPageState
             "informationId": widget.id,
           });
           if (baseModel.success && baseModel.data != null) {
-            _detailModel = NewsDetailModel.fromJson(baseModel.data);
+            _detailModel = InformationDetailModel.fromJson(baseModel.data);
             _parasedText = LinkTextParase.stringParase(_detailModel.content);
             _onload = false;
           } else {
