@@ -40,7 +40,7 @@ class _ApplyRecordPageState extends State<ApplyRecordPage> {
           }
         },
         onLoad: () async {},
-        child: !_models.isEmpty
+        child: _models.isEmpty
             ? Container()
             : ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
