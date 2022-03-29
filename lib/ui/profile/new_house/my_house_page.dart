@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -16,6 +10,10 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyHousePage extends StatefulWidget {
   const MyHousePage({Key? key}) : super(key: key);
@@ -25,6 +23,15 @@ class MyHousePage extends StatefulWidget {
 }
 
 class _MyHousePageState extends State<MyHousePage> {
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 0), () async {
+      await UserTool.userProvider.updateMyHouseInfo();
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
