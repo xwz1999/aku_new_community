@@ -1,12 +1,11 @@
 import 'dart:convert';
 
+import 'package:aku_new_community/models/pay/pay_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:tobias/tobias.dart';
-
-import 'package:aku_new_community/models/pay/pay_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
 
 enum PAYTYPE {
   ///支付宝
@@ -79,23 +78,22 @@ class PayUtil {
 
   Future<bool> _confirmPayResult(String path, String code) async {
     try {
-      int status = 0;
+      late BaseModel base;
       for (var i = 0; i < 3; i++) {
         await Future.delayed(Duration(milliseconds: 1000), () async {
-          Response response = await NetUtil().dio!.get(path, queryParameters: {
+          base = await NetUtil().get(path, params: {
             "code": code,
           });
-          status = response.data['status'] as int;
         });
-        if (status == 2) {
+        if (base.success) {
           break;
         }
       }
-      if (status == 2) {
+      if (base.success) {
         BotToast.showText(text: '交易成功');
         return true;
       } else {
-        BotToast.showText(text: '交易失败 错误码${status}');
+        BotToast.showText(text: '交易失败');
         return false;
       }
     } catch (e) {
