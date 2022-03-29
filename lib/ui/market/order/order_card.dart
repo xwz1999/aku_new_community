@@ -1,5 +1,4 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
@@ -10,6 +9,7 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/buttons/line_button.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,15 +70,18 @@ class _OrderCardState extends State<OrderCard> {
   Future _pay() async {
     Function cancel = BotToast.showLoading();
     BaseModel baseModel =
-        await NetUtil().post(API.pay.jcookOrderCreateOrder, params: {
+        await NetUtil().post(SAASAPI.pay.createGoodsOrder, params: {
       "addressId": widget.model.appGoodsAddressId,
       "settlementGoodsDTOList": _goodsList.map((v) => v.toJson()).toList(),
       "payType": 1, //暂时写死 等待后续补充
-      "payPrice": widget.model.payPrice
+      "payPrice": widget.model.payPrice,
+      "residentId": UserTool.userProvider.userInfoModel!.id,
+      "payname": UserTool.userProvider.userInfoModel!.name,
+      "payTel": UserTool.userProvider.userInfoModel!.tel,
     });
     if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.msg, API.pay.sharePayOrderCodeCheck);
+          .callAliPay(baseModel.msg, SAASAPI.pay.jcookOrderCheckAlipay);
       if (result) {
         Get.off(() => PayFinishPage());
       }
