@@ -7,8 +7,10 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/add_new_event_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +43,16 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     return (userProvider.userInfoModel?.id ?? -1) == widget.model.createId;
+  }
+
+  late bool _isLiked;
+  late int _likeNum;
+
+  @override
+  void initState() {
+    _isLiked = widget.model.isLike;
+    _likeNum = widget.model.likes;
+    super.initState();
   }
 
   _renderImage() {
@@ -140,11 +152,32 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
               Spacer(),
               LikeButton(
                 size: 40.w,
-                likeBuilder: (bool isLiked){
-                  return Image.asset(
-                    isLiked ? Assets.icons.communityLikeIs.path : Assets.icons.communityLike.path,);
+                isLiked: _isLiked,
+                onTap: (isLiked) async {
+                  var res = await NetUtil().get(SAASAPI.community.dynamicLike,
+                      params: {'dynamicId': widget.model.id});
+                  if (res.success) {
+                    _isLiked = !_isLiked;
+                    if (_isLiked) {
+                      _likeNum += 1;
+                    } else {
+                      _likeNum -= 1;
+                    }
+
+                    BotToast.showText(text: _isLiked ? '点赞成功' : '取消点赞成功');
+                    setState(() {});
+                  } else {
+                    BotToast.showText(text: res.msg);
+                  }
                 },
-                likeCount:widget.model.likes,
+                likeBuilder: (bool isLiked) {
+                  return Image.asset(
+                    isLiked
+                        ? Assets.icons.communityLikeIs.path
+                        : Assets.icons.communityLike.path,
+                  );
+                },
+                likeCount: _likeNum,
               ),
               // Image.asset(
               //   Assets.icons.communityLikeIs.path,
@@ -166,11 +199,11 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     32.hb,
-                    if(!widget.model.content!.isEmptyOrNull)
-                    widget.model.content!.text
-                        .size(28.sp)
-                        .color(ktextSubColor)
-                        .make(),
+                    if (!widget.model.content!.isEmptyOrNull)
+                      widget.model.content!.text
+                          .size(28.sp)
+                          .color(ktextSubColor)
+                          .make(),
                     32.hb,
                     _renderImage(),
                     20.hb,
@@ -201,32 +234,31 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
     ]).paddingOnly(bottom: 16.w);
   }
 
-
-  // _renderLikeAndComment() {
-  //   if (widget.model!.likeNames!.isEmpty &&
-  //       widget.model!.gambitThemeCommentVoList!.isEmpty) return SizedBox();
-  //   return Material(
-  //     borderRadius: BorderRadius.circular(8.w),
-  //     color: Color(0xFFF7F7F7),
-  //     child: Padding(
-  //       padding: EdgeInsets.all(8.w),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           widget.model!.likeNames!.isEmpty ? SizedBox() : _renderLike(),
-  //           10.hb,
-  //           (widget.model!.likeNames!.isNotEmpty &&
-  //                   widget.model!.gambitThemeCommentVoList!.isNotEmpty)
-  //               ? Divider(height: 1.w, thickness: 1.w)
-  //               : SizedBox(),
-  //           10.hb,
-  //           widget.model!.gambitThemeCommentVoList!.isEmpty
-  //               ? SizedBox()
-  //               : _renderComment(),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+// _renderLikeAndComment() {
+//   if (widget.model!.likeNames!.isEmpty &&
+//       widget.model!.gambitThemeCommentVoList!.isEmpty) return SizedBox();
+//   return Material(
+//     borderRadius: BorderRadius.circular(8.w),
+//     color: Color(0xFFF7F7F7),
+//     child: Padding(
+//       padding: EdgeInsets.all(8.w),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           widget.model!.likeNames!.isEmpty ? SizedBox() : _renderLike(),
+//           10.hb,
+//           (widget.model!.likeNames!.isNotEmpty &&
+//                   widget.model!.gambitThemeCommentVoList!.isNotEmpty)
+//               ? Divider(height: 1.w, thickness: 1.w)
+//               : SizedBox(),
+//           10.hb,
+//           widget.model!.gambitThemeCommentVoList!.isEmpty
+//               ? SizedBox()
+//               : _renderComment(),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 }

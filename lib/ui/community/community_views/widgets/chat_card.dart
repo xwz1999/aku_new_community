@@ -48,6 +48,7 @@ class _ChatCardState extends State<ChatCard> {
   }
 
   late bool _isLiked;
+  late int _likeNum;
 
   _renderImage() {
     if (widget.model.dynamicList.isEmpty) return SizedBox();
@@ -106,6 +107,13 @@ class _ChatCardState extends State<ChatCard> {
                   params: {'dynamicId': widget.model.id});
               if (res.success) {
                 _isLiked = !_isLiked;
+                if (_isLiked) {
+                  _likeNum += 1;
+                } else {
+                  _likeNum -= 1;
+                }
+
+                BotToast.showText(text: _isLiked ? '点赞成功' : '取消点赞成功');
                 setState(() {});
               } else {
                 BotToast.showText(text: res.msg);
@@ -162,6 +170,7 @@ class _ChatCardState extends State<ChatCard> {
   @override
   void initState() {
     _isLiked = widget.model.isLike;
+    _likeNum = widget.model.likes;
     super.initState();
   }
 
@@ -273,7 +282,7 @@ class _ChatCardState extends State<ChatCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     32.hb,
-                    if(!widget.model.content!.isEmptyOrNull)
+                    if (!widget.model.content!.isEmptyOrNull)
                       widget.model.content!.text.size(32.sp).black.make(),
                     32.hb,
                     _renderImage(),
