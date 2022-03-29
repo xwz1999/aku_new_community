@@ -1,5 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/recommend_read_model.dart';
 import 'package:aku_new_community/models/news/news_detail_model.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -68,17 +68,17 @@ class _PublicInformationDetailPageState
         firstRefresh: true,
         header: MaterialHeader(),
         onRefresh: () async {
-          BaseModel baseModel = await NetUtil()
-              .get(API.manager.getPublicInformationDetail, params: {
-            "newsId": widget.id,
+          BaseModel baseModel =
+              await NetUtil().get(SAASAPI.information.findById, params: {
+            "informationId": widget.id,
           });
           if (baseModel.success && baseModel.data != null) {
             _detailModel = NewsDetailModel.fromJson(baseModel.data);
             _parasedText = LinkTextParase.stringParase(_detailModel.content);
+            _onload = false;
           } else {
-            BotToast.showText(text: '无法获取信息');
+            BotToast.showText(text: '无法获取资讯信息');
           }
-          _onload = false;
           setState(() {});
         },
         child: _onload

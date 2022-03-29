@@ -204,6 +204,9 @@ class _Announce {
 }
 
 class _Information {
+  ///app根据资讯主键id查询资讯信息
+  String get findById => '/app/user/information/findById';
+
   ///查询app资讯推荐阅读列表信息
   String get recommendList => '/app/user/information/recommendList';
 

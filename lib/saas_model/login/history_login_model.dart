@@ -1,8 +1,8 @@
+import 'package:aku_new_community/saas_model/login/picked_city_model.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:aku_new_community/models/login/community_model.dart';
-import 'package:aku_new_community/models/login/picked_city_model.dart';
+import 'community_model.dart';
 
 part 'history_login_model.g.dart';
 

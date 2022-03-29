@@ -1,7 +1,7 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/sars_model/my_house/my_house_apply_record_list_model.dart';
+import 'package:aku_new_community/saas_model/my_house/my_house_apply_record_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';

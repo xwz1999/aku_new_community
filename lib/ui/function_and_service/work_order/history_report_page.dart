@@ -1,7 +1,7 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
-import 'package:aku_new_community/models/work_order/work_order_report_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_report_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HistoryReportPage extends StatefulWidget {

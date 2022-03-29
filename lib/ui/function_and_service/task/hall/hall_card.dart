@@ -1,5 +1,5 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/saas_model/task/hall_list_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';

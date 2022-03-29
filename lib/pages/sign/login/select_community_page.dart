@@ -1,6 +1,6 @@
 import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/models/login/community_model.dart';
-import 'package:aku_new_community/models/login/history_login_model.dart';
+import 'package:aku_new_community/saas_model/login/community_model.dart';
+import 'package:aku_new_community/saas_model/login/history_login_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';

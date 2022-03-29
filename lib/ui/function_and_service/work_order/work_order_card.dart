@@ -1,7 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/work_order/work_order_list_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_list_model.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_detail_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_map.dart';
@@ -9,7 +9,6 @@ import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_new_community/widget/views/bee_hor_image_view.dart';
 import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

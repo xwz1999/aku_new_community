@@ -1,8 +1,8 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/work_order/work_order_detail_model.dart';
-import 'package:aku_new_community/models/work_order/work_order_progress_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_detail_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/urge_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_bill_dialog.dart';

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:aku_new_community/models/login/community_model.dart';
+import 'package:aku_new_community/saas_model/login/community_model.dart';
 import 'package:aku_new_community/widget/others/bee_search_text_field.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BeeCommunityPicker extends StatefulWidget {
   static Future<CommunityModel?> pick(

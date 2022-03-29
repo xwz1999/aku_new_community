@@ -1,5 +1,5 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/task/hall_list_model.dart';
+import 'package:aku_new_community/saas_model/task/hall_list_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_cancel_dialog.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';

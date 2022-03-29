@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/models/work_order/work_order_type_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_type_model.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_remark_page.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';

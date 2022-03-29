@@ -1,5 +1,5 @@
 import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/models/work_order/work_order_progress_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';

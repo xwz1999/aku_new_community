@@ -1,4 +1,4 @@
-import 'package:aku_new_community/models/sars_model/my_house/estate_cascade_model.dart';
+import 'estate_cascade_model.dart';
 
 class PickedHouseModel {
   final EstateCascadeModel? building;

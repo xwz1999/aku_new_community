@@ -1,5 +1,5 @@
 import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/models/work_order/work_order_bill_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_bill_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 

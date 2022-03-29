@@ -1,7 +1,7 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/work_order/team_list_model.dart';
+import 'package:aku_new_community/saas_model/work_order/team_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/material.dart';

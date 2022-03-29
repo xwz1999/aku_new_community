@@ -1,7 +1,7 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/sars_model/my_house/my_family_member_list_model.dart';
+import 'package:aku_new_community/saas_model/my_house/my_family_member_list_model.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/bee_map.dart';
 import 'package:aku_new_community/utils/enum/identify.dart';

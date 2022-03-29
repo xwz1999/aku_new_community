@@ -1,6 +1,6 @@
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/task/my_take_task_list_model.dart';
+import 'package:aku_new_community/saas_model/task/my_take_task_list_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
 import 'package:aku_new_community/widget/views/bee_hor_image_view.dart';
