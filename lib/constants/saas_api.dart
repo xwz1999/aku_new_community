@@ -34,6 +34,7 @@ class SAASAPI {
   static _Information information = _Information();
   static _WorkOrder workOrder = _WorkOrder();
   static _Pay pay = _Pay();
+  static _LifePay lifePay = _LifePay();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -261,4 +262,15 @@ class _Pay {
 
   ///app商品 向支付宝发起订单查询请求
   String get jcookOrderCheckAlipay => '/app/user/alipay/jcookOrderCheckAlipay';
+}
+
+
+class _LifePay{
+  ///查询该房屋下所有的未缴费的订单
+  String get livingExpensesList => '/app/user/livingExpenses/list';
+
+  ///生活缴费支付记录
+  String get paymentRecordList => '/app/user/livingExpenses/paymentRecord';
+
+
 }

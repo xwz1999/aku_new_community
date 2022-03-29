@@ -272,8 +272,6 @@ class _Manager {
   ///借还管理：根据用户主键id查询需要归还物品信息（归还界面）
   String get articleReturnList => '/user/articleBorrow/findBorrowByUserId';
 
-  ///生活缴费：查询生活缴费信息list
-  String get dailyPaymentList => '/user/dailyPayment/list';
 
   ///生活缴费：查询当前用户的房屋是否缴费
   String get findEstatelsPament => '/user/dailyPayment/findEstateIsPayment';
