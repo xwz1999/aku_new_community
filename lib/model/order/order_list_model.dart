@@ -80,7 +80,7 @@ class OrderListModel {
 class MyOrderListVoList {
   int? id;
   int? goodsPushId;
-  int? appSkuId;
+  String? appSkuId;
   String? skuName;
   String? mainPhoto;
   double? sellPrice;
