@@ -1,16 +1,20 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/ui/profile/new_house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/apply_record_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -23,13 +27,17 @@ class MyHousePage extends StatefulWidget {
 }
 
 class _MyHousePageState extends State<MyHousePage> {
+  EasyRefreshController _refreshController = EasyRefreshController();
+
   @override
   void initState() {
-    Future.delayed(Duration(milliseconds: 0), () async {
-      await UserTool.userProvider.updateMyHouseInfo();
-      setState(() {});
-    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,14 +54,23 @@ class _MyHousePageState extends State<MyHousePage> {
       body: SafeArea(
           child: UserTool.userProvider.myHouses.isEmpty
               ? HouseEmptyWidget()
-              : ListView(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                  children: <Widget>[
-                    ...UserTool.userProvider.myHouses
-                        .map((e) => _houseCard(e))
-                        .toList()
-                  ].sepWidget(separate: 24.w.heightBox),
+              : EasyRefresh(
+                  controller: _refreshController,
+                  firstRefresh: true,
+                  header: MaterialHeader(),
+                  onRefresh: () async {
+                    await UserTool.userProvider.updateMyHouseInfo();
+                    setState(() {});
+                  },
+                  child: ListView(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+                    children: <Widget>[
+                      ...UserTool.userProvider.myHouses
+                          .map((e) => _houseCard(e))
+                          .toList()
+                    ].sepWidget(separate: 24.w.heightBox),
+                  ),
                 )),
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
@@ -74,57 +91,73 @@ class _MyHousePageState extends State<MyHousePage> {
   Widget _houseCard(MyHouseModel model) {
     return Stack(
       children: [
-        Container(
-          width: 686.w,
-          padding: EdgeInsets.all(24.w),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8.w)),
-          child: Column(
-            children: [
-              Row(
+        GestureDetector(
+          onTap: () async {
+            var base = await NetUtil().get(
+                SAASAPI.profile.house.switchDefaultEstate,
+                params: {'estateId': model.isDefault});
+            if (base.success) {
+              await UserTool.userProvider.updateMyHouseInfo();
+              _refreshController.callRefresh();
+            } else {
+              BotToast.showText(text: '切换默认房屋失败');
+            }
+          },
+          child: Material(
+            child: Container(
+              width: 686.w,
+              padding: EdgeInsets.all(24.w),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.w)),
+              child: Column(
                 children: [
-                  '${model.addressName}  ${model.communityName}'
-                      .text
-                      .size(24.sp)
-                      .color(Colors.black.withOpacity(0.65))
-                      .make(),
+                  Row(
+                    children: [
+                      '${model.addressName}  ${model.communityName}'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.65))
+                          .make(),
+                    ],
+                  ),
+                  8.w.heightBox,
+                  Row(
+                    children: [
+                      '${model.buildingName}${model.unitName}${model.estateName}'
+                          .text
+                          .size(36.sp)
+                          .color(Colors.black.withOpacity(0.85))
+                          .make(),
+                      24.w.widthBox,
+                      model.isDefault == 1
+                          ? BeeTag.yellowSolid(
+                              text: '${model.manageEstateTypeName}')
+                          : BeeTag.blackSolid(
+                              text: '${model.manageEstateTypeName}'),
+                    ],
+                  ),
+                  24.w.heightBox,
+                  BeeDivider.horizontal(),
+                  24.w.heightBox,
+                  Row(
+                    children: [
+                      model.isDefault == 1
+                          ? BeeTag.yellowHollow(
+                              text: '${model.manageEstateTypeName}')
+                          : BeeTag.blackHollow(
+                              text: '${model.manageEstateTypeName}'),
+                      10.w.widthBox,
+                      '${model.name}  ${model.tel}'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.65))
+                          .make(),
+                    ],
+                  )
                 ],
               ),
-              8.w.heightBox,
-              Row(
-                children: [
-                  '${model.buildingName}${model.unitName}${model.estateName}'
-                      .text
-                      .size(36.sp)
-                      .color(Colors.black.withOpacity(0.85))
-                      .make(),
-                  24.w.widthBox,
-                  model.isDefault == 1
-                      ? BeeTag.yellowSolid(
-                          text: '${model.manageEstateTypeName}')
-                      : BeeTag.blackSolid(
-                          text: '${model.manageEstateTypeName}'),
-                ],
-              ),
-              24.w.heightBox,
-              BeeDivider.horizontal(),
-              24.w.heightBox,
-              Row(
-                children: [
-                  model.isDefault == 1
-                      ? BeeTag.yellowHollow(
-                          text: '${model.manageEstateTypeName}')
-                      : BeeTag.blackHollow(
-                          text: '${model.manageEstateTypeName}'),
-                  10.w.widthBox,
-                  '${model.name}  ${model.tel}'
-                      .text
-                      .size(24.sp)
-                      .color(Colors.black.withOpacity(0.65))
-                      .make(),
-                ],
-              )
-            ],
+            ),
           ),
         ),
         if (model.isDefault == 1)

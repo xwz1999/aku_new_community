@@ -1,7 +1,14 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/saas_model/work_order/work_order_bill_model.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+
+import 'dialogs/work_order_bill_dialog.dart';
+import 'dialogs/work_order_progress_dialog.dart';
 
 class WorkOrderFuc {
   ///催促
@@ -48,20 +55,36 @@ class WorkOrderFuc {
     return base.success;
   }
 
-  ///账单
-  static Future<List<WorkOrderBillModel>> getBill({
+  ///查询工单进度
+  static Future getProgress({
     required int workOrderId,
   }) async {
-    var models = <WorkOrderBillModel>[];
-    var base = await NetUtil().get(SAASAPI.workOrder.cancel, params: {
-      'workOrderId': workOrderId,
-    });
+    var base = await NetUtil().get(SAASAPI.workOrder.findScheduleById,
+        params: {'workOrderId': workOrderId});
     if (base.success) {
-      models = (base.data as List)
+      var models = (base.data as List)
+          .map((e) => WorkOrderProgressModel.fromJson(e))
+          .toList();
+      await Get.bottomSheet(WorkOrderProgressDialog(models: models));
+    } else {
+      BotToast.showText(text: base.msg);
+    }
+  }
+
+  ///查询账单
+  static Future getBill({
+    required int workOrderId,
+  }) async {
+    var base = await NetUtil().get(SAASAPI.workOrder.workOrderBill,
+        params: {'workOrderId': workOrderId});
+    if (base.success) {
+      var models = (base.data as List)
           .map((e) => WorkOrderBillModel.fromJson(e))
           .toList();
+      await Get.bottomSheet(WorkOrderBillDialog(models: models));
+    } else {
+      BotToast.showText(text: base.msg);
     }
-    return models;
   }
 
   ///发布工单

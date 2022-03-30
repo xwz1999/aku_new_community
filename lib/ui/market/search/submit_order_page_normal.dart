@@ -197,7 +197,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                           "payPrice": totalPrice,
                           // 'points': widget.integral,
                           "residentId": UserTool.userProvider.userInfoModel!.id,
-                          "payname": UserTool.userProvider.userInfoModel!.name,
+                          "payName": UserTool.userProvider.userInfoModel!.name,
                           "payTel": UserTool.userProvider.userInfoModel!.tel,
                         },
                         showMessage: true);
