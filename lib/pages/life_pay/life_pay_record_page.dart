@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class LifePayRecordPage extends StatefulWidget {
-  LifePayRecordPage({Key? key}) : super(key: key);
+   LifePayRecordPage({Key? key}) : super(key: key);
 
   @override
   _LifePayRecordPageState createState() => _LifePayRecordPageState();
@@ -84,15 +84,29 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
   Widget _buildRecordCard(LifePayRecordModel model) {
     return Column(
       children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8.w,horizontal: 24.w),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.06),
+            borderRadius: BorderRadius.circular(8.w),
+          ),
+          child: DateUtil.formatDate(
+              DateTime.parse(model.createDate),
+              format: 'MM-dd hh-mm').text
+              .size(24.sp)
+              .color(Colors.black.withOpacity(0.45))
+              .make(),
+
+        ),
         Row(
           children: [
-            model.chargesTemplateDetailName.text
+            model.chargesName.text
                 .size(30.sp)
                 .color(ktextPrimary)
                 .bold
                 .make(),
             Spacer(),
-            '${S.of(context)!.tempPlotName} ${model.roomName}'
+            '${S.of(context)!.tempPlotName} ${model.unitName+model.estateName}'
                 .text
                 .size(24.sp)
                 .color(Color(0xFF999999))
@@ -102,32 +116,9 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
         16.w.heightBox,
         Row(
           children: [
-            '缴纳人'.text.color(ktextSubColor).size(24.sp).make(),
-            Spacer(),
-            '${model.createName}'
-                .text
-                .color(Color(0xFFFC361D))
-                .size(28.sp)
-                .bold
-                .make()
-          ],
-        ),
-        Row(
-          children: [
             '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
-            '${model.paidPrice}'.text.color(ktextPrimary).size(28.sp).make(),
-          ],
-        ),
-        Row(
-          children: [
-            '缴费时间'.text.color(ktextSubColor).size(28.sp).make(),
-            Spacer(),
-            '${DateUtil.formatDateStr(model.createDate, format: "yyyy/MM/dd HH:mm")}'
-                .text
-                .color(ktextPrimary)
-                .size(28.sp)
-                .make(),
+            '${model.payAmount}'.text.color(ktextPrimary).size(28.sp).make(),
           ],
         ),
         Row(
@@ -143,11 +134,20 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
         ),
         Row(
           children: [
-            '订单号'.text.color(ktextSubColor).size(28.sp).make(),
+            '流水号'.text.color(ktextSubColor).size(28.sp).make(),
             Spacer(),
             '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
           ],
         ),
+
+        Row(
+          children: [
+            '流水号'.text.color(ktextSubColor).size(28.sp).make(),
+            Spacer(),
+            '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+          ],
+        ),
+
       ].sepWidget(separate: 24.w.heightBox),
     )
         .box
