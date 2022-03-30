@@ -2,12 +2,10 @@ import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/work_order/work_order_detail_model.dart';
-import 'package:aku_new_community/saas_model/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/urge_dialog.dart';
-import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_bill_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_finish_dialog.dart';
-import 'package:aku_new_community/ui/function_and_service/work_order/dialogs/work_order_progress_dialog.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/history_report_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/team_list_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_map.dart';
@@ -78,21 +76,8 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                               children: [
                                 GestureDetector(
                                   onTap: () async {
-                                    var base = await NetUtil().get(
-                                        SAASAPI.workOrder.findScheduleById,
-                                        params: {'workOrderId': widget.id});
-                                    if (base.success) {
-                                      var models = (base.data as List)
-                                          .map((e) =>
-                                              WorkOrderProgressModel.fromJson(
-                                                  e))
-                                          .toList();
-                                      await Get.bottomSheet(
-                                          WorkOrderProgressDialog(
-                                              models: models));
-                                    } else {
-                                      BotToast.showText(text: base.msg);
-                                    }
+                                    await WorkOrderFuc.getProgress(
+                                        workOrderId: widget.id);
                                   },
                                   child: Material(
                                     color: Colors.transparent,
@@ -147,6 +132,14 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
                     padding:
                         EdgeInsets.only(top: 120.w, left: 32.w, right: 32.w),
                     children: [
+                      Offstage(
+                          offstage: _model!.status < 5,
+                          child: Column(
+                            children: [
+                              _historyReport(),
+                              24.hb,
+                            ],
+                          )),
                       Offstage(
                           offstage: _model!.servicePersonnelImgList == null ||
                               _model!.servicePersonnelImgList!.isEmpty,
@@ -242,8 +235,8 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
       case 6:
         return BeeLongButton(
             onPressed: () async {
-              var bills = await WorkOrderFuc.getBill(workOrderId: widget.id);
-              await Get.bottomSheet(WorkOrderBillDialog(models: bills));
+              await WorkOrderFuc.getBill(workOrderId: widget.id);
+              _refreshController.callRefresh();
             },
             text: '确认支付');
       case 7:
@@ -268,7 +261,9 @@ class _WorkOrderDetailPageState extends State<WorkOrderDetailPage> {
 
   Widget _historyReport() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(HistoryReportPage(id: widget.id));
+      },
       child: Material(
         color: Colors.transparent,
         child: Container(
