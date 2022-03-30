@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/life_pay/life_pay_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_record_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pre_pay_page.dart';
@@ -295,7 +294,7 @@ class _LifePayPageState extends State<LifePayPage> {
           _page = 1;
           _size = 10;
           BaseListModel baseListModel = await NetUtil()
-              .getList(SAASAPI.lifePay.livingExpensesList, params: {
+              .getList(API.manager.dailyPaymentList, params: {
             "pageNum": _page,
             "size": _size,
             'estateId': appProvider.selectedHouse!.estateId
@@ -332,7 +331,7 @@ class _LifePayPageState extends State<LifePayPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  '当前账单'.text.color(ktextPrimary).size(28.sp).make(),
+                  '缴费账单'.text.color(ktextPrimary).size(28.sp).make(),
                   ...List.generate(_models.length,
                           (index) => _buildCard(_models[index], index))
                       .sepWidget(separate: BeeDivider.horizontal()),

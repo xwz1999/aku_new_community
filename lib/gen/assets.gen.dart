@@ -663,6 +663,10 @@ class $AssetsIconsGen {
   AssetGenImage get leaseHouse =>
       const AssetGenImage('assets/icons/lease_house.png');
 
+  /// File path: assets/icons/life_pay_record.png
+  AssetGenImage get lifePayRecord =>
+      const AssetGenImage('assets/icons/life_pay_record.png');
+
   /// File path: assets/icons/like.png
   AssetGenImage get like => const AssetGenImage('assets/icons/like.png');
 
@@ -1196,10 +1200,6 @@ class $AssetsImagesGen {
   AssetGenImage get wxpay => const AssetGenImage('assets/images/wxpay.png');
 }
 
-class $AssetsJsonGen {
-  const $AssetsJsonGen();
-}
-
 class $AssetsStaticGen {
   const $AssetsStaticGen();
 
@@ -1298,7 +1298,6 @@ class Assets {
   static const $AssetsBraceletGen bracelet = $AssetsBraceletGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsStaticGen static = $AssetsStaticGen();
   static const $AssetsTabGen tab = $AssetsTabGen();
 }

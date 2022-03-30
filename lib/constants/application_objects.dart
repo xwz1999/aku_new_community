@@ -14,6 +14,7 @@ import 'package:aku_new_community/pages/house_introduce/house_introduce.dart';
 import 'package:aku_new_community/pages/industry_committee/industry_committee_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
+import 'package:aku_new_community/pages/life_pay/life_pay_page_new.dart';
 import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
@@ -76,7 +77,7 @@ List<AO> appObjects = [
   AO('开门码', R.ASSETS_ICONS_FUNC_KMM_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => VisitorAccessPage()),
   AO('报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => WorkOrderPage()),
-  AO('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayPage()),
+  AO('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayPageNew()),
   AO('业委会', R.ASSETS_ICONS_FUNC_YWH_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
       () => AdvicePage(type: AdviceType.SUGGESTION)),

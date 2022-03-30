@@ -6,26 +6,20 @@ part 'life_pay_record_model.g.dart';
 @JsonSerializable()
 class LifePayRecordModel extends Equatable {
   final int id;
-  final String chargesTemplateDetailName;
-  final String roomName;
-  final String years;
-  final num paidPrice;
-  final String createName;
+  final String chargesName;
+  final String communityName;
+  final String buildingName;
+  final String unitName;
+  final String estateName;
+  final String billDateStart;
+  final String billDateEnd;
+  final String billCreateDate;
+  final num payAmount;
   final String createDate;
   final int payType;
   final String code;
 
-  LifePayRecordModel({
-    required this.id,
-    required this.chargesTemplateDetailName,
-    required this.roomName,
-    required this.years,
-    required this.paidPrice,
-    required this.createName,
-    required this.createDate,
-    required this.payType,
-    required this.code,
-  });
+
 
   factory LifePayRecordModel.fromJson(Map<String, dynamic> json) =>
       _$LifePayRecordModelFromJson(json);
@@ -34,14 +28,34 @@ class LifePayRecordModel extends Equatable {
   List<Object> get props {
     return [
       id,
-      chargesTemplateDetailName,
-      roomName,
-      years,
-      paidPrice,
-      createName,
+      chargesName,
+      communityName,
+      buildingName,
+      unitName,
+      estateName,
+      billDateStart,
+      billDateEnd,
+      billCreateDate,
+      payAmount,
       createDate,
       payType,
       code,
     ];
   }
+
+   LifePayRecordModel({
+    required this.id,
+    required this.chargesName,
+    required this.communityName,
+    required this.buildingName,
+    required this.unitName,
+    required this.estateName,
+    required this.billDateStart,
+    required this.billDateEnd,
+    required this.billCreateDate,
+    required this.payAmount,
+    required this.createDate,
+    required this.payType,
+    required this.code,
+  });
 }

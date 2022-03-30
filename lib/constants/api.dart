@@ -386,6 +386,9 @@ class _Manager {
 
   ///生活缴费：查询未缴金额（日常缴费+公摊费）
   String get findUnpaidAmount => '/user/dailyPayment/findUnpaidAmount';
+
+  ///生活缴费：查询生活缴费信息list
+  String get dailyPaymentList => '/user/dailyPayment/list';
 }
 
 class _Community {
