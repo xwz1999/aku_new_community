@@ -1,15 +1,18 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/user/my_house_model.dart';
 import 'package:aku_new_community/ui/profile/new_house/add_house_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/apply_record_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,7 +92,17 @@ class _MyHousePageState extends State<MyHousePage> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () async {
+            var base = await NetUtil().get(
+                SAASAPI.profile.house.switchDefaultEstate,
+                params: {'estateId': model.isDefault});
+            if (base.success) {
+              await UserTool.userProvider.updateMyHouseInfo();
+              _refreshController.callRefresh();
+            } else {
+              BotToast.showText(text: '切换默认房屋失败');
+            }
+          },
           child: Material(
             child: Container(
               width: 686.w,

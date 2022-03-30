@@ -7,6 +7,9 @@ class _ProfileApi {
 }
 
 class _MyHouse {
+  ///切换默认房屋
+  String get switchDefaultEstate => '/app/user/myEstate/checkEstate';
+
   ///查询所有我的房屋
   String get userHouse => '/app/user/myEstate/findAllMyEstate';
 
