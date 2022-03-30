@@ -141,6 +141,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
       body: EasyRefresh.custom(
         controller: _refreshController,
         header: MaterialHeader(),
+        footer: MaterialFooter(),
         firstRefresh: true,
         onRefresh: () async {
           BaseModel model = await NetUtil().get(
@@ -493,6 +494,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24.sp,
+                      height: 1.2,
                       fontWeight: FontWeight.bold),
                 ),
               )),
@@ -567,7 +569,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               color: kPrimaryColor,
               minWidth: 120.w,
               height: 55.w,
-
               onPressed: () async {
                 var res = await NetUtil()
                     .post(SAASAPI.community.commentInsert, params: params);
@@ -594,7 +595,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
             )
           ],
-        )
-    );
+        ));
   }
 }

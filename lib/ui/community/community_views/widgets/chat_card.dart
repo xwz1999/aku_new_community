@@ -132,7 +132,7 @@ class _ChatCardState extends State<ChatCard> {
                         : kPrimaryColor,
                   ),
                   5.wb,
-                  '${widget.model.likes}'
+                  '${_likeNum}'
                       .text
                       .size(24.sp)
                       .color(Color(0xFF999999))
@@ -282,9 +282,15 @@ class _ChatCardState extends State<ChatCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     32.hb,
-                    if (!widget.model.content!.isEmptyOrNull)
-                      widget.model.content!.text.size(32.sp).black.make(),
-                    32.hb,
+                    Offstage(
+                      offstage: widget.model.content.isEmptyOrNull,
+                      child: Column(
+                        children: [
+                          widget.model.content!.text.size(32.sp).black.make(),
+                          32.hb,
+                        ],
+                      ),
+                    ),
                     _renderImage(),
                     widget.model.topicTags.isEmpty
                         ? SizedBox()
