@@ -210,7 +210,7 @@ class _HomePageState extends State<HomePage>
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 32.w),
                         padding:
-                            EdgeInsets.only(top: 20.w, left: 36.w, right: 36.w),
+                            EdgeInsets.only(top: 20.w, left: 0.w, right: 0.w),
                         child: _applications(), //ApplicationView(),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage>
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 2,
                               child: GestureDetector(
                                 child: Container(
                                   padding:
@@ -250,7 +250,7 @@ class _HomePageState extends State<HomePage>
                                         '访客邀请',
                                         style: TextStyle(
                                             color: Color(0xD9000000),
-                                            fontSize: 26.sp,
+                                            fontSize: 28.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       10.hb,
@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage>
                             ),
                             BeeGradientDivider.vertical(),
                             Expanded(
-                              flex: 2,
+                              flex: 3,
                               child: Column(
                                 children: [
                                   Expanded(
@@ -297,7 +297,7 @@ class _HomePageState extends State<HomePage>
                                               '一键报警',
                                               style: TextStyle(
                                                   color: Color(0xD9000000),
-                                                  fontSize: 26.sp,
+                                                  fontSize: 28.sp,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             10.hb,
@@ -340,7 +340,7 @@ class _HomePageState extends State<HomePage>
                                               '建议咨询',
                                               style: TextStyle(
                                                   color: Color(0xD9000000),
-                                                  fontSize: 26.sp,
+                                                  fontSize: 28.sp,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             10.hb,
@@ -368,45 +368,55 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                     SliverToBoxAdapter(
-                        child: Column(
-                      children: [
-                        HomeTitle(
-                          title: '社区活动',
-                          suffixTitle: '查看全部',
-                          onTap: () => Get.to(() => ActivityListPage()),
-                        ),
-                        _activityItemModels == []
-                            ? SizedBox()
-                            : Container(
-                                height: 480.w,
-                                padding: EdgeInsets.only(left: 32.w),
-                                child: ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  separatorBuilder: (context, index) {
-                                    return SizedBox(
-                                      width: 16.w,
-                                    );
-                                  },
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 500.w,
-                                      child: Builder(
-                                        builder: (context) {
-                                          return ActivityCard(
-                                              model:
-                                                  _activityItemModels[index]);
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  itemCount: _activityItemModels.length,
+                        child: Container(
+                      padding: EdgeInsets.all(32.w),
+                      margin: EdgeInsets.symmetric(horizontal: 32.w),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.w)),
+                      child: Column(
+                        children: [
+                          HomeTitle(
+                            title: '社区活动',
+                            suffixTitle: '查看全部',
+                            onTap: () => Get.to(() => ActivityListPage()),
+                          ),
+                          24.hb,
+                          _activityItemModels == []
+                              ? SizedBox()
+                              : Container(
+                                  height: 460.w,
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        width: 16.w,
+                                      );
+                                    },
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: 500.w,
+                                        child: Builder(
+                                          builder: (context) {
+                                            return ActivityCard(
+                                                model:
+                                                    _activityItemModels[index]);
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    itemCount: _activityItemModels.length,
+                                  ),
                                 ),
-                              ),
-                        // : ActivityCard(model: _activityItemModel)
-                        //     .pSymmetric(h: 24.w, v: 24.w),
-                      ],
+                          // : ActivityCard(model: _activityItemModel)
+                          //     .pSymmetric(h: 24.w, v: 24.w),
+                        ],
+                      ),
                     )),
+                    SliverToBoxAdapter(
+                      child: 48.hb,
+                    )
                   ],
                 ),
               ),
@@ -529,7 +539,7 @@ class _HomePageState extends State<HomePage>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             getFunctionBtn(AO.fromRaw('周边服务')),
-            getFunctionBtn(AO.fromRaw('小蜜蜂任务', replaceTitle: '任务发布')),
+            getFunctionBtn(AO.fromRaw('任务发布', replaceTitle: '任务发布')),
             getFunctionBtn(AO.fromRaw('邻家宠物')),
             getFunctionBtn(AO.fromRaw('全部应用')),
           ],

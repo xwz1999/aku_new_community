@@ -9,6 +9,7 @@ import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -151,6 +152,10 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
       bottomNavi: BottomButton(
         child: '立即报名'.text.size(32.sp).color(Colors.black).bold.make(),
         onPressed: () async {
+          if (_model!.regisEndTime?.isBefore(DateTime.now()) ?? false) {
+            BotToast.showText(text: '报名时间已结束');
+            return;
+          }
           var re = await NetUtil().get(SAASAPI.activity.registration,
               params: {'activityId': _model!.id}, showMessage: true);
           if (re.success) {

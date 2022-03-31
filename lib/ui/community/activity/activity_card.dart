@@ -18,7 +18,7 @@ class ActivityCard extends StatelessWidget {
     this.home = false,
   }) : super(key: key);
 
-  bool get outdate => ActivityFunc.dateCheck(model!.end) == '';
+  bool get outdate => model!.end?.isBefore(DateTime.now()) ?? true;
 
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -29,81 +29,72 @@ class ActivityCard extends StatelessWidget {
         padding: EdgeInsets.zero,
         onPressed: () => Get.to(() => ActivityDetailPage(id: model!.id)),
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.w),
-        ),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Hero(
-              tag: ImgModel.first(model!.imgList),
-              child: Material(
-                color: Colors.grey,
-                child: BeeImageNetwork(
-                  imgs: model!.imgList ?? [],
-                  width: double.infinity,
-                  height: home! ? 240.w : 340.w,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 24.w, top: 24.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    constraints: BoxConstraints(maxWidth: 340.w),
-                    child: Text(
-                      model == null ? '' : model!.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: Color(0xD9000000),
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold),
+            Stack(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              children: [
+                Hero(
+                  tag: ImgModel.first(model!.imgList),
+                  child: Material(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(16.w),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: BeeImageNetwork(
+                      imgs: model!.imgList ?? [],
+                      width: double.infinity,
+                      height: home! ? 240.w : 340.w,
                     ),
                   ),
-                  Spacer(),
-                  GestureDetector(
+                ),
+                Positioned(
+                    top: 0,
+                    left: 0,
                     child: Container(
-                      //color: Color(0x80FEBF76),
-
-                      // shape: StadiumBorder(),
                       alignment: Alignment.center,
                       height: 39.w,
                       width: 98.w,
                       decoration: BoxDecoration(
-                        color: outdate
-                            ? Colors.black.withOpacity(0.06)
-                            : Color(0x80FEBF76),
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        color: outdate ? Color(0xFFE8E8E8) : Color(0xFFFDE019),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16.w),
+                            bottomRight: Radius.circular(12.w)),
                       ),
-
                       child: outdate
                           ? '已结束'
                               .text
                               .size(22.sp)
-                              .color(Colors.black.withOpacity(0.25))
+                              .color(Color(0xFF999999))
                               .make()
                           : '报名中'
                               .text
                               .size(22.sp)
-                              .color(Color(0xFFF48117))
+                              .color(Color(0xFF333333))
                               .make(),
-                    ),
-                    onTap: () {
-                      outdate
-                          ? null
-                          : () {
-                              Get.to(() => ActivityDetailPage(id: model!.id));
-                            };
-                    },
+                    ))
+              ],
+            ),
+            24.hb,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  constraints: BoxConstraints(maxWidth: 340.w),
+                  child: Text(
+                    model == null ? '' : model!.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Color(0xD9000000),
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold),
                   ),
-                  24.wb
-                ],
-              ),
+                ),
+                Spacer(),
+              ],
             ),
             Spacer(),
             [
@@ -116,13 +107,14 @@ class ActivityCard extends StatelessWidget {
                 ),
               ),
               // Spacer(),
-              ActivityFunc.dateCheck(model!.end)
-                  .text
-                  .size(24.sp)
-                  .black
-                  .make(),
-            ].row().pSymmetric(h: 24.w),
-            20.hb,
+              Offstage(
+                  offstage: ActivityFunc.dateCheck(model!.end) == '已结束',
+                  child: ActivityFunc.dateCheck(model!.end)
+                      .text
+                      .size(24.sp)
+                      .black
+                      .make()),
+            ].row(),
           ],
         ),
       ),

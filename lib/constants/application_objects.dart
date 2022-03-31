@@ -100,7 +100,7 @@ List<AO> appObjects = [
   AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
   AO('智慧养老', Assets.home.icZhyl.path, () => OldAgeSupportPageSimple()),
   AO('周边服务', Assets.home.icZbfw.path, null),
-  AO('小蜜蜂任务', Assets.home.icRwfb.path, () => TaskPage()),
+  AO('任务发布', Assets.home.icRwfb.path, () => TaskPage()),
   AO('自营商城', Assets.icons.shoppingMall.path, null),
   AO('邻家宠物', Assets.home.icLjcw.path, null),
   AO('共享停车', Assets.icons.sharePark.path, null),
@@ -157,28 +157,9 @@ List<AO> userAppObjects = [
 AO allApp =
     AO('全部应用', R.ASSETS_APPLICATIONS_ALL_APP_PNG, () => AllApplicationPage());
 
-///为您推荐 original value
+///暂未上线 original value
 List<String> _recommendApp = [
-  // if (false) '一键开门',
   '访客邀请',
-  '报事报修',
-  '建议咨询',
-  '一键报警',
-  '共享投屏',
-  '二手市场',
-  '共享停车',
-];
-
-///为您推荐
-List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
-
-///智慧管家 original value
-List<String> _smartManagerApp = [
-  // if (false) '一键开门',
-  '开门码',
-  '访客邀请',
-  '报事报修',
-  '生活缴费',
   '业委会',
   '建议咨询',
   '便民电话',
@@ -186,24 +167,34 @@ List<String> _smartManagerApp = [
   '物品出门',
   '投诉表扬',
   '问卷调查',
-  '装修管理',
   '借还管理',
-  '一键报警',
   '设施预约',
-  '快递包裹',
   '电子商务',
   '服务浏览',
   '社区介绍',
   '家政服务',
   '地理信息',
   '周边企业',
-  '住房说明'
+  '住房说明',
+  '智慧养老',
+  '周边服务',
+  '自营商城',
+  '邻家宠物',
+  '共享停车',
+  '二手市场',
+  '共享投屏',
+];
 
-  // '小区教育',
-  // '健康运动',
-  // '家政服务',
-  // '居家养老',
-  // '物业租赁',
+///为您推荐
+List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
+
+///智慧管家 original value
+List<String> _smartManagerApp = [
+  '开门码',
+  '报事报修',
+  '生活缴费',
+  '一键报警',
+  '任务发布',
 ];
 
 ///智慧管家
@@ -268,7 +259,7 @@ List<String> _aboutCommunityApp = [
 List<AO> get aboutCommunityApp =>
     _aboutCommunityApp.map((e) => AO.fromRaw(e)).toList();
 
-List<String> _wisdomServiceApp = ['智慧养老', '周边服务', '小蜜蜂任务', '共享投屏'];
+List<String> _wisdomServiceApp = ['智慧养老', '周边服务', '任务发布', '共享投屏'];
 
 List<AO> get wisdomServiceApp =>
     _wisdomServiceApp.map((e) => AO.fromRaw(e)).toList();
