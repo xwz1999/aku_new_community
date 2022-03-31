@@ -262,6 +262,12 @@ class _Pay {
 
   ///app商品 向支付宝发起订单查询请求
   String get jcookOrderCheckAlipay => '/app/user/alipay/jcookOrderCheckAlipay';
+
+  ///创建缴费订单
+  String get createPrepaymentOrder => '/app/user/alipay/createPrepaymentOrder';
+
+  ///app商品 向支付宝发起订单查询请求
+  String get prepaymentOrderCheckAlipay => '/app/user/alipay/prepaymentOrderCheckAlipay';
 }
 
 
@@ -271,6 +277,10 @@ class _LifePay{
 
   ///生活缴费支付记录
   String get paymentRecordList => '/app/user/livingExpenses/paymentRecord';
+
+  ///查询预交余额
+  String get findEstateBalance => '/app/user/livingExpenses/findEstateBalance';
+
 
 
 }

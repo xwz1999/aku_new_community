@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/life_pay/life_pay_record_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -8,6 +9,9 @@ import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
+import 'life_pay_bill_page/life_pay_bill_page.dart';
 
 class LifePayRecordPage extends StatefulWidget {
    LifePayRecordPage({Key? key}) : super(key: key);
@@ -41,10 +45,10 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-      title: '生活缴费',
+      title: '缴费记录',
       body: BeeListView(
-        path: API.manager.paymentRecord,
-        extraParams: {"estateId": UserTool.appProvider.selectedHouse!.estateId},
+        path: SAASAPI.lifePay.paymentRecordList,
+        extraParams: {"estateId": UserTool.userProvider.defaultHouse!.id},
         controller: _refreshController,
         convert: (models) {
           return models.rows
@@ -82,77 +86,82 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
   }
 
   Widget _buildRecordCard(LifePayRecordModel model) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 8.w,horizontal: 24.w),
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.06),
-            borderRadius: BorderRadius.circular(8.w),
-          ),
-          child: DateUtil.formatDate(
-              DateTime.parse(model.createDate),
-              format: 'MM-dd hh-mm').text
-              .size(24.sp)
-              .color(Colors.black.withOpacity(0.45))
-              .make(),
-
-        ),
-        Row(
-          children: [
-            model.chargesName.text
-                .size(30.sp)
-                .color(ktextPrimary)
-                .bold
-                .make(),
-            Spacer(),
-            '${S.of(context)!.tempPlotName} ${model.unitName+model.estateName}'
-                .text
+    return GestureDetector(
+      onTap: (){
+        Get.to(()=>LifePayBillPage(model: model,));
+      },
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 8.w,horizontal: 24.w),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.06),
+              borderRadius: BorderRadius.circular(8.w),
+            ),
+            child: DateUtil.formatDate(
+                DateTime.parse(model.createDate),
+                format: 'MM-dd hh-mm').text
                 .size(24.sp)
-                .color(Color(0xFF999999))
-                .make()
-          ],
-        ),
-        16.w.heightBox,
-        Row(
-          children: [
-            '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
-            Spacer(),
-            '${model.payAmount}'.text.color(ktextPrimary).size(28.sp).make(),
-          ],
-        ),
-        Row(
-          children: [
-            '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
-            Spacer(),
-            '${getPayType[model.payType]}'
-                .text
-                .color(ktextPrimary)
-                .size(28.sp)
+                .color(Colors.black.withOpacity(0.45))
                 .make(),
-          ],
-        ),
-        Row(
-          children: [
-            '流水号'.text.color(ktextSubColor).size(28.sp).make(),
-            Spacer(),
-            '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
-          ],
-        ),
 
-        Row(
-          children: [
-            '流水号'.text.color(ktextSubColor).size(28.sp).make(),
-            Spacer(),
-            '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
-          ],
-        ),
+          ),
+          Row(
+            children: [
+              model.chargesName.text
+                  .size(30.sp)
+                  .color(ktextPrimary)
+                  .bold
+                  .make(),
+              Spacer(),
+              '${S.of(context)!.tempPlotName} ${model.unitName+model.estateName}'
+                  .text
+                  .size(24.sp)
+                  .color(Color(0xFF999999))
+                  .make()
+            ],
+          ),
+          16.w.heightBox,
+          Row(
+            children: [
+              '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
+              Spacer(),
+              '${model.payAmount}'.text.color(ktextPrimary).size(28.sp).make(),
+            ],
+          ),
+          Row(
+            children: [
+              '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
+              Spacer(),
+              '${getPayType[model.payType]}'
+                  .text
+                  .color(ktextPrimary)
+                  .size(28.sp)
+                  .make(),
+            ],
+          ),
+          Row(
+            children: [
+              '流水号'.text.color(ktextSubColor).size(28.sp).make(),
+              Spacer(),
+              '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+            ],
+          ),
 
-      ].sepWidget(separate: 24.w.heightBox),
-    )
-        .box
-        .color(Colors.white)
-        .padding(EdgeInsets.symmetric(vertical: 32.w, horizontal: 20.w))
-        .make();
+          Row(
+            children: [
+              '流水号'.text.color(ktextSubColor).size(28.sp).make(),
+              Spacer(),
+              '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+            ],
+          ),
+
+        ].sepWidget(separate: 24.w.heightBox),
+      )
+          .box
+          .color(Colors.white)
+          .padding(EdgeInsets.symmetric(vertical: 32.w, horizontal: 20.w))
+          .make(),
+    );
   }
 }
