@@ -93,12 +93,10 @@ class _MyHousePageState extends State<MyHousePage> {
       children: [
         GestureDetector(
           onTap: () async {
-            print(model.id);
             var base = await NetUtil().get(
                 SAASAPI.profile.house.switchDefaultEstate,
                 params: {'estateId': model.id});
             if (base.success) {
-              await UserTool.userProvider.updateMyHouseInfo();
               _refreshController.callRefresh();
             } else {
               BotToast.showText(text: '切换默认房屋失败');

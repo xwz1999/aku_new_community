@@ -1,3 +1,4 @@
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -35,11 +36,7 @@ class _HomeNotificationState extends State<HomeNotification> {
     return Row(
       children: [
         24.wb,
-        Image.asset(
-          R.ASSETS_IMAGES_NOTICE_PNG,
-          height: 45.w,
-          width: 61.w,
-        ),
+        Assets.home.icGonggao.image(width: 48.w, height: 48.w),
         24.wb,
         widget.items.isEmpty
             ? Spacer()
@@ -48,7 +45,7 @@ class _HomeNotificationState extends State<HomeNotification> {
                 options: CarouselOptions(
                   scrollDirection: Axis.vertical,
                   viewportFraction: 1.0,
-                  aspectRatio: 300 / 40,
+                  aspectRatio: 343 / 44,
                   autoPlay: true,
                   onPageChanged: (index, _) {
                     //print(index.toString());
@@ -77,9 +74,8 @@ class _HomeNotificationState extends State<HomeNotification> {
                 child: Text(
                   e.title,
                   style: TextStyle(
-                    color: Color(0xA6000000),
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF333333),
+                    fontSize: 24.sp,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -89,14 +85,14 @@ class _HomeNotificationState extends State<HomeNotification> {
                 child: Text(
               BeeDateUtil(DateUtil.getDateTime(e.createDate)).timeAgo,
               style: TextStyle(
-                color: Color(0x73000000),
-                fontSize: 20.sp,
+                color: Color(0xFF999999),
+                fontSize: 24.sp,
               ),
             )),
             8.wb,
             Icon(
               CupertinoIcons.chevron_forward,
-              size: 24.w,
+              size: 32.w,
               color: Color(0xFF999999),
             ),
           ],

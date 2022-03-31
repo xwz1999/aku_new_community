@@ -60,7 +60,7 @@ class UserProvider extends ChangeNotifier {
     _token = null;
     _userInfoModel = null;
     _myHouses = [];
-    NetUtil().get(SAASAPI.login.logOut, showMessage: true);
+    NetUtil().post(SAASAPI.login.logOut, showMessage: true);
     NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');

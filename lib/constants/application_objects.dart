@@ -12,8 +12,6 @@ import 'package:aku_new_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_new_community/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:aku_new_community/pages/house_introduce/house_introduce.dart';
 import 'package:aku_new_community/pages/industry_committee/industry_committee_page.dart';
-import 'package:aku_new_community/pages/life_pay/life_pay_choose_page.dart';
-import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page_new.dart';
 import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
@@ -76,8 +74,8 @@ List<AO> appObjects = [
 
   AO('开门码', R.ASSETS_ICONS_FUNC_KMM_PNG, () => OpeningCodePage()),
   AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => VisitorAccessPage()),
-  AO('报事报修', R.ASSETS_ICONS_FUNC_BSBX_PNG, () => WorkOrderPage()),
-  AO('生活缴费', R.ASSETS_ICONS_FUNC_SHJF_PNG, () => LifePayPageNew()),
+  AO('报事报修', Assets.home.icBsbx.path, () => WorkOrderPage()),
+  AO('生活缴费', Assets.home.icShjf.path, () => LifePayPageNew()),
   AO('业委会', R.ASSETS_ICONS_FUNC_YWH_PNG, () => IndustryCommitteePage()),
   AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
       () => AdvicePage(type: AdviceType.SUGGESTION)),
@@ -90,7 +88,7 @@ List<AO> appObjects = [
   AO('装修管理', R.ASSETS_ICONS_FUNC_ZXGL_PNG, () => NewRenovationPage()),
   AO('借还管理', R.ASSETS_ICONS_FUNC_JHGL_PNG, () => SelectBorrowReturnPage()),
   AO('一键报警', R.ASSETS_ICONS_FUNC_YJBJ_PNG, () => AlarmPage()),
-  AO('设施预约', R.ASSETS_ICONS_FUNC_SSYY_PNG, () => FacilityAppointmentPage()),
+  AO('设施预约', Assets.home.icSsyy.path, () => FacilityAppointmentPage()),
   AO('快递包裹', R.ASSETS_ICONS_FUNC_KDBG_PNG, () => ExpressPackagePage()),
   AO('电子商务', R.ASSETS_ICONS_FUNC_DZSW_PNG, () => ElectronicCommercPage()),
   AO('服务浏览', R.ASSETS_ICONS_FUNC_FWLL_PNG, () => ServiceBrowsePage()),
@@ -100,15 +98,15 @@ List<AO> appObjects = [
   AO('地理信息', R.ASSETS_ICONS_FUNC_DLXX_PNG, () => GeographicInformationPage()),
   AO('周边企业', R.ASSETS_ICONS_FUNC_ZBQY_PNG, () => SurroundingEnterprisesPage()),
   AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
-  AO('智慧养老', Assets.icons.provideAged.path, () => OldAgeSupportPageSimple()),
-  AO('周边服务', Assets.icons.nearbyService.path, null),
-  AO('小蜜蜂任务', Assets.icons.beeTask.path, () => TaskPage()),
+  AO('智慧养老', Assets.home.icZhyl.path, () => OldAgeSupportPageSimple()),
+  AO('周边服务', Assets.home.icZbfw.path, null),
+  AO('小蜜蜂任务', Assets.home.icRwfb.path, () => TaskPage()),
   AO('自营商城', Assets.icons.shoppingMall.path, null),
-  AO('邻家宠物', Assets.icons.nearbyPet.path, null),
+  AO('邻家宠物', Assets.home.icLjcw.path, null),
   AO('共享停车', Assets.icons.sharePark.path, null),
   AO('二手市场', Assets.icons.secondHandMarket.path, null),
   AO('共享投屏', Assets.icons.projectionScreen.path, null),
-  AO('全部应用', Assets.icons.funcAll.path, () => AllApplicationPage()),
+  AO('全部应用', Assets.home.icQbyy.path, () => AllApplicationPage()),
 
   // AO(
   //   '小区教育',

@@ -114,8 +114,8 @@ dependencies:
   scroll_to_index: ^2.1.1
   #验证码自动填充
   sms_autofill: ^2.2.0
-  #提取图片主色
-  palette_generator: ^0.3.2
+#  #提取图片主色
+#  palette_generator: ^0.3.2
   #音频播放
   just_audio: ^0.9.20
   #录音
@@ -152,6 +152,7 @@ flutter:
     - assets/static/
     - assets/json/
     - assets/bracelet/
+    - assets/home/
 
 import_sorter:
   emojis: true
