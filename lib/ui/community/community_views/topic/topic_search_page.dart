@@ -22,11 +22,13 @@ class TopicSearchPage extends StatefulWidget {
 class _TopicSearchPageState extends State<TopicSearchPage> {
   List<TopicListModel> _models = [];
   bool isHot = true;
+  TextEditingController _textEditingController = TextEditingController();
 
   Future _getModels() async {
     var re = await NetUtil().get(SAASAPI.community.topicList, params: {
       'pageNum': 1,
       'size': 10,
+      'title': _textEditingController.text
     });
     if (re.success) {
       _models = (re.data['rows'] as List)
@@ -40,6 +42,12 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
   void initState() {
     _getModels();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -80,6 +88,7 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
                               .get(SAASAPI.community.topicList, params: {
                             'pageNum': 1,
                             'size': 20,
+                            'title': _textEditingController.text,
                           });
                           if (re.success) {
                             _models = (re.data['rows'] as List)
@@ -88,6 +97,7 @@ class _TopicSearchPageState extends State<TopicSearchPage> {
                             setState(() {});
                           }
                         },
+                        controller: _textEditingController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.zero,

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -26,7 +24,7 @@ class BottomButton extends StatelessWidget {
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         disabledColor: Colors.white.withOpacity(0.5),
-        disabledTextColor: ktextSubColor.withOpacity(0.8),
+        disabledTextColor: ktextSubColor.withOpacity(0.4),
         textColor: textColor,
         child: child,
         onPressed: onPressed,
