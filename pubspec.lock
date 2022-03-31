@@ -359,7 +359,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.4"
+    version: "4.0.6"
   dotted_border:
     dependency: "direct main"
     description:
@@ -518,21 +518,21 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "9.1.7"
+    version: "9.1.9"
   flutter_sound_platform_interface:
     dependency: transitive
     description:
       name: flutter_sound_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "9.1.7"
+    version: "9.1.9"
   flutter_sound_web:
     dependency: transitive
     description:
       name: flutter_sound_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "9.1.7"
+    version: "9.1.9"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -549,7 +549,7 @@ packages:
       name: fluwx
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.8.1+1"
+    version: "3.8.2"
   frontend_server_client:
     dependency: transitive
     description:
@@ -696,7 +696,7 @@ packages:
       name: jpush_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.3"
+    version: "2.2.4"
   js:
     dependency: transitive
     description:
@@ -865,13 +865,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.4"
-  palette_generator:
-    dependency: "direct main"
-    description:
-      name: palette_generator
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.3"
   path:
     dependency: transitive
     description:
@@ -1375,7 +1368,7 @@ packages:
       name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.5.0"
+    version: "2.5.1"
   xdg_directories:
     dependency: transitive
     description:

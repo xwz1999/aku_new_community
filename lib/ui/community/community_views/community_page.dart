@@ -26,12 +26,10 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CommunityPage extends StatefulWidget {
@@ -295,7 +293,7 @@ class _CommunityPageState extends State<CommunityPage>
         var result =
             await Get.to(() => PublicInformationDetailPage(id: item.id));
         CommunityFunc.addViews(item.id);
-        if (result) {
+        if (result != null && result) {
           _easyRefreshController.callRefresh();
         }
       },
