@@ -172,9 +172,12 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                 },
                 likeBuilder: (bool isLiked) {
                   return Image.asset(
-                    isLiked
-                        ? Assets.icons.communityLikeIs.path
-                        : Assets.icons.communityLike.path,
+                    Assets.icons.communityLike.path,
+                    width: 32.w,
+                    height: 32.w,
+                    color: !_isLiked
+                        ? Colors.black.withOpacity(0.45)
+                        : kPrimaryColor,
                   );
                 },
                 likeCount: _likeNum,
