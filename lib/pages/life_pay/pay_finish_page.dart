@@ -45,8 +45,6 @@ class PayFinishPage extends StatelessWidget {
             ),
             70.w.heightBox,
             '支付成功'.text.size(48.sp).color(Colors.white).bold.make(),
-            16.w.heightBox,
-            'Payment successful'.text.size(20.sp).color(Colors.white).make(),
           ],
         ),
       ),

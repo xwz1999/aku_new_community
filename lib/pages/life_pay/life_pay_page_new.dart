@@ -13,6 +13,7 @@ import 'package:aku_new_community/pages/life_pay/pay_util.dart';
 import 'package:aku_new_community/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:aku_new_community/pages/life_pay/widget/life_pay_detail_page_new.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/bee_parse.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
@@ -84,6 +85,15 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
   void initState() {
     super.initState();
     _controller = EasyRefreshController();
+
+    Future.delayed(Duration.zero,(){
+      if( UserTool.userProvider.defaultHouse==null){
+        Get.off(()=>MyHousePage());
+        BotToast.showText(text:  '请先选择您的房屋');
+      }
+
+    });
+
     _models = [
       LifePayModel(
           id: 1,
@@ -358,8 +368,8 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
 
   Future<double> _dailyPaymentPrePay() async {
     BaseModel baseModel =
-        await NetUtil().get(API.manager.dailyPaymentPrePay, params: {
-      "estateId": 5,//UserTool.appProvider.selectedHouse!.estateId,
+        await NetUtil().get(SAASAPI.lifePay.findEstateBalance, params: {
+      "estateId": UserTool.userProvider.defaultHouse!.id
     });
     if (baseModel.success) {
       return (baseModel.data as num).toDouble();
@@ -390,78 +400,28 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
         header: MaterialHeader(),
         controller: _controller,
         onRefresh: () async {
-          _page = 1;
-          _size = 10;
-          // BaseListModel baseListModel = await NetUtil()
-          //     .getList(SAASAPI.lifePay.livingExpensesList, params: {
-          //   "pageNum": _page,
-          //   "size": _size,
-          //   'estateId': 5//appProvider.selectedHouse!.estateId
-          // });
-          // _models = baseListModel.rows
-          //     .map((e) => LifePayModel.fromJson(e))
-          //     .toList();
+
+          _prePrice = await _dailyPaymentPrePay();
           _selectMonths.clear();
-          _models = [
-            LifePayModel(
-                id: 1,
-                createDate: '2022-02-11 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-02-11 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-03-11 00:00:01'),
-            LifePayModel(
-                id: 2,
-                createDate: '2022-02-12 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-02-11 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-03-12 00:00:01'),
-            LifePayModel(
-                id: 3,
-                createDate: '2022-03-11 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-03-11 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-04-11 00:00:01'),
-            LifePayModel(
-                id: 4,
-                createDate: '2022-04-11 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-04-11 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-05-11 00:00:01'),
-            LifePayModel(
-                id: 5,
-                createDate: '2022-02-15 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-02-15 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-03-15 00:00:01'),
-            LifePayModel(
-                id: 6,
-                createDate: '2022-02-16 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-02-16 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-03-16 00:00:01'),
-            LifePayModel(
-                id: 7,
-                createDate: '2022-03-18 00:00:01',
-                payPrincipal: 100,
-                billDateStart: '2022-03-11 00:00:01',
-                chargesName: '物业费',
-                defaultAmount: 50,
-                billDateEnd: '2022-04-19 00:00:01'),
-          ];
+
+          BaseModel model = await NetUtil()
+              .get(SAASAPI.lifePay.livingExpensesList, params: {
+            'estateId': UserTool.userProvider.defaultHouse!.id
+          });
+          if(model.success){
+            if(model.data!=null)
+
+
+              _models = ( model.data as List)
+                  .map((e) => LifePayModel.fromJson(e))
+                  .toList() ;
+          }
+
+
+
 
           ///先按月份分好
+          if(_models.isNotEmpty)
           _models.forEach((element) {
             if (_selectMonths.isEmpty) {
               _selectMonths.add(MonthPay(
@@ -500,8 +460,6 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
 
             }
           });
-
-          _prePrice = 0;
           if (mounted) setState(() {});
         },
         child: Column(

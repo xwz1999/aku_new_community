@@ -1,3 +1,5 @@
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +26,7 @@ class HouseHeadCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Material(
       color: kForeGroundColor,
       child: Padding(
@@ -36,7 +38,7 @@ class HouseHeadCard extends StatelessWidget {
             32.w.heightBox,
             GestureDetector(
               onTap: () {
-                Get.to(() => PickMyHousePage());
+                Get.to(() => MyHousePage());
                 if (onChanged != null) onChanged!();
               },
               child: Row(
@@ -61,7 +63,9 @@ class HouseHeadCard extends StatelessWidget {
                             .make(),
                         10.w.heightBox,
 
-                          (appProvider.selectedHouse!=null?appProvider.selectedHouse!.roomName:'').text.black
+                          (userProvider.defaultHouse!=null?(userProvider.defaultHouse!.buildingName+'栋-'
+                              +userProvider.defaultHouse!.unitName+'单元-'+userProvider.defaultHouse!.estateName+'室'
+                          ):'').text.black
                             .size(32.sp)
                             .bold
                             .make()
