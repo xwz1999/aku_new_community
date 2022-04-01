@@ -29,6 +29,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
   _buildTile(
     AO object, {
     bool editMode = false,
+    bool online = false,
   }) {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
@@ -38,7 +39,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           : () {
               if (LoginUtil.isNotLogin) return;
               if (!LoginUtil.haveRoom(object.title)) return;
-              if (object.page == null) {
+              if (object.page == null || !online) {
                 BotToast.showText(
                     text: '正在准备上线中，敬请期待', align: Alignment(0, 0.5));
               } else {
@@ -164,7 +165,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
     );
   }
 
-  Widget _buildView(List<AO> objects) {
+  Widget _buildView(List<AO> objects, bool online) {
     final appProvider = Provider.of<AppProvider>(context);
     return GridView.builder(
       gridDelegate:
@@ -172,7 +173,7 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
       itemBuilder: (context, index) {
         return Stack(
           children: [
-            _buildTile(objects[index], editMode: _editMode),
+            _buildTile(objects[index], editMode: _editMode, online: online),
             Positioned(
               right: 0,
               top: 0,
@@ -220,8 +221,8 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           scrollDirection: Axis.vertical,
           controller: _pageController,
           children: [
-            _buildView(smartManagerApp),
-            _buildView(recommendApp),
+            _buildView(smartManagerApp, true),
+            _buildView(recommendApp, false),
           ],
         ).expand(),
       ],
