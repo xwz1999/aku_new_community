@@ -156,8 +156,8 @@ class _CommunityPageState extends State<CommunityPage>
                 ? SizedBox()
                 : ListView(
                     children: [
-                      _geSearch(),
-                      2.hb,
+                      // _geSearch(),
+                      // 2.hb,
                       _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
                       16.hb,
                       _gambitModels.isEmpty ? SizedBox() : _getNews(),
