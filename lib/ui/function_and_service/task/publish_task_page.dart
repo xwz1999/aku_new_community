@@ -1073,7 +1073,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
       return false;
     }
     if (int.parse(_rewardController.text) == 0) {
-      BotToast.showText(text: '赏金不能为0');
+      BotToast.showText(text: '报酬不能为0');
       return false;
     }
     if (_nameController.text.isEmpty) {

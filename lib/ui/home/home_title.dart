@@ -1,9 +1,7 @@
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/utils/headers.dart';
 
 class HomeTitle extends StatelessWidget {
   final String title;
@@ -21,27 +19,10 @@ class HomeTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        85.hb,
-        32.wb,
-        Stack(
-          children: [
-            // Positioned(
-            //   left: 0,
-            //   right: 0,
-            //   bottom: 4.w,
-            //   child: Container(
-            //     color: kPrimaryColor,
-            //     height: 8.w,
-            //   ),
-            // ),
-            title.text.size(32.sp).bold.make(),
-          ],
-        ),
+        title.text.size(32.sp).bold.make(),
         Spacer(),
-        MaterialButton(
-          shape: StadiumBorder(),
-          padding: EdgeInsets.symmetric(horizontal: 12.w),
-          onPressed: onTap,
+        GestureDetector(
+          onTap: onTap,
           child: Row(
             children: [
               suffixTitle.text.size(24.sp).color(Color(0xFF999999)).make(),
@@ -54,7 +35,6 @@ class HomeTitle extends StatelessWidget {
             ],
           ),
         ),
-        12.wb,
       ],
     );
   }

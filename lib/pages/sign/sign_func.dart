@@ -153,6 +153,7 @@ class SignFunc {
     return true;
   }
 
+  ///获取用户房屋列表
   static Future<List<MyHouseModel>> getMyHouseInfo() async {
     BaseModel baseModel = await NetUtil().get(
       SAASAPI.profile.house.userHouse,

@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -30,6 +31,7 @@ class LifePrePayPage extends StatefulWidget {
 class _LifePrePayPageState extends State<LifePrePayPage> {
   late TextEditingController _editingController;
   String _payMethod = '支付宝';
+  num amount = 0;
 
   @override
   void initState() {
@@ -66,6 +68,14 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                     16.w.widthBox,
                     TextField(
                       controller: _editingController,
+                      onChanged: (String value){
+                        if(value.isEmpty){
+                          amount = 0;
+                        }else{
+                          amount = double.parse(value);
+                        }
+
+                      },
                       decoration: InputDecoration(
                         hintText: '0.0',
                         hintStyle: TextStyle(
@@ -156,24 +166,29 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
             Function cancel = BotToast.showLoading();
             try {
               BaseModel baseModel =
-                  await NetUtil().post(API.pay.dailPaymentPrePay, params: {
-                "estateId": UserTool.appProvider.selectedHouse!.estateId,
-                "payType": 1,
-                "payPrice": _editingController.text
-              });
+              await NetUtil().post(SAASAPI.pay.createPrepaymentOrder,
+                  params: {
+                    'estateId': UserTool.userProvider.defaultHouse!.id,
+                    'payAmount':amount
+                  },
+                  showMessage: true);
               if (baseModel.success) {
-                bool result = await PayUtil()
-                    .callAliPay(baseModel.msg, API.pay.dailPaymentPrePayCheck);
+                bool result = await PayUtil().callAliPay(
+                    (baseModel.data as String),
+                    SAASAPI.pay.prepaymentOrderCheckAlipay);
                 if (result) {
                   Get.off(() => PayFinishPage());
+                } else {
+                  ///跳到待付款页面
+                 BotToast.showText(text: '充值失败');
                 }
-              } else {
-                BotToast.showText(text: baseModel.msg);
               }
+              cancel();
             } catch (e) {
+              cancel();
               LoggerData.addData(e);
             }
-            cancel();
+
           },
           child: '立即充值'.text.size(32.sp).bold.black.make()),
     );

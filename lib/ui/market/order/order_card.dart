@@ -76,7 +76,7 @@ class _OrderCardState extends State<OrderCard> {
       "payType": 1, //暂时写死 等待后续补充
       "payPrice": widget.model.payPrice,
       "residentId": UserTool.userProvider.userInfoModel!.id,
-      "payname": UserTool.userProvider.userInfoModel!.name,
+      "payName": UserTool.userProvider.userInfoModel!.name,
       "payTel": UserTool.userProvider.userInfoModel!.tel,
     });
     if (baseModel.success) {

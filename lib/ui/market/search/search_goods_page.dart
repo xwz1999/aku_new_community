@@ -1,13 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
 import 'package:aku_new_community/models/search/search_goods_model.dart';
@@ -19,6 +10,13 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import '../search_goods_card.dart';
 import 'good_detail_page.dart';
 import 'goods_list_card.dart';
@@ -435,7 +433,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                       Container(
                         color: Color(0xFFF2F3F4),
                         child: BeeListView(
-                          path: API.market.findGoodsList,
+                          path: SAASAPI.market.good.recommend,
                           controller: _refreshController1,
                           refreshExtra: (model) =>
                               _models = model as List<SearchGoodsModel>,
@@ -677,7 +675,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
   ///搜索记录
   _searchHistoryWidget() {
     List<Widget> choiceChipList = [];
-    if (_searchHistory != null && _searchHistory.length > 0) {
+    if (_searchHistory.length > 0) {
       for (var text in _searchHistory) {
         choiceChipList.add(Padding(
           padding: EdgeInsets.only(right: 10, bottom: 5),
@@ -760,12 +758,10 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
   ///获取搜索记录
   getSearchListFromSharedPreferences() async {
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
-    _searchHistory = HiveStore.appBox!.get(
-            userProvider.userInfoModel?.id.toString() ??
-                '' + "userSearhHistory") ??
-        '';
-    if (_searchHistory == null) {
-      _searchHistory = [];
+    var history = HiveStore.appBox!.get(
+        userProvider.userInfoModel?.id.toString() ?? '' + "userSearhHistory");
+    if (history != null) {
+      _searchHistory = (history as List).cast<String>().toList();
     }
     setState(() {});
   }

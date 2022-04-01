@@ -1,3 +1,6 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/life_pay/life_pay_record_model.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_new_community/utils/headers.dart';
@@ -5,7 +8,9 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'widget/bill_card.dart';
 
 class LifePayBillPage extends StatefulWidget {
-  LifePayBillPage({Key? key}) : super(key: key);
+  final LifePayRecordModel model;
+
+  LifePayBillPage({Key? key, required this.model}) : super(key: key);
 
   @override
   _LifePayBillPageState createState() => _LifePayBillPageState();
@@ -35,6 +40,14 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
     );
   }
 
+
+  Map<int, String> getPayType = {
+    1: '支付宝',
+    2: '微信',
+    3: '现金',
+    4: 'pos',
+    5: '预缴扣除'
+  };
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
@@ -53,13 +66,71 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
             ),
             child: Column(
               children: [
-                _cardList('收费项目', '公共能耗费'),
+                _cardList('收费项目', widget.model.chargesName),
                 SizedBox(height: 30.w),
-                _cardList('收费地址', '深蓝公寓 1幢1单元306室'),
+                _cardList('收费地址',
+                    '${S.of(context)!.tempPlotName} ${widget.model.unitName + widget.model.estateName}'),
               ],
             ),
           ),
-          BillCard(),
+          Container(
+            margin: EdgeInsets.only(
+              top: 32.w,
+              left: 32.w,
+              right: 32.w,
+            ),
+            padding: EdgeInsets.only(
+              left: 20.w,
+              right: 20.w,
+              bottom: 32.w,
+              top: 2.w,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(6)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _billItem('账单月份',DateUtil.formatDate(DateTime.parse(widget.model.billDateStart),
+                    format: 'yyyy-MM'),),
+                _billItem('缴纳金额','¥'+widget.model.payAmount.toStringAsFixed(2),isRed: true),
+
+                _billItem('缴费时间',DateUtil.formatDate(DateTime.parse(widget.model.createDate),
+                    format: 'yyyy/MM/dd hh:mm'),),
+                _billItem('付款方式',  '${getPayType[widget.model.payType]}'),
+                _billItem('账单创建时间',DateUtil.formatDate(DateTime.parse(widget.model.billCreateDate),
+                    format: 'yyyy/MM/dd hh:mm'),),
+                _billItem('流水号',widget.model.code,),
+
+              ]
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  Container _billItem(String title,String value, { bool isRed = false}) {
+    return Container(
+      margin: EdgeInsets.only(top: 30.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: BaseStyle.fontSize28,
+              color: ktextSubColor,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: BaseStyle.fontSize28,
+              color: isRed?Color(0xFFF5222D) :ktextPrimary,
+            ),
+          ),
         ],
       ),
     );

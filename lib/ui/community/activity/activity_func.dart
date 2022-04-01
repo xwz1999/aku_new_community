@@ -5,7 +5,7 @@ class ActivityFunc {
     }
     var nowDate = DateTime.now();
     if (date.isBefore(nowDate)) {
-      return '';
+      return '已结束';
     } else {
       var days = date.difference(nowDate).inDays;
       if (days > 0) {

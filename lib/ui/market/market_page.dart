@@ -114,6 +114,8 @@ class _MarketPageState extends State<MarketPage>
     _pageCount = baseListModel.total;
   }
 
+  bool _onLoadVisible = true;
+
   @override
   void initState() {
     super.initState();
@@ -160,24 +162,28 @@ class _MarketPageState extends State<MarketPage>
         topBouncing: false,
         scrollController: _sliverListController,
         controller: _refreshController,
-        onRefresh: () async {
-          _refresh();
-        },
-        onLoad: () async {
-          _pageNum++;
-          await loadMarketInfo();
-          if (_goodsHomeModelList.length >= _pageCount) {
-            _refreshController.finishLoad(noMore: false);
-          }
-          setState(() {});
-        },
+        onRefresh: _refresh,
+        onLoad: !_onLoadVisible
+            ? null
+            : () async {
+                _pageNum++;
+                await loadMarketInfo();
+                print(_goodsHomeModelList.length);
+                if (_goodsHomeModelList.length >= _pageCount) {
+                  _refreshController.finishLoad(noMore: true);
+                  _onLoadVisible = false;
+                  print(_onLoadVisible);
+                }
+                setState(() {});
+              },
         slivers: _buildBody(context),
       ),
     );
   }
 
-  _refresh() async {
+  Future _refresh() async {
     await updateMarketInfo();
+    _onLoadVisible = true;
     //_swiperModels = await CommunityFunc.swiper();
     _marketSwiperModels = await CommunityFunc.marketSwiper();
     _statistics = await CommunityFunc.getMarketStatistics();
@@ -765,7 +771,7 @@ class _MarketPageState extends State<MarketPage>
         imageErrorBuilder: (context, error, stackTrace) {
           return Image.asset(
             R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           );
         },
       ),
@@ -819,7 +825,7 @@ class _MarketPageState extends State<MarketPage>
           BeeImageNetwork(
             width: 88.w,
             height: 88.w,
-            urls: item.imgUrls,
+            imgs: item.imgUrls,
           ),
           8.hb,
           Text(

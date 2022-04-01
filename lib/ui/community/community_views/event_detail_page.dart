@@ -61,6 +61,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
   List<CommentListModel> _comments = [];
   List<bool> _folds = [];
   List<bool> _likes = [];
+  List<int> _likeNums = [];
 
   //评论输入框焦点
   FocusNode _focusNode = FocusNode();
@@ -141,6 +142,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
       body: EasyRefresh.custom(
         controller: _refreshController,
         header: MaterialHeader(),
+        footer: MaterialFooter(),
         firstRefresh: true,
         onRefresh: () async {
           BaseModel model = await NetUtil().get(
@@ -160,11 +162,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
               base.rows.map((e) => CommentListModel.fromJson(e)).toList();
           _folds = List.filled(_size, true);
           _comments.forEach((element) {
-            if (element.isLike) {
-              _likes.add(true);
-            } else {
-              _likes.add(false);
-            }
+            _likes.add(element.isLike);
+            _likeNums.add(element.likes);
           });
           setState(() {});
         },
@@ -183,11 +182,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
             _comments.addAll(_list);
             _folds.addAll(List.filled(_list.length, true));
             _list.forEach((element) {
-              if (element.isLike) {
-                _likes.add(true);
-              } else {
-                _likes.add(false);
-              }
+              _likes.add(element.isLike);
+              _likeNums.add(element.likes);
             });
           }
           setState(() {});
@@ -360,17 +356,48 @@ class _EventDetailPageState extends State<EventDetailPage> {
             child: Row(
               children: [
                 Spacer(),
-                Image.asset(
-                  R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
-                  width: 40.w,
-                  height: 40.w,
+                GestureDetector(
+                  onTap: () async {
+                    var base = await NetUtil().get(
+                        SAASAPI.community.commentLike,
+                        params: {'commentId': model.id});
+                    if (base.success) {
+                      _likes[rootIndex] = !_likes[rootIndex];
+                      if (_likes[rootIndex]) {
+                        _likeNums[rootIndex] += 1;
+                      } else {
+                        _likeNums[rootIndex] -= 1;
+                      }
+                      BotToast.showText(
+                          text: _likes[rootIndex] ? '点赞成功' : '取消点赞成功');
+                    } else {
+                      BotToast.showText(text: base.msg);
+                    }
+
+                    setState(() {});
+                  },
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
+                          width: 32.w,
+                          height: 32.w,
+                          color: !_likes[rootIndex]
+                              ? Colors.black.withOpacity(0.45)
+                              : kPrimaryColor,
+                        ),
+                        5.wb,
+                        '${_likeNums[rootIndex]}'
+                            .text
+                            .size(24.sp)
+                            .color(Color(0xFF999999))
+                            .make(),
+                      ],
+                    ),
+                  ),
                 ),
-                5.wb,
-                '${model.likes}'
-                    .text
-                    .size(24.sp)
-                    .color(Color(0xFF999999))
-                    .make(),
                 32.wb,
                 GestureDetector(
                   onTap: () {
@@ -470,54 +497,64 @@ class _EventDetailPageState extends State<EventDetailPage> {
         _focusNode.requestFocus();
         _currentCommentIndex = rootIndex;
       },
-      child: RichText(
-          text: TextSpan(
-              text: '${model.createName}',
-              style: TextStyle(
-                color: Color(0xFF5D98F9),
-                fontSize: 28.sp,
-              ),
-              children: [
-            if (createId == model.createId)
-              WidgetSpan(
-                  child: Container(
-                width: 56.w,
-                height: 28.w,
-                margin: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 4.w),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Color(0xFFF8B133),
-                    borderRadius: BorderRadius.circular(4.w)),
-                child: Text(
-                  '楼主',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold),
-                ),
-              )),
-            if (model.parentName != null)
-              TextSpan(
-                  text: ' 回复 ',
-                  style: TextStyle(
-                    color: Colors.black.withOpacity(0.85),
-                    fontSize: 28.sp,
-                  )),
-            if (model.parentName != null)
-              TextSpan(
-                text: '${model.parentName}',
-                style: TextStyle(
-                  color: Color(0xFF5D98F9),
-                  fontSize: 28.sp,
-                ),
-              ),
-            TextSpan(
-                text: '：${model.content}',
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.85),
-                  fontSize: 28.sp,
-                ))
-          ])),
+      child: Material(
+        color: Colors.transparent,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            RichText(
+                text: TextSpan(
+                    text: '${model.createName}',
+                    style: TextStyle(
+                      color: Color(0xFF5D98F9),
+                      fontSize: 28.sp,
+                    ),
+                    children: [
+                  if (createId == model.createId)
+                    WidgetSpan(
+                        child: Container(
+                      width: 56.w,
+                      height: 28.w,
+                      margin:
+                          EdgeInsets.only(left: 4.w, right: 4.w, bottom: 4.w),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Color(0xFFF8B133),
+                          borderRadius: BorderRadius.circular(4.w)),
+                      child: Text(
+                        '楼主',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24.sp,
+                            height: 1.2,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
+                  if (model.parentName != null)
+                    TextSpan(
+                        text: ' 回复 ',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.85),
+                          fontSize: 28.sp,
+                        )),
+                  if (model.parentName != null)
+                    TextSpan(
+                      text: '${model.parentName}',
+                      style: TextStyle(
+                        color: Color(0xFF5D98F9),
+                        fontSize: 28.sp,
+                      ),
+                    ),
+                  TextSpan(
+                      text: '：${model.content}',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.85),
+                        fontSize: 28.sp,
+                      ))
+                ])),
+          ],
+        ),
+      ),
     );
   }
 
@@ -567,7 +604,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               color: kPrimaryColor,
               minWidth: 120.w,
               height: 55.w,
-
               onPressed: () async {
                 var res = await NetUtil()
                     .post(SAASAPI.community.commentInsert, params: params);
@@ -594,7 +630,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
             )
           ],
-        )
-    );
+        ));
   }
 }

@@ -124,6 +124,59 @@ class $AssetsBraceletGen {
       const AssetGenImage('assets/bracelet/xiaomi6.png');
 }
 
+class $AssetsHomeGen {
+  const $AssetsHomeGen();
+
+  /// File path: assets/home/ic_bsbx.png
+  AssetGenImage get icBsbx => const AssetGenImage('assets/home/ic_bsbx.png');
+
+  /// File path: assets/home/ic_gonggao.png
+  AssetGenImage get icGonggao =>
+      const AssetGenImage('assets/home/ic_gonggao.png');
+
+  /// File path: assets/home/ic_ljcw.png
+  AssetGenImage get icLjcw => const AssetGenImage('assets/home/ic_ljcw.png');
+
+  /// File path: assets/home/ic_location.png
+  AssetGenImage get icLocation =>
+      const AssetGenImage('assets/home/ic_location.png');
+
+  /// File path: assets/home/ic_message.png
+  AssetGenImage get icMessage =>
+      const AssetGenImage('assets/home/ic_message.png');
+
+  /// File path: assets/home/ic_qbyy.png
+  AssetGenImage get icQbyy => const AssetGenImage('assets/home/ic_qbyy.png');
+
+  /// File path: assets/home/ic_rwfb.png
+  AssetGenImage get icRwfb => const AssetGenImage('assets/home/ic_rwfb.png');
+
+  /// File path: assets/home/ic_search.png
+  AssetGenImage get icSearch =>
+      const AssetGenImage('assets/home/ic_search.png');
+
+  /// File path: assets/home/ic_shjf.png
+  AssetGenImage get icShjf => const AssetGenImage('assets/home/ic_shjf.png');
+
+  /// File path: assets/home/ic_ssyy.png
+  AssetGenImage get icSsyy => const AssetGenImage('assets/home/ic_ssyy.png');
+
+  /// File path: assets/home/ic_zbfw.png
+  AssetGenImage get icZbfw => const AssetGenImage('assets/home/ic_zbfw.png');
+
+  /// File path: assets/home/ic_zhyl.png
+  AssetGenImage get icZhyl => const AssetGenImage('assets/home/ic_zhyl.png');
+
+  /// File path: assets/home/img_fkyq.png
+  AssetGenImage get imgFkyq => const AssetGenImage('assets/home/img_fkyq.png');
+
+  /// File path: assets/home/img_jyzx.png
+  AssetGenImage get imgJyzx => const AssetGenImage('assets/home/img_jyzx.png');
+
+  /// File path: assets/home/img_yjbj.png
+  AssetGenImage get imgYjbj => const AssetGenImage('assets/home/img_yjbj.png');
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -662,6 +715,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lease_house.png
   AssetGenImage get leaseHouse =>
       const AssetGenImage('assets/icons/lease_house.png');
+
+  /// File path: assets/icons/life_pay_record.png
+  AssetGenImage get lifePayRecord =>
+      const AssetGenImage('assets/icons/life_pay_record.png');
 
   /// File path: assets/icons/like.png
   AssetGenImage get like => const AssetGenImage('assets/icons/like.png');
@@ -1296,6 +1353,7 @@ class Assets {
 
   static const $AssetsApplicationsGen applications = $AssetsApplicationsGen();
   static const $AssetsBraceletGen bracelet = $AssetsBraceletGen();
+  static const $AssetsHomeGen home = $AssetsHomeGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();

@@ -30,6 +30,7 @@ class UserProvider extends ChangeNotifier {
       await updateUserInfo();
       WebSocketUtil().setUser(userInfoModel!.id.toString());
       WebSocketUtil().startWebSocket();
+      await updateMyHouseInfo();
 
       ///初始化用户配置
       _userConfig = await HiveStore.userBox!.get('${_userInfoModel!.id}') ??
@@ -59,7 +60,7 @@ class UserProvider extends ChangeNotifier {
     _token = null;
     _userInfoModel = null;
     _myHouses = [];
-    NetUtil().get(SAASAPI.login.logOut, showMessage: true);
+    NetUtil().post(SAASAPI.login.logOut, showMessage: true);
     NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
@@ -77,6 +78,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///更新我的房屋列表
   Future updateMyHouseInfo() async {
     _myHouses = await SignFunc.getMyHouseInfo();
     if (_myHouses.isEmpty) {
@@ -99,6 +101,7 @@ class UserProvider extends ChangeNotifier {
 
   UserInfoModel? get userInfoModel => _userInfoModel;
 
+  ///我的房屋列表
   List<MyHouseModel> _myHouses = [];
 
   List<MyHouseModel> get myHouses => _myHouses;

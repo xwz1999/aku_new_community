@@ -15,6 +15,7 @@ import 'package:aku_new_community/ui/community/community_views/add_new_event_pag
 import 'package:aku_new_community/ui/community/community_views/my_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/new_community_view.dart';
 import 'package:aku_new_community/ui/community/community_views/topic/topic_community_view.dart';
+import 'package:aku_new_community/ui/community/community_views/topic/topic_detail_page.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_page.dart';
@@ -26,12 +27,10 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CommunityPage extends StatefulWidget {
@@ -295,7 +294,7 @@ class _CommunityPageState extends State<CommunityPage>
         var result =
             await Get.to(() => PublicInformationDetailPage(id: item.id));
         CommunityFunc.addViews(item.id);
-        if (result) {
+        if (result != null && result) {
           _easyRefreshController.callRefresh();
         }
       },
@@ -400,7 +399,7 @@ class _CommunityPageState extends State<CommunityPage>
             }, '全部'),
           ),
           32.hb,
-          _searchHistoryWidget()
+          _newTopicListWidget()
         ],
       ),
     );
@@ -418,7 +417,7 @@ class _CommunityPageState extends State<CommunityPage>
         minWidth: double.infinity,
         color: Color(0xFFF3F3F3),
         onPressed: () {
-          //Get.to(() => SearchGoodsPage());
+          // Get.to(() => TopicSearchPage());
         },
         child: Row(
           children: [
@@ -435,7 +434,8 @@ class _CommunityPageState extends State<CommunityPage>
     );
   }
 
-  _searchHistoryWidget() {
+  ///新鲜话题列表
+  _newTopicListWidget() {
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(left: 32.w, right: 32.w),
@@ -466,7 +466,9 @@ class _CommunityPageState extends State<CommunityPage>
         labelPadding: EdgeInsets.only(right: 12.w, left: 12.w),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         onSelected: (bool value) {
-          // Get.to(() => TopicDetailPage(model: item));
+          Get.to(() => TopicDetailPage(
+                topicId: item.id,
+              ));
         },
         label: Row(
           mainAxisSize: MainAxisSize.min,

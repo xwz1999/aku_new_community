@@ -149,16 +149,25 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
               ),
       ),
       bottomNavi: BottomButton(
-        child: '立即报名'.text.size(32.sp).color(Colors.black).bold.make(),
-        onPressed: () async {
-          var re = await NetUtil().get(SAASAPI.activity.registration,
-              params: {'activityId': _model!.id}, showMessage: true);
-          if (re.success) {
-            _refreshController.callRefresh();
-          }
-        },
+        child: '立即报名'.text.size(32.sp).bold.make(),
+        onPressed: !canTap
+            ? null
+            : () async {
+                var re = await NetUtil().get(SAASAPI.activity.registration,
+                    params: {'activityId': _model!.id}, showMessage: true);
+                if (re.success) {
+                  _refreshController.callRefresh();
+                }
+              },
       ),
     );
+  }
+
+  bool get canTap {
+    if (_model?.regisEndTime?.isBefore(DateTime.now()) ?? true) {
+      return false;
+    }
+    return true;
   }
 
   Container _headWidget() {
