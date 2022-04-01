@@ -201,14 +201,19 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    32.hb,
-                    if (!widget.model.content!.isEmptyOrNull)
-                      widget.model.content!.text
-                          .size(28.sp)
-                          .color(ktextSubColor)
-                          .make(),
-                    32.hb,
-                    _renderImage(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        32.hb,
+                        if (!widget.model.content!.isEmptyOrNull)
+                          widget.model.content!.text
+                              .size(28.sp)
+                              .color(ktextSubColor)
+                              .make(),
+                        32.hb,
+                        _renderImage(),
+                      ],
+                    ).paddingOnly(left: 115.w),
                     20.hb,
                     TopicWidgets(
                       topicTags: widget.model.topicTags,
