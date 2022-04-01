@@ -10,6 +10,7 @@ MarketCategoryModel _$MarketCategoryModelFromJson(Map<String, dynamic> json) =>
     MarketCategoryModel(
       id: json['id'] as int,
       name: json['name'] as String?,
-      imgUrls:
-          (json['imgUrls'] as List<dynamic>).map((e) => e as String).toList(),
+      imgUrls: (json['imgUrls'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );

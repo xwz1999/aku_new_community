@@ -1,7 +1,7 @@
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +19,10 @@ class NewCategorySubCard extends StatelessWidget {
       child: Column(
         children: [
           Spacer(),
-          FadeInImage.assetNetwork(
-            image: SAASAPI.image(
-                subModels.imgUrls.isNotEmpty ? subModels.imgUrls.first : ''),
-            //subModels.imgUrls!.isNotEmpty? subModels.imgUrls!.first :'',
-            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+          BeeImageNetwork(
             height: 75.w,
             width: 75.w,
+            imgs: subModels.imgUrls,
           ),
           12.hb,
           Container(

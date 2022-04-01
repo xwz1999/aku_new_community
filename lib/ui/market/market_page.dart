@@ -771,7 +771,7 @@ class _MarketPageState extends State<MarketPage>
         imageErrorBuilder: (context, error, stackTrace) {
           return Image.asset(
             R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           );
         },
       ),
@@ -825,7 +825,7 @@ class _MarketPageState extends State<MarketPage>
           BeeImageNetwork(
             width: 88.w,
             height: 88.w,
-            urls: item.imgUrls,
+            imgs: item.imgUrls,
           ),
           8.hb,
           Text(

@@ -1,3 +1,4 @@
+import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -7,7 +8,7 @@ part 'market_category_model.g.dart';
 class MarketCategoryModel extends Equatable {
   final int id;
   final String? name;
-  final List<String> imgUrls;
+  final List<ImgModel> imgUrls;
 
   @override
   List<Object?> get props => [id];
