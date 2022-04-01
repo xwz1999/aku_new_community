@@ -89,7 +89,7 @@ class _SplashPageState extends State<SplashPage> {
       debug: DeveloperUtil.dev,
     );
 
-    Future.delayed(Duration(milliseconds: 0), () async {
+    Future.delayed(Duration(milliseconds: 1000), () async {
       //本地存储初始化在最前
       await Hive.initFlutter();
       await HiveStore.init();

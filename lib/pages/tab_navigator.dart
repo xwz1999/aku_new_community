@@ -1,4 +1,5 @@
 import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/community_page.dart';
@@ -82,28 +83,24 @@ class _TabNavigatorState extends State<TabNavigator>
     List<BottomNavigationBarItem> _bottomNav = <BottomNavigationBarItem>[
       _buildBottomBar(
         '首页',
-        R.ASSETS_ICONS_TABBAR_HOME_NO_PNG,
-        R.ASSETS_ICONS_TABBAR_HOME_PNG,
+        Assets.home.icShouyeNor.path,
+        Assets.home.icShouyeSel.path,
       ),
       _buildBottomBar(
         '商城',
         R.ASSETS_ICONS_TABBAR_MARKET_NO_PNG,
         R.ASSETS_ICONS_TABBAR_MARKET_PNG,
       ),
-      // _buildBottomBar(
-      //   '物业',
-      //   R.ASSETS_ICONS_TABBAR_HOUSE_NO_PNG,
-      //   R.ASSETS_ICONS_TABBAR_HOUSE_PNG,
-      // ),
+      BottomNavigationBarItem(icon: Container()),
       _buildBottomBar(
         '社区',
-        R.ASSETS_ICONS_TABBAR_MESSAGE_NO_PNG,
-        R.ASSETS_ICONS_TABBAR_MESSAGE_PNG,
+        Assets.home.icShequNor.path,
+        Assets.home.icShequSel.path,
       ),
       _buildBottomBar(
         '我的',
-        R.ASSETS_ICONS_TABBAR_USER_NO_PNG,
-        R.ASSETS_ICONS_TABBAR_USER_PNG,
+        Assets.home.icWodeNor.path,
+        Assets.home.icWodeSel.path,
       ),
     ];
     return BeeScaffold(
