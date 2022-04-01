@@ -210,8 +210,8 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              _buildListTile('智慧管家', 1),
-              _buildListTile('暂未上线', 0),
+              _buildListTile('智慧管家', 0),
+              _buildListTile('暂未上线', 1),
               // _buildListTile('商城购物', 2),
             ],
           ),

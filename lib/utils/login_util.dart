@@ -1,8 +1,7 @@
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
-import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
-import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
+import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -34,17 +33,15 @@ class LoginUtil {
   static bool haveRoom(String name) {
     if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修|我的缴费')))
       return true;
-    final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
-    if (appProvider.selectedHouse == null) {
-      BotToast.showText(text: '请先添加房屋');
-      Get.to(() => AddHousePage());
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
+    if (userProvider.userInfoModel!.name == null) {
+      BotToast.showText(text: '请先实名认证');
+      Get.dialog(CertificationDialog());
       return false;
     }
-    if (appProvider.selectedHouse == null) {
-      BotToast.showText(text: '房屋审核中或审核失败');
-      Get.to(() => HouseOwnersPage(
-            identify: 4,
-          ));
+    if (userProvider.defaultHouse == null) {
+      BotToast.showText(text: '请先选择默认房屋');
+      Get.to(() => MyHousePage());
       return false;
     }
     return true;

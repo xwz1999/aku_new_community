@@ -185,7 +185,7 @@ List<String> _recommendApp = [
   '共享投屏',
 ];
 
-///为您推荐
+///暂未上线
 List<AO> get recommendApp => _recommendApp.map((e) => AO.fromRaw(e)).toList();
 
 ///智慧管家 original value
