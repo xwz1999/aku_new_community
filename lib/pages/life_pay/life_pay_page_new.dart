@@ -308,21 +308,24 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
       color: kPrimaryColor,
       padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
       onPressed: () async {
-        // Function cancel = BotToast.showLoading();
-        // BaseModel baseModel =
-        //     await NetUtil().post('/user/alipay/dailyPaymentAlipay', params: {
-        //   "ids": total.ids,
-        //   "payType": 1, //暂时写死 等待后续补充
-        //   "payPrice": total.payTotal.toDoubleStringAsFixed()
-        // });
-        // if (baseModel.success) {
-        //   bool result = await PayUtil()
-        //       .callAliPay(baseModel.msg, API.pay.dailPayMentCheck);
-        //   if (result) {
-        //     Get.off(() => PayFinishPage());
-        //   }
-        // }
-        // cancel();
+        Function cancel = BotToast.showLoading();
+        BaseModel baseModel =
+            await NetUtil().post(SAASAPI.pay.createLivingExpensesOrder, params: {
+          "chargesBillId": total.ids,
+          "paymentAmount": total.payTotal
+        });
+        if (baseModel.success) {
+          bool result = await PayUtil().callAliPay(
+              (baseModel.data as String),
+              SAASAPI.pay.livingExpensesOrderCheckAlipay);
+          if (result) {
+            Get.off(() => PayFinishPage());
+          } else {
+            ///跳到待付款页面
+            BotToast.showText(text: '缴费失败');
+          }
+        }
+        cancel();
       },
       child: '去缴费'.text.black.size(32.sp).bold.make(),
     );
