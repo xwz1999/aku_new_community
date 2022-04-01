@@ -117,6 +117,40 @@ class _HomePageState extends State<HomePage>
             width: 48.w,
             height: 48.w,
           ),
+<<<<<<< HEAD
+          Spacer(),
+          // GestureDetector(
+          //   onTap: () {
+          //     Get.to(() => BeeSearch());
+          //   },
+          //   child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_FIND_PNG,
+          //       height: 40.w, width: 40.w),
+          // ),
+          Padding(
+            padding: EdgeInsets.only(right: 16.w, left: 12.w),
+            child: Badge(
+                elevation: 0,
+                badgeColor: Color(0xFFCF2525),
+                padding: sum > 9 ? EdgeInsets.all(2.w) : EdgeInsets.all(5.w),
+                showBadge: appProvider.messageCenterModel.commentCount != 0 ||
+                    appProvider.messageCenterModel.sysCount != 0,
+                position: BadgePosition.topEnd(
+                  top: 8.w,
+                  end: -4.w,
+                ),
+                badgeContent: Text(
+                  (sum > 99 ? 99 : sum).toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    if (LoginUtil.isNotLogin) return;
+                    Get.to(() => MessageCenterPage());
+                  },
+                  child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_MESSAGE_PNG,
+                      height: 40.w, width: 40.w),
+                )),
+=======
         16.wb,
         Text(
           appProvider.location?['city'] == null
@@ -134,6 +168,7 @@ class _HomePageState extends State<HomePage>
           style: TextStyle(
             fontSize: 28.sp,
             color: Color(0xff999999),
+>>>>>>> b09ea45bd7aafc589e5c65d5846bf3243066ee5d
           ),
           textAlign: TextAlign.center,
         ),
