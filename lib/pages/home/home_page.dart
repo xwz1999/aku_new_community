@@ -150,13 +150,13 @@ class _HomePageState extends State<HomePage>
             textAlign: TextAlign.center,
           ),
           Spacer(),
-          GestureDetector(
-            onTap: () {
-              Get.to(() => BeeSearch());
-            },
-            child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_FIND_PNG,
-                height: 40.w, width: 40.w),
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     Get.to(() => BeeSearch());
+          //   },
+          //   child: Image.asset(R.ASSETS_ICONS_ICON_MAIN_FIND_PNG,
+          //       height: 40.w, width: 40.w),
+          // ),
           Padding(
             padding: EdgeInsets.only(right: 16.w, left: 12.w),
             child: Badge(
