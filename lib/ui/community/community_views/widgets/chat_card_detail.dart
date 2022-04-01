@@ -356,10 +356,6 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                     .color(Color(0xFF999999))
                     .make(),
                 32.wb,
-
-
-
-
               ].row(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -367,10 +363,15 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      32.hb,
-                      widget.model!.content!.text.size(28.sp).color(ktextSubColor).make(),
-                      32.hb,
-                      _renderImage(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          32.hb,
+                          widget.model!.content!.text.size(28.sp).color(ktextSubColor).make(),
+                          32.hb,
+                          _renderImage(),
+                        ],
+                      ).paddingOnly(left: 116.w),
                       Row(
                         children: [
                           widget.model!.gambitTitle?.isEmpty ?? true
