@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
@@ -25,17 +24,17 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ChatCard extends StatefulWidget {
   final AllDynamicListModel model;
-  final VoidCallback? onDelete;
-  final VoidCallback? onBack;
+  final VoidCallback refresh;
+
   final bool hideLine;
   final bool canTap;
 
   ChatCard({
     Key? key,
     required this.model,
-    this.onDelete,
+    required this.refresh,
     this.hideLine = false,
-    this.canTap = true, this.onBack,
+    this.canTap = true,
   }) : super(key: key);
 
   @override
@@ -143,21 +142,24 @@ class _ChatCardState extends State<ChatCard> {
             ),
           ),
           20.wb,
-          Material(
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                Image.asset(R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
-                    width: 32.w,
-                    height: 32.w,
-                    color: Colors.black.withOpacity(0.45)),
-                5.wb,
-                '${widget.model.commentNum}'
-                    .text
-                    .size(24.sp)
-                    .color(Color(0xFF999999))
-                    .make(),
-              ],
+          GestureDetector(
+            onTap: () => Get.to(EventDetailPage(dynamicId: widget.model.id)),
+            child: Material(
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  Image.asset(R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
+                      width: 32.w,
+                      height: 32.w,
+                      color: Colors.black.withOpacity(0.45)),
+                  5.wb,
+                  '${widget.model.commentNum}'
+                      .text
+                      .size(24.sp)
+                      .color(Color(0xFF999999))
+                      .make(),
+                ],
+              ),
             ),
           )
         ],
@@ -174,7 +176,6 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
-
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -183,19 +184,11 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () async {
-
-          var result =
-          await  Get.to(() => EventDetailPage(
+                await Get.to(() => EventDetailPage(
                       dynamicId: widget.model.id,
-                      onDelete: widget.onDelete,
+                      refresh: widget.refresh,
                     ));
-
-          CommunityFunc.dynamicAddViews(widget.model.id);
-
-          if (result != null && result) {
-           widget.onBack!();
-          }
-
+                widget.refresh();
               }
             : null,
         child: Column(
@@ -272,9 +265,8 @@ class _ChatCardState extends State<ChatCard> {
                     ));
 
                     if (result == true) {
-
-                      await CommunityFunc.deleteDynamicAddViews(widget.model.id);
-                      if (widget.onDelete != null) widget.onDelete!();
+                      await CommunityFunc.deleteDynamic(widget.model.id);
+                      widget.refresh();
                     }
                   }
                 },
@@ -339,7 +331,7 @@ class CommunityPopButton extends StatelessWidget {
                 )
               : PopupMenuItem(
                   child: '举报'.text.isIntrinsic.make(),
-                  value: 0,
+                  value: 1,
                 ),
         ];
       },

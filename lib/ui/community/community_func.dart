@@ -1,4 +1,3 @@
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
@@ -47,20 +46,6 @@ class CommunityFunc {
     return model.rows.map((e) => InformationListModel.fromJson(e)).toList();
   }
 
-
-  ///删除动态
-  static Future<bool> deleteDynamicAddViews(int dynamicId) async {
-    BaseModel model = await NetUtil().get(SAASAPI.community.deleteDynamic,
-        params: {'dynamicId': dynamicId}, showMessage: false);
-    if (model.success) {
-      BotToast.showText(text: '删除成功');
-      return true;
-    } else {
-      BotToast.showText(text: '删除失败');
-      return false;
-    }
-  }
-
   ///给单个资讯增加浏览量
   static Future<String> addViews(int newsId) async {
     BaseModel model = await NetUtil().get(
@@ -84,7 +69,6 @@ class CommunityFunc {
     if (model.success) return '';
     return model.msg;
   }
-
 
   ///查询顶部统计信息
   static Future<MarketStatisticsModel?> getMarketStatistics() async {
@@ -173,5 +157,23 @@ class CommunityFunc {
     return (model.data as List)
         .map((e) => HomeSwiperModel.fromJson(e))
         .toList();
+  }
+
+  ///删除用户动态
+  static Future deleteDynamic(int id) async {
+    var base = await NetUtil()
+        .get(SAASAPI.community.deleteDynamic, showMessage: true, params: {
+      'dynamicId': id,
+    });
+    return base.success;
+  }
+
+  ///删除用户评论
+  static Future deleteComment(int id) async {
+    var base = await NetUtil()
+        .get(SAASAPI.community.deleteComment, showMessage: true, params: {
+      'commentId': id,
+    });
+    return base.success;
   }
 }

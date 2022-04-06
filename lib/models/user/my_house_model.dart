@@ -12,7 +12,7 @@ class MyHouseModel {
   final String unitName;
   final String manageEstateTypeName;
   final int identity;
-  final String name;
+  final String? name;
   final String tel;
   final int isDefault;
   factory MyHouseModel.fromJson(Map<String, dynamic> json) =>
@@ -27,7 +27,7 @@ class MyHouseModel {
     required this.unitName,
     required this.manageEstateTypeName,
     required this.identity,
-    required this.name,
+    this.name,
     required this.tel,
     required this.isDefault,
   });

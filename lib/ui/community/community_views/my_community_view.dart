@@ -1,11 +1,7 @@
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_head.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_new_community/ui/community/community_views/widgets/my_event_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
@@ -182,7 +178,6 @@ class MyCommunityViewState extends State<MyCommunityView>
               ],
             ),
     );
-
   }
 
   Widget _getMoments(DynamicMyListBody item) {
@@ -273,11 +268,11 @@ class MyCommunityViewState extends State<MyCommunityView>
                           ));
 
                           if (result == true) {
-                          var result =   await CommunityFunc.deleteDynamicAddViews(item.id);
-                          if(result){
-                            refresh();
-                          }
-
+                            var result =
+                                await CommunityFunc.deleteDynamic(item.id);
+                            if (result) {
+                              refresh();
+                            }
                           }
                         },
                         child: Container(

@@ -19,11 +19,8 @@ class ReplyCard extends StatelessWidget {
       onTap: () async {
         await MessageFunc.readMessage(model.id);
         Get.to(() => EventDetailPage(
-          dynamicId: model.jumpId,
-          onDelete: (){
-
-          },
-        ));
+              dynamicId: model.jumpId,
+            ));
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 48.w),

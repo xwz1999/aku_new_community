@@ -30,7 +30,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
   @override
   void initState() {
     var cancel = BotToast.showLoading();
-    getData();
+    // getData();
     cancel();
     super.initState();
   }

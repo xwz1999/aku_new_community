@@ -30,15 +30,21 @@ class LoginUtil {
   /// 未登陆状态用户跳转到登录页面
   static bool get isNotLogin => !isLogin;
 
-  static bool haveRoom(String name) {
-    if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修|我的缴费')))
-      return true;
+  static bool haveRealName(String name) {
+    // if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修|我的缴费')))
+    //   return true;
     final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (userProvider.userInfoModel!.name == null) {
-      BotToast.showText(text: '请先实名认证');
       Get.dialog(CertificationDialog());
       return false;
     }
+    return true;
+  }
+
+  static bool haveRoom(String name) {
+    // if (!name.contains(RegExp('访客邀请|报事报修|建议咨询|生活缴费|物品出门|投诉表扬|我的访客|我的报修|我的缴费')))
+    //   return true;
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
     if (userProvider.defaultHouse == null) {
       BotToast.showText(text: '请先选择默认房屋');
       Get.to(() => MyHousePage());

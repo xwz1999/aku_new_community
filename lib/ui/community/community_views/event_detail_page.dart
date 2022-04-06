@@ -6,6 +6,7 @@ import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/comment_list_model.dart';
 import 'package:aku_new_community/models/community/dynamic_detail_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/community_func.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/chat_card_detail.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -25,12 +26,12 @@ import 'package:provider/provider.dart';
 
 class EventDetailPage extends StatefulWidget {
   final int dynamicId;
-  final VoidCallback? onDelete;
+  final VoidCallback? refresh;
 
   EventDetailPage({
     Key? key,
     required this.dynamicId,
-    this.onDelete,
+    this.refresh,
   }) : super(key: key);
 
   @override
@@ -43,7 +44,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
   bool get _isMyself {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    return (userProvider.userInfoModel?.id ?? -1) == widget.dynamicId;
+    return (userProvider.userInfoModel?.id ?? -1) == _model?.createId;
   }
 
   TextEditingController _textEditingController = TextEditingController();
@@ -142,10 +143,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ));
 
               if (result == true) {
-                if (widget.onDelete != null) {
-                  widget.onDelete!();
-                  Get.back();
-                }
+                await CommunityFunc.deleteDynamic(widget.dynamicId);
+                Get.back();
+                widget.refresh!();
               }
             }
           },
@@ -197,6 +197,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
               _likes.add(element.isLike);
               _likeNums.add(element.likes);
             });
+          } else {
+            _refreshController.finishLoadCallBack!(noMore: true);
           }
           setState(() {});
         },
@@ -349,7 +351,14 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ],
             ),
             Spacer(),
-            CommunityPopButton(isMyself: false, onSelect: (value) {})
+            CommunityPopButton(
+                isMyself: _isMyself,
+                onSelect: (value) async {
+                  if (_isMyself) {
+                    await CommunityFunc.deleteComment(model.id);
+                    _refreshController.callRefresh();
+                  }
+                })
           ].row(),
           40.hb,
           model.content.text.size(28.sp).color(ktextSubColor).make(),
@@ -620,7 +629,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 if (_textEditingController.text.trim().isEmptyOrNull) {
                   BotToast.showText(text: '请填写内容');
                   return;
-                }else{
+                } else {
                   var res = await NetUtil()
                       .post(SAASAPI.community.commentInsert, params: params);
                   if (res.success) {
