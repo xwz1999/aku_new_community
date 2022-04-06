@@ -26,7 +26,7 @@ class OtherLoginPage extends StatefulWidget {
 
 class _OtherLoginPageState extends State<OtherLoginPage> {
   PageController _controller = PageController();
-  List<String> _tabs = ['账号登录', '验证码登录'];
+  List<String> _tabs = [ '验证码登录','账号登录'];
   int _currentIndex = 0;
   TextEditingController _tel = TextEditingController();
   TextEditingController _psd = TextEditingController();
@@ -66,7 +66,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
           Flexible(
             child: PageView(
               controller: _controller,
-              children: [_accountView(), _verificationView()],
+              children: [_verificationView(), _accountView()],
             ),
           ),
           BottomTip(),
@@ -113,7 +113,8 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                   await UserTool.dataProvider.addHistories();
                   await UserTool.userProvider.setLogin(response.data['data']);
                 } else {
-                  BotToast.showText(text: response.data['message']);
+                  // BotToast.showText(text: response.data['message']);
+                  BotToast.showText(text: '账号尚未注册，请使用验证码登陆');
                 }
               } catch (e) {
                 print(e.toString());
