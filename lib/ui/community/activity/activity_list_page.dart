@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ActivityListPage extends StatefulWidget {
-  ActivityListPage({Key? key}) : super(key: key);
+   ActivityListPage({Key? key}) : super(key: key);
 
   @override
   _ActivityListPageState createState() => _ActivityListPageState();

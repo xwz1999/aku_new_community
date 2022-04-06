@@ -1,5 +1,4 @@
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_views/community_page.dart';
@@ -15,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'home/home_page.dart';
+import 'opening_code_page/opening_code_page.dart';
 import 'personal/personal_page.dart';
 
 class TabNavigator extends StatefulWidget {
