@@ -1,5 +1,6 @@
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'dynamic_my_list_body.g.dart';
@@ -17,8 +18,11 @@ class DynamicMyListBody {
   final List<ImgModel> dynamicImgList;
   final List<TopicTag> topicTags;
   final bool isLike;
+
   factory DynamicMyListBody.fromJson(Map<String, dynamic> json) =>
       _$DynamicMyListBodyFromJson(json);
+
+  DateTime? get createDT => DateUtil.getDateTime(createDate);
 
   const DynamicMyListBody({
     required this.id,

@@ -155,6 +155,9 @@ class _Community {
 }
 
 class _Task {
+  ///催促服务（发布者）
+  String get urgeService => '/app/user/taskRelease/urgeService';
+
   ///取消任务（发布者,接单者）
   String get cancel => '/app/user/taskRelease/cancel';
 
@@ -267,19 +270,19 @@ class _Pay {
   String get createPrepaymentOrder => '/app/user/alipay/createPrepaymentOrder';
 
   ///创建预缴费订单 向支付宝发起订单查询请求
-  String get prepaymentOrderCheckAlipay => '/app/user/alipay/prepaymentOrderCheckAlipay';
+  String get prepaymentOrderCheckAlipay =>
+      '/app/user/alipay/prepaymentOrderCheckAlipay';
 
   ///创建缴费订单
-  String get createLivingExpensesOrder => '/app/user/alipay/createLivingExpensesOrder';
+  String get createLivingExpensesOrder =>
+      '/app/user/alipay/createLivingExpensesOrder';
 
   ///创建缴费订单 向支付宝发起订单查询请求
-  String get livingExpensesOrderCheckAlipay => '/app/user/alipay/livingExpensesOrderCheckAlipay';
-
-
+  String get livingExpensesOrderCheckAlipay =>
+      '/app/user/alipay/livingExpensesOrderCheckAlipay';
 }
 
-
-class _LifePay{
+class _LifePay {
   ///查询该房屋下所有的未缴费的订单
   String get livingExpensesList => '/app/user/livingExpenses/list';
 
@@ -288,6 +291,4 @@ class _LifePay{
 
   ///查询预交余额
   String get findEstateBalance => '/app/user/livingExpenses/findEstateBalance';
-
-
 }

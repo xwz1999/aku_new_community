@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
@@ -143,12 +142,19 @@ class _CommunityPageState extends State<CommunityPage>
           EasyRefresh(
             firstRefresh: true,
             header: MaterialHeader(),
+            footer: MaterialFooter(),
             controller: _easyRefreshController,
             onRefresh: () async {
+              _pageNum = 1;
               await (getNewInfo());
               _gambitModels = await CommunityFunc.getListGambit();
               _hotNewsModels = await CommunityFunc.getHotNews();
               _onload = false;
+              setState(() {});
+            },
+            onLoad: () async {
+              _pageNum++;
+              await loadNewInfo();
               setState(() {});
             },
             child: _onload
@@ -191,15 +197,15 @@ class _CommunityPageState extends State<CommunityPage>
   }
 
   Future loadNewInfo() async {
-    BaseListModel baseListModel =
-        await NetUtil().getList(API.market.hotTop, params: {
-      "pageNum": _pageNum,
-      "size": _size,
-    });
-    if (baseListModel.rows.isNotEmpty) {
+    BaseListModel baseListModel = await NetUtil().getList(
+        SAASAPI.community.dynamicList,
+        params: {"pageNum": _pageNum, "size": _size, 'type': 1});
+    if (baseListModel.total > _newItems.length) {
       _newItems.addAll((baseListModel.rows)
           .map((e) => AllDynamicListModel.fromJson(e))
           .toList());
+    } else {
+      _easyRefreshController.finishLoadCallBack!(noMore: true);
     }
   }
 

@@ -77,7 +77,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
                 child: Row(
-                  children: TaskMap.taskType.values
+                  children: <String>['全部', ...TaskMap.taskType.values]
                       .mapIndexed((currentValue, index) =>
                           _typeBar(currentValue, index))
                       .toList(),

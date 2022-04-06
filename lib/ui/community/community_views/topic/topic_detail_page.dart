@@ -107,6 +107,8 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                         title: _detailModel?.title,
                         imgPath: ImgModel.first(_detailModel?.imgList),
                         subTitle: _detailModel?.content,
+                        dynamicNum: _detailModel?.dynamicNum,
+                        commentNum: _detailModel?.commentNum,
                       ),
                       pinned: true,
                       floating: true,
