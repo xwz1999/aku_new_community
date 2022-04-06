@@ -20,6 +20,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
+import '../community_func.dart';
+
 class MyCommunityView extends StatefulWidget {
   MyCommunityView({Key? key}) : super(key: key);
 
