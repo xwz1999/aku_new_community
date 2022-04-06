@@ -1,6 +1,7 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/activity_detail_model.dart';
+import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -17,6 +18,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'activity_func.dart';
+import 'activity_people_list_page.dart';
 
 class ActivityDetailPage extends StatefulWidget {
   final int id;
@@ -321,6 +323,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
 
 class AvatarsParticipate extends StatelessWidget {
   final List<String?> avatars;
+  final List<Registration>? registrationList;
 
   //参加人数
   final int pNum;
@@ -335,13 +338,15 @@ class AvatarsParticipate extends StatelessWidget {
     required this.avatars,
     required this.pNum,
     this.tNum,
-    this.hasIcon = true,
+    this.hasIcon = true, this.registrationList,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.to(() => ActivityPeopleListPage( registrationList: registrationList,));
+      },
       child: Container(
         child: Row(
           children: [
