@@ -224,6 +224,7 @@ class MyCommunityViewState extends State<MyCommunityView>
             ),
             50.wb,
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: 552.w,
