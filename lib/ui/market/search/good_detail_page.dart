@@ -611,29 +611,29 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           40.wb,
-          GestureDetector(
-            onTap: () async {
-              await CollectionFunc.collection(_goodDetail!.id);
-              _refreshController.callRefresh();
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  _goodDetail!.isCollection == 0
-                      ? R.ASSETS_ICONS_ICON_GOOD_FAVOR_PNG
-                      : R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
-                  width: 48.w,
-                  height: 48.w,
-                ),
-                Text(
-                  '加入收藏',
-                  style: TextStyle(fontSize: 20.sp, color: ktextPrimary),
-                ),
-              ],
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: () async {
+          //     await CollectionFunc.collection(_goodDetail!.id);
+          //     _refreshController.callRefresh();
+          //   },
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Image.asset(
+          //         _goodDetail!.isCollection == 0
+          //             ? R.ASSETS_ICONS_ICON_GOOD_FAVOR_PNG
+          //             : R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
+          //         width: 48.w,
+          //         height: 48.w,
+          //       ),
+          //       Text(
+          //         '加入收藏',
+          //         style: TextStyle(fontSize: 20.sp, color: ktextPrimary),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           40.wb,
           GestureDetector(
             onTap: () async {
@@ -656,7 +656,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               ],
             ),
           ),
-          40.wb,
+          80.wb,
           Row(
             children: [
               GestureDetector(

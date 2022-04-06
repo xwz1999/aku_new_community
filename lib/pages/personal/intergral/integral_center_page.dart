@@ -168,7 +168,7 @@ class _integralCenterPageState extends State<integralCenterPage> {
             child: Assets.icons.vipFont.image(height: 32.w),
           ),
           TextSpan(
-              text: ' 积分中心',
+              text: ' 会员中心',
               style: TextStyle(
                   color: Colors.white.withOpacity(0.85),
                   fontSize: 36.w,

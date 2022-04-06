@@ -91,7 +91,7 @@ class _TabNavigatorState extends State<TabNavigator>
         R.ASSETS_ICONS_TABBAR_MARKET_NO_PNG,
         R.ASSETS_ICONS_TABBAR_MARKET_PNG,
       ),
-      BottomNavigationBarItem(icon: Container()),
+      // BottomNavigationBarItem(icon: Container()),
       _buildBottomBar(
         '社区',
         Assets.home.icShequNor.path,
