@@ -13,6 +13,7 @@ import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
@@ -77,7 +78,11 @@ class _BeeSearchState extends State<BeeSearch> {
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(e.title)) return;
-        Get.to(e.page);
+        if (e.callback == null) {
+          BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
+        } else {
+          e.callback!();
+        }
       },
       shape: StadiumBorder(),
       child: Column(

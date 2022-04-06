@@ -13,7 +13,6 @@ import 'package:aku_new_community/pages/goods_manage_page/select_borrow_return_p
 import 'package:aku_new_community/pages/house_introduce/house_introduce.dart';
 import 'package:aku_new_community/pages/industry_committee/industry_committee_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page_new.dart';
-import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:aku_new_community/pages/service_browse/service_browse_page.dart';
@@ -27,24 +26,24 @@ import 'package:aku_new_community/ui/function_and_service/task/task_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_page.dart';
 import 'package:aku_new_community/ui/home/application/all_application.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
-import 'package:aku_new_community/ui/manager/house_keeping/house_keeping_page.dart';
 import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 ///应用对象
 ///Application Object
 class AO {
   String title = '';
   String path = '';
-  dynamic page = () => Scaffold();
+  VoidCallback? callback = () {};
 
   AO(
     this.title,
     this.path,
-    this.page,
+    this.callback,
   );
 
   AO.fromRaw(String raw, {String? replaceTitle}) {
@@ -52,7 +51,7 @@ class AO {
       if (element.title == raw) {
         this.title = replaceTitle ?? element.title;
         this.path = element.path;
-        this.page = element.page;
+        this.callback = element.callback;
       }
     });
   }
@@ -72,41 +71,54 @@ class AO {
 List<AO> appObjects = [
   // if (false) AO('一键开门', R.ASSETS_APPLICATIONS_OEPN_DOOR_PNG, () => Scaffold()),
 
-  AO('开门码', R.ASSETS_ICONS_FUNC_KMM_PNG, () => OpeningCodePage()),
-  AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => VisitorAccessPage()),
-  AO('报事报修', Assets.home.icBsbx.path, () => WorkOrderPage()),
-  AO('生活缴费', Assets.home.icShjf.path, () => LifePayPageNew()),
-  AO('业委会', R.ASSETS_ICONS_FUNC_YWH_PNG, () => IndustryCommitteePage()),
-  AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
-      () => AdvicePage(type: AdviceType.SUGGESTION)),
-  AO('便民电话', R.ASSETS_ICONS_FUNC_BMDH_PNG, () => ConvenientPhonePage()),
-  AO('活动投票', R.ASSETS_ICONS_FUNC_HDTP_PNG, () => EventVotingPage()),
-  AO('物品出门', R.ASSETS_ICONS_FUNC_WPCH_PNG, () => GoodsDetoPage()),
-  AO('投诉表扬', R.ASSETS_ICONS_FUNC_TSBY_PNG,
-      () => AdvicePage(type: AdviceType.COMPLAIN)),
-  AO('问卷调查', R.ASSETS_ICONS_FUNC_WJDC_PNG, () => QuestionnairePage()),
-  AO('装修管理', R.ASSETS_ICONS_FUNC_ZXGL_PNG, () => NewRenovationPage()),
-  AO('借还管理', R.ASSETS_ICONS_FUNC_JHGL_PNG, () => SelectBorrowReturnPage()),
-  AO('一键报警', R.ASSETS_ICONS_FUNC_YJBJ_PNG, () => AlarmPage()),
+  AO('开门码', Assets.newIcon.icKmm.path, () => Get.to(() => OpeningCodePage())),
+  // AO('访客邀请', R.ASSETS_ICONS_FUNC_FKYQ_PNG, () => Get.to(()=>VisitorAccessPage()),
+  AO('报事报修', Assets.home.icBsbx.path, () => Get.to(() => WorkOrderPage())),
+  AO('生活缴费', Assets.home.icShjf.path, () => Get.to(() => LifePayPageNew())),
+  AO('业委会', Assets.newIcon.icYwh.path,
+      () => Get.to(() => IndustryCommitteePage())),
+  // AO('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
+  //     () => AdvicePage(type: AdviceType.SUGGESTION)),
+  AO('便民电话', Assets.newIcon.imgBmdh.path,
+      () => Get.to(() => ConvenientPhonePage())),
+  AO('活动投票', Assets.newIcon.icHdtp.path, () => Get.to(() => EventVotingPage())),
+  AO('物品出门', Assets.newIcon.imgWpcm.path, () => Get.to(() => GoodsDetoPage())),
+  AO('投诉表扬', Assets.newIcon.icTsby.path,
+      () => Get.to(() => AdvicePage(type: AdviceType.COMPLAIN))),
+  AO('问卷调查', Assets.newIcon.icWjdc.path,
+      () => Get.to(() => QuestionnairePage())),
+  AO('装修管理', Assets.newIcon.imgZxgl.path,
+      () => Get.to(() => NewRenovationPage())),
+  AO('借还管理', Assets.newIcon.icJhgl.path,
+      () => Get.to(SelectBorrowReturnPage())),
+  // AO('一键报警', Assets.newIcon.yj, () => AlarmPage()),
   AO('设施预约', Assets.home.icSsyy.path, () => FacilityAppointmentPage()),
-  AO('快递包裹', R.ASSETS_ICONS_FUNC_KDBG_PNG, () => ExpressPackagePage()),
-  AO('电子商务', R.ASSETS_ICONS_FUNC_DZSW_PNG, () => ElectronicCommercPage()),
-  AO('服务浏览', R.ASSETS_ICONS_FUNC_FWLL_PNG, () => ServiceBrowsePage()),
-  AO('社区介绍', R.ASSETS_ICONS_FUNC_SQJS_PNG, () => CommunityIntroducePage()),
-  AO('家政服务', R.ASSETS_ICONS_FUNC_JZFW_PNG, () => HouseKeepingPage()),
+  AO('快递包裹', Assets.newIcon.icKdbg.path,
+      () => Get.to(() => ExpressPackagePage())),
+  AO('电子商务', Assets.newIcon.icDzsw.path,
+      () => Get.to(() => ElectronicCommercPage())),
+  AO('服务浏览', Assets.newIcon.icFwll.path,
+      () => Get.to(() => ServiceBrowsePage())),
+  AO('社区介绍', Assets.newIcon.icSqjs.path,
+      () => Get.to(() => CommunityIntroducePage())),
+  // AO('家政服务', R.ASSETS_ICONS_FUNC_JZFW_PNG, () => HouseKeepingPage()),
 
-  AO('地理信息', R.ASSETS_ICONS_FUNC_DLXX_PNG, () => GeographicInformationPage()),
-  AO('周边企业', R.ASSETS_ICONS_FUNC_ZBQY_PNG, () => SurroundingEnterprisesPage()),
-  AO('住房说明', R.ASSETS_ICONS_FUNC_ZFSM_PNG, () => HouseIntroducePage()),
-  AO('智慧养老', Assets.home.icZhyl.path, () => OldAgeSupportPageSimple()),
+  AO('地理信息', Assets.newIcon.icDlxx.path,
+      () => Get.to(() => GeographicInformationPage())),
+  AO('周边企业', Assets.newIcon.icZbqy.path,
+      () => Get.to(() => SurroundingEnterprisesPage())),
+  AO('住房说明', Assets.newIcon.icRwsm.path,
+      () => Get.to(() => HouseIntroducePage())),
+  AO('智慧养老', Assets.home.icZhyl.path,
+      () => Get.to(() => OldAgeSupportPageSimple())),
   AO('周边服务', Assets.home.icZbfw.path, null),
-  AO('任务发布', Assets.home.icRwfb.path, () => TaskPage()),
+  AO('任务发布', Assets.home.icRwfb.path, () => Get.to(() => TaskPage())),
   AO('自营商城', Assets.icons.shoppingMall.path, null),
   AO('邻家宠物', Assets.home.icLjcw.path, null),
   AO('共享停车', Assets.icons.sharePark.path, null),
   AO('二手市场', Assets.icons.secondHandMarket.path, null),
   AO('共享投屏', Assets.icons.projectionScreen.path, null),
-  AO('全部应用', Assets.home.icQbyy.path, () => AllApplicationPage()),
+  AO('全部应用', Assets.home.icQbyy.path, () => Get.to(() => AllApplicationPage())),
 
   // AO(
   //   '小区教育',
@@ -159,9 +171,7 @@ AO allApp =
 
 ///暂未上线 original value
 List<String> _recommendApp = [
-  '访客邀请',
   '业委会',
-  '建议咨询',
   '便民电话',
   '活动投票',
   '物品出门',
@@ -193,7 +203,6 @@ List<String> _smartManagerApp = [
   '开门码',
   '报事报修',
   '生活缴费',
-  '一键报警',
   '任务发布',
 ];
 

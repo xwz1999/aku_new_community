@@ -11,7 +11,7 @@ import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_avatar_widget.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -133,14 +133,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                               children: [
                                 Hero(
                                   tag: 'AVATAR',
-                                  child: ClipOval(
-                                    child: BeeImageNetwork(
-                                      width: 106.w,
-                                      height: 106.w,
-                                      imgs: UserTool.userProvider.userInfoModel
-                                              ?.imgList ??
-                                          [],
-                                    ),
+                                  child: BeeAvatarWidget(
+                                    imgs: UserTool
+                                        .userProvider.userInfoModel?.imgList,
                                   ),
                                 ),
                                 Container(

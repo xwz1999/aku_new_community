@@ -153,6 +153,7 @@ flutter:
     - assets/json/
     - assets/bracelet/
     - assets/home/
+    - assets/newIcon/
 
 import_sorter:
   emojis: true
