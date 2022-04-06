@@ -6,7 +6,8 @@ import 'package:velocity_x/velocity_x.dart';
 
 class TelTextField extends StatefulWidget {
   final TextEditingController controller;
-  const TelTextField({Key? key, required this.controller}) : super(key: key);
+  final Function(String) onChange;
+  const TelTextField({Key? key, required this.controller, required this.onChange}) : super(key: key);
 
   @override
   _TelTextFieldState createState() => _TelTextFieldState();
@@ -26,6 +27,7 @@ class _TelTextFieldState extends State<TelTextField> {
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.number,
         controller: widget.controller,
+        onChanged: widget.onChange,
         decoration: InputDecoration(
           isDense: true,
           border: InputBorder.none,
