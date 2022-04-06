@@ -1,8 +1,10 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/task/my_task_list_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_cancel_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
@@ -200,7 +202,13 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
         );
       case 2:
         return MaterialButton(
-          onPressed: () {},
+          onPressed: () async {
+            var base = await NetUtil().get(SAASAPI.task.urgeService,
+                params: {'taskId': widget.model.id}, showMessage: true);
+            if (base.success) {
+              Get.back();
+            }
+          },
           minWidth: 330.w,
           height: 80.w,
           elevation: 0,

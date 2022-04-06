@@ -7,18 +7,17 @@
  * ====================================================
  */
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/pages/personal/user_func.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'address/new_address_page.dart';
 
 // ignore: must_be_immutable
@@ -196,9 +195,7 @@ class _MyAddressItemState extends State<MyAddressItem> {
                     if (result == true) {
                       bool? result =
                           await Userfunc.deleteAddress(widget.addressModel.id!);
-                      if (result != null) {
-                        if (result) widget.refreshController!.callRefresh();
-                      }
+                      if (result) widget.refreshController!.callRefresh();
                     }
                     ;
                   },

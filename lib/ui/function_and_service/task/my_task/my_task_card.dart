@@ -70,8 +70,8 @@ class MyTaskCard extends StatelessWidget {
       ],
     );
     return GestureDetector(
-      onTap: () {
-        Get.to(() => MyTaskDetailPage(model: model));
+      onTap: () async {
+        await Get.to(() => MyTaskDetailPage(model: model));
       },
       child: Container(
         width: double.infinity,

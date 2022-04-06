@@ -8,16 +8,17 @@ import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/community_views/widgets/my_event_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
+import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_avatar_widget.dart';
 import 'package:aku_new_community/widget/line/vertical_line_painter.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
-import '../community_func.dart';
 
 class MyCommunityView extends StatefulWidget {
   MyCommunityView({Key? key}) : super(key: key);
@@ -32,6 +33,8 @@ class MyCommunityViewState extends State<MyCommunityView>
   bool _onload = true;
   List<DynamicMyListBody> _myEventItems = [];
   DynamicMyListHead? _head;
+  int _pageNum = 1;
+  int _size = 10;
 
   refresh() {
     _refreshController.callRefresh();
@@ -53,10 +56,10 @@ class MyCommunityViewState extends State<MyCommunityView>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           12.hb,
-          Image.asset(
-            R.ASSETS_ICONS_ICON_LOGISTICS_PNG,
+          BeeAvatarWidget(
             width: 132.w,
             height: 132.w,
+            imgs: UserTool.userProvider.userInfoModel!.imgList,
           ),
           32.hb,
           '${_head?.createName}'
@@ -132,13 +135,31 @@ class MyCommunityViewState extends State<MyCommunityView>
       header: MaterialHeader(),
       controller: _refreshController,
       onRefresh: () async {
-        _myEventItems = await CommunityFunc.getMyEventItem();
+        BaseListModel model = await NetUtil().getList(
+          SAASAPI.community.dynamicMyListL,
+          params: {'pageNum': _pageNum, 'size': _size},
+        );
+        _myEventItems =
+            model.rows.map((e) => DynamicMyListBody.fromJson(e)).toList();
         var base = await NetUtil().get(SAASAPI.community.dynamicMyListH);
         if (base.success) {
           _head = DynamicMyListHead.fromJson(base.data);
         }
         _onload = false;
         setState(() {});
+      },
+      onLoad: () async {
+        BaseListModel model = await NetUtil().getList(
+          SAASAPI.community.dynamicMyListL,
+          params: {'pageNum': _pageNum, 'size': _size},
+        );
+        if (model.total > _myEventItems.length) {
+          _myEventItems.addAll(
+              model.rows.map((e) => DynamicMyListBody.fromJson(e)).toList());
+          setState(() {});
+        } else {
+          _refreshController.finishLoadCallBack!(noMore: true);
+        }
       },
       child: _onload
           ? SizedBox()
@@ -186,14 +207,14 @@ class MyCommunityViewState extends State<MyCommunityView>
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                item.createDate.substring(5,10)
+                '${item.createDT?.month ?? ''}.${item.createDT?.day ?? ''}'
                     .text
-                    .size(28.sp)
+                    .size(32.sp)
                     .color(Color(0xA6000000))
                     .bold
                     .isIntrinsic
                     .make(),
-                item.createDate.substring(0,4)
+                '${item.createDT?.year ?? ''}'
                     .text
                     .size(24.sp)
                     .color(Color(0x73000000))
@@ -204,6 +225,7 @@ class MyCommunityViewState extends State<MyCommunityView>
             ),
             50.wb,
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: 552.w,
@@ -211,9 +233,9 @@ class MyCommunityViewState extends State<MyCommunityView>
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      item.createDate.substring(10,16)
+                      '${item.createDT?.hour ?? ''}.${item.createDT?.second ?? ''}'
                           .text
-                          .size(32.sp)
+                          .size(28.sp)
                           .color(Color(0xA6000000))
                           .isIntrinsic
                           .make(),

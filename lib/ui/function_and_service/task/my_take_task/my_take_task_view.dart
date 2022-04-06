@@ -32,7 +32,7 @@ class _MyTakeTaskViewState extends State<MyTakeTaskView> {
         controller: widget.refreshController,
         extraParams: {
           'taskModel': 2,
-          'type': widget.type + 1,
+          'type': widget.type == 0 ? null : widget.type,
         },
         convert: (json) =>
             json.rows.map((e) => MyTakeTaskListModel.fromJson(e)).toList(),

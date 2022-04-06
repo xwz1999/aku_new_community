@@ -62,7 +62,11 @@ class _ForgotPsdPageState extends State<ForgotPsdPage> {
             ],
           ),
           144.w.heightBox,
-          TelTextField(controller: _telController),
+          TelTextField(
+              controller: _telController,
+              onChange: (content) {
+                setState(() {});
+              }),
           100.w.heightBox,
           LoginButtonWidget(
               onTap: _telController.text.isNotEmpty
@@ -83,6 +87,7 @@ class _ForgotPsdPageState extends State<ForgotPsdPage> {
                       } else {
                         BotToast.showText(text: base.msg);
                       }
+                      setState(() {});
                     }
                   : null,
               text: '下一步'),

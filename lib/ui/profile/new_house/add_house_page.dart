@@ -511,7 +511,9 @@ class _AddHousePageState extends State<AddHousePage> {
                         '${model.house == null ? '请选择楼层房号' : '${model.building!.name}-${model.unit!.name}-${model.floor!.name}-${model.house!.name}'}'
                             .text
                             .size(28.sp)
-                            .color(Colors.black.withOpacity(0.25))
+                            .color(model.house != null
+                                ? Colors.black.withOpacity(0.5)
+                                : Colors.black.withOpacity(0.25))
                             .make(),
                   ),
                   Icon(

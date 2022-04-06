@@ -130,23 +130,23 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                             child: Column(
                               children: [
                                 107.hb,
-                                Container(
-                                  width: 192.w,
-                                  height: 42.w,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.06),
-                                      borderRadius:
-                                          BorderRadius.circular(45.w)),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    UserTool.userProvider.userInfoModel!
-                                            .nickName ??
-                                        "",
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 24.sp),
-                                  ),
-                                ),
-                                48.hb,
+                                // Container(
+                                //   width: 192.w,
+                                //   height: 42.w,
+                                //   decoration: BoxDecoration(
+                                //       color: Colors.black.withOpacity(0.06),
+                                //       borderRadius:
+                                //           BorderRadius.circular(45.w)),
+                                //   alignment: Alignment.center,
+                                //   child: Text(
+                                //     UserTool.userProvider.userInfoModel!
+                                //             .nickName ??
+                                //         "",
+                                //     style: TextStyle(
+                                //         color: Colors.black, fontSize: 24.sp),
+                                //   ),
+                                // ),
+                                // 48.hb,
                                 Text(
                                   '2栋 1单元 1402室',
                                   style: TextStyle(

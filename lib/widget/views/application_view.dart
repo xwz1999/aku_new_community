@@ -1,14 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ApplicationView extends StatefulWidget {
   final List<AO>? items;
@@ -38,10 +35,10 @@ class _ApplicationViewState extends State<ApplicationView> {
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
         if (!LoginUtil.haveRoom(object.title)) return;
-        if (object.page == null) {
+        if (object.callback == null) {
           BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {
-          Get.to(object.page);
+          object.callback!();
         }
       },
       child: Column(

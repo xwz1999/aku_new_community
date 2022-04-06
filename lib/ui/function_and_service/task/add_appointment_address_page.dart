@@ -66,7 +66,7 @@ class _AddAppointmentAddressPageState extends State<AddAppointmentAddressPage> {
                     children: [
                       SizedBox(
                         width: 170.w,
-                        child: '标志建筑'
+                        child: '目标地点'
                             .text
                             .size(28.sp)
                             .color(Colors.black.withOpacity(0.65))
@@ -78,7 +78,7 @@ class _AddAppointmentAddressPageState extends State<AddAppointmentAddressPage> {
                         controller: _tagController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: '请输入标志建筑',
+                            hintText: '请输入目标地点',
                             contentPadding: EdgeInsets.zero,
                             isDense: true,
                             hintStyle: TextStyle(

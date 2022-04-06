@@ -11,6 +11,7 @@ import 'hall_card.dart';
 class HallView extends StatefulWidget {
   final EasyRefreshController refreshController;
   final int type;
+
   const HallView(
       {Key? key, required this.refreshController, required this.type})
       : super(key: key);
@@ -32,7 +33,7 @@ class _HallViewState extends State<HallView> {
         controller: widget.refreshController,
         extraParams: {
           'taskModel': 1,
-          'type': widget.type + 1,
+          'type': widget.type == 0 ? null : widget.type,
         },
         convert: (json) =>
             json.rows.map((e) => HallListModel.fromJson(e)).toList(),

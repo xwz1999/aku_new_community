@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/saas_model/login/community_model.dart';
 import 'package:aku_new_community/saas_model/login/history_login_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -11,6 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../../../base/base_style.dart';
 
 class SelectCommunity extends StatefulWidget {
   const SelectCommunity({
@@ -159,6 +162,23 @@ class _SelectCommunityState extends State<SelectCommunity> {
       },
       child: BeeScaffold(
         title: '选择登录小区',
+        actions: [
+          Hero(
+            tag: 'event_add',
+            child: MaterialButton(
+              elevation: 0,
+              minWidth: 116.w,
+              padding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.w),
+              ),
+              color: kPrimaryColor,
+              onPressed: (){Navigator.pop(context);},
+              child: '提交'.text.size(34.sp).make(),
+            ).centered(),
+          ),
+          32.wb,
+        ],
         body: ListView(
           children: [
             selectCity,

@@ -617,21 +617,26 @@ class _EventDetailPageState extends State<EventDetailPage> {
               minWidth: 120.w,
               height: 55.w,
               onPressed: () async {
-                var res = await NetUtil()
-                    .post(SAASAPI.community.commentInsert, params: params);
-                if (res.success) {
-                  _textEditingController.clear();
-                  if (_rootId == 0) {
-                    _refreshController.callRefresh();
+                if (_textEditingController.text.trim().isEmptyOrNull) {
+                  BotToast.showText(text: '请填写内容');
+                  return;
+                }else{
+                  var res = await NetUtil()
+                      .post(SAASAPI.community.commentInsert, params: params);
+                  if (res.success) {
+                    _textEditingController.clear();
+                    if (_rootId == 0) {
+                      _refreshController.callRefresh();
+                    } else {
+                      await updateComments();
+                      _focusNode.unfocus();
+                    }
+                    setState(() {});
                   } else {
-                    await updateComments();
-                    _focusNode.unfocus();
+                    BotToast.showText(text: res.msg);
                   }
-                  setState(() {});
-                } else {
-                  BotToast.showText(text: res.msg);
+                  FocusScope.of(context).requestFocus(FocusNode());
                 }
-                FocusScope.of(context).requestFocus(FocusNode());
               },
               child: Text(
                 '发布',

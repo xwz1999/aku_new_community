@@ -39,11 +39,11 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
           : () {
               if (LoginUtil.isNotLogin) return;
               if (!LoginUtil.haveRoom(object.title)) return;
-              if (object.page == null || !online) {
+              if (object.callback == null || !online) {
                 BotToast.showText(
                     text: '正在准备上线中，敬请期待', align: Alignment(0, 0.5));
               } else {
-                Get.to(object.page);
+                object.callback!();
               }
             },
       child: Column(
@@ -262,14 +262,15 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
       ),
       body: Column(
         children: [
-          _buildEditTile(),
-          Divider(
-            indent: 32.w,
-            endIndent: 32.w,
-            height: 1.w,
-          ).material(color: Colors.white),
-          _buildMyApp(),
-          32.hb,
+          //暂时删除（以后可能会加回来
+          // _buildEditTile(),
+          // Divider(
+          //   indent: 32.w,
+          //   endIndent: 32.w,
+          //   height: 1.w,
+          // ).material(color: Colors.white),
+          // _buildMyApp(),
+          // 32.hb,
           _buildAppList().expand(),
         ],
       ),

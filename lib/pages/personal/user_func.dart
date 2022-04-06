@@ -63,7 +63,7 @@ class Userfunc {
 
   ///删除收货地址
   static Future<bool> deleteAddress(int addressId) async {
-    BaseModel model = await NetUtil().post(SAASAPI.market.address.delete,
+    BaseModel model = await NetUtil().get(SAASAPI.market.address.delete,
         params: {'id': addressId}, showMessage: false);
     if (model.success) {
       BotToast.showText(text: '删除成功');
