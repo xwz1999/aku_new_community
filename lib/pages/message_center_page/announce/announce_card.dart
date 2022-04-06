@@ -3,6 +3,7 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
+import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,42 +44,59 @@ class AnnounceCard extends StatelessWidget {
         ...modelList.models
             .map((e) => _card(e))
             .toList()
-            .sepWidget(separate: 10.heightBox)
+
       ],
     );
   }
 
   Widget _card(HomeAnnounceModel model) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          '${DateUtil.formatDateStr(model.createDate, format: 'dd日 HH:mm')}'
-              .text
-              .size(28.sp)
-              .color(ktextSubColor)
-              .make(),
-          32.w.heightBox,
-          '${model.title}'.text.size(36.sp).black.bold.make(),
-          32.w.heightBox,
-          '${model.content}'.text.size(28.sp).color(ktextSubColor).make(),
-          40.w.heightBox,
-          Container(
-            height: 72.w,
-            decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(
-                  color: Color(0xFF000000).withOpacity(0.06),
-                ),
+    return InkWell(
+      onTap: () {
+        Get.to(() => NoticeDetailPage(id: model.id));
+      },
+      child: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+        margin: EdgeInsets.only(bottom: 16 .w),
+        child: Column(
+
+
+
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+
+            '${DateUtil.formatDateStr(model.createDate, format: 'dd日 HH:mm')}'
+                .text
+                .size(28.sp)
+                .color(ktextSubColor)
+                .make(),
+            32.w.heightBox,
+            Container(
+              width: double.infinity,
+              height: 258.w,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w)),
+              child: BeeImageNetwork(
+                imgs: model.imgList,
               ),
             ),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => NoticeDetailPage(id: model.id));
-              },
+            32.w.heightBox,
+
+            '${model.title}'.text.size(36.sp).black.bold.make(),
+            32.w.heightBox,
+            '${model.content}'.text.maxLines(2).ellipsis.size(28.sp).color(ktextSubColor).make(),
+            40.w.heightBox,
+            Container(
+              height: 72.w,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Color(0xFF000000).withOpacity(0.06),
+                  ),
+                ),
+              ),
               child: Row(
                 children: [
                   '查看详情'.text.size(24.w).color(ktextSubColor).make(),
@@ -90,8 +108,8 @@ class AnnounceCard extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

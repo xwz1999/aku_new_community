@@ -1,4 +1,3 @@
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
@@ -50,9 +49,21 @@ class CommunityFunc {
   ///给单个资讯增加浏览量
   static Future<String> addViews(int newsId) async {
     BaseModel model = await NetUtil().get(
-      API.community.addViews,
+      SAASAPI.community.addViewNum,
       params: {
-        'newsId': newsId,
+        'informationId': newsId,
+      },
+    );
+    if (model.success) return '';
+    return model.msg;
+  }
+
+  ///给单个动态增加浏览量
+  static Future<String> dynamicAddViews(int newsId) async {
+    BaseModel model = await NetUtil().get(
+      SAASAPI.community.dynamicAddViewNum,
+      params: {
+        'dynamicId': newsId,
       },
     );
     if (model.success) return '';

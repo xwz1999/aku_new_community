@@ -104,6 +104,7 @@ class ActivityCard extends StatelessWidget {
                       (model?.avatarImgList?.map((e) => e.url).toList() ?? []),
                   pNum: model?.registrationNum ?? 0,
                   hasIcon: false,
+
                 ),
               ),
               // Spacer(),

@@ -71,7 +71,7 @@ class _MessageCenterPageState extends State<MessageCenterPage>
       ),
       body: TabBarView(
         children: [
-          ReplayView(
+             ReplayView(
             controller: _controllers[0],
           ),
           ThumbsUpView(

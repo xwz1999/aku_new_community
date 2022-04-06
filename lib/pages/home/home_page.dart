@@ -21,7 +21,9 @@ import 'package:aku_new_community/ui/home/public_infomation/public_information_d
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/login_util.dart';
+import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
@@ -353,9 +355,15 @@ class _HomePageState extends State<HomePage>
                                           ],
                                         ),
                                       ),
-                                      onTap: () {
-                                        Get.to(AdvicePage(
-                                            type: AdviceType.SUGGESTION));
+                                      onTap: () async {
+                                          var agreement = await HiveStore.appBox?.get('AdvicePage') ?? false;
+                                          if (!agreement) {
+                                            await TipsDialog.tipsDialog();
+                                            HiveStore.appBox!.put('AdvicePage', true);
+                                          }
+
+                                        // Get.to(AdvicePage(
+                                        //     type: AdviceType.SUGGESTION));
                                       },
                                     ),
                                   )

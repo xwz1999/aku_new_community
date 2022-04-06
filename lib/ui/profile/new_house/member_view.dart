@@ -118,22 +118,19 @@ class _MemberViewState extends State<MemberView> {
                   borderRadius: BorderRadius.circular(58.w),
                   clipBehavior: Clip.antiAlias,
                   child: Container(
-                    width: 108.w,
-                    height: 40.w,
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF1C87F).withOpacity(0.4),
-                    ),
-                    child: '${BeeMap.getIdentify(identify)}'
-                        .text
-                        .size(22.sp)
-                        .maxFontSize(22.sp)
-                        .minFontSize(18.sp)
-                        .stepGranularity(1.sp)
-                        .color(Colors.black.withOpacity(0.85))
-                        .make(),
-                  ),
+                      width: 108.w,
+                      height: 40.w,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF1C87F).withOpacity(0.4),
+                      ),
+                      child: Text(
+                        '${BeeMap.getIdentify(identify)}',
+                        style: TextStyle(
+                            fontSize: 22.sp,
+                            color: Colors.black.withOpacity(0.85)),
+                      )),
                 ))
           ],
         ),

@@ -14,6 +14,7 @@ class ReplyListModel {
   final String sendDate;
   final List<ImgModel> avatarImgList;
   final List<ImgModel> dynamicImgList;
+  final int jumpId;
 
   factory ReplyListModel.fromJson(Map<String, dynamic> json) =>
       _$ReplyListModelFromJson(json);
@@ -32,5 +33,6 @@ class ReplyListModel {
     required this.sendDate,
     required this.avatarImgList,
     required this.dynamicImgList,
+    required this.jumpId
   });
 }

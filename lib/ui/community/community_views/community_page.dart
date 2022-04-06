@@ -299,7 +299,9 @@ class _CommunityPageState extends State<CommunityPage>
       onTap: () async {
         var result =
             await Get.to(() => PublicInformationDetailPage(id: item.id));
+
         CommunityFunc.addViews(item.id);
+
         if (result != null && result) {
           _easyRefreshController.callRefresh();
         }

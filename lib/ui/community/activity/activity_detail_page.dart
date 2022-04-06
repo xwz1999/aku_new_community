@@ -1,3 +1,4 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/activity_detail_model.dart';
@@ -166,7 +167,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
   }
 
   bool get canTap {
-    if (_model?.regisEndTime?.isBefore(DateTime.now()) ?? true) {
+    if ((_model?.regisEndTime?.isBefore(DateTime.now()) ?? true)  ||_model!.isRegistration==1) {
       return false;
     }
     return true;
@@ -298,6 +299,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                 BeeDivider.horizontal(),
                 16.hb,
                 AvatarsParticipate(
+                  registrationList: _model!.registrationList,
                     avatars: _model!.registrationList
                         .map((e) => ImgModel.first(e.avatarImgList))
                         .toList(),
