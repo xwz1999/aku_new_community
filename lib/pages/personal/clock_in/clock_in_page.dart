@@ -8,7 +8,7 @@ import 'package:aku_new_community/models/integral/clocked_record_list_model.dart
 import 'package:aku_new_community/models/integral/integral_info_model.dart';
 import 'package:aku_new_community/pages/personal/clock_in/clock_success_dialog.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_avatar_widget.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -75,11 +75,10 @@ class _ClockInPageState extends State<ClockInPage> {
               children: [
                 Hero(
                   tag: 'AVATAR',
-                  child: ClipOval(
-                    child: BeeImageNetwork(
-                      height: 106.w,
-                      width: 106.w,
-                    ),
+                  child: BeeAvatarWidget(
+                    width: 106.w,
+                    height: 106.w,
+                    imgs: UserTool.userProvider.userInfoModel!.imgList,
                   ),
                 ),
                 Container(

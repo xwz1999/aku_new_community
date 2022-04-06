@@ -639,6 +639,10 @@ class $AssetsNewIconGen {
 
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/newIcon/avatar_placeholder.png');
+  AssetGenImage get icDaifuk =>
+      const AssetGenImage('assets/newIcon/ic_daifuk.png');
+  AssetGenImage get icDaishouh =>
+      const AssetGenImage('assets/newIcon/ic_daishouh.png');
   AssetGenImage get icDlxx => const AssetGenImage('assets/newIcon/ic_dlxx.png');
   AssetGenImage get icDzsw => const AssetGenImage('assets/newIcon/ic_dzsw.png');
   AssetGenImage get icEssc => const AssetGenImage('assets/newIcon/ic_essc.png');
@@ -647,19 +651,41 @@ class $AssetsNewIconGen {
   AssetGenImage get icGxtp => const AssetGenImage('assets/newIcon/ic_gxtp.png');
   AssetGenImage get icHdtp => const AssetGenImage('assets/newIcon/ic_hdtp.png');
   AssetGenImage get icJhgl => const AssetGenImage('assets/newIcon/ic_jhgl.png');
+  AssetGenImage get icJifen =>
+      const AssetGenImage('assets/newIcon/ic_jifen.png');
   AssetGenImage get icKdbg => const AssetGenImage('assets/newIcon/ic_kdbg.png');
   AssetGenImage get icKmm => const AssetGenImage('assets/newIcon/ic_kmm.png');
   AssetGenImage get icRwsm => const AssetGenImage('assets/newIcon/ic_rwsm.png');
+  AssetGenImage get icShdz => const AssetGenImage('assets/newIcon/ic_shdz.png');
   AssetGenImage get icSqjs => const AssetGenImage('assets/newIcon/ic_sqjs.png');
   AssetGenImage get icTsby => const AssetGenImage('assets/newIcon/ic_tsby.png');
+  AssetGenImage get icWdfk => const AssetGenImage('assets/newIcon/ic_wdfk.png');
+  AssetGenImage get icWdfw => const AssetGenImage('assets/newIcon/ic_wdfw.png');
+  AssetGenImage get icWdjt => const AssetGenImage('assets/newIcon/ic_wdjt.png');
   AssetGenImage get icWjdc => const AssetGenImage('assets/newIcon/ic_wjdc.png');
   AssetGenImage get icXmfrw =>
       const AssetGenImage('assets/newIcon/ic_xmfrw.png');
   AssetGenImage get icYwh => const AssetGenImage('assets/newIcon/ic_ywh.png');
   AssetGenImage get icZbqy => const AssetGenImage('assets/newIcon/ic_zbqy.png');
   AssetGenImage get icZysc => const AssetGenImage('assets/newIcon/ic_zysc.png');
+  AssetGenImage get imgBg => const AssetGenImage('assets/newIcon/img_bg.png');
   AssetGenImage get imgBmdh =>
       const AssetGenImage('assets/newIcon/img_bmdh.png');
+  AssetGenImage get imgDaifah =>
+      const AssetGenImage('assets/newIcon/img_daifah.png');
+  AssetGenImage get imgDaipingj =>
+      const AssetGenImage('assets/newIcon/img_daipingj.png');
+  AssetGenImage get imgDengji =>
+      const AssetGenImage('assets/newIcon/img_dengji.png');
+  AssetGenImage get imgQiandao =>
+      const AssetGenImage('assets/newIcon/img_qiandao.png');
+  AssetGenImage get imgShezhi =>
+      const AssetGenImage('assets/newIcon/img_shezhi.png');
+  AssetGenImage get imgTxmr =>
+      const AssetGenImage('assets/newIcon/img_txmr.png');
+  AssetGenImage get imgVip => const AssetGenImage('assets/newIcon/img_vip.png');
+  AssetGenImage get imgVipbg =>
+      const AssetGenImage('assets/newIcon/img_vipbg.png');
   AssetGenImage get imgWpcm =>
       const AssetGenImage('assets/newIcon/img_wpcm.png');
   AssetGenImage get imgZxgl =>

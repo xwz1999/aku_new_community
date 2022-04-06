@@ -1,12 +1,10 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/pages/personal/clock_in/clock_in_page.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/order/order_page.dart';
-import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_family_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -22,6 +20,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'address/address_list_page.dart';
+import 'clock_in/clock_in_page.dart';
 import 'clock_in/clock_success_dialog.dart';
 import 'intergral/integral_center_page.dart';
 
@@ -86,11 +85,11 @@ class _PersonalIndexState extends State<PersonalIndex>
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 441.w,
+                    height: 512.w,
                     alignment: Alignment.topCenter,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(R.ASSETS_IMAGES_MY_BG_PNG),
+                        image: Assets.newIcon.imgBg,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -190,17 +189,23 @@ class _PersonalIndexState extends State<PersonalIndex>
                                   },
                                   elevation: 0,
                                   color: Colors.white,
-                                  minWidth: 112.w,
-                                  height: 58.w,
+                                  minWidth: 168.w,
+                                  height: 64.w,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(50.w)),
-                                  child:
-                                      '${UserTool.userProvider.userConfig.todayClocked ? '已签到' : '签到'}'
+                                  child: Row(
+                                    children: [
+                                      Assets.newIcon.imgQiandao
+                                          .image(width: 48.w, height: 48.w),
+                                      12.wb,
+                                      '${UserTool.userProvider.userInfoModel!.isSign ? '已签到' : '签到'}'
                                           .text
                                           .size(22.sp)
                                           .black
                                           .make(),
+                                    ],
+                                  ),
                                 ),
                                 32.w.widthBox,
                               ],
@@ -210,26 +215,50 @@ class _PersonalIndexState extends State<PersonalIndex>
                         Spacer(),
                         Container(
                           width: 686.w,
-                          height: 120.w,
+                          height: 168.w,
                           alignment: Alignment.center,
+                          padding: EdgeInsets.only(
+                              left: 24.w, top: 24.w, bottom: 24.w),
                           decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      Assets.static.vipBackground.path)),
+                              color: Colors.black,
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(16.w),
-                                  topRight: Radius.circular(16.w))),
+                                  topLeft: Radius.circular(24.w),
+                                  topRight: Radius.circular(24.w))),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               32.wb,
-                              Assets.icons.vipFont
-                                  .image(width: 60.w, height: 60.w),
-                              24.wb,
-                              '当前会员等级：2级'
-                                  .text
-                                  .size(24.sp)
-                                  .color(Color(0xFFFFE0A9))
-                                  .make(),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Assets.newIcon.imgVip
+                                          .image(width: 84.w, height: 32.w),
+                                      24.wb,
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16.w),
+                                            gradient: LinearGradient(colors: [
+                                              Color(0xFFFEE8C0),
+                                              Color(0xFFFCCC8C),
+                                            ])),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 14.w, vertical: 8.w),
+                                        child: Assets.newIcon.imgDengji
+                                            .image(width: 40.w, height: 16.w),
+                                      ),
+                                    ],
+                                  ),
+                                  16.hb,
+                                  '尊享6大会员权益'
+                                      .text
+                                      .size(24.sp)
+                                      .color(Color(0xFFFCCC8C))
+                                      .make(),
+                                ],
+                              ),
                               Spacer(),
                               GestureDetector(
                                 onTap: () => Get.to(() => integralCenterPage()),
@@ -252,7 +281,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 450.w),
+                    padding: EdgeInsets.only(top: 600.w),
                     child: Column(
                       children: [
                         Container(
@@ -284,22 +313,22 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 children: [
                                   _orderButton(
                                     name: '待付款',
-                                    path: R.ASSETS_ICONS_USER_ICON_DFK_PNG,
+                                    path: Assets.newIcon.icDaifuk.path,
                                     index: 1,
                                   ),
                                   _orderButton(
                                     name: '待发货',
-                                    path: R.ASSETS_ICONS_USER_ICON_DSH_PNG,
+                                    path: Assets.newIcon.imgDaifah.path,
                                     index: 2,
                                   ),
                                   _orderButton(
                                     name: '待收货',
-                                    path: R.ASSETS_ICONS_USER_ICON_DPJ_PNG,
+                                    path: Assets.newIcon.icDaishouh.path,
                                     index: 3,
                                   ),
                                   _orderButton(
                                     name: '已完成',
-                                    path: R.ASSETS_ICONS_USER_ICON_SH_PNG,
+                                    path: Assets.newIcon.imgDaipingj.path,
                                     index: 4,
                                   ),
                                 ],
@@ -307,44 +336,43 @@ class _PersonalIndexState extends State<PersonalIndex>
                             ],
                           ),
                         ),
-                        24.w.heightBox,
-                        Container(
-                          width: double.infinity,
-                          height: 100.w,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              // color: Colors.white,
-                              borderRadius: BorderRadius.circular(16.w)),
-                          margin: EdgeInsets.symmetric(horizontal: 32.w),
-                          child: Material(
-                            color: Colors.white,
-                            child: InkWell(
-                              onTap: () {
-                                Get.to(() => ClockInPage());
-                              },
-                              borderRadius: BorderRadius.circular(16.w),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 32.w, vertical: 24.w),
-                                child: Row(
-                                  children: [
-                                    '我的积分'.text.size(30.sp).black.bold.make(),
-                                    Spacer(),
-                                    // Assets.icons.intergral
-                                    //     .image(width: 32.w, height: 32.w),
-                                    // 16.w.widthBox,
-                                    // '123'.text.size(28.sp).black.make(),
-                                    // 16.w.widthBox,
-                                    Icon(
-                                      CupertinoIcons.right_chevron,
-                                      size: 24.w,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   width: double.infinity,
+                        //   height: 100.w,
+                        //   clipBehavior: Clip.antiAlias,
+                        //   decoration: BoxDecoration(
+                        //       // color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(16.w)),
+                        //   margin: EdgeInsets.symmetric(horizontal: 32.w),
+                        //   child: Material(
+                        //     color: Colors.white,
+                        //     child: InkWell(
+                        //       onTap: () {
+                        //         Get.to(() => ClockInPage());
+                        //       },
+                        //       borderRadius: BorderRadius.circular(16.w),
+                        //       child: Padding(
+                        //         padding: EdgeInsets.symmetric(
+                        //             horizontal: 32.w, vertical: 24.w),
+                        //         child: Row(
+                        //           children: [
+                        //             '我的积分'.text.size(30.sp).black.bold.make(),
+                        //             Spacer(),
+                        //             // Assets.icons.intergral
+                        //             //     .image(width: 32.w, height: 32.w),
+                        //             // 16.w.widthBox,
+                        //             // '123'.text.size(28.sp).black.make(),
+                        //             // 16.w.widthBox,
+                        //             Icon(
+                        //               CupertinoIcons.right_chevron,
+                        //               size: 24.w,
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           decoration: BoxDecoration(
                             color: Color(0xffffffff),
@@ -359,8 +387,22 @@ class _PersonalIndexState extends State<PersonalIndex>
                           margin: EdgeInsets.all(32.w),
                           padding: EdgeInsets.all(32.w),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Row(
+                                children: [
+                                  22.wb,
+                                  '其他功能'
+                                      .text
+                                      .size(32.sp)
+                                      .color(Color(0xFF2B2B2B))
+                                      .bold
+                                      .make(),
+                                  Spacer(),
+                                ],
+                              ),
+                              24.hb,
+                              _function('我的积分', Assets.newIcon.icJifen.path,
+                                  () => ClockInPage(), ''),
                               _function(
                                 '我的房屋',
                                 R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
@@ -373,27 +415,25 @@ class _PersonalIndexState extends State<PersonalIndex>
                                     '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
                                     '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
                               ),
-                              36.hb,
                               _function(
                                   '我的家庭',
                                   R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
                                   () => MyFamilyPage(),
                                   ''),
-                              36.hb,
                               // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
                               //     () => CarParkingPage(), ''),
                               // 36.hb,
                               // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
                               //     () => CarManagePage(), ''),
                               // 36.hb,
+                              // _function(
+                              //     '我的访客',
+                              //     R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
+                              //     () => CarManagePage(),
+                              //     ''),
+                              // 36.hb,
                               _function(
-                                  '我的访客',
-                                  R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
-                                  () => CarManagePage(),
-                                  ''),
-                              36.hb,
-                              _function(
-                                  '收货地址设置',
+                                  '收货地址',
                                   R.ASSETS_ICONS_ICON_MY_LOCATION_PNG,
                                   () => AddressListPage(
                                         canBack: false,
@@ -446,6 +486,7 @@ class _PersonalIndexState extends State<PersonalIndex>
       },
       child: Container(
         color: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
         child: Row(
           children: [
             Image.asset(

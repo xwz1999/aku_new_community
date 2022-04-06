@@ -262,14 +262,15 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
       ),
       body: Column(
         children: [
-          _buildEditTile(),
-          Divider(
-            indent: 32.w,
-            endIndent: 32.w,
-            height: 1.w,
-          ).material(color: Colors.white),
-          _buildMyApp(),
-          32.hb,
+          //暂时删除（以后可能会加回来
+          // _buildEditTile(),
+          // Divider(
+          //   indent: 32.w,
+          //   endIndent: 32.w,
+          //   height: 1.w,
+          // ).material(color: Colors.white),
+          // _buildMyApp(),
+          // 32.hb,
           _buildAppList().expand(),
         ],
       ),
