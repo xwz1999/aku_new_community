@@ -237,40 +237,40 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                     format: 'yyyy.MM.dd HH:mm',
                   )}',
                 ),
-                16.hb,
-                Row(
-                  children: [
-                    '活动方式'.text.size(28.sp).make().box.width(136.w).make(),
-                    '本次活动介绍'
-                        .richText
-                        .tap(() {
-                          var bottomSheet = Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.all(32.w),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16.w)),
-                            child: Column(
-                              children: [
-                                '活动介绍'.text.size(32.sp).black.bold.make(),
-                                32.w.heightBox,
-                                _model!.content.text
-                                    .size(28.sp)
-                                    .color(Colors.black.withOpacity(0.65))
-                                    .make(),
-                              ],
-                            ),
-                          );
-                          Get.bottomSheet(
-                            bottomSheet,
-                          );
-                        })
-                        .size(28.sp)
-                        .color(Colors.blue)
-                        .make(),
-                    Spacer(),
-                  ],
-                ),
+                // 16.hb,
+                // Row(
+                //   children: [
+                //     '活动方式'.text.size(28.sp).make().box.width(136.w).make(),
+                //     '本次活动介绍'
+                //         .richText
+                //         .tap(() {
+                //           var bottomSheet = Container(
+                //             width: double.infinity,
+                //             padding: EdgeInsets.all(32.w),
+                //             decoration: BoxDecoration(
+                //                 color: Colors.white,
+                //                 borderRadius: BorderRadius.circular(16.w)),
+                //             child: Column(
+                //               children: [
+                //                 '活动介绍'.text.size(32.sp).black.bold.make(),
+                //                 32.w.heightBox,
+                //                 _model!.content.text
+                //                     .size(28.sp)
+                //                     .color(Colors.black.withOpacity(0.65))
+                //                     .make(),
+                //               ],
+                //             ),
+                //           );
+                //           Get.bottomSheet(
+                //             bottomSheet,
+                //           );
+                //         })
+                //         .size(28.sp)
+                //         .color(Colors.blue)
+                //         .make(),
+                //     Spacer(),
+                //   ],
+                // ),
                 16.hb,
                 Row(
                   children: [
