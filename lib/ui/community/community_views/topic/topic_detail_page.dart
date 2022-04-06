@@ -75,7 +75,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                 'pageNum': _page,
                 'size': 4,
                 'topicId': widget.topicId,
-                'type': _currentIndex
+                'type': _currentIndex + 1
               });
               _dynamicList = baseList.rows
                   .map((e) => AllDynamicListModel.fromJson(e))
@@ -137,7 +137,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                             padding: EdgeInsets.only(top: 20.w),
                             child: ChatCard(
                               model: _dynamicList[index],
-                              onDelete: () {
+                              refresh: () {
                                 _refreshController.callRefresh();
                               },
                             ),

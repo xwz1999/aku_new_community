@@ -147,4 +147,22 @@ class CommunityFunc {
         .map((e) => HomeSwiperModel.fromJson(e))
         .toList();
   }
+
+  ///删除用户动态
+  static Future deleteDynamic(int id) async {
+    var base = await NetUtil()
+        .get(SAASAPI.community.deleteDynamic, showMessage: true, params: {
+      'dynamicId': id,
+    });
+    return base.success;
+  }
+
+  ///删除用户评论
+  static Future deleteComment(int id) async {
+    var base = await NetUtil()
+        .get(SAASAPI.community.deleteComment, showMessage: true, params: {
+      'commentId': id,
+    });
+    return base.success;
+  }
 }

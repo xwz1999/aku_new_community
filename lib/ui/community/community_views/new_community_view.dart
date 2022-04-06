@@ -41,7 +41,7 @@ class NewCommunityViewState extends State<NewCommunityView>
             final item = items[index] as AllDynamicListModel;
             return ChatCard(
               model: item,
-              onDelete: () {
+              refresh: () {
                 _refreshController.callRefresh();
               },
             );

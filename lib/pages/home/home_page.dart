@@ -558,7 +558,7 @@ class _HomePageState extends State<HomePage>
       child: GestureDetector(
         onTap: () {
           if (LoginUtil.isNotLogin) return;
-          // if (!LoginUtil.haveRoom(ao.title)) return;
+          if (ao.title != '全部应用' && !LoginUtil.haveRealName(ao.title)) return;
           if (ao.callback == null) {
             BotToast.showText(
                 text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));

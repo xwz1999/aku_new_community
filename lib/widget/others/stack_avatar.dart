@@ -9,14 +9,14 @@ class StackAvatar extends StatelessWidget {
 
   double get offset => 35.w;
 
-  int get length => avatars.length;
+  int get length => avatars.length > 3 ? 3 : avatars.length;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         SizedBox(
-          width: 44.w * 2 + 26.w,
+          width: 44.w * length + 26.w,
           height: 44.w + 6.w,
         ),
         ...List.generate(length, (index) {

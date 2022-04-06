@@ -1,11 +1,7 @@
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/model/community/my_event_item_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_head.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:aku_new_community/ui/community/community_views/widgets/my_event_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
@@ -179,27 +175,6 @@ class MyCommunityViewState extends State<MyCommunityView>
                 // _getMoments(),
               ],
             ),
-    );
-
-    BeeListView<MyEventItemModel>(
-      path: API.community.myEvent,
-      controller: _refreshController,
-      convert: (model) {
-        return model.rows.map((e) => MyEventItemModel.fromJson(e)).toList();
-      },
-      builder: (items) {
-        return ListView.separated(
-          padding: EdgeInsets.symmetric(vertical: 10.w),
-          itemBuilder: (context, index) {
-            final MyEventItemModel model = items[index];
-            MyEventItemModel? preModel;
-            if (index >= 1) preModel = items[index - 1];
-            return MyEventCard(model: model, preModel: preModel);
-          },
-          separatorBuilder: (_, __) => 8.hb,
-          itemCount: items.length,
-        );
-      },
     );
   }
 

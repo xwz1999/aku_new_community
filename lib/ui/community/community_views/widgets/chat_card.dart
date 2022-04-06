@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/community_func.dart';
 import 'package:aku_new_community/ui/community/community_views/add_new_event_page.dart';
 import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -24,7 +24,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ChatCard extends StatefulWidget {
   final AllDynamicListModel model;
-  final VoidCallback? onDelete;
+  final VoidCallback refresh;
 
   final bool hideLine;
   final bool canTap;
@@ -32,7 +32,7 @@ class ChatCard extends StatefulWidget {
   ChatCard({
     Key? key,
     required this.model,
-    this.onDelete,
+    required this.refresh,
     this.hideLine = false,
     this.canTap = true,
   }) : super(key: key);
@@ -143,7 +143,7 @@ class _ChatCardState extends State<ChatCard> {
           ),
           20.wb,
           GestureDetector(
-            onTap: widget.model.isComment == 1 ? () async {} : () async {},
+            onTap: () => Get.to(EventDetailPage(dynamicId: widget.model.id)),
             child: Material(
               color: Colors.transparent,
               child: Row(
@@ -184,10 +184,11 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () async {
-                Get.to(() => EventDetailPage(
+                await Get.to(() => EventDetailPage(
                       dynamicId: widget.model.id,
-                      onDelete: widget.onDelete,
+                      refresh: widget.refresh,
                     ));
+                widget.refresh();
               }
             : null,
         child: Column(
@@ -264,12 +265,8 @@ class _ChatCardState extends State<ChatCard> {
                     ));
 
                     if (result == true) {
-                      await NetUtil().get(
-                        API.community.deleteMyEvent,
-                        params: {'themeId': widget.model.id},
-                        showMessage: true,
-                      );
-                      if (widget.onDelete != null) widget.onDelete!();
+                      await CommunityFunc.deleteDynamic(widget.model.id);
+                      widget.refresh();
                     }
                   }
                 },
@@ -334,7 +331,7 @@ class CommunityPopButton extends StatelessWidget {
                 )
               : PopupMenuItem(
                   child: '举报'.text.isIntrinsic.make(),
-                  value: 0,
+                  value: 1,
                 ),
         ];
       },

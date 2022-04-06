@@ -170,7 +170,7 @@ class _CommunityPageState extends State<CommunityPage>
                       ..._newItems
                           .map((e) => ChatCard(
                               model: e,
-                              onDelete: () {
+                              refresh: () {
                                 _easyRefreshController.callRefresh();
                                 setState(() {});
                               }))

@@ -34,7 +34,7 @@ class _ApplicationViewState extends State<ApplicationView> {
       padding: EdgeInsets.zero,
       onPressed: () {
         if (LoginUtil.isNotLogin) return;
-        if (!LoginUtil.haveRoom(object.title)) return;
+        if (!LoginUtil.haveRealName(object.title)) return;
         if (object.callback == null) {
           BotToast.showText(text: '该功能正在准备上线中，敬请期待', align: Alignment(0, 0.5));
         } else {

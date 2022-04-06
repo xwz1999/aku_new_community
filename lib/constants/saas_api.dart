@@ -114,6 +114,12 @@ class _Message {
 }
 
 class _Community {
+  ///删除用户评论
+  String get deleteComment => '/app/user/community/comment/delete';
+
+  ///删除用户动态
+  String get deleteDynamic => '/app/user/community/dynamic/delete';
+
   ///查询动态下的单个评论信息
   String get singleComment => '/app/user/community/comment/findById';
 

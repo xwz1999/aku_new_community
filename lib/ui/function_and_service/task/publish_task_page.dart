@@ -130,10 +130,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   BotToast.showText(text: base.msg);
                 }
               } catch (e) {
+                print(22222);
                 print(e.toString());
               }
             }
-            var imgs;
+            var imgs = <String>[];
             if (_photos.isNotEmpty) {
               try {
                 imgs = await NetUtil()
