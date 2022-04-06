@@ -47,17 +47,44 @@ class CommunityFunc {
     return model.rows.map((e) => InformationListModel.fromJson(e)).toList();
   }
 
+
+  ///删除动态
+  static Future<bool> deleteDynamicAddViews(int dynamicId) async {
+    BaseModel model = await NetUtil().get(SAASAPI.community.deleteDynamic,
+        params: {'dynamicId': dynamicId}, showMessage: false);
+    if (model.success) {
+      BotToast.showText(text: '删除成功');
+      return true;
+    } else {
+      BotToast.showText(text: '删除失败');
+      return false;
+    }
+  }
+
   ///给单个资讯增加浏览量
   static Future<String> addViews(int newsId) async {
     BaseModel model = await NetUtil().get(
-      API.community.addViews,
+      SAASAPI.community.addViewNum,
       params: {
-        'newsId': newsId,
+        'informationId': newsId,
       },
     );
     if (model.success) return '';
     return model.msg;
   }
+
+  ///给单个动态增加浏览量
+  static Future<String> dynamicAddViews(int newsId) async {
+    BaseModel model = await NetUtil().get(
+      SAASAPI.community.dynamicAddViewNum,
+      params: {
+        'dynamicId': newsId,
+      },
+    );
+    if (model.success) return '';
+    return model.msg;
+  }
+
 
   ///查询顶部统计信息
   static Future<MarketStatisticsModel?> getMarketStatistics() async {

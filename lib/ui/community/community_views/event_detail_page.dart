@@ -101,6 +101,18 @@ class _EventDetailPageState extends State<EventDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
+
+      leading: Navigator.canPop(context)
+          ? IconButton(
+        onPressed: () => Get.back(result: true),
+        icon: Icon(
+          CupertinoIcons.chevron_back,
+          color: Colors.black,
+        ),
+      )
+          : SizedBox(),
+
+
       title: '详情',
       bottomNavi: _bottomButton(),
       actions: [

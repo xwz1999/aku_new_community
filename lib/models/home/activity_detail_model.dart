@@ -26,6 +26,7 @@ class ActivityDetailModel {
   final String contact;
   final String tel;
   final List<ImgModel> organizerImgList;
+  final int isRegistration;
 
   factory ActivityDetailModel.fromJson(Map<String, dynamic> json) =>
       _$ActivityDetailModelFromJson(json);
@@ -55,6 +56,7 @@ class ActivityDetailModel {
     required this.contact,
     required this.tel,
     required this.organizerImgList,
+    required this.isRegistration,
   });
 }
 

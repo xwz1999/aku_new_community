@@ -6,6 +6,7 @@ import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/community_func.dart';
 import 'package:aku_new_community/ui/community/community_views/add_new_event_page.dart';
 import 'package:aku_new_community/ui/community/community_views/event_detail_page.dart';
 import 'package:aku_new_community/utils/bee_date_util.dart';
@@ -25,7 +26,7 @@ import 'package:velocity_x/velocity_x.dart';
 class ChatCard extends StatefulWidget {
   final AllDynamicListModel model;
   final VoidCallback? onDelete;
-
+  final VoidCallback? onBack;
   final bool hideLine;
   final bool canTap;
 
@@ -34,7 +35,7 @@ class ChatCard extends StatefulWidget {
     required this.model,
     this.onDelete,
     this.hideLine = false,
-    this.canTap = true,
+    this.canTap = true, this.onBack,
   }) : super(key: key);
 
   @override
@@ -142,24 +143,21 @@ class _ChatCardState extends State<ChatCard> {
             ),
           ),
           20.wb,
-          GestureDetector(
-            onTap: widget.model.isComment == 1 ? () async {} : () async {},
-            child: Material(
-              color: Colors.transparent,
-              child: Row(
-                children: [
-                  Image.asset(R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
-                      width: 32.w,
-                      height: 32.w,
-                      color: Colors.black.withOpacity(0.45)),
-                  5.wb,
-                  '${widget.model.commentNum}'
-                      .text
-                      .size(24.sp)
-                      .color(Color(0xFF999999))
-                      .make(),
-                ],
-              ),
+          Material(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                Image.asset(R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
+                    width: 32.w,
+                    height: 32.w,
+                    color: Colors.black.withOpacity(0.45)),
+                5.wb,
+                '${widget.model.commentNum}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
+              ],
             ),
           )
         ],
@@ -176,6 +174,7 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -184,10 +183,19 @@ class _ChatCardState extends State<ChatCard> {
         padding: EdgeInsets.zero,
         onPressed: widget.canTap
             ? () async {
-                Get.to(() => EventDetailPage(
+
+          var result =
+          await  Get.to(() => EventDetailPage(
                       dynamicId: widget.model.id,
                       onDelete: widget.onDelete,
                     ));
+
+          CommunityFunc.dynamicAddViews(widget.model.id);
+
+          if (result != null && result) {
+           widget.onBack!();
+          }
+
               }
             : null,
         child: Column(
@@ -264,11 +272,8 @@ class _ChatCardState extends State<ChatCard> {
                     ));
 
                     if (result == true) {
-                      await NetUtil().get(
-                        API.community.deleteMyEvent,
-                        params: {'themeId': widget.model.id},
-                        showMessage: true,
-                      );
+
+                      await CommunityFunc.deleteDynamicAddViews(widget.model.id);
                       if (widget.onDelete != null) widget.onDelete!();
                     }
                   }

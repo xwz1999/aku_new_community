@@ -369,7 +369,9 @@ class _PersonalIndexState extends State<PersonalIndex>
                               _function(
                                 '我的房屋',
                                 R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                                () => MyHousePage(),
+                                  (){
+                                Get.to(() => MyHousePage());
+                              },
                                 // () => HouseOwnersPage(
                                 //       identify: 4,
                                 //     ),
@@ -382,7 +384,11 @@ class _PersonalIndexState extends State<PersonalIndex>
                               _function(
                                   '我的家庭',
                                   R.ASSETS_ICONS_ICON_MY_HOUSE_PNG,
-                                  () => MyFamilyPage(),
+                                  (){
+                                    Get.to(() => MyFamilyPage());
+                                  }
+
+                                  ,
                                   ''),
                               36.hb,
                               // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
@@ -394,15 +400,21 @@ class _PersonalIndexState extends State<PersonalIndex>
                               _function(
                                   '我的访客',
                                   R.ASSETS_ICONS_ICON_MY_VISITOR_PNG,
-                                  () => CarManagePage(),
+                                  (){
+                                    BotToast.showText(text: '当前小区尚未连接设备', align: Alignment(0, 0.5));
+                                  }
+
+                                  ,
                                   ''),
                               36.hb,
                               _function(
                                   '收货地址设置',
                                   R.ASSETS_ICONS_ICON_MY_LOCATION_PNG,
-                                  () => AddressListPage(
-                                        canBack: false,
-                                      ),
+                                      (){
+                                    Get.to(() => AddressListPage(
+                                      canBack: false,
+                                    ),);
+                                  },
                                   ''),
                             ],
                           ),
@@ -442,13 +454,12 @@ class _PersonalIndexState extends State<PersonalIndex>
   _function(
     String title,
     String path,
-    dynamic page,
+    VoidCallback onTap,
+    //dynamic page,
     String msg,
   ) {
     return GestureDetector(
-      onTap: () {
-        Get.to(page);
-      },
+      onTap: onTap,
       child: Container(
         color: Colors.transparent,
         child: Row(

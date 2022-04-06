@@ -33,6 +33,8 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'event_detail_page.dart';
+
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key? key}) : super(key: key);
 
@@ -167,7 +169,13 @@ class _CommunityPageState extends State<CommunityPage>
                               onDelete: () {
                                 _easyRefreshController.callRefresh();
                                 setState(() {});
-                              }))
+                              },
+                            onBack: (){
+                              _easyRefreshController.callRefresh();
+                              setState(() {});
+                            },
+
+                              ))
                           .toList()
                     ],
                   ),
@@ -293,7 +301,9 @@ class _CommunityPageState extends State<CommunityPage>
       onTap: () async {
         var result =
             await Get.to(() => PublicInformationDetailPage(id: item.id));
+
         CommunityFunc.addViews(item.id);
+
         if (result != null && result) {
           _easyRefreshController.callRefresh();
         }

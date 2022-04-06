@@ -38,6 +38,7 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
                 color: Colors.black.withOpacity(0.06),
                 height: 75.w,
                 width: double.infinity,
+                alignment: Alignment.center,
                 child:   '已有'.richText.color(Colors.black.withOpacity(0.65)).size(28.sp).withTextSpanChildren([
                   widget.registrationList==null?''.textSpan
                       .size(28.sp)
@@ -59,16 +60,29 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      96.hb,
+                      132.hb,
                       20.wb,
-                      FadeInImage.assetNetwork(
-                        placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                        image: SAASAPI.image(ImgModel.first(widget.registrationList![index].avatarImgList)),
-                        height: 60.w,
-                        width: 60.w,
+                      Material(
+                        color: Color(0xFFF5F5F5),
+                        borderRadius: BorderRadius.circular(40.w),
+                        clipBehavior: Clip.antiAlias,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                          image: SAASAPI.image(ImgModel.first(widget.registrationList![index].avatarImgList)),
+                          height: 80.w,
+                          width: 80.w,
+                          fit: BoxFit.fill,
+                          imageErrorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                              width: 80.w,
+                              height: 80.w,
+                            );
+                          },
+                        ),
                       ),
                       18.wb,
-                      widget.registrationList![index].name.text.size(28.sp).make(),
+                      '${getName(widget.registrationList![index].name) }'.text.size(28.sp).make(),
                     ],
                   );
                 },
@@ -79,5 +93,18 @@ class _ActivityPeopleListPageState extends State<ActivityPeopleListPage> {
           )
 
     );
+  }
+
+
+  getName(String name){
+    for(int i=0;i<name.length;i++){
+      if(i>0){
+        name = name.replaceRange(i, i+1, '*') ;
+      }
+
+    }
+
+
+    return name;
   }
 }

@@ -152,6 +152,18 @@ class _Community {
 
   ///新鲜话题
   String get topNewList => '/app/user/community/topic/newList';
+
+  ///增加咨询浏览量
+  String get addViewNum => '/app/user/information/addViewNum';
+
+  ///增加咨询浏览量
+  String get dynamicAddViewNum => '/app/user/community/dynamic/addViewNum';
+
+  ///删除动态
+  String get deleteDynamic => '/app/user/community/dynamic/delete';
+
+
+
 }
 
 class _Task {

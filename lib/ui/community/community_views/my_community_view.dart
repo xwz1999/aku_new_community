@@ -160,26 +160,6 @@ class MyCommunityViewState extends State<MyCommunityView>
             ),
     );
 
-    BeeListView<MyEventItemModel>(
-      path: API.community.myEvent,
-      controller: _refreshController,
-      convert: (model) {
-        return model.rows.map((e) => MyEventItemModel.fromJson(e)).toList();
-      },
-      builder: (items) {
-        return ListView.separated(
-          padding: EdgeInsets.symmetric(vertical: 10.w),
-          itemBuilder: (context, index) {
-            final MyEventItemModel model = items[index];
-            MyEventItemModel? preModel;
-            if (index >= 1) preModel = items[index - 1];
-            return MyEventCard(model: model, preModel: preModel);
-          },
-          separatorBuilder: (_, __) => 8.hb,
-          itemCount: items.length,
-        );
-      },
-    );
   }
 
   Widget _getMoments(DynamicMyListBody item) {
@@ -206,14 +186,14 @@ class MyCommunityViewState extends State<MyCommunityView>
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                '11.15'
+                item.createDate.substring(5,10)
                     .text
-                    .size(32.sp)
+                    .size(28.sp)
                     .color(Color(0xA6000000))
                     .bold
                     .isIntrinsic
                     .make(),
-                '2021'
+                item.createDate.substring(0,4)
                     .text
                     .size(24.sp)
                     .color(Color(0x73000000))
@@ -231,9 +211,9 @@ class MyCommunityViewState extends State<MyCommunityView>
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      '25.61'
+                      item.createDate.substring(10,16)
                           .text
-                          .size(28.sp)
+                          .size(32.sp)
                           .color(Color(0xA6000000))
                           .isIntrinsic
                           .make(),
@@ -268,14 +248,13 @@ class MyCommunityViewState extends State<MyCommunityView>
                             ],
                           ));
 
-                          // if (result == true) {
-                          //   await NetUtil().get(
-                          //     API.community.deleteMyEvent,
-                          //     params: {'themeId': widget.model!.id},
-                          //     showMessage: true,
-                          //   );
-                          //
-                          // }
+                          if (result == true) {
+                          var result =   await CommunityFunc.deleteDynamicAddViews(item.id);
+                          if(result){
+                            refresh();
+                          }
+
+                          }
                         },
                         child: Container(
                             width: 32.w,

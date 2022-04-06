@@ -79,6 +79,9 @@ class _ClockInPageState extends State<ClockInPage> {
                     child: BeeImageNetwork(
                       height: 106.w,
                       width: 106.w,
+                      imgs: UserTool.userProvider.userInfoModel
+                          ?.imgList ??
+                          [],
                     ),
                   ),
                 ),
@@ -260,6 +263,7 @@ class _ClockInPageState extends State<ClockInPage> {
                           currentValue.signDate,
                           currentValue.addNums))
                       .toList(),
+                  _records.length>6?
                   Container(
                     width: double.infinity,
                     height: 82.w,
@@ -267,7 +271,7 @@ class _ClockInPageState extends State<ClockInPage> {
                     color: Color(0xFFE5E5E5),
                     child:
                         '没有更多记录了~'.text.size(28.sp).color(ktextSubColor).make(),
-                  ),
+                  ):SizedBox(),
                 ].sepWidget(separate: 32.hb),
               ),
             )
