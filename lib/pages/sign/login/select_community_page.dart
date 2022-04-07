@@ -173,7 +173,9 @@ class _SelectCommunityState extends State<SelectCommunity> {
                 borderRadius: BorderRadius.circular(4.w),
               ),
               color: kPrimaryColor,
-              onPressed: (){Navigator.pop(context);},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: '提交'.text.size(34.sp).make(),
             ).centered(),
           ),
@@ -192,22 +194,32 @@ class _SelectCommunityState extends State<SelectCommunity> {
   }
 
   Widget _historyTile(HistoryLoginModel model) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-      child: Row(
-        children: [
-          Icon(
-            CupertinoIcons.search,
-            size: 30.w,
-            color: Colors.black.withOpacity(0.2),
+    return GestureDetector(
+      onTap: () {
+        UserTool.appProvider.setPickedCity(
+            city: model.cityModel, community: model.communityModel);
+        setState(() {});
+      },
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+          child: Row(
+            children: [
+              Icon(
+                CupertinoIcons.search,
+                size: 30.w,
+                color: Colors.black.withOpacity(0.2),
+              ),
+              24.w.widthBox,
+              '${model.communityModel!.name}(${model.cityModel.province.name}·${model.cityModel.city.name}·${model.cityModel.district.name})'
+                  .text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.2))
+                  .make(),
+            ],
           ),
-          24.w.widthBox,
-          '${model.communityModel!.name}(${model.cityModel.province.name}·${model.cityModel.city.name}·${model.cityModel.district.name})'
-              .text
-              .size(28.sp)
-              .color(Colors.black.withOpacity(0.2))
-              .make(),
-        ],
+        ),
       ),
     );
   }

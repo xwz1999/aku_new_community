@@ -47,6 +47,15 @@ class _City {
 }
 
 class _User {
+  ///app用户发送手机号验证码(修改手机号)
+  String get sendTelCodeUpdateTel => '/app/user/sendTelCodeUpdateTel';
+
+  ///提交修改的新手机号（修改手机号）
+  String get updateTel => '/app/user/updateTel';
+
+  ///修改性别
+  String get updateSex => '/app/user/updateSex';
+
   ///用户资料
   String get userProfile => '/app/user/findDetail';
 

@@ -88,7 +88,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
         children: [
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 80.w,
               magnification: 1.0,
               // offAxisFraction: -0.6,
               looping: true,
@@ -110,7 +110,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
           ),
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 80.w,
               magnification: 1.0,
               looping: true,
               scrollController: _cityController,
@@ -131,7 +131,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
           ),
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 80.w,
               magnification: 1.0,
               // offAxisFraction: 0.6,
               looping: true,
@@ -145,7 +145,11 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
                   : districts
                       .map((e) => Center(
                             child: Padding(
-                              padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                              padding: EdgeInsets.only(
+                                  left: 20.w,
+                                  right: 20.w,
+                                  top: 10.w,
+                                  bottom: 10.w),
                               child: Text(e.name, textAlign: TextAlign.center),
                             ),
                           ))

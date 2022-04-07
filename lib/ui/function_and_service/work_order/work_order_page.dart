@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class WorkOrderPage extends StatefulWidget {
@@ -47,8 +48,9 @@ class _WorkOrderPageState extends State<WorkOrderPage>
       title: '报事报修',
       actions: [
         IconButton(
-            onPressed: () {
-              Get.to(() => PublishWorkOrderPage());
+            onPressed: () async {
+              await Get.to(() => PublishWorkOrderPage());
+              _refreshController.callRefresh();
             },
             icon: Icon(
               CupertinoIcons.plus_circle,
@@ -69,16 +71,23 @@ class _WorkOrderPageState extends State<WorkOrderPage>
   Widget _getOrderView(int index) {
     return EasyRefresh(
         firstRefresh: true,
+        controller: _refreshController,
         header: MaterialHeader(),
+        footer: MaterialFooter(),
         onRefresh: () async {
           _page = 1;
-          var base = await NetUtil().getList(SAASAPI.workOrder.list, params: {
-            'pageNum': _page,
-            'size': _size,
-            'status': index == 0 ? null : index,
-          });
-          _models =
-              base.rows.map((e) => WorkOrderListModel.fromJson(e)).toList();
+          _models.clear();
+          try {
+            var base = await NetUtil().getList(SAASAPI.workOrder.list, params: {
+              'pageNum': _page,
+              'size': _size,
+              'status': index == 0 ? null : index,
+            });
+            _models =
+                base.rows.map((e) => WorkOrderListModel.fromJson(e)).toList();
+          } catch (e) {
+            LoggerData.addData(e.toString());
+          }
           setState(() {});
         },
         onLoad: () async {
@@ -93,7 +102,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
                 base.rows.map((e) => WorkOrderListModel.fromJson(e)).toList());
             setState(() {});
           } else {
-            _refreshController.finishLoad();
+            _refreshController.finishLoad(noMore: true);
           }
         },
         child: ListView.separated(
