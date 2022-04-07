@@ -18,10 +18,8 @@ import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/ui/home/home_notification.dart';
 import 'package:aku_new_community/ui/home/home_title.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
-import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/beeImageNetwork.dart';
@@ -112,17 +110,18 @@ class _HomePageState extends State<HomePage>
           left: 32.w,
           bottom: 20.w),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        if (appProvider.location != null)
-          Image.asset(
-            Assets.home.icLocation.path,
-            width: 48.w,
-            height: 48.w,
-          ),
+        // if (appProvider.location != null)
+        Image.asset(
+          Assets.home.icLocation.path,
+          width: 48.w,
+          height: 48.w,
+        ),
         16.wb,
         Text(
-          appProvider.location?['city'] == null
-              ? ''
-              : appProvider.location?['city'] as String? ?? '',
+          '${UserTool.userProvider.userInfoModel?.communityName ?? ""}',
+          // appProvider.location?['city'] == null
+          //     ? ''
+          //     : appProvider.location?['city'] as String? ?? '',
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 28.sp,
@@ -356,12 +355,7 @@ class _HomePageState extends State<HomePage>
                                         ),
                                       ),
                                       onTap: () async {
-                                          var agreement = await HiveStore.appBox?.get('AdvicePage') ?? false;
-                                          if (!agreement) {
-                                            await TipsDialog.tipsDialog();
-                                            HiveStore.appBox!.put('AdvicePage', true);
-                                          }
-
+                                        await TipsDialog.tipsDialog();
                                         // Get.to(AdvicePage(
                                         //     type: AdviceType.SUGGESTION));
                                       },

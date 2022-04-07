@@ -33,7 +33,7 @@ class BeeImageNetwork extends StatelessWidget {
           Assets.images.placeholder.path,
           width: width ?? 160.w,
           height: height ?? 160.w,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         );
       },
       height: height ?? 160.w,
