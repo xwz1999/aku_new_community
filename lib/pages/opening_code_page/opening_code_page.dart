@@ -168,6 +168,15 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                                     size: 460.w,
                                   ),
                                 ),
+                                36.hb,
+                                if (UserTool.userProvider.defaultHouse != null)
+                                  Center(
+                                    child: '本小区尚未配置门禁设备'
+                                        .text
+                                        .size(28.sp)
+                                        .color(Colors.red)
+                                        .make(),
+                                  ),
                               ],
                             ),
                           ),
@@ -217,7 +226,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                                 suffix: ''),
                             buildRow(
                                 onTap: () {
-                                  BotToast.showText(text: '当前小区未接入开门码功能');
+                                  BotToast.showText(text: '当前小区未接入人脸识别功能');
                                 },
                                 text: '人脸识别',
                                 suffix: ''),
