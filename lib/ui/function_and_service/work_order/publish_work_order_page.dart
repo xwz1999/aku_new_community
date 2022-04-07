@@ -131,7 +131,7 @@ class _PublishWorkOrderPageState extends State<PublishWorkOrderPage> {
                     estateId: 1,
                     workOrderTypeId: _types[_typeIndex].id,
                     reserveDate: _appointDate.toString(),
-                    reserveAddress: _appointEndDate.toString(),
+                    reserveAddress: _addressController.text.toString(),
                     content: _remark,
                     imgUrls: imgUrls);
                 if (re) {
