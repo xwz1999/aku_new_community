@@ -390,7 +390,7 @@ class _HomePageState extends State<HomePage>
                           _activityItemModels == []
                               ? SizedBox()
                               : Container(
-                                  height: 460.w,
+                                  height: 450.w,
                                   child: ListView.separated(
                                     padding: EdgeInsets.zero,
                                     separatorBuilder: (context, index) {
@@ -405,6 +405,7 @@ class _HomePageState extends State<HomePage>
                                         child: Builder(
                                           builder: (context) {
                                             return ActivityCard(
+                                              home: true,
                                                 model:
                                                     _activityItemModels[index]);
                                           },

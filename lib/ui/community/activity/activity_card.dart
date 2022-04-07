@@ -22,7 +22,7 @@ class ActivityCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: home! ? 480.w : 540.w),
+      constraints: BoxConstraints(maxHeight: home! ? 450.w : 540.w),
       child: MaterialButton(
         clipBehavior: Clip.antiAlias,
         color: Colors.white,
@@ -46,7 +46,7 @@ class ActivityCard extends StatelessWidget {
                     child: BeeImageNetwork(
                       imgs: model!.imgList ?? [],
                       width: double.infinity,
-                      height: home! ? 240.w : 340.w,
+                      height: home! ? 250.w : 340.w,
                     ),
                   ),
                 ),
@@ -102,7 +102,7 @@ class ActivityCard extends StatelessWidget {
             Spacer(),
 
             Padding(
-              padding:EdgeInsets.only(left: 32.w,right: 32.w,bottom: 32.w),
+              padding: home!?EdgeInsets.only(left: 32.w,right: 32.w,): EdgeInsets.only(left: 32.w,right: 32.w,bottom: 32.w),
               child: Row(
                 children: [
                   Flexible(
