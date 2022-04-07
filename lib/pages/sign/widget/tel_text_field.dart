@@ -32,13 +32,17 @@ class _TelTextFieldState extends State<TelTextField> {
         onChanged: widget.onChange,
         style: TextStyle(
           color: Colors.black.withOpacity(0.85),
+          fontSize: 32.sp
         ),
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           isDense: true,
           border: InputBorder.none,
-          prefixIcon: Center(child: '+86｜'.text.black.make()),
-          prefixIconConstraints: BoxConstraints.loose(Size(60, 60)),
+          prefixIcon: Padding(
+            padding:  EdgeInsets.only(left: 24.w),
+            child: '+86｜'.text.black.make(),
+          ),
+          prefixIconConstraints: BoxConstraints(minHeight: 0,minWidth: 0),
           contentPadding: EdgeInsets.symmetric(vertical: 30.w),
           hintText: '点击输入手机号',
           hintStyle:
