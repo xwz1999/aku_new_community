@@ -69,7 +69,7 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
                 _cardList('收费项目', widget.model.chargesName),
                 SizedBox(height: 30.w),
                 _cardList('收费地址',
-                    '${S.of(context)!.tempPlotName} ${widget.model.unitName + widget.model.estateName}'),
+                    '${widget.model.buildingName + '栋' + widget.model.unitName + '单元' + widget.model.estateName}'),
               ],
             ),
           ),
@@ -92,14 +92,14 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _billItem('账单月份',DateUtil.formatDate(DateTime.parse(widget.model.billDateStart),
+                _billItem('账单月份',DateUtil.formatDate(DateUtil.getDateTime(widget.model.billDateStart),
                     format: 'yyyy-MM'),),
                 _billItem('缴纳金额','¥'+widget.model.payAmount.toStringAsFixed(2),isRed: true),
 
-                _billItem('缴费时间',DateUtil.formatDate(DateTime.parse(widget.model.createDate),
+                _billItem('缴费时间',DateUtil.formatDate(DateUtil.getDateTime(widget.model.createDate),
                     format: 'yyyy/MM/dd hh:mm'),),
                 _billItem('付款方式',  '${getPayType[widget.model.payType]}'),
-                _billItem('账单创建时间',DateUtil.formatDate(DateTime.parse(widget.model.billCreateDate),
+                _billItem('账单创建时间',DateUtil.formatDate(DateUtil.getDateTime(widget.model.billCreateDate),
                     format: 'yyyy/MM/dd hh:mm'),),
                 _billItem('流水号',widget.model.code,),
 
