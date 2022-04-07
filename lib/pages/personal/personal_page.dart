@@ -428,7 +428,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                               // 36.hb,
                               _function('我的访客', Assets.newIcon.icWdfk.path, () {
                                 BotToast.showText(
-                                    text: '当前小区尚未连接设备',
+                                    text: '本小区尚未配置门禁设备',
                                     align: Alignment(0, 0.5));
                               }, ''),
                               _function(
