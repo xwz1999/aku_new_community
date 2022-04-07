@@ -34,7 +34,7 @@ ActivityDetailModel _$ActivityDetailModelFromJson(Map<String, dynamic> json) =>
       organizerImgList: (json['organizerImgList'] as List<dynamic>)
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-        isRegistration:json['isRegistration'] as int
+      isRegistration: json['isRegistration'] as int,
     );
 
 Registration _$RegistrationFromJson(Map<String, dynamic> json) => Registration(
