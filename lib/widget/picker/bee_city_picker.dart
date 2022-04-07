@@ -88,7 +88,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
         children: [
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 70.w,
               magnification: 1.0,
               // offAxisFraction: -0.6,
               looping: true,
@@ -110,7 +110,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
           ),
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 70.w,
               magnification: 1.0,
               looping: true,
               scrollController: _cityController,
@@ -131,7 +131,7 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
           ),
           Expanded(
             child: CupertinoPicker(
-              itemExtent: 60.w,
+              itemExtent: 70.w,
               magnification: 1.0,
               // offAxisFraction: 0.6,
               looping: true,
