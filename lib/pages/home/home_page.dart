@@ -239,8 +239,7 @@ class _HomePageState extends State<HomePage>
                                       borderRadius: BorderRadius.circular(16.w),
                                       image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: AssetImage(
-                                            Assets.home.imgFkyq.path),
+                                        image: AssetImage(                                            Assets.home.imgFkyq.path),
                                       )),
                                   child: Column(
                                     crossAxisAlignment:
@@ -264,8 +263,11 @@ class _HomePageState extends State<HomePage>
                                     ],
                                   ),
                                 ),
-                                onTap: () {
-                                  Get.to(() => VisitorAccessPage());
+                                onTap: () async {
+                                  BotToast.showText(
+                                      text: '本小区尚未配置门禁设备',
+                                      align: Alignment(0, 0.5));
+                                  //Get.to(() => VisitorAccessPage());
                                 },
                               ),
                             ),
@@ -355,7 +357,9 @@ class _HomePageState extends State<HomePage>
                                         ),
                                       ),
                                       onTap: () async {
-                                        await TipsDialog.tipsDialog();
+                                        BotToast.showText(
+                                            text: '本小区尚未配置门禁设备',
+                                            align: Alignment(0, 0.5));
                                         // Get.to(AdvicePage(
                                         //     type: AdviceType.SUGGESTION));
                                       },
@@ -386,7 +390,7 @@ class _HomePageState extends State<HomePage>
                           _activityItemModels == []
                               ? SizedBox()
                               : Container(
-                                  height: 460.w,
+                                  height: 450.w,
                                   child: ListView.separated(
                                     padding: EdgeInsets.zero,
                                     separatorBuilder: (context, index) {
@@ -401,6 +405,7 @@ class _HomePageState extends State<HomePage>
                                         child: Builder(
                                           builder: (context) {
                                             return ActivityCard(
+                                              home: true,
                                                 model:
                                                     _activityItemModels[index]);
                                           },

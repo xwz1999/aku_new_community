@@ -33,7 +33,9 @@ class _ThumbsUpViewState extends State<ThumbsUpView> {
               itemBuilder: (context, index) {
                 return ThumbsUpCard(model: items[index]);
               },
-              separatorBuilder: (_, __) => 20.w.heightBox,
+              separatorBuilder: (_, __) =>Container(
+                color: Color(0xFFF0F0F0),height: 2.w,
+              ),
               itemCount: items.length);
         });
   }

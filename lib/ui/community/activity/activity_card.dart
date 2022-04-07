@@ -22,7 +22,7 @@ class ActivityCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: home! ? 480.w : 540.w),
+      constraints: BoxConstraints(maxHeight: home! ? 450.w : 540.w),
       child: MaterialButton(
         clipBehavior: Clip.antiAlias,
         color: Colors.white,
@@ -46,7 +46,7 @@ class ActivityCard extends StatelessWidget {
                     child: BeeImageNetwork(
                       imgs: model!.imgList ?? [],
                       width: double.infinity,
-                      height: home! ? 240.w : 340.w,
+                      height: home! ? 250.w : 340.w,
                     ),
                   ),
                 ),
@@ -78,44 +78,54 @@ class ActivityCard extends StatelessWidget {
               ],
             ),
             24.hb,
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  constraints: BoxConstraints(maxWidth: 340.w),
-                  child: Text(
-                    model == null ? '' : model!.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color(0xD9000000),
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.bold),
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 32.w),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    constraints: BoxConstraints(maxWidth: 340.w),
+                    child: Text(
+                      model == null ? '' : model!.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Color(0xD9000000),
+                          fontSize: 28.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                Spacer(),
-              ],
+                  Spacer(),
+                ],
+              ),
             ),
             Spacer(),
-            [
-              Flexible(
-                child: AvatarsParticipate(
-                  avatars:
-                      (model?.avatarImgList?.map((e) => e.url).toList() ?? []),
-                  pNum: model?.registrationNum ?? 0,
-                  hasIcon: false,
 
-                ),
+            Padding(
+              padding: home!?EdgeInsets.only(left: 32.w,right: 32.w,): EdgeInsets.only(left: 32.w,right: 32.w,bottom: 32.w),
+              child: Row(
+                children: [
+                  Flexible(
+                    child: AvatarsParticipate(
+                      avatars:
+                      (model?.avatarImgList?.map((e) => e.url).toList() ?? []),
+                      pNum: model?.registrationNum ?? 0,
+                      hasIcon: false,
+
+                    ),
+                  ),
+                  // Spacer(),
+                  Offstage(
+                      offstage: ActivityFunc.dateCheck(model!.end) == '已结束',
+                      child: ActivityFunc.dateCheck(model!.end)
+                          .text
+                          .size(24.sp)
+                          .black
+                          .make()),
+                ],
               ),
-              // Spacer(),
-              Offstage(
-                  offstage: ActivityFunc.dateCheck(model!.end) == '已结束',
-                  child: ActivityFunc.dateCheck(model!.end)
-                      .text
-                      .size(24.sp)
-                      .black
-                      .make()),
-            ].row(),
+            )
+
           ],
         ),
       ),
