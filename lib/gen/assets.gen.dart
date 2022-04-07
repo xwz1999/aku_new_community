@@ -1297,6 +1297,10 @@ class $AssetsImagesGen {
   AssetGenImage get wxpay => const AssetGenImage('assets/images/wxpay.png');
 }
 
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+}
+
 class $AssetsNewIconGen {
   const $AssetsNewIconGen();
 
@@ -1529,6 +1533,7 @@ class Assets {
   static const $AssetsHomeGen home = $AssetsHomeGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsNewIconGen newIcon = $AssetsNewIconGen();
   static const $AssetsStaticGen static = $AssetsStaticGen();
   static const $AssetsTabGen tab = $AssetsTabGen();

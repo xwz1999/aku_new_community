@@ -47,8 +47,9 @@ class MyTakeTaskCard extends StatelessWidget {
       ],
     );
     return GestureDetector(
-      onTap: () {
-        Get.to(() => MyTakeTaskDetailPage(model: model));
+      onTap: () async {
+        await Get.to(() => MyTakeTaskDetailPage(model: model));
+        refresh();
       },
       child: Container(
         width: double.infinity,
@@ -116,7 +117,8 @@ class MyTakeTaskCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  model.remarks.text
+                  (model.remarks ?? "")
+                      .text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
@@ -170,17 +172,25 @@ class MyTakeTaskCard extends StatelessWidget {
                 )
               ],
             ),
-            _cardBottom(model.status),
+            _cardBottom(),
           ],
         ),
       ),
     );
   }
 
-  Widget _cardBottom(int) {
-    switch (int) {
-      case 1:
+  Widget _cardBottom() {
+    switch (model.status) {
       case 2:
+        return CardBottomButton.yellow(
+            text: '开始服务',
+            onPressed: () async {
+              var re = await TaskFunc.start(taskId: model.id);
+              if (re) {
+                refresh();
+              }
+            });
+      case 3:
         return Column(
           children: [
             40.w.heightBox,
@@ -196,7 +206,7 @@ class MyTakeTaskCard extends StatelessWidget {
                 //       }
                 //     }),
                 CardBottomButton.yellow(
-                    text: '确认完成',
+                    text: '完成任务',
                     onPressed: () async {
                       var re = await TaskFunc.finish(taskId: model.id);
                       if (re) {
@@ -207,7 +217,7 @@ class MyTakeTaskCard extends StatelessWidget {
             )
           ],
         );
-      case 4:
+      case 9:
         return Column(
           children: [
             32.w.heightBox,

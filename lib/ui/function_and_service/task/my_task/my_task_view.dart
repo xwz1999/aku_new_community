@@ -31,7 +31,7 @@ class _MyTaskViewState extends State<MyTaskView> {
         path: SAASAPI.task.list,
         controller: widget.refreshController,
         extraParams: {
-          'taskModel': 2,
+          'taskModel': 3,
           'type': widget.type == 0 ? null : widget.type,
         },
         convert: (json) =>

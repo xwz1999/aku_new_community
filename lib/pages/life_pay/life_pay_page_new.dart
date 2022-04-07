@@ -84,65 +84,6 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
         BotToast.showText(text: '请先选择您的房屋');
       }
     });
-
-    _models = [
-      LifePayModel(
-          id: 1,
-          createDate: '2022-02-11 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-02-11 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-03-11 00:00:01'),
-      LifePayModel(
-          id: 2,
-          createDate: '2022-02-12 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-02-11 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-03-12 00:00:01'),
-      LifePayModel(
-          id: 3,
-          createDate: '2022-03-11 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-03-11 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-04-11 00:00:01'),
-      LifePayModel(
-          id: 4,
-          createDate: '2022-04-11 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-04-11 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-05-11 00:00:01'),
-      LifePayModel(
-          id: 5,
-          createDate: '2022-02-15 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-02-15 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-03-15 00:00:01'),
-      LifePayModel(
-          id: 6,
-          createDate: '2022-02-16 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-02-16 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-03-16 00:00:01'),
-      LifePayModel(
-          id: 7,
-          createDate: '2022-03-18 00:00:01',
-          payPrincipal: 100,
-          billDateStart: '2022-03-11 00:00:01',
-          chargesName: '物业费',
-          defaultAmount: 50,
-          billDateEnd: '2022-04-19 00:00:01'),
-    ];
   }
 
   @override

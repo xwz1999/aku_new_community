@@ -1,12 +1,10 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/models/search/search_goods_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/models/search/search_goods_model.dart';
-import 'package:aku_new_community/ui/market/collection/collection_func.dart';
-import 'package:aku_new_community/utils/headers.dart';
 import 'good_detail_page.dart';
 
 class GoodsListCard extends StatefulWidget {
@@ -157,26 +155,26 @@ class GoodsListCardState extends State<GoodsListCard> {
                       ],
                     ),
                     Spacer(),
-                    GestureDetector(
-                      onTap: () async {
-                        await CollectionFunc.collection(widget.model.id!);
-
-                        if (widget.refreshController != null) {
-                          widget.refreshController!.callRefresh();
-                        }
-                      },
-                      child: (widget.model.isCollection ?? 0) != 0
-                          ? Image.asset(
-                              R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
-                              width: 42.w,
-                              height: 42.w,
-                            )
-                          : Image.asset(
-                              R.ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG,
-                              width: 42.w,
-                              height: 42.w,
-                            ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () async {
+                    //     await CollectionFunc.collection(widget.model.id!);
+                    //
+                    //     if (widget.refreshController != null) {
+                    //       widget.refreshController!.callRefresh();
+                    //     }
+                    //   },
+                    //   child: (widget.model.isCollection ?? 0) != 0
+                    //       ? Image.asset(
+                    //           R.ASSETS_ICONS_SHOP_FAVORFILL_PNG,
+                    //           width: 42.w,
+                    //           height: 42.w,
+                    //         )
+                    //       : Image.asset(
+                    //           R.ASSETS_ICONS_ICON_FAVOR_CHOOSE_PNG,
+                    //           width: 42.w,
+                    //           height: 42.w,
+                    //         ),
+                    // ),
                     24.wb,
                   ],
                 ),

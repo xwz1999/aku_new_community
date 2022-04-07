@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddAppointmentAddressPage extends StatefulWidget {
-  const AddAppointmentAddressPage({Key? key}) : super(key: key);
+  final String? address;
+  final String? addressDetail;
+
+  const AddAppointmentAddressPage({Key? key, this.address, this.addressDetail})
+      : super(key: key);
 
   @override
   _AddAppointmentAddressPageState createState() =>
@@ -16,6 +20,17 @@ class AddAppointmentAddressPage extends StatefulWidget {
 class _AddAppointmentAddressPageState extends State<AddAppointmentAddressPage> {
   TextEditingController _controller = TextEditingController();
   TextEditingController _tagController = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.address != null) {
+      _tagController.text = widget.address!;
+    }
+    if (widget.addressDetail != null) {
+      _controller.text = widget.addressDetail!;
+    }
+    super.initState();
+  }
 
   @override
   void dispose() {

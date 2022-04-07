@@ -313,8 +313,9 @@ class _MarketPageState extends State<MarketPage>
               tabBarHeight +
               ScreenUtil().statusBarHeight +
               kToolbarHeight +
-              280.w +
-              172 * 2.w,
+              280.w,
+          //积分商城高度
+          // 172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(tabBarHeight),
@@ -467,8 +468,8 @@ class _MarketPageState extends State<MarketPage>
                   _buttonTitle(),
                   20.hb,
                   _recommend(),
-                  20.hb,
-                  _integralMarket(),
+                  // 20.hb,
+                  // _integralMarket(),
                 ],
               ),
             ],

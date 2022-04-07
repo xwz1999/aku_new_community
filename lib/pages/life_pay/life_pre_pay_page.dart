@@ -1,5 +1,4 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
@@ -68,16 +67,15 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                     16.w.widthBox,
                     TextField(
                       controller: _editingController,
-                      onChanged: (String value){
-                        if(value.isEmpty){
+                      onChanged: (String value) {
+                        if (value.isEmpty) {
                           amount = 0;
-                        }else{
+                        } else {
                           amount = double.parse(value);
                         }
-
                       },
                       decoration: InputDecoration(
-                        hintText: '0.0',
+                        hintText: '0.00',
                         hintStyle: TextStyle(
                           fontSize: 56.sp,
                           fontWeight: FontWeight.bold,
@@ -165,11 +163,11 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
           onPressed: () async {
             Function cancel = BotToast.showLoading();
             try {
-              BaseModel baseModel =
-              await NetUtil().post(SAASAPI.pay.createPrepaymentOrder,
+              BaseModel baseModel = await NetUtil().post(
+                  SAASAPI.pay.createPrepaymentOrder,
                   params: {
                     'estateId': UserTool.userProvider.defaultHouse!.id,
-                    'payAmount':amount
+                    'payAmount': amount
                   },
                   showMessage: true);
               if (baseModel.success) {
@@ -180,7 +178,7 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
                   Get.off(() => PayFinishPage());
                 } else {
                   ///跳到待付款页面
-                 BotToast.showText(text: '充值失败');
+                  BotToast.showText(text: '充值失败');
                 }
               }
               cancel();
@@ -188,7 +186,6 @@ class _LifePrePayPageState extends State<LifePrePayPage> {
               cancel();
               LoggerData.addData(e);
             }
-
           },
           child: '立即充值'.text.size(32.sp).bold.black.make()),
     );

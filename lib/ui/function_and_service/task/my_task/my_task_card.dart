@@ -1,3 +1,4 @@
+import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/task/my_task_list_model.dart';
 import 'package:aku_new_community/widget/buttons/card_bottom_button.dart';
@@ -72,6 +73,7 @@ class MyTaskCard extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         await Get.to(() => MyTaskDetailPage(model: model));
+        refresh();
       },
       child: Container(
         width: double.infinity,
@@ -81,6 +83,7 @@ class MyTaskCard extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             head,
             24.w.heightBox,
@@ -122,7 +125,8 @@ class MyTaskCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  model.remarks.text
+                  (model.remarks ?? '')
+                      .text
                       .size(28.sp)
                       .color(Colors.black.withOpacity(0.65))
                       .make(),
@@ -176,50 +180,57 @@ class MyTaskCard extends StatelessWidget {
                 )
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                40.w.heightBox,
-                Row(
-                  children: [
-                    Spacer(),
-                    CardBottomButton.yellow(
-                        text: '取消订单',
-                        onPressed: () async {
-                          var re = await TaskFunc.cancel(taskId: model.id);
-                          if (re) {
-                            refresh();
-                          }
-                        }),
-                  ],
-                ),
-              ],
-            ),
+            48.hb,
+            _cardBottom(),
           ],
         ),
       ),
     );
   }
 
-  Widget _cardBottom(int) {
-    switch (int) {
+  Widget _cardBottom() {
+    switch (model.status) {
       case 1:
       case 2:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             40.w.heightBox,
-            CardBottomButton.white(text: '取消订单', onPressed: () {}),
-            CardBottomButton.yellow(text: '确认完成', onPressed: () {}),
+            CardBottomButton.white(
+                text: '取消订单',
+                onPressed: () async {
+                  var re = await TaskFunc.cancel(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                }),
           ],
         );
+      case 3:
+        return CardBottomButton.yellow(
+            text: '催促服务',
+            onPressed: () async {
+              var re = await TaskFunc.urge(taskId: model.id);
+              if (re) {
+                refresh();
+              }
+            });
       case 4:
+        return CardBottomButton.yellow(
+            text: '确认完成',
+            onPressed: () async {
+              var re = await TaskFunc.confirm(taskId: model.id);
+              if (re) {
+                refresh();
+              }
+            });
+      case 9:
         return Column(
           children: [
             32.w.heightBox,
             Row(
               children: [
-                '客户取消:暂不需要该服务'.text.size(24.sp).color(Colors.red).make(),
+                '已取消:暂不需要该服务'.text.size(24.sp).color(Colors.red).make(),
                 Spacer(),
               ],
             ),

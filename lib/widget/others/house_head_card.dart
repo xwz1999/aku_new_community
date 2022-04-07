@@ -1,18 +1,15 @@
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
-import 'package:aku_new_community/utils/headers.dart';
 
 class HouseHeadCard extends StatelessWidget {
   const HouseHeadCard({
@@ -53,19 +50,22 @@ class HouseHeadCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        S
-                            .of(context)!
-                            .tempPlotName
-                            .text
+                        UserTool.userProvider.userInfoModel!.communityName.text
                             .black
                             .size(32.sp)
                             .bold
                             .make(),
                         10.w.heightBox,
-
-                          (userProvider.defaultHouse!=null?(userProvider.defaultHouse!.buildingName+'栋-'
-                              +userProvider.defaultHouse!.unitName+'单元-'+userProvider.defaultHouse!.estateName+'室'
-                          ):'').text.black
+                        (userProvider.defaultHouse != null
+                                ? (userProvider.defaultHouse!.buildingName +
+                                    '栋-' +
+                                    userProvider.defaultHouse!.unitName +
+                                    '单元-' +
+                                    userProvider.defaultHouse!.estateName +
+                                    '室')
+                                : '')
+                            .text
+                            .black
                             .size(32.sp)
                             .bold
                             .make()

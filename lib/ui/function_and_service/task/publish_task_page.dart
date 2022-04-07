@@ -515,7 +515,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
       children: [
         GestureDetector(
           onTap: () async {
-            var re = await Get.to(() => AddAppointmentAddressPage());
+            var re = await Get.to(() => AddAppointmentAddressPage(
+                  address: _accessAddress,
+                  addressDetail: _accessAddressDetail,
+                ));
             if (re != null) {
               _accessAddress = re['address'];
               _accessAddressDetail = re['addressDetail'];
@@ -596,7 +599,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
         ),
         GestureDetector(
           onTap: () async {
-            var re = await Get.to(() => AddAppointmentAddressPage());
+            var re = await Get.to(() => AddAppointmentAddressPage(
+                  address: _serviceAddress,
+                  addressDetail: _serviceAddressDetail,
+                ));
             if (re != null) {
               _serviceAddress = re['address'];
               _serviceAddressDetail = re['addressDetail'];
@@ -698,7 +704,10 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             offstage: _type == 1,
             child: GestureDetector(
               onTap: () async {
-                var re = await Get.to(() => AddAppointmentAddressPage());
+                var re = await Get.to(() => AddAppointmentAddressPage(
+                      address: _accessAddress,
+                      addressDetail: _accessAddressDetail,
+                    ));
                 if (re != null) {
                   _accessAddress = re['address'];
                   _accessAddressDetail = re['addressDetail'];

@@ -48,9 +48,11 @@ class TaskFunc {
   static Future<bool> cancel({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SAASAPI.task.cancel, params: {
-      'taskId': taskId,
-    });
+    var base = await NetUtil().get(SAASAPI.task.cancel,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 
@@ -72,9 +74,11 @@ class TaskFunc {
   static Future<bool> finish({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SAASAPI.task.finish, params: {
-      'taskId': taskId,
-    });
+    var base = await NetUtil().get(SAASAPI.task.finish,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 
@@ -82,9 +86,11 @@ class TaskFunc {
   static Future<bool> confirm({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SAASAPI.task.confirm, params: {
-      'taskId': taskId,
-    });
+    var base = await NetUtil().get(SAASAPI.task.confirm,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 
@@ -92,9 +98,11 @@ class TaskFunc {
   static Future<bool> start({
     required int taskId,
   }) async {
-    var base = await NetUtil().get(SAASAPI.task.startService, params: {
-      'taskId': taskId,
-    });
+    var base = await NetUtil().get(SAASAPI.task.startService,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 
@@ -106,6 +114,18 @@ class TaskFunc {
   }) async {
     var base = await NetUtil().get(SAASAPI.task.evaluation,
         params: {'taskId': taskId, 'star': star, 'evaluation': evaluation});
+    return base.success;
+  }
+
+  ///开始服务
+  static Future<bool> urge({
+    required int taskId,
+  }) async {
+    var base = await NetUtil().get(SAASAPI.task.urgeService,
+        params: {
+          'taskId': taskId,
+        },
+        showMessage: true);
     return base.success;
   }
 }

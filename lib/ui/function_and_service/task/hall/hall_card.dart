@@ -164,72 +164,83 @@ class HallCard extends StatelessWidget {
             ),
             24.w.heightBox,
             BeeDivider.horizontal(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                40.w.heightBox,
-                Row(
-                  children: [
-                    Spacer(),
-                    Offstage(
-                      offstage: !myself,
-                      child: CardBottomButton.white(
-                          text: '取消发布',
-                          onPressed: () async {
-                            var re = await TaskFunc.cancel(taskId: model.id);
-                            if (re) {
-                              refresh();
-                            }
-                          }),
-                    ),
-                    Offstage(
-                      offstage: myself,
-                      child: CardBottomButton.yellow(
-                          text: '领取任务',
-                          onPressed: () async {
-                            var re = await TaskFunc.take(taskId: model.id);
-                            if (re) {
-                              refresh();
-                            }
-                          }),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            _cardBottom()
           ],
         ),
       ),
     );
   }
 
-  Widget _cardBottom(int) {
-    switch (int) {
+  Widget _cardBottom() {
+    switch (model.status) {
       case 1:
-      case 2:
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            40.w.heightBox,
-            CardBottomButton.white(
+        return myself
+            ? CardBottomButton.white(
                 text: '取消订单',
                 onPressed: () async {
                   var re = await TaskFunc.cancel(taskId: model.id);
                   if (re) {
                     refresh();
                   }
-                }),
-            CardBottomButton.yellow(
-                text: '确认完成',
+                })
+            : CardBottomButton.yellow(
+                text: '领取任务',
+                onPressed: () async {
+                  var re = await TaskFunc.take(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                });
+
+      case 2:
+        return myself
+            ? CardBottomButton.white(
+                text: '取消订单',
+                onPressed: () async {
+                  var re = await TaskFunc.cancel(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                })
+            : CardBottomButton.yellow(
+                text: '开始服务',
+                onPressed: () async {
+                  var re = await TaskFunc.start(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                });
+      case 3:
+        return myself
+            ? CardBottomButton.white(
+                text: '催促服务',
+                onPressed: () async {
+                  var re = await TaskFunc.urge(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                })
+            : CardBottomButton.yellow(
+                text: '完成任务',
                 onPressed: () async {
                   var re = await TaskFunc.finish(taskId: model.id);
                   if (re) {
                     refresh();
                   }
-                }),
-          ],
-        );
+                });
       case 4:
+        return myself
+            ? CardBottomButton.white(
+                text: '确认完成',
+                onPressed: () async {
+                  var re = await TaskFunc.urge(taskId: model.id);
+                  if (re) {
+                    refresh();
+                  }
+                })
+            : SizedBox.shrink();
+
+      case 9:
         return Column(
           children: [
             32.w.heightBox,

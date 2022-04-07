@@ -1,10 +1,7 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/task/my_task_list_model.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_cancel_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
@@ -36,16 +33,18 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
       case 1:
         return '已发布';
       case 2:
+        return '已接单';
+      case 3:
         if (widget.model.endTime?.isBefore(DateTime.now()) ?? false) {
           return '已超时(原预计${DateUtil.formatDate(widget.model.endTime, format: DateFormats.h_m)}';
         } else {
           return '服务中';
         }
-      case 3:
-        return '待确认';
       case 4:
-        return '已完成';
+        return '待确认';
       case 5:
+        return '已完成';
+      case 6:
         return '已评价';
       case 9:
         return '已取消';
@@ -57,18 +56,20 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
   String get subStatusString {
     switch (widget.model.status) {
       case 1:
-        return '请与发布人确认后开始服务';
+        return '等待开始服务';
       case 2:
+        return '等待接单';
+      case 3:
         if (widget.model.endTime?.isBefore(DateTime.now()) ?? false) {
           return '请及时提醒帮手完成任务';
         } else {
           return '帮手正在为您服务中';
         }
-      case 3:
-        return '请注意及时确认帮手的工作内容';
       case 4:
-        return '欢迎对骑手及本次任务进行评价';
+        return '请注意及时确认帮手的工作内容';
       case 5:
+        return '欢迎对骑手及本次任务进行评价';
+      case 6:
         return '感谢信任与支持，欢迎再次光临';
       case 9:
         return '请及时提醒帮手完成任务';
@@ -143,40 +144,13 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
           ),
         ],
       ),
-      bottomNavi: Container(
-        width: double.infinity,
-        color: Colors.white,
-        padding: EdgeInsets.all(32.w),
-        child: Row(
-          children: [
-            Offstage(
-              offstage: widget.model.status > 3,
-              child: MaterialButton(
-                onPressed: () async {
-                  var re = await Get.bottomSheet(
-                      TaskCancelDialog(taskId: widget.model.id));
-                  if (re) {
-                    Get.back();
-                  }
-                },
-                minWidth: 330.w,
-                height: 80.w,
-                elevation: 0,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.w),
-                  side: BorderSide(color: Colors.black.withOpacity(0.25)),
-                ),
-                child: Text(
-                  '取消订单',
-                  style: TextStyle(
-                      fontSize: 28.sp, color: Colors.black.withOpacity(0.65)),
-                ),
-              ),
-            ),
-            Spacer(),
-            buttonByStatus,
-          ],
+      bottomNavi: Offstage(
+        offstage: widget.model.status > 5,
+        child: Container(
+          width: double.infinity,
+          color: Colors.white,
+          padding: EdgeInsets.all(32.w),
+          child: buttonByStatus,
         ),
       ),
     );
@@ -185,63 +159,36 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
   Widget get buttonByStatus {
     switch (widget.model.status) {
       case 1:
-        return MaterialButton(
-          onPressed: () async {},
-          minWidth: 330.w,
-          height: 80.w,
-          elevation: 0,
-          color: kPrimaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.w),
-          ),
-          child: Text(
-            '修改任务',
-            style: TextStyle(
-                fontSize: 28.sp, color: Colors.black.withOpacity(0.85)),
-          ),
-        );
-      case 2:
-        return MaterialButton(
+        return BeeLongButton(
           onPressed: () async {
-            var base = await NetUtil().get(SAASAPI.task.urgeService,
-                params: {'taskId': widget.model.id}, showMessage: true);
-            if (base.success) {
-              Get.back();
-            }
-          },
-          minWidth: 330.w,
-          height: 80.w,
-          elevation: 0,
-          color: kPrimaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.w),
-          ),
-          child: Text(
-            '催促服务',
-            style: TextStyle(
-                fontSize: 28.sp, color: Colors.black.withOpacity(0.85)),
-          ),
-        );
-      case 3:
-        return MaterialButton(
-          onPressed: () async {
-            var re = await TaskFunc.confirm(taskId: widget.model.id);
+            var re = await Get.bottomSheet(
+                TaskCancelDialog(taskId: widget.model.id));
             if (re) {
               Get.back();
             }
           },
-          minWidth: 330.w,
-          height: 80.w,
-          elevation: 0,
-          color: kPrimaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.w),
-          ),
-          child: Text(
-            '确认完成',
-            style: TextStyle(
-                fontSize: 28.sp, color: Colors.black.withOpacity(0.85)),
-          ),
+          text: '取消服务',
+        );
+      case 2:
+        return BeeLongButton(
+          onPressed: () async {
+            var re = await Get.bottomSheet(
+                TaskCancelDialog(taskId: widget.model.id));
+            if (re) {
+              Get.back();
+            }
+          },
+          text: '取消服务',
+        );
+      case 3:
+        return BeeLongButton(
+          onPressed: () async {
+            var re = await TaskFunc.urge(taskId: widget.model.id);
+            if (re) {
+              Get.back();
+            }
+          },
+          text: '催促服务',
         );
       case 4:
         return BeeLongButton(
@@ -253,18 +200,25 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
               },
             ));
           },
-          text: '点击评价',
+          text: '确认完成',
         );
       case 5:
-        return BeeLongButton.white(
-          onPressed: () async {},
-          text: '再次发布',
+        return BeeLongButton(
+          onPressed: () async {
+            var re = await Get.bottomSheet(TaskEvaluationDialog(
+              evaluate: (star, content) async {
+                return await TaskFunc.evaluate(
+                    taskId: widget.model.id, star: star, evaluation: content);
+              },
+            ));
+          },
+          text: '点击评价',
         );
       case 9:
-        return BeeLongButton.white(
-          onPressed: () async {},
-          text: '再次发布',
-        );
+      // return BeeLongButton.white(
+      //   onPressed: () async {},
+      //   text: '再次发布',
+      // );
       default:
         return SizedBox.shrink();
     }
@@ -402,7 +356,8 @@ class _MyTaskDetailPageState extends State<MyTaskDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.model.remarks.text
+                (widget.model.remarks ?? '')
+                    .text
                     .size(28.sp)
                     .color(Colors.black.withOpacity(0.65))
                     .make(),

@@ -24,7 +24,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
     with SingleTickerProviderStateMixin {
   List<String> _tabs = ['全部', '待分配', '已接单', '处理中', '待确认'];
   late TabController _tabController;
-  EasyRefreshController _refreshController = EasyRefreshController();
+  List<EasyRefreshController> _refreshControllers = [];
   int _page = 1;
   int _size = 10;
   List<WorkOrderListModel> _models = [];
@@ -32,12 +32,15 @@ class _WorkOrderPageState extends State<WorkOrderPage>
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
+    _refreshControllers = List.filled(_tabs.length, EasyRefreshController());
     super.initState();
   }
 
   @override
   void dispose() {
-    _refreshController.dispose();
+    _refreshControllers.forEach((element) {
+      element.dispose();
+    });
     _tabController.dispose();
     super.dispose();
   }
@@ -50,7 +53,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
         IconButton(
             onPressed: () async {
               await Get.to(() => PublishWorkOrderPage());
-              _refreshController.callRefresh();
+              _refreshControllers[_tabController.index].callRefresh();
             },
             icon: Icon(
               CupertinoIcons.plus_circle,
@@ -59,6 +62,10 @@ class _WorkOrderPageState extends State<WorkOrderPage>
       ],
       appBarBottom: BeeTabBar(
         tabs: _tabs,
+        onTap: (index) {
+          _models.clear();
+          setState(() {});
+        },
         controller: _tabController,
       ),
       body: TabBarView(
@@ -71,12 +78,11 @@ class _WorkOrderPageState extends State<WorkOrderPage>
   Widget _getOrderView(int index) {
     return EasyRefresh(
         firstRefresh: true,
-        controller: _refreshController,
+        controller: _refreshControllers[index],
         header: MaterialHeader(),
         footer: MaterialFooter(),
         onRefresh: () async {
           _page = 1;
-          _models.clear();
           try {
             var base = await NetUtil().getList(SAASAPI.workOrder.list, params: {
               'pageNum': _page,
@@ -102,20 +108,22 @@ class _WorkOrderPageState extends State<WorkOrderPage>
                 base.rows.map((e) => WorkOrderListModel.fromJson(e)).toList());
             setState(() {});
           } else {
-            _refreshController.finishLoad(noMore: true);
+            _refreshControllers[index].finishLoad(noMore: true);
           }
         },
-        child: ListView.separated(
-            padding: EdgeInsets.all(24.w),
-            itemBuilder: (context, index) {
-              return WorkOrderCard(
-                model: _models[index],
-                refresh: _refreshController.callRefresh,
-              );
-            },
-            separatorBuilder: (context, index) {
-              return 24.w.heightBox;
-            },
-            itemCount: _models.length));
+        child: _models.isEmpty
+            ? Container()
+            : ListView.separated(
+                padding: EdgeInsets.all(24.w),
+                itemBuilder: (context, index) {
+                  return WorkOrderCard(
+                    model: _models[index],
+                    refresh: _refreshControllers[index].callRefresh,
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return 24.w.heightBox;
+                },
+                itemCount: _models.length));
   }
 }

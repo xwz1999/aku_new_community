@@ -11,7 +11,7 @@ ReplyListModel _$ReplyListModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       type: json['type'] as int,
       status: json['status'] as int,
-      content:  json['content'] !=null? json['content'] as String:'',
+      content: json['content'] as String?,
       sendId: json['sendId'] as int,
       sendName: json['sendName'] as String,
       sendDate: json['sendDate'] as String,
