@@ -47,6 +47,8 @@ class _MessageCenterPageState extends State<MessageCenterPage>
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
+      bgColor: Colors.white,
+      bodyColor: Color(0xFFF9F9F9),
       title: '消息',
       actions: [
         MaterialButton(
@@ -65,21 +67,28 @@ class _MessageCenterPageState extends State<MessageCenterPage>
           padding: EdgeInsets.symmetric(horizontal: 32.w),
         ),
       ],
-      appBarBottom: BeeTabBar(
+      appBarBottom:
+      TabBar(
         controller: _tabController,
-        tabs: _tabs,
+        indicatorColor: Color(0xffffc40c),
+        tabs: _tabs.map((e) => Tab(text: e)).toList(),
+        indicatorPadding: EdgeInsets.only(bottom: 15.w,left: 35.w,right: 35.w),
       ),
-      body: TabBarView(
-        children: [
-             ReplayView(
-            controller: _controllers[0],
-          ),
-          ThumbsUpView(
-            controller: _controllers[1],
-          ),
-          AnnounceView(),
-        ],
-        controller: _tabController,
+      body:
+      Padding(
+        padding:  EdgeInsets.only(top: 10.w),
+        child: TabBarView(
+          children: [
+            ReplayView(
+              controller: _controllers[0],
+            ),
+            ThumbsUpView(
+              controller: _controllers[1],
+            ),
+            AnnounceView(),
+          ],
+          controller: _tabController,
+        ),
       ),
     );
   }

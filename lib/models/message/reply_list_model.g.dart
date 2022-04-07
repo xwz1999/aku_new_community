@@ -9,8 +9,9 @@ part of 'reply_list_model.dart';
 ReplyListModel _$ReplyListModelFromJson(Map<String, dynamic> json) =>
     ReplyListModel(
       id: json['id'] as int,
+      type: json['type'] as int,
       status: json['status'] as int,
-      content: json['content'] as String,
+      content:  json['content'] !=null? json['content'] as String:'',
       sendId: json['sendId'] as int,
       sendName: json['sendName'] as String,
       sendDate: json['sendDate'] as String,

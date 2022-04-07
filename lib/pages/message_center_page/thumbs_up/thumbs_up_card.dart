@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/models/message/reply_list_model.dart';
 import 'package:aku_new_community/models/message/thumbs_up_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_func.dart';
 import 'package:aku_new_community/widget/beeImageNetwork.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ThumbsUpCard extends StatelessWidget {
-  final ThumbsUpListModel model;
+  final ReplyListModel model;
 
   const ThumbsUpCard({Key? key, required this.model}) : super(key: key);
 
@@ -36,8 +37,10 @@ class ThumbsUpCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   model.sendName.text.size(26.sp).black.bold.make(),
+                  5.heightBox,
                   Assets.icons.communityLikeIs
                       .image(width: 28.w, height: 28.w, fit: BoxFit.contain),
+                  5.heightBox,
                   model.sendDate.text.size(24.sp).color(ktextSubColor).make(),
                 ],
               ),

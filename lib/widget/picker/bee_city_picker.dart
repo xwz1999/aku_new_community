@@ -145,7 +145,11 @@ class _BeeCityPickerState extends State<BeeCityPicker> {
                   : districts
                       .map((e) => Center(
                             child: Padding(
-                              padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 10.w,bottom: 10.w),
+                              padding: EdgeInsets.only(
+                                  left: 20.w,
+                                  right: 20.w,
+                                  top: 10.w,
+                                  bottom: 10.w),
                               child: Text(e.name, textAlign: TextAlign.center),
                             ),
                           ))
