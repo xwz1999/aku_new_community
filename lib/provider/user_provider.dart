@@ -111,6 +111,20 @@ class UserProvider extends ChangeNotifier {
 
   MyHouseModel? get defaultHouse => _defaultHouse;
 
+  void updateDefaultHouse() => notifyListeners();
+
+  String get defaultHouseString {
+    if (_defaultHouse == null) {
+      return '暂无绑定房屋';
+    } else {
+      return _defaultHouse!.buildingName +
+          '栋' +
+          _defaultHouse!.unitName +
+          '单元' +
+          _defaultHouse!.estateName;
+    }
+  }
+
   ///设置性别
   Future setSex(int sex) async {
     BaseModel baseModel = await NetUtil().get(

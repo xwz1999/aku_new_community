@@ -1,13 +1,15 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class TelTextField extends StatefulWidget {
   final TextEditingController controller;
   final Function(String) onChange;
-  const TelTextField({Key? key, required this.controller, required this.onChange}) : super(key: key);
+  const TelTextField(
+      {Key? key, required this.controller, required this.onChange})
+      : super(key: key);
 
   @override
   _TelTextFieldState createState() => _TelTextFieldState();
@@ -28,6 +30,10 @@ class _TelTextFieldState extends State<TelTextField> {
         keyboardType: TextInputType.number,
         controller: widget.controller,
         onChanged: widget.onChange,
+        style: TextStyle(
+          color: Colors.black.withOpacity(0.85),
+        ),
+        cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           isDense: true,
           border: InputBorder.none,

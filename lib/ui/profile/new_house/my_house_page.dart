@@ -98,6 +98,7 @@ class _MyHousePageState extends State<MyHousePage> {
                 params: {'estateId': model.id});
             if (base.success) {
               _refreshController.callRefresh();
+              UserTool.userProvider.updateDefaultHouse();
             } else {
               BotToast.showText(text: '切换默认房屋失败');
             }

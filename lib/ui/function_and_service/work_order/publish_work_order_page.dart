@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/saas_model/work_order/work_order_type_model.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_func.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_remark_page.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -20,6 +22,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class PublishWorkOrderPage extends StatefulWidget {
@@ -54,53 +57,61 @@ class _PublishWorkOrderPageState extends State<PublishWorkOrderPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '发布工单',
       body: SafeArea(
         child: ListView(
           children: [
             2.hb,
-            Container(
-              width: double.infinity,
-              color: Colors.white,
-              height: 164.w,
-              padding: EdgeInsets.all(32.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipOval(
-                    child: BeeImageNetwork(
-                      width: 100.w,
-                      height: 100.w,
-                      imgs: UserTool.userProvider.userInfoModel?.imgList ?? [],
-                    ),
-                  ),
-                  16.wb,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            GestureDetector(
+              onTap: () {
+                Get.to(MyHousePage());
+              },
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  height: 164.w,
+                  padding: EdgeInsets.all(32.w),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      '${UserTool.userProvider.userInfoModel!.nickName}'
-                          .text
-                          .size(28.sp)
-                          .color(Colors.black.withOpacity(0.85))
-                          .make(),
+                      ClipOval(
+                        child: BeeImageNetwork(
+                          width: 100.w,
+                          height: 100.w,
+                          imgs: UserTool.userProvider.userInfoModel?.imgList ??
+                              [],
+                        ),
+                      ),
+                      16.wb,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          '${UserTool.userProvider.userInfoModel!.nickName}'
+                              .text
+                              .size(28.sp)
+                              .color(Colors.black.withOpacity(0.85))
+                              .make(),
+                          Spacer(),
+                          '${userProvider.defaultHouseString}'
+                              .text
+                              .size(24.sp)
+                              .color(Colors.black.withOpacity(0.45))
+                              .make(),
+                        ],
+                      ),
                       Spacer(),
-                      '租户 | 绿城·碧桂园3栋14单元104室'
-                          .text
-                          .size(24.sp)
-                          .color(Colors.black.withOpacity(0.45))
-                          .make(),
-                    ],
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                      onTap: () {},
-                      child: Icon(
+                      Icon(
                         CupertinoIcons.chevron_right,
                         color: Colors.black.withOpacity(0.25),
                         size: 32.w,
-                      )),
-                ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             20.hb,

@@ -148,7 +148,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                                 // ),
                                 // 48.hb,
                                 Text(
-                                  '2栋 1单元 1402室',
+                                  '${UserTool.userProvider.defaultHouseString}',
                                   style: TextStyle(
                                     fontSize: 32.sp,
                                     color: Colors.black,

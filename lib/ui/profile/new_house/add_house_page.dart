@@ -348,7 +348,9 @@ class _AddHousePageState extends State<AddHousePage> {
                     '${_otherPickHouse == null ? '请选择楼层房号' : '${_otherPickHouse!.building!.name}-${_otherPickHouse!.unit!.name}-${_otherPickHouse!.floor!.name}-${_otherPickHouse!.house!.name}'}'
                         .text
                         .size(28.sp)
-                        .color(Colors.black.withOpacity(0.25))
+                        .color(_otherPickHouse == null
+                            ? Colors.black.withOpacity(0.25)
+                            : Colors.black.withOpacity(0.85))
                         .maxLines(2)
                         .make(),
               ),
@@ -512,7 +514,7 @@ class _AddHousePageState extends State<AddHousePage> {
                             .text
                             .size(28.sp)
                             .color(model.house != null
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.85)
                                 : Colors.black.withOpacity(0.25))
                             .make(),
                   ),

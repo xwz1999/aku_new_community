@@ -1,3 +1,4 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
@@ -75,6 +76,10 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                 },
                 maxLength: 20,
                 controller: _nickController,
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.85),
+                ),
+                cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                     isDense: false,
                     contentPadding:
