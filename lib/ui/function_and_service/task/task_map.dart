@@ -8,15 +8,16 @@ class TaskMap {
     9: '其他'
   };
   static Map<int, String> statusToString = {
-    1: '未接单',
-    2: '待处理',
-    3: '已完成',
-    4: '已取消'
+    1: '已发布',
+    2: '服务中',
+    3: '待确认',
+    4: '已完成',
+    5: '已评价',
+    9: '已取消'
   };
 
   static Map<int, String> typeToString = {1: '跑腿', 2: '代驾', 3: '装修', 4: '陪玩'};
   static Map<int, String> serviceObject = {1: '住户', 2: '物业', 3: '不限'};
 
   static Map<int, String> rewardType = {1: '赏金', 2: '积分'};
-
 }

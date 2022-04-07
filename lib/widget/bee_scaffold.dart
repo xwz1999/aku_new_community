@@ -73,6 +73,7 @@ class BeeScaffold extends StatelessWidget {
         actions: actions,
         bottom: appBarBottom,
         titleSpacing: titleSpacing,
+
       );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

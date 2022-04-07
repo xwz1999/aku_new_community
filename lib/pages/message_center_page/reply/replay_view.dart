@@ -38,7 +38,9 @@ class _ReplayViewState extends State<ReplayView> {
               itemBuilder: (context, index) {
                 return ReplyCard(model: items[index]);
               },
-              separatorBuilder: (_, __) =>1.w.heightBox,
+              separatorBuilder: (_, __) =>Container(
+                color: Color(0xFFF0F0F0),height: 2.w,
+              ),
               itemCount: items.length);
         });
   }

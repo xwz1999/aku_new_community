@@ -82,29 +82,6 @@ class MyTakeTaskCard extends StatelessWidget {
             20.w.heightBox,
             Row(
               children: [
-                Assets.icons.clockCircle.image(width: 36.w, height: 36.w),
-                24.w.widthBox,
-                '${DateUtil.formatDateStr(model.readyEndTime)}'
-                    .text
-                    .size(24.sp)
-                    .color(Colors.black.withOpacity(0.65))
-                    .make(),
-              ],
-            ),
-            20.w.heightBox,
-            Row(
-              children: [
-                Assets.icons.environment.image(width: 36.w, height: 36.w),
-                24.w.widthBox,
-                '${model.accessAddress}'
-                    .text
-                    .size(24.sp)
-                    .color(Colors.black.withOpacity(0.65))
-                    .make(),
-              ],
-            ),
-            Row(
-              children: [
                 Assets.icons.watch.image(width: 40.w, height: 40.w),
                 24.w.widthBox,
                 '${model.serviceTime ?? '0'}'
@@ -120,7 +97,7 @@ class MyTakeTaskCard extends StatelessWidget {
             24.w.heightBox,
             Row(
               children: [
-                Assets.icons.environment.image(width: 36.w, height: 36.w),
+                Assets.icons.environment.image(width: 40.w, height: 40.w),
                 24.w.widthBox,
                 '${model.accessAddress}'
                     .text

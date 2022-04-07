@@ -129,14 +129,14 @@ class _HomePageState extends State<HomePage>
           ),
           textAlign: TextAlign.center,
         ),
-        Text(
-          '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
-          style: TextStyle(
-            fontSize: 28.sp,
-            color: Color(0xff999999),
-          ),
-          textAlign: TextAlign.center,
-        ),
+        // Text(
+        //   '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
+        //   style: TextStyle(
+        //     fontSize: 28.sp,
+        //     color: Color(0xff999999),
+        //   ),
+        //   textAlign: TextAlign.center,
+        // ),
         Spacer(),
         // GestureDetector(
         //   onTap: () {

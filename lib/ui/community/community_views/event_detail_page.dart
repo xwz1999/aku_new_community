@@ -300,134 +300,134 @@ class _EventDetailPageState extends State<EventDetailPage> {
   }
 
   Widget _commentWidget(CommentListModel model, int rootIndex) {
-    return Container(
-      // key: UniqueKey(),
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          [
-            Material(
-              color: Color(0xFFF5F5F5),
-              borderRadius: BorderRadius.circular(48.w),
-              clipBehavior: Clip.antiAlias,
-              child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SAASAPI.image(ImgModel.first(model.avatarImgList)),
-                height: 96.w,
-                width: 96.w,
-                fit: BoxFit.cover,
-                imageErrorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                    height: 86.w,
-                    width: 86.w,
-                  );
-                },
-              ),
-            ),
-            20.wb,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  model.createName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.85),
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w500),
-                ),
-                12.hb,
-                BeeDateUtil(DateUtil.getDateTime(model.createDate))
-                    .timeAgoWithHm
-                    .text
-                    .size(24.sp)
-                    .color(Color(0xFF999999))
-                    .make(),
-              ],
-            ),
-            Spacer(),
-            CommunityPopButton(
-                isMyself: _isMyself,
-                onSelect: (value) async {
-                  if (_isMyself) {
-                    await CommunityFunc.deleteComment(model.id);
-                    _refreshController.callRefresh();
-                  }
-                })
-          ].row(),
-          40.hb,
-          model.content.text.size(28.sp).color(ktextSubColor).make(),
-          30.hb,
-          GestureDetector(
-            onTap: () async {
-              var res =
-                  await NetUtil().get(SAASAPI.community.commentLike, params: {
-                'commentId': model.id,
-              });
-              if (res.success) {
-                _likes[rootIndex] = !_likes[rootIndex];
-                setState(() {});
-              }
-            },
-            child: Row(
-              children: [
-                Spacer(),
-                GestureDetector(
-                  onTap: () async {
-                    var base = await NetUtil().get(
-                        SAASAPI.community.commentLike,
-                        params: {'commentId': model.id});
-                    if (base.success) {
-                      _likes[rootIndex] = !_likes[rootIndex];
-                      if (_likes[rootIndex]) {
-                        _likeNums[rootIndex] += 1;
-                      } else {
-                        _likeNums[rootIndex] -= 1;
-                      }
-                      BotToast.showText(
-                          text: _likes[rootIndex] ? '点赞成功' : '取消点赞成功');
-                    } else {
-                      BotToast.showText(text: base.msg);
-                    }
-
-                    setState(() {});
+    return GestureDetector(
+      onTap: () {
+        _rootId = model.id;
+        _parentId = model.id;
+        _focusNode.requestFocus();
+        _currentCommentIndex = rootIndex;
+      },
+      child: Container(
+        // key: UniqueKey(),
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            [
+              Material(
+                color: Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(48.w),
+                clipBehavior: Clip.antiAlias,
+                child: FadeInImage.assetNetwork(
+                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                  image: SAASAPI.image(ImgModel.first(model.avatarImgList)),
+                  height: 96.w,
+                  width: 96.w,
+                  fit: BoxFit.cover,
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                      height: 86.w,
+                      width: 86.w,
+                    );
                   },
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
-                          width: 32.w,
-                          height: 32.w,
-                          color: !_likes[rootIndex]
-                              ? Colors.black.withOpacity(0.45)
-                              : kPrimaryColor,
-                        ),
-                        5.wb,
-                        '${_likeNums[rootIndex]}'
-                            .text
-                            .size(24.sp)
-                            .color(Color(0xFF999999))
-                            .make(),
-                      ],
+                ),
+              ),
+              20.wb,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    model.createName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.85),
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  12.hb,
+                  BeeDateUtil(DateUtil.getDateTime(model.createDate))
+                      .timeAgoWithHm
+                      .text
+                      .size(24.sp)
+                      .color(Color(0xFF999999))
+                      .make(),
+                ],
+              ),
+              Spacer(),
+              CommunityPopButton(
+                  isMyself: _isMyself,
+                  onSelect: (value) async {
+                    if (_isMyself) {
+                      await CommunityFunc.deleteComment(model.id);
+                      _refreshController.callRefresh();
+                    }
+                  })
+            ].row(),
+            40.hb,
+            model.content.text.size(28.sp).color(ktextSubColor).make(),
+            30.hb,
+            GestureDetector(
+              onTap: () async {
+                var res =
+                    await NetUtil().get(SAASAPI.community.commentLike, params: {
+                  'commentId': model.id,
+                });
+                if (res.success) {
+                  _likes[rootIndex] = !_likes[rootIndex];
+                  setState(() {});
+                }
+              },
+              child: Row(
+                children: [
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () async {
+                      var base = await NetUtil().get(
+                          SAASAPI.community.commentLike,
+                          params: {'commentId': model.id});
+                      if (base.success) {
+                        _likes[rootIndex] = !_likes[rootIndex];
+                        if (_likes[rootIndex]) {
+                          _likeNums[rootIndex] += 1;
+                        } else {
+                          _likeNums[rootIndex] -= 1;
+                        }
+                        BotToast.showText(
+                            text: _likes[rootIndex] ? '点赞成功' : '取消点赞成功');
+                      } else {
+                        BotToast.showText(text: base.msg);
+                      }
+
+                      setState(() {});
+                    },
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
+                            width: 32.w,
+                            height: 32.w,
+                            color: !_likes[rootIndex]
+                                ? Colors.black.withOpacity(0.45)
+                                : kPrimaryColor,
+                          ),
+                          5.wb,
+                          '${_likeNums[rootIndex]}'
+                              .text
+                              .size(24.sp)
+                              .color(Color(0xFF999999))
+                              .make(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                32.wb,
-                GestureDetector(
-                  onTap: () {
-                    _rootId = model.id;
-                    _parentId = model.id;
-                    _focusNode.requestFocus();
-                    _currentCommentIndex = rootIndex;
-                  },
-                  child: Row(
+                  32.wb,
+                  Row(
                     children: [
                       Image.asset(
                         R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
@@ -436,46 +436,46 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       ),
                     ],
                   ),
-                ),
-                5.wb,
-                '${model.commentNum}'
-                    .text
-                    .size(24.sp)
-                    .color(Color(0xFF999999))
-                    .make(),
-              ],
+                  5.wb,
+                  '${model.commentNum}'
+                      .text
+                      .size(24.sp)
+                      .color(Color(0xFF999999))
+                      .make(),
+                ],
+              ),
             ),
-          ),
-          40.hb,
-          model.commentTwoList.isEmpty
-              ? SizedBox.shrink()
-              : Container(
-                  alignment: Alignment.topLeft,
-                  decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.06),
-                      borderRadius: BorderRadius.circular(16.w)),
-                  margin: EdgeInsets.only(left: 125.w),
-                  width: 600.w,
-                  padding:
-                      EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      ...List.generate(
-                          model.commentTwoList.length < 3
-                              ? model.commentTwoList.length
-                              : 3,
-                          (index) => _subCommentWidget(
-                              model.commentTwoList[index],
-                              model.createId,
-                              model.id,
-                              rootIndex)),
-                      if (model.commentTwoList.length > 3)
-                        _foldComment(model, rootIndex)
-                    ].sepWidget(separate: 24.hb),
+            40.hb,
+            model.commentTwoList.isEmpty
+                ? SizedBox.shrink()
+                : Container(
+                    alignment: Alignment.topLeft,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.06),
+                        borderRadius: BorderRadius.circular(16.w)),
+                    margin: EdgeInsets.only(left: 125.w),
+                    width: 600.w,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        ...List.generate(
+                            model.commentTwoList.length < 3
+                                ? model.commentTwoList.length
+                                : 3,
+                            (index) => _subCommentWidget(
+                                model.commentTwoList[index],
+                                model.createId,
+                                model.id,
+                                rootIndex)),
+                        if (model.commentTwoList.length > 3)
+                          _foldComment(model, rootIndex)
+                      ].sepWidget(separate: 24.hb),
+                    ),
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }

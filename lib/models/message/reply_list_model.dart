@@ -7,8 +7,9 @@ part 'reply_list_model.g.dart';
 @JsonSerializable()
 class ReplyListModel {
   final int id;
+  final int type;
   final int status;
-  final String content;
+  final String? content;
   final int sendId;
   final String sendName;
   final String sendDate;
@@ -26,6 +27,7 @@ class ReplyListModel {
 
   const ReplyListModel({
     required this.id,
+    required this.type,
     required this.status,
     required this.content,
     required this.sendId,
