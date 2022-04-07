@@ -28,6 +28,7 @@ import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -84,106 +85,117 @@ class _CommunityPageState extends State<CommunityPage>
     super.build(context);
     final userProvider = Provider.of<UserProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        title: Align(
-            alignment: Alignment.centerLeft,
-            child: Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              child: TabBar(
-                onTap: (index) {
-                  setState(() {});
-                  if (_tabController?.index == 1) {
-                    myKey.currentState?.refresh();
-                  }
-                },
-                controller: _tabController,
-                indicatorColor: Color(0xffffc40c),
-                indicatorPadding: EdgeInsets.only(bottom: 15.w),
-                indicator: const BoxDecoration(),
-                tabs: _tabs.map((e) => Tab(text: e)).toList(),
-                labelStyle:
-                    TextStyle(fontSize: 36.sp, fontWeight: FontWeight.bold),
-                labelColor: Color(0xD9000000),
-                unselectedLabelStyle: TextStyle(fontSize: 32.sp),
-                unselectedLabelColor: Color(0x73000000),
-                isScrollable: true,
-              ),
-            )),
-        backgroundColor: Colors.white,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 32.w),
-            child: GestureDetector(
-              onTap: () async {
-                if (LoginUtil.isNotLogin) return;
-                bool? result = await Get.to(() => AddNewEventPage());
-                if (result == true) {
-                  switch (_tabController!.index) {
-                    case 0:
-                      _easyRefreshController.callRefresh();
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(88.w),
+          child: Container(
+            decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(colors: [Colors.white, Color(0xFFFFF9D1)])),
+            child: AppBar(
+              titleSpacing: 0,
+              title: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Theme(
+                    data: ThemeData(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                    ),
+                    child: TabBar(
+                      onTap: (index) {
+                        setState(() {});
+                        if (_tabController?.index == 1) {
+                          myKey.currentState?.refresh();
+                        }
+                      },
+                      controller: _tabController,
+                      indicatorColor: Color(0xffffc40c),
+                      indicatorPadding: EdgeInsets.only(bottom: 15.w),
+                      indicator: const BoxDecoration(),
+                      tabs: _tabs.map((e) => Tab(text: e)).toList(),
+                      labelStyle: TextStyle(
+                          fontSize: 36.sp, fontWeight: FontWeight.bold),
+                      labelColor: Color(0xD9000000),
+                      unselectedLabelStyle: TextStyle(fontSize: 32.sp),
+                      unselectedLabelColor: Color(0x73000000),
+                      isScrollable: true,
+                    ),
+                  )),
+              backgroundColor: Colors.transparent,
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(right: 32.w),
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (LoginUtil.isNotLogin) return;
+                      bool? result = await Get.to(() => AddNewEventPage());
+                      if (result == true) {
+                        switch (_tabController!.index) {
+                          case 0:
+                            _easyRefreshController.callRefresh();
 
-                      break;
-                    case 1:
-                      myKey.currentState!.refresh();
-                      break;
-                  }
-                }
-              },
-              child: Image.asset(R.ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG,
-                  height: 40.w, width: 40.w),
-            ),
-          )
-        ],
-      ),
-      body: TabBarView(
-        children: [
-          EasyRefresh(
-            firstRefresh: true,
-            header: MaterialHeader(),
-            footer: MaterialFooter(),
-            controller: _easyRefreshController,
-            onRefresh: () async {
-              _pageNum = 1;
-              await (getNewInfo());
-              _gambitModels = await CommunityFunc.getListGambit();
-              _hotNewsModels = await CommunityFunc.getHotNews();
-              _onload = false;
-              setState(() {});
-            },
-            onLoad: () async {
-              _pageNum++;
-              await loadNewInfo();
-              setState(() {});
-            },
-            child: _onload
-                ? SizedBox()
-                : ListView(
-                    children: [
-                      // _geSearch(),
-                      // 2.hb,
-                      _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
-                      16.hb,
-                      _gambitModels.isEmpty ? SizedBox() : _getNews(),
-                      16.hb,
-                      ..._newItems
-                          .map((e) => ChatCard(
-                              model: e,
-                              refresh: () {
-                                _easyRefreshController.callRefresh();
-                                setState(() {});
-                              }))
-                          .toList()
-                    ],
+                            break;
+                          case 1:
+                            myKey.currentState!.refresh();
+                            break;
+                        }
+                      }
+                    },
+                    child: Image.asset(R.ASSETS_ICONS_ICON_COMMUNITY_PUSH_PNG,
+                        height: 40.w, width: 40.w),
                   ),
+                )
+              ],
+            ),
           ),
-          if (UserTool.userProvider.isLogin) MyCommunityView(key: myKey),
-        ],
-        controller: _tabController,
+        ),
+        body: TabBarView(
+          children: [
+            EasyRefresh(
+              firstRefresh: true,
+              header: MaterialHeader(),
+              footer: MaterialFooter(),
+              controller: _easyRefreshController,
+              onRefresh: () async {
+                _pageNum = 1;
+                await (getNewInfo());
+                _gambitModels = await CommunityFunc.getListGambit();
+                _hotNewsModels = await CommunityFunc.getHotNews();
+                _onload = false;
+                setState(() {});
+              },
+              onLoad: () async {
+                _pageNum++;
+                await loadNewInfo();
+                setState(() {});
+              },
+              child: _onload
+                  ? SizedBox()
+                  : ListView(
+                      children: [
+                        // _geSearch(),
+                        // 2.hb,
+                        _hotNewsModels.isEmpty ? SizedBox() : _getInfo(),
+                        16.hb,
+                        _gambitModels.isEmpty ? SizedBox() : _getNews(),
+                        16.hb,
+                        ..._newItems
+                            .map((e) => ChatCard(
+                                model: e,
+                                refresh: () {
+                                  _easyRefreshController.callRefresh();
+                                  setState(() {});
+                                }))
+                            .toList()
+                      ],
+                    ),
+            ),
+            if (UserTool.userProvider.isLogin) MyCommunityView(key: myKey),
+          ],
+          controller: _tabController,
+        ),
       ),
     );
   }

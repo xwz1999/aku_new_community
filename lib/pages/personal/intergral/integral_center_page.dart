@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/intergral/progress_paint.dart';
 import 'package:aku_new_community/pages/personal/intergral/rule_explain_page.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class integralCenterPage extends StatefulWidget {
   const integralCenterPage({Key? key}) : super(key: key);
@@ -42,12 +40,12 @@ class _integralCenterPageState extends State<integralCenterPage> {
         crossAxisCount: 3,
         physics: NeverScrollableScrollPhysics(),
         children: [
-          gridCard(Assets.icons.identify.path, '身份标识', () {}),
-          gridCard(Assets.icons.identify.path, '积分加速', () {}),
-          gridCard(Assets.icons.identify.path, '支付优惠', () {}),
-          gridCard(Assets.icons.identify.path, '生日祝福', () {}),
-          gridCard(Assets.icons.identify.path, '会员活动', () {}),
-          gridCard(Assets.icons.identify.path, '炫彩用户名', () {}),
+          gridCard(Assets.newIcon.sfbs.path, '身份标识', () {}),
+          gridCard(Assets.newIcon.jfjs.path, '积分加速', () {}),
+          gridCard(Assets.newIcon.zfyh.path, '支付优惠', () {}),
+          gridCard(Assets.newIcon.srzf.path, '生日祝福', () {}),
+          gridCard(Assets.newIcon.hyhd.path, '会员活动', () {}),
+          gridCard(Assets.newIcon.xcyhm.path, '炫彩用户名', () {}),
         ],
       ),
     );
@@ -66,10 +64,9 @@ class _integralCenterPageState extends State<integralCenterPage> {
         color: Color(0xFF303843),
         width: double.infinity,
         height: 850.h,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: ListView(
           children: [
-            Spacer(),
+            180.w.heightBox,
             Padding(
               padding: EdgeInsets.only(left: 48.w),
               child: Row(

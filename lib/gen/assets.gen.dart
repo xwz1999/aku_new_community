@@ -637,6 +637,7 @@ class $AssetsNewIconGen {
 
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/newIcon/avatar_placeholder.png');
+  AssetGenImage get hyhd => const AssetGenImage('assets/newIcon/hyhd.png');
   AssetGenImage get icDaifuk =>
       const AssetGenImage('assets/newIcon/ic_daifuk.png');
   AssetGenImage get icDaishouh =>
@@ -688,6 +689,11 @@ class $AssetsNewIconGen {
       const AssetGenImage('assets/newIcon/img_wpcm.png');
   AssetGenImage get imgZxgl =>
       const AssetGenImage('assets/newIcon/img_zxgl.png');
+  AssetGenImage get jfjs => const AssetGenImage('assets/newIcon/jfjs.png');
+  AssetGenImage get sfbs => const AssetGenImage('assets/newIcon/sfbs.png');
+  AssetGenImage get srzf => const AssetGenImage('assets/newIcon/srzf.png');
+  AssetGenImage get xcyhm => const AssetGenImage('assets/newIcon/xcyhm.png');
+  AssetGenImage get zfyh => const AssetGenImage('assets/newIcon/zfyh.png');
 }
 
 class $AssetsStaticGen {
