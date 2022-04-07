@@ -30,9 +30,9 @@ class _TaskCancelDialogState extends State<TaskCancelDialog> {
         children: [
           Assets.icons.cancelTask.image(
             width: double.infinity,
-            height: 420.w,
+            height: 390.w,
           ),
-          64.hb,
+          24.hb,
           '确定要取消任务吗?'.text.size(36.sp).black.bold.make(),
           24.hb,
           '不再等等吗？马上就会有人来接单了！'
@@ -40,7 +40,7 @@ class _TaskCancelDialogState extends State<TaskCancelDialog> {
               .size(28.sp)
               .color(Colors.black.withOpacity(0.45))
               .make(),
-          80.hb,
+          24.hb,
           Row(
             children: [
               MaterialButton(
