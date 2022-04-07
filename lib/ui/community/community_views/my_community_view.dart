@@ -131,6 +131,7 @@ class MyCommunityViewState extends State<MyCommunityView>
     return EasyRefresh(
       firstRefresh: true,
       header: MaterialHeader(),
+      footer: MaterialFooter(),
       controller: _refreshController,
       onRefresh: () async {
         BaseListModel model = await NetUtil().getList(

@@ -113,8 +113,10 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                   await UserTool.dataProvider.addHistories();
                   await UserTool.userProvider.setLogin(response.data['data']);
                 } else {
-                  // BotToast.showText(text: response.data['message']);
-                  BotToast.showText(text: '账号尚未注册，请使用验证码登陆');
+                  BotToast.showText(text: response.data['msg']);
+                  if (response.data['msg'] == '该账户未设置密码，请使用验证码登录') {
+                    _controller.jumpToPage(0);
+                  }
                 }
               } catch (e) {
                 print(e.toString());

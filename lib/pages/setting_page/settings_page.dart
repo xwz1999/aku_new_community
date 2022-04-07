@@ -1,12 +1,9 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
-import 'package:aku_new_community/pages/setting_page/about_page/about_page.dart';
-import 'package:aku_new_community/pages/setting_page/account_manager_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
-import 'package:aku_new_community/pages/setting_page/feedback_page/feedback_page.dart';
-import 'package:aku_new_community/pages/tab_navigator.dart';
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
@@ -81,7 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         onPressed: () {
                           userProvider.logout();
-                          Get.offAll(() => TabNavigator());
+                          Get.to(() => OtherLoginPage());
                         },
                       ),
                     ],
@@ -106,7 +103,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          ...[
+          ...<Widget>[
             // _buildTile(
             //   title: '是否接受信息通知',
             //   suffix: CupertinoSwitch(
@@ -114,10 +111,10 @@ class _SettingsPageState extends State<SettingsPage> {
             //     onChanged: (state) {},
             //   ),
             // ),
-            _buildTile(
-              title: '关于小蜜蜂智慧小区',
-              onTap: () => Get.to(() => AboutPage()),
-            ),
+            // _buildTile(
+            //   title: '关于小蜜蜂智慧小区',
+            //   onTap: () => Get.to(() => AboutPage()),
+            // ),
             //TODO 邀请注册
             // _buildTile(
             //   title: '邀请注册',
@@ -137,14 +134,14 @@ class _SettingsPageState extends State<SettingsPage> {
             //   title: '清除缓存',
             //   onTap: () {},
             // ),
-            _buildTile(
-              title: '意见反馈',
-              onTap: () => Get.to(() => FeedBackPage()),
-            ),
-            _buildTile(
-              title: '账号管理',
-              onTap: () => Get.to(() => AccountManagerPage()),
-            ),
+            // _buildTile(
+            //   title: '意见反馈',
+            //   onTap: () => Get.to(() => FeedBackPage()),
+            // ),
+            // _buildTile(
+            //   title: '账号管理',
+            //   onTap: () => Get.to(() => AccountManagerPage()),
+            // ),
             _buildTile(
               title: '小蜜蜂用户协议',
               onTap: () => Get.to(() => AgreementPage()),
