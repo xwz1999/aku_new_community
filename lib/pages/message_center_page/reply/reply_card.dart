@@ -42,7 +42,13 @@ class ReplyCard extends StatelessWidget {
                 children: [
                   model.sendName.text.size(26.sp).black.bold.make(),
                   5.heightBox,
-                  model.content.text
+                  model.content==null?''.text
+                      .size(26.sp)
+                      .color(ktextSubColor)
+                      .maxLines(1)
+                      .ellipsis
+                      .make():
+                  (model.content!).text
                       .size(26.sp)
                       .color(ktextSubColor)
                       .maxLines(1)
