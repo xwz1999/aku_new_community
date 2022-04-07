@@ -199,10 +199,10 @@ class _MarketPageState extends State<MarketPage>
 
     _categoryModels = await CommunityFunc.getCategory();
 
-    var list = await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
+    _goodsClassificationList =
+        await CommunityFunc.getGoodsClassificationList(0); //0获取根目录下的分类
 
-    _goodsClassificationList.replaceRange(0, list.length, list);
-
+    print(_goodsClassificationList.length);
     _goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
 
     setState(() {});
@@ -815,13 +815,13 @@ class _MarketPageState extends State<MarketPage>
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
         itemBuilder: (context, index) {
-          if (index == 9) {
+          if (index == _goodsClassificationList.length) {
             return _buildAllTile();
           } else {
             return _buildTile(_goodsClassificationList[index], index);
           }
         },
-        itemCount: 10,
+        itemCount: _goodsClassificationList.length + 1,
         shrinkWrap: true,
       ),
     );
