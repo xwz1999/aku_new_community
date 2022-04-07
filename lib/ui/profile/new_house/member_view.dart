@@ -108,7 +108,8 @@ class _MemberViewState extends State<MemberView> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40.w),
                   border: Border.all(color: kPrimaryColor, width: 4.w)),
-              child: Assets.images.splashLogo.image(width: 80.w, height: 80.w),
+              child: Assets.newIcon.avatarPlaceholder
+                  .image(width: 80.w, height: 80.w),
             ),
             Positioned(
                 bottom: -20.w,
