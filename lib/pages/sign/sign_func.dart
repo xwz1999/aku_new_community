@@ -40,7 +40,7 @@ class SignFunc {
 
   static Future sendNewMessageCode(String newTel) async {
     BaseModel baseModel = await NetUtil().post(
-      API.login.sendNewMSCode,
+      SAASAPI.user.sendTelCodeUpdateTel,
       params: {'newTel': newTel},
       showMessage: true,
     );

@@ -13,11 +13,45 @@ class HistoryLoginModel {
   PickedCityModel cityModel;
   @HiveField(1)
   CommunityModel? communityModel;
+
   factory HistoryLoginModel.fromJson(Map<String, dynamic> json) =>
       _$HistoryLoginModelFromJson(json);
+
+//<editor-fold desc="Data Methods">
 
   HistoryLoginModel({
     required this.cityModel,
     this.communityModel,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HistoryLoginModel &&
+          runtimeType == other.runtimeType &&
+          cityModel == other.cityModel &&
+          communityModel == other.communityModel);
+
+  @override
+  int get hashCode => cityModel.hashCode ^ communityModel.hashCode;
+
+  @override
+  String toString() {
+    return 'HistoryLoginModel{' +
+        ' cityModel: $cityModel,' +
+        ' communityModel: $communityModel,' +
+        '}';
+  }
+
+  HistoryLoginModel copyWith({
+    PickedCityModel? cityModel,
+    CommunityModel? communityModel,
+  }) {
+    return HistoryLoginModel(
+      cityModel: cityModel ?? this.cityModel,
+      communityModel: communityModel ?? this.communityModel,
+    );
+  }
+
+//</editor-fold>
 }

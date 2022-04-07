@@ -43,10 +43,13 @@ class DataProvider extends ChangeNotifier {
   List<HistoryLoginModel> get loginHistories => _loginHistories;
 
   Future addHistories() async {
-    _loginHistories.insert(0, UserTool.appProvider.pickedCityAndCommunity!);
-    if (_loginHistories.length > 4) {
-      _loginHistories.removeAt(_loginHistories.length - 1);
+    if (!_loginHistories
+        .contains(UserTool.appProvider.pickedCityAndCommunity!)) {
+      _loginHistories.insert(0, UserTool.appProvider.pickedCityAndCommunity!);
+      if (_loginHistories.length > 4) {
+        _loginHistories.removeAt(_loginHistories.length - 1);
+      }
+      HiveStore.dataBox!.put('historyLogin', _loginHistories);
     }
-    HiveStore.dataBox!.put('historyLogin', _loginHistories);
   }
 }

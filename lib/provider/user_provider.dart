@@ -111,8 +111,8 @@ class UserProvider extends ChangeNotifier {
 
   ///设置性别
   Future setSex(int sex) async {
-    BaseModel baseModel = await NetUtil().post(
-      API.user.setSex,
+    BaseModel baseModel = await NetUtil().get(
+      SAASAPI.user.updateSex,
       params: {'sex': sex},
       showMessage: true,
     );
@@ -139,12 +139,8 @@ class UserProvider extends ChangeNotifier {
 
   //修改昵称
   Future setName(String name) async {
-    BaseModel baseModel = await NetUtil().post(
-      API.user.updateNickName,
-      params: {'nickName': name},
-      showMessage: true,
-    );
-    if (baseModel.success) {
+    var re = await SignFunc.setNickName(name);
+    if (re) {
       await updateUserInfo();
       notifyListeners();
     }
@@ -153,8 +149,8 @@ class UserProvider extends ChangeNotifier {
   //修改手机号
   Future updateTel(String oldTel, String newTel, String code) async {
     BaseModel baseModel = await NetUtil().post(
-      API.user.updateTel,
-      params: {'oldTel': oldTel, 'newTel': newTel, 'code': code},
+      SAASAPI.user.updateTel,
+      params: {'tel': oldTel, 'newTel': newTel, 'telCode': code},
       showMessage: true,
     );
     if (baseModel.success) {
