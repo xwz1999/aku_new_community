@@ -39,6 +39,7 @@ class _PsdTextFieldState extends State<PsdTextField> {
         obscuringCharacter: '*',
         style: TextStyle(
           color: Colors.black.withOpacity(0.85),
+            fontSize: 32.sp
         ),
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
@@ -49,7 +50,7 @@ class _PsdTextFieldState extends State<PsdTextField> {
             hintText: widget.hintText ?? '请输入密码',
             counterText: '',
             suffixIconConstraints:
-                BoxConstraints(minHeight: 50.w, maxHeight: 50.w),
+                BoxConstraints(minHeight: 0, maxHeight: 0),
             suffixIcon: GestureDetector(
               onTap: () {
                 visible = !visible;
