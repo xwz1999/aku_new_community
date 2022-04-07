@@ -8,7 +8,7 @@ part of 'life_pay_model.dart';
 
 LifePayModel _$LifePayModelFromJson(Map<String, dynamic> json) => LifePayModel(
       id: json['id'] as int,
-      chargesName: json['chargesName'] as String,
+      chargesName: json['chargesName'] as String?,
       billDateStart: json['billDateStart'] as String,
       billDateEnd: json['billDateEnd'] as String,
       createDate: json['createDate'] as String,

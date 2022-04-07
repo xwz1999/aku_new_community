@@ -1,22 +1,15 @@
-import 'dart:convert';
-
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:aku_new_community/models/life_pay/life_pay_list_model.dart';
 import 'package:aku_new_community/models/life_pay/life_pay_model.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_record_page.dart';
 import 'package:aku_new_community/pages/life_pay/life_pre_pay_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
-import 'package:aku_new_community/pages/life_pay/widget/life_pay_detail_page.dart';
 import 'package:aku_new_community/pages/life_pay/widget/life_pay_detail_page_new.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
-import 'package:aku_new_community/utils/bee_parse.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -42,7 +35,7 @@ class LifePayPageNew extends StatefulWidget {
 class MonthPay {
   double payTotal; //费用
   List<LifePayModel> selectIds; //存储选中的主键id数组
-  List<LifePayModel> ids;//存储原先全部主键id数组
+  List<LifePayModel> ids; //存储原先全部主键id数组
   String itemNames; //选择的费用名称
   String timeTitle;
   //月份
@@ -50,7 +43,7 @@ class MonthPay {
       {required this.payTotal,
       required this.ids,
       required this.itemNames,
-        required this.selectIds,
+      required this.selectIds,
       required this.timeTitle});
 }
 
@@ -64,12 +57,10 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
 
   List<int> _selectModelIndex = []; //选择的月份model，存储其数组下标
 
-  bool get allSelect =>
-      ((_selectMonths.length == _selectModelIndex.length) && (_selectMonths.length != 0));
-
+  bool get allSelect => ((_selectMonths.length == _selectModelIndex.length) &&
+      (_selectMonths.length != 0));
 
   MonthPay get total {
-
     double price = 0;
     List<LifePayModel> ids = [];
     for (var i in _selectModelIndex) {
@@ -78,7 +69,8 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
       price += model.payTotal;
       ids.addAll(model.selectIds);
     }
-    return MonthPay( payTotal: price, ids: [], selectIds: ids, itemNames: '', timeTitle: '');
+    return MonthPay(
+        payTotal: price, ids: [], selectIds: ids, itemNames: '', timeTitle: '');
   }
 
   @override
@@ -86,12 +78,11 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
     super.initState();
     _controller = EasyRefreshController();
 
-    Future.delayed(Duration.zero,(){
-      if( UserTool.userProvider.defaultHouse==null){
-        Get.off(()=>MyHousePage());
-        BotToast.showText(text:  '请先选择您的房屋');
+    Future.delayed(Duration.zero, () {
+      if (UserTool.userProvider.defaultHouse == null) {
+        Get.off(() => MyHousePage());
+        BotToast.showText(text: '请先选择您的房屋');
       }
-
     });
 
     _models = [
@@ -163,7 +154,7 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
 
   Widget _buildCard(MonthPay model, int index) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 32.w,horizontal: 32.w),
+      padding: EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.w), color: kForeGroundColor),
       child: Row(
@@ -183,7 +174,8 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                   });
                 },
                 child: Container(
-                  padding:  EdgeInsets.only(left: 10.w,right: 10.w,bottom: 50.w),
+                  padding:
+                      EdgeInsets.only(left: 10.w, right: 10.w, bottom: 50.w),
                   color: Colors.transparent,
                   child: BeeCheckRadio(
                     value: index,
@@ -198,7 +190,11 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              model.timeTitle.text.color(Colors.black.withOpacity(0.8)).bold.size(32.sp).make(),
+              model.timeTitle.text
+                  .color(Colors.black.withOpacity(0.8))
+                  .bold
+                  .size(32.sp)
+                  .make(),
               13.w.heightBox,
               '已选择：'
                   .richText
@@ -209,18 +205,17 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                         .size(32.sp)
                         .bold
                         .make(),
-                ' / ${model.ids.length}'
-                    .textSpan
-                    .color(Colors.black.withOpacity(0.25))
-                    .size(32.sp)
-                    .bold
-                    .make(),
+                    ' / ${model.ids.length}'
+                        .textSpan
+                        .color(Colors.black.withOpacity(0.25))
+                        .size(32.sp)
+                        .bold
+                        .make(),
                   ])
                   .color(Colors.black.withOpacity(0.65))
                   .size(26.sp)
                   .make(),
               13.w.heightBox,
-
               SizedBox(
                 width: 400.w,
                 child: Text(
@@ -230,11 +225,9 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                   style: TextStyle(
                     color: ktextSubColor,
                     fontSize: 28.sp,
-
                   ),
                 ),
               ),
-
               13.w.heightBox,
               RichText(
                   text: TextSpan(
@@ -244,12 +237,12 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold),
                       children: [
-                        TextSpan(
-                            text: '¥ ',
-                            style: TextStyle(
-                                color: kDangerColor,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.bold)),
+                    TextSpan(
+                        text: '¥ ',
+                        style: TextStyle(
+                            color: kDangerColor,
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.bold)),
                     TextSpan(
                         text: '${model.payTotal.toStringAsFixed(2)}',
                         style: TextStyle(
@@ -265,22 +258,18 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
             children: [
               GestureDetector(
                 onTap: () async {
-
-
-                  dynamic back =  await Get.to(()=>LifePayDetailPageNew(model: model,));
-                    if(back){
-
-                      for(int i=0;i<_selectMonths.length;i++){
-                        if(_selectMonths[i].selectIds.isEmpty){
-                          _selectModelIndex.remove(_selectMonths.indexOf(_selectMonths[i]));
-
-                        }
+                  dynamic back = await Get.to(() => LifePayDetailPageNew(
+                        model: model,
+                      ));
+                  if (back) {
+                    for (int i = 0; i < _selectMonths.length; i++) {
+                      if (_selectMonths[i].selectIds.isEmpty) {
+                        _selectModelIndex
+                            .remove(_selectMonths.indexOf(_selectMonths[i]));
                       }
-                      setState(() {
-
-                      });
                     }
-
+                    setState(() {});
+                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -289,11 +278,14 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                   ),
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
-                  child: '选择明细'.text.color(Colors.black.withOpacity(0.85)).size(22.sp).bold.make(),
+                  child: '选择明细'
+                      .text
+                      .color(Colors.black.withOpacity(0.85))
+                      .size(22.sp)
+                      .bold
+                      .make(),
                 ),
               ),
-
-
             ],
           ),
         ],
@@ -309,14 +301,13 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
       padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.w),
       onPressed: () async {
         Function cancel = BotToast.showLoading();
-        BaseModel baseModel =
-            await NetUtil().post(SAASAPI.pay.createLivingExpensesOrder, params: {
+        BaseModel baseModel = await NetUtil()
+            .post(SAASAPI.pay.createLivingExpensesOrder, params: {
           "chargesBillId": total.ids,
           "paymentAmount": total.payTotal
         });
         if (baseModel.success) {
-          bool result = await PayUtil().callAliPay(
-              (baseModel.data as String),
+          bool result = await PayUtil().callAliPay((baseModel.data as String),
               SAASAPI.pay.livingExpensesOrderCheckAlipay);
           if (result) {
             Get.off(() => PayFinishPage());
@@ -370,10 +361,8 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
   }
 
   Future<double> _dailyPaymentPrePay() async {
-    BaseModel baseModel =
-        await NetUtil().get(SAASAPI.lifePay.findEstateBalance, params: {
-      "estateId": UserTool.userProvider.defaultHouse!.id
-    });
+    BaseModel baseModel = await NetUtil().get(SAASAPI.lifePay.findEstateBalance,
+        params: {"estateId": UserTool.userProvider.defaultHouse!.id});
     if (baseModel.success) {
       return (baseModel.data as num).toDouble();
     } else {
@@ -392,10 +381,13 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
             Get.to(() => LifePayRecordPage());
           },
           child: Container(
-            padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
-            alignment: Alignment.center,
-            child: Image.asset(Assets.icons.lifePayRecord.path,width:48.w ,height: 48.w,)
-          ),
+              padding: EdgeInsets.fromLTRB(32.w, 28.w, 32.w, 20.w),
+              alignment: Alignment.center,
+              child: Image.asset(
+                Assets.icons.lifePayRecord.path,
+                width: 48.w,
+                height: 48.w,
+              )),
         ),
       ],
       body: EasyRefresh(
@@ -403,66 +395,60 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
         header: MaterialHeader(),
         controller: _controller,
         onRefresh: () async {
-
           _prePrice = await _dailyPaymentPrePay();
           _selectMonths.clear();
 
-          BaseModel model = await NetUtil()
-              .get(SAASAPI.lifePay.livingExpensesList, params: {
-            'estateId': UserTool.userProvider.defaultHouse!.id
-          });
-          if(model.success){
-            if(model.data!=null)
-
-
-              _models = ( model.data as List)
+          BaseModel model = await NetUtil().get(
+              SAASAPI.lifePay.livingExpensesList,
+              params: {'estateId': UserTool.userProvider.defaultHouse!.id});
+          if (model.success) {
+            if (model.data != null)
+              _models = (model.data as List)
                   .map((e) => LifePayModel.fromJson(e))
-                  .toList() ;
+                  .toList();
           }
 
-
-
-
           ///先按月份分好
-          if(_models.isNotEmpty)
-          _models.forEach((element) {
-            if (_selectMonths.isEmpty) {
-              _selectMonths.add(MonthPay(
+          if (_models.isNotEmpty)
+            _models.forEach((element) {
+              if (_selectMonths.isEmpty) {
+                _selectMonths.add(MonthPay(
                   payTotal: element.payPrincipal + element.defaultAmount,
                   ids: [element],
-                  itemNames: element.chargesName,
+                  itemNames: element.chargesName ?? '',
                   timeTitle: DateUtil.formatDate(
                       DateTime.parse(element.billDateStart),
-                      format: 'yyyy-MM'), selectIds:  [element],));
-            } else {
-              bool same = false;
-              for(int i=0;i<_selectMonths.length;i++){
+                      format: 'yyyy-MM'),
+                  selectIds: [element],
+                ));
+              } else {
+                bool same = false;
+                for (int i = 0; i < _selectMonths.length; i++) {
+                  if (DateUtil.formatDate(DateTime.parse(element.billDateStart),
+                          format: 'yyyy-MM') ==
+                      _selectMonths[i].timeTitle) {
+                    _selectMonths[i].payTotal +=
+                        element.defaultAmount + element.payPrincipal;
+                    _selectMonths[i].ids.add(element);
+                    _selectMonths[i].itemNames +=
+                        '、' + (element.chargesName ?? '');
 
-                if (DateUtil.formatDate(DateTime.parse(element.billDateStart),
-                    format: 'yyyy-MM') ==
-                    _selectMonths[i].timeTitle) {
-                  _selectMonths[i].payTotal +=
-                      element.defaultAmount + element.payPrincipal;
-                  _selectMonths[i].ids.add(element);
-                  _selectMonths[i].itemNames += '、'+element.chargesName;
-
-                  _selectMonths[i].selectIds.add(element);
-                  same = true;
+                    _selectMonths[i].selectIds.add(element);
+                    same = true;
+                  }
+                }
+                if (!same) {
+                  _selectMonths.add(MonthPay(
+                      payTotal: element.payPrincipal + element.defaultAmount,
+                      ids: [element],
+                      selectIds: [element],
+                      itemNames: element.chargesName ?? '',
+                      timeTitle: DateUtil.formatDate(
+                          DateTime.parse(element.billDateStart),
+                          format: 'yyyy-MM')));
                 }
               }
-              if(!same){
-                _selectMonths.add(MonthPay(
-                    payTotal: element.payPrincipal + element.defaultAmount,
-                    ids: [element],
-                    selectIds:  [element],
-                    itemNames: element.chargesName,
-                    timeTitle: DateUtil.formatDate(
-                        DateTime.parse(element.billDateStart),
-                        format: 'yyyy-MM')));
-              }
-
-            }
-          });
+            });
           if (mounted) setState(() {});
         },
         child: Column(
@@ -483,9 +469,11 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(padding: EdgeInsets.symmetric(vertical: 24.w,horizontal: 32.w),
-                    child: '当前账单'.text.color(ktextPrimary).size(28.sp).make(),),
-
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+                    child: '当前账单'.text.color(ktextPrimary).size(28.sp).make(),
+                  ),
                   BeeDivider.horizontal(),
                   ...List.generate(_selectMonths.length,
                           (index) => _buildCard(_selectMonths[index], index))
@@ -508,7 +496,6 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                   _selectModelIndex.clear();
                   setState(() {});
                 } else {
-
                   _selectModelIndex.clear();
                   for (var i = 0; i < _selectMonths.length; i++) {
                     _selectModelIndex.add(i);
@@ -537,12 +524,7 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
               ).material(color: Colors.transparent),
             ),
             16.wb,
-            '全选'
-                .text
-                .color(ktextSubColor)
-                .size(28.sp)
-                .bold
-                .make(),
+            '全选'.text.color(ktextSubColor).size(28.sp).bold.make(),
             Spacer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -556,12 +538,12 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
                             fontSize: 24.sp,
                             fontWeight: FontWeight.bold),
                         children: [
-                          TextSpan(
-                              text: ' ¥',
-                              style: TextStyle(
-                                  color: kDangerColor,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.bold)),
+                      TextSpan(
+                          text: ' ¥',
+                          style: TextStyle(
+                              color: kDangerColor,
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold)),
                       TextSpan(
                           text: '${total.payTotal.toStringAsFixed(2)}',
                           style: TextStyle(

@@ -97,6 +97,9 @@ class _CommunityPageState extends State<CommunityPage>
               child: TabBar(
                 onTap: (index) {
                   setState(() {});
+                  if (_tabController?.index == 1) {
+                    myKey.currentState?.refresh();
+                  }
                 },
                 controller: _tabController,
                 indicatorColor: Color(0xffffc40c),

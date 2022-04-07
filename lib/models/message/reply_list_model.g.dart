@@ -21,5 +21,5 @@ ReplyListModel _$ReplyListModelFromJson(Map<String, dynamic> json) =>
       dynamicImgList: (json['dynamicImgList'] as List<dynamic>)
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-        jumpId:json['jumpId'] as int
+      jumpId: json['jumpId'] as int,
     );

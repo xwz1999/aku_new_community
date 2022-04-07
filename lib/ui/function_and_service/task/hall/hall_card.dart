@@ -122,7 +122,7 @@ class HallCard extends StatelessWidget {
             24.w.heightBox,
             Row(
               children: [
-                Assets.icons.environment.image(width: 36.w, height: 36.w),
+                Assets.icons.environment.image(width: 40.w, height: 40.w),
                 24.w.widthBox,
                 '${model.accessAddress}'
                     .text

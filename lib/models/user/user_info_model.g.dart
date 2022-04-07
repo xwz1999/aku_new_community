@@ -10,6 +10,7 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
     UserInfoModel(
       id: json['id'] as int,
       communityId: json['communityId'] as int,
+      communityName: json['communityName'] as String,
       communityCode: json['communityCode'] as String,
       name: json['name'] as String?,
       idCard: json['idCard'] as String?,
