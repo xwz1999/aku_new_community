@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
@@ -241,13 +242,13 @@ class _SplashPageState extends State<SplashPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Image.asset(
-                      R.ASSETS_IMAGES_SPLASH_LOGO_PNG,
+                      Assets.images.logo.path,
                       width: 140.w,
                       height: 140.w,
                       fit: BoxFit.fill,
                     ),
                     Text(
-                      '小蜜蜂智慧社区',
+                      '小蜜蜂',
                       style: TextStyle(
                           color: Color(0xD9000000),
                           fontSize: 32.sp,

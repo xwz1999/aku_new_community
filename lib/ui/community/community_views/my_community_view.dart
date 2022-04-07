@@ -85,7 +85,7 @@ class MyCommunityViewState extends State<MyCommunityView>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                '${_head?.dynamicNum}'
+                '${_head?.dynamicNum ?? 0}'
                     .text
                     .size(40.sp)
                     .fontWeight(FontWeight.bold)
@@ -100,7 +100,7 @@ class MyCommunityViewState extends State<MyCommunityView>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                '${_head?.commentNum}'
+                '${_head?.commentNum ?? 0}'
                     .text
                     .size(40.sp)
                     .fontWeight(FontWeight.bold)
@@ -115,7 +115,7 @@ class MyCommunityViewState extends State<MyCommunityView>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                '${_head?.likesNum}'
+                '${_head?.likesNum ?? 0}'
                     .text
                     .size(40.sp)
                     .fontWeight(FontWeight.bold)
@@ -230,7 +230,7 @@ class MyCommunityViewState extends State<MyCommunityView>
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      '${item.createDT?.hour ?? ''}.${item.createDT?.second ?? ''}'
+                      '${item.createDT?.hour ?? ''}.${item.createDT?.minute ?? ''}'
                           .text
                           .size(28.sp)
                           .color(Color(0xA6000000))

@@ -26,7 +26,7 @@ class OtherLoginPage extends StatefulWidget {
 
 class _OtherLoginPageState extends State<OtherLoginPage> {
   PageController _controller = PageController();
-  List<String> _tabs = [ '验证码登录','账号登录'];
+  List<String> _tabs = ['验证码登录', '账号登录'];
   int _currentIndex = 0;
   TextEditingController _tel = TextEditingController();
   TextEditingController _psd = TextEditingController();
@@ -143,7 +143,7 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
       BotToast.showText(text: '请先选择小区！');
       return false;
     }
-    if (_currentIndex == 0 && _psd.text.isEmpty) {
+    if (_currentIndex == 1 && _psd.text.isEmpty) {
       BotToast.showText(text: '密码不能为空');
       return false;
     }
