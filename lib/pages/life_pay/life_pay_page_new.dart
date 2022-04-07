@@ -244,7 +244,7 @@ class _LifePayPageNewState extends State<LifePayPageNew> {
         Function cancel = BotToast.showLoading();
         BaseModel baseModel = await NetUtil()
             .post(SAASAPI.pay.createLivingExpensesOrder, params: {
-          "chargesBillId": total.ids,
+          "chargesBillIds": total.selectIds.map((e) => e.id).toList(),
           "paymentAmount": total.payTotal
         });
         if (baseModel.success) {

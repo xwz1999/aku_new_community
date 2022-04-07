@@ -237,28 +237,29 @@ class _AllApplicationPageState extends State<AllApplicationPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: BeeBackButton(),
-        title: MaterialButton(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          height: 72.w,
-          shape: StadiumBorder(),
-          elevation: 0,
-          minWidth: double.infinity,
-          color: Color(0xFFF3F3F3),
-          onPressed: () {
-            Get.to(() => BeeSearch());
-          },
-          child: Row(
-            children: [
-              Icon(
-                Icons.search,
-                size: 32.w,
-                color: Color(0xFF666666),
-              ),
-              10.wb,
-              '搜索应用'.text.size(28.sp).color(ktextSubColor).make().expand(),
-            ],
-          ),
-        ),
+        title: '全部应用'.text.make(),
+        // title: MaterialButton(
+        //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        //   height: 72.w,
+        //   shape: StadiumBorder(),
+        //   elevation: 0,
+        //   minWidth: double.infinity,
+        //   color: Color(0xFFF3F3F3),
+        //   onPressed: () {
+        //     Get.to(() => BeeSearch());
+        //   },
+        //   child: Row(
+        //     children: [
+        //       Icon(
+        //         Icons.search,
+        //         size: 32.w,
+        //         color: Color(0xFF666666),
+        //       ),
+        //       10.wb,
+        //       '搜索应用'.text.size(28.sp).color(ktextSubColor).make().expand(),
+        //     ],
+        //   ),
+        // ),
       ),
       body: Column(
         children: [

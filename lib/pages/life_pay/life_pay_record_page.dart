@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'life_pay_bill_page/life_pay_bill_page.dart';
 
 class LifePayRecordPage extends StatefulWidget {
-   LifePayRecordPage({Key? key}) : super(key: key);
+  LifePayRecordPage({Key? key}) : super(key: key);
 
   @override
   _LifePayRecordPageState createState() => _LifePayRecordPageState();
@@ -87,24 +87,25 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
 
   Widget _buildRecordCard(LifePayRecordModel model) {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>LifePayBillPage(model: model,));
+      onTap: () {
+        Get.to(() => LifePayBillPage(
+              model: model,
+            ));
       },
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 8.w,horizontal: 24.w),
+            padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 24.w),
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.06),
               borderRadius: BorderRadius.circular(8.w),
             ),
-            child: DateUtil.formatDate(
-                DateTime.parse(model.createDate),
-                format: 'MM-dd hh-mm').text
+            child: DateUtil.formatDate(DateUtil.getDateTime(model.createDate),
+                    format: 'MM-dd hh-mm')
+                .text
                 .size(24.sp)
                 .color(Colors.black.withOpacity(0.45))
                 .make(),
-
           ),
           Row(
             children: [
@@ -114,7 +115,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
                   .bold
                   .make(),
               Spacer(),
-              '${S.of(context)!.tempPlotName} ${model.unitName+model.estateName}'
+              '${model.buildingName + '栋' + model.unitName + '单元' + model.estateName}'
                   .text
                   .size(24.sp)
                   .color(Color(0xFF999999))
@@ -147,7 +148,6 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
               '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
             ],
           ),
-
           Row(
             children: [
               '流水号'.text.color(ktextSubColor).size(28.sp).make(),
@@ -155,7 +155,6 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
               '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
             ],
           ),
-
         ].sepWidget(separate: 24.w.heightBox),
       )
           .box
