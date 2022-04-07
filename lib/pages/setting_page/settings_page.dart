@@ -78,7 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         onPressed: () {
                           userProvider.logout();
-                          Get.to(() => OtherLoginPage());
+                          Get.offAll(() => OtherLoginPage());
                         },
                       ),
                     ],

@@ -123,7 +123,7 @@ class _MyHousePageState extends State<MyHousePage> {
                   8.w.heightBox,
                   Row(
                     children: [
-                      '${model.buildingName}${model.unitName}${model.estateName}'
+                      '${model.buildingName}栋${model.unitName}单元${model.estateName}'
                           .text
                           .size(36.sp)
                           .color(Colors.black.withOpacity(0.85))

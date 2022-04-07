@@ -56,12 +56,14 @@ class UserProvider extends ChangeNotifier {
     if (!kIsWeb && !Platform.isMacOS) JPush().deleteAlias();
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
-    _isLogin = false;
+    if (_isLogin) {
+      NetUtil().post(SAASAPI.login.logOut, showMessage: true);
+      NetUtil().dio!.options.headers.remove('app-login-token');
+      _isLogin = false;
+    }
     _token = null;
     _userInfoModel = null;
     _myHouses = [];
-    NetUtil().post(SAASAPI.login.logOut, showMessage: true);
-    NetUtil().dio!.options.headers.remove('app-login-token');
     HiveStore.appBox!.delete('token');
     HiveStore.appBox!.delete('login');
     WebSocketUtil().closeWebSocket();

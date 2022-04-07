@@ -635,6 +635,8 @@ class $AssetsJsonGen {
 class $AssetsNewIconGen {
   const $AssetsNewIconGen();
 
+  AssetGenImage get allClasses =>
+      const AssetGenImage('assets/newIcon/all_classes.png');
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/newIcon/avatar_placeholder.png');
   AssetGenImage get hyhd => const AssetGenImage('assets/newIcon/hyhd.png');
@@ -642,10 +644,14 @@ class $AssetsNewIconGen {
       const AssetGenImage('assets/newIcon/ic_daifuk.png');
   AssetGenImage get icDaishouh =>
       const AssetGenImage('assets/newIcon/ic_daishouh.png');
+  AssetGenImage get icDingdan =>
+      const AssetGenImage('assets/newIcon/ic_dingdan.png');
   AssetGenImage get icDlxx => const AssetGenImage('assets/newIcon/ic_dlxx.png');
   AssetGenImage get icDzsw => const AssetGenImage('assets/newIcon/ic_dzsw.png');
   AssetGenImage get icEssc => const AssetGenImage('assets/newIcon/ic_essc.png');
   AssetGenImage get icFwll => const AssetGenImage('assets/newIcon/ic_fwll.png');
+  AssetGenImage get icGouwuc =>
+      const AssetGenImage('assets/newIcon/ic_gouwuc.png');
   AssetGenImage get icGxtc => const AssetGenImage('assets/newIcon/ic_gxtc.png');
   AssetGenImage get icGxtp => const AssetGenImage('assets/newIcon/ic_gxtp.png');
   AssetGenImage get icHdtp => const AssetGenImage('assets/newIcon/ic_hdtp.png');

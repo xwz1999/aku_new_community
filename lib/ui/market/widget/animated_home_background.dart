@@ -36,15 +36,14 @@ class AnimatedHomeBackgroundState extends State<AnimatedHomeBackground> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(64)),
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
           colors: [
             // displayColor,
             // displayColor,
             //Color(0xFFF8F7F8),
 
-            Color(0xFFC5483A),
-            Color(0xFFC24739),
+            Color(0xFFFFFFFF), Color(0xFFFFF9D1),
           ],
         ),
       ),

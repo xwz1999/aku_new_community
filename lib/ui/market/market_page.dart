@@ -54,9 +54,10 @@ class _MarketPageState extends State<MarketPage>
   int _size = 10;
   int _pageCount = 0;
   double MessageHeight = 76.w;
-  double bannerHeight = 354.w;
+  double bannerHeight = 260.w;
   double buttonsHeight = 334.w;
   double searchHeight = 74.w;
+  double hotGoodHeight = 288.w;
   MarketStatisticsModel? _statistics;
 
   double tabBarHeight = 40.w;
@@ -114,8 +115,6 @@ class _MarketPageState extends State<MarketPage>
     _pageCount = baseListModel.total;
   }
 
-  bool _onLoadVisible = true;
-
   @override
   void initState() {
     super.initState();
@@ -153,37 +152,47 @@ class _MarketPageState extends State<MarketPage>
     final mediaWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: EasyRefresh.custom(
-        firstRefresh: false,
-        enableControlFinishLoad: false,
-        header: BallPulseHeader(
-            backgroundColor: Colors.red.withOpacity(0.8), color: Colors.white),
-        footer: MaterialFooter(),
-        topBouncing: false,
-        scrollController: _sliverListController,
-        controller: _refreshController,
-        onRefresh: _refresh,
-        onLoad: !_onLoadVisible
-            ? null
-            : () async {
-                _pageNum++;
-                await loadMarketInfo();
-                print(_goodsHomeModelList.length);
-                if (_goodsHomeModelList.length >= _pageCount) {
-                  _refreshController.finishLoad(noMore: true);
-                  _onLoadVisible = false;
-                  print(_onLoadVisible);
-                }
-                setState(() {});
-              },
-        slivers: _buildBody(context),
+      body: Stack(
+        children: [
+          Container(
+            height: 530.w,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0xFFFFFFFF),
+                Color(0xFFFFF9D1),
+              ],
+            )),
+          ),
+          EasyRefresh.custom(
+            firstRefresh: false,
+            enableControlFinishLoad: false,
+            header: MaterialHeader(),
+            footer: MaterialFooter(),
+            topBouncing: false,
+            scrollController: _sliverListController,
+            controller: _refreshController,
+            onRefresh: _refresh,
+            onLoad: () async {
+              _pageNum++;
+              await loadMarketInfo();
+              print(_goodsHomeModelList.length);
+              if (_goodsHomeModelList.length >= _pageCount) {
+                _refreshController.finishLoad(noMore: true);
+              }
+              setState(() {});
+            },
+            slivers: _buildBody(context),
+          )
+        ],
       ),
     );
   }
 
   Future _refresh() async {
     await updateMarketInfo();
-    _onLoadVisible = true;
     //_swiperModels = await CommunityFunc.swiper();
     _marketSwiperModels = await CommunityFunc.marketSwiper();
     _statistics = await CommunityFunc.getMarketStatistics();
@@ -303,17 +312,16 @@ class _MarketPageState extends State<MarketPage>
     return <Widget>[
       HomeSliverAppBar(
           key: _sliverAppBarGlobalKey,
-          actions: _actionsWidget(),
-          title: _buildTitle(),
-          backgroundColor: Colors.red,
+          title: geSearch(),
+          backgroundColor: Color(0xFFF9F9F9),
           expandedHeight: MessageHeight +
               bannerHeight +
               buttonsHeight +
-              searchHeight +
+              // searchHeight +
               tabBarHeight +
+              hotGoodHeight +
               ScreenUtil().statusBarHeight +
-              kToolbarHeight +
-              280.w,
+              kToolbarHeight,
           //积分商城高度
           // 172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
@@ -361,14 +369,14 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-  _actionsWidget() {
+  List<Widget> _actionsWidget() {
     return <Widget>[
       GestureDetector(
         onTap: () {
           Get.to(() => ShopCarPage()); // 购物车
         },
-        child:
-            Image.asset(R.ASSETS_ICONS_SHOP_CAR_PNG, height: 40.w, width: 40.w),
+        child: Image.asset(Assets.newIcon.icGouwuc.path,
+            height: 48.w, width: 48.w),
       ),
       Padding(
         padding: EdgeInsets.only(left: 32.w, right: 32.w),
@@ -378,8 +386,8 @@ class _MarketPageState extends State<MarketPage>
                   initIndex: 0,
                 ));
           },
-          child: Image.asset(R.ASSETS_ICONS_SHOP_ORDER_PNG,
-              height: 40.w, width: 40.w),
+          child: Image.asset(Assets.newIcon.icDingdan.path,
+              height: 48.w, width: 48.w),
         ),
       ),
     ];
@@ -421,15 +429,10 @@ class _MarketPageState extends State<MarketPage>
                       fontSize: 28.sp,
                       color: Colors.white,
                     ),
-                    //textAlign: TextAlign.center,
                   ),
                 ]),
-                // Expanded(
-                //   child: ges,
-                // )
               ],
             ),
-            // child: ges,
           ),
 
           // 20.hb,
@@ -449,20 +452,32 @@ class _MarketPageState extends State<MarketPage>
           // color: Colors.white,
           child: Stack(
             children: <Widget>[
-              AnimatedHomeBackground(
-                key: _animatedBackgroundState,
-                height: 530.w,
-                backgroundColor: Colors.white,
+              // AnimatedHomeBackground(
+              //   key: _animatedBackgroundState,
+              //   height: 530.w,
+              //   backgroundColor: Colors.white,
+              // ),
+              Container(
+                height: 265.w,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Color(0xFFFFFFFF),
+                    Color(0xFFFFF9D1),
+                  ],
+                )),
               ),
               Column(
                 children: <Widget>[
                   Container(
                     height: ScreenUtil().statusBarHeight + kToolbarHeight,
                   ),
-                  geSearch(),
+                  // geSearch(),
                   20.hb,
-                  getNum(),
-                  20.hb,
+                  // getNum(),
+                  // 20.hb,
                   HomeSwiper(),
                   20.hb,
                   _buttonTitle(),
@@ -582,30 +597,37 @@ class _MarketPageState extends State<MarketPage>
   }
 
   geSearch() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24.w),
-      child: MaterialButton(
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        height: 74.w,
-        shape: StadiumBorder(),
-        elevation: 0,
-        minWidth: double.infinity,
-        color: Color(0xFFF3F3F3),
-        onPressed: () {
-          Get.to(() => SearchGoodsPage());
-        },
-        child: Row(
-          children: [
-            Icon(
-              Icons.search,
-              size: 32.w,
-              color: Color(0xFF666666),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: GestureDetector(
+            onTap: () async {
+              Get.to(() => SearchGoodsPage());
+            },
+            child: Container(
+              height: 72.w,
+              margin: EdgeInsets.only(left: 32.w),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(36.w),
+                  color: Colors.white),
+              child: Row(
+                children: [
+                  32.wb,
+                  Assets.home.icSearch.image(
+                    width: 48.w,
+                    height: 48.w,
+                  ),
+                  10.wb,
+                  '请输入关键字'.text.size(28.sp).color(ktextSubColor).make(),
+                ],
+              ),
             ),
-            10.wb,
-            '请输入关键字'.text.size(28.sp).color(ktextSubColor).make().expand(),
-          ],
+          ),
         ),
-      ),
+        32.wb,
+        ..._actionsWidget()
+      ],
     );
   }
 
@@ -710,11 +732,11 @@ class _MarketPageState extends State<MarketPage>
 
   Widget HomeSwiper() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       width: double.infinity,
       height: bannerHeight,
       child: AspectRatio(
-        aspectRatio: 355 / 177,
+        aspectRatio: 343 / 129,
         child: Swiper(
           key: UniqueKey(),
           itemBuilder: (BuildContext context, int index) {
@@ -850,7 +872,7 @@ class _MarketPageState extends State<MarketPage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            R.ASSETS_ICONS_TEST_KINGCION_PNG,
+            Assets.newIcon.allClasses.path,
             height: 88.w,
             width: 88.w,
           ),
@@ -858,7 +880,7 @@ class _MarketPageState extends State<MarketPage>
           Text(
             '全部分类',
             style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
-          )
+          ),
         ],
       ),
     );
@@ -909,13 +931,21 @@ class _MarketPageState extends State<MarketPage>
 
   _recommend() {
     return Container(
-        height: 184.w,
+        height: hotGoodHeight,
         margin: EdgeInsets.only(left: 20.w, right: 20.w),
-        padding: EdgeInsets.only(top: 8.w, left: 16.w, right: 16.w),
+        padding: EdgeInsets.only(
+          top: 32.w,
+          left: 32.w,
+          right: 32.w,
+        ),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12.w),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFFFF6F6), Color(0xFFFFFFFF)]),
+          borderRadius: BorderRadius.circular(16.w),
         ),
         child: Column(
           children: [
@@ -926,7 +956,7 @@ class _MarketPageState extends State<MarketPage>
                   '爆款推荐',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 28.sp,
+                      fontSize: 32.sp,
                       color: ktextPrimary),
                 ),
               ],
@@ -935,7 +965,7 @@ class _MarketPageState extends State<MarketPage>
               padding: EdgeInsets.zero,
               physics: NeverScrollableScrollPhysics(),
               gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 6),
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
               itemBuilder: (context, index) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -969,7 +999,7 @@ class _MarketPageState extends State<MarketPage>
                   ],
                 );
               },
-              itemCount: _goodsPopularModelList.length,
+              itemCount: 4,
               shrinkWrap: true,
             ),
             // Row(

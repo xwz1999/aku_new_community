@@ -8,7 +8,6 @@ import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/models/home/home_swiper_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_center_page.dart';
 import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_new_community/pages/visitor_access_page/visitor_access_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/activity/activity_card.dart';
 import 'package:aku_new_community/ui/community/activity/activity_detail_page.dart';
@@ -21,7 +20,6 @@ import 'package:aku_new_community/ui/home/public_infomation/public_information_d
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
-import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/beeImageNetwork.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
@@ -239,7 +237,8 @@ class _HomePageState extends State<HomePage>
                                       borderRadius: BorderRadius.circular(16.w),
                                       image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: AssetImage(                                            Assets.home.imgFkyq.path),
+                                        image: AssetImage(
+                                            Assets.home.imgFkyq.path),
                                       )),
                                   child: Column(
                                     crossAxisAlignment:
@@ -358,7 +357,7 @@ class _HomePageState extends State<HomePage>
                                       ),
                                       onTap: () async {
                                         BotToast.showText(
-                                            text: '本小区尚未配置门禁设备',
+                                            text: '此功能升级中，稍后上线',
                                             align: Alignment(0, 0.5));
                                         // Get.to(AdvicePage(
                                         //     type: AdviceType.SUGGESTION));
@@ -405,7 +404,7 @@ class _HomePageState extends State<HomePage>
                                         child: Builder(
                                           builder: (context) {
                                             return ActivityCard(
-                                              home: true,
+                                                home: true,
                                                 model:
                                                     _activityItemModels[index]);
                                           },

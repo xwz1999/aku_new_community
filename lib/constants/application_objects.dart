@@ -30,6 +30,7 @@ import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.da
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
 import 'package:aku_new_community/ui/profile/car_parking/car_parking_page.dart';
 import 'package:aku_new_community/ui/profile/house/house_owners_page.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -92,7 +93,11 @@ List<AO> appObjects = [
   AO('借还管理', Assets.newIcon.icJhgl.path,
       () => Get.to(SelectBorrowReturnPage())),
   // AO('一键报警', Assets.newIcon.yj, () => AlarmPage()),
-  AO('设施预约', Assets.home.icSsyy.path, () => FacilityAppointmentPage()),
+  AO('设施预约', Assets.home.icSsyy.path, () {
+    BotToast.showText(text: '此功能升级中，敬请期待');
+    return;
+    Get.to(() => FacilityAppointmentPage());
+  }),
   AO('快递包裹', Assets.newIcon.icKdbg.path,
       () => Get.to(() => ExpressPackagePage())),
   AO('电子商务', Assets.newIcon.icDzsw.path,

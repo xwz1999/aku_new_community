@@ -25,77 +25,84 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BeeScaffold(
-      title: '',
-      bodyColor: Colors.white,
-      body: ListView(
-        children: [
-          24.w.heightBox,
-          Row(
-            children: [
-              48.w.widthBox,
-              '请设置您的昵称'
-                  .text
-                  .size(36.sp)
-                  .bold
-                  .color(Colors.black.withOpacity(0.65))
-                  .make(),
-              Spacer(),
-            ],
-          ),
-          16.w.heightBox,
-          Row(
-            children: [
-              48.w.widthBox,
-              '昵称不可设置侮辱性词汇、特殊符号、敏感字符'
-                  .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.45))
-                  .make(),
-              Spacer(),
-            ],
-          ),
-          95.w.heightBox,
-          Container(
-            width: 686.w,
-            height: 94.w,
-            margin: EdgeInsets.symmetric(horizontal: 32.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(60.w),
-              color: Colors.black.withOpacity(0.06),
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: BeeScaffold(
+        title: '',
+        bodyColor: Colors.white,
+        body: ListView(
+          children: [
+            24.w.heightBox,
+            Row(
+              children: [
+                48.w.widthBox,
+                '请设置您的昵称'
+                    .text
+                    .size(36.sp)
+                    .bold
+                    .color(Colors.black.withOpacity(0.65))
+                    .make(),
+                Spacer(),
+              ],
             ),
-            child: TextField(
-              onChanged: (text) async {
-                _nickIsRepeat = !(await SignFunc.checkNickRepeat(text));
-                setState(() {});
-              },
-              maxLength: 20,
-              controller: _nickController,
-              decoration: InputDecoration(
-                  isDense: false,
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
-                  border: InputBorder.none,
-                  counterText: '',
-                  hintText: '请输入您的昵称，不超过20个字符',
-                  hintStyle: TextStyle(
-                      color: Colors.black.withOpacity(0.25), fontSize: 28.sp)),
+            16.w.heightBox,
+            Row(
+              children: [
+                48.w.widthBox,
+                '昵称不可设置侮辱性词汇、特殊符号、敏感字符'
+                    .text
+                    .size(28.sp)
+                    .color(Colors.black.withOpacity(0.45))
+                    .make(),
+                Spacer(),
+              ],
             ),
-          ),
-          _nickIsRepeat ? _nickRepeat() : 100.w.heightBox,
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: LoginButtonWidget(
-                onTap: () async {
-                  var result = await SignFunc.setNickName(_nickController.text);
-                  if (result) {
-                    await UserTool.userProvider.updateUserInfo();
-                    await SignFunc.checkNameAndAccount();
-                  }
+            95.w.heightBox,
+            Container(
+              width: 686.w,
+              height: 94.w,
+              margin: EdgeInsets.symmetric(horizontal: 32.w),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(60.w),
+                color: Colors.black.withOpacity(0.06),
+              ),
+              child: TextField(
+                onChanged: (text) async {
+                  _nickIsRepeat = !(await SignFunc.checkNickRepeat(text));
+                  setState(() {});
                 },
-                text: '确定'),
-          ),
-        ],
+                maxLength: 20,
+                controller: _nickController,
+                decoration: InputDecoration(
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
+                    border: InputBorder.none,
+                    counterText: '',
+                    hintText: '请输入您的昵称，不超过20个字符',
+                    hintStyle: TextStyle(
+                        color: Colors.black.withOpacity(0.25),
+                        fontSize: 28.sp)),
+              ),
+            ),
+            _nickIsRepeat ? _nickRepeat() : 100.w.heightBox,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: LoginButtonWidget(
+                  onTap: () async {
+                    var result =
+                        await SignFunc.setNickName(_nickController.text);
+                    if (result) {
+                      await UserTool.userProvider.updateUserInfo();
+                      await SignFunc.checkNameAndAccount();
+                    }
+                  },
+                  text: '确定'),
+            ),
+          ],
+        ),
       ),
     );
   }

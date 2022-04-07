@@ -35,6 +35,8 @@ class PersonalIndex extends StatefulWidget {
 
 class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  EasyRefreshController _refreshController = EasyRefreshController();
+
   Widget _orderButton({
     required String name,
     required String path,
@@ -67,6 +69,12 @@ class _PersonalIndexState extends State<PersonalIndex>
   }
 
   @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     final double _statusHeight = MediaQuery.of(context).padding.top;
@@ -77,6 +85,7 @@ class _PersonalIndexState extends State<PersonalIndex>
         child: Scaffold(
           body: EasyRefresh(
               header: MaterialHeader(),
+              controller: _refreshController,
               onRefresh: () async {
                 await userProvider.updateUserInfo();
                 await userProvider.updateMyHouseInfo();
@@ -183,6 +192,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                           tomorrowIntegral: 2));
                                       await UserTool.userProvider
                                           .changeTodayClocked();
+                                      _refreshController.callRefresh();
                                     } else {
                                       BotToast.showText(text: base.msg);
                                     }
