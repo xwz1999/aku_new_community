@@ -21,6 +21,7 @@ class ThumbsUpCard extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 48.w),
+        color: Colors.white,
         child: Row(
           children: [
             ClipOval(
