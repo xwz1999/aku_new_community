@@ -1,6 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'shop_car_list_model.g.dart';
 
@@ -18,7 +17,7 @@ class ShopCarListModel {
   final double? sellPrice;
   final double? discountPrice;
   //	库存状态(1.有货，0.无货)
-  final int stockStatus;
+  final int? stockStatus;
   final String? unit;
 
   // 0=未知 1=自营 2=其 他,商品类别

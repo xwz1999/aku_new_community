@@ -57,8 +57,8 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
           SettlementGoodsDTO(appGoodsPushId: element.id, num: element.num));
     });
 
-    if (appProvider.addressModel != null) {
-      _addressModel = appProvider.addressModel!;
+    if (appProvider.defaultAddressModel != null) {
+      _addressModel = appProvider.defaultAddressModel!;
       createOrder(_addressModel!.id!, _goodsList);
     } else {
       _addressModel = null;

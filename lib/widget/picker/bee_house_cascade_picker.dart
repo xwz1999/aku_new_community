@@ -88,9 +88,9 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickBuildingIndex = value;
-                  // _pickUnitIndex = 0;
-                  // _pickFloorIndex = 0;
-                  // _pickHouseIndex = 0;
+                  _pickUnitIndex = 0;
+                  _pickFloorIndex = 0;
+                  _pickHouseIndex = 0;
                   _unitController.jumpToItem(0);
                   _floorController.jumpToItem(0);
                   _houseController.jumpToItem(0);
@@ -111,8 +111,8 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickUnitIndex = value;
-                  // _pickFloorIndex = 0;
-                  // _pickHouseIndex = 0;
+                  _pickFloorIndex = 0;
+                  _pickHouseIndex = 0;
                   _floorController.jumpToItem(0);
                   _houseController.jumpToItem(0);
                   setState(() {});
@@ -132,7 +132,7 @@ class _BeeHouseCascadePickerState extends State<BeeHouseCascadePicker> {
               child: CupertinoPicker(
                 onSelectedItemChanged: (int value) {
                   _pickFloorIndex = value;
-                  // _pickHouseIndex = 0;
+                  _pickHouseIndex = 0;
                   _houseController.jumpToItem(0);
                   setState(() {});
                 },

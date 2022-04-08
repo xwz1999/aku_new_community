@@ -78,13 +78,8 @@ class SearchFunc {
 
   ///加入购物车
   static Future<bool> addGoodsCar(int jcookGoodsId) async {
-    BaseModel model = await NetUtil().get(
-      SAASAPI.market.shopCart.insert,
-      params: {'appGoodsPushId': jcookGoodsId},
-    );
-    if (!model.success) {
-      BotToast.showText(text: model.msg);
-    }
+    BaseModel model = await NetUtil().get(SAASAPI.market.shopCart.insert,
+        params: {'appGoodsPushId': jcookGoodsId}, showMessage: true);
     return model.success;
   }
 

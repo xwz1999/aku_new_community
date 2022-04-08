@@ -11,6 +11,7 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
 import 'package:aku_new_community/widget/buttons/end_button.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -293,7 +294,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
         '¥'
             .richText
             .withTextSpanChildren([
-              sellPrice
+              NumUtil.add(sellPrice, 0)
                   .toInt()
                   .toString()
                   .textSpan
@@ -326,6 +327,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
         children: [
           GestureDetector(
             onTap: () {
+              if (model.goodStatus == GoodStatus.unSell) {
+                return;
+              }
               if (_selectIndex.contains(index)) {
                 _selectIndex.remove(index);
                 _chooseModels.remove(model);
@@ -409,6 +413,8 @@ class _ShopCarPageState extends State<ShopCarPage> {
                 ),
               ),
               Positioned(
+                  top: 0,
+                  left: 0,
                   child: _getGoodsStatusImg(model.goodStatus) ?? SizedBox())
             ],
           ),
@@ -470,9 +476,12 @@ class _ShopCarPageState extends State<ShopCarPage> {
     switch (status) {
       case GoodStatus.unSell:
         return Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Color(0xFF000000).withOpacity(0.5),
+          width: 220.w,
+          height: 220.w,
+          decoration: BoxDecoration(
+            color: Color(0xFF000000).withOpacity(0.5),
+            borderRadius: BorderRadius.circular(16.w),
+          ),
           alignment: Alignment.center,
           child: Text(
             '已下架',

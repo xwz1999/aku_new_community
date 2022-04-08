@@ -59,8 +59,8 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
     _goodsList
         .add(SettlementGoodsDTO(appGoodsPushId: widget.goodModel.id, num: 1));
 
-    if (appProvider.addressModel != null) {
-      _addressModel = appProvider.addressModel!;
+    if (appProvider.defaultAddressModel != null) {
+      _addressModel = appProvider.defaultAddressModel!;
       createOrder(_addressModel!.id!, _goodsList);
     } else {
       _addressModel = null;
