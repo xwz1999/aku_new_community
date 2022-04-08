@@ -37,7 +37,7 @@ class HiveStore {
       Hive.registerAdapter(HistoryLoginModelAdapter()); //HiveTypeId:4
       Hive.registerAdapter(UserConfigModelAdapter()); //HiveTypeId:5
       Hive.registerAdapter(PickedCityModelAdapter()); //HiveTypeId:6
-      Hive.registerAdapter(CommunityModelAdapter());
+      Hive.registerAdapter(CommunityModelAdapter()); //HiveTypeId:7
       _appBox = await Hive.openBox('app');
       _userBox = await Hive.openBox('userBox');
       _dataBox = await Hive.openBox('dataBox');
