@@ -1,4 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,43 +30,45 @@ class _PsdTextFieldState extends State<PsdTextField> {
         borderRadius: BorderRadius.circular(60.w),
         color: Colors.black.withOpacity(0.06),
       ),
-      child: TextField(
-        maxLength: 20,
-        onChanged: (text) {
-          setState(() {});
-        },
-        controller: widget.controller,
-        obscureText: !visible,
-        obscuringCharacter: '*',
-        style: TextStyle(
-          color: Colors.black.withOpacity(0.85),
-            fontSize: 32.sp
-        ),
-        cursorColor: kPrimaryColor,
-        decoration: InputDecoration(
-            isDense: false,
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
-            border: InputBorder.none,
-            hintText: widget.hintText ?? '请输入密码',
-            counterText: '',
-            suffixIconConstraints:
-                BoxConstraints(minHeight: 0, maxHeight: 0),
-            suffixIcon: GestureDetector(
-              onTap: () {
-                visible = !visible;
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              maxLength: 20,
+              onChanged: (text) {
                 setState(() {});
               },
-              child: Padding(
-                padding: EdgeInsets.only(right: 20.w),
-                child: Icon(
-                  visible ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
-                  color: Colors.black.withOpacity(0.4),
-                ),
-              ),
+              controller: widget.controller,
+              obscureText: !visible,
+              obscuringCharacter: '*',
+              style: TextStyle(
+                  color: Colors.black.withOpacity(0.85), fontSize: 32.sp),
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                  isDense: false,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
+                  border: InputBorder.none,
+                  hintText: widget.hintText ?? '请输入密码',
+                  counterText: '',
+                  suffixIconConstraints:
+                      BoxConstraints(minHeight: 0, maxHeight: 0),
+                  hintStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.25), fontSize: 28.sp)),
             ),
-            hintStyle: TextStyle(
-                color: Colors.black.withOpacity(0.25), fontSize: 28.sp)),
+          ),
+          GestureDetector(
+            onTap: () {
+              visible = !visible;
+              setState(() {});
+            },
+            child: Icon(
+              visible ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
+              color: Colors.black.withOpacity(0.4),
+            ),
+          ),
+          24.wb,
+        ],
       ),
     );
   }
