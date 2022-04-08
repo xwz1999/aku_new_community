@@ -422,10 +422,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                 // () => HouseOwnersPage(
                                 //       identify: 4,
                                 //     ),
-                                '${UserTool.userProvider.defaultHouse?.communityName ?? ''} '
-                                    '${UserTool.userProvider.defaultHouse?.buildingName ?? ''}'
-                                    '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
-                                    '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
+                                '${UserTool.userProvider.defaultHouseString}',
                               ),
                               _function('我的家庭', Assets.newIcon.icWdjt.path, () {
                                 Get.to(() => MyFamilyPage());
