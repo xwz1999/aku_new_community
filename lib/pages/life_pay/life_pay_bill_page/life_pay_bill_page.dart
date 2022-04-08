@@ -97,10 +97,10 @@ class _LifePayBillPageState extends State<LifePayBillPage> {
                 _billItem('缴纳金额','¥'+widget.model.payAmount.toStringAsFixed(2),isRed: true),
 
                 _billItem('缴费时间',DateUtil.formatDate(DateUtil.getDateTime(widget.model.createDate),
-                    format: 'yyyy/MM/dd hh:mm'),),
+                    format: 'yyyy/MM/dd HH:mm'),),
                 _billItem('付款方式',  '${getPayType[widget.model.payType]}'),
                 _billItem('账单创建时间',DateUtil.formatDate(DateUtil.getDateTime(widget.model.billCreateDate),
-                    format: 'yyyy/MM/dd hh:mm'),),
+                    format: 'yyyy/MM/dd HH:mm'),),
                 _billItem('流水号',widget.model.code,),
 
               ]

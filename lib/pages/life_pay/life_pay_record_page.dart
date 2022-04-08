@@ -101,7 +101,7 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
               borderRadius: BorderRadius.circular(8.w),
             ),
             child: DateUtil.formatDate(DateUtil.getDateTime(model.createDate),
-                    format: 'MM-dd hh-mm')
+                    format: 'MM-dd HH-mm')
                 .text
                 .size(24.sp)
                 .color(Colors.black.withOpacity(0.45))
