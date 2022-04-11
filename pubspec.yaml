@@ -150,7 +150,6 @@ flutter:
     - assets/tab/
     - assets/applications/
     - assets/static/
-    - assets/json/
     - assets/bracelet/
     - assets/home/
     - assets/newIcon/
