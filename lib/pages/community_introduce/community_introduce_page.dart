@@ -33,7 +33,7 @@ class _CommunityIntroducePageState extends State<CommunityIntroducePage> {
         header: MaterialHeader(),
         onRefresh: () async {
           BaseModel baseModel =
-              await NetUtil().get(API.manager.communityIntroduceInfo);
+              await NetUtil().get(SAASAPI.communityIntroduce.info);
           if (baseModel.success && baseModel.data != null) {
             _model = CommunityIontroduceModel.fromJson(baseModel.data);
           }

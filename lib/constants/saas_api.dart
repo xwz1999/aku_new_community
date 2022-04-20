@@ -37,6 +37,8 @@ class SAASAPI {
   static _Pay pay = _Pay();
   static _LifePay lifePay = _LifePay();
   static _Balance balance = _Balance();
+  static _CommunityIntroduce communityIntroduce = _CommunityIntroduce();
+  static _ConveniencePhone conveniencePhone = _ConveniencePhone();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -339,4 +341,14 @@ class _Balance {
 
   ///app用户交易记录
   String get tradeRecordList => '/app/user/tradeRecord/tradeRecordList';
+}
+
+class _CommunityIntroduce {
+  ///社区介绍
+  String get info => '/app/user/communityIntroduction/introductionInfo';
+}
+
+class _ConveniencePhone {
+  ///查询app便民电话
+  String get list => '/app/user/conveniencePhone/list';
 }
