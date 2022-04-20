@@ -780,5 +780,4 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     return count + '折';
   }
 
-  _getSpecifications() {}
 }

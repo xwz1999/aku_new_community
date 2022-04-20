@@ -7,6 +7,7 @@ import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/integral_goods_list_model.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/models/market/market_category_model.dart';
 import 'package:aku_new_community/models/market/market_statistics_model.dart';
@@ -14,7 +15,6 @@ import 'package:aku_new_community/models/market/order/goods_home_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/ui/community/community_func.dart';
 import 'package:aku_new_community/ui/market/integral/integral_exchange_page.dart';
-import 'package:aku_new_community/ui/market/integral/integral_sku_model.dart';
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
@@ -75,7 +75,7 @@ class _MarketPageState extends State<MarketPage>
 
   List<GoodsPopularModel> _goodsPopularModelList = [];
 
-  List<IntegralSkuModel> get _integralModelList => IntegralSkuModel.examples;
+  List<IntegralGoodsListModel> _integralModelList = [];
 
   int? orderBySalesVolume;
   int? orderByPrice;
@@ -204,7 +204,7 @@ class _MarketPageState extends State<MarketPage>
 
     print(_goodsClassificationList.length);
     _goodsPopularModelList = await CommunityFunc.getGoodsPopularModel(6);
-
+    _integralModelList = await CommunityFunc.getIntegralGoods(6);
     setState(() {});
   }
 
@@ -321,9 +321,9 @@ class _MarketPageState extends State<MarketPage>
               tabBarHeight +
               hotGoodHeight +
               ScreenUtil().statusBarHeight +
-              kToolbarHeight,
-          //积分商城高度
-          // 172 * 2.w,
+              kToolbarHeight +
+              //积分商城高度
+              172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(tabBarHeight),
@@ -483,8 +483,8 @@ class _MarketPageState extends State<MarketPage>
                   _buttonTitle(),
                   20.hb,
                   _recommend(),
-                  // 20.hb,
-                  // _integralMarket(),
+                  20.hb,
+                  _integralMarket(),
                 ],
               ),
             ],
@@ -556,14 +556,14 @@ class _MarketPageState extends State<MarketPage>
                 separatorBuilder: (_, __) {
                   return 24.wb;
                 },
-                itemCount: 4),
+                itemCount: _integralModelList.length),
           ),
         ],
       ),
     );
   }
 
-  Widget _horizontalListCard(IntegralSkuModel model) {
+  Widget _horizontalListCard(IntegralGoodsListModel model) {
     return GestureDetector(
       onTap: () {},
       child: SizedBox(
@@ -571,7 +571,7 @@ class _MarketPageState extends State<MarketPage>
         child: Column(
           children: [
             Image.network(
-              model.imgPath,
+              model.mainPhoto,
               width: 148.w,
               height: 148.w,
             ),
@@ -587,7 +587,7 @@ class _MarketPageState extends State<MarketPage>
               children: [
                 Assets.icons.intergral.image(width: 24.w, height: 24.w),
                 4.wb,
-                '${model.integral}'.text.size(24.sp).color(Colors.red).make()
+                '${model.points}'.text.size(24.sp).color(Colors.red).make()
               ],
             )
           ],

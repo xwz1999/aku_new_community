@@ -153,12 +153,11 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                 }
                 Function cancel = BotToast.showLoading();
                 BaseModel baseModel = await NetUtil()
-                    .post(API.pay.jcookOrderCreateByIntegral, params: {
+                    .post(SAASAPI.market.integralGood.createPointsOrder, params: {
                   "addressId": _addressModel!.id!,
                   "settlementGoodsDTOList":
                       _goodsList.map((v) => v.toJson()).toList(),
                   "payType": 10, //暂时写死 等待后续补充
-                  "payPrice": totalPrice,
                   'points': widget.integral,
                 });
                 if (baseModel.success) {

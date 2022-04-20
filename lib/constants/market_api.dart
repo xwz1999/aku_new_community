@@ -9,6 +9,7 @@ class _MarketApi {
   _ShopCart shopCart = _ShopCart();
   _Address address = _Address();
   _Order order = _Order();
+  _IntegralGood integralGood = _IntegralGood();
 }
 
 class _ShopCart {
@@ -100,4 +101,13 @@ class _Order {
 
   ///我的订单
   String get myOrder => '/app/user/shop/order/myOrder';
+}
+
+class _IntegralGood {
+  ///查询积分商品列表
+  String get list => '/app/user/shop/pointsGoods/list';
+
+  ///创建积分兑换积分商品订单
+  String get createPointsOrder =>
+      '/app/user/shop/pointsGoods/createPointsGoodsOrder';
 }
