@@ -214,7 +214,7 @@ class ApplicationUtil {
             nickTitles: ['小蜜蜂任务']),
         AppElement(
             title: '自营商城',
-            imgPath: Assets.icons.shoppingMall.path,
+            imgPath: Assets.newIcon.icZysc.path,
             onTap: () {
               BotToast.showText(text: '此功能暂未上线');
               return;
@@ -228,21 +228,21 @@ class ApplicationUtil {
             }),
         AppElement(
             title: '共享停车',
-            imgPath: Assets.icons.sharePark.path,
+            imgPath: Assets.newIcon.icGxtc.path,
             onTap: () {
               BotToast.showText(text: '此功能暂未上线');
               return;
             }),
         AppElement(
             title: '二手市场',
-            imgPath: Assets.icons.secondHandMarket.path,
+            imgPath: Assets.newIcon.icEssc.path,
             onTap: () {
               BotToast.showText(text: '此功能暂未上线');
               return;
             }),
         AppElement(
             title: '共享投屏',
-            imgPath: Assets.icons.projectionScreen.path,
+            imgPath: Assets.newIcon.icGxtp.path,
             onTap: () {
               BotToast.showText(text: '此功能暂未上线');
               return;
