@@ -146,6 +146,7 @@ class _PointRecordViewState extends State<PointRecordView> {
                 _models = baseList.rows
                     .map((e) => TradeRecordListModel.fromJson(e))
                     .toList();
+                setState(() {});
               },
               onLoad: () async {
                 _pageNum++;
@@ -164,6 +165,7 @@ class _PointRecordViewState extends State<PointRecordView> {
                 } else {
                   _refreshController.finishLoad(noMore: true);
                 }
+                setState(() {});
               },
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
@@ -193,8 +195,8 @@ class _PointRecordViewState extends State<PointRecordView> {
                 .text
                 .size(28.sp)
                 .color(incom(model.type)
-                ? Colors.red
-                : Colors.black.withOpacity(0.85))
+                    ? Colors.red
+                    : Colors.black.withOpacity(0.85))
                 .make(),
           ],
         ),

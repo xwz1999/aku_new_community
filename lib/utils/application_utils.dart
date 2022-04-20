@@ -81,8 +81,6 @@ class ApplicationUtil {
             title: '便民电话',
             imgPath: Assets.newIcon.imgBmdh.path,
             onTap: () {
-              BotToast.showText(text: '此功能暂未上线');
-              return;
               Get.to(() => ConvenientPhonePage());
             }),
         AppElement(
@@ -170,8 +168,6 @@ class ApplicationUtil {
             title: '社区介绍',
             imgPath: Assets.newIcon.icSqjs.path,
             onTap: () {
-              // BotToast.showText(text: '此功能升级中，敬请期待');
-              // return;
               Get.to(() => CommunityIntroducePage());
             }),
         // AppElement('家政服务', R.ASSETS_ICONS_FUNC_JZFW_PNG, () => HouseKeepingPage()),

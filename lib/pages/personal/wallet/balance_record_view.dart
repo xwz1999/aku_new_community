@@ -146,6 +146,8 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
                 _models = baseList.rows
                     .map((e) => TradeRecordListModel.fromJson(e))
                     .toList();
+
+                setState(() {});
               },
               onLoad: () async {
                 _pageNum++;
@@ -164,6 +166,7 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
                 } else {
                   _refreshController.finishLoad(noMore: true);
                 }
+                setState(() {});
               },
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
