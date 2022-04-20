@@ -21,6 +21,8 @@ UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
       isPointsSignSetting: json['isPointsSignSetting'] as bool,
       isSign: json['isSign'] as bool,
       points: json['points'] as int?,
+      balance: (json['balance'] as num?)?.toDouble(),
+      isBalancePayPwd: json['isBalancePayPwd'] as bool,
       imgList: (json['imgList'] as List<dynamic>)
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),

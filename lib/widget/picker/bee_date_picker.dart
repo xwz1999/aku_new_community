@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/picker/bee_month_pick_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:aku_new_community/widget/picker/bee_custom_picker.dart';
 
 class BeeDatePicker {
-  static Future<DateTime?> pick(
-    DateTime initDate, {
+  static Future<DateTime?> pick(DateTime initDate, {
     CupertinoDatePickerMode mode = CupertinoDatePickerMode.date,
     DateTime? min,
     DateTime? max,
@@ -28,6 +28,12 @@ class BeeDatePicker {
       max: initDate.add(Duration(days: 7)),
       mode: CupertinoDatePickerMode.dateAndTime,
     ));
+  }
+
+  static Future<DateTime?> monthPicker(DateTime initDate) async {
+    return await Get.bottomSheet(
+        BeeMonthPickBody(initTime: initDate)
+    );
   }
 }
 

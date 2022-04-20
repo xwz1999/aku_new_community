@@ -1,6 +1,7 @@
 import 'package:aku_new_community/widget/others/user_tool.dart';
 
 part 'market_api.dart';
+
 part 'profile_api.dart';
 
 class SAASAPI {
@@ -35,6 +36,7 @@ class SAASAPI {
   static _WorkOrder workOrder = _WorkOrder();
   static _Pay pay = _Pay();
   static _LifePay lifePay = _LifePay();
+  static _Balance balance = _Balance();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -281,6 +283,20 @@ class _WorkOrder {
 }
 
 class _Pay {
+  ///app积分充值
+  String get createPointsOrder => '/app/user/alipay/createPointsOrder';
+
+  ///app积分充值 向支付宝发起订单查询请求
+  String get pointsOrderCheckAlipay =>
+      '/app/user/alipay/pointsOrderCheckAlipay';
+
+  ///app余额充值 创建订单
+  String get createBalanceOrder => '/app/user/alipay/createBalanceOrder';
+
+  ///app余额充值 向支付宝发起订单查询请求
+  String get balanceOrderCheckAlipay =>
+      '/app/user/alipay/balanceOrderCheckAlipay';
+
   ///创建商品订单
   String get createGoodsOrder => '/app/user/alipay/createGoodsOrder';
 
@@ -312,4 +328,15 @@ class _LifePay {
 
   ///查询预交余额
   String get findEstateBalance => '/app/user/livingExpenses/findEstateBalance';
+}
+
+class _Balance {
+  ///设置余额支付密码
+  String get setBalancePayPsd => '/app/user/balance/settingBalancePayPwd';
+
+  ///购买积分
+  String get buyPointsByBalance => '/app/user/balance/buyPoints';
+
+  ///app用户交易记录
+  String get tradeRecordList => '/app/user/tradeRecord/tradeRecordList';
 }

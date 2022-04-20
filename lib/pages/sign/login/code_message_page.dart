@@ -1,10 +1,12 @@
 import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -38,6 +40,7 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
 
   @override
   Widget build(BuildContext context) {
+   ClockTimerProvider clockTimer = Provider.of<ClockTimerProvider>(context);
     return BeeScaffold(
       title: '',
       body: SafeArea(
@@ -115,14 +118,14 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
                                 .communityModel!.id);
                         if (base.success) {
                           _errorMessage = null;
-                          UserTool.appProvider.startTimer();
+                          clockTimer.startTimer();
                         } else {
                           BotToast.showText(text: base.msg);
                         }
                       },
-                      child: (UserTool.appProvider.second >= 60
+                      child: (clockTimer.second >= 60
                               ? '重新发送验证码'
-                              : '${UserTool.appProvider.second}秒后可重新发送')
+                              : '${clockTimer.second}秒后可重新发送')
                           .text
                           .size(28.sp)
                           .color(Color(0xFF5096F1))

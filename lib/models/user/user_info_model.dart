@@ -20,6 +20,8 @@ class UserInfoModel {
   final bool isPointsSignSetting;
   final bool isSign;
   final int? points;
+  final double? balance;
+  final bool isBalancePayPwd;
   final List<ImgModel> imgList;
 
   String get sexValue {
@@ -55,6 +57,8 @@ class UserInfoModel {
     required this.isPointsSignSetting,
     required this.isSign,
     this.points,
+    this.balance,
+    required this.isBalancePayPwd,
     required this.imgList,
   });
 }

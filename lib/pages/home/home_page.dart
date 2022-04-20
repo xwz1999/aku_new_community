@@ -385,7 +385,6 @@ class _HomePageState extends State<HomePage>
                             suffixTitle: '查看全部',
                             onTap: () => Get.to(() => ActivityListPage()),
                           ),
-                          24.hb,
                           _activityItemModels == []
                               ? SizedBox()
                               : Container(

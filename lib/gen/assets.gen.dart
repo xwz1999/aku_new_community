@@ -1297,12 +1297,11 @@ class $AssetsImagesGen {
   AssetGenImage get wxpay => const AssetGenImage('assets/images/wxpay.png');
 }
 
-class $AssetsJsonGen {
-  const $AssetsJsonGen();
-}
-
 class $AssetsNewIconGen {
   const $AssetsNewIconGen();
+
+  /// File path: assets/newIcon/alipay.png
+  AssetGenImage get alipay => const AssetGenImage('assets/newIcon/alipay.png');
 
   /// File path: assets/newIcon/all_classes.png
   AssetGenImage get allClasses =>
@@ -1457,6 +1456,10 @@ class $AssetsNewIconGen {
   /// File path: assets/newIcon/srzf.png
   AssetGenImage get srzf => const AssetGenImage('assets/newIcon/srzf.png');
 
+  /// File path: assets/newIcon/wallet_balance.png
+  AssetGenImage get walletBalance =>
+      const AssetGenImage('assets/newIcon/wallet_balance.png');
+
   /// File path: assets/newIcon/xcyhm.png
   AssetGenImage get xcyhm => const AssetGenImage('assets/newIcon/xcyhm.png');
 
@@ -1563,7 +1566,6 @@ class Assets {
   static const $AssetsHomeGen home = $AssetsHomeGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsNewIconGen newIcon = $AssetsNewIconGen();
   static const $AssetsStaticGen static = $AssetsStaticGen();
   static const $AssetsTabGen tab = $AssetsTabGen();

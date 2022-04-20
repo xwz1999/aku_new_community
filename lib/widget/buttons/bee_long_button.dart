@@ -8,13 +8,14 @@ class BeeLongButton extends StatelessWidget {
   final String text;
   final Color backColor;
   final BorderSide border;
+  final double? width;
 
-  const BeeLongButton({Key? key, required this.onPressed, required this.text})
+  const BeeLongButton({Key? key, required this.onPressed, required this.text, this.width})
       : backColor = kPrimaryColor,
         border = BorderSide.none,
         super(key: key);
 
-  BeeLongButton.white({Key? key, required this.onPressed, required this.text})
+  BeeLongButton.white({Key? key, required this.onPressed, required this.text, this.width})
       : backColor = Colors.white,
         border = BorderSide(color: Colors.black.withOpacity(0.45)),
         super(key: key);
@@ -24,6 +25,7 @@ class BeeLongButton extends StatelessWidget {
     return MaterialButton(
       elevation: 0,
       height: 93.w,
+      minWidth: width,
       disabledColor: Colors.black.withOpacity(0.06),
       disabledTextColor: Colors.black.withOpacity(0.25),
       textColor: Colors.black.withOpacity(0.85),

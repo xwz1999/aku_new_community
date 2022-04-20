@@ -1,3 +1,4 @@
+import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => AppProvider()),
         ChangeNotifierProvider(create: (context) => SignUpProvider()),
         ChangeNotifierProvider(create: (context) => DataProvider()),
+        ChangeNotifierProvider(create: (context) => ClockTimerProvider()),
       ],
       child: GestureDetector(
         onTap: () {
@@ -59,7 +61,7 @@ class _MyAppState extends State<MyApp> {
             designSize: Size(750, 1334),
             // minTextAdapt: true,
             // splitScreenMode: true,
-            builder: () => GetMaterialApp(
+            builder: (context) => GetMaterialApp(
               onGenerateTitle: (context) => S.of(context)!.appName,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.theme,
