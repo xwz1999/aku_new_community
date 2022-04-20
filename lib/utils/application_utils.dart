@@ -6,7 +6,7 @@ import 'package:aku_new_community/pages/convenient_phone/convenient_phone_page.d
 import 'package:aku_new_community/pages/electronic_commerc/electronic_commerc_page.dart';
 import 'package:aku_new_community/pages/event_activity/event_voting_page.dart';
 import 'package:aku_new_community/pages/express_packages/express_package_page.dart';
-import 'package:aku_new_community/pages/geographic_information/geograhic_information.dart';
+import 'package:aku_new_community/pages/geographic_information/geographic_information_page.dart';
 import 'package:aku_new_community/pages/goods_deto_page/goods_deto_page.dart';
 import 'package:aku_new_community/pages/goods_manage_page/select_borrow_return_page.dart';
 import 'package:aku_new_community/pages/house_introduce/house_introduce.dart';
@@ -176,8 +176,6 @@ class ApplicationUtil {
             title: '地理信息',
             imgPath: Assets.newIcon.icDlxx.path,
             onTap: () {
-              BotToast.showText(text: '此功能升级中，敬请期待');
-              return;
               Get.to(() => GeographicInformationPage());
             }),
         AppElement(
