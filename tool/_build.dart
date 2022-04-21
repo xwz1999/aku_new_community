@@ -16,17 +16,11 @@ buildApk() async {
 
   String date = DateUtil.formatDate(DateTime.now(), format: 'yy_MM_dd_HH_mm');
   String version = await getVersion();
-  await runAsync('rmdir', arguments: ['-f', Config.apkDir]);
-  await runAsync('mkdir', arguments: [ Config.apkDir]);
-  await runAsync('move', arguments: [
+  await runAsync('rm', arguments: ['-rf', Config.apkDir]);
+  await runAsync('mkdir', arguments: ['-p', Config.apkDir]);
+  await runAsync('mv', arguments: [
     Config.buildPath,
-    '${Config.apkDir}\\${Config.packageName}_${version}_release_$date.apk'
-  ]);
-  await runAsync('ren',arguments: [
-
-    '${Config.apkDir}\\app-release.apk',
-
-    '${Config.apkDir}\\${Config.packageName}_${version}_release_$date.apk',
+    '${Config.apkDir}/${Config.packageName}_${version}_release_$date.apk'
   ]);
 }
 
