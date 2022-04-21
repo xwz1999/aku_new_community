@@ -140,11 +140,7 @@ class _MyFamilyPageState extends State<MyFamilyPage>
                   child: AddHouseButton(
                       text: '添加房屋',
                       onTap: () async {
-                        if (UserTool.userProvider.userInfoModel?.name == null) {
-                          await Get.dialog(CertificationDialog());
-                        } else {
                           Get.to(() => AddHousePage());
-                        }
                       }),
                 )
               : SizedBox(),

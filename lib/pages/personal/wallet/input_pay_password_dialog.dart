@@ -10,11 +10,8 @@ import 'package:sms_autofill/sms_autofill.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class InputPayPasswordDialog extends StatefulWidget {
-  final int balance;
-
   const InputPayPasswordDialog({
     Key? key,
-    required this.balance,
   }) : super(key: key);
 
   @override
@@ -58,16 +55,7 @@ class _InputPayPasswordDialogState extends State<InputPayPasswordDialog> {
                   codeLength: 6,
                   onCodeChanged: (code) async {
                     if ((code?.length ?? 0) >= 6) {
-                      Get.back();
-                      var base = await NetUtil()
-                          .post(SAASAPI.balance.buyPointsByBalance, params: {
-                        'balance': widget.balance,
-                        'balancePayPwd': code
-                      });
-                      Get.back();
-                      if (!base.success) {
-                        BotToast.showText(text: base.msg);
-                      }
+                      Get.back(result: code!);
                     }
                     _currentCode = code;
                   },

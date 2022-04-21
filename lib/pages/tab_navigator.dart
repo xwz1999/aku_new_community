@@ -138,13 +138,10 @@ class _TabNavigatorState extends State<TabNavigator>
               //暂时隐去一键登录页
               Get.offAll(() => OtherLoginPage());
             } else {}
-            if (UserTool.userProvider.userInfoModel?.name == null) {
-              Get.dialog(CertificationDialog());
-            } else {
               _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
               _currentIndex = 2;
               setState(() {});
-            }
+
           },
           child: Material(
             color: Colors.transparent,

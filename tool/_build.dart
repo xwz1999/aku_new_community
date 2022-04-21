@@ -16,7 +16,7 @@ buildApk() async {
 
   String date = DateUtil.formatDate(DateTime.now(), format: 'yy_MM_dd_HH_mm');
   String version = await getVersion();
-  await runAsync('rmdir', arguments: [ Config.apkDir]);
+  await runAsync('rmdir', arguments: ['-f', Config.apkDir]);
   await runAsync('mkdir', arguments: [ Config.apkDir]);
   await runAsync('move', arguments: [
     Config.buildPath,

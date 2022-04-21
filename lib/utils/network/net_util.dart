@@ -3,10 +3,12 @@ import 'dart:typed_data';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
+import 'package:aku_new_community/pages/splash/app_verify_dialog.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
@@ -212,9 +214,10 @@ class NetUtil {
       userProvider.logout();
       //暂时隐去一键登录页
       Get.offAll(() => OtherLoginPage());
-      if (userProvider.isLogin) {
-        BotToast.showText(text: model.msg);
-      }
+    }
+    if (model.code==10100) {
+      BotToast.showText(text: '请先实名认证');
+      Get.dialog(CertificationDialog());
     }
   }
 }

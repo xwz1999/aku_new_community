@@ -192,8 +192,15 @@ class _PayWayDialogState extends State<PayWayDialog> {
                           Get.dialog(SetPayPasswordDialog());
                         } else {
                           Get.back();
-                          Get.dialog(
-                              InputPayPasswordDialog(balance: widget.amount));
+                          var psd = await Get.dialog(
+                              InputPayPasswordDialog());
+                          await NetUtil().post(
+                              SAASAPI.balance.buyPointsByBalance,
+                              params: {
+                                'balance': widget.amount,
+                                'balancePayPwd': psd
+                              },
+                              showMessage: true);
                         }
                         return;
                       }
