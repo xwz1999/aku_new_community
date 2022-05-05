@@ -1,7 +1,7 @@
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/model/user/convenient_phone_model.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/models/convenience_phone/convenience_phone_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,10 @@ class ConvenientPhonePage extends StatefulWidget {
 }
 
 class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
-  EasyRefreshController? _easyRefreshController;
-  TextEditingController? _textEditingController;
+  late EasyRefreshController _easyRefreshController;
+  late TextEditingController _textEditingController;
+
+  List<ConveniencePhoneModel> _models = [];
 
   @override
   void initState() {
@@ -31,12 +33,12 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
 
   @override
   void dispose() {
-    _easyRefreshController?.dispose();
-    _textEditingController?.dispose();
+    _easyRefreshController.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
-  Widget _buildTile(ConvenientPhoneModel model) {
+  Widget _buildTile(ConveniencePhoneModel model) {
     return Column(
       children: [
         Row(
@@ -45,9 +47,9 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.name!.text.black.size(32.sp).make(),
+                model.name.text.black.size(32.sp).make(),
                 12.w.heightBox,
-                model.tel!.text.color(Color(0xFF999999)).size(28.sp).make(),
+                model.tel.text.color(Color(0xFF999999)).size(28.sp).make(),
               ],
             ).expand(),
             IconButton(
@@ -58,7 +60,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               ),
               onPressed: () async {
                 bool? result = await Get.dialog(CupertinoAlertDialog(
-                  title: model.tel!.text.isIntrinsic.make(),
+                  title: '是否拨打电话 ${model.tel}'.text.isIntrinsic.make(),
                   actions: [
                     CupertinoDialogAction(
                       child: '取消'.text.isIntrinsic.make(),
@@ -99,8 +101,8 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
               ),
               child: TextField(
                 controller: _textEditingController,
-                onSubmitted: (value) {
-                  _easyRefreshController!.callRefresh();
+                onChanged: (value) {
+                  _easyRefreshController.callRefresh();
                   setState(() {});
                 },
                 decoration: InputDecoration(
@@ -119,32 +121,36 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
             ),
           ),
           Expanded(
-            child: BeeListView<ConvenientPhoneModel>(
-              extraParams: {'name': _textEditingController!.text},
+            child: EasyRefresh(
+              firstRefresh: true,
+              header: MaterialHeader(),
               controller: _easyRefreshController,
-              path: API.manager.convenientPhone,
-              convert: (model) {
-                return model.rows
-                    .map((e) => ConvenientPhoneModel.fromJson(e))
-                    .toList();
+              onRefresh: () async {
+                var base =
+                    await NetUtil().get(SAASAPI.conveniencePhone.list, params: {
+                  'name': _textEditingController.text,
+                });
+                if (base.success) {
+                  _models = (base.data as List)
+                      .map((e) => ConveniencePhoneModel.fromJson(e))
+                      .toList();
+                }
+                setState(() {});
               },
-              builder: (items) {
-                return ListView.separated(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                  itemBuilder: (context, index) {
-                    return _buildTile(items[index]);
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      thickness: 1.w,
-                      height: 40.w,
-                      color: Color(0xFFD8D8D8),
-                    );
-                  },
-                  itemCount: items.length,
-                );
-              },
+              child: ListView.separated(
+                padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+                itemBuilder: (context, index) {
+                  return _buildTile(_models[index]);
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(
+                    thickness: 1.w,
+                    height: 40.w,
+                    color: Color(0xFFD8D8D8),
+                  );
+                },
+                itemCount: _models.length,
+              ),
             ),
           ),
         ],

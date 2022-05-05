@@ -1,6 +1,8 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/user_profile_page.dart';
+import 'package:aku_new_community/pages/personal/wallet/wallet_recharge_page.dart';
+import 'package:aku_new_community/pages/personal/wallet/wallet_trade_record_page.dart';
 import 'package:aku_new_community/pages/setting_page/settings_page.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
@@ -10,6 +12,7 @@ import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_avatar_widget.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -290,173 +293,298 @@ class _PersonalIndexState extends State<PersonalIndex>
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 600.w),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 686.w,
-                          height: 282.w,
-                          decoration: BoxDecoration(
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                offset: Offset(1, 1),
-                              ),
-                            ],
-                          ),
-                          margin: EdgeInsets.only(left: 32.w, right: 32.w),
-                          padding: EdgeInsets.only(
-                              top: 24.w, left: 32.w, right: 32.w),
-                          child: Column(
-                            //mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _homeTitle('我的订单', () {
-                                Get.to(() => OrderPage(initIndex: 0));
-                              }, '查看全部'),
-                              50.hb,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  _orderButton(
-                                    name: '待付款',
-                                    path: Assets.newIcon.icDaifuk.path,
-                                    index: 1,
-                                  ),
-                                  _orderButton(
-                                    name: '待发货',
-                                    path: Assets.newIcon.imgDaifah.path,
-                                    index: 2,
-                                  ),
-                                  _orderButton(
-                                    name: '待收货',
-                                    path: Assets.newIcon.icDaishouh.path,
-                                    index: 3,
-                                  ),
-                                  _orderButton(
-                                    name: '已完成',
-                                    path: Assets.newIcon.imgDaipingj.path,
-                                    index: 4,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Container(
-                        //   width: double.infinity,
-                        //   height: 100.w,
-                        //   clipBehavior: Clip.antiAlias,
-                        //   decoration: BoxDecoration(
-                        //       // color: Colors.white,
-                        //       borderRadius: BorderRadius.circular(16.w)),
-                        //   margin: EdgeInsets.symmetric(horizontal: 32.w),
-                        //   child: Material(
-                        //     color: Colors.white,
-                        //     child: InkWell(
-                        //       onTap: () {
-                        //         Get.to(() => ClockInPage());
-                        //       },
-                        //       borderRadius: BorderRadius.circular(16.w),
-                        //       child: Padding(
-                        //         padding: EdgeInsets.symmetric(
-                        //             horizontal: 32.w, vertical: 24.w),
-                        //         child: Row(
-                        //           children: [
-                        //             '我的积分'.text.size(30.sp).black.bold.make(),
-                        //             Spacer(),
-                        //             // Assets.icons.intergral
-                        //             //     .image(width: 32.w, height: 32.w),
-                        //             // 16.w.widthBox,
-                        //             // '123'.text.size(28.sp).black.make(),
-                        //             // 16.w.widthBox,
-                        //             Icon(
-                        //               CupertinoIcons.right_chevron,
-                        //               size: 24.w,
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                offset: Offset(1, 1),
-                              ),
-                            ],
-                          ),
-                          margin: EdgeInsets.all(32.w),
-                          padding: EdgeInsets.all(32.w),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  22.wb,
-                                  '其他功能'
-                                      .text
-                                      .size(32.sp)
-                                      .color(Color(0xFF2B2B2B))
-                                      .bold
-                                      .make(),
-                                  Spacer(),
-                                ],
-                              ),
-                              24.hb,
-                              _function('我的积分', Assets.newIcon.icJifen.path,
-                                  () => Get.to(() => ClockInPage()), ''),
-                              _function(
-                                '我的房屋',
-                                Assets.newIcon.icWdfw.path,
-                                () {
-                                  Get.to(() => MyHousePage());
-                                },
-                                // () => HouseOwnersPage(
-                                //       identify: 4,
-                                //     ),
-                                '${UserTool.userProvider.defaultHouse?.communityName ?? ''} '
-                                    '${UserTool.userProvider.defaultHouse?.buildingName ?? ''}'
-                                    '${UserTool.userProvider.defaultHouse?.unitName ?? ''}'
-                                    '${UserTool.userProvider.defaultHouse?.estateName ?? ''}',
-                              ),
-                              _function('我的家庭', Assets.newIcon.icWdjt.path, () {
-                                Get.to(() => MyFamilyPage());
-                              }, ''),
-                              // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
-                              //     () => CarParkingPage(), ''),
-                              // 36.hb,
-                              // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
-                              //     () => CarManagePage(), ''),
-                              // 36.hb,
-                              _function('我的访客', Assets.newIcon.icWdfk.path, () {
-                                BotToast.showText(
-                                    text: '本小区尚未配置门禁设备',
-                                    align: Alignment(0, 0.5));
-                              }, ''),
-                              _function(
-                                  '收货地址',
-                                  Assets.newIcon.icShdz.path,
-                                  () => Get.to(() => AddressListPage(
-                                        canBack: false,
-                                      )),
-                                  ''),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  _columBody(),
                 ],
               )),
         ));
+  }
+
+  Padding _columBody() {
+    var wallet = Container(
+      margin: EdgeInsets.symmetric(horizontal: 32.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.w),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
+            child: Row(
+              children: [
+                '我的钱包'.text.size(32.sp).color(Colors.black).make(),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => WalletTradeRecordPage());
+                  },
+                  child: Row(
+                    children: [
+                      '交易记录'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.45))
+                          .make(),
+                      8.wb,
+                      Icon(
+                        CupertinoIcons.chevron_right,
+                        color: Colors.black.withOpacity(0.45),
+                        size: 32.w,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          BeeDivider.horizontal(),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 24.w),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      '${UserTool.userProvider.userInfoModel!.points ?? 0}'
+                          .text
+                          .size(40.sp)
+                          .color(Colors.black.withOpacity(0.85))
+                          .make(),
+                      12.hb,
+                      '积分'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.65))
+                          .make(),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      '${UserTool.userProvider.userInfoModel!.balance ?? 0}'
+                          .text
+                          .size(40.sp)
+                          .color(Colors.black.withOpacity(0.85))
+                          .make(),
+                      12.hb,
+                      '余额'
+                          .text
+                          .size(24.sp)
+                          .color(Colors.black.withOpacity(0.65))
+                          .make(),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          BeeDivider.horizontal(),
+          Row(
+            children: [
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () async {
+                        await Get.to(WalletRechargePage(
+                          initIndex: 0,
+                        ));
+                        _refreshController.callRefresh();
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: '充值'
+                              .text
+                              .size(26.sp)
+                              .color(Colors.black.withOpacity(0.65))
+                              .make(),
+                        ),
+                      ))),
+              Container(
+                height: 84.w,
+                width: 2.w,
+                color: Colors.black.withOpacity(0.06),
+              ),
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () async {
+                        await Get.to(WalletRechargePage(
+                          initIndex: 1,
+                        ));
+                        _refreshController.callRefresh();
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: '购买积分'
+                              .text
+                              .size(26.sp)
+                              .color(Colors.black.withOpacity(0.65))
+                              .make(),
+                        ),
+                      )))
+            ],
+          )
+        ],
+      ),
+    );
+    var order = Container(
+      width: 686.w,
+      height: 282.w,
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            offset: Offset(1, 1),
+          ),
+        ],
+      ),
+      margin: EdgeInsets.only(left: 32.w, right: 32.w),
+      padding: EdgeInsets.only(top: 24.w, left: 32.w, right: 32.w),
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _homeTitle('我的订单', () {
+            Get.to(() => OrderPage(initIndex: 0));
+          }, '查看全部'),
+          50.hb,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _orderButton(
+                name: '待付款',
+                path: Assets.newIcon.icDaifuk.path,
+                index: 1,
+              ),
+              _orderButton(
+                name: '待发货',
+                path: Assets.newIcon.imgDaifah.path,
+                index: 2,
+              ),
+              _orderButton(
+                name: '待收货',
+                path: Assets.newIcon.icDaishouh.path,
+                index: 3,
+              ),
+              _orderButton(
+                name: '已完成',
+                path: Assets.newIcon.imgDaipingj.path,
+                index: 4,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    var extra = Container(
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            offset: Offset(1, 1),
+          ),
+        ],
+      ),
+      margin: EdgeInsets.all(32.w),
+      padding: EdgeInsets.all(32.w),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              22.wb,
+              '其他功能'.text.size(32.sp).color(Color(0xFF2B2B2B)).bold.make(),
+              Spacer(),
+            ],
+          ),
+          24.hb,
+          _function('我的积分', Assets.newIcon.icJifen.path,
+              () => Get.to(() => ClockInPage()), ''),
+          _function(
+            '我的房屋',
+            Assets.newIcon.icWdfw.path,
+            () {
+              Get.to(() => MyHousePage());
+            },
+            // () => HouseOwnersPage(
+            //       identify: 4,
+            //     ),
+            '${UserTool.userProvider.defaultHouseString}',
+          ),
+          _function('我的家庭', Assets.newIcon.icWdjt.path, () {
+            Get.to(() => MyFamilyPage());
+          }, ''),
+          // _function('我的车位', R.ASSETS_ICONS_ICON_MY_CARSEAT_PNG,
+          //     () => CarParkingPage(), ''),
+          // 36.hb,
+          // _function('我的车', R.ASSETS_ICONS_ICON_MY_CAR_PNG,
+          //     () => CarManagePage(), ''),
+          // 36.hb,
+          _function('我的访客', Assets.newIcon.icWdfk.path, () {
+            BotToast.showText(text: '本小区尚未配置门禁设备', align: Alignment(0, 0.5));
+          }, ''),
+          _function(
+              '收货地址',
+              Assets.newIcon.icShdz.path,
+              () => Get.to(() => AddressListPage(
+                    canBack: false,
+                  )),
+              ''),
+        ],
+      ),
+    );
+    return Padding(
+      padding: EdgeInsets.only(top: 560.w),
+      child: Column(
+        children: [
+          wallet,
+          48.hb,
+          order,
+          // Container(
+          //   width: double.infinity,
+          //   height: 100.w,
+          //   clipBehavior: Clip.antiAlias,
+          //   decoration: BoxDecoration(
+          //       // color: Colors.white,
+          //       borderRadius: BorderRadius.circular(16.w)),
+          //   margin: EdgeInsets.symmetric(horizontal: 32.w),
+          //   child: Material(
+          //     color: Colors.white,
+          //     child: InkWell(
+          //       onTap: () {
+          //         Get.to(() => ClockInPage());
+          //       },
+          //       borderRadius: BorderRadius.circular(16.w),
+          //       child: Padding(
+          //         padding: EdgeInsets.symmetric(
+          //             horizontal: 32.w, vertical: 24.w),
+          //         child: Row(
+          //           children: [
+          //             '我的积分'.text.size(30.sp).black.bold.make(),
+          //             Spacer(),
+          //             // Assets.icons.intergral
+          //             //     .image(width: 32.w, height: 32.w),
+          //             // 16.w.widthBox,
+          //             // '123'.text.size(28.sp).black.make(),
+          //             // 16.w.widthBox,
+          //             Icon(
+          //               CupertinoIcons.right_chevron,
+          //               size: 24.w,
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          extra,
+        ],
+      ),
+    );
   }
 
   _homeTitle(String title, VoidCallback onTap, String suffixTitle) {

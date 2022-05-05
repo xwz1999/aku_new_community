@@ -76,11 +76,8 @@ class _MyHousePageState extends State<MyHousePage> {
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
         child: AddHouseButton(
           onTap: () async {
-            if (UserTool.userProvider.userInfoModel?.name == null) {
-              await Get.dialog(CertificationDialog());
-            } else {
               Get.to(() => AddHousePage());
-            }
+
           },
           text: '添加房屋',
         ),

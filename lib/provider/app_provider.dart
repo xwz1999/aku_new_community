@@ -302,29 +302,34 @@ class AppProvider extends ChangeNotifier {
 
   List<AddressModel> get addressModels => _addressModels;
 
-  AddressModel? _addressModel;
+  ///默认收货地址
+  AddressModel? _defaultAddressModel;
 
-  AddressModel? get addressModel => _addressModel;
-
-  ///设置当前选中的房屋
+  AddressModel? get defaultAddressModel => _defaultAddressModel;
 
   ///保存默认收货地址
   Future getMyAddress() async {
     BaseModel model = await NetUtil().get(SAASAPI.market.address.myAddress);
-    if (model.data?.length == 0)
-      return [];
-    else {
+    if ((model.data as List).length == 0) {
+      _addressModels.clear();
+      _defaultAddressModel=null;
+      notifyListeners();
+      return ;
+    } else {
       _addressModels =
           (model.data as List).map((e) => AddressModel.fromJson(e)).toList();
 
       if (_addressModels.isEmpty) {
-        _addressModel = null;
+        _defaultAddressModel = null;
       } else {
-        _addressModels.forEach((element) {
+        for (var element in _addressModels) {
           if (element.isDefault == 1) {
-            _addressModel = element;
+            _defaultAddressModel = element;
+            notifyListeners();
+            return;
           }
-        });
+        }
+        _defaultAddressModel = null;
       }
     }
     notifyListeners();
@@ -350,30 +355,7 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ///登录页验证码计时器
-  int second = 60;
-  bool timerStart = false;
-  Timer? timer;
 
-  void startTimer() {
-    timerStart = true;
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (second > 0) {
-        second--;
-        notifyListeners();
-      } else {
-        stopTimer();
-      }
-    });
-  }
-
-  void stopTimer() {
-    second = 60;
-    timerStart = false;
-    timer?.cancel();
-    timer = null;
-    notifyListeners();
-  }
 
   notifyListeners();
 }

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class ActivityListPage extends StatefulWidget {
-   ActivityListPage({Key? key}) : super(key: key);
+  ActivityListPage({Key? key}) : super(key: key);
 
   @override
   _ActivityListPageState createState() => _ActivityListPageState();
@@ -44,9 +44,15 @@ class _ActivityListPageState extends State<ActivityListPage> {
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
             itemBuilder: (context, index) {
               final HomeActivityModel model = items[index];
-              return ActivityCard(model: model);
+              return Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 32.w, horizontal: 32.w),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.w)),
+                  child: ActivityCard(model: model));
             },
-            separatorBuilder: (_, __) => 20.hb,
+            separatorBuilder: (_, __) => 32.hb,
             itemCount: items.length,
           );
         },

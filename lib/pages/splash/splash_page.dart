@@ -5,6 +5,7 @@ import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/agreement_page.dart';
 import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
+import 'package:aku_new_community/pages/splash/app_verify_dialog.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
@@ -33,52 +34,54 @@ class _SplashPageState extends State<SplashPage> {
   TapGestureRecognizer _privacyRecognizer = TapGestureRecognizer();
 
   Future<bool?> _showLoginVerify() async {
-    return await showCupertinoDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text('隐私政策和用户协议'),
-          content: RichText(
-            text: TextSpan(
-                text: '点击登录即表示您已阅读并同意',
-                style: TextStyle(color: Colors.black),
-                children: [
-                  TextSpan(
-                      text: '《用户协议》',
-                      style: TextStyle(color: Colors.blue),
-                      recognizer: _agreementRecognizer
-                        ..onTap = () {
-                          Get.to(() => AgreementPage());
-                        }),
-                  TextSpan(
-                      text: '《隐私政策》',
-                      style: TextStyle(color: Colors.blue),
-                      recognizer: _privacyRecognizer
-                        ..onTap = () {
-                          Get.to(() => PrivacyPage());
-                        }),
-                  TextSpan(
-                      style: TextStyle(color: Colors.black),
-                      text:
-                          '（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。')
-                ]),
-          ),
-
-          // ),
-          actions: [
-            CupertinoDialogAction(
-              child: Text('拒绝'),
-              onPressed: () => Get.back(result: false),
-            ),
-            CupertinoDialogAction(
-              child: Text('同意'),
-              onPressed: () => Get.back(result: true),
-            ),
-          ],
-        );
-      },
-    );
+    var re = await Get.dialog(AppVerifyDialog());
+    return re;
+    // return await showCupertinoDialog(
+    //   barrierDismissible: false,
+    //   context: context,
+    //   builder: (context) {
+    //     return CupertinoAlertDialog(
+    //       title: Text('隐私政策和用户协议'),
+    //       content: RichText(
+    //         text: TextSpan(
+    //             text: '点击登录即表示您已阅读并同意',
+    //             style: TextStyle(color: Colors.black),
+    //             children: [
+    //               TextSpan(
+    //                   text: '《用户协议》',
+    //                   style: TextStyle(color: Colors.blue),
+    //                   recognizer: _agreementRecognizer
+    //                     ..onTap = () {
+    //                       Get.to(() => AgreementPage());
+    //                     }),
+    //               TextSpan(
+    //                   text: '《隐私政策》',
+    //                   style: TextStyle(color: Colors.blue),
+    //                   recognizer: _privacyRecognizer
+    //                     ..onTap = () {
+    //                       Get.to(() => PrivacyPage());
+    //                     }),
+    //               TextSpan(
+    //                   style: TextStyle(color: Colors.black),
+    //                   text:
+    //                       '（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。')
+    //             ]),
+    //       ),
+    //
+    //       // ),
+    //       actions: [
+    //         CupertinoDialogAction(
+    //           child: Text('拒绝'),
+    //           onPressed: () => Get.back(result: false),
+    //         ),
+    //         CupertinoDialogAction(
+    //           child: Text('同意'),
+    //           onPressed: () => Get.back(result: true),
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }
 
   @override

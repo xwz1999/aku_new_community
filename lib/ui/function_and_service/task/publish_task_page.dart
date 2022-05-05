@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/pages/personal/wallet/input_pay_password_dialog.dart';
+import 'package:aku_new_community/pages/personal/wallet/set_pay_password_dialog.dart';
 import 'package:aku_new_community/ui/function_and_service/task/task_func.dart';
 import 'package:aku_new_community/ui/function_and_service/task/task_map.dart';
 import 'package:aku_new_community/ui/function_and_service/task/task_remark_page.dart';
@@ -12,6 +14,7 @@ import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_record_voice_widget.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_pick_image_widget.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
@@ -118,6 +121,21 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
             if (!canTap) {
               return;
             }
+
+            var psdCode = '';
+            if (_rewardType == 1) {
+              var balance = int.parse(_rewardController.text.trim());
+              if (balance >
+                  (UserTool.userProvider.userInfoModel!.balance ?? 0)) {
+                BotToast.showText(text: '余额不足，请前往充值');
+              } else {
+                if (!UserTool.userProvider.userInfoModel!.isBalancePayPwd) {
+                  Get.dialog(SetPayPasswordDialog());
+                } else {
+                  psdCode = await Get.dialog(InputPayPasswordDialog());
+                }
+              }
+            }
             var cancel = BotToast.showLoading();
             var _voiceUrl;
             if (_voiceUri != null) {
@@ -130,7 +148,6 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   BotToast.showText(text: base.msg);
                 }
               } catch (e) {
-                print(22222);
                 print(e.toString());
               }
             }
@@ -160,7 +177,8 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   voiceUrl: _voiceUrl,
                   imgUrls: imgs,
                   rewardType: _rewardType,
-                  reward: _rewardController.text);
+                  reward: _rewardController.text,
+                  psd: psdCode);
               if (re) {
                 Get.back();
               }

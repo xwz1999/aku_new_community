@@ -7,34 +7,28 @@ part 'community_introduce_model.g.dart';
 
 @JsonSerializable()
 class CommunityIontroduceModel extends Equatable {
-  final int id;
   final String name;
   final String content;
-  final String createDate;
   final List<ImgModel>? imgList;
-
-  CommunityIontroduceModel({
-    required this.id,
-    required this.name,
-    required this.content,
-    required this.createDate,
-    this.imgList,
-  });
 
   factory CommunityIontroduceModel.fromJson(Map<String, dynamic> json) =>
       _$CommunityIontroduceModelFromJson(json);
 
   factory CommunityIontroduceModel.init() =>
-      CommunityIontroduceModel(id: -1, name: '', content: '', createDate: '');
+      CommunityIontroduceModel(name: '', content: '', imgList: []);
 
   @override
   List<Object?> get props {
     return [
-      id,
       name,
       content,
-      createDate,
       imgList,
     ];
   }
+
+  const CommunityIontroduceModel({
+    required this.name,
+    required this.content,
+    this.imgList,
+  });
 }

@@ -6,7 +6,6 @@ import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/models/market/good_detail_model.dart';
 import 'package:aku_new_community/pages/personal/address/address_list_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/ui/market/collection/collection_func.dart';
 import 'package:aku_new_community/ui/market/search/search_func.dart';
 import 'package:aku_new_community/ui/market/search/submit_order_page_normal.dart';
 import 'package:aku_new_community/ui/market/shop_car/shop_car_page.dart';
@@ -69,9 +68,15 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
   Timer? _timer;
 
   String get receiveAddress {
+    final appProvider = Provider.of<AppProvider>(Get.context!);
     if (_addressModel == null) {
-      return (_goodDetail!.defaultLocation ?? '') +
-          (_goodDetail!.defaultAddressDetail ?? '');
+      print(appProvider.defaultAddressModel?.locationName);
+      if (appProvider.defaultAddressModel == null) {
+        return '选择收货地址';
+      } else {
+        return (appProvider.defaultAddressModel!.locationName ?? '') +
+            (appProvider.defaultAddressModel!.addressDetail ?? '');
+      }
     } else {
       return (_addressModel!.locationName ?? '') +
           (_addressModel!.addressDetail ?? '');
@@ -80,16 +85,15 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
 
   @override
   void initState() {
-    final appProvider = Provider.of<AppProvider>(Get.context!);
     super.initState();
     _pageController = PageController();
     _sliverListController = ScrollController();
     _refreshController = EasyRefreshController();
-    if (appProvider.addressModel != null) {
-      _addressModel = appProvider.addressModel!;
-    } else {
-      _addressModel = null;
-    }
+    // if (appProvider.defaultAddressModel != null) {
+    //   _addressModel = appProvider.defaultAddressModel!;
+    // } else {
+    //   _addressModel = null;
+    // }
     if (widget.integralGood) {
       _timer = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {});
@@ -413,10 +417,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                       Container(
                         width: 430.w,
                         child: Text(
-                          _addressModel == null
-                              ? '请先选择地址'
-                              : (_addressModel!.locationName ?? '') +
-                                  (_addressModel!.addressDetail ?? ''),
+                          receiveAddress,
                           style:
                               TextStyle(fontSize: 24.sp, color: ktextPrimary),
                           maxLines: 1,
@@ -436,17 +437,21 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       120.wb,
-                      _goodDetail!.stockStatus == 1
-                          ? '有货'
-                              .text
-                              .color(Color(0xFFE52E2E))
-                              .size(28.sp)
-                              .make()
-                          : '无货'
-                              .text
-                              .color(Color(0xFFE52E2E))
-                              .size(28.sp)
-                              .make(),
+                      20.hb,
+                      Offstage(
+                        offstage: receiveAddress == '选择收货地址',
+                        child: (_goodDetail!.stockStatus == 1)
+                            ? '有货'
+                                .text
+                                .color(Color(0xFFE52E2E))
+                                .size(28.sp)
+                                .make()
+                            : '无货'
+                                .text
+                                .color(Color(0xFFE52E2E))
+                                .size(28.sp)
+                                .make(),
+                      )
                     ],
                   ),
                 ],
@@ -661,7 +666,10 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  await SearchFunc.addGoodsCar(_goodDetail!.id);
+                  var re = await SearchFunc.addGoodsCar(_goodDetail!.id);
+                  if (re) {
+                    Get.back();
+                  }
                 },
                 child: Container(
                   width: 230.w,
@@ -684,7 +692,11 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               GestureDetector(
                 onTap: () {
                   if (_goodDetail!.stockStatus == 0) {
-                    BotToast.showText(text: '商品库存不足');
+                    if (receiveAddress == '选择收货地址') {
+                      BotToast.showText(text: '请添加收货地址');
+                    } else {
+                      BotToast.showText(text: '商品库存不足');
+                    }
                   } else {
                     Get.to(() => SubmitOrderNormalPage(
                           goodModel: _goodDetail!,
@@ -768,5 +780,4 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
     return count + '折';
   }
 
-  _getSpecifications() {}
 }

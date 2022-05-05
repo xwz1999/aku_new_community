@@ -20,7 +20,7 @@ dependencies:
   #状态管理
   provider: ^6.0.0
   #屏幕适配
-  flutter_screenutil: ^5.0.0+2
+  flutter_screenutil: ^5.3.1
   #图标集合
   cupertino_icons: ^1.0.3
   #超链接 跳转拨号等
@@ -150,7 +150,6 @@ flutter:
     - assets/tab/
     - assets/applications/
     - assets/static/
-    - assets/json/
     - assets/bracelet/
     - assets/home/
     - assets/newIcon/

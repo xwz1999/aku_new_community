@@ -107,13 +107,14 @@ class _AnnounceViewState extends State<AnnounceView> {
             header: MaterialHeader(),
             footer: MaterialFooter(),
             scrollController: _autoScrollController,
+            controller: _refreshController,
             onRefresh: () async {
               _page = 1;
               _modelLists.clear();
               _innerModelList.clear();
               var base =
                   await NetUtil().getList(SAASAPI.announce.list, params: {
-                'page': _page,
+                'pageNum': _page,
                 'size': _size,
               });
               _innerModelList =
@@ -129,13 +130,19 @@ class _AnnounceViewState extends State<AnnounceView> {
               _page++;
               var base =
                   await NetUtil().getList(SAASAPI.announce.list, params: {
-                'page': _page,
+                'pageNum': _page,
                 'size': _size,
               });
-              if (base.total > _innerModelList.length) {}
-              _innerModelList =
-                  base.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
-              monthListDepart(_innerModelList);
+              if (base.total > _modelLists.length) {
+                _innerModelList = base.rows
+                    .map((e) => HomeAnnounceModel.fromJson(e))
+                    .toList();
+                monthListDepart(_innerModelList);
+                setState(() {});
+              } else {
+                print('1111111');
+                _refreshController.finishLoadCallBack!(noMore: true);
+              }
             },
             child: _modelLists.isEmpty
                 ? Container()

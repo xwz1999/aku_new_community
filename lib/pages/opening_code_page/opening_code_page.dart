@@ -237,7 +237,7 @@ class _OpeningCodePageState extends State<OpeningCodePage> {
                                       ? Get.off(() => CertificationPage())
                                       : BotToast.showText(text: '已实名认证');
                                 },
-                                text: '开门记录',
+                                text: '住户认证',
                                 suffix: UserTool.userProvider.userInfoModel!
                                             .idCard ==
                                         null

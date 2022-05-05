@@ -7,6 +7,7 @@ import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/models/home/home_swiper_model.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
+import 'package:aku_new_community/models/market/integral_goods_list_model.dart';
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/models/market/market_category_model.dart';
 import 'package:aku_new_community/models/market/market_statistics_model.dart';
@@ -103,6 +104,17 @@ class CommunityFunc {
     if (model.data!.length == 0) return [];
     return (model.data as List)
         .map((e) => GoodsPopularModel.fromJson(e))
+        .toList();
+  }
+
+  ///查询积分商品
+  static Future<List<IntegralGoodsListModel>> getIntegralGoods(int num) async {
+    var baseList = await NetUtil().getList(
+      SAASAPI.market.integralGood.list,
+      params: {'pageNum': 1, 'size': num},
+    );
+    return baseList.rows
+        .map((e) => IntegralGoodsListModel.fromJson(e))
         .toList();
   }
 

@@ -9,9 +9,15 @@ class BeeCheckRadio<T> extends StatefulWidget {
   final List<T>? groupValue;
   final Widget? indent;
   final Color? backColor;
+  final double? size;
 
   BeeCheckRadio(
-      {Key? key, this.value, this.groupValue, this.indent, this.backColor})
+      {Key? key,
+      this.value,
+      this.groupValue,
+      this.indent,
+      this.backColor,
+      this.size})
       : super(key: key);
 
   @override
@@ -30,8 +36,8 @@ class _BeeCheckRadioState extends State<BeeCheckRadio> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: 40.w,
-      width: 40.w,
+      height: widget.size ?? 40.w,
+      width: widget.size ?? 40.w,
       decoration: BoxDecoration(
         color: widget.backColor ?? kPrimaryColor.withOpacity(_selected ? 1 : 0),
         border: Border.all(
@@ -40,7 +46,7 @@ class _BeeCheckRadioState extends State<BeeCheckRadio> {
               : (_selected ? kPrimaryColor : Color(0xFF979797)),
           width: 3.w,
         ),
-        borderRadius: BorderRadius.circular(20.w),
+        borderRadius: BorderRadius.circular((widget.size??40.w)/2),
       ),
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,

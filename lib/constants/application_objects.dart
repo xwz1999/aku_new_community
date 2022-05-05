@@ -25,6 +25,7 @@ import 'package:aku_new_community/ui/community/facility/facility_appointment_pag
 import 'package:aku_new_community/ui/function_and_service/task/task_page.dart';
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_page.dart';
 import 'package:aku_new_community/ui/home/application/all_application.dart';
+import 'package:aku_new_community/ui/home/application/all_application_new.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.dart';
 import 'package:aku_new_community/ui/profile/car/car_manage_page.dart';
@@ -123,7 +124,8 @@ List<AO> appObjects = [
   AO('共享停车', Assets.icons.sharePark.path, null),
   AO('二手市场', Assets.icons.secondHandMarket.path, null),
   AO('共享投屏', Assets.icons.projectionScreen.path, null),
-  AO('全部应用', Assets.home.icQbyy.path, () => Get.to(() => AllApplicationPage())),
+  AO('全部应用', Assets.home.icQbyy.path,
+      () => Get.to(() => AllApplicationNewPage())),
 
   // AO(
   //   '小区教育',

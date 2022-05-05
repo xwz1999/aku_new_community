@@ -1,3 +1,4 @@
+import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/task/hall_list_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -98,6 +99,7 @@ class HallCard extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             head,
             24.w.heightBox,
@@ -164,6 +166,7 @@ class HallCard extends StatelessWidget {
             ),
             24.w.heightBox,
             BeeDivider.horizontal(),
+            20.hb,
             _cardBottom()
           ],
         ),

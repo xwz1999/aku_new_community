@@ -63,13 +63,11 @@ class _MyAddressItemState extends State<MyAddressItem> {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    bool? result = await Userfunc.setIsDefaultAddress(
+                    bool result = await Userfunc.setIsDefaultAddress(
                         widget.addressModel.id!);
-                    if (result != null) {
-                      if (result) {
-                        await appProvider.getMyAddress();
-                        widget.refreshController!.callRefresh();
-                      }
+                    if (result) {
+                      await appProvider.getMyAddress();
+                      widget.refreshController!.callRefresh();
                     }
                   },
                   child: Container(

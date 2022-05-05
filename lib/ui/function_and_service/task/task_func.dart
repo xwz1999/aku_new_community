@@ -20,6 +20,7 @@ class TaskFunc {
     required List<String> imgUrls,
     required int rewardType,
     required String reward,
+    required String psd,
   }) async {
     var base = await NetUtil().post(SAASAPI.task.insert,
         params: {
@@ -39,6 +40,7 @@ class TaskFunc {
           'imgUrls': imgUrls,
           'rewardType': rewardType,
           'reward': reward,
+          'balancePayPwd':psd,
         },
         showMessage: true);
     return base.success;
