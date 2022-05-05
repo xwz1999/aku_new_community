@@ -12,4 +12,5 @@ class UserTool {
       Provider.of<AppProvider>(Get.context!, listen: false);
   static DataProvider get dataProvider =>
       Provider.of<DataProvider>(Get.context!, listen: false);
+  UserTool();
 }

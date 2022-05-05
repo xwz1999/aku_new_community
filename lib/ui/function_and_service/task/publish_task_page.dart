@@ -321,7 +321,7 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
                   .make(),
             ),
             '${_sex == 0 ? '请选择性别' : _sexStr[_sex - 1]}'
-                .text
+                  .text
                 .size(28.sp)
                 .color(Colors.black.withOpacity(_sex == 0 ? 0.25 : 0.85))
                 .make(),
