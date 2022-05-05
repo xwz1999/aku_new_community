@@ -152,7 +152,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
               ),
       ),
       bottomNavi: BottomButton(
-        child: '立即报名'.text.size(32.sp).bold.make(),
+        child: btnText,
         onPressed: !canTap
             ? null
             : () async {
@@ -164,6 +164,16 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
               },
       ),
     );
+  }
+
+  Widget get btnText{
+    if (_model?.regisEndTime?.isBefore(DateTime.now()) ?? true) {
+      return '报名截止'.text.size(32.sp).bold.make();
+    }else if(_model!.isRegistration==1){
+      return '已报名'.text.size(32.sp).bold.make();
+    }else{
+      return '立即报名'.text.size(32.sp).bold.make();
+    }
   }
 
   bool get canTap {

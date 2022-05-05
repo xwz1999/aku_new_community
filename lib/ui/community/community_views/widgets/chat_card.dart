@@ -175,6 +175,13 @@ class _ChatCardState extends State<ChatCard> {
   }
 
   @override
+  void didUpdateWidget(covariant ChatCard oldWidget) {
+    _isLiked = widget.model.isLike;
+    _likeNum = widget.model.likes;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
