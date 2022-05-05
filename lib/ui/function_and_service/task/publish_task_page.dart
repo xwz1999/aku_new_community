@@ -128,9 +128,11 @@ class _PublishTaskPageState extends State<PublishTaskPage> {
               if (balance >
                   (UserTool.userProvider.userInfoModel!.balance ?? 0)) {
                 BotToast.showText(text: '余额不足，请前往充值');
+                return;
               } else {
                 if (!UserTool.userProvider.userInfoModel!.isBalancePayPwd) {
                   Get.dialog(SetPayPasswordDialog());
+                  return;
                 } else {
                   psdCode = await Get.dialog(InputPayPasswordDialog());
                 }

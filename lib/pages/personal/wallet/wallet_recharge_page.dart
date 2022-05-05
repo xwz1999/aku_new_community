@@ -2,6 +2,7 @@ import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/personal/wallet/pay_way_dialog.dart';
+import 'package:aku_new_community/pages/personal/wallet/wallet_trade_record_page.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
@@ -41,7 +42,7 @@ class _WalletRechargePageState extends State<WalletRechargePage>
     _tabController =
         TabController(length: 2, vsync: this, initialIndex: widget.initIndex);
     _currentIndex = widget.initIndex;
-    _rechargeValue = widget.initIndex == 0 ? _balanceValue[0] : _pointValue[0];
+    _rechargeValue = widget.initIndex == 0 ? _balanceValue[0] : (_pointValue[0]~/10);
     super.initState();
   }
 
@@ -51,8 +52,10 @@ class _WalletRechargePageState extends State<WalletRechargePage>
       title: '钱包充值',
       actions: [
         TextButton(
-          onPressed: () {},
-          child: '账单'
+          onPressed: () {
+            Get.to(()=>WalletTradeRecordPage());
+          },
+          child: '交易记录'
               .text
               .size(28.sp)
               .color(Colors.black.withOpacity(0.85))

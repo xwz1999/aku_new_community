@@ -8,7 +8,7 @@ import 'package:aku_new_community/ui/function_and_service/work_order/work_order_
 import 'package:aku_new_community/ui/function_and_service/work_order/work_order_remark_page.dart';
 import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';

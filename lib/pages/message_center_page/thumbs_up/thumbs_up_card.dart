@@ -3,7 +3,7 @@ import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/message/reply_list_model.dart';
 import 'package:aku_new_community/models/message/thumbs_up_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/message_func.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';

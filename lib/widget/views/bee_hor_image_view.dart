@@ -1,7 +1,7 @@
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -59,7 +59,9 @@ class HallCard extends StatelessWidget {
           ),
         ),
         Spacer(),
-        Assets.icons.intergral.image(width: 24.w, height: 24.w),
+        model.rewardType == 2
+            ? Assets.icons.intergral.image(width: 24.w, height: 24.w)
+            : '¥'.text.size(28.sp).color(Color(0xFF666666)).make(),
         8.w.widthBox,
         '${model.reward}'.text.size(32.sp).color(Colors.red).make()
       ],

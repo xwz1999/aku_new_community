@@ -61,7 +61,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
 
     if (appProvider.defaultAddressModel != null) {
       _addressModel = appProvider.defaultAddressModel!;
-      createOrder(_addressModel!.id!, _goodsList);
+      // createOrder(_addressModel!.id!, _goodsList);
     } else {
       _addressModel = null;
     }
@@ -159,7 +159,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                       _goodsList.map((v) => v.toJson()).toList(),
                   "payType": 10, //暂时写死 等待后续补充
                   'points': widget.integral,
-                });
+                },showMessage: true);
                 if (baseModel.success) {
                   Get.off(() => OrderPage(initIndex: 2));
                 }
@@ -234,7 +234,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
           '当前积分'.text.size(28.sp).color(Color(0xFF4F4F4F)).make(),
           Spacer(),
           // (UserTool.userProvider.userInfoModel!.points ?? 0)
-          (0).text.size(28.sp).color(Colors.red).make(),
+          (widget.integral??0).text.size(28.sp).color(Colors.red).make(),
         ],
       ),
     );
@@ -258,7 +258,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
               ));
           if (result != null) {
             _addressModel = result;
-            createOrder(_addressModel!.id!, _goodsList);
+            // createOrder(_addressModel!.id!, _goodsList);
           } else {
             _addressModel = null;
           }
@@ -690,7 +690,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                   if (num > 1) {
                     _controllers.text = (num - 1).toString();
                     _goodsList[0].num = num - 1;
-                    createOrder(_addressModel!.id!, _goodsList);
+                    // createOrder(_addressModel!.id!, _goodsList);
                   }
 
                   setState(() {});
@@ -736,7 +736,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
                     _controllers.text =
                         (int.parse(_controllers.text) + 1).toString();
                     _goodsList[0].num = num + 1;
-                    createOrder(_addressModel!.id!, _goodsList);
+                    // createOrder(_addressModel!.id!, _goodsList);
 
                     setState(() {});
                   }

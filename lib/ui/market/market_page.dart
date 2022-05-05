@@ -22,7 +22,7 @@ import 'package:aku_new_community/ui/market/widget/animated_home_background.dart
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:card_swiper/card_swiper.dart';

@@ -61,46 +61,37 @@ class _PayWayDialogState extends State<PayWayDialog> {
         _payType.add(0);
         setState(() {});
       },
-      child: ClipRect(
-        child: Stack(
-          children: [
-            Material(
-              color: Colors.transparent,
-              child: Row(
-                children: [
-                  Assets.newIcon.walletBalance.image(width: 48.w, height: 48.w),
-                  8.wb,
-                  '钱包余额'
-                      .text
-                      .size(28.sp)
-                      .color(Colors.black.withOpacity(0.85))
-                      .make(),
-                  16.wb,
-                  Visibility(
-                      visible: widget.insufficientBalance,
-                      child:
-                          '钱包余额不足'.text.size(24.sp).color(Colors.red).make()),
-                  Spacer(),
-                  BeeCheckRadio(
-                    groupValue: _payType,
-                    value: 0,
-                    size: 36.w,
-                    indent: Icon(
-                      CupertinoIcons.checkmark_alt,
-                      color: Colors.black,
-                      size: 28.w,
-                    ),
-                  ),
-                ],
+      child: Opacity(
+        opacity: widget.insufficientBalance?0.4:1,
+        child: Material(
+          color: Colors.transparent,
+          child: Row(
+            children: [
+              Assets.newIcon.walletBalance.image(width: 48.w, height: 48.w),
+              8.wb,
+              '钱包余额'
+                  .text
+                  .size(28.sp)
+                  .color(Colors.black.withOpacity(0.85))
+                  .make(),
+              16.wb,
+              Visibility(
+                  visible: widget.insufficientBalance,
+                  child:
+                      '钱包余额不足'.text.size(24.sp).color(Colors.red).make()),
+              Spacer(),
+              BeeCheckRadio(
+                groupValue: _payType,
+                value: 0,
+                size: 36.w,
+                indent: Icon(
+                  CupertinoIcons.checkmark_alt,
+                  color: Colors.black,
+                  size: 28.w,
+                ),
               ),
-            ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: widget.insufficientBalance ? 1 : 0,
-                  sigmaY: widget.insufficientBalance ? 1 : 0),
-              child: Container(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

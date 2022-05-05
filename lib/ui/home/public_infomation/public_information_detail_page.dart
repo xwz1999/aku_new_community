@@ -6,7 +6,7 @@ import 'package:aku_new_community/utils/bee_date_util.dart';
 import 'package:aku_new_community/utils/link_text_parase.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';

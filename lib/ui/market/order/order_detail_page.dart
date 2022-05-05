@@ -4,6 +4,7 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/order/logistics_model.dart';
 import 'package:aku_new_community/model/order/order_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';
@@ -308,8 +309,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         Row(
           children: [
             Spacer(),
-            '商品金额：'.text.size(28.sp).color(Color(0xFF666666)).make(),
-            '¥${((widget.orderModel.payPrice ?? 0) - (widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
+            '${widget.orderModel.payType==10?'商品积分':'商品金额'}：'.text.size(28.sp).color(Color(0xFF666666)).make(),
+            widget.orderModel.payType == 10
+                ? Assets.icons.intergral.image(width: 24.w, height: 24.w)
+                : '¥'.text.size(28.sp).color(Color(0xFF666666)).make(),
+            ' ${((widget.orderModel.payPrice ?? 0) - (widget.orderModel.freightFee ?? 0)).toStringAsFixed(widget.orderModel.payType==10?0: 2)}'
                 .text
                 .size(28.sp)
                 .color(Color(0xFF333333))
@@ -321,7 +325,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           children: [
             Spacer(),
             '运费：'.text.size(28.sp).color(Color(0xFF666666)).make(),
-            '¥${((widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
+            '¥ ${((widget.orderModel.freightFee ?? 0)).toStringAsFixed(2)}'
                 .text
                 .size(28.sp)
                 .color(Color(0xFF666666))
@@ -332,8 +336,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         Row(
           children: [
             Spacer(),
-            '实付款：'.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
-            '¥${((widget.orderModel.payPrice ?? 0)).toStringAsFixed(2)}'
+            '${widget.orderModel.payType==10?'实付积分':'实付款'}：'.text.size(32.sp).color(Color(0xFF333333)).bold.make(),
+            widget.orderModel.payType == 10
+                ? Assets.icons.intergral.image(width: 24.w, height: 24.w)
+                : '¥'.text.size(28.sp).color(Color(0xFF666666)).make(),
+            ' ${((widget.orderModel.payPrice ?? 0)).toStringAsFixed(widget.orderModel.payType==10?0: 2)}'
                 .text
                 .size(28.sp)
                 .color(Color(0xFFE52E2E))

@@ -3,7 +3,7 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -20,7 +20,7 @@ import 'package:aku_new_community/ui/home/public_infomation/public_information_d
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
