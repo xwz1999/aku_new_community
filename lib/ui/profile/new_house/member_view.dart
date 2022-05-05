@@ -65,7 +65,7 @@ class _MemberViewState extends State<MemberView> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-            child: '${model.buildingName}${model.unitName}${model.estateName}'
+            child: '${model.buildingName}栋${model.unitName}单元${model.estateName}房间'
                 .text
                 .size(32.sp)
                 .color(Colors.black.withOpacity(0.85))
