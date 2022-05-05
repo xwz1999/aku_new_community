@@ -1,36 +1,43 @@
 PODS:
   - advance_pdf_viewer (1.0.5):
     - Flutter
-  - AlipaySDK-iOS (15.7.9)
-  - AMap3DMap (8.0.0):
-    - AMapFoundation (~> 1.6.8)
+  - AMap3DMap (9.2.1):
+    - AMapFoundation (~> 1.6.9)
   - amap_flutter_location (0.0.1):
-    - AMapLocation (~> 2.6.7)
+    - AMapLocation
     - Flutter
   - amap_flutter_map (0.0.1):
     - AMap3DMap
     - Flutter
-  - AMapFoundation (1.6.8)
-  - AMapLocation (2.6.9):
-    - AMapFoundation (~> 1.6.8)
+  - AMapFoundation (1.6.9)
+  - AMapLocation (2.8.0):
+    - AMapFoundation (~> 1.6.9)
+  - audio_session (0.0.1):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - flutter_sound (9.2.2):
+    - Flutter
+    - flutter_sound_core (= 9.2.2)
+  - flutter_sound_core (9.2.2)
   - fluwx (0.0.1):
     - Flutter
-    - WechatOpenSDK (= 1.8.7.1)
+    - WechatOpenSDK_Fuck (~> 1.9.2)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - image_picker (0.0.1):
     - Flutter
-  - JCore (2.7.1)
-  - JPush (3.7.0):
-    - JCore (< 3.0.0, >= 2.0.0)
+  - JCore (3.1.0)
+  - JPush (4.4.0):
+    - JCore (>= 2.0.0)
   - jpush_flutter (0.0.2):
     - Flutter
-    - JCore (= 2.7.1)
-    - JPush (= 3.7.0)
+    - JCore (= 3.1.0)
+    - JPush (= 4.4.0)
+  - just_audio (0.0.1):
+    - Flutter
   - MTBBarcodeScanner (5.0.11)
   - open_file (0.0.1):
     - Flutter
@@ -38,7 +45,7 @@ PODS:
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
-  - path_provider (0.0.1):
+  - path_provider_ios (0.0.1):
     - Flutter
   - "permission_handler (5.1.0+2)":
     - Flutter
@@ -47,50 +54,52 @@ PODS:
     - MTBBarcodeScanner
   - share (0.0.1):
     - Flutter
-  - shared_preferences (0.0.1):
+  - sms_autofill (0.0.1):
     - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
   - tobias (0.0.1):
-    - AlipaySDK-iOS (~> 15.7.9)
     - Flutter
-  - url_launcher (0.0.1):
+  - url_launcher_ios (0.0.1):
     - Flutter
-  - WechatOpenSDK (1.8.7.1)
+  - WechatOpenSDK_Fuck (1.9.2)
 
 DEPENDENCIES:
   - advance_pdf_viewer (from `.symlinks/plugins/advance_pdf_viewer/ios`)
   - amap_flutter_location (from `.symlinks/plugins/amap_flutter_location/ios`)
   - amap_flutter_map (from `.symlinks/plugins/amap_flutter_map/ios`)
+  - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
+  - flutter_sound (from `.symlinks/plugins/flutter_sound/ios`)
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - jpush_flutter (from `.symlinks/plugins/jpush_flutter/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - share (from `.symlinks/plugins/share/ios`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - tobias (from `.symlinks/plugins/tobias/ios`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
-    - AlipaySDK-iOS
     - AMap3DMap
     - AMapFoundation
     - AMapLocation
+    - flutter_sound_core
     - FMDB
     - JCore
     - JPush
     - MTBBarcodeScanner
-    - WechatOpenSDK
+    - WechatOpenSDK_Fuck
 
 EXTERNAL SOURCES:
   advance_pdf_viewer:
@@ -99,69 +108,78 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/amap_flutter_location/ios"
   amap_flutter_map:
     :path: ".symlinks/plugins/amap_flutter_map/ios"
+  audio_session:
+    :path: ".symlinks/plugins/audio_session/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
+  flutter_sound:
+    :path: ".symlinks/plugins/flutter_sound/ios"
   fluwx:
     :path: ".symlinks/plugins/fluwx/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   jpush_flutter:
     :path: ".symlinks/plugins/jpush_flutter/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/ios"
   open_file:
     :path: ".symlinks/plugins/open_file/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
+  sms_autofill:
+    :path: ".symlinks/plugins/sms_autofill/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   tobias:
     :path: ".symlinks/plugins/tobias/ios"
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   advance_pdf_viewer: 5c832f382b4ca84fe735f893b7e91aa830c27d7b
-  AlipaySDK-iOS: 94ff4c0e17c5e7d126b8207596d5033006534c25
-  AMap3DMap: 89b82eaad00f9246f59d2a6103eff18be5b9dd4f
-  amap_flutter_location: 3e33b57f1aad80b0dfb4b399de857a1a9f071e62
+  AMap3DMap: 0de590972bfbe2852fe63109bc11b485d7d848fa
+  amap_flutter_location: 44ff5beb64f42e0bf5feb402fe299dac0013af6f
   amap_flutter_map: 979e54d227cedac6c7504a2151bfbf3bcf96760a
-  AMapFoundation: 32e9a0264ee62f5aa2aaf82bdafdda7985ce09c7
-  AMapLocation: 3ec0e9bf53800b40cceb313cbd047743f75e2483
+  AMapFoundation: 8d8ecbb0b2e9ce5487995360d26c885d94642bfd
+  AMapLocation: 5ef44a1117be7dc541cb7a7d43d03c5ee91e4387
+  audio_session: 4f3e461722055d21515cf3261b64c973c062f345
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_sound: b4eccdf53c922ad12146ac94fb2a18ceb5855c12
+  flutter_sound_core: 0e902ec587e9854b4f852f4bad2d625057d9958b
+  fluwx: 02670633ce7509206f62b366e9734e7dda81e100
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
-  JCore: 9d5bda3a172c65bbe14f2806ab0f6246f8a06065
-  JPush: 1fd7a326e7e6588eba517659ce1b79a144e54938
-  jpush_flutter: d5fd523a73277ed66d453fc7ac1c981d1fa525e2
+  JCore: 4029befb2497adc36b2496e2cfd6b24d9f671784
+  JPush: b7d00f2cc78766e76c8abb30a5741fe94d21e5bc
+  jpush_flutter: bc88cfa9a4ff4481031564b641c3fe24024bb2cb
+  just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
-  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
-  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  tobias: 6872e2198dc30e17c10513b9ee114e28d099bc70
-  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
-  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
+  tobias: 2aded9b83e3663b907360a800d8e3c13284f25c5
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+  WechatOpenSDK_Fuck: aa8f4b0af902837e887a1d40c62f06c060c1dc98
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.3

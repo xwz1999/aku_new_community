@@ -215,7 +215,7 @@ class NetUtil {
       //暂时隐去一键登录页
       Get.offAll(() => OtherLoginPage());
     }
-    if (model.code==10100) {
+    if (model.msg=='该用户未实名认证') {
       BotToast.showText(text: '请先实名认证');
       Get.dialog(CertificationDialog());
     }

@@ -2,7 +2,7 @@ import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/beeImageNetwork.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';

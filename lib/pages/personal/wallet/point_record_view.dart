@@ -35,6 +35,7 @@ class _PointRecordViewState extends State<PointRecordView> {
     4: '收入',
     5: '提现',
     6: '抵扣',
+    7: '购买'
   };
 
   @override
@@ -79,6 +80,7 @@ class _PointRecordViewState extends State<PointRecordView> {
               MaterialButton(
                 color: Colors.black.withOpacity(0.06),
                 onPressed: () async {
+                  _pickType = _types.keys.toList()[0];
                   await showModalBottomSheet(
                     context: context,
                     builder: (context) {
@@ -139,8 +141,9 @@ class _PointRecordViewState extends State<PointRecordView> {
                   'pageNum': _pageNum,
                   'size': _size,
                   'modelType': 1,
-                  'type': _pickType,
-                  'createDate': _pickTime,
+                  'type': _pickType == 0 ? null : _pickType,
+                  'createDate':
+                      DateUtil.formatDate(_pickTime, format: DateFormats.full),
                 });
 
                 _models = baseList.rows
@@ -155,8 +158,9 @@ class _PointRecordViewState extends State<PointRecordView> {
                   'pageNum': _pageNum,
                   'size': _size,
                   'modelType': 0,
-                  'type': _pickType,
-                  'createDate': _pickTime,
+                  'type': _pickType == 0 ? null : _pickType,
+                  'createDate':
+                      DateUtil.formatDate(_pickTime, format: DateFormats.full),
                 });
                 if (baseList.total > _models.length) {
                   _models.addAll(baseList.rows
