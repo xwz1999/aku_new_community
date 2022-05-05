@@ -14,7 +14,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AddNewEventPage extends StatefulWidget {
   final int? initTopic;
@@ -229,20 +228,26 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
   }
 }
 
-class TopicWidgets extends StatelessWidget {
-  const TopicWidgets({
-    Key? key,
-    this.hotTopicModels,
-    this.topicTags,
-  })  : assert(hotTopicModels != null || topicTags != null),
-        super(key: key);
-
+class TopicWidgets extends StatefulWidget {
   final List<TopicListModel>? hotTopicModels;
   final List<TopicTag>? topicTags;
 
   List<dynamic> get models =>
       hotTopicModels == null ? topicTags! : hotTopicModels!;
 
+  const TopicWidgets({Key? key,this.hotTopicModels,
+    this.topicTags,}) : super(key: key);
+
+  @override
+  State<TopicWidgets> createState() => _TopicWidgetsState();
+}
+
+class _TopicWidgetsState extends State<TopicWidgets> {
+  bool _deleteTopic=false;
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+  }
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -251,21 +256,53 @@ class TopicWidgets extends StatelessWidget {
       runSpacing: 12.w,
       crossAxisAlignment: WrapCrossAlignment.start,
       children: [
-        ...models
-            .map((e) => Container(
+        ...widget.models
+            .map(
+              (e) => GestureDetector(
+            onLongPress: () {
+              _deleteTopic = !_deleteTopic;
+              setState(() { });
+              print(_deleteTopic);
+            },
+            child: Stack(
+              children: [
+                Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.w, horizontal: 16.w),
+                  EdgeInsets.symmetric(vertical: 8.w, horizontal: 16.w),
                   decoration: BoxDecoration(
                       color: Color(0xFFF4F7FC).withOpacity(0.8),
                       borderRadius: BorderRadius.circular(25.w)),
-                  child: '# ${e.title}'
+                  child:'# ${e.title}'
                       .text
                       .size(24.sp)
                       .color(Color(0xFF547FC0))
                       .make(),
-                ))
-            .toList(),
+                ),
+                if (_deleteTopic)
+                  Positioned(
+                    top: 10.w,
+                    right: 10.w,
+                    child: GestureDetector(
+                      onTap: () {
+                        widget.models.remove(e);
+                        setState(() { });
+                      },
+                      child: Material(
+                        child: Icon(
+                          CupertinoIcons.xmark_circle_fill,
+                          size: 30.w,
+                          color: Colors.red.withOpacity(0.60),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ).toList(),
       ],
     );
   }
 }
+
+
