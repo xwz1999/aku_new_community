@@ -671,7 +671,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                 onTap: () async {
                   var re = await SearchFunc.addGoodsCar(_goodDetail!.id);
                   if (re) {
-                    Get.back();
+                    BotToast.showText(text: '已添加进购物车');
                   }
                 },
                 child: Container(
