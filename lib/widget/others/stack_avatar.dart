@@ -26,6 +26,7 @@ class StackAvatar extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(22.w + 2.w),
+                border: Border.all(color: Colors.white,width: 1),
                 // border: Border.all(color: Color(0xFF999999)),
               ),
               clipBehavior: Clip.antiAlias,
