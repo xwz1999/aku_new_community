@@ -39,6 +39,7 @@ class SAASAPI {
   static _Balance balance = _Balance();
   static _CommunityIntroduce communityIntroduce = _CommunityIntroduce();
   static _ConveniencePhone conveniencePhone = _ConveniencePhone();
+  static _CommitteeStaff committeeStaff = _CommitteeStaff();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -351,4 +352,8 @@ class _CommunityIntroduce {
 class _ConveniencePhone {
   ///查询app便民电话
   String get list => '/app/user/conveniencePhone/list';
+}
+class _CommitteeStaff {
+  ///查询业委会列表
+  String get list => '/app/user/industryCommittee/list';
 }

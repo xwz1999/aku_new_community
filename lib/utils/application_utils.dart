@@ -71,8 +71,6 @@ class ApplicationUtil {
             title: '业委会',
             imgPath: Assets.newIcon.icYwh.path,
             onTap: () {
-              BotToast.showText(text: '此功能暂未上线');
-              return;
               Get.to(() => IndustryCommitteePage());
             }),
         // AppElement('建议咨询', R.ASSETS_ICONS_FUNC_JYZX_PNG,
@@ -111,8 +109,6 @@ class ApplicationUtil {
             title: '问卷调查',
             imgPath: Assets.newIcon.icWjdc.path,
             onTap: () {
-              BotToast.showText(text: '此功能暂未上线');
-              return;
               Get.to(() => QuestionnairePage());
             }),
         AppElement(
