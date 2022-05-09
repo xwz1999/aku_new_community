@@ -109,9 +109,9 @@ class _SplashPageState extends State<SplashPage> {
       }
       //初始化AMap
       // await AmapLocation.instance.init(iosKey: 'ios key');
-      if (Platform.isAndroid || Platform.isIOS) {
-        await Permission.locationWhenInUse.request();
-      }
+      // if (Platform.isAndroid || Platform.isIOS) {
+      //   await Permission.locationWhenInUse.request();
+      // }
       //第三方加载
       EquatableConfig.stringify = true;
       AMapFlutterLocation.updatePrivacyShow(true, true);
@@ -119,7 +119,7 @@ class _SplashPageState extends State<SplashPage> {
       MainInitialize.initTheme();
       MainInitialize.initWechat();
       MainInitialize.initWebSocket();
-      UserTool.appProvider.startLocation();
+      // UserTool.appProvider.startLocation();
       UserTool.appProvider.initApplications();
       //获取城市列表等信息
       await UserTool.dataProvider.init();

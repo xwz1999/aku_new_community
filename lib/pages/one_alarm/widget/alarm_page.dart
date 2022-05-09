@@ -13,6 +13,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../widget/others/user_tool.dart';
+
 class PermissionUtil {
   static Future<bool> getLocationPermission() async {
     return await Permission.locationWhenInUse.request().isGranted;
@@ -37,6 +39,7 @@ class _AlarmPageState extends State<AlarmPage> {
   void initState() {
     super.initState();
     PermissionUtil.getLocationPermission();
+    UserTool.appProvider.startLocation();
   }
 
   @override
@@ -72,7 +75,7 @@ class _AlarmPageState extends State<AlarmPage> {
               _mapController = controller;
               _mapController!.moveCamera(
                 CameraUpdate.newCameraPosition(
-                  CameraPosition(target: _target, zoom: 18),
+                  CameraPosition(target: _target, zoom: 14),
                 ),
               );
             },
