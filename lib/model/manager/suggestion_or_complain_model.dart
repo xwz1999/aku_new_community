@@ -36,16 +36,16 @@ class SuggestionOrComplainModel {
   }
 }
 
-class ImgUrls {
+class imgUrls {
   String? url;
   String? size;
   int? longs;
   int? paragraph;
   int? sort;
 
-  ImgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
+  imgUrls({this.url, this.size, this.longs, this.paragraph, this.sort});
 
-  ImgUrls.fromJson(Map<String, dynamic> json) {
+  imgUrls.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     size = json['size'];
     longs = json['longs'];

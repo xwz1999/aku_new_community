@@ -22,6 +22,9 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
 
+import '../../../provider/user_provider.dart';
+import '../../../widget/others/user_tool.dart';
+
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;
   final int initType;
@@ -126,7 +129,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
 
   @override
   Widget build(BuildContext context) {
-    final appProvider = Provider.of<AppProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold.white(
       systemStyle: SystemStyle.yellowBottomBar,
       title: title,
@@ -142,7 +145,8 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
               width: 60.w,
             ),
             40.wb,
-            '${S.of(context)!.tempPlotName}\n${appProvider.selectedHouse!.roomName}'
+            '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
+              '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
                 .text
                 .size(32.sp)
                 .black
