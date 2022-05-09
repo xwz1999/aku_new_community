@@ -1,5 +1,6 @@
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/new_api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/questinnaire_model.dart';
@@ -10,6 +11,7 @@ import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -40,12 +42,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   String _getButtonText(int? status) {
     switch (status) {
       case 1:
+        return '未开始';
       case 2:
-        return '去投票';
+        return '进行中';
       case 3:
         return '已结束';
-      case 4:
-        return '已投票';
       default:
         return '';
     }
@@ -54,10 +55,14 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   Widget _buildCard(QuestionnaireModel model) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => QuestionnaireDetailPage(
-              id: model.id,
-              status: model.status,
-            ));
+        if(model.status==2){
+          Get.to(() => QuestionnaireDetailPage(
+            id: model.id,
+            answered: model.answered,
+          ));
+        }else{
+          BotToast.showText(text: '该问卷已结束或未开始');
+        }
       },
       child: Container(
         decoration: BoxDecoration(
@@ -142,6 +147,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                     if (model.status == 2) {
                       Get.to(() => QuestionnaireDetailPage(
                             id: model.id,
+                            answered: model.answered,
                           ));
                     }
                   },
@@ -171,7 +177,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
     return BeeScaffold(
       title: '问卷调查',
       body: BeeListView<QuestionnaireModel>(
-          path: API.manager.questionnaireList,
+          path: NEWAPI.questionnaire.list,
           controller: _easyRefreshController,
           convert: (model) {
             return model.rows

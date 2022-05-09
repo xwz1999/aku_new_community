@@ -101,8 +101,6 @@ class ApplicationUtil {
             title: '投诉表扬',
             imgPath: Assets.newIcon.icTsby.path,
             onTap: () {
-              BotToast.showText(text: '此功能暂未上线');
-              return;
               Get.to(() => AdvicePage(type: AdviceType.COMPLAIN));
             }),
         AppElement(

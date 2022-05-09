@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -97,9 +96,9 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
     List<String?> urls =
-        await NetUtil().uploadFiles(files, API.upload.uploadAdvice);
+        await NetUtil().uploadFiles(files,SAASAPI.uploadFile.uploadImg);
     BaseModel baseModel = await NetUtil().post(
-      API.manager.addAdvice,
+      SAASAPI.advice.insert,
       params: {
         'type': type,
         'content': content,

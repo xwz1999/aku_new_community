@@ -91,7 +91,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
     );
   }
 
-  _buildAdviceContent(AppAdviceContentVos item) {
+  _buildAdviceContent(AppAdviceFBIContentVos item) {
     String type = '';
     switch (item.createUserType) {
       case 1:
@@ -127,13 +127,14 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
       children: [
         '您的$adviceValue'.text.black.bold.size(38.sp).make(),
         30.hb,
-        _model.appAdviceDetailVo!.appAdviceVo!.content!.text
+        _model.appAdviceFBIDetailVo!.content!
+            .text
             .color(ktextSubColor)
             .size(28.sp)
             .make(),
         24.hb,
         DateUtil.formatDate(
-          _model.appAdviceDetailVo!.appAdviceVo!.date,
+          _model.appAdviceFBIDetailVo!.date,
           format: 'yyyy年MM月dd日 HH:mm',
         ).text.size(24.sp).color(Color(0xFF999999)).make(),
         ...widget.model!.imgUrls!.isEmpty
@@ -154,7 +155,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
                   color: Color(0xFFD8D8D8),
                 )
               ],
-        ..._model.appAdviceDetailVo!.appAdviceContentVos!
+        ..._model.appAdviceFBIContentVos!
             .map((e) => _buildAdviceContent(e))
             .toList(),
       ],
@@ -186,10 +187,10 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
           header: MaterialHeader(),
           onRefresh: () async {
             Response res = await NetUtil().dio!.get(
-              API.manager.adviceDetail,
+              SAASAPI.advice.find,
               queryParameters: {'adviceId': widget.model!.id},
             );
-            _model = AdviceDetailModel.fromJson(res.data);
+            _model = AdviceDetailModel.fromJson(res.data['data']);
             _loading = false;
             if (mounted) setState(() {});
           },
@@ -219,7 +220,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
           child: BottomButton(
             onPressed: () async {
               BaseModel baseModel =
-                  await NetUtil().get(API.manager.completeFeedBack, params: {
+                  await NetUtil().get(SAASAPI.advice.complete, params: {
                 "adviceId": widget.model!.id,
               });
               if (baseModel.success) {
@@ -229,7 +230,7 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
             },
             child: '完成沟通'.text.bold.make(),
           ),
-        )
+        ),
       ],
     );
   }

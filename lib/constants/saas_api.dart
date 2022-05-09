@@ -40,6 +40,7 @@ class SAASAPI {
   static _CommunityIntroduce communityIntroduce = _CommunityIntroduce();
   static _ConveniencePhone conveniencePhone = _ConveniencePhone();
   static _CommitteeStaff committeeStaff = _CommitteeStaff();
+  static _Advice advice = _Advice();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -356,4 +357,20 @@ class _ConveniencePhone {
 class _CommitteeStaff {
   ///查询业委会列表
   String get list => '/app/user/industryCommittee/list';
+}
+class _Advice{
+  ///查询所有投诉的列表
+  String get list => '/app/user/advice/list';
+  ///添加建议咨询/投诉表扬 信息
+  String get insert => '/app/user/advice/insert';
+  ///根据咨询建议/投诉表扬主键id 查询 咨询建议/投诉表扬信息
+  String get find => '/app/user/advice/findById';
+  ///继续提问
+  String get reQuestion => '/app/user/advice/reQuestion';
+  ///完成反馈
+  String get complete => '/app/user/advice/complete';
+  ///评价
+  String get evaluate => '/app/user/advice/evaluate';
+  ///批量删除咨询建议/投诉表扬信息
+  String get delete => '/app/user/advice/delete';
 }

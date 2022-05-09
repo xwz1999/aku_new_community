@@ -1,4 +1,6 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/new_api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/manager/article_QR_code_model.dart';
 import 'package:aku_new_community/model/manager/moving_company_model.dart';
 import 'package:aku_new_community/model/manager/questionnaire_detail_model.dart';
@@ -229,7 +231,7 @@ class ManagerFunc {
 
   static Future<QuestionnaireDetialModel> questionnairefindById(int? id) async {
     BaseModel baseModel = await NetUtil().get(
-      API.manager.questionnairefindById,
+      NEWAPI.questionnaire.detail,
       params: {
         'questionnaireId': id,
       },
@@ -241,7 +243,7 @@ class ManagerFunc {
   static Future<BaseModel> questionnaireSubmit(
       int? id, List<AppQuestionnaireAnswerSubmits> model) async {
     BaseModel baseModel = await NetUtil().post(
-      API.manager.questionnaireSubmit,
+      NEWAPI.questionnaire.submit,
       params: {
         'id': id,
         'appQuestionnaireAnswerSubmits': model,
