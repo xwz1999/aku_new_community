@@ -24,15 +24,15 @@ class QuestionnaireDetialModel {
     description = json['description'];
     beginDate = json['beginDate'];
     endDate = json['endDate'];
-    if (json['questionnaireTopicVoList'] != null) {
+    if (json['appQuestionnaireFBITopicVoList'] != null) {
       questionnaireTopicVoList = [];
-      json['questionnaireTopicVoList'].forEach((v) {
+      json['appQuestionnaireFBITopicVoList'].forEach((v) {
         questionnaireTopicVoList!.add(new QuestionnaireTopicVoList.fromJson(v));
       });
     }
-    if (json['voResourcesImgList'] != null) {
+    if (json['imgList'] != null) {
       voResourcesImgList = [];
-      json['voResourcesImgList'].forEach((v) {
+      json['imgList'].forEach((v) {
         voResourcesImgList!.add(new ImgModel.fromJson(v));
       });
     } else
@@ -47,11 +47,11 @@ class QuestionnaireDetialModel {
     data['beginDate'] = this.beginDate;
     data['endDate'] = this.endDate;
     if (this.questionnaireTopicVoList != null) {
-      data['questionnaireTopicVoList'] =
+      data['appQuestionnaireFBITopicVoList'] =
           this.questionnaireTopicVoList!.map((v) => v.toJson()).toList();
     }
     if (this.voResourcesImgList != null) {
-      data['voResourcesImgList'] =
+      data['imgList'] =
           this.voResourcesImgList!.map((v) => v.toJson()).toList();
     }
     return data;
@@ -71,9 +71,9 @@ class QuestionnaireTopicVoList {
     id = json['id'];
     type = json['type'];
     topic = json['topic'];
-    if (json['questionnaireChoiceVoList'] != null) {
+    if (json['appQuestionnaireFBITopicChoiceVoList'] != null) {
       questionnaireChoiceVoList = [];
-      json['questionnaireChoiceVoList'].forEach((v) {
+      json['appQuestionnaireFBITopicChoiceVoList'].forEach((v) {
         questionnaireChoiceVoList!
             .add(new QuestionnaireChoiceVoList.fromJson(v));
       });
@@ -87,7 +87,7 @@ class QuestionnaireTopicVoList {
     data['type'] = this.type;
     data['topic'] = this.topic;
     if (this.questionnaireChoiceVoList != null) {
-      data['questionnaireChoiceVoList'] =
+      data['appQuestionnaireFBITopicChoiceVoList'] =
           this.questionnaireChoiceVoList!.map((v) => v.toJson()).toList();
     } else
       questionnaireChoiceVoList = [];

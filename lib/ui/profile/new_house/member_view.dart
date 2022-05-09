@@ -12,6 +12,9 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../model/common/img_model.dart';
+import '../../../widget/bee_avatar_widget.dart';
+
 class MemberView extends StatefulWidget {
   const MemberView({Key? key}) : super(key: key);
 
@@ -65,7 +68,7 @@ class _MemberViewState extends State<MemberView> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-            child: '${model.buildingName}${model.unitName}${model.estateName}'
+            child: '${model.buildingName}栋${model.unitName}单元${model.estateName}'
                 .text
                 .size(32.sp)
                 .color(Colors.black.withOpacity(0.85))
@@ -79,7 +82,7 @@ class _MemberViewState extends State<MemberView> {
               crossAxisCount: 4,
               children: [
                 ...model.members
-                    .map((e) => _avatar(Identify.values[e.identity], e.name))
+                    .map((e) => _avatar(e.avatarImgList,Identify.values[e.identity], e.name))
                     .toList()
               ],
               shrinkWrap: true,
@@ -92,6 +95,7 @@ class _MemberViewState extends State<MemberView> {
   }
 
   Widget _avatar(
+    List<ImgModel> imgModel,
     Identify identify,
     String name,
   ) {
@@ -108,8 +112,11 @@ class _MemberViewState extends State<MemberView> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40.w),
                   border: Border.all(color: kPrimaryColor, width: 4.w)),
-              child: Assets.newIcon.avatarPlaceholder
-                  .image(width: 80.w, height: 80.w),
+              child: BeeAvatarWidget(
+                width: 80.w,
+                height: 80.w,
+                imgs: imgModel,
+              ),
             ),
             Positioned(
                 bottom: -20.w,

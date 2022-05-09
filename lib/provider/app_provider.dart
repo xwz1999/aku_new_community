@@ -310,6 +310,8 @@ class AppProvider extends ChangeNotifier {
   ///保存默认收货地址
   Future getMyAddress() async {
     BaseModel model = await NetUtil().get(SAASAPI.market.address.myAddress);
+
+    print((model.data as List).length);
     if ((model.data as List).length == 0) {
       _addressModels.clear();
       _defaultAddressModel=null;

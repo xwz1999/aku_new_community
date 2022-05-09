@@ -74,8 +74,9 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
       if (appProvider.defaultAddressModel == null) {
         return '选择收货地址';
       } else {
-        return (appProvider.defaultAddressModel!.locationName ?? '') +
-            (appProvider.defaultAddressModel!.addressDetail ?? '');
+        return (_goodDetail!.stockStatus == 1) ? '有货' : '无货';
+        // (appProvider.defaultAddressModel!.locationName ?? '') +
+        //   (appProvider.defaultAddressModel!.addressDetail ?? '');
       }
     } else {
       return (_addressModel!.locationName ?? '') +
@@ -393,6 +394,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               var result = await Get.to(() => AddressListPage(
                     canBack: true,
                   ));
+              _addressModel = null;
               if (result != null) {
                 _addressModel = result;
                 _refreshController.callRefresh();
@@ -418,8 +420,9 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                         width: 430.w,
                         child: Text(
                           receiveAddress,
-                          style:
-                              TextStyle(fontSize: 24.sp, color: ktextPrimary),
+                          style: receiveAddress == '无货'
+                              ? TextStyle(fontSize: 24.sp, color: kDangerColor)
+                              : TextStyle(fontSize: 24.sp, color: ktextPrimary),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -433,27 +436,27 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                       16.wb,
                     ],
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      120.wb,
-                      20.hb,
-                      Offstage(
-                        offstage: receiveAddress == '选择收货地址',
-                        child: (_goodDetail!.stockStatus == 1)
-                            ? '有货'
-                                .text
-                                .color(Color(0xFFE52E2E))
-                                .size(28.sp)
-                                .make()
-                            : '无货'
-                                .text
-                                .color(Color(0xFFE52E2E))
-                                .size(28.sp)
-                                .make(),
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     120.wb,
+                  //     20.hb,
+                  //     Offstage(
+                  //       offstage: receiveAddress == '选择收货地址',
+                  //       child: (_goodDetail!.stockStatus == 1)
+                  //           ? '有货'
+                  //               .text
+                  //               .color(Color(0xFFE52E2E))
+                  //               .size(28.sp)
+                  //               .make()
+                  //           : '无货'
+                  //               .text
+                  //               .color(Color(0xFFE52E2E))
+                  //               .size(28.sp)
+                  //               .make(),
+                  //     )
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -668,7 +671,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
                 onTap: () async {
                   var re = await SearchFunc.addGoodsCar(_goodDetail!.id);
                   if (re) {
-                    Get.back();
+                    BotToast.showText(text: '已添加进购物车');
                   }
                 },
                 child: Container(
@@ -779,5 +782,4 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
 
     return count + '折';
   }
-
 }

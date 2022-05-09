@@ -9,11 +9,14 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../utils/network/net_util.dart';
 
 class IndustryCommitteePage extends StatefulWidget {
   IndustryCommitteePage({Key? key}) : super(key: key);
@@ -23,19 +26,20 @@ class IndustryCommitteePage extends StatefulWidget {
 }
 
 class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
+  List<CommitteeItemModel> _models = [];
   EasyRefreshController _refreshController = EasyRefreshController();
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 0), () async {
-      var agreement =
-          await HiveStore.appBox?.get('IndustryCommitteePage') ?? false;
-      if (!agreement) {
-        await TipsDialog.tipsDialog();
-        HiveStore.appBox!.put('IndustryCommitteePage', true);
-      }
-    });
+    // Future.delayed(Duration(milliseconds: 0), () async {
+    //   var agreement =
+    //       await HiveStore.appBox?.get('IndustryCommitteePage') ?? false;
+    //   if (!agreement) {
+    //     await TipsDialog.tipsDialog();
+    //     HiveStore.appBox!.put('IndustryCommitteePage', true);
+    //   }
+    // });
   }
 
   Widget _buildBottomNavi() {
@@ -95,7 +99,7 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
             borderRadius: BorderRadius.circular(4.w),
             child: FadeInImage.assetNetwork(
               placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SAASAPI.image(ImgModel.first(model.imgUrls)),
+              image: SAASAPI.image(ImgModel.first(model.imgList)),
               height: 150.w,
               width: 150.w,
               fit: BoxFit.cover,
@@ -112,9 +116,10 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                   height: 44.w,
                   padding:
                       EdgeInsets.symmetric(horizontal: 22.w, vertical: 6.w),
-                  child: model.positionValue.text
+                  child: model.industryCommitteeTypeName!.text
                       .size(24.sp)
                       .color(ktextPrimary)
+                      .bold
                       .make(),
                   decoration: BoxDecoration(
                     color: Color(0xFFFFF3CD),
@@ -123,17 +128,17 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
                   ),
                 ),
               ].row(),
-              6.hb,
+              15.hb,
               ...[
-                '住址：${model.roomName}'
+                '住址：${model.buildingName}幢${model.unitName}单元${model.estateName}房间'
                     .text
-                    .size(24.sp)
+                    .size(23.sp)
                     .color(ktextSubColor)
                     .make(),
                 // '任职期限：XXXXX'.text.size(24.sp).color(ktextSubColor).make(),
-                '从事岗位：${model.profession}'
+                '任职期限：${DateUtil.formatDate(model.appointmentStartDT, format: 'yyyy年MM月dd日')}-${DateUtil.formatDate(model.appointmentEndDT, format: 'yyyy年MM月dd日')}'
                     .text
-                    .size(24.sp)
+                    .size(23.sp)
                     .color(ktextSubColor)
                     .make(),
               ].sepWidget(separate: 10.hb),
@@ -148,23 +153,54 @@ class _IndustryCommitteePageState extends State<IndustryCommitteePage> {
     return BeeScaffold(
       title: '业委会',
       systemStyle: SystemStyle.genStyle(bottom: Color(0xFF2A2A2A)),
-      body: BeeListView<CommitteeItemModel>(
-        path: API.manager.commiteeStaff,
-        convert: (model) {
-          return model.rows.map((e) => CommitteeItemModel.fromJson(e)).toList();
-        },
-        controller: _refreshController,
-        builder: (items) {
-          return ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
+      body: Container(
+        child: EasyRefresh(
+          firstRefresh: true,
+          header: MaterialHeader(),
+          controller: _refreshController,
+          onRefresh: () async {
+            var base = await NetUtil().get(SAASAPI.committeeStaff.list);
+            if (base.success) {
+              print(base.success);
+              _models = (base.data as List)
+                  .map((e) => CommitteeItemModel.fromJson(e))
+                  .toList();
+            }
+            setState(() {});
+          },
+          child: ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
             itemBuilder: (context, index) {
-              return _buildCard(items[index]);
+              return _buildCard(_models[index]);
             },
-            separatorBuilder: (context, index) => 20.hb,
-            itemCount: items.length,
-          );
-        },
+            separatorBuilder: (context, index) {
+              return Divider(
+                thickness: 1.w,
+                height: 40.w,
+                color: Color(0xFFD8D8D8),
+              );
+            },
+            itemCount: _models.length,
+          ),
+        ),
       ),
+      // BeeListView<CommitteeItemModel>(
+      //   path: SAASAPI.committeeStaff.list,
+      //   convert: (model) {
+      //     return model.rows.map((e) => CommitteeItemModel.fromJson(e)).toList();
+      //   },
+      //   controller: _refreshController,
+      //   builder: (items) {
+      //     return ListView.separated(
+      //       padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.w),
+      //       itemBuilder: (context, index) {
+      //         return _buildCard(items[index]);
+      //       },
+      //       separatorBuilder: (context, index) => 20.hb,
+      //       itemCount: items.length,
+      //     );
+      //   },
+      // ),
       bottomNavi: _buildBottomNavi(),
     );
   }

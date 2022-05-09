@@ -10,6 +10,8 @@ class QuestionnaireModel {
   int? answerNum;
   List<ImgModel>? imgUrls;
   List<ImgModel>? headImgURls;
+  bool? answered;
+  bool? allowAnswer;
 
   QuestionnaireModel(
       {this.id,
@@ -20,7 +22,10 @@ class QuestionnaireModel {
       this.status,
       this.answerNum,
       this.imgUrls,
-      this.headImgURls});
+      this.headImgURls,
+      this.answered,
+      this.allowAnswer,
+      });
 
   QuestionnaireModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -44,6 +49,9 @@ class QuestionnaireModel {
       });
     } else
       headImgURls = [];
+    answered = json['answered'];
+    allowAnswer = json['allowAnswer'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +69,8 @@ class QuestionnaireModel {
     if (this.headImgURls != null) {
       data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
+    data['answered']=this.answered;
+    data['allowAnswer']=this.allowAnswer;
     return data;
   }
 }

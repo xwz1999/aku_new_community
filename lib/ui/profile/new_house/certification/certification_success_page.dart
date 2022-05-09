@@ -1,3 +1,4 @@
+import 'package:aku_new_community/ui/profile/house/add_house_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,9 @@ class _CertificationSuccessPageState extends State<CertificationSuccessPage> {
             34.w.heightBox,
             '提交成功'.text.size(40.sp).color(Colors.black).bold.make(),
             94.w.heightBox,
-            AddHouseButton(text: '添加房屋', onTap: () {}),
+            AddHouseButton(text: '添加房屋', onTap: () {
+              Get.to(() => AddHousePage());
+            }),
             40.w.heightBox,
             AddHouseButton(
                 text: '返回首页',

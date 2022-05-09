@@ -1,86 +1,53 @@
 import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+@JsonSerializable()
 class CommitteeItemModel {
-  int? id;
-  int? positionId;
-  String? name;
-  int? sexId;
-  int? age;
-  int? educationId;
-  String? roomName;
-  String? profession;
-  String? roomNumber;
-  int? unitNo;
-  int? estateNo;
-  List<ImgModel>? imgUrls;
+  final int? id;
+  final String? name;
+  final String? tel;
+  final String? industryCommitteeTypeName;
+  final String? buildingName;
+  final String? unitName;
+  final String? estateName;
+  final String? appointmentStartTime;
+  final String? appointmentEndTime;
+  final String? createDate;
+  final List<ImgModel>? imgList;
 
-  String get sexValue {
-    if (sexId == 0 || sexId == null) return '未设置';
-    if (sexId == 1) return '男';
-    if (sexId == 2) return '女';
-    return '未设置';
-  }
-
-  String get positionValue {
-    switch (positionId) {
-      case 1:
-        return '业委会主任';
-      case 2:
-        return '业委会副主任';
-      case 3:
-        return '业委会委员';
-      default:
-        return '';
-    }
-  }
-
-  CommitteeItemModel({
-    this.id,
-    this.positionId,
-    this.name,
-    this.sexId,
-    this.age,
-    this.educationId,
-    this.roomName,
-    this.profession,
-    this.roomNumber,
-    this.unitNo,
-    this.estateNo,
-    this.imgUrls,
+  factory CommitteeItemModel.fromJson(Map<String, dynamic> json) =>
+      _$CommitteeItemModel(json);
+  DateTime? get appointmentStartDT => DateUtil.getDateTime(appointmentStartTime!);
+  DateTime? get appointmentEndDT => DateUtil.getDateTime(appointmentEndTime!);
+  DateTime? get createDateDT => DateUtil.getDateTime(createDate!);
+  const CommitteeItemModel({
+    required this.id,
+    required this.name,
+    required this.tel,
+    required this.industryCommitteeTypeName,
+    required this.buildingName,
+    required this.unitName,
+    required this.estateName,
+    required this.appointmentStartTime,
+    required this.appointmentEndTime,
+    required this.createDate,
+    required this.imgList,
   });
-
-  CommitteeItemModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    positionId = json['positionId'];
-    name = json['name'];
-    sexId = json['sexId'];
-    age = json['age'];
-    educationId = json['educationId'];
-    roomName = json['roomName'];
-    profession = json['profession'];
-    roomNumber = json['roomNumber'];
-    unitNo = json['unitNo'];
-    estateNo = json['estateNo'];
-    if (json['imgUrls'] != null) {
-      imgUrls =
-          (json['imgUrls'] as List).map((e) => ImgModel.fromJson(e)).toList();
-    } else
-      imgUrls = [];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['positionId'] = this.positionId;
-    data['name'] = this.name;
-    data['sexId'] = this.sexId;
-    data['age'] = this.age;
-    data['educationId'] = this.educationId;
-    data['roomName'] = this.roomName;
-    data['profession'] = this.profession;
-    data['roomNumber'] = this.roomNumber;
-    data['unitNo'] = this.unitNo;
-    data['estateNo'] = this.estateNo;
-    return data;
-  }
 }
+CommitteeItemModel _$CommitteeItemModel(Map<String, dynamic> json) =>
+    CommitteeItemModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      tel: json['tel'] as String,
+      industryCommitteeTypeName: json['industryCommitteeTypeName'] as String,
+      buildingName: json['buildingName'] as String,
+      unitName: json['unitName'] as String,
+      estateName: json['estateName'] as String,
+      appointmentStartTime: json['appointmentStartTime'] as String,
+      appointmentEndTime: json['appointmentEndTime'] as String,
+      createDate: json['createDate'] as String,
+      imgList: (json['imgList'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );

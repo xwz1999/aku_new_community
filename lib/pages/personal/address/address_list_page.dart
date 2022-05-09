@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -86,8 +87,8 @@ class AddressListPageState extends State<AddressListPage>
         firstRefresh: true,
         header: MaterialHeader(),
         controller: _refreshController,
-        onRefresh: () async {
-          _addressModels = await Userfunc.getMyAddress();
+        onRefresh: () async { await UserTool.appProvider.getMyAddress();
+          _addressModels = UserTool.appProvider.addressModels;
           _onload = false;
           setState(() {});
         },

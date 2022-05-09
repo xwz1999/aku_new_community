@@ -54,8 +54,7 @@ class _ExamineViewState extends State<ExamineView> {
           header: MaterialHeader(),
           footer: MaterialFooter(),
           onRefresh: () async {
-            var base = await NetUtil()
-                .get(SAASAPI.profile.family.myFamilyMember, params: {
+            var base = await NetUtil().get(SAASAPI.profile.family.myFamilyExamine, params: {
               'status': _currentIndex,
             });
             if (base.success) {

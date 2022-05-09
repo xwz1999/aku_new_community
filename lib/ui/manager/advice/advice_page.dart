@@ -111,7 +111,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         controller: _tabController,
         children: List.generate(2, (index) {
           return BeeListView<SuggestionOrComplainModel>(
-            path: API.manager.advice,
+            path: SAASAPI.advice.list,
             extraParams: {'adviceType': adviceValue(index)},
             controller: _refreshController,
             convert: (model) => model.rows
@@ -168,7 +168,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         firstChild: BottomButton(
           onPressed: () async {
             await NetUtil().post(
-              API.manager.deleteAdvice,
+              SAASAPI.advice.delete,
               params: {'ids': _selectedItems},
               showMessage: true,
             );

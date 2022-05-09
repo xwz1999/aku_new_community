@@ -111,7 +111,7 @@ class _ConvenientPhonePageState extends State<ConvenientPhonePage> {
                     CupertinoIcons.search,
                     size: 42.w,
                   ),
-                  contentPadding: EdgeInsets.only(top: 14.w),
+                  contentPadding: EdgeInsets.only(top: 3.w),
                   // isDense: true,
                   hintText: '搜索机构',
                   hintStyle:

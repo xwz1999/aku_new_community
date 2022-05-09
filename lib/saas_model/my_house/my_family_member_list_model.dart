@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../model/common/img_model.dart';
+
 part 'my_family_member_list_model.g.dart';
 
 @JsonSerializable()
@@ -29,6 +31,7 @@ class Member {
   final int id;
   final String name;
   final int identity;
+  final List<ImgModel> avatarImgList;
 
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
@@ -36,5 +39,6 @@ class Member {
     required this.id,
     required this.name,
     required this.identity,
+    required this.avatarImgList,
   });
 }

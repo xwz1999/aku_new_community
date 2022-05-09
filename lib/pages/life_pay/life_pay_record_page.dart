@@ -101,66 +101,74 @@ class _LifePayRecordPageState extends State<LifePayRecordPage> {
               borderRadius: BorderRadius.circular(8.w),
             ),
             child: DateUtil.formatDate(DateUtil.getDateTime(model.createDate),
-                    format: 'MM-dd HH-mm')
+                    format: 'MM-dd HH:mm')
                 .text
                 .size(24.sp)
                 .color(Colors.black.withOpacity(0.45))
                 .make(),
           ),
-          Row(
+          Column(
             children: [
-              model.chargesName.text
-                  .size(30.sp)
-                  .color(ktextPrimary)
-                  .bold
-                  .make(),
-              Spacer(),
-              '${model.buildingName + '栋' + model.unitName + '单元' + model.estateName}'
-                  .text
-                  .size(24.sp)
-                  .color(Color(0xFF999999))
-                  .make()
-            ],
-          ),
-          16.w.heightBox,
-          Row(
-            children: [
-              '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
-              Spacer(),
-              '${model.payAmount}'.text.color(ktextPrimary).size(28.sp).make(),
-            ],
-          ),
-          Row(
-            children: [
-              '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
-              Spacer(),
-              '${getPayType[model.payType]}'
-                  .text
-                  .color(ktextPrimary)
-                  .size(28.sp)
-                  .make(),
-            ],
-          ),
-          Row(
-            children: [
-              '流水号'.text.color(ktextSubColor).size(28.sp).make(),
-              Spacer(),
-              '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
-            ],
-          ),
-          Row(
-            children: [
-              '流水号'.text.color(ktextSubColor).size(28.sp).make(),
-              Spacer(),
-              '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
-            ],
-          ),
-        ].sepWidget(separate: 24.w.heightBox),
-      )
-          .box
-          .color(Colors.white)
-          .padding(EdgeInsets.symmetric(vertical: 32.w, horizontal: 20.w))
-          .make(),
+              Row(
+                children: [
+                  model.chargesName.text
+                      .size(30.sp)
+                      .color(ktextPrimary)
+                      .bold
+                      .make(),
+                  Spacer(),
+                  '${model.buildingName + '栋' + model.unitName + '单元' + model.estateName}'
+                      .text
+                      .size(24.sp)
+                      .color(Color(0xFF999999))
+                      .make()
+                ],
+              ),
+              16.w.heightBox,
+              Row(
+                children: [
+                  '缴纳金额'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  '${model.payAmount}'
+                      .text
+                      .color(ktextPrimary)
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '付款方式'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  '${getPayType[model.payType]}'
+                      .text
+                      .color(ktextPrimary)
+                      .size(28.sp)
+                      .make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '流水号'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+                ],
+              ),
+              Row(
+                children: [
+                  '流水号'.text.color(ktextSubColor).size(28.sp).make(),
+                  Spacer(),
+                  '${model.code}'.text.color(ktextPrimary).size(28.sp).make(),
+                ],
+              ),
+            ].sepWidget(separate: 24.w.heightBox),
+          )
+              .box
+              .color(Colors.white)
+              .padding(EdgeInsets.symmetric(vertical: 32.w, horizontal: 20.w))
+              .make(),
+        ],
+      ),
     );
   }
 }

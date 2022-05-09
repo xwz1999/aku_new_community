@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -22,6 +21,9 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
+
+import '../../../provider/user_provider.dart';
+import '../../../widget/others/user_tool.dart';
 
 class NewAdvicePage extends StatefulWidget {
   final AdviceType type;
@@ -97,9 +99,9 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
     List<String?> urls =
-        await NetUtil().uploadFiles(files, API.upload.uploadAdvice);
+        await NetUtil().uploadFiles(files,SAASAPI.uploadFile.uploadImg);
     BaseModel baseModel = await NetUtil().post(
-      API.manager.addAdvice,
+      SAASAPI.advice.insert,
       params: {
         'type': type,
         'content': content,
@@ -127,7 +129,7 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
 
   @override
   Widget build(BuildContext context) {
-    final appProvider = Provider.of<AppProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold.white(
       systemStyle: SystemStyle.yellowBottomBar,
       title: title,
@@ -143,7 +145,8 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
               width: 60.w,
             ),
             40.wb,
-            '${S.of(context)!.tempPlotName}\n${appProvider.selectedHouse!.roomName}'
+            '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
+              '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
                 .text
                 .size(32.sp)
                 .black

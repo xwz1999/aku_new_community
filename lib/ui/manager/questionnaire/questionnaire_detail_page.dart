@@ -14,6 +14,7 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -21,9 +22,9 @@ import 'package:get/get.dart';
 
 class QuestionnaireDetailPage extends StatefulWidget {
   final int? id;
-  final int? status;
+  final bool? answered;
 
-  QuestionnaireDetailPage({Key? key, this.id, this.status}) : super(key: key);
+  QuestionnaireDetailPage({Key? key, this.id, this.answered}) : super(key: key);
 
   @override
   _QuestionnaireDetailPageState createState() =>
@@ -258,12 +259,14 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
       bottomNavi: BottomButton(
         child: '确认提交'
             .text
-            .color(widget.status != 2 ? ktextSubColor : ktextPrimary)
+            .color(widget.answered! ? ktextSubColor : ktextPrimary)
             .size(32.sp)
             .bold
             .make(),
-        onPressed: widget.status != 2
-            ? () {}
+        onPressed: widget.answered != 2
+            ? () {
+          BotToast.showText(text: '该问卷已填写过');
+        }
             : () async {
                 BaseModel baseModel = await ManagerFunc.questionnaireSubmit(
                     widget.id, _submitModels);

@@ -3,79 +3,62 @@ import 'package:common_utils/common_utils.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 
 class AdviceDetailModel {
-  AppAdviceDetailVo? appAdviceDetailVo;
+  AppAdviceFBIDetailVo? appAdviceFBIDetailVo;
+  List<AppAdviceFBIContentVos>? appAdviceFBIContentVos;
 
-  AdviceDetailModel({this.appAdviceDetailVo});
+  AdviceDetailModel({this.appAdviceFBIDetailVo, this.appAdviceFBIContentVos});
 
   AdviceDetailModel.fromJson(Map<String, dynamic> json) {
-    appAdviceDetailVo = json['appAdviceDetailVo'] != null
-        ? new AppAdviceDetailVo.fromJson(json['appAdviceDetailVo'])
+    appAdviceFBIDetailVo = json['appAdviceFBIDetailVo'] != null
+        ? new AppAdviceFBIDetailVo.fromJson(json['appAdviceFBIDetailVo'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.appAdviceDetailVo != null) {
-      data['appAdviceDetailVo'] = this.appAdviceDetailVo!.toJson();
-    }
-    return data;
-  }
-}
-
-class AppAdviceDetailVo {
-  AppAdviceVo? appAdviceVo;
-  List<AppAdviceContentVos>? appAdviceContentVos;
-
-  AppAdviceDetailVo({this.appAdviceVo, this.appAdviceContentVos});
-
-  AppAdviceDetailVo.fromJson(Map<String, dynamic> json) {
-    appAdviceVo = json['appAdviceVo'] != null
-        ? new AppAdviceVo.fromJson(json['appAdviceVo'])
-        : null;
-    if (json['appAdviceContentVos'] != null) {
-      appAdviceContentVos = [];
-      json['appAdviceContentVos'].forEach((v) {
-        appAdviceContentVos!.add(new AppAdviceContentVos.fromJson(v));
+    if (json['appAdviceFBIContentVos'] != null) {
+      appAdviceFBIContentVos = [];
+      json['appAdviceFBIContentVos'].forEach((v) {
+        appAdviceFBIContentVos!.add(new AppAdviceFBIContentVos.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.appAdviceVo != null) {
-      data['appAdviceVo'] = this.appAdviceVo!.toJson();
+    if (this.appAdviceFBIDetailVo != null) {
+      data['appAdviceFBIDetailVo'] = this.appAdviceFBIDetailVo!.toJson();
     }
-    if (this.appAdviceContentVos != null) {
-      data['appAdviceContentVos'] =
-          this.appAdviceContentVos!.map((v) => v.toJson()).toList();
+    if (this.appAdviceFBIContentVos != null) {
+      data['appAdviceFBIContentVos'] =
+          this.appAdviceFBIContentVos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class AppAdviceVo {
+class AppAdviceFBIDetailVo {
   int? id;
   int? type;
   int? status;
   String? content;
+  int? score;
   String? createDate;
   List<ImgModel>? imgUrls;
 
   DateTime? get date => DateUtil.getDateTime(createDate!);
 
-  AppAdviceVo(
+  AppAdviceFBIDetailVo(
       {this.id,
       this.type,
       this.status,
       this.content,
+      this.score,
       this.createDate,
       this.imgUrls});
 
-  AppAdviceVo.fromJson(Map<String, dynamic> json) {
+  AppAdviceFBIDetailVo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
     status = json['status'];
     content = json['content'];
+    score = json['score'];
     createDate = json['createDate'];
     if (json['imgUrls'] != null) {
       imgUrls = [];
@@ -91,6 +74,7 @@ class AppAdviceVo {
     data['type'] = this.type;
     data['status'] = this.status;
     data['content'] = this.content;
+    data['score'] = this.score;
     data['createDate'] = this.createDate;
     if (this.imgUrls != null) {
       data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
@@ -99,14 +83,14 @@ class AppAdviceVo {
   }
 }
 
-class AppAdviceContentVos {
+class AppAdviceFBIContentVos {
   int? id;
   int? createUserType;
   String? content;
   String? createDate;
   int? parentId;
 
-  AppAdviceContentVos(
+  AppAdviceFBIContentVos(
       {this.id,
       this.createUserType,
       this.content,
@@ -115,7 +99,7 @@ class AppAdviceContentVos {
 
   DateTime? get date => DateUtil.getDateTime(createDate!);
 
-  AppAdviceContentVos.fromJson(Map<String, dynamic> json) {
+  AppAdviceFBIContentVos.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     createUserType = json['createUserType'];
     content = json['content'];

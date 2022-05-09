@@ -68,6 +68,7 @@ class _MyAddressItemState extends State<MyAddressItem> {
                     if (result) {
                       await appProvider.getMyAddress();
                       widget.refreshController!.callRefresh();
+                      Get.back();
                     }
                   },
                   child: Container(
