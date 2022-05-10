@@ -37,6 +37,8 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../ui/manager/advice/advice_page.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -356,11 +358,7 @@ class _HomePageState extends State<HomePage>
                                         ),
                                       ),
                                       onTap: () async {
-                                        BotToast.showText(
-                                            text: '此功能升级中，稍后上线',
-                                            align: Alignment(0, 0.5));
-                                        // Get.to(AdvicePage(
-                                        //     type: AdviceType.SUGGESTION));
+                                        Get.to(AdvicePage(type: AdviceType.SUGGESTION));
                                       },
                                     ),
                                   )

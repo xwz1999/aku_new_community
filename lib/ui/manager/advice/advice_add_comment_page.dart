@@ -70,9 +70,9 @@ class _AdviceAddCommentPageState extends State<AdviceAddCommentPage> {
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
             BaseModel baseModel = await NetUtil().post(
-              API.manager.adviceQuestion,
+              SAASAPI.advice.reQuestion,
               params: {
-                'adviceId': widget.id,
+                'appAdviceId': widget.id,
                 'content': _textEditingController.text,
                 'parentId': 0,
               },

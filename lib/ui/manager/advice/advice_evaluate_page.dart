@@ -1,5 +1,5 @@
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -67,9 +67,10 @@ class _AdviceEvaluatePageState extends State<AdviceEvaluatePage> {
             color: kPrimaryColor,
             elevation: 0,
             onPressed: () async {
-              BaseModel baseModel = await NetUtil().post(
-                API.manager.adviceEvaluate,
-                params: {'id': widget.id, 'score': _rating},
+              print(_rating);
+              BaseModel baseModel = await NetUtil().get(
+                SAASAPI.advice.evaluate,
+                params: {'adviceId': widget.id, 'score': _rating},
                 showMessage: true,
               );
               if (baseModel.success) {

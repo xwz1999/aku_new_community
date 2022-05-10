@@ -5,7 +5,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/manager/suggestion_or_complain_model.dart';
@@ -15,7 +14,6 @@ import 'package:aku_new_community/ui/manager/advice/new_advice_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/animated/animated_transition.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
@@ -76,7 +74,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
     Future.delayed(Duration(milliseconds: 0), () async {
       var agreement = await HiveStore.appBox?.get('AdvicePage') ?? false;
       if (!agreement) {
-        await TipsDialog.tipsDialog();
+        //await TipsDialog.tipsDialog();
         HiveStore.appBox!.put('AdvicePage', true);
       }
     });
@@ -112,7 +110,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
         children: List.generate(2, (index) {
           return BeeListView<SuggestionOrComplainModel>(
             path: SAASAPI.advice.list,
-            extraParams: {'adviceType': adviceValue(index)},
+            extraParams: {'type': adviceValue(index)},
             controller: _refreshController,
             convert: (model) => model.rows
                 .map((e) => SuggestionOrComplainModel.fromJson(e))
@@ -169,7 +167,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
           onPressed: () async {
             await NetUtil().post(
               SAASAPI.advice.delete,
-              params: {'ids': _selectedItems},
+              params: {'adviceIds': _selectedItems},
               showMessage: true,
             );
             _refreshController.callRefresh();

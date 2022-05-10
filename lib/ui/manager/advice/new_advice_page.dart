@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_new_community/ui/manager/advice/advice_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -99,13 +100,13 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
   Future addAdvice(int type, List<File> files, String content) async {
     VoidCallback cancel = BotToast.showLoading();
     List<String?> urls =
-        await NetUtil().uploadFiles(files,SAASAPI.uploadFile.uploadImg);
+        await NetUtil().uploadFiles(files, SAASAPI.uploadFile.uploadImg);
     BaseModel baseModel = await NetUtil().post(
       SAASAPI.advice.insert,
       params: {
         'type': type,
         'content': content,
-        'fileUrls': urls,
+        'imgUrls': urls,
       },
       showMessage: true,
     );
@@ -138,21 +139,34 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
         children: [
           '业主/租客房屋'.text.size(28.sp).black.make(),
           32.hb,
-          <Widget>[
-            Image.asset(
-              R.ASSETS_IMAGES_HOUSE_ATTESTATION_PNG,
-              height: 60.w,
-              width: 60.w,
-            ),
-            40.wb,
-            '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
-              '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
-                .text
-                .size(32.sp)
-                .black
-                .bold
-                .make(),
-          ].row(),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                Get.to(() => AdviceHousePage());
+              });
+            },
+            child: <Widget>[
+              Image.asset(
+                R.ASSETS_IMAGES_HOUSE_ATTESTATION_PNG,
+                height: 60.w,
+                width: 60.w,
+              ),
+              40.wb,
+              '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
+                      '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
+                  .text
+                  .size(32.sp)
+                  .black
+                  .bold
+                  .make(),
+              300.wb,
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 35.w,
+                color: Colors.black.withOpacity(0.25),
+              ),
+            ].row(),
+          ),
           Divider(height: 64.w),
           '您要选择的类型是？'.text.size(28.sp).make(),
           32.hb,
