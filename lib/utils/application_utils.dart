@@ -85,8 +85,6 @@ class ApplicationUtil {
             title: '活动投票',
             imgPath: Assets.newIcon.icHdtp.path,
             onTap: () {
-              BotToast.showText(text: '此功能暂未上线');
-              return;
               Get.to(() => EventVotingPage());
             }),
         AppElement(

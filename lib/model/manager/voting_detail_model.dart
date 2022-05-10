@@ -1,4 +1,5 @@
 import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:common_utils/common_utils.dart';
 
 class VotingDetailModel {
   int? id;
@@ -6,8 +7,17 @@ class VotingDetailModel {
   String? content;
   int? status;
   int? totals;
+  String? beginDate;
+  String? endDate;
   List<ImgModel>? imgUrls;
   List<AppVoteCandidateVos>? appVoteCandidateVos;
+  bool? vote;
+  bool? allowVote;
+
+
+  DateTime? get beginDT => DateUtil.getDateTime(beginDate!);
+
+  DateTime? get endDT => DateUtil.getDateTime(endDate!);
 
   VotingDetailModel(
       {this.id,
@@ -15,8 +25,12 @@ class VotingDetailModel {
       this.content,
       this.status,
       this.totals,
+      this.beginDate,
+      this.endDate,
       this.imgUrls,
-      this.appVoteCandidateVos});
+      this.appVoteCandidateVos,
+      this.vote,
+      this.allowVote});
 
   VotingDetailModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -24,19 +38,23 @@ class VotingDetailModel {
     content = json['content'];
     status = json['status'];
     totals = json['totals'];
-    if (json['imgUrls'] != null) {
+    beginDate = json['beginDate'];
+    endDate = json['endDate'];
+    if (json['imgList'] != null) {
       imgUrls = [];
-      json['imgUrls'].forEach((v) {
+      json['imgList'].forEach((v) {
         imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
-    if (json['appVoteCandidateVos'] != null) {
+    if (json['candidateVoList'] != null) {
       appVoteCandidateVos = [];
-      json['appVoteCandidateVos'].forEach((v) {
+      json['candidateVoList'].forEach((v) {
         appVoteCandidateVos!.add(new AppVoteCandidateVos.fromJson(v));
       });
     }
+    vote = json['vote'];
+    allowVote = json['allowVote'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,12 +65,14 @@ class VotingDetailModel {
     data['status'] = this.status;
     data['totals'] = this.totals;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
+      data['imgList'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.appVoteCandidateVos != null) {
-      data['appVoteCandidateVos'] =
+      data['candidateVoList'] =
           this.appVoteCandidateVos!.map((v) => v.toJson()).toList();
     }
+    data['vote']=this.vote;
+    data['allowVote']=this.allowVote;
     return data;
   }
 }
@@ -97,9 +117,9 @@ class AppVoteCandidateVos {
     id = json['id'];
     name = json['name'];
     total = json['total'];
-    if (json['imgUrls'] != null) {
+    if (json['imgList'] != null) {
       imgUrls = [];
-      json['imgUrls'].forEach((v) {
+      json['imgList'].forEach((v) {
         imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
@@ -112,7 +132,7 @@ class AppVoteCandidateVos {
     data['name'] = this.name;
     data['total'] = this.total;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
+      data['imgList'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -8,6 +8,7 @@ import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
@@ -37,12 +38,11 @@ class _EventVotingPageState extends State<EventVotingPage> {
   String _getButtonText(int? status) {
     switch (status) {
       case 1:
+        return '未开始';
       case 2:
-        return '去参与';
+        return '进行中';
       case 3:
         return '已结束';
-      case 4:
-        return '已填写';
       default:
         return '';
     }
@@ -92,7 +92,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
                           color: ktextPrimary,
                           fontSize: 24.sp,
                         ),
-                        text: model.beginDate! + '至' + model.endDate!,
+                        text: DateUtil.formatDate(model.beginDT,format: 'MM月dd日 HH:mm',) + '至' + DateUtil.formatDate(model.endDT,format: 'MM月dd日 HH:mm',),
                       ),
                     ])),
                 16.w.heightBox,
@@ -135,7 +135,7 @@ class _EventVotingPageState extends State<EventVotingPage> {
     return BeeScaffold(
       title: '活动投票',
       body: BeeListView<EventVotingModel>(
-          path: API.manager.enventVotingList,
+          path: SAASAPI.vote.list,
           controller: _controller,
           convert: (model) {
             return model.rows.map((e) => EventVotingModel.fromJson(e)).toList();

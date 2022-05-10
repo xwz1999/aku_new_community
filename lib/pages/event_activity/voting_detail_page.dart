@@ -35,7 +35,7 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
   bool _hasVoted = false;
 
   bool get finishVoted {
-    if ((_model.status == 4) || _hasVoted || (_model.status == 3)) {
+    if ((_model.vote!) || _hasVoted || (_model.status == 3)) {
       return true;
     }
     return false;
@@ -268,9 +268,13 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
       ),
       bottomNavi: BottomButton(
           onPressed: _model.status != 2
-              ? () {}
+              ? () {
+                  BotToast.showText(text: '投票未开始或已结束');
+                }
               : () async {
-                  if (_selectId == null) {
+                  if (_model.allowVote!) {
+                    BotToast.showText(text: '投票失败');
+                  } else if (_selectId == null) {
                     BotToast.showText(text: '请先选择候选人！');
                   } else {
                     BaseModel baseModel =

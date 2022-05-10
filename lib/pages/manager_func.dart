@@ -18,7 +18,7 @@ class ManagerFunc {
   static insertVisitorInfo(int id, int type, String name, int sex, String tel,
       String carNum, DateTime expectedVisitDate) async {
     BaseModel baseModel = await NetUtil().post(
-      API.manager.insertVisitorInfo,
+      SAASAPI.vote.details,
       params: {
         'buildingUnitEstateId': id,
         'type': type,
@@ -214,7 +214,7 @@ class ManagerFunc {
 
   static Future<VotingDetailModel> voteDetail(int? id) async {
     BaseModel baseModel = await NetUtil().get(
-      API.manager.voteDetail,
+      SAASAPI.vote.details,
       params: {'voteId': id},
       showMessage: false,
     );
@@ -222,8 +222,8 @@ class ManagerFunc {
   }
 
   static Future<BaseModel> vote(int? voteId, int? candleId) async {
-    BaseModel baseModel = await NetUtil().post(API.manager.vote, params: {
-      'voteId': voteId,
+    BaseModel baseModel = await NetUtil().post(SAASAPI.vote.vote, params: {
+      'id': voteId,
       'candidateId': candleId,
     });
     return baseModel;

@@ -1,4 +1,5 @@
 import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:common_utils/common_utils.dart';
 
 class EventVotingModel {
   int? id;
@@ -9,6 +10,11 @@ class EventVotingModel {
   int? status;
   List<ImgModel>? imgUrls;
   List<ImgModel>? headImgURls;
+  bool? vote;
+  bool? allowVote;
+
+  DateTime? get beginDT => DateUtil.getDateTime(beginDate!);
+  DateTime? get endDT => DateUtil.getDateTime(endDate!);
 
   EventVotingModel(
       {this.id,
@@ -18,7 +24,9 @@ class EventVotingModel {
       this.endDate,
       this.status,
       this.imgUrls,
-      this.headImgURls});
+      this.headImgURls,
+      this.vote,
+      this.allowVote,});
 
   EventVotingModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,20 +35,22 @@ class EventVotingModel {
     beginDate = json['beginDate'];
     endDate = json['endDate'];
     status = json['status'];
-    if (json['imgUrls'] != null) {
+    if (json['imgList'] != null) {
       imgUrls = [];
-      json['imgUrls'].forEach((v) {
+      json['imgList'].forEach((v) {
         imgUrls!.add(new ImgModel.fromJson(v));
       });
     } else
       imgUrls = [];
-    if (json['headImgURls'] != null) {
+    if (json['headImgList'] != null) {
       headImgURls = [];
-      json['headImgURls'].forEach((v) {
+      json['headImgList'].forEach((v) {
         headImgURls!.add(new ImgModel.fromJson(v));
       });
     } else
       headImgURls = [];
+    vote=json['vote'];
+    allowVote=json['allowVote'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,11 +62,13 @@ class EventVotingModel {
     data['endDate'] = this.endDate;
     data['status'] = this.status;
     if (this.imgUrls != null) {
-      data['imgUrls'] = this.imgUrls!.map((v) => v.toJson()).toList();
+      data['imgList'] = this.imgUrls!.map((v) => v.toJson()).toList();
     }
     if (this.headImgURls != null) {
-      data['headImgURls'] = this.headImgURls!.map((v) => v.toJson()).toList();
+      data['headImgList'] = this.headImgURls!.map((v) => v.toJson()).toList();
     }
+    data['vote'] = this.vote;
+    data['allowVote'] = this.allowVote;
     return data;
   }
 }

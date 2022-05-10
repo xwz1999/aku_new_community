@@ -33,7 +33,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
     Future.delayed(Duration(milliseconds: 0), () async {
       var agreement = await HiveStore.appBox?.get('QuestionnairePage') ?? false;
       if (!agreement) {
-        await TipsDialog.tipsDialog();
+        //await TipsDialog.tipsDialog();
         HiveStore.appBox!.put('QuestionnairePage', true);
       }
     });

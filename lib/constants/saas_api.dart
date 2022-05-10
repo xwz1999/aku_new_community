@@ -41,6 +41,7 @@ class SAASAPI {
   static _ConveniencePhone conveniencePhone = _ConveniencePhone();
   static _CommitteeStaff committeeStaff = _CommitteeStaff();
   static _Advice advice = _Advice();
+  static _Vote vote = _Vote();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -373,4 +374,12 @@ class _Advice{
   String get evaluate => '/app/user/advice/evaluate';
   ///批量删除咨询建议/投诉表扬信息
   String get delete => '/app/user/advice/delete';
+}
+class _Vote{
+  ///查询所有投票的列表
+  String get list =>'/app/user/vote/list';
+  ///投票
+  String get vote =>'/app/user/vote/vote';
+  ///投票详情
+  String get details =>'/app/user/vote/details';
 }
