@@ -43,9 +43,9 @@ class _FacilityOrderDateListPageState extends State<FacilityOrderDateListPage> {
     return BeeScaffold(
         title: '预约时段',
         body: BeeListView(
-            path: API.manager.facilityOrderDateList,
+            path: SAASAPI.facilities.allAppointmentPeriod,
             extraParams: {
-              "facilitiesId": widget.facilitiesId,
+              "facilitiesManageId	": widget.facilitiesId,
             },
             controller: _refreshController,
             convert: (models) {
