@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../constants/saas_api.dart';
+import '../../utils/network/base_list_model.dart';
+import '../../utils/network/net_util.dart';
 import 'bee_picker_box.dart';
 
 class BeeMonthPickBody extends StatefulWidget {
@@ -34,7 +37,8 @@ class _BeeMonthPickBodyState extends State<BeeMonthPickBody> {
       (index) => index + 1);
 
   @override
-  void initState() {
+  void initState() async{
+    setState(() {});
     _pickYear = widget.initTime.year;
     _pickMonth = 1;
     super.initState();

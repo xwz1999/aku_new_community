@@ -128,8 +128,6 @@ class ApplicationUtil {
             title: '设施预约',
             imgPath: Assets.home.icSsyy.path,
             onTap: () {
-              BotToast.showText(text: '此功能升级中，敬请期待');
-              return;
               Get.to(() => FacilityAppointmentPage());
             }),
         AppElement(

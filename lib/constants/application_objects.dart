@@ -94,11 +94,7 @@ List<AO> appObjects = [
   AO('借还管理', Assets.newIcon.icJhgl.path,
       () => Get.to(SelectBorrowReturnPage())),
   // AO('一键报警', Assets.newIcon.yj, () => AlarmPage()),
-  AO('设施预约', Assets.home.icSsyy.path, () {
-    BotToast.showText(text: '此功能升级中，敬请期待');
-    return;
-    Get.to(() => FacilityAppointmentPage());
-  }),
+  AO('设施预约', Assets.home.icSsyy.path, () =>Get.to(() => FacilityAppointmentPage())),
   AO('快递包裹', Assets.newIcon.icKdbg.path,
       () => Get.to(() => ExpressPackagePage())),
   AO('电子商务', Assets.newIcon.icDzsw.path,

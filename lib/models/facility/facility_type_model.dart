@@ -7,13 +7,9 @@ part 'facility_type_model.g.dart';
 @JsonSerializable()
 class FacilityTypeModel {
   final int id;
+  final String code;
   final String name;
-  final String openStartDate;
-  final String openEndDate;
-
-  String get startDateStr => openStartDate.split(':').getRange(0, 2).join(':');
-
-  String get endDateStr => openEndDate.split(':').getRange(0, 2).join(':');
+  final int type;
 
   @JsonKey(name: 'num')
   final int num_;
@@ -21,9 +17,9 @@ class FacilityTypeModel {
 
   FacilityTypeModel({
     required this.id,
+    required this.code,
     required this.name,
-    required this.openStartDate,
-    required this.openEndDate,
+    required this.type,
     required this.num_,
     required this.imgUrls,
   });

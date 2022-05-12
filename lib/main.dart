@@ -21,9 +21,6 @@ void main() async {
   const buildType = const String.fromEnvironment('BUILD_TYPE');
   DeveloperUtil.setDev(!(buildType.contains('PRODUCT')));
   WidgetsFlutterBinding.ensureInitialized();
-
-  await MainInitialize.initJPush();
-
   runApp(MyApp());
 }
 

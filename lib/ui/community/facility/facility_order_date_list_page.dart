@@ -45,7 +45,7 @@ class _FacilityOrderDateListPageState extends State<FacilityOrderDateListPage> {
         body: BeeListView(
             path: SAASAPI.facilities.allAppointmentPeriod,
             extraParams: {
-              "facilitiesManageId	": widget.facilitiesId,
+              "facilitiesManageId": widget.facilitiesId,
             },
             controller: _refreshController,
             convert: (models) {

@@ -11,8 +11,7 @@ part 'facility_appointment_model.g.dart';
 class FacilityAppointmentModel {
   final int id;
   final String code;
-  final String facilitiesName;
-
+  final String address;
   ///预约状态
   ///* 1.未签到(预约时间前30分钟显示扫码签到，之前为取消预约)，
   ///* 2.已签到
@@ -20,22 +19,20 @@ class FacilityAppointmentModel {
   ///* 4.已取消
   ///* 5.已结束
   final int status;
-  final String address;
-  final String appointmentStartDate;
-  final String appointmentEndDate;
+  final String reserveStartDate;
+  final String reserveEndDate;
   final String? nullifyReason;
-  final String? useEndDate;
 
-  DateTime? get appointmentStart => DateUtil.getDateTime(appointmentStartDate);
+  DateTime? get reserveStartDt => DateUtil.getDateTime(reserveStartDate);
 
-  DateTime? get appointmentEnd => DateUtil.getDateTime(appointmentEndDate);
+  DateTime? get reserveEndDt => DateUtil.getDateTime(reserveEndDate);
 
   String get displayDate {
     return '${DateUtil.formatDate(
-      appointmentStart,
+      reserveStartDt,
       format: 'yyyy-MM-dd HH:mm',
     )}-${DateUtil.formatDate(
-      appointmentEnd,
+      reserveEndDt,
       format: 'HH:mm',
     )}';
   }
@@ -77,13 +74,11 @@ class FacilityAppointmentModel {
   FacilityAppointmentModel({
     required this.id,
     required this.code,
-    required this.facilitiesName,
     required this.status,
     required this.address,
-    required this.appointmentStartDate,
-    required this.appointmentEndDate,
+    required this.reserveEndDate,
+    required this.reserveStartDate,
     required this.nullifyReason,
-    required this.useEndDate,
   });
 
   factory FacilityAppointmentModel.fromJson(Map<String, dynamic> json) =>

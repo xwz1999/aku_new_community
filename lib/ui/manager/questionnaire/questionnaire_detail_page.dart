@@ -32,10 +32,12 @@ class QuestionnaireDetailPage extends StatefulWidget {
 }
 
 class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
+
   late QuestionnaireDetialModel _model;
   bool _onload = true;
 
   List<AppQuestionnaireAnswerSubmits> _submitModels = [];
+
 
   Widget _emptyWidget() {
     return Container();

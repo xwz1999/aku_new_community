@@ -7,6 +7,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/widget/picker/bee_custom_picker.dart';
 
+
 class BeeDatePicker {
   static Future<DateTime?> pick(DateTime initDate, {
     CupertinoDatePickerMode mode = CupertinoDatePickerMode.date,
@@ -35,6 +36,7 @@ class BeeDatePicker {
         BeeMonthPickBody(initTime: initDate)
     );
   }
+
 }
 
 class _BeeDatePicker extends StatefulWidget {

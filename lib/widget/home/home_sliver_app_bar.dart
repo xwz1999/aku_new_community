@@ -1,3 +1,4 @@
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 
 class HomeSliverAppBar extends StatefulWidget {
@@ -8,15 +9,15 @@ class HomeSliverAppBar extends StatefulWidget {
   final PreferredSizeWidget? bottom;
   final double? expandedHeight;
 
-  HomeSliverAppBar(
-      {Key? key,
-      this.actions,
-      this.title,
-      this.backgroundColor,
-      this.flexibleSpace,
-      this.bottom,
-      this.expandedHeight})
-      : super(key: key);
+  HomeSliverAppBar({
+    Key? key,
+    this.actions,
+    this.title,
+    this.backgroundColor,
+    this.flexibleSpace,
+    this.bottom,
+    this.expandedHeight,
+  }) : super(key: key);
 
   @override
   HomeSliverAppBarState createState() => HomeSliverAppBarState();
@@ -49,8 +50,9 @@ class HomeSliverAppBarState extends State<HomeSliverAppBar> {
       elevation: 0,
       backgroundColor: _displayColor,
       flexibleSpace: widget.flexibleSpace,
-      collapsedHeight: kToolbarHeight + 10,
+      collapsedHeight: kToolbarHeight + 40.h,
       expandedHeight: widget.expandedHeight,
+      toolbarHeight: kToolbarHeight+40.h,
       bottom: widget.bottom,
     );
   }

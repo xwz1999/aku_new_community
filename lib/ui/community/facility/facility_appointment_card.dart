@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/saas_api.dart';
+
 class FacilityAppointmentCard extends StatelessWidget {
   final FacilityAppointmentModel model;
   final VoidCallback onUpdate;
@@ -49,9 +51,9 @@ class FacilityAppointmentCard extends StatelessWidget {
     switch (model.status) {
       case 1:
         //1.未签到(预约时间前30分钟显示扫码签到，之前为取消预约)，
-        if (model.appointmentStart == null) button = SizedBox();
+        if (model.reserveStartDt == null) button = SizedBox();
         int diffTime =
-            model.appointmentStart!.difference(DateTime.now()).inMinutes;
+            model.reserveStartDt!.difference(DateTime.now()).inMinutes;
         bool inTime = diffTime >= 0 && diffTime <= 30;
         if (inTime)
           button = _FacilityButton(
@@ -60,7 +62,7 @@ class FacilityAppointmentCard extends StatelessWidget {
               if (result != null) {
                 final cancel = BotToast.showLoading();
                 await NetUtil().get(
-                  API.manager.facility.scan,
+                  SAASAPI.facilities.signIn,
                   params: {'appointmentCode': result},
                   showMessage: true,
                 );
@@ -92,7 +94,7 @@ class FacilityAppointmentCard extends StatelessWidget {
               if (result == true) {
                 final cancel = BotToast.showLoading();
                 await NetUtil().get(
-                  API.manager.facility.cancel,
+                  SAASAPI.facilities.cancel,
                   params: {'facilitiesAppointmentId': model.id},
                   showMessage: true,
                 );
@@ -108,7 +110,7 @@ class FacilityAppointmentCard extends StatelessWidget {
           onPressed: () async {
             final cancel = BotToast.showLoading();
             await NetUtil().get(
-              API.manager.facility.stop,
+              SAASAPI.facilities.useStop,
               params: {'facilitiesAppointmentId': model.id},
               showMessage: true,
             );
@@ -152,7 +154,7 @@ class FacilityAppointmentCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                model.facilitiesName,
+                model.address,
                 style: TextStyle(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.bold,

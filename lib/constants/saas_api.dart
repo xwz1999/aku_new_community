@@ -42,6 +42,7 @@ class SAASAPI {
   static _CommitteeStaff committeeStaff = _CommitteeStaff();
   static _Advice advice = _Advice();
   static _Vote vote = _Vote();
+  static _Facilities facilities = _Facilities();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -382,4 +383,22 @@ class _Vote{
   String get vote =>'/app/user/vote/vote';
   ///投票详情
   String get details =>'/app/user/vote/details';
+}
+class _Facilities{
+  ///查询所有设施设备预约信息
+  String get list =>'/app/user/facilities/list';
+  ///查询所有设施设备分类信息
+  String get categoryList =>'/app/user/facilities/categoryList';
+  ///根据设施设备分类主键id查询所有设施设备
+  String get manageList =>'/app/user/facilities/manageList';
+  ///添加设施设备预约
+  String get insert =>'/app/user/facilities/insert';
+  ///查询该设备所有的已预约时段
+  String get allAppointmentPeriod =>'/app/user/facilities/allAppointmentPeriod';
+  ///扫码签到
+  String get signIn =>'/app/user/facilities/signIn';
+  ///结束使用
+  String get useStop =>'/app/user/facilities/useStop';
+  ///取消预约
+  String get cancel =>'/app/user/facilities/cancel';
 }

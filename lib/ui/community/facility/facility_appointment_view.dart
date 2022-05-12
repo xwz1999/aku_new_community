@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/facility/facility_appointment_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/facility/facility_appointment_card.dart';
@@ -48,7 +49,7 @@ class _FacilityAppointmentViewState extends State<FacilityAppointmentView> {
   @override
   Widget build(BuildContext context) {
     return BeeListView(
-      path: API.manager.facility.appointment,
+      path: SAASAPI.facilities.list,
       controller: _refreshController,
       convert: (model) =>
           model.rows.map((e) => FacilityAppointmentModel.fromJson(e)).toList(),

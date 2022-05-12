@@ -314,10 +314,10 @@ class _MarketPageState extends State<MarketPage>
           key: _sliverAppBarGlobalKey,
           title: geSearch(),
           backgroundColor: Color(0xFFF9F9F9),
-          expandedHeight: MessageHeight +
+          expandedHeight: MessageHeight+
               bannerHeight +
               buttonsHeight +
-              // searchHeight +
+              //searchHeight +
               tabBarHeight +
               hotGoodHeight +
               ScreenUtil().statusBarHeight +
@@ -326,7 +326,7 @@ class _MarketPageState extends State<MarketPage>
               172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(tabBarHeight),
+              preferredSize: Size.fromHeight(tabBarHeight+50.h),
               child: _goodsTitle(
                 normalTypeButton,
                 salesTypeButton,
@@ -475,7 +475,7 @@ class _MarketPageState extends State<MarketPage>
                     height: ScreenUtil().statusBarHeight + kToolbarHeight,
                   ),
                   // geSearch(),
-                  20.hb,
+                  50.hb,
                   // getNum(),
                   // 20.hb,
                   HomeSwiper(),
@@ -597,36 +597,43 @@ class _MarketPageState extends State<MarketPage>
   }
 
   geSearch() {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Column(
       children: [
-        Expanded(
-          child: GestureDetector(
-            onTap: () async {
-              Get.to(() => SearchGoodsPage());
-            },
-            child: Container(
-              height: 72.w,
-              margin: EdgeInsets.only(left: 32.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(36.w),
-                  color: Colors.white),
-              child: Row(
-                children: [
-                  32.wb,
-                  Assets.home.icSearch.image(
-                    width: 48.w,
-                    height: 48.w,
+        16.hb,
+        '本商城所有商品来源于京东'.text.color(Color(0xFFACACAC)).normal.size(30.sp).make(),
+        16.hb,
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () async {
+                  Get.to(() => SearchGoodsPage());
+                },
+                child: Container(
+                  height: 72.w,
+                  margin: EdgeInsets.only(left: 32.w),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(36.w),
+                      color: Colors.white),
+                  child: Row(
+                    children: [
+                      32.wb,
+                      Assets.home.icSearch.image(
+                        width: 48.w,
+                        height: 48.w,
+                      ),
+                      10.wb,
+                      '请输入关键字'.text.size(28.sp).color(ktextSubColor).make(),
+                    ],
                   ),
-                  10.wb,
-                  '请输入关键字'.text.size(28.sp).color(ktextSubColor).make(),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-        32.wb,
-        ..._actionsWidget()
+            32.wb,
+            ..._actionsWidget()
+          ],
+        )
       ],
     );
   }

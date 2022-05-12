@@ -3,8 +3,9 @@ import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/models/facility/facility_type_detail_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/facility/facility_type_detail_page.dart';
-import 'package:aku_new_community/ui/community/facility/fcility_order_date_list_page.dart';
+import 'package:aku_new_community/ui/community/facility/facility_order_date_list_page.dart';
 import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
@@ -19,25 +20,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-class FacilityPreorderPage extends StatefulWidget {
-  final int id;
+import '../../../constants/saas_api.dart';
+import '../../../models/facility/facility_type_model.dart';
+import '../../../widget/picker/bee_day_picker.dart';
+import '../../manager/advice/advice_house_page.dart';
 
-  FacilityPreorderPage({Key? key, required this.id}) : super(key: key);
+class FacilityPreorderPage extends StatefulWidget {
+  final FacilityTypeModel facilityModel;
+  final FacilityTypeDetailModel typeModel;
+
+  FacilityPreorderPage({Key? key, required this.facilityModel,required this.typeModel}) : super(key: key);
 
   @override
   _FacilityPreorderPageState createState() => _FacilityPreorderPageState();
 }
 
 class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
-  FacilityTypeDetailModel? typeModel;
   DateTime? startDate;
   DateTime? endDate;
 
-  bool get canTap => startDate != null && endDate != null && typeModel != null;
+  bool get canTap => startDate != null && endDate != null;
 
   @override
   Widget build(BuildContext context) {
-    final appProvider = Provider.of<AppProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '添加预订',
       bodyColor: Colors.white,
@@ -52,9 +58,9 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               height: 60.w,
               width: 60.w,
             ),
-            onTap: () => Get.to(() => PickMyHousePage()),
+            onTap: () => Get.to(() => AdviceHousePage()),
             title: Text(S.of(context)!.tempPlotName),
-            subtitle: Text(appProvider.selectedHouse?.roomName ?? '选择房间'),
+            subtitle: Text(userProvider.defaultHouse!.addressName),
             trailing: Icon(CupertinoIcons.chevron_forward),
           ),
           BeeDivider(
@@ -69,14 +75,12 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               height: 60.w,
               width: 60.w,
             ),
-            onTap: () async {
-              FacilityTypeDetailModel? model = await Get.to(() =>
-                  FacilityTypeDetailPage(model: typeModel, id: widget.id));
-              if (model != null) typeModel = model;
+            onTap: () async {await Get.to(() =>
+                  FacilityTypeDetailPage(facilityModel: widget.facilityModel));
               setState(() {});
             },
             title: Text(S.of(context)!.tempPlotName),
-            subtitle: Text(typeModel?.name ?? '选择设施'),
+            subtitle: Text(widget.typeModel.name),
             trailing: Icon(CupertinoIcons.chevron_forward),
           ),
           BeeDivider(
@@ -93,13 +97,8 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   height: 120.w,
                   onPressed: () async {
-                    DateTime _currentTime = DateTime.now();
-                    DateTime? date = await BeeDatePicker.pick(
-                      _currentTime.add(Duration(minutes: 60)),
-                      mode: CupertinoDatePickerMode.dateAndTime,
-                      min: _currentTime.add(Duration(minutes: 30)),
-                      max: _currentTime.add(Duration(days: 30)),
-                    );
+                    DateTime? date = await BeeDayPicker.pick(DateTime.now());
+                    BeeDayPicker.pick(DateTime.now());
                     if (date != null) {
                       startDate = date;
                       setState(() {});
@@ -110,7 +109,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                         ? '请选择开始时间'
                         : DateUtil.formatDate(
                             startDate,
-                            format: 'yyyy-MM-dd HH:mm',
+                            format: 'yyyy/MM/dd',
                           ),
                     style: TextStyle(
                       color: ktextSubColor,
@@ -166,12 +165,14 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                 // if (dateDifferenceIsTrue) {
                 final cancel = BotToast.showLoading();
                 var model = await NetUtil().post(
-                  API.manager.facility.add,
+                  SAASAPI.facilities.insert,
                   params: {
-                    'estateId': appProvider.selectedHouse?.estateId ?? 0,
-                    'facilitiesManageId': typeModel!.id,
-                    'appointmentStartDate': NetUtil.getDate(startDate!),
-                    'appointmentEndDate': NetUtil.getDate(endDate!),
+                    'estateId': userProvider.defaultHouse!.id,
+                    'type':widget.facilityModel.type,
+                    'facilitiesCategoryId':widget.facilityModel.id,
+                    'facilitiesManageId':widget.typeModel.id,
+                    'appointmentDate':1,
+                    'appointmentPeriodList':1,
                   },
                 );
                 cancel();
@@ -231,7 +232,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
         CupertinoActionSheetAction(
             onPressed: () {
               Get.off(
-                  () => FacilityOrderDateListPage(facilitiesId: typeModel!.id));
+                  () => FacilityOrderDateListPage(facilitiesId: widget.typeModel.id));
             },
             child:
                 '查看'.text.size(30.sp).color(kPrimaryColor).isIntrinsic.make()),

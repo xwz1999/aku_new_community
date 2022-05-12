@@ -113,6 +113,7 @@ class _SplashPageState extends State<SplashPage> {
       //   await Permission.locationWhenInUse.request();
       // }
       //第三方加载
+      MainInitialize.initJPush();
       EquatableConfig.stringify = true;
       AMapFlutterLocation.updatePrivacyShow(true, true);
       AMapFlutterLocation.updatePrivacyAgree(true);

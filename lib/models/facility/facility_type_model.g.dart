@@ -9,11 +9,11 @@ part of 'facility_type_model.dart';
 FacilityTypeModel _$FacilityTypeModelFromJson(Map<String, dynamic> json) =>
     FacilityTypeModel(
       id: json['id'] as int,
+      code: json['code'] as String,
       name: json['name'] as String,
-      openStartDate: json['openStartDate'] as String,
-      openEndDate: json['openEndDate'] as String,
+      type: json['type'] as int,
       num_: json['num'] as int,
-      imgUrls: (json['imgUrls'] as List<dynamic>?)
+      imgUrls: (json['imgList'] as List<dynamic>?)
           ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

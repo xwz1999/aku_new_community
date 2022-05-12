@@ -7,6 +7,8 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'facility_type_detail_page.dart';
+
 class FacilityTypeCard extends StatelessWidget {
   final FacilityTypeModel model;
 
@@ -17,25 +19,28 @@ class FacilityTypeCard extends StatelessWidget {
     return MaterialButton(
       color: Colors.white,
       elevation: 0,
-      padding: EdgeInsets.zero,
+      padding: EdgeInsets.all(30.w),
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.w),
+        borderRadius: BorderRadius.circular(10.w),
       ),
       child: Column(
         children: [
-          FadeInImage.assetNetwork(
-            placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-            image: SAASAPI.image(ImgModel.first(model.imgUrls)),
-            height: 320.w,
-            width: double.infinity,
-            fit: BoxFit.cover,
+          Material(
+            borderRadius: BorderRadius.circular(10.w),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: FadeInImage.assetNetwork(
+              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+              image: SAASAPI.image(ImgModel.first(model.imgUrls)),
+              height: 280.w,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
           24.hb,
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              32.wb,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,35 +52,39 @@ class FacilityTypeCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    32.hb,
-                    Row(
-                      children: [
-                        Text(
-                          '开放时段',
-                          style: TextStyle(
-                            color: ktextSubColor,
-                            fontSize: 22.sp,
-                          ),
-                        ),
-                        Text(
-                          '${model.startDateStr}-${model.endDateStr}',
-                          style: TextStyle(
-                            fontSize: 22.sp,
-                          ),
-                        ),
-                      ],
-                    ),
+                    15.hb,
+                    '${model.type==1?'设备数量':'设施数量'} ${model.num_}'
+                        .text
+                        .size(15.sp)
+                        .color(BaseStyle.color4a4b51.withOpacity(0.45))
+                        .make(),
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       '开放时段',
+                    //       style: TextStyle(
+                    //         color: ktextSubColor,
+                    //         fontSize: 22.sp,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       '${model.startDateStr}-${model.endDateStr}',
+                    //       style: TextStyle(
+                    //         fontSize: 22.sp,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
               32.wb,
             ],
           ),
-          24.hb,
         ],
       ),
       onPressed: () {
-        Get.off(() => FacilityPreorderPage(id: model.id));
+        Get.off(() => FacilityTypeDetailPage(facilityModel: model,));
       },
     );
   }
