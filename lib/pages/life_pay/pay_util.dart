@@ -1,11 +1,17 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:aku_new_community/models/pay/pay_model.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:bot_toast/bot_toast.dart';
+import 'package:fluwx/fluwx.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:tobias/tobias.dart';
+
+import 'package:aku_new_community/models/pay/pay_model.dart';
+import 'package:aku_new_community/models/pay/wx_pay_model.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 
 enum PAYTYPE {
   ///支付宝
@@ -22,6 +28,12 @@ enum PAYTYPE {
 }
 
 class PayUtil {
+  static final PayUtil _instance = PayUtil._();
+
+  factory PayUtil() => _instance;
+
+  PayUtil._();
+///支付宝支付状态
   void resultSatus(String status) {
     switch (status) {
       case '8000':
@@ -49,7 +61,7 @@ class PayUtil {
   }
 
   String _resultStatus = '';
-
+  ///支付宝支付
   ///传入订单信息和确认订单请求地址
   Future<bool> callAliPay(String order, String apiPath) async {
     var install = await isAliPayInstalled();
@@ -75,7 +87,7 @@ class PayUtil {
       return false;
     }
   }
-
+//支付宝支付确认查询方法
   Future<bool> _confirmPayResult(String path, String code) async {
     try {
       late BaseModel base;
@@ -101,5 +113,44 @@ class PayUtil {
       LoggerData.addData(e);
       return false;
     }
+  }
+
+  ///微信支付
+
+  StreamSubscription? _wxPayStream;
+  ///添加微信支付结果监听
+  void wxPayAddListener(
+      {required VoidCallback paySuccess,
+      Function(BaseWeChatResponse)? payError}) {
+    _wxPayStream = weChatResponseEventHandler.listen((event) {
+      if (kDebugMode) {
+        print('errorCode:${event.errCode}    errorStr:${event.errStr}');
+      }
+      if (event.errCode == 0) {
+        paySuccess();
+      } else {
+        LoggerData.addData(
+            'errorCode:${event.errCode}    errorStr:${event.errStr ?? '支付失败'}');
+        BotToast.showText(text: event.errStr ?? '支付失败');
+        payError == null ? null : payError(event);
+      }
+    });
+  }
+///移除微信支付监听
+  void removeWxPayListener() {
+    _wxPayStream?.cancel();
+  }
+
+  Future callWxPay({
+    required WxPayModel payModel,
+  }) async {
+    await payWithWeChat(
+        appId: 'wx9bc3ffb23a749254',
+        partnerId: payModel.partnerId,
+        prepayId: payModel.prepayId,
+        packageValue: payModel.package,
+        nonceStr: payModel.nonceStr,
+        timeStamp: int.parse(payModel.timeStamp),
+        sign: payModel.sign);
   }
 }

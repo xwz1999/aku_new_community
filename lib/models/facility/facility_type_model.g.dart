@@ -13,7 +13,7 @@ FacilityTypeModel _$FacilityTypeModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       type: json['type'] as int,
       num_: json['num'] as int,
-      imgUrls: (json['imgList'] as List<dynamic>?)
+      imgUrls: (json['imgUrls'] as List<dynamic>?)
           ?.map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

@@ -1,4 +1,3 @@
-import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +7,9 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/splash/splash_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:aku_new_community/provider/data_provider.dart';
 import 'package:aku_new_community/provider/sign_up_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';

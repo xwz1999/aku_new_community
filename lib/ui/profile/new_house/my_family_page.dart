@@ -10,7 +10,6 @@ import 'package:aku_new_community/ui/profile/new_house/examine_view.dart';
 import 'package:aku_new_community/ui/profile/new_house/member_view.dart';
 import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'add_house_page.dart';
 

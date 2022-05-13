@@ -1,15 +1,17 @@
 import 'dart:async';
 
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 
 class BeeRecordVoiceWidget extends StatefulWidget {
   const BeeRecordVoiceWidget({Key? key}) : super(key: key);

@@ -9,7 +9,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/market/good_detail_model.dart';

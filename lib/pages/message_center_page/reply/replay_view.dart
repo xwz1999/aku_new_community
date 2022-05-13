@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/message/reply_list_model.dart';
 import 'package:aku_new_community/pages/message_center_page/reply/reply_card.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ReplayView extends StatefulWidget {
   final EasyRefreshController controller;

@@ -1,5 +1,18 @@
 // Dart imports:
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:badges/badges.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/extensions/color_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -20,23 +33,11 @@ import 'package:aku_new_community/ui/home/public_infomation/public_information_d
 import 'package:aku_new_community/ui/market/search/good_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
-import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/views/bee_gradient_divider.dart';
-import 'package:badges/badges.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../ui/manager/advice/advice_page.dart';
 
 class HomePage extends StatefulWidget {

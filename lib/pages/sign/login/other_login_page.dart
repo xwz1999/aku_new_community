@@ -1,3 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/pages/sign/login/code_message_page.dart';
 import 'package:aku_new_community/pages/sign/login/forgot_psd_page.dart';
 import 'package:aku_new_community/pages/sign/login/login_page.dart';
@@ -5,18 +15,9 @@ import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/pages/sign/widget/psd_text_field.dart';
 import 'package:aku_new_community/pages/sign/widget/tel_text_field.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class OtherLoginPage extends StatefulWidget {
   const OtherLoginPage({Key? key}) : super(key: key);

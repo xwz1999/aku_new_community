@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/community/information_category_list_model.dart';
 import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_infomation_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class PublicInfomationView extends StatefulWidget {
   final InformationCategoryListModel model;

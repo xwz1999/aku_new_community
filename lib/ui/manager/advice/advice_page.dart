@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/saas_api.dart';

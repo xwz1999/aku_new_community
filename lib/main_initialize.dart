@@ -66,7 +66,7 @@ class MainInitialize {
       });
     } on PlatformException {}
     jpush.setup(
-      appKey: "5f42cbb15abcdda6f8aeb925",
+      appKey: AppConfig.jpushKey,
       channel: "developer-default",
       production: false,
       debug: true,
@@ -82,7 +82,12 @@ class MainInitialize {
 
   static initWechat() {
     if (kIsWeb || Platform.isMacOS) return;
-    registerWxApi(appId: AppConfig.wechatAppId);
+    var isAndroid = Platform.isAndroid;
+    registerWxApi(
+        appId: AppConfig.wechatAppId,
+        doOnIOS: !isAndroid,
+        doOnAndroid: isAndroid,
+        universalLink: '');
   }
 
   static initWebSocket() {

@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AddAppointmentAddressPage extends StatefulWidget {
   final String? address;

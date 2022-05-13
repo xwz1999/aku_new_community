@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/house/lease_list_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/profile/house/lease_relevation/lease_house_card.dart';

@@ -1,3 +1,5 @@
+import 'package:bot_toast/bot_toast.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/community/board_model.dart';
@@ -6,7 +8,6 @@ import 'package:aku_new_community/model/user/adress_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 
 class Userfunc {
   ///查询我的收货地址列表

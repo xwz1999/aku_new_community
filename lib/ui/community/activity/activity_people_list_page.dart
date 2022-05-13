@@ -1,13 +1,10 @@
+import 'package:flutter/material.dart';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-
 import 'package:aku_new_community/models/home/activity_detail_model.dart';
-
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-
 
 class ActivityPeopleListPage extends StatefulWidget {
   final List<Registration>? registrationList;

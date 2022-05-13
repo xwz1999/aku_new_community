@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/community/information_list_model.dart';
 import 'package:aku_new_community/ui/home/public_infomation/public_information_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_image_network.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PublicInfomationCard extends StatelessWidget {
   final InformationListModel model;

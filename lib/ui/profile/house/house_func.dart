@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:bot_toast/bot_toast.dart';
 
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/house/lease_detail_model.dart';
 import 'package:aku_new_community/models/house/lease_echo_model.dart';
 import 'package:aku_new_community/models/house/submit_model.dart';

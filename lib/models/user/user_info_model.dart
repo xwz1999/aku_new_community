@@ -1,5 +1,6 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
 
 part 'user_info_model.g.dart';
 

@@ -1,12 +1,12 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/saas_model/work_order/work_order_bill_model.dart';
 import 'package:aku_new_community/saas_model/work_order/work_order_progress_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-
 import 'dialogs/work_order_bill_dialog.dart';
 import 'dialogs/work_order_progress_dialog.dart';
 

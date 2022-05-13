@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RectIndicator extends StatelessWidget {
@@ -21,8 +20,7 @@ class RectIndicator extends StatelessWidget {
     this.color: Colors.white,
     required this.radius,
     this.activeColor: const Color(0xFF3E4750),
-  })  : assert(count != null && position != null),
-        super(key: key);
+  })  : super(key: key);
 
   _indicator(bool isActive) {
     return AnimatedContainer(

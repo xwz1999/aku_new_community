@@ -1,15 +1,17 @@
-import 'package:aku_new_community/const/resource.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/models/convenience_phone/convenience_phone_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/const/resource.dart';
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/models/convenience_phone/convenience_phone_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class ConvenientPhonePage extends StatefulWidget {
   ConvenientPhonePage({Key? key}) : super(key: key);

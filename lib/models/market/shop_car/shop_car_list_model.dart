@@ -1,5 +1,6 @@
-import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 
 part 'shop_car_list_model.g.dart';
 

@@ -1,16 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/ui/search/bee_search.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/login_util.dart';
 import 'package:aku_new_community/widget/bee_back_button.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AllApplicationPage extends StatefulWidget {
   AllApplicationPage({Key? key}) : super(key: key);

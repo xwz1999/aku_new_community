@@ -1,8 +1,9 @@
 part of 'grind.dart';
 
 @Task('import 排序')
-void sort() {
-  Pub.run('import_sorter:main');
+sort() async {
+  await runAsync('fvm',
+      arguments: ['flutter', 'pub', 'run', 'import_sorter:main','lib\/*']);
 }
 
 @Task('格式化dart代码')

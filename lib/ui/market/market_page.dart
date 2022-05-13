@@ -2,6 +2,14 @@
 
 import 'dart:ui' as ui;
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -25,13 +33,6 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:aku_new_community/widget/home/home_sliver_app_bar.dart';
 import 'package:aku_new_community/widget/others/rectIndicator.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'category/new_category_page.dart';
 import 'market_home_goods_card.dart';
 import 'order/order_page.dart';

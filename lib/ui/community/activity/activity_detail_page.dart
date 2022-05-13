@@ -1,23 +1,22 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/models/home/activity_detail_model.dart';
-import 'package:aku_new_community/models/home/home_activity_model.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/bee_image_network.dart';
-import 'package:aku_new_community/widget/bee_divider.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/buttons/bottom_button.dart';
-import 'package:aku_new_community/widget/others/stack_avatar.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/home/activity_detail_model.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
+import 'package:aku_new_community/widget/bee_image_network.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/buttons/bottom_button.dart';
+import 'package:aku_new_community/widget/others/stack_avatar.dart';
 import 'activity_func.dart';
 import 'activity_people_list_page.dart';
 

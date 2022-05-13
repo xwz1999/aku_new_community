@@ -1,14 +1,16 @@
-import 'package:aku_new_community/pages/sign/sign_func.dart';
-import 'package:aku_new_community/provider/clock_timer_provider.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/pages/sign/sign_func.dart';
+import 'package:aku_new_community/provider/clock_timer_provider.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 
 class CodeMessagePage extends StatefulWidget {
   final String tel;

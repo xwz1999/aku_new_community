@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/home/announce_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -8,10 +14,6 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
 import 'package:aku_new_community/widget/views/bee_download_view.dart';
 import 'package:aku_new_community/widget/views/doc_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   final int? id;

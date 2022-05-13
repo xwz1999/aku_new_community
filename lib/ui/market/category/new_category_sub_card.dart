@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/models/market/market_all_category_model.dart';
 import 'package:aku_new_community/ui/market/search/search_goods_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_image_network.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NewCategorySubCard extends StatelessWidget {
   final MarketAllCategoryModel subModels;

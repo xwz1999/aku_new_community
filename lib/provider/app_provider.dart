@@ -1,6 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:amap_flutter_location/amap_flutter_location.dart';
+import 'package:amap_flutter_location/amap_location_option.dart';
+import 'package:collection/collection.dart' show IterableExtension;
+import 'package:dio/dio.dart';
+import 'package:power_logger/power_logger.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/application_objects.dart';
 import 'package:aku_new_community/constants/config.dart';
@@ -16,12 +24,6 @@ import 'package:aku_new_community/saas_model/login/picked_city_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:amap_flutter_location/amap_flutter_location.dart';
-import 'package:amap_flutter_location/amap_location_option.dart';
-import 'package:collection/collection.dart' show IterableExtension;
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:power_logger/power_logger.dart';
 
 class AppProvider extends ChangeNotifier {
   ///初始值为

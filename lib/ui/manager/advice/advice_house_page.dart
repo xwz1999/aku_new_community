@@ -1,24 +1,19 @@
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import '../../../base/base_style.dart';
 import '../../../constants/saas_api.dart';
-import '../../../gen/assets.gen.dart';
 import '../../../models/user/my_house_model.dart';
 import '../../../utils/network/net_util.dart';
 import '../../../widget/bee_divider.dart';
 import '../../../widget/others/user_tool.dart';
 import '../../../widget/tag/bee_tag.dart';
-import '../../profile/house/add_house_page.dart';
-import '../../profile/new_house/apply_record_page.dart';
 import '../../profile/new_house/my_house_page.dart';
-import '../../profile/new_house/widgets/add_house_button.dart';
 
 class AdviceHousePage extends StatefulWidget {
   const AdviceHousePage({Key? key}) : super(key: key);

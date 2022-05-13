@@ -1,5 +1,14 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:get/get.dart';
+import 'package:power_logger/power_logger.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -19,14 +28,6 @@ import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_pick_image_widget.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
 import 'package:aku_new_community/widget/voice_player.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:power_logger/power_logger.dart';
-
 import 'add_appointment_address_page.dart';
 
 class PublishTaskPage extends StatefulWidget {

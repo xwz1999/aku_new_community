@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
@@ -5,14 +12,7 @@ import 'package:aku_new_community/ui/community/community_views/community_page.da
 import 'package:aku_new_community/ui/market/market_page.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
 import 'home/home_page.dart';
 import 'opening_code_page/opening_code_page.dart';
 import 'personal/personal_page.dart';

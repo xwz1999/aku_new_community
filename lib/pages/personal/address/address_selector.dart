@@ -7,11 +7,12 @@
  * ====================================================
  */
 
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
-import 'package:flutter/material.dart';
 
 typedef AddressSelectorCallback = Function(
     String province, String city, String disctrict, int? locationId);
@@ -142,7 +143,7 @@ class _AddressSelectorState extends State<AddressSelector>
     // for (int i = 0; i < _items.length; ++i) {
     for (int i = 0; i < _tabController.length; ++i) {
       List addressModels = _items[i];
-      if (addressModels == null || addressModels.length == 0) {
+      if (addressModels.length == 0) {
         list.add(Container());
         continue;
       }

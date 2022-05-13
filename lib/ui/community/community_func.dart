@@ -1,3 +1,5 @@
+import 'package:bot_toast/bot_toast.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/good/market_swiper_model.dart';
 import 'package:aku_new_community/models/community/dynamic_my_list_body.dart';
@@ -14,7 +16,6 @@ import 'package:aku_new_community/models/market/market_statistics_model.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
 
 class CommunityFunc {
   ///查询热门话题

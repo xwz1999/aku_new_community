@@ -1,10 +1,9 @@
-import 'package:aku_new_community/const/resource.dart';
+import 'package:flutter/material.dart';
+
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HorizontalImageView extends StatelessWidget {
   final List<String?> urls;

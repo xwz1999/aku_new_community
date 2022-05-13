@@ -4,9 +4,9 @@ class TextUtils {
   ///white 全空格是否算空字符串
   static bool isEmpty(String str, {bool whiteSpace = false}) {
     if (whiteSpace) {
-      return str == null || str.trim().length == 0;
+      return str.trim().length == 0;
     }
-    return str == null || str.length == 0;
+    return str.length == 0;
   }
 
   static bool isNotEmpty(String str, {bool whiteSpace = false}) {

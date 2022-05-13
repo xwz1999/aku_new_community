@@ -1,15 +1,15 @@
-// Dart imports:
 import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/widget/picker/bee_image_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_image_preview.dart';
-// Package imports:
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class BeePickImageWidget extends StatefulWidget {
   final double? size;

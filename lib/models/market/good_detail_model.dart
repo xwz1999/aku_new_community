@@ -1,6 +1,7 @@
-import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/ui/market/shop_car/shop_car_func.dart';
 
 part 'good_detail_model.g.dart';
 

@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/market/goods_popular_model.dart';
@@ -10,13 +17,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
-
 import '../search_goods_card.dart';
 import 'good_detail_page.dart';
 import 'goods_list_card.dart';
@@ -722,7 +722,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                             ),
                           ),
                           Spacer(),
-                          (_searchHistory != null && _searchHistory.length > 0)
+                          (_searchHistory.length > 0)
                               ? GestureDetector(
                                   onTap: () {
                                     _searchHistory = [];

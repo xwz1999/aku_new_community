@@ -1,9 +1,11 @@
-import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class AccountManagerPage extends StatefulWidget {
   AccountManagerPage({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
-import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
-import 'package:aku_new_community/provider/user_provider.dart';
-import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
-import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
+import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/profile/new_house/my_house_page.dart';
 
 /// | 名称 | 函数 |
 /// |-----|------|

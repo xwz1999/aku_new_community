@@ -1,12 +1,14 @@
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/saas_model/work_order/work_order_list_model.dart';
-import 'package:aku_new_community/ui/function_and_service/work_order/work_order_card.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:power_logger/power_logger.dart';
 import 'package:velocity_x/src/extensions/num_ext.dart';
+
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/saas_model/work_order/work_order_list_model.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/work_order_card.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
 
 class WorkOrderView extends StatefulWidget {
   final EasyRefreshController refreshController;
