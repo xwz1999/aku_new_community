@@ -4,6 +4,7 @@ import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/models/facility/facility_type_detail_model.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
+import 'package:aku_new_community/ui/community/facility/facility_preorder_date_picker.dart';
 import 'package:aku_new_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_order_date_list_page.dart';
 import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
@@ -22,6 +23,7 @@ import 'package:provider/provider.dart';
 
 import '../../../constants/saas_api.dart';
 import '../../../models/facility/facility_type_model.dart';
+import '../../../widget/picker/bee_choose_date_picker.dart';
 import '../../../widget/picker/bee_day_picker.dart';
 import '../../manager/advice/advice_house_page.dart';
 
@@ -98,7 +100,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   height: 120.w,
                   onPressed: () async {
                     DateTime? date = await BeeDayPicker.pick(DateTime.now());
-                    BeeDayPicker.pick(DateTime.now());
+                    await Get.bottomSheet(FacilityPreorderDatePicker(typeModel: widget.typeModel,));
                     if (date != null) {
                       startDate = date;
                       setState(() {});

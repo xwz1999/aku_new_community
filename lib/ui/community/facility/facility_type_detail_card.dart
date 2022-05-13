@@ -36,14 +36,15 @@ class FacilityTypeDetailCard extends StatelessWidget {
               Material(
                 borderRadius: BorderRadius.circular(10.w),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: FadeInImage.assetNetwork(
+                child:FadeInImage.assetNetwork(
                   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
                   image: SAASAPI.image(ImgModel.first(model.imgList)),
-                  height: 120.h,
-                  width: 150.w,
+                  height: 150.h,
+                  width: 200.w,
                   fit: BoxFit.cover,
                 ),
               ),
+              30.wb,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -55,7 +56,7 @@ class FacilityTypeDetailCard extends StatelessWidget {
                     ),
                   ),
                   15.hb,
-                  '${model.openStartDate.substring(0, model.openStartDate.length - 3)}-${model.openEndDate.substring(0, model.openEndDate.length - 3)}  开放'
+                  '${DateUtil.formatDate(model.openStartDT,format: 'HH:mm')}-${DateUtil.formatDate(model.openEndDT,format: 'HH:mm')}  开放'
                       .text
                       .size(20.sp)
                       .make(),
