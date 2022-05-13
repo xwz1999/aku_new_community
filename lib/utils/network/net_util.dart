@@ -1,6 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response, FormData, MultipartFile;
+import 'package:power_logger/power_logger.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
 import 'package:aku_new_community/pages/splash/app_verify_dialog.dart';
@@ -9,12 +16,6 @@ import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response, FormData, MultipartFile;
-import 'package:power_logger/power_logger.dart';
-import 'package:provider/provider.dart';
 
 class NetUtil {
   Dio? _dio;

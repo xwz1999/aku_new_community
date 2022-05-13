@@ -1,7 +1,8 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
 
 part 'work_order_list_model.g.dart';
 

@@ -1,5 +1,6 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
 
 part 'home_swiper_model.g.dart';
 

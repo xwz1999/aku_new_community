@@ -1,12 +1,14 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
 
 class TaskEvaluationDialog extends StatefulWidget {
   final Future<bool> Function(int star, String content) evaluate;

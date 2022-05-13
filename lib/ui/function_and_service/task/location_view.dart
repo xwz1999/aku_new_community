@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
+
+import 'package:amap_flutter_base/amap_flutter_base.dart';
+import 'package:amap_flutter_map/amap_flutter_map.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/bee_search_text_field.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:amap_flutter_base/amap_flutter_base.dart';
-import 'package:amap_flutter_map/amap_flutter_map.dart';
+
 // import 'package:amap_search_fluttify/amap_search_fluttify.dart' as search;
-import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class LocationView extends StatefulWidget {
   const LocationView({Key? key}) : super(key: key);

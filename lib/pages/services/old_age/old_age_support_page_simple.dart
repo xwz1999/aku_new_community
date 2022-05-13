@@ -1,3 +1,13 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
@@ -6,14 +16,6 @@ import 'package:aku_new_community/pages/services/old_age/equipment_list_page.dar
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:velocity_x/velocity_x.dart';
 
 class OldAgeSupportPageSimple extends StatefulWidget {
   const OldAgeSupportPageSimple({Key? key}) : super(key: key);

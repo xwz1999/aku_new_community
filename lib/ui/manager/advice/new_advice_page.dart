@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aku_new_community/ui/manager/advice/advice_house_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/ui/manager/advice/advice_house_page.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
@@ -22,7 +22,6 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bottom_button.dart';
 import 'package:aku_new_community/widget/picker/grid_image_picker.dart';
-
 import '../../../provider/user_provider.dart';
 import '../../../widget/others/user_tool.dart';
 

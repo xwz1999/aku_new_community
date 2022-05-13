@@ -1,3 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/saas_model/task/my_take_task_list_model.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
@@ -5,14 +14,6 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
 import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 import 'package:aku_new_community/widget/voice_player.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import '../task_func.dart';
 import '../task_map.dart';
 

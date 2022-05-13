@@ -7,11 +7,12 @@
  * ====================================================
  */
 
+import 'package:flutter/material.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/user/province_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/text_utils.dart';
-import 'package:flutter/material.dart';
 
 typedef AddressSelectorCallback = Function(
     String province, String city, String disctrict, int? locationId);

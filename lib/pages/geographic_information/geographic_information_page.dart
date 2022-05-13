@@ -1,18 +1,12 @@
 import 'dart:io';
 
-import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/pages/one_alarm/alarm_detail_page.dart';
-import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
-import 'package:aku_new_community/utils/headers.dart';
-import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:amap_flutter_base/amap_flutter_base.dart';
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:amap_flutter_map/amap_flutter_map.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -22,10 +16,16 @@ import 'package:power_logger/power_logger.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:aku_new_community/constants/api.dart';
+import 'package:aku_new_community/pages/one_alarm/alarm_detail_page.dart';
+import 'package:aku_new_community/pages/one_alarm/widget/alarm_page.dart';
+import 'package:aku_new_community/provider/app_provider.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
 import '../../main_initialize.dart';
 import '../../utils/hive_store.dart';
 import '../../widget/others/user_tool.dart';
-
 
 class GeographicInformationPage extends StatefulWidget {
   GeographicInformationPage({Key? key}) : super(key: key);

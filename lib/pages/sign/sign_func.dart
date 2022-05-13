@@ -1,3 +1,8 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/user/pick_building_model.dart';
@@ -11,10 +16,6 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:provider/provider.dart';
 
 class SignFunc {
   //发送手机号验证码

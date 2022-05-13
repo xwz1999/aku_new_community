@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
+
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/extensions/num_ext.dart';
 
 class VoicePlayer extends StatefulWidget {
   final String? url;

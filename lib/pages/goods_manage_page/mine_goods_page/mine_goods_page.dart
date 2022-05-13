@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/model/manager/mine_goods_model.dart';
 import 'package:aku_new_community/pages/goods_manage_page/borrow/borrow_examine_page.dart';
@@ -8,9 +13,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
 
 class MineGoodsPage extends StatefulWidget {
   MineGoodsPage({Key? key}) : super(key: key);

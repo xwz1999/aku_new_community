@@ -1,11 +1,13 @@
-import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/pages/personal/wallet/set_pay_password_verify_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:get/get.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
+
+import 'package:aku_new_community/extensions/num_ext.dart';
+import 'package:aku_new_community/pages/personal/wallet/set_pay_password_verify_dialog.dart';
 
 class SetPayPasswordDialog extends StatefulWidget {
   const SetPayPasswordDialog({Key? key, }) : super(key: key);

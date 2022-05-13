@@ -1,3 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:collection/src/iterable_extensions.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/src/extensions/num_ext.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
+
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -6,15 +17,6 @@ import 'package:aku_new_community/pages/personal/wallet/wallet_trade_record_page
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_long_button.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:collection/src/iterable_extensions.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/src/extensions/num_ext.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class WalletRechargePage extends StatefulWidget {
   final initIndex;

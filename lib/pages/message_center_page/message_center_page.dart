@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/message_center_page/announce/announce_view.dart';
 import 'package:aku_new_community/pages/message_center_page/reply/replay_view.dart';
@@ -5,11 +12,6 @@ import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key? key}) : super(key: key);

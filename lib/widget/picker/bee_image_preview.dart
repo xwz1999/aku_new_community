@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 ///图片点击放大预览
 class BeeImagePreview extends StatefulWidget {

@@ -1,16 +1,18 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/models/wallet/trade_record_list_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import 'package:aku_new_community/widget/picker/bee_picker_box.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class PointRecordView extends StatefulWidget {
   const PointRecordView({Key? key}) : super(key: key);

@@ -1,3 +1,7 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
+
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/new_api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
@@ -9,9 +13,6 @@ import 'package:aku_new_community/model/manager/voting_detail_model.dart';
 import 'package:aku_new_community/models/manage/fix_report/fix_detail_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:dio/dio.dart';
 
 class ManagerFunc {
   @Deprecated('')

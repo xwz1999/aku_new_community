@@ -2,15 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:bot_toast/bot_toast.dart';
+import 'package:fluwx/fluwx.dart';
+import 'package:power_logger/power_logger.dart';
+import 'package:tobias/tobias.dart';
+
 import 'package:aku_new_community/models/pay/pay_model.dart';
 import 'package:aku_new_community/models/pay/wx_pay_model.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/foundation.dart';
-import 'package:fluwx/fluwx.dart';
-import 'package:power_logger/power_logger.dart';
-import 'package:tobias/tobias.dart';
 
 enum PAYTYPE {
   ///支付宝

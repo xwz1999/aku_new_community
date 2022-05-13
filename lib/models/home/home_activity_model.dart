@@ -1,9 +1,11 @@
-import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:flutter/material.dart';
+
 import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/base/base_style.dart';
+import 'package:aku_new_community/model/common/img_model.dart';
 
 part 'home_activity_model.g.dart';
 

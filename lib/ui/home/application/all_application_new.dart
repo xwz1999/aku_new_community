@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:velocity_x/src/extensions/iterable_ext.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
+
 import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/utils/application_utils.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:velocity_x/src/extensions/iterable_ext.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 
 class AllApplicationNewPage extends StatefulWidget {
   const AllApplicationNewPage({Key? key}) : super(key: key);

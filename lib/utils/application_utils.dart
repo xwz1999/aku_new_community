@@ -1,5 +1,9 @@
 import 'dart:ui';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
+
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/pages/community_introduce/community_introduce_page.dart';
 import 'package:aku_new_community/pages/convenient_phone/convenient_phone_page.dart';
@@ -23,9 +27,6 @@ import 'package:aku_new_community/ui/function_and_service/work_order/work_order_
 import 'package:aku_new_community/ui/home/application/all_application.dart';
 import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:equatable/equatable.dart';
-import 'package:get/get.dart';
 
 class ApplicationUtil {
   ApplicationUtil(this.titles);

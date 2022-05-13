@@ -1,3 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:expandable/expandable.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/life_pay/life_pay_list_model.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
@@ -6,11 +13,6 @@ import 'package:aku_new_community/utils/bee_parse.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/buttons/bee_check_radio.dart';
-import 'package:expandable/expandable.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class LifePayDetailPage extends StatefulWidget {
   final LifePayListModel model;

@@ -1,6 +1,7 @@
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
 
 @JsonSerializable()
 class CommitteeItemModel {

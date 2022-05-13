@@ -1,10 +1,11 @@
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/model/order/order_list_model.dart';
-import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/model/order/order_list_model.dart';
+import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'order_card.dart';
 
 class OrderView extends StatefulWidget {

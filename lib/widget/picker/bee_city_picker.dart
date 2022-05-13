@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:aku_new_community/saas_model/login/china_region_model.dart';
 import 'package:aku_new_community/saas_model/login/picked_city_model.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'bee_picker_box.dart';
 
 class BeeCityPicker extends StatefulWidget {

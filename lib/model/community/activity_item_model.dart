@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:common_utils/common_utils.dart';
+
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter/material.dart';
 
 @Deprecated('弃用')
 class ActivityItemModel {

@@ -1,7 +1,8 @@
-import 'package:aku_new_community/model/common/img_model.dart';
-import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:aku_new_community/model/common/img_model.dart';
+import 'package:aku_new_community/models/community/all_dynamic_list_model.dart';
 
 part 'dynamic_my_list_body.g.dart';
 

@@ -1,9 +1,9 @@
-import 'package:aku_new_community/pages/personal/wallet/point_record_view.dart';
-import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:aku_new_community/pages/personal/wallet/point_record_view.dart';
+import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 import 'balance_record_view.dart';
 
 class WalletTradeRecordPage extends StatefulWidget {
