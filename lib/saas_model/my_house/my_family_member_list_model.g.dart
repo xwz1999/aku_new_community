@@ -23,7 +23,7 @@ Member _$MemberFromJson(Map<String, dynamic> json) => Member(
       id: json['id'] as int,
       name: json['name'] as String,
       identity: json['identity'] as int,
-      avatarImgList: (json['imgList'] as List<dynamic>)
+      avatarImgList: (json['avatarImgList'] as List<dynamic>)
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

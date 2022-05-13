@@ -55,7 +55,7 @@ dependencies:
   #支付宝支付功能
   tobias: ^2.4.0+2
   #微信支付
-  fluwx: ^3.4.2
+  fluwx: ^3.8.3
   #路由相关
   get: ^4.1.4
   #各种扩展

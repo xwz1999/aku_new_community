@@ -82,7 +82,12 @@ class MainInitialize {
 
   static initWechat() {
     if (kIsWeb || Platform.isMacOS) return;
-    registerWxApi(appId: AppConfig.wechatAppId);
+    var isAndroid = Platform.isAndroid;
+    registerWxApi(
+        appId: 'wx9bc3ffb23a749254',
+        doOnIOS: !isAndroid,
+        doOnAndroid: isAndroid,
+        universalLink: '');
   }
 
   static initWebSocket() {

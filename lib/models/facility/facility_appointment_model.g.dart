@@ -13,7 +13,7 @@ FacilityAppointmentModel _$FacilityAppointmentModelFromJson(
       code: json['code'] as String,
       status: json['status'] as int,
       address: json['address'] as String,
-      reserveStartDate: json['reserveStartDate'] as String,
       reserveEndDate: json['reserveEndDate'] as String,
+      reserveStartDate: json['reserveStartDate'] as String,
       nullifyReason: json['nullifyReason'] as String?,
     );
