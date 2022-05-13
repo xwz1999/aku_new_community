@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/model/manager/suggestion_or_complain_model.dart';

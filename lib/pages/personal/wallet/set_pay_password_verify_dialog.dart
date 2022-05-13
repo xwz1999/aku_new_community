@@ -9,8 +9,6 @@ import 'package:velocity_x/src/extensions/string_ext.dart';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/num_ext.dart';
-import 'package:aku_new_community/pages/personal/wallet/input_pay_password_dialog.dart';
-import 'package:aku_new_community/pages/sign/login/psd_verify.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 

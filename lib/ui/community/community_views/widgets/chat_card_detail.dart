@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -6,7 +5,6 @@ import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
@@ -171,6 +169,7 @@ class _ChatCardDetailState extends State<ChatCardDetail> {
                   } else {
                     BotToast.showText(text: res.msg);
                   }
+                  return null;
                 },
                 likeBuilder: (bool isLiked) {
                   return Image.asset(

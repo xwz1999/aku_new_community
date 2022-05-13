@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_new_community/ui/manager/visitor/visitor_record_view.dart';

@@ -7,14 +7,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/models/facility/facility_type_detail_model.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/facility/facility_order_date_list_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_type_detail_page.dart';
-import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';

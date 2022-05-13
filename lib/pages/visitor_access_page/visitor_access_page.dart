@@ -6,7 +6,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/pages/manager_func.dart';

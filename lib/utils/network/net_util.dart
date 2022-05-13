@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/pages/sign/login/other_login_page.dart';
-import 'package:aku_new_community/pages/splash/app_verify_dialog.dart';
 import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/network/base_list_model.dart';

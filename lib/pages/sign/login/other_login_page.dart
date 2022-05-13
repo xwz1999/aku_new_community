@@ -15,7 +15,6 @@ import 'package:aku_new_community/pages/sign/sign_func.dart';
 import 'package:aku_new_community/pages/sign/widget/login_button_widget.dart';
 import 'package:aku_new_community/pages/sign/widget/psd_text_field.dart';
 import 'package:aku_new_community/pages/sign/widget/tel_text_field.dart';
-import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/clock_timer_provider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';

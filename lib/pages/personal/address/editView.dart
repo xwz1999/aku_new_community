@@ -42,7 +42,7 @@ class EditTile extends StatefulWidget {
     required this.constraints,
     this.maxLength = 100,
     this.maxLines = 1,
-  }) : assert(textChanged != null);
+  });
 
   @override
   _EditTileState createState() => _EditTileState();

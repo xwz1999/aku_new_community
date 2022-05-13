@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aku_new_community/pages/personal/wallet/point_record_view.dart';

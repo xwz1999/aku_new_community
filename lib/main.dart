@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/main_initialize.dart';
 import 'package:aku_new_community/pages/splash/splash_page.dart';
 import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/provider/clock_timer_provider.dart';

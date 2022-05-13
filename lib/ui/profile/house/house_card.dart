@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
 
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/models/user/passed_house_list_model.dart';
 import 'package:aku_new_community/ui/profile/house/pick_my_house_page.dart';
 import 'package:aku_new_community/utils/headers.dart';

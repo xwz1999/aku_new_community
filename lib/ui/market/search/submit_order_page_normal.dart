@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/order/create_order_model.dart';

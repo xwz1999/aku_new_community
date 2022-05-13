@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/home_announce_model.dart';

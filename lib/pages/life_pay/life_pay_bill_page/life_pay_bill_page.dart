@@ -6,7 +6,6 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/models/life_pay/life_pay_record_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'widget/bill_card.dart';
 
 class LifePayBillPage extends StatefulWidget {
   final LifePayRecordModel model;

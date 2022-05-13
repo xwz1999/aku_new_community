@@ -9,10 +9,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
 import 'package:aku_new_community/model/manager/visitor_list_item_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
@@ -41,12 +39,11 @@ class _VisitorPassportPageState extends State<VisitorPassportPage> {
       child: Scaffold(
         backgroundColor: Color(0xFF333333),
         appBar: AppBar(
-          brightness: Brightness.dark,
           leading: BeeBackButton(color: Colors.white),
           backgroundColor: Color(0xFF333333),
           elevation: 0,
           centerTitle: true,
-          title: '访客通行证'.text.white.make(),
+          title: '访客通行证'.text.white.make(), systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
         body: RepaintBoundary(
           key: _repaintKey,

@@ -32,6 +32,7 @@ class _TeamListPageState extends State<TeamListPage> {
         return null;
       }
     }
+    return null;
   }
 
   @override

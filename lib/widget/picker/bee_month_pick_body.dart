@@ -1,14 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:aku_new_community/saas_model/login/china_region_model.dart';
-import 'package:aku_new_community/saas_model/login/picked_city_model.dart';
-import 'package:aku_new_community/utils/hive_store.dart';
-import '../../constants/saas_api.dart';
-import '../../utils/network/base_list_model.dart';
-import '../../utils/network/net_util.dart';
 import 'bee_picker_box.dart';
 
 class BeeMonthPickBody extends StatefulWidget {

@@ -17,7 +17,6 @@ import 'package:aku_new_community/ui/profile/new_house/widgets/add_house_button.
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:aku_new_community/widget/tag/bee_tag.dart';
 

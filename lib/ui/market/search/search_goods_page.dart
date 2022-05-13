@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -723,7 +722,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
                             ),
                           ),
                           Spacer(),
-                          (_searchHistory != null && _searchHistory.length > 0)
+                          (_searchHistory.length > 0)
                               ? GestureDetector(
                                   onTap: () {
                                     _searchHistory = [];

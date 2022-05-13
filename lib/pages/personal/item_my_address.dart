@@ -32,8 +32,7 @@ class MyAddressItem extends StatefulWidget {
   MyAddressItem(
       {required this.addressModel,
       this.refreshController,
-      required this.canBack})
-      : assert(addressModel != null);
+      required this.canBack});
 
   _MyAddressItemState createState() => _MyAddressItemState();
 }

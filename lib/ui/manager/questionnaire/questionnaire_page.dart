@@ -6,7 +6,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/new_api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
@@ -15,7 +14,6 @@ import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/hive_store.dart';
-import 'package:aku_new_community/utils/websocket/tips_dialog.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/stack_avatar.dart';
 

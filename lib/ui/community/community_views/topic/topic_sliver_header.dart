@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/headers.dart';

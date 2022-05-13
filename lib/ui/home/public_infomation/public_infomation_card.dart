@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';

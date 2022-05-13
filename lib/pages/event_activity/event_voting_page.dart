@@ -5,7 +5,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/event_voting_model.dart';

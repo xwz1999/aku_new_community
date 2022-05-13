@@ -12,7 +12,6 @@ import 'package:aku_new_community/ui/community/community_views/community_page.da
 import 'package:aku_new_community/ui/market/market_page.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/dialog/certification_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'home/home_page.dart';
 import 'opening_code_page/opening_code_page.dart';

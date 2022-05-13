@@ -11,7 +11,6 @@ import 'package:aku_new_community/pages/message_center_page/reply/replay_view.da
 import 'package:aku_new_community/pages/message_center_page/thumbs_up/thumbs_up_view.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/tab_bar/bee_tab_bar.dart';
 
 class MessageCenterPage extends StatefulWidget {
   MessageCenterPage({Key? key}) : super(key: key);

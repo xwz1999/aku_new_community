@@ -9,7 +9,6 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/api.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/pages/life_pay/pay_finish_page.dart';
 import 'package:aku_new_community/pages/life_pay/pay_util.dart';

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/const/resource.dart';

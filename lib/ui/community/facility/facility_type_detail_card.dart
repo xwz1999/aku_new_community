@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
@@ -10,7 +9,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import '../../../models/facility/facility_type_detail_model.dart';
 import '../../../models/facility/facility_type_model.dart';
 import 'facility_preorder_page.dart';
-import 'facility_type_detail_page.dart';
 
 class FacilityTypeDetailCard extends StatelessWidget {
   final FacilityTypeDetailModel model;

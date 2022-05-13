@@ -143,7 +143,7 @@ class _AddressSelectorState extends State<AddressSelector>
     // for (int i = 0; i < _items.length; ++i) {
     for (int i = 0; i < _tabController.length; ++i) {
       List addressModels = _items[i];
-      if (addressModels == null || addressModels.length == 0) {
+      if (addressModels.length == 0) {
         list.add(Container());
         continue;
       }

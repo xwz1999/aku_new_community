@@ -52,6 +52,7 @@ class ApplicationUtil {
         return item;
       }
     }
+    return null;
   }
 
   List<AppElement> get allApplications => [

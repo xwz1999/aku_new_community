@@ -9,7 +9,6 @@ import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import '../item_my_address.dart';
-import '../user_func.dart';
 import 'new_address_page.dart';
 
 class AddressListPage extends StatefulWidget {

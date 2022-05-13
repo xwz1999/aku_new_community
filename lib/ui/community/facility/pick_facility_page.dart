@@ -1,23 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/models/facility/facility_type_model.dart';
 import 'package:aku_new_community/pages/things_page/widget/bee_list_view.dart';
 import 'package:aku_new_community/ui/community/facility/facility_type_card.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import '../../../constants/saas_api.dart';
-import '../../../utils/network/base_list_model.dart';
-import '../../../utils/network/net_util.dart';
 import '../../../widget/tab_bar/bee_tab_bar.dart';
-import '../../market/market_home_goods_card.dart';
-import 'facility_appointment_page.dart';
-import 'facility_appointment_view.dart';
 
 class PickFacilityPage extends StatefulWidget {
   PickFacilityPage({Key? key}) : super(key: key);

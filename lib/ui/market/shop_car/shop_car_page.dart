@@ -5,12 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/const/resource.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/market/shop_car/shop_car_list_model.dart';
 import 'package:aku_new_community/ui/market/search/submit_order_page.dart';
@@ -254,11 +251,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
           },
           showMessage: true,
         );
-        if (model.success != null) {
-          if (model.success) {
-            _selectIndex.clear();
-            _refreshController.callRefresh();
-          }
+        if (model.success) {
+          _selectIndex.clear();
+          _refreshController.callRefresh();
         }
       }
       ;
@@ -648,11 +643,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
           },
           showMessage: true,
         );
-        if (model.success != null) {
-          if (model.success) {
-            _selectIndex.clear();
-            _refreshController.callRefresh();
-          }
+        if (model.success) {
+          _selectIndex.clear();
+          _refreshController.callRefresh();
         }
       }
       ;

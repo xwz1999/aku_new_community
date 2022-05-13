@@ -6,11 +6,9 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/models/home/activity_detail_model.dart';
-import 'package:aku_new_community/models/home/home_activity_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
