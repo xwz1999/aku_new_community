@@ -1,5 +1,6 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../model/common/img_model.dart';
@@ -16,9 +17,9 @@ class FacilityTypeDetailModel extends Equatable {
   final String openEndDate;
   final List<ImgModel>? imgList;
 
-  DateTime? get openStartDt => DateUtil.getDateTime(openStartDate);
+  DateTime? get openStartDT => DateFormat('HH:mm:ss').parse(openStartDate);
 
-  DateTime? get openEndDt => DateUtil.getDateTime(openEndDate);
+  DateTime? get openEndDT => DateFormat('HH:mm:ss').parse(openEndDate);
 
   FacilityTypeDetailModel({
     required this.id,
