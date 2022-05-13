@@ -581,9 +581,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   Widget _goodCard(MyOrderListVoList model) {
     var top = RichText(
       text: TextSpan(children: [
-        WidgetSpan(
-          child: _getKindWd(model.kind ?? 0),
-        ),
+        // WidgetSpan(
+        //   child: _getKindWd(model.kind ?? 0),
+        // ),
         TextSpan(
             text: model.skuName,
             style: TextStyle(fontSize: 28.sp, color: ktextPrimary)),

@@ -327,7 +327,7 @@ class _MarketPageState extends State<MarketPage>
               172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(tabBarHeight+50.h),
+              preferredSize: Size.fromHeight(tabBarHeight),
               child: _goodsTitle(
                 normalTypeButton,
                 salesTypeButton,
@@ -600,9 +600,9 @@ class _MarketPageState extends State<MarketPage>
   geSearch() {
     return Column(
       children: [
-        16.hb,
-        '本商城所有商品来源于京东'.text.color(Color(0xFFACACAC)).normal.size(30.sp).make(),
-        16.hb,
+        // 16.hb,
+        // // '本商城所有商品来源于京东'.text.color(Color(0xFFACACAC)).normal.size(30.sp).make(),
+        // 16.hb,
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

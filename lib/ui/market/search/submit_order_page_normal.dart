@@ -455,9 +455,9 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
   Widget _goodCard(GoodDetailModel model) {
     var top = RichText(
       text: TextSpan(children: [
-        WidgetSpan(
-          child: _getKindWd(model.kind),
-        ),
+        // WidgetSpan(
+        //   child: _getKindWd(model.kind),
+        // ),
         TextSpan(
             text: model.skuName,
             style: TextStyle(fontSize: 28.sp, color: ktextPrimary)),

@@ -265,9 +265,9 @@ class _ShopCarPageState extends State<ShopCarPage> {
   Widget _goodCard(ShopCarListModel model, int index) {
     var top = RichText(
       text: TextSpan(children: [
-        WidgetSpan(
-          child: _getKindWd(model.kind ?? 0),
-        ),
+        // WidgetSpan(
+        //   child: _getKindWd(model.kind ?? 0),
+        // ),
         TextSpan(
             text: model.skuName,
             style: TextStyle(fontSize: 28.sp, color: ktextPrimary)),
