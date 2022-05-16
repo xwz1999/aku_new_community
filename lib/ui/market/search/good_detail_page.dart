@@ -283,7 +283,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          _getIcon(_goodDetail!.kind),
+          // _getIcon(_goodDetail!.kind),
           24.hb,
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -348,7 +348,7 @@ class _GoodDetailPageState extends State<GoodDetailPage> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          _getIcon(_goodDetail!.kind),
+          // _getIcon(_goodDetail!.kind),
           Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

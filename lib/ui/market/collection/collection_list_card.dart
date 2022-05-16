@@ -67,7 +67,7 @@ class CollectionListCard extends StatelessWidget {
                   ),
                 ),
                 5.hb,
-                _getIcon(2),
+                // _getIcon(2),
                 //_getIcon(model.kind??0),
                 Spacer(),
                 20.hb,

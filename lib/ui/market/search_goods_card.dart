@@ -91,15 +91,15 @@ class _SearchGoodsCardState extends State<SearchGoodsCard> {
               style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
             ),
           ),
-          Padding(
-              padding: EdgeInsets.only(
-                left: 16.w,
-                right: 16.w,
-                top: 10.w,
-              ),
-              child: Container(
-                child: _getIcon(widget.item.kind ?? 0),
-              )),
+          // Padding(
+          //     padding: EdgeInsets.only(
+          //       left: 16.w,
+          //       right: 16.w,
+          //       top: 10.w,
+          //     ),
+          //     child: Container(
+          //       child: _getIcon(widget.item.kind ?? 0),
+          //     )),
           10.hb,
           Padding(
             padding: EdgeInsets.symmetric(

@@ -83,15 +83,15 @@ class MarketHomeGoodsCard extends StatelessWidget {
               style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
             ),
           ),
-          Padding(
-              padding: EdgeInsets.only(
-                left: 16.w,
-                right: 16.w,
-                top: 10.w,
-              ),
-              child: Container(
-                child: _getIcon(1),
-              )),
+          // Padding(
+          //     padding: EdgeInsets.only(
+          //       left: 16.w,
+          //       right: 16.w,
+          //       top: 10.w,
+          //     ),
+          //     child: Container(
+          //       child: _getIcon(1),
+          //     )),
           10.hb,
           Padding(
             padding: EdgeInsets.symmetric(
