@@ -25,25 +25,16 @@ class FacilityPreorderDatePicker extends StatefulWidget {
       _FacilityPreorderDatePickerState();
 }
 
-class _FacilityPreorderDatePickerState extends State<FacilityPreorderDatePicker> {
+class _FacilityPreorderDatePickerState
+    extends State<FacilityPreorderDatePicker> {
   List<int> get _num => List.generate(
       getNum(widget.typeModel.openEndDT!) -
           getNum(widget.typeModel.openStartDT!),
       (index) => index + 1);
   DateTime? start;
-  List<int> models=[];
+  List<int> models = [];
 
-  static Future<List<int>> getPreorderData(int id) async {
-    BaseModel model =
-        await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
-      'facilitiesManageId': id,
-      'todayDate': DateTime.now(),
-    });
-    if (model.success) {
-      return (model.data as List<int>).toList();
-    }
-    return [];
-  }
+  List<int> _selectIndex = [];
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +53,10 @@ class _FacilityPreorderDatePickerState extends State<FacilityPreorderDatePicker>
               children: [
                 _datesList(index),
                 20.hb,
-                Divider(height: 1.0,color: Colors.black12,),
+                Divider(
+                  height: 1.0,
+                  color: Colors.black12,
+                ),
               ],
             );
           },
@@ -74,44 +68,73 @@ class _FacilityPreorderDatePickerState extends State<FacilityPreorderDatePicker>
   }
 
   Widget _datesList(int index) {
-    DateTime start=widget.typeModel.openStartDT!;
-    ()async{
+    DateTime start = widget.typeModel.openStartDT!;
+    () async {
       BaseModel model =
-      await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
+          await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
         'facilitiesManageId': widget.typeModel.id,
         'todayDate': DateTime.now(),
       });
       if (model.success) {
-        models=(model.data as List<int>).toList();
+        models = (model.data as List<int>).toList();
       }
     };
     return GestureDetector(
-      onTap: (){
-
+      onTap: () {
+        print(getNum(start)+index);
+        if(!models.contains(getNum(start)+index)||start.add(Duration(minutes: 30 * index)).isAfter(DateTime.now())){
+          if (_selectIndex.contains(index)) {
+            _selectIndex.remove(index);
+          } else {
+            _selectIndex.add(index);
+          }
+        }
+        setState(() {});
       },
-      child:Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        BeeCheckRadio(
-          value: getNum(start)+index,
-          groupValue: models,
-          backColor: start.isAfter(DateTime.now())?Colors.grey:Colors.white,
-        ),
-        30.wb,
-        Text(
-            '${DateUtil.formatDate(start.add(Duration(minutes: 30*index)),format: 'HH:mm')}'
-            '~${DateUtil.formatDate(start.add(Duration(minutes: 30*(index+1))),format: 'HH:mm')}',
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BeeCheckRadio(
+            value: index,
+            groupValue: _selectIndex,
+            canCheck: models.contains(getNum(start)+index),
+          ),
+          30.wb,
+          Text(
+            '${DateUtil.formatDate(start.add(Duration(minutes: 30 * index)), format: 'HH:mm')}'
+            '~${DateUtil.formatDate(start.add(Duration(minutes: 30 * (index + 1))), format: 'HH:mm')}',
             style: TextStyle(
               fontSize: 30.sp,
             ),
-        ),
-        Spacer(),
-        start.isAfter(DateTime.now())?'已过期'.text.size(30.sp).color(Colors.black.withOpacity(0.45)).make():
-        models.contains(getNum(start))?'已被他人预约'.text.size(30.sp).color(Colors.black.withOpacity(0.45)).make():SizedBox(),
-      ],
-    ),
+          ),
+          Spacer(),
+          isPass(start.add(Duration(minutes: 30 * index)))
+              ? '已过期'
+                  .text
+                  .size(30.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make()
+              : models.contains(getNum(start)+index)
+                  ? '已被他人预约'
+                      .text
+                      .size(30.sp)
+                      .color(Colors.black.withOpacity(0.45))
+                      .make()
+                  : SizedBox(),
+        ],
+      ),
     );
   }
+}
+
+bool isPass(DateTime date){
+  if(date.hour<DateTime.now().hour||(date.minute<DateTime.now().minute&&date.hour==DateTime.now().hour)){
+    return true;
+  }
+  else{
+    return false;
+  }
+
 }
 
 int getNum(DateTime dateTime) {
@@ -119,7 +142,7 @@ int getNum(DateTime dateTime) {
   hour = dateTime.hour;
   minute = dateTime.minute;
   if (minute > 0) {
-    return hour * 2 + 1;
+    return hour * 2;
   }
-  return hour * 2;
+  return hour * 2 + 1;
 }
