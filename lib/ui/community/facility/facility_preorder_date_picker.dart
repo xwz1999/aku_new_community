@@ -36,12 +36,13 @@ class _FacilityPreorderDatePickerState
 
   List<int> _selectIndex = [];
 
+
   @override
   Widget build(BuildContext context) {
     return BeeChooseDatePicker(
       height: 700.h,
       onPressed: () {
-        Get.back();
+        Get.back(result: _selectIndex);
       },
       body: Container(
         height: 600.h,
@@ -82,7 +83,7 @@ class _FacilityPreorderDatePickerState
     return GestureDetector(
       onTap: () {
         print(getNum(start)+index);
-        if(!models.contains(getNum(start)+index)||start.add(Duration(minutes: 30 * index)).isAfter(DateTime.now())){
+        if(!models.contains(getNum(start)+index)||isPass(start.add(Duration(minutes: 30 * index)))){
           if (_selectIndex.contains(index)) {
             _selectIndex.remove(index);
           } else {
@@ -97,7 +98,7 @@ class _FacilityPreorderDatePickerState
           BeeCheckRadio(
             value: index,
             groupValue: _selectIndex,
-            canCheck: models.contains(getNum(start)+index),
+            canCheck: models.contains(getNum(start)+index)||isPass(start.add(Duration(minutes: 30 * index))),
           ),
           30.wb,
           Text(

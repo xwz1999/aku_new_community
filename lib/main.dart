@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           }
         },
         child: MediaQuery(
-          data: MediaQueryData.fromWindow(WidgetsBinding.instance.window),
+          data: MediaQueryData.fromWindow(WidgetsBinding.instance!.window),
           child: ScreenUtilInit(
             designSize: Size(750, 1334),
             // minTextAdapt: true,

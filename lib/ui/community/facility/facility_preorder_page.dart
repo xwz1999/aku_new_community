@@ -47,23 +47,29 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
     final userProvider = Provider.of<UserProvider>(context);
     return BeeScaffold(
       title: '添加预订',
-      bodyColor: Colors.white,
       systemStyle: SystemStyle.yellowBottomBar,
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 32.w),
         children: [
-          Text('业主房屋').pSymmetric(h: 32.w),
-          ListTile(
-            leading: Image.asset(
-              R.ASSETS_ICONS_HOUSE_PNG,
-              height: 60.w,
-              width: 60.w,
+          Container(
+            color: Colors.white,
+            child:ListTile(
+              leading: Image.asset(
+                R.ASSETS_ICONS_HOUSE_PNG,
+                height: 60.w,
+                width: 60.w,
+              ),
+              onTap: () => Get.to(() => AdviceHousePage()),
+              title: Text(S.of(context)!.tempPlotName),
+              subtitle: Text(userProvider.defaultHouse!.addressName),
+              trailing: Icon(CupertinoIcons.chevron_forward),
             ),
-            onTap: () => Get.to(() => AdviceHousePage()),
-            title: Text(S.of(context)!.tempPlotName),
-            subtitle: Text(userProvider.defaultHouse!.addressName),
-            trailing: Icon(CupertinoIcons.chevron_forward),
           ),
+
+
+
+          Text('业主房屋').pSymmetric(h: 32.w),
+
           BeeDivider(
             indent: 32.w,
             endIndent: 32.w,
@@ -99,9 +105,12 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   height: 120.w,
                   onPressed: () async {
                     DateTime? date = await BeeDayPicker.pick(DateTime.now());
-                    await Get.bottomSheet(FacilityPreorderDatePicker(typeModel: widget.typeModel,));
+                    print(date);
                     if (date != null) {
                       startDate = date;
+                      Get.bottomSheet(FacilityPreorderDatePicker(typeModel: widget.typeModel,));
+                      List<int> dateList=FacilityPreorderDatePicker(typeModel: widget.typeModel) as List<int>;
+                      print(dateList);
                       setState(() {});
                     }
                   },

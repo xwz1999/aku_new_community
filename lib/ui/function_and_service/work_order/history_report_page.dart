@@ -106,7 +106,7 @@ class _LineCardState extends State<LineCard> {
 
   @override
   void didChangeDependencies() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       _height = context.size?.height ?? 0;
       print(context.size?.height);
       setState(() {});
