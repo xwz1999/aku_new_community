@@ -123,7 +123,8 @@ class UserProvider extends ChangeNotifier {
           '栋' +
           _defaultHouse!.unitName +
           '单元' +
-          _defaultHouse!.estateName;
+          _defaultHouse!.estateName +
+          '室';
     }
   }
 

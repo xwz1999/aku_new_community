@@ -14,6 +14,15 @@ import '../../../utils/network/base_model.dart';
 import '../../../utils/network/net_util.dart';
 import '../../../widget/buttons/bee_check_radio.dart';
 
+class FacilityPreorderDate {
+  static Future<List<int>> choose(
+    FacilityTypeDetailModel typeModel,
+  ) async {
+    return await Get.bottomSheet(
+        FacilityPreorderDatePicker(typeModel: typeModel));
+  }
+}
+
 class FacilityPreorderDatePicker extends StatefulWidget {
   FacilityTypeDetailModel typeModel;
 
@@ -35,14 +44,15 @@ class _FacilityPreorderDatePickerState
   List<int> models = [];
 
   List<int> _selectIndex = [];
-
+  List<int> _selectDates = [];
 
   @override
   Widget build(BuildContext context) {
     return BeeChooseDatePicker(
       height: 700.h,
       onPressed: () {
-        Get.back(result: _selectIndex);
+        Get.back(result: _selectDates);
+        //print(_selectDates);
       },
       body: Container(
         height: 600.h,
@@ -77,17 +87,20 @@ class _FacilityPreorderDatePickerState
         'todayDate': DateTime.now(),
       });
       if (model.success) {
-        models = (model.data as List<int>).toList();
+        models = (model.data as List<int>);
       }
     };
     return GestureDetector(
       onTap: () {
-        print(getNum(start)+index);
-        if(!models.contains(getNum(start)+index)||isPass(start.add(Duration(minutes: 30 * index)))){
+        //print(getNum(start)+index);
+        if (!models.contains(getNum(start) + index) ||
+            isPass(start.add(Duration(minutes: 30 * index)))) {
           if (_selectIndex.contains(index)) {
             _selectIndex.remove(index);
+            _selectDates.remove(getNum(start) + index);
           } else {
             _selectIndex.add(index);
+            _selectDates.add(getNum(start) + index);
           }
         }
         setState(() {});
@@ -98,7 +111,8 @@ class _FacilityPreorderDatePickerState
           BeeCheckRadio(
             value: index,
             groupValue: _selectIndex,
-            canCheck: models.contains(getNum(start)+index)||isPass(start.add(Duration(minutes: 30 * index))),
+            canCheck: models.contains(getNum(start) + index) ||
+                isPass(start.add(Duration(minutes: 30 * index))),
           ),
           30.wb,
           Text(
@@ -115,7 +129,7 @@ class _FacilityPreorderDatePickerState
                   .size(30.sp)
                   .color(Colors.black.withOpacity(0.45))
                   .make()
-              : models.contains(getNum(start)+index)
+              : models.contains(getNum(start) + index)
                   ? '已被他人预约'
                       .text
                       .size(30.sp)
@@ -128,14 +142,14 @@ class _FacilityPreorderDatePickerState
   }
 }
 
-bool isPass(DateTime date){
-  if(date.hour<DateTime.now().hour||(date.minute<DateTime.now().minute&&date.hour==DateTime.now().hour)){
+bool isPass(DateTime date) {
+  if (date.hour < DateTime.now().hour ||
+      (date.minute < DateTime.now().minute &&
+          date.hour == DateTime.now().hour)) {
     return true;
-  }
-  else{
+  } else {
     return false;
   }
-
 }
 
 int getNum(DateTime dateTime) {

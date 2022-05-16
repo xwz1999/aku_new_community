@@ -40,11 +40,11 @@ class FacilityAppointmentModel {
   Color get statusColor {
     switch (status) {
       case 1:
-        return kPrimaryColor;
+        return kBalckSubColor;
       case 2:
-        return Color(0xFF2576E5);
+        return kDarkPrimaryColor;
       case 3:
-        return Color(0xFFFB4702);
+        return kDangerColor;
       case 4:
         return Color(0xFF999999);
       case 5:
@@ -57,15 +57,15 @@ class FacilityAppointmentModel {
   String get statusValue {
     switch (status) {
       case 1:
-        return '预约成功';
+        return '待签到';
       case 2:
-        return '签到成功';
+        return '使用中';
       case 3:
-        return '预约作废';
+        return '超时作废';
       case 4:
-        return '已取消';
+        return '取消预约';
       case 5:
-        return '已结束';
+        return '使用结束';
       default:
         return '未知状态';
     }
