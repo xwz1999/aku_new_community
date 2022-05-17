@@ -12,6 +12,7 @@ class BeeImageNetwork extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit? fit;
+  final List<String>? urlsWithHost;
 
   const BeeImageNetwork(
       {Key? key,
@@ -19,17 +20,22 @@ class BeeImageNetwork extends StatelessWidget {
       this.width,
       this.height,
       this.urls,
-      this.fit = BoxFit.cover})
-      : assert(imgs != null || urls != null),
+      this.fit = BoxFit.cover,
+      this.urlsWithHost})
+      : assert(imgs != null || urls != null || urlsWithHost != null),
         super(key: key);
+
+  String get imgUrl => urlsWithHost == null
+      ? imgs == null
+          ? SAASAPI.image(urls!.isEmpty ? '' : urls!.first)
+          : SAASAPI.image(ImgModel.first(imgs))
+      : urlsWithHost!.first;
 
   @override
   Widget build(BuildContext context) {
     return FadeInImage.assetNetwork(
       placeholder: Assets.images.placeholder.path,
-      image: imgs == null
-          ? SAASAPI.image(urls!.isEmpty ? '' : urls!.first)
-          : SAASAPI.image(ImgModel.first(imgs)),
+      image: imgUrl,
       imageErrorBuilder: (context, obj, stackTrace) {
         return Image.asset(
           Assets.images.placeholder.path,

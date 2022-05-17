@@ -575,7 +575,7 @@ class _OrderCardState extends State<OrderCard> {
                       borderRadius: BorderRadius.circular(16.w),
                     ),
                     child: BeeImageNetwork(
-                      urls: [model.mainPhoto ?? ''],
+                      urlsWithHost: [model.mainPhoto ?? ''],
                       height: 188.w,
                       width: 188.w,
                     ),
