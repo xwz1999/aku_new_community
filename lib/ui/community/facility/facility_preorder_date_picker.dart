@@ -14,6 +14,15 @@ import '../../../utils/network/base_model.dart';
 import '../../../utils/network/net_util.dart';
 import '../../../widget/buttons/bee_check_radio.dart';
 
+class FacilityPreorderDate {
+  static Future<List<int>> choose(
+    FacilityTypeDetailModel typeModel,
+  ) async {
+    return await Get.bottomSheet(
+        FacilityPreorderDatePicker(typeModel: typeModel));
+  }
+}
+
 class FacilityPreorderDatePicker extends StatefulWidget {
   FacilityTypeDetailModel typeModel;
 
@@ -32,16 +41,43 @@ class _FacilityPreorderDatePickerState
           getNum(widget.typeModel.openStartDT!),
       (index) => index + 1);
   DateTime? start;
-  List<int> models = [];
+  List models = [];
 
   List<int> _selectIndex = [];
+  List<int> _selectDates = [];
+
+  _load() async {
+    BaseModel model =
+        await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
+      'facilitiesManageId': widget.typeModel.id,
+      'todayDate': DateTime.now(),
+    });
+    if (model.success) {
+      models = (model.data as List);
+      print(models);
+    }
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    Future.delayed(
+        Duration.zero,
+        () => setState(() {
+              _load();
+            }));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BeeChooseDatePicker(
       height: 700.h,
       onPressed: () {
-        Get.back();
+        Get.back(result: _selectDates);
+        //print(_selectDates);
       },
       body: Container(
         height: 600.h,
@@ -69,24 +105,18 @@ class _FacilityPreorderDatePickerState
 
   Widget _datesList(int index) {
     DateTime start = widget.typeModel.openStartDT!;
-    () async {
-      BaseModel model =
-          await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
-        'facilitiesManageId': widget.typeModel.id,
-        'todayDate': DateTime.now(),
-      });
-      if (model.success) {
-        models = (model.data as List<int>).toList();
-      }
-    };
+
     return GestureDetector(
       onTap: () {
-        print(getNum(start)+index);
-        if(!models.contains(getNum(start)+index)||start.add(Duration(minutes: 30 * index)).isAfter(DateTime.now())){
+        //print(getNum(start)+index);
+        if (!models.contains(getNum(start) + index) ||
+            isPass(start.add(Duration(minutes: 30 * index)))) {
           if (_selectIndex.contains(index)) {
             _selectIndex.remove(index);
+            _selectDates.remove(getNum(start) + index);
           } else {
             _selectIndex.add(index);
+            _selectDates.add(getNum(start) + index);
           }
         }
         setState(() {});
@@ -97,7 +127,8 @@ class _FacilityPreorderDatePickerState
           BeeCheckRadio(
             value: index,
             groupValue: _selectIndex,
-            canCheck: models.contains(getNum(start)+index),
+            canCheck: models.contains(getNum(start) + index) ||
+                isPass(start.add(Duration(minutes: 30 * index))),
           ),
           30.wb,
           Text(
@@ -114,8 +145,8 @@ class _FacilityPreorderDatePickerState
                   .size(30.sp)
                   .color(Colors.black.withOpacity(0.45))
                   .make()
-              : models.contains(getNum(start)+index)
-                  ? '已被他人预约'
+              : models.contains(getNum(start) + index)
+                  ? '已被预约'
                       .text
                       .size(30.sp)
                       .color(Colors.black.withOpacity(0.45))
@@ -127,14 +158,14 @@ class _FacilityPreorderDatePickerState
   }
 }
 
-bool isPass(DateTime date){
-  if(date.hour<DateTime.now().hour||(date.minute<DateTime.now().minute&&date.hour==DateTime.now().hour)){
+bool isPass(DateTime date) {
+  if (date.hour < DateTime.now().hour ||
+      (date.minute < DateTime.now().minute &&
+          date.hour == DateTime.now().hour)) {
     return true;
-  }
-  else{
+  } else {
     return false;
   }
-
 }
 
 int getNum(DateTime dateTime) {

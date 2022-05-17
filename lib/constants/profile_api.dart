@@ -22,7 +22,7 @@ class _MyHouse {
 
 class _MyFamily {
   ///查询房屋当前成员
-  String get myFamilyMember => '/app/user/myFamily/findCurrentMembers';
+  String get  myFamilyMember => '/app/user/myFamily/findCurrentMembers';
 
   ///查询当前用户的审核列表
   String get myFamilyExamine => '/app/user/myFamily/findCurrentUserApply';

@@ -82,7 +82,7 @@ class _MemberViewState extends State<MemberView> {
               crossAxisCount: 4,
               children: [
                 ...model.members
-                    .map((e) => _avatar(e.avatarImgList,Identify.values[e.identity], e.name))
+                    .map((e) => _avatar(e.imgList,Identify.values[e.identity], e.name))
                     .toList()
               ],
               shrinkWrap: true,

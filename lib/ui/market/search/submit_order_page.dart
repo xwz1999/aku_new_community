@@ -190,57 +190,51 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
               ),
               _addressModel != null
                   ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
-                              child: SizedBox(
-                                width: 518.w,
-                                child: Text(
-                                  _addressModel!.locationName ?? '',
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 6.w),
+                          child: SizedBox(
+                            width: 518.w,
+                            child: Text(
+                              _addressModel!.locationName ?? '',
+                              style: TextStyle(
+                                  fontSize: 24.sp, color: ktextPrimary),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 6.w),
+                          child: SizedBox(
+                            width: 518.w,
+                            child: Text(
+                              (_addressModel!.addressDetail ?? ''),
+                              style: TextStyle(
+                                  fontSize: 32.sp, color: ktextPrimary),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 6.w),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                                Text(_addressModel!.name ?? '',
                                   style: TextStyle(
-                                      fontSize: 24.sp, color: ktextPrimary),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
-                              child: SizedBox(
-                                width: 518.w,
-                                child: Text(
-                                  (_addressModel!.addressDetail ?? ''),
+                                      fontSize: 24.sp, color: ktextPrimary)),
+                              30.wb,
+                              Text(_addressModel!.tel ?? '',
                                   style: TextStyle(
-                                      fontSize: 32.sp, color: ktextPrimary),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 6.w),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Text(_addressModel!.name ?? '',
-                                      style: TextStyle(
-                                          fontSize: 24.sp,
-                                          color: ktextPrimary)),
-                                  30.wb,
-                                  Text(_addressModel!.tel ?? '',
-                                      style: TextStyle(
-                                          fontSize: 24.sp,
-                                          color: ktextPrimary)),
-                                ],
-                              ),
-                            ),
-                          ],
+                                      fontSize: 24.sp, color: ktextPrimary)),
+                            ],
+                          ),
                         ),
                       ],
                     )

@@ -323,6 +323,9 @@ class _Pay {
   ///创建缴费订单 向支付宝发起订单查询请求
   String get livingExpensesOrderCheckAlipay =>
       '/app/user/alipay/livingExpensesOrderCheckAlipay';
+
+  String get settlement =>
+      '/app/user/shop/cart/settlement';
 }
 
 class _LifePay {

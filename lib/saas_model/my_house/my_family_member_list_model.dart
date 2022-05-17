@@ -31,7 +31,7 @@ class Member {
   final int id;
   final String name;
   final int identity;
-  final List<ImgModel> avatarImgList;
+  final List<ImgModel> imgList;
 
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
@@ -39,6 +39,6 @@ class Member {
     required this.id,
     required this.name,
     required this.identity,
-    required this.avatarImgList,
+    required this.imgList,
   });
 }

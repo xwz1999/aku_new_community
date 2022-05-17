@@ -55,7 +55,7 @@ class __BeeDayPickerState extends State<_BeeDayPicker> {
   Widget build(BuildContext context) {
     return BeeChooseDatePicker(
       onPressed: () async{
-        Get.back();
+        Get.back(result: _date);
          // await FacilityPreorderDatePicker();
       },
       body: CupertinoDatePicker(

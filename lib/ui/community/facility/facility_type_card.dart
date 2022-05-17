@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class FacilityTypeCard extends StatelessWidget {
     return MaterialButton(
       color: Colors.white,
       elevation: 0,
-      padding: EdgeInsets.all(30.w),
+      padding: EdgeInsets.all(25.w),
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.w),
@@ -29,13 +30,18 @@ class FacilityTypeCard extends StatelessWidget {
           Material(
             borderRadius: BorderRadius.circular(10.w),
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: FadeInImage.assetNetwork(
-              placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-              image: SAASAPI.image(ImgModel.first(model.imgUrls)),
+            child: BeeImageNetwork(
+              imgs: model.imgUrls??[],
               height: 280.w,
               width: double.infinity,
-              fit: BoxFit.cover,
             ),
+            // FadeInImage.assetNetwork(
+            //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+            //   image: SAASAPI.image(ImgModel.first(model.imgUrls)),
+            //   height: 280.w,
+            //   width: double.infinity,
+            //   fit: BoxFit.cover,
+            // ),
           ),
           24.hb,
           Row(
