@@ -127,16 +127,16 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
                   }
                   Function cancel = BotToast.showLoading();
                   BaseModel baseModel = await NetUtil()
-                      .post(API.pay.jcookOrderCreateOrder, params: {
+                      .post(SAASAPI.pay.createGoodsOrder, params: {
                     "addressId": _addressModel!.id!,
                     "settlementGoodsDTOList":
                         _goodsList.map((v) => v.toJson()).toList(),
-                    "payType": 1, //暂时写死 等待后续补充
-                    "payPrice": _allPrice
+                    "payPrice": _allPrice,
+                    "payType": 1,//暂时写死 等待后续补充(支付宝)
                   });
                   if (baseModel.success) {
                     bool result = await PayUtil().callAliPay(
-                        baseModel.msg, API.pay.jcookOrderCheckAlipay);
+                        baseModel.msg, SAASAPI.pay.jcookOrderCheckAlipay);
                     if (result) {
                       Get.off(() => OrderPage(initIndex: 2));
                     } else {

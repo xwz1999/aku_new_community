@@ -146,13 +146,15 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
                 width: 60.w,
               ),
               40.wb,
-              '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
-                      '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
-                  .text
-                  .size(32.sp)
-                  .black
-                  .bold
-                  .make(),
+              userProvider.defaultHouse != null
+                  ? '${userProvider.defaultHouse!.addressName}${userProvider.defaultHouse!.communityName}\n'
+                          '${userProvider.defaultHouse!.buildingName}幢-${UserTool.userProvider.defaultHouse!.unitName}单元-${userProvider.defaultHouse!.estateName}室'
+                      .text
+                      .size(32.sp)
+                      .black
+                      .bold
+                      .make()
+                  : '请选择房屋'.text.size(32.sp).black.bold.make(),
               300.wb,
               Icon(
                 Icons.arrow_forward_ios,

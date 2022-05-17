@@ -55,15 +55,13 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   Future _pay() async {
     Function cancel = BotToast.showLoading();
     BaseModel baseModel =
-        await NetUtil().post(API.pay.jcookOrderCreateOrder, params: {
+        await NetUtil().post(SAASAPI.pay.settlement, params: {
       "addressId": widget.orderModel.appGoodsAddressId,
-      "settlementGoodsDTOList": _goodsList.map((v) => v.toJson()).toList(),
-      "payType": 1, //暂时写死 等待后续补充
-      "payPrice": widget.orderModel.payPrice
+      "settlementGoodsList": _goodsList.map((v) => v.toJson()).toList(),
     });
     if (baseModel.success) {
       bool result = await PayUtil()
-          .callAliPay(baseModel.msg, API.pay.jcookOrderCheckAlipay);
+          .callAliPay(baseModel.msg, SAASAPI.pay.jcookOrderCheckAlipay);
       if (result) {
         Get.off(() => OrderPage(initIndex: 2));
       } else {

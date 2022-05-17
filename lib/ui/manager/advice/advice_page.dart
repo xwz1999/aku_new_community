@@ -172,7 +172,7 @@ class _AdvicePageState extends State<AdvicePage> with TickerProviderStateMixin {
             _refreshController.callRefresh();
             setState(() => _selectedMode = false);
           },
-          child: '删除订单'.text.make(),
+          child: '删除'.text.make(),
         ),
         secondChild: BottomButton(
           onPressed: () async {

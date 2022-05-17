@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/material.dart';
 
 
@@ -31,11 +32,10 @@ class HorizontalImageView extends StatelessWidget {
               tag: urls[index]!,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.w),
-                child: FadeInImage.assetNetwork(
+                child: BeeImageNetwork(
+                  urls:[SAASAPI.image(urls[index]) ?? ''],
                   height: 184.w,
                   width: 184.w,
-                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: SAASAPI.image(urls[index]),
                   fit: BoxFit.cover,
                 ),
               ),
