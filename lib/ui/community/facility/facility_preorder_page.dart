@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
@@ -15,19 +14,14 @@ import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/community/facility/facility_preorder_date_picker.dart';
 import 'package:aku_new_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_order_date_list_page.dart';
-import 'package:aku_new_community/ui/community/facility/facility_type_detail_page.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-import 'package:aku_new_community/widget/buttons/bottom_button.dart';
-import 'package:aku_new_community/widget/picker/bee_date_picker.dart';
 import '../../../constants/saas_api.dart';
 import '../../../models/facility/facility_type_model.dart';
 import '../../../widget/bee_avatar_widget.dart';
-import '../../../widget/bee_image_network.dart';
 import '../../../widget/others/user_tool.dart';
-import '../../../widget/picker/bee_choose_date_picker.dart';
 import '../../../widget/picker/bee_day_picker.dart';
 import '../../manager/advice/advice_house_page.dart';
 

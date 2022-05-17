@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/models/facility/facility_type_detail_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/widget/picker/bee_choose_date_picker.dart';
 import 'package:common_utils/common_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:intl/intl.dart';
 import '../../../utils/network/base_model.dart';
 import '../../../utils/network/net_util.dart';
 import '../../../widget/buttons/bee_check_radio.dart';

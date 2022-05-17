@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import '../../../models/facility/facility_type_detail_model.dart';
 import '../../../models/facility/facility_type_model.dart';

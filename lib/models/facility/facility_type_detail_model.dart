@@ -1,4 +1,3 @@
-import 'package:common_utils/common_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
