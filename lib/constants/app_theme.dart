@@ -6,6 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(primarySwatch: Colors.blue).copyWith(
+      extensions: <ThemeExtension<dynamic>>[
+        MyAppStyle(
+          mainColor: Colors.blue,
+          bodyText3: TextStyle(
+            fontSize: 30.sp,
+            color: const Color(0xFF333333),
+          ),
+        )
+      ],
       progressIndicatorTheme:
           ProgressIndicatorThemeData(color: Color(0xFFFFD000)),
       primaryColor: Color(0xFFFFD000),
@@ -174,4 +183,33 @@ class SystemStyle {
       systemNavigationBarColor: bottom,
     );
   }
+}
+
+@immutable
+class MyAppStyle extends ThemeExtension<MyAppStyle> {
+  final TextStyle? bodyText3;
+  final Color? mainColor;
+
+  @override
+  MyAppStyle copyWith({Color? mainColor, TextStyle? bodyText3}) {
+    return MyAppStyle(
+        mainColor: mainColor ?? this.mainColor,
+        bodyText3: bodyText3 ?? this.bodyText3);
+  }
+
+  @override
+  ThemeExtension<MyAppStyle> lerp(ThemeExtension<MyAppStyle>? other, double t) {
+    if (other is! MyAppStyle) {
+      return this;
+    }
+    return MyAppStyle(
+      mainColor: Color.lerp(mainColor, other.mainColor, t),
+      bodyText3: TextStyle.lerp(bodyText3, other.bodyText3, t),
+    );
+  }
+
+  const MyAppStyle({
+    this.bodyText3,
+    this.mainColor,
+  });
 }
