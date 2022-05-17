@@ -75,7 +75,7 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
       SAASAPI.market.shopCart.settlement,
       params: {
         'addressId': addressId,
-        'settlementGoodsDTOList': goodsList.map((v) => v.toJson()).toList()
+        'settlementGoodsList': goodsList.map((v) => v.toJson()).toList()
       },
     );
     if (model.data == null) {

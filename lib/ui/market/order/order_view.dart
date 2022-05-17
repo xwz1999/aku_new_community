@@ -42,6 +42,7 @@ class _OrderViewState extends State<OrderView> {
           return models.rows.map((e) => OrderListModel.fromJson(e)).toList();
         },
         builder: (items) {
+          print(items.length);
           return ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               itemBuilder: (context, index) {

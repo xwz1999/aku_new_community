@@ -62,7 +62,7 @@ class _SubmitOrderNormalPageState extends State<SubmitOrderNormalPage> {
 
     if (appProvider.defaultAddressModel != null) {
       _addressModel = appProvider.defaultAddressModel!;
-      // createOrder(_addressModel!.id!, _goodsList);
+      createOrder(_addressModel!.id!, _goodsList);
     } else {
       _addressModel = null;
     }

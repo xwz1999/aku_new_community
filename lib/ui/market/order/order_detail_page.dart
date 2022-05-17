@@ -55,7 +55,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   Future _pay() async {
     Function cancel = BotToast.showLoading();
     BaseModel baseModel =
-        await NetUtil().post(SAASAPI.pay.settlement, params: {
+        await NetUtil().post(SAASAPI.market.shopCart.settlement, params: {
       "addressId": widget.orderModel.appGoodsAddressId,
       "settlementGoodsList": _goodsList.map((v) => v.toJson()).toList(),
     });

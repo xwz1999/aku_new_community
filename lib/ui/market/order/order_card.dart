@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -144,6 +145,7 @@ class _OrderCardState extends State<OrderCard> {
       if (baseModel.success) {
         BotToast.showText(text: '取消成功');
         widget.callRefresh();
+
       }
       cancel();
     }
@@ -393,6 +395,9 @@ class _OrderCardState extends State<OrderCard> {
                 LineButton(
                   onPressed: () {
                     _cancelOrder();
+                    setState(() {
+
+                    });
                   },
                   text:
                       ('取消订单').text.size(28.sp).color(Color(0xFF666666)).make(),
@@ -569,9 +574,8 @@ class _OrderCardState extends State<OrderCard> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16.w),
                     ),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: model.mainPhoto ?? '',
+                    child: BeeImageNetwork(
+                      urls: [model.mainPhoto ?? ''],
                       height: 188.w,
                       width: 188.w,
                     ),
