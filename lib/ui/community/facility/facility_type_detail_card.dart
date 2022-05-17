@@ -9,6 +9,7 @@ import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import '../../../models/facility/facility_type_detail_model.dart';
 import '../../../models/facility/facility_type_model.dart';
+import '../../../widget/bee_image_network.dart';
 import 'facility_preorder_page.dart';
 
 class FacilityTypeDetailCard extends StatelessWidget {
@@ -36,13 +37,19 @@ class FacilityTypeDetailCard extends StatelessWidget {
               Material(
                 borderRadius: BorderRadius.circular(10.w),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child:FadeInImage.assetNetwork(
-                  placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                  image: SAASAPI.image(ImgModel.first(model.imgList)),
+                child:BeeImageNetwork(
+                  imgs: model.imgList??[],
                   height: 150.h,
                   width: 200.w,
                   fit: BoxFit.cover,
                 ),
+                // FadeInImage.assetNetwork(
+                //   placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+                //   image: SAASAPI.image(ImgModel.first(model.imgList)),
+                //   height: 150.h,
+                //   width: 200.w,
+                //   fit: BoxFit.cover,
+                // ),
               ),
               30.wb,
               Column(

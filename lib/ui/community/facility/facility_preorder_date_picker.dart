@@ -41,10 +41,35 @@ class _FacilityPreorderDatePickerState
           getNum(widget.typeModel.openStartDT!),
       (index) => index + 1);
   DateTime? start;
-  List<int> models = [];
+  List models = [];
 
   List<int> _selectIndex = [];
   List<int> _selectDates = [];
+
+  _load() async {
+    BaseModel model =
+        await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
+      'facilitiesManageId': widget.typeModel.id,
+      'todayDate': DateTime.now(),
+    });
+    if (model.success) {
+      models = (model.data as List);
+      print(models);
+    }
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    Future.delayed(
+        Duration.zero,
+        () => setState(() {
+              _load();
+            }));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,16 +105,7 @@ class _FacilityPreorderDatePickerState
 
   Widget _datesList(int index) {
     DateTime start = widget.typeModel.openStartDT!;
-    () async {
-      BaseModel model =
-          await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
-        'facilitiesManageId': widget.typeModel.id,
-        'todayDate': DateTime.now(),
-      });
-      if (model.success) {
-        models = (model.data as List<int>);
-      }
-    };
+
     return GestureDetector(
       onTap: () {
         //print(getNum(start)+index);
@@ -130,7 +146,7 @@ class _FacilityPreorderDatePickerState
                   .color(Colors.black.withOpacity(0.45))
                   .make()
               : models.contains(getNum(start) + index)
-                  ? '已被他人预约'
+                  ? '已被预约'
                       .text
                       .size(30.sp)
                       .color(Colors.black.withOpacity(0.45))

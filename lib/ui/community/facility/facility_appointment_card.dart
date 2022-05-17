@@ -150,7 +150,11 @@ class FacilityAppointmentCard extends StatelessWidget {
         ? Column(
             children: [
               Container(
-                color: Colors.black12.withOpacity(0.25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.w),
+                  color: Color(0xFFF9F9F9),
+                ),
+                width: double.infinity,
                 padding: EdgeInsets.all(10.w),
                 child: Text(
                   '作废原因：${model.nullifyReason??''}',
@@ -160,6 +164,7 @@ class FacilityAppointmentCard extends StatelessWidget {
                   ),
                 ),
               ),
+              20.hb,
               Row(
                 children: [
                   if (showTip)
