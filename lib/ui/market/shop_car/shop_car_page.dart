@@ -513,7 +513,6 @@ class _ShopCarPageState extends State<ShopCarPage> {
                       _controllers[index].text = (num - 1).toString();
                     }
                   }
-
                   setState(() {});
                 },
                 child: Padding(
