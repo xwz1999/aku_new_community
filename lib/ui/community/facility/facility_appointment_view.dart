@@ -54,7 +54,7 @@ class _FacilityAppointmentViewState extends State<FacilityAppointmentView> {
       controller: _refreshController,
       convert: (model) =>
           model.rows.map((e) => FacilityAppointmentModel.fromJson(e)).toList(),
-      extraParams: {'facilitiesType': _facilityType},
+      extraParams: {'model': _facilityType},
       builder: (items) {
         return ListView.separated(
           padding: EdgeInsets.all(32.w),
