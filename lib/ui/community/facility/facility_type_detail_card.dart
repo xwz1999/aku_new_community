@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +37,8 @@ class FacilityTypeDetailCard extends StatelessWidget {
               Material(
                 borderRadius: BorderRadius.circular(10.w),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child:BeeImageNetwork(
-                  imgs: model.imgList??[],
+                child: BeeImageNetwork(
+                  imgs: model.imgList ?? [],
                   height: 150.h,
                   width: 200.w,
                   fit: BoxFit.cover,
@@ -61,7 +63,7 @@ class FacilityTypeDetailCard extends StatelessWidget {
                     ),
                   ),
                   15.hb,
-                  '${DateUtil.formatDate(model.openStartDT,format: 'HH:mm')}-${DateUtil.formatDate(model.openEndDT,format: 'HH:mm')}  开放'
+                  '${DateUtil.formatDate(model.openStartDT, format: 'HH:mm')}-${DateUtil.formatDate(model.openEndDT, format: 'HH:mm')}  开放'
                       .text
                       .size(20.sp)
                       .make(),
@@ -75,14 +77,48 @@ class FacilityTypeDetailCard extends StatelessWidget {
               ),
             ],
           ),
+          30.hb,
+          // Container(
+          //   height: 30.h,
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //     border: Border.all(
+          //       color: Color(0xFF979797),
+          //       width: 3.w,
+          //     ),
+          //   ),
+          //   child: CustomPaint(
+          //     painter: MyPainter(),
+          //   ),
+          // )
         ],
       ),
       onPressed: () {
         Get.off(() => FacilityPreorderPage(
-          facilityModel: facilityModel,
+              facilityModel: facilityModel,
               typeModel: model,
             ));
       },
     );
+  }
+}
+
+class MyPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint _paint = Paint()
+      ..color = Colors.redAccent
+      ..strokeWidth = 20;
+
+    //平移之前
+    canvas.drawPoints(PointMode.points, [Offset(0, 0)], _paint);
+    canvas.translate(200, 200);
+    //平移之后
+    canvas.drawPoints(PointMode.points, [Offset(0, 0)], _paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    throw UnimplementedError();
   }
 }

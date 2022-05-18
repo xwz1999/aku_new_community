@@ -60,7 +60,7 @@ class FacilityAppointmentCard extends StatelessWidget {
         if (model.reserveStartDt == null) button = SizedBox();
         int diffTime =
             model.reserveStartDt!.difference(DateTime.now()).inMinutes;
-        bool inTime = diffTime >= 0 && diffTime <= 30;
+        bool inTime = diffTime >= -30 && diffTime <= 30;
         if (inTime)
           button = _FacilityButton(
             bold: true,
