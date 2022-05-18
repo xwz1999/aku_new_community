@@ -14,6 +14,7 @@ import 'package:aku_new_community/provider/app_provider.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import '../../../constants/saas_api.dart';
 import '../../../widget/others/user_tool.dart';
 
 class PermissionUtil {
@@ -76,7 +77,7 @@ class _AlarmPageState extends State<AlarmPage> {
               _mapController = controller;
               _mapController!.moveCamera(
                 CameraUpdate.newCameraPosition(
-                  CameraPosition(target: _target, zoom: 14),
+                  CameraPosition(target: _target, zoom: 17),
                 ),
               );
             },
@@ -227,14 +228,11 @@ class _AlarmPageState extends State<AlarmPage> {
                               setState(() {
                                 _makephonenum('tel:110');
                               });
-
-                              if (appProvider.selectedHouse != null) {
-                                await NetUtil()
-                                    .post(API.manager.recordAlarmInfo, params: {
-                                  "estateId":
-                                      appProvider.selectedHouse!.estateId,
-                                });
-                              }
+                              await NetUtil()
+                                  .post(SAASAPI.conveniencePhone.recordAlarmInfo, params: {
+                                "longitude": appProvider.location?['longitude']??'',
+                                "latitude": appProvider.location?['latitude']??'',
+                              });
                             },
                             child: Icon(
                               Feather.phone_call,

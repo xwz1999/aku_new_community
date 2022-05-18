@@ -18,6 +18,8 @@ import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 
+import 'feedback_page/feedback_page.dart';
+
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
 
@@ -136,10 +138,10 @@ class _SettingsPageState extends State<SettingsPage> {
             //   title: '清除缓存',
             //   onTap: () {},
             // ),
-            // _buildTile(
-            //   title: '意见反馈',
-            //   onTap: () => Get.to(() => FeedBackPage()),
-            // ),
+            _buildTile(
+              title: '意见反馈',
+              onTap: () => Get.to(() => FeedBackPage()),
+            ),
             // _buildTile(
             //   title: '账号管理',
             //   onTap: () => Get.to(() => AccountManagerPage()),

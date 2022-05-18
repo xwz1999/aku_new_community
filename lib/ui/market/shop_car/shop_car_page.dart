@@ -503,6 +503,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
             children: [
               GestureDetector(
                 onTap: () async {
+                  _refreshController.callRefresh();
                   if (_controllers[index].text.isEmpty) {
                     _controllers[index].text = '1';
                   }
@@ -558,6 +559,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
               ),
               GestureDetector(
                 onTap: () async {
+                  _refreshController.callRefresh();
                   if (_controllers[index].text.isEmpty) {
                     _controllers[index].text = '0';
                   }

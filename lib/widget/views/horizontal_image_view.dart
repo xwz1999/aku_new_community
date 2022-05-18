@@ -33,7 +33,7 @@ class HorizontalImageView extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.w),
                 child: BeeImageNetwork(
-                  urls:[SAASAPI.image(urls[index]) ?? ''],
+                  urlsWithHost:[SAASAPI.image(urls[index])],
                   height: 184.w,
                   width: 184.w,
                   fit: BoxFit.cover,

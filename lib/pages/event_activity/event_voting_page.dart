@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/material.dart';
 
 import 'package:common_utils/common_utils.dart';
@@ -60,9 +61,8 @@ class _EventVotingPageState extends State<EventVotingPage> {
             height: 210.w,
             width: double.infinity,
             child: ClipRect(
-              child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SAASAPI.image(ImgModel.first(model.imgUrls)),
+              child: BeeImageNetwork(
+                imgs: model.imgUrls,
                 fit: BoxFit.cover,
               ),
             ),

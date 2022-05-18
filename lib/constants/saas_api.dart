@@ -358,6 +358,7 @@ class _CommunityIntroduce {
 class _ConveniencePhone {
   ///查询app便民电话
   String get list => '/app/user/conveniencePhone/list';
+  String get recordAlarmInfo => '/app/user/alarm/insertAlarmRecord';
 }
 class _CommitteeStaff {
   ///查询业委会列表

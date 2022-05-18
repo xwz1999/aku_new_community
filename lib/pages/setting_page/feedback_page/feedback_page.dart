@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -68,13 +69,15 @@ class _FeedBackPageState extends State<FeedBackPage> {
     return InkWell(
       onTap: () async {
         if (_formKey.currentState!.validate()) {
-          if (_files.isNotEmpty) {}
+            List<String?> urls =
+            await NetUtil().uploadFiles(_files, SAASAPI.uploadFile.uploadImg);
           var cancelAction = BotToast.showLoading();
           await NetUtil().post(
-            API.user.feedback,
+            SAASAPI.advice.insert,
             params: {
+              'type':5,
               'content': _ideaContent.text,
-              'fileUrls': [],
+              'imgUrls': urls,
             },
             showMessage: true,
           );

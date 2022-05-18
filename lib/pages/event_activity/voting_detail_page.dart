@@ -1,3 +1,4 @@
+import 'package:aku_new_community/widget/bee_image_network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -133,11 +134,8 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
             height: 150.w,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4.w),
-              child: FadeInImage.assetNetwork(
-                placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                image: SAASAPI.image(
-                  ImgModel.first(model.imgUrls),
-                ),
+              child: BeeImageNetwork(
+                imgs: model.imgUrls,
                 fit: BoxFit.cover,
               ),
             ),
@@ -232,9 +230,8 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   44.w.heightBox,
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.w),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
-                      image: SAASAPI.image(ImgModel.first(_model.imgUrls)),
+                    child: BeeImageNetwork(
+                      imgs: _model.imgUrls,
                     ),
                   ),
                   44.w.heightBox,
@@ -274,10 +271,12 @@ class _VotingDetailPageState extends State<VotingDetailPage> {
                   BotToast.showText(text: '投票未开始或已结束');
                 }
               : () async {
-                  if (_model.allowVote!) {
+                  if (!_model.allowVote!) {
                     BotToast.showText(text: '投票失败');
+                  } else if (_model.vote!) {
+                    BotToast.showText(text: '已投过票');
                   } else if (_selectId == null) {
-                    BotToast.showText(text: '请先选择候选人！');
+                    BotToast.showText(text: '请先选票！');
                   } else {
                     BaseModel baseModel =
                         await ManagerFunc.vote(widget.id, _selectId);

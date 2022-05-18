@@ -58,7 +58,7 @@ class _GeographicInformationPageState extends State<GeographicInformationPage> {
           _mapController = controller;
           _mapController!.moveCamera(
             CameraUpdate.newCameraPosition(
-              CameraPosition(target: _target, zoom: 14),
+              CameraPosition(target: _target, zoom: 17),
             ),
           );
         },

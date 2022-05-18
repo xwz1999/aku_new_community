@@ -267,7 +267,7 @@ class _QuestionnaireDetailPageState extends State<QuestionnaireDetailPage> {
             .size(32.sp)
             .bold
             .make(),
-        onPressed: widget.answered != 2
+        onPressed: widget.answered!
             ? () {
           BotToast.showText(text: '该问卷已填写过');
         }
