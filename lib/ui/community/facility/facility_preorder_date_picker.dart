@@ -169,7 +169,7 @@ int getNum(DateTime dateTime) {
   hour = dateTime.hour;
   minute = dateTime.minute;
   if (minute > 0) {
-    return hour * 2;
+    return hour * 2+1;
   }
-  return hour * 2 + 1;
+  return hour * 2;
 }

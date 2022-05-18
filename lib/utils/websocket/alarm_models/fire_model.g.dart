@@ -7,10 +7,12 @@ part of 'fire_model.dart';
 // **************************************************************************
 
 FireModel _$FireModelFromJson(Map<String, dynamic> json) => FireModel(
+      model: json['model'] as String?,
+      communityCode: json['communityCode'] as String?,
+      alarmType: json['alarmType'] as int?,
       alarmNo: json['alarmNo'] as String?,
-      alarmType: json['alarmType'] as String?,
-      deviceName: json['deviceName'] as String?,
       deviceNo: json['deviceNo'] as String?,
+      deviceName: json['deviceName'] as String?,
       time: json['time'] as String?,
-      type: json['type'] as int?,
+      alarmContent: json['alarmContent'] as String?,
     );

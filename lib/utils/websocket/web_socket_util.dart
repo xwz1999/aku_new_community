@@ -7,7 +7,9 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:aku_new_community/widget/others/user_tool.dart';
 
-const String baseUri = 'wss://shop.kaidalai.cn/websocket/app';
+// const String baseUri = 'wss://shop.kaidalai.cn/websocket/app';
+const String baseUri = 'wss://saas.kaidalai.cn/websocket/app';
+
 enum SOCKETSTATUS {
   CONNECTED, //已连接
   BREAKOFF, //已断开
@@ -27,6 +29,8 @@ class WebSocketUtil {
 
   ///用户设置不同的服务器地址
   String _user = 'admin';
+  String _communityCode = 'communityCode';
+  String _nickName = 'nickName';
 
   ///连接状态
   SOCKETSTATUS _socketStatus = SOCKETSTATUS.CLOSED;
@@ -86,12 +90,18 @@ class WebSocketUtil {
   void setUser(String user) {
     this._user = user;
   }
+  void setCommunityCode(String communityCode) {
+    this._communityCode = communityCode;
+  }
+  void setNickName(String nickName) {
+    this._nickName = nickName;
+  }
 
   ///开启websocket
   void startWebSocket() {
     closeWebSocket();
     try {
-      _webSocket = IOWebSocketChannel.connect(Uri.parse('$baseUri/$_user'));
+      _webSocket = IOWebSocketChannel.connect(Uri.parse('$baseUri/$_communityCode/$_nickName'));
       print('webSocket已连接服务器：$baseUri/$_user');
       _socketStatus = SOCKETSTATUS.CONNECTED;
       endReconnect();
