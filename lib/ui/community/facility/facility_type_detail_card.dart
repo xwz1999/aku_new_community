@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:aku_new_community/ui/community/facility/facility_preorder_date_picker.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -34,14 +35,15 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
   void initState() {
     Future.delayed(
         Duration.zero,
-            () => setState(() {
-          _load();
-        }));
+        () => setState(() {
+              _load();
+            }));
     super.initState();
   }
+
   _load() async {
     BaseModel model =
-    await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
+        await NetUtil().get(SAASAPI.facilities.allAppointmentPeriod, params: {
       'facilitiesManageId': widget.model.id,
       'todayDate': DateTime.now(),
     });
@@ -49,10 +51,9 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
       datesNum = (model.data as List);
       print(datesNum);
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -136,7 +137,7 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
               ),
             ),
             child: CustomPaint(
-              foregroundPainter: MyPainter(datesNum),
+              foregroundPainter: MyPainter(datesNum, widget.model),
             ),
           ),
         ],
@@ -156,23 +157,39 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
 class MyPainter extends CustomPainter {
   Path path = new Path();
   List? dates;
+  FacilityTypeDetailModel? model;
+  DateTime? start;
+  DateTime? end;
 
-  MyPainter(List dates) {
+  MyPainter(List dates, FacilityTypeDetailModel model) {
     this.dates = dates;
+    this.model = model;
+    start = model.openStartDT!;
+    end = model.openEndDT!;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
     for (int i = 0; i < 48; i++) {
       Paint _paint = Paint()
-        ..color = dates!.contains(i) ? kPrimaryColor : ktextThirdColor
+        ..color = dates!.contains(i)
+            ? kPrimaryColor
+            : i < getNum(start!) ||
+                    i > getNum(end!) ||
+                    i < getNum(DateTime.now())
+                ? ktextThirdColor
+                : Colors.transparent
         ..strokeWidth = 40.h;
-      if (dates!.contains(i)) {
+      if (dates!.contains(i) ||
+          i <= getNum(start!) ||
+          i >= getNum(end!) ||
+          i <= getNum(DateTime.now())) {
         canvas.translate(0, 0);
         canvas.drawLine(
             Offset(12.7.w * i - 1, 0), Offset(12.7.w * (i + 1), 0), _paint);
       }
     }
+    print(getNum(start!));
   }
 
   @override
