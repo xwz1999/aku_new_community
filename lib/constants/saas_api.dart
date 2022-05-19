@@ -43,6 +43,7 @@ class SAASAPI {
   static _Advice advice = _Advice();
   static _Vote vote = _Vote();
   static _Facilities facilities = _Facilities();
+  static _Bracelet bracelet = _Bracelet();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -52,6 +53,11 @@ class SAASAPI {
 class _City {
   ///查询所有的城市信息
   String get allCity => '/app/city/allCity';
+}
+
+class _Bracelet {
+  ///爱牵挂手环数据
+  String get data => '/app/user/elderlyCareEquipment/getAqgData';
 }
 
 class _User {
@@ -323,9 +329,9 @@ class _Pay {
   ///创建缴费订单 向支付宝发起订单查询请求
   String get livingExpensesOrderCheckAlipay =>
       '/app/user/alipay/livingExpensesOrderCheckAlipay';
+
   ///购物车结算
-  String get settlement =>
-      '/app/user/shop/cart/settlement';
+  String get settlement => '/app/user/shop/cart/settlement';
 }
 
 class _LifePay {
@@ -358,51 +364,72 @@ class _CommunityIntroduce {
 class _ConveniencePhone {
   ///查询app便民电话
   String get list => '/app/user/conveniencePhone/list';
+
   String get recordAlarmInfo => '/app/user/alarm/insertAlarmRecord';
 }
+
 class _CommitteeStaff {
   ///查询业委会列表
   String get list => '/app/user/industryCommittee/list';
 }
-class _Advice{
+
+class _Advice {
   ///查询所有投诉的列表
   String get list => '/app/user/advice/list';
+
   ///添加建议咨询/投诉表扬 信息
   String get insert => '/app/user/advice/insert';
+
   ///根据咨询建议/投诉表扬主键id 查询 咨询建议/投诉表扬信息
   String get find => '/app/user/advice/findById';
+
   ///继续提问
   String get reQuestion => '/app/user/advice/reQuestion';
+
   ///完成反馈
   String get complete => '/app/user/advice/complete';
+
   ///评价
   String get evaluate => '/app/user/advice/evaluate';
+
   ///批量删除咨询建议/投诉表扬信息
   String get delete => '/app/user/advice/delete';
 }
-class _Vote{
+
+class _Vote {
   ///查询所有投票的列表
-  String get list =>'/app/user/vote/list';
+  String get list => '/app/user/vote/list';
+
   ///投票
-  String get vote =>'/app/user/vote/vote';
+  String get vote => '/app/user/vote/vote';
+
   ///投票详情
-  String get details =>'/app/user/vote/details';
+  String get details => '/app/user/vote/details';
 }
-class _Facilities{
+
+class _Facilities {
   ///查询所有设施设备预约信息
-  String get list =>'/app/user/facilities/list';
+  String get list => '/app/user/facilities/list';
+
   ///查询所有设施设备分类信息
-  String get categoryList =>'/app/user/facilities/categoryList';
+  String get categoryList => '/app/user/facilities/categoryList';
+
   ///根据设施设备分类主键id查询所有设施设备
-  String get manageList =>'/app/user/facilities/manageList';
+  String get manageList => '/app/user/facilities/manageList';
+
   ///添加设施设备预约
-  String get insert =>'/app/user/facilities/insert';
+  String get insert => '/app/user/facilities/insert';
+
   ///查询该设备所有的已预约时段
-  String get allAppointmentPeriod =>'/app/user/facilities/allAppointmentPeriod';
+  String get allAppointmentPeriod =>
+      '/app/user/facilities/allAppointmentPeriod';
+
   ///扫码签到
-  String get signIn =>'/app/user/facilities/signIn';
+  String get signIn => '/app/user/facilities/signIn';
+
   ///结束使用
-  String get useStop =>'/app/user/facilities/useStop';
+  String get useStop => '/app/user/facilities/useStop';
+
   ///取消预约
-  String get cancel =>'/app/user/facilities/cancel';
+  String get cancel => '/app/user/facilities/cancel';
 }

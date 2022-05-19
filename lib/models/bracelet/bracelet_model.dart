@@ -10,7 +10,7 @@ class BraceletModel {
   final int switchType;
   final int dbp;
   final int heartRate;
-  final int remainingPower;
+  final int? remainingPower;
   final int detectionDays;
   final int alarmNums;
   final int fallNums;

@@ -14,7 +14,7 @@ BraceletModel _$BraceletModelFromJson(Map<String, dynamic> json) =>
       switchType: json['switchType'] as int,
       dbp: json['dbp'] as int,
       heartRate: json['heartRate'] as int,
-      remainingPower: json['remainingPower'] as int,
+      remainingPower: json['remainingPower'] as int?,
       detectionDays: json['detectionDays'] as int,
       alarmNums: json['alarmNums'] as int,
       fallNums: json['fallNums'] as int,
