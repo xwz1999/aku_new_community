@@ -96,9 +96,6 @@ class _AdviceDetailPageState extends State<AdviceDetailPage> {
         type = '您';
         break;
       case 2:
-        type = '装修公司';
-        break;
-      case 3:
         type = '物业';
         break;
     }

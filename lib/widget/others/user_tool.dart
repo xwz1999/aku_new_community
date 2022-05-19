@@ -1,4 +1,5 @@
 import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/provider/old_age_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,9 @@ class UserTool {
 
   static MyAppStyle get myAppStyle =>
       Theme.of(Get.context!).extension<MyAppStyle>()!;
+
+  static OldAgeProvider get oldAgeProvider =>
+      Provider.of<OldAgeProvider>(Get.context!, listen: false);
 
   UserTool();
 }

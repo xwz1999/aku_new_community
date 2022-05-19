@@ -1,7 +1,11 @@
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/utils/network/net_util.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -67,12 +71,25 @@ class _SubmitEquipmentCodePageState extends State<SubmitEquipmentCodePage> {
         bottomNavi: Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.w),
           child: MaterialButton(
-            onPressed: () {
+            onPressed: () async {
               if (_editingController.text.isEmpty) {
                 BotToast.showText(text: '设备码不能为空');
                 return;
               }
-              BotToast.showText(text: '请输入正确的设备码');
+              var base = await NetUtil().post(SAASAPI.bracelet.add, params: {
+                'type': 1,
+                'deviceType': 'x5',
+                'imei': _editingController.text
+              });
+              if (base.success) {
+                Get.back();
+                Get.back();
+                if (UserTool.oldAgeProvider.imei.isEmpty) {
+                  UserTool.oldAgeProvider.changeImei(_editingController.text);
+                }
+              } else {
+                BotToast.showText(text: base.msg);
+              }
             },
             elevation: 0,
             color: Color(0xFF6395D7),

@@ -1,16 +1,17 @@
+import 'dart:async';
+
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/network/base_model.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
 import 'package:aku_new_community/pages/services/old_age/add_equipment_page.dart';
@@ -31,17 +32,35 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
   BraceletModel? _model;
   DateTime? _date;
 
+  Timer? _timer;
+
+  void _startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      _date = DateTime.now();
+      getData();
+    });
+  }
+
+  void _disposeTimer() {
+    _timer?.cancel();
+    _timer = null;
+  }
+
   @override
   void initState() {
-    var cancel = BotToast.showLoading();
-    getData();
-    cancel();
+    Future.delayed(Duration.zero, () async {
+      var cancel = BotToast.showLoading();
+      await getData();
+      cancel();
+      _startTimer();
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     BotToast.closeAllLoading();
+    _disposeTimer();
     super.dispose();
   }
 
@@ -130,17 +149,14 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
   }
 
   Future getData() async {
-    var cancel = BotToast.showLoading();
-    BaseModel base =
-        await NetUtil().get(SAASAPI.bracelet.data, params: {
-      'imei': 863204050238280,
+    BaseModel base = await NetUtil().get(SAASAPI.bracelet.data, params: {
+      'imei': UserTool.oldAgeProvider.imei,
     });
     if (base.data != null) {
       _model = BraceletModel.fromJson(base.data);
       _date = DateTime.now();
     }
     setState(() {});
-    cancel();
   }
 
   Container bottomCard() {
@@ -441,7 +457,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           '剩余电量'.text.size(28.sp).color(Colors.black.withOpacity(0.65)).make(),
-          '${_model?.remainingPower??0}'
+          '${_model?.remainingPower ?? 0}'
               .richText
               .withTextSpanChildren([
                 ' %'
@@ -547,6 +563,16 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           ),
         ),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(CupertinoIcons.repeat),
+          iconSize: 30.w,
+          color: Colors.black,
+          onPressed: () {
+            Get.to(() => EquipmentListPage());
+          },
+        )
+      ],
       bottomNavi: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
         child: MaterialButton(

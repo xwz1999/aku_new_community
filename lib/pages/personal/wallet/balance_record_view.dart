@@ -1,3 +1,5 @@
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,7 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
   int _pickType = 0;
 
   Map<int, String> _types = {
+    0: '全部',
     1: '支付',
     2: '退还',
     3: '充值',
@@ -89,7 +92,7 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
                       return BeePickerBox(
                         onPressed: () {
                           Get.back();
-                          setState(() {});
+                          _refreshController.callRefresh();
                         },
                         child: CupertinoPicker.builder(
                           itemExtent: 60.w,
@@ -142,7 +145,7 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
                     .getList(SAASAPI.balance.tradeRecordList, params: {
                   'pageNum': _pageNum,
                   'size': _size,
-                  'modelType': 0,
+                  'modelType': 1,
                   'type': _pickType == 0 ? null : _pickType,
                   'createDate':
                       DateUtil.formatDate(_pickTime, format: DateFormats.full),
@@ -176,7 +179,11 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
               },
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                children: _models.map((e) => _buildCard(e)).toList(),
+                children: _models.map((e) => _buildCard(e)).toList().sepWidget(
+                        separate: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.w),
+                      child: BeeDivider(),
+                    )),
               ),
             ),
           ),
@@ -189,6 +196,7 @@ class _BalanceRecordViewState extends State<BalanceRecordView> {
 
   Widget _buildCard(TradeRecordListModel model) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [

@@ -34,7 +34,7 @@ class _WalletRechargePageState extends State<WalletRechargePage>
   late TabController _tabController;
   List<String> _tabs = ['余额充值', '积分充值'];
 
-  List<int> _balanceValue = [10, 20, 30, 50, 00, 200, 300, 500];
+  List<int> _balanceValue = [10, 20, 30, 50, 100, 200, 300, 500];
   List<int> _pointValue = [10, 200, 300, 500, 1000, 2000, 5000, 10000];
 
   int _rechargeValue = 0;

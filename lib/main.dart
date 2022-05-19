@@ -1,3 +1,4 @@
+import 'package:aku_new_community/provider/old_age_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => SignUpProvider()),
         ChangeNotifierProvider(create: (context) => DataProvider()),
         ChangeNotifierProvider(create: (context) => ClockTimerProvider()),
+        ChangeNotifierProvider(create: (context) => OldAgeProvider()),
       ],
       child: GestureDetector(
         onTap: () {

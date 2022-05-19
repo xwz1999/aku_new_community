@@ -1,3 +1,6 @@
+import 'package:aku_new_community/extensions/widget_list_ext.dart';
+import 'package:aku_new_community/gen/assets.gen.dart';
+import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +34,7 @@ class _PointRecordViewState extends State<PointRecordView> {
   int _pickType = 0;
 
   Map<int, String> _types = {
+    0:'全部',
     1: '支付',
     2: '退还',
     3: '充值',
@@ -89,7 +93,7 @@ class _PointRecordViewState extends State<PointRecordView> {
                       return BeePickerBox(
                         onPressed: () {
                           Get.back();
-                          setState(() {});
+                          _refreshController.callRefresh();
                         },
                         child: CupertinoPicker.builder(
                           itemExtent: 60.w,
@@ -142,7 +146,7 @@ class _PointRecordViewState extends State<PointRecordView> {
                     .getList(SAASAPI.balance.tradeRecordList, params: {
                   'pageNum': _pageNum,
                   'size': _size,
-                  'modelType': 1,
+                  'modelType': 2,
                   'type': _pickType == 0 ? null : _pickType,
                   'createDate':
                       DateUtil.formatDate(_pickTime, format: DateFormats.full),
@@ -175,7 +179,10 @@ class _PointRecordViewState extends State<PointRecordView> {
               },
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-                children: _models.map((e) => _buildCard(e)).toList(),
+                children: _models.map((e) => _buildCard(e)).toList().sepWidget(separate: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.w),
+                  child: BeeDivider(),
+                )),
               ),
             ),
           ),
@@ -188,6 +195,7 @@ class _PointRecordViewState extends State<PointRecordView> {
 
   Widget _buildCard(TradeRecordListModel model) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -197,13 +205,14 @@ class _PointRecordViewState extends State<PointRecordView> {
                 .color(Colors.black.withOpacity(0.85))
                 .make(),
             Spacer(),
-            '${incom(model.type) ? '+' : '-'}¥${model.payAmount}'
+            '${incom(model.type) ? '+' : '-'}${model.payAmount.toInt()}'
                 .text
                 .size(28.sp)
                 .color(incom(model.type)
                     ? Colors.red
                     : Colors.black.withOpacity(0.85))
                 .make(),
+            Assets.icons.intergral.image(width: 32.w,height: 32.w),
           ],
         ),
         8.hb,

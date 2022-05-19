@@ -58,6 +58,12 @@ class _City {
 class _Bracelet {
   ///爱牵挂手环数据
   String get data => '/app/user/elderlyCareEquipment/getAqgData';
+
+  ///添加爱牵挂手环
+  String get add => '/app/user/elderlyCareEquipment/bind';
+
+  ///绑定设备列表
+  String get list => '/app/user/elderlyCareEquipment/list';
 }
 
 class _User {
