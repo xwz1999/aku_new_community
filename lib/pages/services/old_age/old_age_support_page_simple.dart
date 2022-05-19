@@ -1,3 +1,5 @@
+import 'package:aku_new_community/constants/saas_api.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +34,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
   @override
   void initState() {
     var cancel = BotToast.showLoading();
-    // getData();
+    getData();
     cancel();
     super.initState();
   }
@@ -128,8 +130,9 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
   }
 
   Future getData() async {
-    Response base =
-        await NetUtil().dio!.get(API.bracelet.data, queryParameters: {
+    var cancel = BotToast.showLoading();
+    BaseModel base =
+        await NetUtil().get(SAASAPI.bracelet.data, params: {
       'imei': 863204050238280,
     });
     if (base.data != null) {
@@ -137,6 +140,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
       _date = DateTime.now();
     }
     setState(() {});
+    cancel();
   }
 
   Container bottomCard() {
@@ -437,7 +441,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           '剩余电量'.text.size(28.sp).color(Colors.black.withOpacity(0.65)).make(),
-          '${_model?.remainingPower}'
+          '${_model?.remainingPower??0}'
               .richText
               .withTextSpanChildren([
                 ' %'
