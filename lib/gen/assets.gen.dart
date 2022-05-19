@@ -1450,11 +1450,34 @@ class $AssetsNewIconGen {
   /// File path: assets/newIcon/jfjs.png
   AssetGenImage get jfjs => const AssetGenImage('assets/newIcon/jfjs.png');
 
+  /// File path: assets/newIcon/normal.png
+  AssetGenImage get normal => const AssetGenImage('assets/newIcon/normal.png');
+
+  /// File path: assets/newIcon/normal_unselect.png
+  AssetGenImage get normalUnselect =>
+      const AssetGenImage('assets/newIcon/normal_unselect.png');
+
+  /// File path: assets/newIcon/satisfied.png
+  AssetGenImage get satisfied =>
+      const AssetGenImage('assets/newIcon/satisfied.png');
+
+  /// File path: assets/newIcon/satisfied_unselect.png
+  AssetGenImage get satisfiedUnselect =>
+      const AssetGenImage('assets/newIcon/satisfied_unselect.png');
+
   /// File path: assets/newIcon/sfbs.png
   AssetGenImage get sfbs => const AssetGenImage('assets/newIcon/sfbs.png');
 
   /// File path: assets/newIcon/srzf.png
   AssetGenImage get srzf => const AssetGenImage('assets/newIcon/srzf.png');
+
+  /// File path: assets/newIcon/unsatisfied.png
+  AssetGenImage get unsatisfied =>
+      const AssetGenImage('assets/newIcon/unsatisfied.png');
+
+  /// File path: assets/newIcon/unsatisfied_unselect.png
+  AssetGenImage get unsatisfiedUnselect =>
+      const AssetGenImage('assets/newIcon/unsatisfied_unselect.png');
 
   /// File path: assets/newIcon/wallet_balance.png
   AssetGenImage get walletBalance =>

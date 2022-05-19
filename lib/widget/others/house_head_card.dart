@@ -33,8 +33,8 @@ class HouseHeadCard extends StatelessWidget {
             '当前房屋'.text.black.size(28.sp).make(),
             32.w.heightBox,
             GestureDetector(
-              onTap: () {
-                Get.to(() => MyHousePage());
+              onTap: () async {
+                await Get.to(() => MyHousePage());
                 if (onChanged != null) onChanged!();
               },
               child: Row(

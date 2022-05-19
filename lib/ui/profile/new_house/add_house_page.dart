@@ -1,3 +1,4 @@
+import 'package:aku_new_community/extensions/num_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -298,7 +299,7 @@ class _AddHousePageState extends State<AddHousePage> {
               mainAxisSize: MainAxisSize.min,
               children: _pickedHouses
                   .mapIndexed((currentValue, index) =>
-                      _propertyOwnerTile(currentValue, index))
+                      _propertyOwnerTile(currentValue, index,))
                   .toList()
                   .sepWidget(separate: BeeDivider.horizontal()),
             ),
@@ -465,6 +466,7 @@ class _AddHousePageState extends State<AddHousePage> {
       children: [
         32.w.heightBox,
         Container(
+          key: UniqueKey(),
           width: double.infinity,
           height: 60.w,
           alignment: Alignment.centerLeft,
@@ -472,11 +474,28 @@ class _AddHousePageState extends State<AddHousePage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.w),
               color: Colors.black.withOpacity(0.06)),
-          child: '产权信息${(index + 1).toChinese}'
-              .text
-              .size(26.sp)
-              .color(Colors.black.withOpacity(0.45))
-              .make(),
+          child: Row(
+            children: [
+              '产权信息${(index + 1).toChinese}'
+                  .text
+                  .size(26.sp)
+                  .color(Colors.black.withOpacity(0.45))
+                  .make(),
+              Spacer(),
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(minWidth: 20.w, minHeight: 20.w),
+                onPressed: () {
+                  _pickedHouses.removeAt(index);
+                  setState(() {});
+                },
+                icon: Icon(
+                  CupertinoIcons.minus,
+                  size: 30.w,
+                ),
+              ),10.wb,
+            ],
+          ),
         ),
         GestureDetector(
           onTap: () async {

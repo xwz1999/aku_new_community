@@ -10,7 +10,7 @@ import 'package:aku_new_community/extensions/widget_list_ext.dart';
 import 'package:aku_new_community/pages/life_pay/life_pay_page.dart';
 import 'package:aku_new_community/pages/share_pay_page/share_pay_page.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
-
+@Deprecated('弃用')
 class LifePayChoosePage extends StatefulWidget {
   const LifePayChoosePage({Key? key}) : super(key: key);
 

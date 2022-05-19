@@ -51,7 +51,9 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
                   .make(),
               Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   icon: Icon(
                     CupertinoIcons.xmark,
                     size: 24.w,
@@ -62,9 +64,28 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
           40.hb,
           Row(
             children: [
-              _evaluationIcon(2, '不满意', Assets.icons.dissatisfied.path),
-              _evaluationIcon(6, '一般', Assets.icons.normal.path),
-              _evaluationIcon(10, '满意', Assets.icons.satisfied.path),
+              32.wb,
+              _evaluationIcon(
+                  2,
+                  '不满意',
+                  _currentIndex == 2
+                      ? Assets.newIcon.unsatisfied.path
+                      : Assets.newIcon.unsatisfiedUnselect.path),
+              Spacer(),
+              _evaluationIcon(
+                  6,
+                  '一般',
+                  _currentIndex == 6
+                      ? Assets.newIcon.normal.path
+                      : Assets.newIcon.normalUnselect.path),
+              Spacer(),
+              _evaluationIcon(
+                  10,
+                  '满意',
+                  _currentIndex == 10
+                      ? Assets.newIcon.satisfied.path
+                      : Assets.newIcon.satisfiedUnselect.path),
+              32.wb,
             ],
           ),
           56.hb,
@@ -84,7 +105,9 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
           80.hb,
           BottomPluralButtonWidget(
             leftTitle: '暂不评价',
-            onLeftTap: () {},
+            onLeftTap: () {
+              Get.back();
+            },
             rightTitle: '确认提交',
             onRightTap: () async {
               if (_currentIndex == null) {
@@ -114,18 +137,15 @@ class _TaskEvaluationDialogState extends State<TaskEvaluationDialog> {
         _currentIndex = index;
         setState(() {});
       },
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        width: _currentIndex == index ? 120.w : 80.w,
-        height: _currentIndex == index ? 120.w : 80.w,
-        child: Column(
-          children: [
-            Image.asset(iconPath,
-                width: double.infinity, height: double.infinity),
-            10.hb,
-            text.text.size(32.sp).color(Colors.black.withOpacity(0.65)).make(),
-          ],
-        ),
+      child: Column(
+        children: [
+          Image.asset(iconPath,width: 120.w,height: 120.w,),
+          10.hb,
+          text.text
+              .size(32.sp)
+              .color(Colors.black.withOpacity(0.65))
+              .make(),
+        ],
       ),
     );
   }
