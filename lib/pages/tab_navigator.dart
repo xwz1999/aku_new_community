@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,8 @@ class _TabNavigatorState extends State<TabNavigator>
   //页面列表
   List<Widget> _pages = <Widget>[];
 
+  EasyRefreshController _refreshController = EasyRefreshController();
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +54,9 @@ class _TabNavigatorState extends State<TabNavigator>
       // PropertyPage(),
       OpeningCodePage(),
       CommunityPage(),
-      PersonalIndex()
+      PersonalIndex(
+        refreshController: _refreshController,
+      )
     ];
 
     _tabController = TabController(
@@ -73,6 +78,9 @@ class _TabNavigatorState extends State<TabNavigator>
           } else {
             _tabController!.animateTo(index, curve: Curves.easeInOutCubic);
             _currentIndex = index;
+            if (_currentIndex == 4) {
+              _refreshController.callRefresh();
+            }
             setState(() {});
           }
         },
@@ -138,10 +146,9 @@ class _TabNavigatorState extends State<TabNavigator>
               //暂时隐去一键登录页
               Get.offAll(() => OtherLoginPage());
             } else {}
-              _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
-              _currentIndex = 2;
-              setState(() {});
-
+            _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
+            _currentIndex = 2;
+            setState(() {});
           },
           child: Material(
             color: Colors.transparent,

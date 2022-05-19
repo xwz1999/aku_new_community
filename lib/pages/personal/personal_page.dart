@@ -31,7 +31,9 @@ import 'intergral/integral_center_page.dart';
 class PersonalIndex extends StatefulWidget {
   final bool? isSign;
 
-  PersonalIndex({Key? key, this.isSign}) : super(key: key);
+  final EasyRefreshController refreshController;
+
+  PersonalIndex({Key? key, this.isSign, required this.refreshController}) : super(key: key);
 
   @override
   _PersonalIndexState createState() => _PersonalIndexState();
@@ -39,8 +41,6 @@ class PersonalIndex extends StatefulWidget {
 
 class _PersonalIndexState extends State<PersonalIndex>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  EasyRefreshController _refreshController = EasyRefreshController();
-
   Widget _orderButton({
     required String name,
     required String path,
@@ -74,7 +74,6 @@ class _PersonalIndexState extends State<PersonalIndex>
 
   @override
   void dispose() {
-    _refreshController.dispose();
     super.dispose();
   }
 
@@ -89,7 +88,7 @@ class _PersonalIndexState extends State<PersonalIndex>
         child: Scaffold(
           body: EasyRefresh(
               header: MaterialHeader(),
-              controller: _refreshController,
+              controller: widget.refreshController,
               onRefresh: () async {
                 await userProvider.updateUserInfo();
                 await userProvider.updateMyHouseInfo();
@@ -196,7 +195,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                                           tomorrowIntegral: 2));
                                       await UserTool.userProvider
                                           .changeTodayClocked();
-                                      _refreshController.callRefresh();
+                                      widget.refreshController.callRefresh();
                                     } else {
                                       BotToast.showText(text: base.msg);
                                     }
@@ -389,7 +388,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         await Get.to(WalletRechargePage(
                           initIndex: 0,
                         ));
-                        _refreshController.callRefresh();
+                        widget.refreshController.callRefresh();
                       },
                       child: Material(
                         color: Colors.transparent,
@@ -412,7 +411,7 @@ class _PersonalIndexState extends State<PersonalIndex>
                         await Get.to(WalletRechargePage(
                           initIndex: 1,
                         ));
-                        _refreshController.callRefresh();
+                        widget.refreshController.callRefresh();
                       },
                       child: Material(
                         color: Colors.transparent,
