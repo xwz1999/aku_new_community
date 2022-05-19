@@ -63,12 +63,12 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               ),
               onTap: () => Get.to(() => AdviceHousePage()),
               title: Text(
-                UserTool.userProvider.userInfoModel!.name!,
+                UserTool.userProvider.userInfoModel!.name??'请先选择房屋',
                 style: TextStyle(
                   fontSize: 30.sp,
                 ),
               ),
-              subtitle: Text(
+              subtitle: userProvider.defaultHouse!=null?Text(
                 '租户  ' +
                     userProvider.defaultHouse!.communityName +
                     userProvider.defaultHouseString,
@@ -76,7 +76,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   color: Colors.black.withOpacity(0.45),
                   fontSize: 26.sp,
                 ),
-              ),
+              ):SizedBox(),
               trailing: Icon(
                 CupertinoIcons.chevron_forward,
                 size: 35.w,
@@ -252,7 +252,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
 DateTime getDate(int dateNum) {
   DateTime startDate = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day, 0, 0, 0);
-  return startDate.add(Duration(minutes: 30 * (dateNum - 1)));
+  return startDate.add(Duration(minutes: 30 * (dateNum)));
 }
 
 String dateString(List<int> dates){
