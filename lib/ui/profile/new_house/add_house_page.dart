@@ -252,9 +252,9 @@ class _AddHousePageState extends State<AddHousePage> {
       case Identify.OWNER:
         return _propertyRightOwner();
       case Identify.OWNER_RELATIVES:
-        return _propertyRightOther();
+        return _propertyRightOwner();
       case Identify.TENANT:
-        return _propertyRightOther();
+        return _propertyRightOwner();
       case Identify.TENANT_RELATIVES:
         return _propertyRightOther();
     }
