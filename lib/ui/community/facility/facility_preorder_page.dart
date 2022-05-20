@@ -41,7 +41,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
   List<int> dateList = [];
   DateTime? date;
 
-  bool get canTap => dateList.isNotEmpty;
+  bool get canTap => dateList.isNotEmpty&&UserTool.userProvider.defaultHouse!=null;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
               ),
               onTap: () => Get.to(() => AdviceHousePage()),
               title: Text(
-                UserTool.userProvider.userInfoModel!.name??'请先选择房屋',
+                UserTool.userProvider.userInfoModel!.name??'',
                 style: TextStyle(
                   fontSize: 30.sp,
                 ),
@@ -76,7 +76,13 @@ class _FacilityPreorderPageState extends State<FacilityPreorderPage> {
                   color: Colors.black.withOpacity(0.45),
                   fontSize: 26.sp,
                 ),
-              ):SizedBox(),
+              ):Text(
+                '请先绑定房屋',
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.45),
+                  fontSize: 26.sp,
+                ),
+              ),
               trailing: Icon(
                 CupertinoIcons.chevron_forward,
                 size: 35.w,
