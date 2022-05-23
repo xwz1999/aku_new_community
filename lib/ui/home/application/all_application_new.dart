@@ -35,7 +35,7 @@ class _AllApplicationNewPageState extends State<AllApplicationNewPage> {
       case 3:
         return ['服务浏览', '周边企业', '住房说明', '电子商务'];
       case 4:
-        return ['智慧养老', '任务发布', '周边服务', '共享投屏'];
+        return [' ', '任务发布', '周边服务', '共享投屏'];
       case 5:
         return ['自营商城', '邻家宠物', '共享停车', '二手市场'];
       default:
