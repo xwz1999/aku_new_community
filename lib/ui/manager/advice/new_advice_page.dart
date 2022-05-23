@@ -224,7 +224,10 @@ class _NewAdvicePageState extends State<NewAdvicePage> {
                 type = _type == 0 ? 3 : 4;
                 break;
             }
-            addAdvice(type, _files, _editingController.text);
+            if(userProvider.defaultHouse != null){
+              addAdvice(type, _files, _editingController.text);
+            }
+            BotToast.showText(text: '请选择房屋');
           }
           cancel();
         },
