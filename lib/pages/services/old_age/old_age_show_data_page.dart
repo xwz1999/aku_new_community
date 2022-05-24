@@ -1,34 +1,28 @@
 import 'dart:async';
 
 import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/utils/network/base_model.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bot_toast/bot_toast.dart';
-import 'package:common_utils/common_utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:velocity_x/velocity_x.dart';
-
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/models/bracelet/bracelet_model.dart';
-import 'package:aku_new_community/pages/services/old_age/add_equipment_page.dart';
-import 'package:aku_new_community/pages/services/old_age/equipment_list_page.dart';
+import 'package:aku_new_community/utils/headers.dart';
+import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:common_utils/common_utils.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class OldAgeSupportPageSimple extends StatefulWidget {
-  const OldAgeSupportPageSimple({Key? key}) : super(key: key);
+class OldAgeShowDataPage extends StatefulWidget {
+  final String imei;
+
+  const OldAgeShowDataPage({Key? key, required this.imei}) : super(key: key);
 
   @override
-  _OldAgeSupportPageSimpleState createState() =>
-      _OldAgeSupportPageSimpleState();
+  _OldAgeShowDataPageState createState() => _OldAgeShowDataPageState();
 }
 
-class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
+class _OldAgeShowDataPageState extends State<OldAgeShowDataPage> {
   BraceletModel? _model;
   DateTime? _date;
 
@@ -46,15 +40,26 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
     _timer = null;
   }
 
+  Future getData() async {
+    BaseModel base = await NetUtil().get(SAASAPI.bracelet.data, params: {
+      'imei': widget.imei,
+    });
+    if (base.data != null) {
+      _model = BraceletModel.fromJson(base.data);
+      _date = DateTime.now();
+    }
+    setState(() {});
+  }
+
   @override
   void initState() {
+    super.initState();
     Future.delayed(Duration.zero, () async {
       var cancel = BotToast.showLoading();
       await getData();
       cancel();
       _startTimer();
     });
-    super.initState();
   }
 
   @override
@@ -84,79 +89,63 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
             .make(),
       ],
     );
-    return _model == null
-        ? _emptyScaffold()
-        : BeeScaffold(
-            title: 'X5手环',
-            extendBody: true,
-            actions: [
-              IconButton(
-                icon: Icon(CupertinoIcons.repeat),
-                iconSize: 30.w,
-                color: Colors.black,
-                onPressed: () {
-                  Get.to(() => EquipmentListPage());
-                },
-              )
-            ],
-            body: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    alignment: Alignment.topCenter,
-                    image: AssetImage(Assets.static.braceletHeader.path)),
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white,
-                      Color(0xFFC0E5DC).withOpacity(0.355)
-                    ]),
-              ),
-              child: _model == null
-                  ? Container()
-                  : SafeArea(
-                      child: ListView(
-                        padding: EdgeInsets.symmetric(horizontal: 32.w),
-                        children: [
-                          400.w.heightBox,
-                          open,
-                          16.w.heightBox,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
-                                  .text
-                                  .size(22.sp)
-                                  .color(Colors.black.withOpacity(0.25))
-                                  .make(),
-                              40.w.heightBox,
-                            ],
-                          ),
-                          40.w.heightBox,
-                          overview(),
-                          24.w.heightBox,
-                          statusCard(),
-                          40.w.heightBox,
-                          bottomCard(),
-                          40.w.heightBox,
-                        ],
-                      ),
+    return BeeScaffold(
+      title: 'X5手环',
+      extendBody: true,
+      // actions: [
+      //   IconButton(
+      //     icon: Icon(CupertinoIcons.repeat),
+      //     iconSize: 30.w,
+      //     color: Colors.black,
+      //     onPressed: () {
+      //       Get.to(() => EquipmentListPage());
+      //     },
+      //   )
+      // ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              alignment: Alignment.topCenter,
+              image: AssetImage(Assets.static.braceletHeader.path)),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.white, Color(0xFFC0E5DC).withOpacity(0.355)]),
+        ),
+        child: _model == null
+            ? Container()
+            : SafeArea(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 32.w),
+                  children: [
+                    400.w.heightBox,
+                    open,
+                    16.w.heightBox,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        '数据更新自 ${DateUtil.formatDate(_date!, format: DateFormats.full)}'
+                            .text
+                            .size(22.sp)
+                            .color(Colors.black.withOpacity(0.25))
+                            .make(),
+                        40.w.heightBox,
+                      ],
                     ),
-            ),
-          );
-  }
-
-  Future getData() async {
-    BaseModel base = await NetUtil().get(SAASAPI.bracelet.data, params: {
-      'imei': UserTool.oldAgeProvider.imei,
-    });
-    if (base.data != null) {
-      _model = BraceletModel.fromJson(base.data);
-      _date = DateTime.now();
-    }
-    setState(() {});
+                    40.w.heightBox,
+                    overview(),
+                    24.w.heightBox,
+                    statusCard(),
+                    40.w.heightBox,
+                    bottomCard(),
+                    40.w.heightBox,
+                  ],
+                ),
+              ),
+      ),
+    );
   }
 
   Container bottomCard() {
@@ -542,51 +531,6 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           BeeDivider.vertical(),
           right
         ],
-      ),
-    );
-  }
-
-  Widget _emptyScaffold() {
-    return BeeScaffold(
-      title: '智慧养老',
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Assets.images.equipmentEmpty.image(width: 480.w, height: 480.w),
-              '当前没有绑定任何设备'
-                  .text
-                  .size(28.sp)
-                  .color(Colors.black.withOpacity(0.25))
-                  .make(),
-            ],
-          ),
-        ),
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(CupertinoIcons.repeat),
-          iconSize: 30.w,
-          color: Colors.black,
-          onPressed: () {
-            Get.to(() => EquipmentListPage());
-          },
-        )
-      ],
-      bottomNavi: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-        child: MaterialButton(
-          onPressed: () {
-            Get.to(() => AddEquipmentPage());
-          },
-          color: Color(0xFF5096F1),
-          padding: EdgeInsets.symmetric(vertical: 24.w),
-          minWidth: 686.w,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.w),
-          ),
-          child: '添加设备'.text.size(28.sp).white.make(),
-        ),
       ),
     );
   }

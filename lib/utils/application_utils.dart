@@ -19,7 +19,7 @@ import 'package:aku_new_community/pages/life_pay/life_pay_page_new.dart';
 import 'package:aku_new_community/pages/opening_code_page/opening_code_page.dart';
 import 'package:aku_new_community/pages/renovation_manage/new_renovation/new_renovation_page.dart';
 import 'package:aku_new_community/pages/service_browse/service_browse_page.dart';
-import 'package:aku_new_community/pages/services/old_age/old_age_support_page_simple.dart';
+import 'package:aku_new_community/pages/services/old_age/old_age_support_list_page.dart';
 import 'package:aku_new_community/pages/surrounding_enterprises/surrounding_enterprises_page.dart';
 import 'package:aku_new_community/ui/community/facility/facility_appointment_page.dart';
 import 'package:aku_new_community/ui/function_and_service/task/task_page.dart';
