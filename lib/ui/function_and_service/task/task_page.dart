@@ -1,4 +1,5 @@
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -40,6 +41,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
     _refreshControllers.forEach((element) {
       element.dispose();
     });
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -71,7 +73,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
                   children: [
                     ...TaskMap.taskMode.values
                         .mapIndexed((currentValue, index) =>
-                        _tabCard(currentValue, index))
+                            _tabCard(currentValue, index))
                         .toList(),
                   ],
                 ),
@@ -81,14 +83,17 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
                 child: Row(
                   children: <String>['全部', ...TaskMap.taskType.values]
                       .mapIndexed((currentValue, index) =>
-                      _typeBar(currentValue, index))
+                          _typeBar(currentValue, index))
                       .toList(),
                 ),
               )
             ],
           )),
       body: SafeArea(
-          child: TabBarView(controller: _tabController, children: [
+          child: TabBarView(
+              //physics: NeverScrollableScrollPhysics(),
+              controller: _tabController,
+              children: [
             HallView(
               refreshController: _refreshControllers[0],
               type: _currentType,
@@ -144,23 +149,23 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
         color: Colors.transparent,
         child: _currentType == index
             ? Container(
-          padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 24.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.w),
-            color: Color(0xFFFAC058).withOpacity(0.5),
-          ),
-          child: text.text
-              .size(24.sp)
-              .color(Colors.black.withOpacity(0.65))
-              .make(),
-        )
+                padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 24.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.w),
+                  color: Color(0xFFFAC058).withOpacity(0.5),
+                ),
+                child: text.text
+                    .size(24.sp)
+                    .color(Colors.black.withOpacity(0.65))
+                    .make(),
+              )
             : Container(
-          padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 24.w),
-          child: text.text
-              .size(24.sp)
-              .color(Colors.black.withOpacity(0.45))
-              .make(),
-        ),
+                padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 24.w),
+                child: text.text
+                    .size(24.sp)
+                    .color(Colors.black.withOpacity(0.45))
+                    .make(),
+              ),
       ),
     );
   }

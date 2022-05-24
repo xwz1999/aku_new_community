@@ -175,7 +175,7 @@ class MyPainter extends CustomPainter {
         ..color = dates!.contains(i)
             ? kPrimaryColor
             : i < getNum(start!) ||
-                    i > getNum(end!) ||
+                    i >= getNum(end!) ||
                     i < getNum(DateTime.now())
                 ? ktextThirdColor
                 : Colors.transparent

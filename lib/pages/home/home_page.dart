@@ -533,7 +533,7 @@ class _HomePageState extends State<HomePage>
             getFunctionBtn(AO.fromRaw('报事报修')),
             getFunctionBtn(AO.fromRaw('设施预约')),
             getFunctionBtn(AO.fromRaw('生活缴费')),
-            getFunctionBtn(AO.fromRaw('智慧养老')),
+            getFunctionBtn(AO.fromRaw('活动投票')),
           ],
         ),
         24.hb,

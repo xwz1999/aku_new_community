@@ -112,8 +112,8 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                     UserTool.appProvider.pickedCityAndCommunity!.communityModel!
                         .id);
                 if (response.data['success']) {
-                  await UserTool.dataProvider.addHistories();
                   await UserTool.userProvider.setLogin(response.data['data']);
+                  await UserTool.dataProvider.addHistories();
                 } else {
                   BotToast.showText(text: response.data['msg']);
                   if (response.data['msg'] == '该账户未设置密码，请使用验证码登录') {
