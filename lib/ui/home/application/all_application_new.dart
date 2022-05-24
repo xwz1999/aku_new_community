@@ -35,7 +35,7 @@ class _AllApplicationNewPageState extends State<AllApplicationNewPage> {
       case 3:
         return ['服务浏览', '周边企业', '住房说明', '电子商务'];
       case 4:
-        return ['智慧养老', '任务发布', '周边服务', '共享投屏'];
+        return [ '任务发布', '周边服务', '共享投屏'];
       case 5:
         return ['自营商城', '邻家宠物', '共享停车', '二手市场'];
       default:
@@ -59,9 +59,7 @@ class _AllApplicationNewPageState extends State<AllApplicationNewPage> {
   Container _applicationTile(int index) {
     return Container(
       width: 686.w,
-      padding: EdgeInsets.symmetric(
-        vertical: 32.w,
-      ),
+      padding: EdgeInsets.only(top: 32.w),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(16.w)),
       child: Column(
@@ -77,19 +75,14 @@ class _AllApplicationNewPageState extends State<AllApplicationNewPage> {
                 .bold
                 .make(),
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-                maxHeight: getApplications(index).length ~/ 4 * 140.w +
-                    ((getApplications(index).length - 4) ~/ 4 * 30.w)),
-            child: GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 4,
-              physics: NeverScrollableScrollPhysics(),
-              children: ApplicationUtil(getApplications(index))
-                  .elements
-                  .map((e) => applicationItem(e))
-                  .toList(),
-            ),
+          GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: 4,
+            physics: NeverScrollableScrollPhysics(),
+            children: ApplicationUtil(getApplications(index))
+                .elements
+                .map((e) => applicationItem(e))
+                .toList(),
           ),
         ],
       ),

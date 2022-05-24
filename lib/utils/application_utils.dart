@@ -29,9 +29,9 @@ import 'package:aku_new_community/ui/manager/advice/advice_page.dart';
 import 'package:aku_new_community/ui/manager/questionnaire/questionnaire_page.dart';
 
 class ApplicationUtil {
-  ApplicationUtil(this.titles);
+  ApplicationUtil( this.titles);
 
-  List<String> titles = [];
+ final List<String> titles ;
 
   List<AppElement> get elements {
     var list = <AppElement>[];
