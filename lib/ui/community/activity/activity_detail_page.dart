@@ -1,3 +1,4 @@
+import 'package:aku_new_community/base/base_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -299,7 +300,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                         .richText
                         .tap(() {})
                         .size(28.sp)
-                        .color(Colors.blue)
+                        .color(kBalckSubColor)
                         .make(),
                     Spacer(),
                   ],

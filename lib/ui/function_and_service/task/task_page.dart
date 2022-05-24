@@ -1,4 +1,5 @@
 import 'package:aku_new_community/ui/function_and_service/task/dialogs/task_evaluation_dialog.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -90,7 +91,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
           )),
       body: SafeArea(
           child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
+              //physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: [
             HallView(
