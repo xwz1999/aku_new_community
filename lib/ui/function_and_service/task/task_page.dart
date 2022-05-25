@@ -69,14 +69,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Row(
-                  children: [
-                    ...TaskMap.taskMode.values
-                        .mapIndexed((currentValue, index) =>
-                            _tabCard(currentValue, index))
-                        .toList(),
-                  ],
-                ),
+                child: _tabChange()
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 24.w, horizontal: 32.w),
@@ -91,7 +84,7 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
           )),
       body: SafeArea(
           child: TabBarView(
-              //physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: _tabController,
               children: [
             HallView(
@@ -107,6 +100,17 @@ class _TaskPageState extends State<TaskPage> with TickerProviderStateMixin {
               type: _currentType,
             ),
           ])),
+    );
+  }
+
+  Row _tabChange(){
+    return Row(
+      children: [
+        ...TaskMap.taskMode.values
+            .mapIndexed((currentValue, index) =>
+            _tabCard(currentValue, index))
+            .toList(),
+      ],
     );
   }
 
