@@ -142,8 +142,8 @@ class _AddEquipmentPageState extends State<AddEquipmentPage> {
               physics: NeverScrollableScrollPhysics(),
               children: [
                 GestureDetector(
-                  onTap: () {
-                    Get.to(() => SubmitEquipmentCodePage());
+                  onTap: () async{
+                   await Get.to(() => SubmitEquipmentCodePage());
                   },
                   child: Material(
                     color: Colors.transparent,

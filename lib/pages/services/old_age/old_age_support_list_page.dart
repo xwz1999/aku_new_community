@@ -18,17 +18,16 @@ import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 
-class OldAgeSupportPageSimple extends StatefulWidget {
-  const OldAgeSupportPageSimple({Key? key}) : super(key: key);
+class OldAgeSupportListPage extends StatefulWidget {
+  const OldAgeSupportListPage({Key? key}) : super(key: key);
 
   @override
-  _OldAgeSupportPageSimpleState createState() =>
-      _OldAgeSupportPageSimpleState();
+  _OldAgeSupportListPageState createState() => _OldAgeSupportListPageState();
 }
 
-class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
-  BraceletListModel? _currentBracelet;
+class _OldAgeSupportListPageState extends State<OldAgeSupportListPage> {
   List<BraceletListModel> _bracelets = [];
+  EasyRefreshController _refreshController = EasyRefreshController();
 
   @override
   void initState() {
@@ -37,6 +36,7 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
 
   @override
   void dispose() {
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -74,10 +74,13 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
               .bold
               .make(),
           24.w.heightBox,
-          if (_currentBracelet != null)
-            _braceletWidget(e: _currentBracelet!, bgColor: Color(0xFF6395D7),onTap: ()async{
-              Get.to(OldAgeShowDataPage(imei: _currentBracelet!.imei,));
-            })
+          if (UserTool.oldAgeProvider.bracelet != null)
+            _braceletWidget(
+                e: UserTool.oldAgeProvider.bracelet!,
+                select: true,
+                onTap: () async {
+                  Get.to(OldAgeShowDataPage());
+                }),
         ],
       ),
     );
@@ -96,8 +99,9 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
           ..._bracelets
               .map((e) => _braceletWidget(
                   e: e,
+                  select: false,
                   onTap: () {
-                    _currentBracelet = e;
+                    UserTool.oldAgeProvider.changeImei(e);
                     setState(() {});
                   }))
               .toList()
@@ -108,24 +112,25 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
       ),
     );
     return BeeScaffold(
-            title: '设备列表',
-            bodyColor: Colors.white,
-            body: SafeArea(
-              child: EasyRefresh(
-                firstRefresh: true,
-                header: MaterialHeader(),
-                onRefresh: () async {
-                  var base = await NetUtil().get(SAASAPI.bracelet.list);
-                  if (base.success) {
-                    _bracelets = (base.data as List)
-                        .map((e) => BraceletListModel.fromJson(e))
-                        .toList();
-                    setState(() {});
-                  }
-                },
-                child: _bracelets.isEmpty
-                    ? _emptyWidgt()
-                    : ListView(
+      title: '设备列表',
+      bodyColor: Colors.white,
+      body: SafeArea(
+        child: EasyRefresh(
+          controller: _refreshController,
+          firstRefresh: true,
+          header: MaterialHeader(),
+          onRefresh: () async {
+            var base = await NetUtil().get(SAASAPI.bracelet.list);
+            if (base.success) {
+              _bracelets = (base.data as List)
+                  .map((e) => BraceletListModel.fromJson(e))
+                  .toList();
+              setState(() {});
+            }
+          },
+          child: _bracelets.isEmpty
+              ? _emptyWidgt()
+              : ListView(
                   padding: EdgeInsets.all(24.w),
                   children: [
                     // user,
@@ -137,35 +142,38 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
                     // 24.w.heightBox,
                   ],
                 ),
-              ),
-            ),
-            bottomNavi: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
-              child: MaterialButton(
-                onPressed: () {
-                  Get.to(() => AddEquipmentPage());
-                },
-                color: Color(0xFF5096F1),
-                padding: EdgeInsets.symmetric(vertical: 24.w),
-                minWidth: 686.w,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.w),
-                ),
-                child: '添加设备'.text.size(28.sp).white.make(),
-              ),
-            ),
-          );
+        ),
+      ),
+      bottomNavi: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 24.w),
+        child: MaterialButton(
+          onPressed: () async {
+            await Get.to(() => AddEquipmentPage());
+            _refreshController.callRefresh();
+          },
+          color: Color(0xFF5096F1),
+          padding: EdgeInsets.symmetric(vertical: 24.w),
+          minWidth: 686.w,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.w),
+          ),
+          child: '添加设备'.text.size(28.sp).white.make(),
+        ),
+      ),
+    );
   }
 
   Widget _braceletWidget(
-      {required BraceletListModel e, VoidCallback? onTap, Color? bgColor}) {
+      {required BraceletListModel e,
+      VoidCallback? onTap,
+      required bool select}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(24.w),
         decoration: BoxDecoration(
-            color: bgColor ?? Colors.black.withOpacity(0.06),
+            color: select ? Color(0xFF6395D7) : Colors.black.withOpacity(0.06),
             borderRadius: BorderRadius.circular(16.w)),
         child: Row(
           children: [
@@ -182,30 +190,32 @@ class _OldAgeSupportPageSimpleState extends State<OldAgeSupportPageSimple> {
                 '${e.deviceType}  ${e.braceletBrand.name}'
                     .text
                     .size(24.sp)
-                    .color(Colors.black.withOpacity(0.65))
+                    .color(
+                        select ? Colors.white : Colors.black.withOpacity(0.65))
                     .make(),
                 16.w.heightBox,
                 '设备码：${e.imei}'
                     .text
                     .size(24.sp)
-                    .color(Colors.black.withOpacity(0.65))
+                    .color(
+                        select ? Colors.white : Colors.black.withOpacity(0.65))
                     .make(),
-              ],
+              ],  
             ),
             Spacer(),
             Container(
               width: 15.w,
               height: 16.w,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.25),
+                color:select ? Colors.white : Colors.black.withOpacity(0.25),
                 borderRadius: BorderRadius.circular(16.w),
               ),
             ),
             24.w.widthBox,
-            '${UserTool.oldAgeProvider.imei == e.imei ? '已连接' : '未开启'}'
+            '${select ? '已连接' : '未开启'}'
                 .text
                 .size(24.sp)
-                .color(Colors.black.withOpacity(0.65))
+                .color(select ? Colors.white : Colors.black.withOpacity(0.65))
                 .make(),
           ],
         ),

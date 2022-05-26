@@ -84,9 +84,6 @@ class _SubmitEquipmentCodePageState extends State<SubmitEquipmentCodePage> {
               if (base.success) {
                 Get.back();
                 Get.back();
-                if (UserTool.oldAgeProvider.imei.isEmpty) {
-                  UserTool.oldAgeProvider.changeImei(_editingController.text);
-                }
               } else {
                 BotToast.showText(text: base.msg);
               }

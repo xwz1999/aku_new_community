@@ -190,7 +190,7 @@ class ApplicationUtil {
             title: '智慧养老',
             imgPath: Assets.home.icZhyl.path,
             onTap: () {
-              Get.to(() => OldAgeSupportPageSimple());
+              Get.to(() => OldAgeSupportListPage());
             }),
         AppElement(
             title: '周边服务',

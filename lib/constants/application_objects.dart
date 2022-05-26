@@ -113,7 +113,7 @@ List<AO> appObjects = [
   AO('住房说明', Assets.newIcon.icRwsm.path,
       () => Get.to(() => HouseIntroducePage())),
   AO('智慧养老', Assets.home.icZhyl.path,
-      () => Get.to(() => OldAgeSupportPageSimple())),
+      () => Get.to(() => OldAgeSupportListPage())),
   AO('周边服务', Assets.home.icZbfw.path, null),
   AO('任务发布', Assets.home.icRwfb.path, () => Get.to(() => TaskPage())),
   AO('自营商城', Assets.icons.shoppingMall.path, null),

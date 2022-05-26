@@ -8,15 +8,14 @@ import 'package:aku_new_community/utils/network/base_model.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
 import 'package:aku_new_community/widget/bee_divider.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OldAgeShowDataPage extends StatefulWidget {
-  final String imei;
-
-  const OldAgeShowDataPage({Key? key, required this.imei}) : super(key: key);
+  const OldAgeShowDataPage({Key? key,}) : super(key: key);
 
   @override
   _OldAgeShowDataPageState createState() => _OldAgeShowDataPageState();
@@ -42,7 +41,7 @@ class _OldAgeShowDataPageState extends State<OldAgeShowDataPage> {
 
   Future getData() async {
     BaseModel base = await NetUtil().get(SAASAPI.bracelet.data, params: {
-      'imei': widget.imei,
+      'imei': UserTool.oldAgeProvider.bracelet?.imei,
     });
     if (base.data != null) {
       _model = BraceletModel.fromJson(base.data);

@@ -1,12 +1,13 @@
+import 'package:aku_new_community/models/bracelet/bracelet_list_model.dart';
 import 'package:flutter/material.dart';
 
 class OldAgeProvider extends ChangeNotifier {
-  String _imei='';
+  BraceletListModel? _bracelet;
 
-  String get imei => _imei;
+  BraceletListModel? get bracelet => _bracelet ;
 
-  void changeImei(String value) {
-    _imei = value;
+  void changeImei(BraceletListModel value) {
+    _bracelet = value;
     notifyListeners();
   }
 }
