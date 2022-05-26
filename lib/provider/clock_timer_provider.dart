@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class ClockTimerProvider extends ChangeNotifier{
+class ClockTimerProvider extends ChangeNotifier {
   ///登录页验证码计时器
   int second = 60;
   bool timerStart = false;
@@ -10,6 +10,9 @@ class ClockTimerProvider extends ChangeNotifier{
 
   void startTimer() {
     timerStart = true;
+    if (timer != null) {
+      return;
+    }
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (second > 0) {
         second--;
