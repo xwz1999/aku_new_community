@@ -45,7 +45,7 @@ class FireModel extends Equatable {
 class FireAlarm extends Equatable {
   final String time;
   final String deviceName;
-
+factory FireAlarm.fromJson(Map<String, dynamic> json) =>_$FireAlarmFromJson(json);
   @override
   List<Object?> get props => [
         time,
@@ -62,7 +62,7 @@ class FireAlarm extends Equatable {
 class DeviceAlarm extends Equatable {
   final String time;
   final String deviceName;
-
+factory DeviceAlarm.fromJson(Map<String, dynamic> json) =>_$DeviceAlarmFromJson(json);
   @override
   List<Object?> get props => [
         time,
@@ -81,7 +81,7 @@ class OneButtonAlarm extends Equatable {
   final String roomName;
   final String name;
   final String tel;
-
+factory OneButtonAlarm.fromJson(Map<String, dynamic> json) =>_$OneButtonAlarmFromJson(json);
   @override
   List<Object?> get props => [
         time,
@@ -102,7 +102,7 @@ class OneButtonAlarm extends Equatable {
 class ClientAlarm extends Equatable {
   final String time;
   final String content;
-
+factory ClientAlarm.fromJson(Map<String, dynamic> json) =>_$ClientAlarmFromJson(json);
   @override
   List<Object?> get props => [
         time,
@@ -120,7 +120,7 @@ class ElderlyCareEquipmentReminder extends Equatable {
   final String deviceNo;
   final int deviceType;
   final String content;
-
+factory ElderlyCareEquipmentReminder.fromJson(Map<String, dynamic> json) =>_$ElderlyCareEquipmentReminderFromJson(json);
   @override
   List<Object?> get props => [
         deviceNo,
