@@ -90,9 +90,11 @@ class WebSocketUtil {
   void setUser(String user) {
     this._user = user;
   }
+
   void setCommunityCode(String communityCode) {
     this._communityCode = communityCode;
   }
+
   void setNickName(String nickName) {
     this._nickName = nickName;
   }
@@ -101,15 +103,15 @@ class WebSocketUtil {
   void startWebSocket() {
     closeWebSocket();
     try {
-      _webSocket = IOWebSocketChannel.connect(Uri.parse('$baseUri/$_communityCode/$_nickName'));
+      _webSocket = IOWebSocketChannel.connect(
+          Uri.parse('$baseUri/$_communityCode/$_nickName'));
       print('webSocket已连接服务器：$baseUri/$_user');
       _socketStatus = SOCKETSTATUS.CONNECTED;
       endReconnect();
       onStart?.call();
       _webSocket!.stream.listen(
           (event) => webSocketReceiveMessage(event as String),
-          onError: webSocketOnError,
-          onDone: webSocketClosed);
+          onError: webSocketOnError,);
       initHeartBeat();
     } catch (e) {
       BotToast.showText(text: 'webSocket连接失败');

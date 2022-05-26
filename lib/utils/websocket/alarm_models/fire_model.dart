@@ -5,14 +5,14 @@ part 'fire_model.g.dart';
 
 @JsonSerializable()
 class FireModel extends Equatable {
- final String? model;
- final String? communityCode;
- final int? alarmType;
- final String? alarmNo;
- final String? deviceNo;
- final String? deviceName;
- final String? time;
- final String? alarmContent;
+  final String model;
+  final String communityCode;
+  final int type;
+  final FireAlarm? fireAlarm;
+  final DeviceAlarm? deviceAlarm;
+  final OneButtonAlarm? oneButtonAlarm;
+  final ClientAlarm? clientAlarm;
+  final ElderlyCareEquipmentReminder? elderlyCareEquipmentReminder;
 
   factory FireModel.fromJson(Map<String, dynamic> json) =>
       _$FireModelFromJson(json);
@@ -21,22 +21,116 @@ class FireModel extends Equatable {
   List<Object?> get props => [
         model,
         communityCode,
-        alarmType,
-        alarmNo,
-        deviceNo,
-        deviceName,
-        time,
-        alarmContent,
+        type,
+        fireAlarm,
+        deviceAlarm,
+        oneButtonAlarm,
+        clientAlarm,
+        elderlyCareEquipmentReminder,
       ];
 
-  FireModel({
-    this.model,
-    this.communityCode,
-    this.alarmType,
-    this.alarmNo,
-    this.deviceNo,
-    this.deviceName,
-    this.time,
-    this.alarmContent,
+  const FireModel({
+    required this.model,
+    required this.communityCode,
+    required this.type,
+    this.fireAlarm,
+    this.deviceAlarm,
+    this.oneButtonAlarm,
+    this.clientAlarm,
+    this.elderlyCareEquipmentReminder,
+  });
+}
+
+@JsonSerializable()
+class FireAlarm extends Equatable {
+  final String time;
+  final String deviceName;
+
+  @override
+  List<Object?> get props => [
+        time,
+        deviceName,
+      ];
+
+  const FireAlarm({
+    required this.time,
+    required this.deviceName,
+  });
+}
+
+@JsonSerializable()
+class DeviceAlarm extends Equatable {
+  final String time;
+  final String deviceName;
+
+  @override
+  List<Object?> get props => [
+        time,
+        deviceName,
+      ];
+
+  const DeviceAlarm({
+    required this.time,
+    required this.deviceName,
+  });
+}
+
+@JsonSerializable()
+class OneButtonAlarm extends Equatable {
+  final String time;
+  final String roomName;
+  final String name;
+  final String tel;
+
+  @override
+  List<Object?> get props => [
+        time,
+        roomName,
+        name,
+        tel,
+      ];
+
+  const OneButtonAlarm({
+    required this.time,
+    required this.roomName,
+    required this.name,
+    required this.tel,
+  });
+}
+
+@JsonSerializable()
+class ClientAlarm extends Equatable {
+  final String time;
+  final String content;
+
+  @override
+  List<Object?> get props => [
+        time,
+        content,
+      ];
+
+  const ClientAlarm({
+    required this.time,
+    required this.content,
+  });
+}
+
+@JsonSerializable()
+class ElderlyCareEquipmentReminder extends Equatable {
+  final String deviceNo;
+  final int deviceType;
+  final String content;
+
+  @override
+  List<Object?> get props => [
+        deviceNo,
+        deviceType,
+        content,
+      ];
+
+  const ElderlyCareEquipmentReminder({
+    required this.deviceNo,
+    required this.deviceType,
+    required this.content,
   });
 }

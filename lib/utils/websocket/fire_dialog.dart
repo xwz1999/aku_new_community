@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,11 @@ import 'package:aku_new_community/utils/developer_util.dart';
 import 'package:aku_new_community/utils/headers.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fall_model.dart';
 import 'package:aku_new_community/utils/websocket/alarm_models/fire_model.dart';
+import 'package:power_logger/power_logger.dart';
 
 class FireDialog {
   static fireAlarm(String content) async {
+    LoggerData.addData(content);
     var json = jsonDecode(content);
     int type = json['type'] as int;
 
@@ -61,7 +64,7 @@ class FireDialog {
       case 3:
         return '管家端APP报警';
       case 4:
-        return '跌倒报警';
+        return '消息通知';
       case 5:
         return 'SOS紧急联系报警';
       default:
@@ -70,27 +73,25 @@ class FireDialog {
   }
 
   static String getContent(dynamic json, int type) {
+    var alarmModel = FireModel.fromJson(json);
     switch (type) {
       case 1:
-        var alarmModel = FireModel.fromJson(json);
-        return '于${alarmModel.time},${alarmModel.deviceName}附近出现了火灾报警，请各位业主、租户保持镇静，不要慌乱，有序开始撤离！';
+        return '于${DateUtil.formatDateStr(alarmModel.fireAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)},'
+            '${alarmModel.fireAlarm!.deviceName}附近出现了火灾报警，请各位业主、租户保持镇静，不要慌乱，有序开始撤离！';
       case 2:
-        var alarmModel = FireModel.fromJson(json);
-        return '于${alarmModel.time},小区内有设备${alarmModel.deviceName}发生了报警，请物业负责人员尽快前往现场排查故障！';
+        return '于${DateUtil.formatDateStr(alarmModel.deviceAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)},'
+            '小区内有设备${alarmModel.deviceAlarm!.deviceName}发生了报警，请物业负责人员尽快前往现场排查故障！';
       case 3:
-        var alarmModel = FireModel.fromJson(json);
-        return '注意：\n于${alarmModel.time},${alarmModel.deviceNo}${alarmModel.deviceName}' +
-            '在管家端app上点击了"一键报警",请尽快联系他沟通情况。\n' +
-            '${alarmModel.deviceName}联系方式：${alarmModel.alarmNo}\n' +
-            '如未能联系到${alarmModel.deviceName}。可择情报警';
+        return '注意：\n于${DateUtil.formatDateStr(alarmModel.oneButtonAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)}'
+            ',${alarmModel.oneButtonAlarm!.roomName} ${alarmModel.oneButtonAlarm!.name}在管家端app上点击了"一键报警",请尽快联系他沟通情况。\n'
+            '${alarmModel.oneButtonAlarm!.name}联系方式：${alarmModel.oneButtonAlarm!.tel}\n'
+            '如未能联系到${alarmModel.oneButtonAlarm!.name}。可择情报警';
       case 4:
-        var alarmModel = FallModel.fromJson(json);
-        return '注意：\n\n有住户 ${alarmModel.userName} 发生跌倒情况，请及时上门或联系人员前往查看，住户联系方式：${alarmModel.tel}\n\n' +
-            '跌倒位置————\n${alarmModel.address}，经度${alarmModel.lon}，纬度${alarmModel.lat}\n\n如未能联系到住户，可择情报警';
+        return '${DateUtil.formatDateStr(alarmModel.deviceAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)}\n\n${alarmModel!.clientAlarm!.content}';
       case 5:
-        var alarmModel = FallModel.fromJson(json);
-        return '注意：\n\n有住户 ${alarmModel.userName} 使用了SOS紧急联系报警，请及时上门或联系人员前往查看，住户联系方式：${alarmModel.tel}\n\n' +
-            '跌倒位置————\n${alarmModel.address}，经度${alarmModel.lon}，纬度${alarmModel.lat}\n\n如未能联系到住户，可择情报警';
+        return '注意：\n\n有住户使用了SOS紧急联系报警，请及时上门或联系人员前往查看，设备号：${alarmModel!.elderlyCareEquipmentReminder!.deviceNo}'
+            '\n\n${alarmModel.elderlyCareEquipmentReminder!.content}';
+
       default:
         return '';
     }

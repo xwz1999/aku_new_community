@@ -37,6 +37,7 @@ class _CodeMessagePageState extends State<CodeMessagePage> {
   @override
   void dispose() {
     _controller.dispose();
+    SmsAutoFill().unregisterListener();
     super.dispose();
   }
 
