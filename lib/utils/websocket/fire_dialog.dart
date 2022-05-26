@@ -86,9 +86,9 @@ class FireDialog {
             '${alarmModel.oneButtonAlarm!.name}联系方式：${alarmModel.oneButtonAlarm!.tel}\n'
             '如未能联系到${alarmModel.oneButtonAlarm!.name}。可择情报警';
       case 4:
-        return '${DateUtil.formatDateStr(alarmModel.deviceAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)}\n\n${alarmModel!.clientAlarm!.content}';
+        return '${DateUtil.formatDateStr(alarmModel.deviceAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)}\n\n${alarmModel.clientAlarm!.content}';
       case 5:
-        return '注意：\n\n有住户使用了SOS紧急联系报警，请及时上门或联系人员前往查看，设备号：${alarmModel!.elderlyCareEquipmentReminder!.deviceNo}'
+        return '注意：\n\n有住户使用了SOS紧急联系报警，请及时上门或联系人员前往查看，设备号：${alarmModel.elderlyCareEquipmentReminder!.deviceNo}'
             '\n\n${alarmModel.elderlyCareEquipmentReminder!.content}';
 
       default:
