@@ -31,7 +31,7 @@ class _BeeMonthPickBodyState extends State<BeeMonthPickBody> {
       (index) => index + 1);
 
   @override
-  void initState() async{
+  void initState(){
     setState(() {});
     _pickYear = widget.initTime.year;
     _pickMonth = 1;
