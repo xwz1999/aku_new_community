@@ -59,7 +59,7 @@ class _PointRecordViewState extends State<PointRecordView> {
           child: Row(
             children: [
               GestureDetector(
-                onTap: () async {
+                onTap: ()  async {
                   var date = await BeeDatePicker.monthPicker(
                       DateTime.now().subtract(Duration(days: 365)));
                   if (date != null) {
