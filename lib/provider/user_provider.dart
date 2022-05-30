@@ -30,9 +30,6 @@ class UserProvider extends ChangeNotifier {
   Future init() async {
     if (isLogin) {
       await updateUserInfo();
-      WebSocketUtil().setUser(userInfoModel!.id.toString());
-      WebSocketUtil().setCommunityCode(userInfoModel!.communityCode);
-      WebSocketUtil().setNickName(userInfoModel!.nickName!);
       WebSocketUtil().startWebSocket();
       await updateMyHouseInfo();
 

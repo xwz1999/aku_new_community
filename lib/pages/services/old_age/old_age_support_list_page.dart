@@ -200,7 +200,7 @@ class _OldAgeSupportListPageState extends State<OldAgeSupportListPage> {
                     .color(
                         select ? Colors.white : Colors.black.withOpacity(0.65))
                     .make(),
-              ],  
+              ],
             ),
             Spacer(),
             Container(
