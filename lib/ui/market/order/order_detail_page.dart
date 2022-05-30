@@ -7,7 +7,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
-import 'package:aku_new_community/constants/api.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/order/logistics_model.dart';

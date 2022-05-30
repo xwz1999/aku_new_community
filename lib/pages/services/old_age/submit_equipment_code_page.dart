@@ -1,6 +1,5 @@
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/utils/network/net_util.dart';
-import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';

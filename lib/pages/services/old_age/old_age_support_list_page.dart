@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/extensions/widget_list_ext.dart';
@@ -129,7 +128,7 @@ class _OldAgeSupportListPageState extends State<OldAgeSupportListPage> {
             }
           },
           child: _bracelets.isEmpty
-              ? _emptyWidgt()
+              ? _emptyWidget()
               : ListView(
                   padding: EdgeInsets.all(24.w),
                   children: [
@@ -223,7 +222,7 @@ class _OldAgeSupportListPageState extends State<OldAgeSupportListPage> {
     );
   }
 
-  Widget _emptyWidgt() {
+  Widget _emptyWidget() {
     return SafeArea(
       child: Center(
         child: Column(
