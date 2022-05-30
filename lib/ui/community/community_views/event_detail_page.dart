@@ -28,11 +28,13 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 
 class EventDetailPage extends StatefulWidget {
   final int dynamicId;
+  final int? createId;
   final VoidCallback? refresh;
 
   EventDetailPage({
     Key? key,
     required this.dynamicId,
+    this.createId,
     this.refresh,
   }) : super(key: key);
 
@@ -533,7 +535,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       fontSize: 28.sp,
                     ),
                     children: [
-                  if (createId == model.createId)
+                  if (model.createId ==widget.createId)
                     WidgetSpan(
                         child: Container(
                       width: 56.w,

@@ -144,7 +144,7 @@ class _ChatCardState extends State<ChatCard> {
           ),
           20.wb,
           GestureDetector(
-            onTap: () => Get.to(EventDetailPage(dynamicId: widget.model.id)),
+            onTap: () => Get.to(EventDetailPage(dynamicId: widget.model.id,createId: widget.model.createId,)),
             child: Material(
               color: Colors.transparent,
               child: Row(
@@ -194,6 +194,7 @@ class _ChatCardState extends State<ChatCard> {
             ? () async {
                 await Get.to(() => EventDetailPage(
                       dynamicId: widget.model.id,
+                      createId: widget.model.createId,
                       refresh: widget.refresh,
                     ));
                 widget.refresh();
