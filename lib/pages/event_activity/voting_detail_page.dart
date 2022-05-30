@@ -8,8 +8,6 @@ import 'package:get/get.dart';
 
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/app_theme.dart';
-import 'package:aku_new_community/constants/saas_api.dart';
-import 'package:aku_new_community/model/common/img_model.dart';
 import 'package:aku_new_community/model/manager/voting_detail_model.dart';
 import 'package:aku_new_community/pages/manager_func.dart';
 import 'package:aku_new_community/utils/headers.dart';
