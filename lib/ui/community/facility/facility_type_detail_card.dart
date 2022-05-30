@@ -112,7 +112,7 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
           ),
           30.hb,
           Wrap(
-            spacing: 7.5.sp,
+            spacing: 6.5.w,
             children: <Widget>[
               for (int i = 0; i < 25; i++)
                 Text(
