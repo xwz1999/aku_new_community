@@ -186,7 +186,7 @@ class _SignInPageState extends State<SignInPage> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    '欢迎登录小蜜蜂',
+                    '欢迎登录小蜜蜂智慧生活',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: BaseStyle.fontSize38,
