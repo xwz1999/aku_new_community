@@ -28,7 +28,7 @@ class WebSocketUtil {
   static const String baseUri = 'wss://saas.kaidalai.cn/websocket/app';
 
   String get urlAddress =>
-      '$baseUri/${UserTool.userProvider.userInfoModel?.communityCode}/${UserTool.userProvider.userInfoModel?.nickName}';
+      '$baseUri/${UserTool.userProvider.userInfoModel?.communityCode}/${UserTool.userProvider.userInfoModel?.nickName}/${UserTool.userProvider.userInfoModel?.id}';
 
   ///连接状态
   SOCKETSTATUS _socketStatus = SOCKETSTATUS.CLOSED;
