@@ -147,11 +147,11 @@ class _SettingsPageState extends State<SettingsPage> {
             //   onTap: () => Get.to(() => AccountManagerPage()),
             // ),
             _buildTile(
-              title: '小蜜蜂智慧生活用户协议',
+              title: '用户协议',
               onTap: () => Get.to(() => AgreementPage()),
             ),
             _buildTile(
-              title: '小蜜蜂智慧生活隐私政策',
+              title: '隐私政策',
               onTap: () => Get.to(() => PrivacyPage()),
             ),
           ].sepWidget(
