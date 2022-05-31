@@ -23,7 +23,7 @@ class _MessageCenterPageState extends State<MessageCenterPage>
     with TickerProviderStateMixin {
   List<EasyRefreshController> _controllers =
       List.generate(2, (index) => EasyRefreshController());
-  List<String> _tabs = ['回复我的', '收到的赞', '通知公告','工单确认'];
+  List<String> _tabs = ['回复我的', '收到的赞', '通知公告'];
   late final TabController _tabController;
 
   @override
@@ -86,7 +86,6 @@ class _MessageCenterPageState extends State<MessageCenterPage>
             ThumbsUpView(
               controller: _controllers[1],
             ),
-            AnnounceView(),
             AnnounceView(),
           ],
           controller: _tabController,
