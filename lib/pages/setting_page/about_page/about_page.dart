@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
           ),
           SizedBox(height: 100.w),
           Text(
-            '“小蜜蜂智慧小区”APP——幸福生活，简单到达',
+            '“小蜜蜂智慧生活”APP——幸福生活，简单到达',
             style: _style,
           ),
         ],

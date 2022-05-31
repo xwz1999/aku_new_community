@@ -250,7 +250,7 @@ class _SplashPageState extends State<SplashPage> {
                       fit: BoxFit.fill,
                     ),
                     Text(
-                      '小蜜蜂',
+                      '小蜜蜂智慧生活',
                       style: TextStyle(
                           color: Color(0xD9000000),
                           fontSize: 32.sp,

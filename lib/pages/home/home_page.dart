@@ -419,7 +419,7 @@ class _HomePageState extends State<HomePage>
                     )),
                     SliverToBoxAdapter(
                       child: 48.hb,
-                    )
+                    ),
                   ],
                 ),
               ),
