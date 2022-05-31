@@ -94,6 +94,11 @@ class _SelectCommunityState extends State<SelectCommunity> {
     );
     var selectCommunity = GestureDetector(
       onTap: () async {
+
+        if (UserTool.appProvider.pickedCityAndCommunity?.cityModel==null) {
+          BotToast.showText(text: '请选择城市');
+          return ;
+        }
         var cancel = BotToast.showLoading();
         List<CommunityModel> _communities = [];
         var base = await NetUtil().get(SAASAPI.login.allCommunity, params: {
