@@ -46,7 +46,7 @@ class AppVerifyDialog extends StatelessWidget {
                     children: [
                       52.hb,
                       Text(
-                        '欢迎使用小蜜蜂',
+                        '欢迎使用小蜜蜂智慧生活',
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.85),
                             fontSize: 28.sp,
@@ -55,7 +55,7 @@ class AppVerifyDialog extends StatelessWidget {
                       45.hb,
                       Text(
                         '''
-在您使用小蜜蜂前，请认真阅读并同意小蜜蜂使用条款和隐私政策，授权位置、设备信息、储存信息等权限，包括：
+在您使用小蜜蜂智慧生活前，请认真阅读并同意小蜜蜂智慧生活使用条款和隐私政策，授权位置、设备信息、储存信息等权限，包括：
 【地理位置权限】：根据您所处的地理位置提供个性化的内容信息；
 【相册访问权限】：在报事报修、社区等功能中需要访问相册上传图片信息；
 【其他权限】：使用过程中可能需要调用相机、麦克风、系统通知、及安装的应用列表等权限。
@@ -88,7 +88,7 @@ class AppVerifyDialog extends StatelessWidget {
                                     fontSize: 24.sp),
                               ),
                               TextSpan(
-                                text: '《小蜜蜂隐私保护政策》',
+                                text: '《小蜜蜂智慧生活隐私保护政策》',
                                 style: TextStyle(
                                     color: kPrimaryColor, fontSize: 24.sp),
                                 recognizer: TapGestureRecognizer()
