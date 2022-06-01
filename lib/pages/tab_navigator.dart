@@ -15,7 +15,6 @@ import 'package:aku_new_community/ui/market/market_page.dart';
 import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
-import '../utils/updater_page.dart';
 import 'home/home_page.dart';
 import 'opening_code_page/opening_code_page.dart';
 import 'personal/personal_page.dart';
@@ -191,7 +190,7 @@ class _TabNavigatorState extends State<TabNavigator>
         4,
       ),
     ];
-    return  UpdaterPage(
+    return
         BeeScaffold(
           body: WillPopScope(
             onWillPop: () async {
@@ -227,7 +226,6 @@ class _TabNavigatorState extends State<TabNavigator>
               ),
             ),
           ),
-        )
     );
   }
 
