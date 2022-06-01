@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:grinder/grinder.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' hide context;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,6 +10,7 @@ import 'config.dart';
 import 'version_tool.dart';
 
 part '_build.dart';
+
 part '_project_manage.dart';
 
 main(args) => grind(args);
@@ -67,4 +68,22 @@ Future<String> getVersion() async {
   dynamic content = loadYaml(yamlContent);
   String version = content['version'];
   return version;
+}
+
+@Task()
+Future uploadVersion() async {
+  TaskArgs args = context.invocation.arguments;
+  bool force = args.getFlag('f');
+  var version = await getVersion();
+  List<String> spVersion = version.split('+');
+  stdout.write('版本号：' + spVersion[0]+'\n');
+  stdout.write('构建号：' + spVersion[1]+'\n');
+  stdout.write('强制更新：' + force.toString()+'\n');
+  var response =
+      await Dio().post('http://121.41.26.225:8006/app/version/insert', data: {
+    'versionNumber': spVersion[0],
+    'buildNo': spVersion[1],
+    'forceUpdate': force ? 1 : 2
+  });
+  stdout.write(response.data.toString());
 }

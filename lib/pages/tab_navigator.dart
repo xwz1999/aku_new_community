@@ -50,7 +50,7 @@ class _TabNavigatorState extends State<TabNavigator>
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
     var iOS = new IOSInitializationSettings();
-    var initSettings = new InitializationSettings(android: android,iOS: iOS);
+    var initSettings = new InitializationSettings(android: android, iOS: iOS);
     flutterLocalNotificationsPlugin.initialize(initSettings);
     //showNotification();
 
@@ -191,43 +191,41 @@ class _TabNavigatorState extends State<TabNavigator>
         4,
       ),
     ];
-    return  UpdaterPage(
-        BeeScaffold(
-          body: WillPopScope(
-            onWillPop: () async {
-              if (_lastPressed == null ||
-                  DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
-                //两次点击间隔超过1秒重新计算
-                _lastPressed = DateTime.now();
-                BotToast.showText(text: '再点击一次返回退出');
-                return false;
-              }
-              //否则关闭app
-              WebSocketUtil().closeWebSocket();
-              return true;
-            },
-            child: TabBarView(
-              children: _pages,
-              controller: _tabController,
-              physics: NeverScrollableScrollPhysics(),
-            ),
-          ),
-          bottomNavi: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 750.w, maxHeight: 146.w),
-            child: Container(
-              margin:
+    return BeeScaffold(
+      body: WillPopScope(
+        onWillPop: () async {
+          if (_lastPressed == null ||
+              DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
+            //两次点击间隔超过1秒重新计算
+            _lastPressed = DateTime.now();
+            BotToast.showText(text: '再点击一次返回退出');
+            return false;
+          }
+          //否则关闭app
+          WebSocketUtil().closeWebSocket();
+          return true;
+        },
+        child: TabBarView(
+          children: _pages,
+          controller: _tabController,
+          physics: NeverScrollableScrollPhysics(),
+        ),
+      ),
+      bottomNavi: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 750.w, maxHeight: 146.w),
+        child: Container(
+          margin:
               EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: Assets.home.imgTabdi, fit: BoxFit.fitWidth),
-                  color: Colors.transparent),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: _bottomNav.cast<Widget>().toList(),
-              ),
-            ),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: Assets.home.imgTabdi, fit: BoxFit.fitWidth),
+              color: Colors.transparent),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _bottomNav.cast<Widget>().toList(),
           ),
-        )
+        ),
+      ),
     );
   }
 
@@ -237,19 +235,24 @@ class _TabNavigatorState extends State<TabNavigator>
     }
 //payload 可作为通知的一个标记，区分点击的通知。
     debugPrint('payload:$payload');
-    if(payload == "complete") {
-      await showDialog(context: context, builder: (_) => AlertDialog(
-        title: Text('Notification'),
-        content: Text('$payload'),
-      ),);
+    if (payload == "complete") {
+      await showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Notification'),
+          content: Text('$payload'),
+        ),
+      );
     }
   }
 
   showNotification() async {
     var android = new AndroidNotificationDetails(
-      'channel id', 'channel NAME',
+      'channel id',
+      'channel NAME',
       priority: Priority.high,
-      importance: Importance.max,);
+      importance: Importance.max,
+    );
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(
