@@ -44,6 +44,7 @@ class SAASAPI {
   static _Vote vote = _Vote();
   static _Facilities facilities = _Facilities();
   static _Bracelet bracelet = _Bracelet();
+  static _Updater updater = _Updater();
 
   ///二级分类
   static _ProfileApi profile = _ProfileApi();
@@ -438,4 +439,11 @@ class _Facilities {
 
   ///取消预约
   String get cancel => '/app/user/facilities/cancel';
+}
+
+class _Updater{
+  ///查询最新的app版本
+  String get findNewVersion => '/app/version/findNewVersion';
+  ///添加新的app版本
+  String get insert => '/app/version/insert';
 }

@@ -1,15 +1,17 @@
+import 'package:aku_new_community/utils/updater/updater_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 import 'package:dio/dio.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'constants.dart';
-import 'data_util.dart';
+import '../../constants/saas_api.dart';
+import '../constants.dart';
+import '../data_util.dart';
+import '../network/net_util.dart';
 
 class UpdaterPage extends StatefulWidget {
   final Widget child;
-
   const UpdaterPage(this.child);
 
   @override
@@ -17,6 +19,7 @@ class UpdaterPage extends StatefulWidget {
 }
 
 class UpdatePagerState extends State<UpdaterPage> {
+  UpdaterModel? _model;
   var _serviceVersionCode,
       _serviceVersionName,
       _serviceVersionPlatform,
@@ -42,19 +45,13 @@ class UpdatePagerState extends State<UpdaterPage> {
 
   //执行版本更新的网络请求
   _getNewVersionAPP() async {
-    String url = "/appversions/latest"; //接口的URL，替换你的URL
-    try {
-      Response response = await Dio().get(url);
-      setState(() {
-        var data = response.data;
-        _serviceVersionCode = data["versionCode"].toString(); //版本号
-        _serviceVersionName = data["versionName"].toString(); //版本名称
-        _serviceVersionPlatform = data["versionPlatform"].toString(); //版本平台
-        _serviceVersionApp = data["versionApp"].toString(); //下载的URL
-        _checkVersionCode();
-      });
-    } catch (e) {
-      print(e);
+    var base =
+    await NetUtil().get(SAASAPI.updater.findNewVersion, params: {
+      'version': '1.8.12',
+    });
+    if (base.success) {
+      _model = UpdaterModel.fromJson(base.data);
+      setState(() {});
     }
     _checkVersionCode();
   }

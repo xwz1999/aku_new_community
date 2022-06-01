@@ -18,6 +18,7 @@ import 'package:aku_new_community/utils/websocket/web_socket_util.dart';
 import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 
+import 'account_manager_page.dart';
 import 'feedback_page/feedback_page.dart';
 
 class SettingsPage extends StatefulWidget {
