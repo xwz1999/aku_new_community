@@ -110,44 +110,46 @@ class _HomePageState extends State<HomePage>
           right: 32.w,
           left: 32.w,
           bottom: 20.w),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        // if (appProvider.location != null)
-        Image.asset(
-          Assets.home.icLocation.path,
-          width: 48.w,
-          height: 48.w,
-        ),
-        16.wb,
-        Text(
-          '${UserTool.userProvider.userInfoModel?.communityName ?? ""}',
-          // appProvider.location?['city'] == null
-          //     ? ''
-          //     : appProvider.location?['city'] as String? ?? '',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 28.sp,
-            color: Color(0xff333333),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // if (appProvider.location != null)
+          Image.asset(
+            Assets.home.icLocation.path,
+            width: 48.w,
+            height: 48.w,
           ),
-          textAlign: TextAlign.center,
-        ),
-        // Text(
-        //   '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
-        //   style: TextStyle(
-        //     fontSize: 28.sp,
-        //     color: Color(0xff999999),
-        //   ),
-        //   textAlign: TextAlign.center,
-        // ),
-        Spacer(),
-        // GestureDetector(
-        //   onTap: () {
-        //     Get.to(() => BeeSearch());
-        //   },
-        //   child:
-        //       Image.asset(Assets.home.icSearch.path, height: 48.w, width: 48.w),
-        // ),
-        20.wb,
-        Badge(
+          16.wb,
+          Text(
+            '${UserTool.userProvider.userInfoModel?.communityName ?? ""}',
+            // appProvider.location?['city'] == null
+            //     ? ''
+            //     : appProvider.location?['city'] as String? ?? '',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 28.sp,
+              color: Color(0xff333333),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          // Text(
+          //   '(${appProvider.weatherType} ${appProvider.weatherTemp}℃)',
+          //   style: TextStyle(
+          //     fontSize: 28.sp,
+          //     color: Color(0xff999999),
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
+          Spacer(),
+          // GestureDetector(
+          //   onTap: () {
+          //     Get.to(() => BeeSearch());
+          //   },
+          //   child:
+          //       Image.asset(Assets.home.icSearch.path, height: 48.w, width: 48.w),
+          // ),
+          20.wb,
+          Badge(
             elevation: 0,
             badgeColor: Color(0xFFCF2525),
             padding: sum > 9 ? EdgeInsets.all(2.w) : EdgeInsets.all(5.w),
@@ -168,8 +170,10 @@ class _HomePageState extends State<HomePage>
               },
               child: Image.asset(Assets.home.icMessage.path,
                   height: 48.w, width: 48.w),
-            )),
-      ]),
+            ),
+          ),
+        ],
+      ),
     );
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
@@ -359,7 +363,8 @@ class _HomePageState extends State<HomePage>
                                         ),
                                       ),
                                       onTap: () async {
-                                        Get.to(AdvicePage(type: AdviceType.SUGGESTION));
+                                        Get.to(AdvicePage(
+                                            type: AdviceType.SUGGESTION));
                                       },
                                     ),
                                   )
