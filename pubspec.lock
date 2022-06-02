@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  aku_app_upgrade:
+    dependency: "direct main"
+    description:
+      path: "../aku_app_upgrade"
+      relative: true
+    source: path
+    version: "0.0.1"
   amap_flutter_base:
     dependency: "direct main"
     description:
@@ -1391,7 +1398,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.20"
+    version: "6.1.2"
   url_launcher_android:
     dependency: transitive
     description:
