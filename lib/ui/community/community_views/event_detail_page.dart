@@ -106,18 +106,15 @@ class _EventDetailPageState extends State<EventDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BeeScaffold(
-
       leading: Navigator.canPop(context)
           ? IconButton(
-        onPressed: () => Get.back(result: true),
-        icon: Icon(
-          CupertinoIcons.chevron_back,
-          color: Colors.black,
-        ),
-      )
+              onPressed: () => Get.back(result: true),
+              icon: Icon(
+                CupertinoIcons.chevron_back,
+                color: Colors.black,
+              ),
+            )
           : SizedBox(),
-
-
       title: '详情',
       bottomNavi: _bottomButton(),
       actions: [
@@ -303,8 +300,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
     );
   }
 
-  Widget _commentWidget(CommentListModel model, int rootIndex) {
-    return GestureDetector(
+  Widget _commentWidget(CommentListModel model, int rootIndex){
+  final userProvider = Provider.of<UserProvider>(context);
+  return GestureDetector(
       onTap: () {
         _rootId = model.id;
         _parentId = model.id;
@@ -363,9 +361,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
               Spacer(),
               CommunityPopButton(
-                  isMyself: _isMyself,
+                  isMyself: userProvider.userInfoModel?.id==model.createId,
                   onSelect: (value) async {
-                    if (_isMyself) {
+                    if (userProvider.userInfoModel?.id==model.createId) {
                       await CommunityFunc.deleteComment(model.id);
                       _refreshController.callRefresh();
                     }
@@ -374,80 +372,68 @@ class _EventDetailPageState extends State<EventDetailPage> {
             40.hb,
             model.content.text.size(28.sp).color(ktextSubColor).make(),
             30.hb,
-            GestureDetector(
-              onTap: () async {
-                var res =
-                    await NetUtil().get(SAASAPI.community.commentLike, params: {
-                  'commentId': model.id,
-                });
-                if (res.success) {
-                  _likes[rootIndex] = !_likes[rootIndex];
-                  setState(() {});
-                }
-              },
-              child: Row(
-                children: [
-                  Spacer(),
-                  GestureDetector(
-                    onTap: () async {
-                      var base = await NetUtil().get(
-                          SAASAPI.community.commentLike,
-                          params: {'commentId': model.id});
-                      if (base.success) {
-                        _likes[rootIndex] = !_likes[rootIndex];
-                        if (_likes[rootIndex]) {
-                          _likeNums[rootIndex] += 1;
-                        } else {
-                          _likeNums[rootIndex] -= 1;
-                        }
-                        BotToast.showText(
-                            text: _likes[rootIndex] ? '点赞成功' : '取消点赞成功');
+            Row(
+              children: [
+                Spacer(),
+                GestureDetector(
+                  onTap: () async {
+                    var base = await NetUtil().get(
+                        SAASAPI.community.commentLike,
+                        params: {'commentId': model.id});
+                    if (base.success) {
+                      _likes[rootIndex] = !_likes[rootIndex];
+                      if (_likes[rootIndex]) {
+                        _likeNums[rootIndex] += 1;
                       } else {
-                        BotToast.showText(text: base.msg);
+                        _likeNums[rootIndex] -= 1;
                       }
+                      BotToast.showText(
+                          text: _likes[rootIndex] ? '点赞成功' : '取消点赞成功');
+                    } else {
+                      BotToast.showText(text: base.msg);
+                    }
 
-                      setState(() {});
-                    },
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
-                            width: 32.w,
-                            height: 32.w,
-                            color: !_likes[rootIndex]
-                                ? Colors.black.withOpacity(0.45)
-                                : kPrimaryColor,
-                          ),
-                          5.wb,
-                          '${_likeNums[rootIndex]}'
-                              .text
-                              .size(24.sp)
-                              .color(Color(0xFF999999))
-                              .make(),
-                        ],
-                      ),
+                    setState(() {});
+                  },
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          R.ASSETS_ICONS_COMMUNITY_LIKE_PNG,
+                          width: 32.w,
+                          height: 32.w,
+                          color: !_likes[rootIndex]
+                              ? Colors.black.withOpacity(0.45)
+                              : kPrimaryColor,
+                        ),
+                        5.wb,
+                        '${_likeNums[rootIndex]}'
+                            .text
+                            .size(24.sp)
+                            .color(Color(0xFF999999))
+                            .make(),
+                      ],
                     ),
                   ),
-                  32.wb,
-                  Row(
-                    children: [
-                      Image.asset(
-                        R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
-                        width: 40.w,
-                        height: 40.w,
-                      ),
-                    ],
-                  ),
-                  5.wb,
-                  '${model.commentNum}'
-                      .text
-                      .size(24.sp)
-                      .color(Color(0xFF999999))
-                      .make(),
-                ],
-              ),
+                ),
+                32.wb,
+                Row(
+                  children: [
+                    Image.asset(
+                      R.ASSETS_ICONS_COMMUNITY_COMMENT_PNG,
+                      width: 40.w,
+                      height: 40.w,
+                    ),
+                  ],
+                ),
+                5.wb,
+                '${model.commentNum}'
+                    .text
+                    .size(24.sp)
+                    .color(Color(0xFF999999))
+                    .make(),
+              ],
             ),
             40.hb,
             model.commentTwoList.isEmpty
@@ -535,7 +521,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       fontSize: 28.sp,
                     ),
                     children: [
-                  if (model.createId ==widget.createId)
+                  if (model.createId == widget.createId)
                     WidgetSpan(
                         child: Container(
                       width: 56.w,
@@ -584,7 +570,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
   }
 
   _bottomButton() {
-    final userProvider = Provider.of<UserProvider>(context);
     return Container(
         width: double.infinity,
         height: 100.w,
