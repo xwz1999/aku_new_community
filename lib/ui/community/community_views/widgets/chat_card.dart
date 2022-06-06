@@ -247,6 +247,7 @@ class _ChatCardState extends State<ChatCard> {
                 ],
               ),
               Spacer(),
+
               CommunityPopButton(
                 isMyself: _isMyself,
                 onSelect: (dynamic _) async {

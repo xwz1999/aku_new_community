@@ -62,6 +62,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
       appBarBottom: BeeTabBar(
         tabs: _tabs,
         controller: _tabController,
+        scrollable: true,
       ),
       body: TabBarView(
           controller: _tabController,

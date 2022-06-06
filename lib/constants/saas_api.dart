@@ -104,7 +104,10 @@ class _User {
 
 class _Login {
   ///app用户退出
-  String get logOut => '/app/user/quit';
+  String get quit => '/app/user/quit';
+
+  ///app用户注销
+  String get logOut =>'/app/user/logout';
 
   ///查询所有小区信息
   String get allCommunity => '/app/login/findAllCommunity';
