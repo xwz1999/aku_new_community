@@ -58,7 +58,7 @@ class UserProvider extends ChangeNotifier {
     final appProvider = Provider.of<AppProvider>(Get.context!, listen: false);
     appProvider.setCurrentHouse(null);
     if (_isLogin) {
-      NetUtil().post(SAASAPI.login.logOut, showMessage: true);
+      NetUtil().post(SAASAPI.login.quit, showMessage: true);
       NetUtil().dio!.options.headers.remove('app-login-token');
       _isLogin = false;
     }

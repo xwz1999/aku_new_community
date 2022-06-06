@@ -143,10 +143,10 @@ class _SettingsPageState extends State<SettingsPage> {
               title: '意见反馈',
               onTap: () => Get.to(() => FeedBackPage()),
             ),
-            // _buildTile(
-            //   title: '账号管理',
-            //   onTap: () => Get.to(() => AccountManagerPage()),
-            // ),
+            _buildTile(
+              title: '账号管理',
+              onTap: () => Get.to(() => AccountManagerPage()),
+            ),
             _buildTile(
               title: '用户协议',
               onTap: () => Get.to(() => AgreementPage()),
