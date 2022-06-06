@@ -17,8 +17,6 @@ main(args) => grind(args);
 
 @Task('add minor version number')
 void addVersion() async {
-  TaskArgs args = context.invocation.arguments;
-  bool force = args.getFlag('f');
   String projectPath = Directory('.').absolute.path;
   String yamlPath = join(projectPath, 'pubspec.yaml');
   String yamlContent = await File(yamlPath).readAsString();
@@ -31,13 +29,11 @@ void addVersion() async {
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
   stdout.write('version has been add 👍\n');
-  await uploadVersion(force);
+  await uploadVersion();
 }
 
 @Task('add path version number')
 void addVersionPatch() async {
-  TaskArgs args = context.invocation.arguments;
-  bool force = args.getFlag('f');
   String projectPath = Directory('.').absolute.path;
   String yamlPath = join(projectPath, 'pubspec.yaml');
   String yamlContent = await File(yamlPath).readAsString();
@@ -49,14 +45,12 @@ void addVersionPatch() async {
 
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
-  stdout.write('version has been add 👍');
-  await uploadVersion(force);
+  stdout.write('version has been add 👍\n');
+  await uploadVersion();
 }
 
 @Task('add major version number')
 void addVersionMajor() async {
-  TaskArgs args = context.invocation.arguments;
-  bool force = args.getFlag('f');
   String projectPath = Directory('.').absolute.path;
   String yamlPath = join(projectPath, 'pubspec.yaml');
   String yamlContent = await File(yamlPath).readAsString();
@@ -68,14 +62,12 @@ void addVersionMajor() async {
 
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
-  stdout.write('version has been add 👍');
-  await uploadVersion(force);
+  stdout.write('version has been add 👍\n');
+  await uploadVersion();
 }
 
 @Task()
 Future<String> getVersion() async {
-  TaskArgs args = context.invocation.arguments;
-  bool force = args.getFlag('f');
   String projectPath = Directory('.').absolute.path;
   String yamlPath = join(projectPath, 'pubspec.yaml');
   String yamlContent = await File(yamlPath).readAsString();
@@ -85,7 +77,9 @@ Future<String> getVersion() async {
 }
 
 @Task()
-Future uploadVersion(bool force) async {
+Future uploadVersion() async {
+  TaskArgs args = context.invocation.arguments;
+  bool force = args.getFlag('f');
   var version = await getVersion();
   List<String> spVersion = version.split('+');
   stdout.write('版本号：' + spVersion[0] + '\n');
