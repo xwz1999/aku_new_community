@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aku_app_upgrade/aku_app_upgrade.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
@@ -56,7 +57,7 @@ class _SplashPageState extends State<SplashPage> {
       //   await Permission.locationWhenInUse.request();
       // }
       //第三方加载
-      // await AppUpgrade().checkUpgrade(context);
+      await AppUpgrade().checkUpgrade(context);
       MainInitialize.initJPush();
       EquatableConfig.stringify = true;
       AMapFlutterLocation.updatePrivacyShow(true, true);

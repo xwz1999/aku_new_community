@@ -15,6 +15,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  aku_app_upgrade:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "9676d13777c2db074e7f812554eeffaa98458907"
+      url: "https://git.oa00.com/mengfucius/aku_app_upgrade.git"
+    source: git
+    version: "0.0.1"
   amap_flutter_base:
     dependency: "direct main"
     description:
@@ -1084,6 +1093,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  r_upgrade:
+    dependency: transitive
+    description:
+      name: r_upgrade
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.8+2"
   random_character:
     dependency: "direct main"
     description:

@@ -2,7 +2,7 @@ name: aku_new_community
 description: A new Flutter project.
 publish_to: "none"
 
-version: 1.8.12-dev+53
+version: 1.8.14-dev+55
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -128,8 +128,8 @@ dependencies:
   #图片扩展
   extended_image: ^6.1.0
   #app更新
-#  aku_app_upgrade:
-#    path: ../aku_app_upgrade
+  aku_app_upgrade:
+    git: https://git.oa00.com/mengfucius/aku_app_upgrade.git
 
 dev_dependencies:
   flutter_test:

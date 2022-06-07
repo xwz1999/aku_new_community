@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 class BeeCustomDialog extends StatelessWidget {
   final List<Widget> actions;
   final Widget content;
-
+  final double? width;
+  final double? height;
   const BeeCustomDialog(
-      {Key? key, required this.actions, required this.content})
+      {Key? key, required this.actions, required this.content,  this.width,  this.height})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 600.w,
-        height: 700.w,
+        width: width?? 600.w,
+        height:height?? 700.w,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           color: Colors.white,

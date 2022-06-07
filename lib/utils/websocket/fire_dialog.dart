@@ -25,6 +25,8 @@ class FireDialog {
     if (alarmModel.type == 6) {
       await await Get.dialog(
         BeeCustomDialog(
+          width: 560.w,
+          height: 300.w,
           actions: [
             MaterialButton(
               onPressed: () {
