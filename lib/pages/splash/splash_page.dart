@@ -1,7 +1,6 @@
-import 'package:aku_app_upgrade/aku_app_upgrade.dart';
-import 'package:flutter/gestures.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:equatable/equatable.dart';
@@ -28,60 +27,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  TapGestureRecognizer _agreementRecognizer = TapGestureRecognizer();
-  TapGestureRecognizer _privacyRecognizer = TapGestureRecognizer();
-
-  Future<bool?> _showLoginVerify() async {
-    var re = await Get.dialog(AppVerifyDialog());
-    return re;
-    // return await showCupertinoDialog(
-    //   barrierDismissible: false,
-    //   context: context,
-    //   builder: (context) {
-    //     return CupertinoAlertDialog(
-    //       title: Text('隐私政策和用户协议'),
-    //       content: RichText(
-    //         text: TextSpan(
-    //             text: '点击登录即表示您已阅读并同意',
-    //             style: TextStyle(color: Colors.black),
-    //             children: [
-    //               TextSpan(
-    //                   text: '《用户协议》',
-    //                   style: TextStyle(color: Colors.blue),
-    //                   recognizer: _agreementRecognizer
-    //                     ..onTap = () {
-    //                       Get.to(() => AgreementPage());
-    //                     }),
-    //               TextSpan(
-    //                   text: '《隐私政策》',
-    //                   style: TextStyle(color: Colors.blue),
-    //                   recognizer: _privacyRecognizer
-    //                     ..onTap = () {
-    //                       Get.to(() => PrivacyPage());
-    //                     }),
-    //               TextSpan(
-    //                   style: TextStyle(color: Colors.black),
-    //                   text:
-    //                       '（特别是免除或限制责任、管辖等粗体下划线标注的条款）。如您不同意上述协议的任何条款，您应立即停止登录及使用本软件及服务。')
-    //             ]),
-    //       ),
-    //
-    //       // ),
-    //       actions: [
-    //         CupertinoDialogAction(
-    //           child: Text('拒绝'),
-    //           onPressed: () => Get.back(result: false),
-    //         ),
-    //         CupertinoDialogAction(
-    //           child: Text('同意'),
-    //           onPressed: () => Get.back(result: true),
-    //         ),
-    //       ],
-    //     );
-    //   },
-    // );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -97,9 +42,9 @@ class _SplashPageState extends State<SplashPage> {
       await HiveStore.init();
       var agreement = await HiveStore.appBox?.get('agreement') ?? false;
       if (!agreement) {
-        var result = await _showLoginVerify();
+        var result = await Get.dialog(AppVerifyDialog());
         if (result == null || !result) {
-          SystemNavigator.pop();
+          exit(0);
           HiveStore.appBox!.put('agreement', false);
         } else {
           HiveStore.appBox!.put('agreement', true);
@@ -111,7 +56,7 @@ class _SplashPageState extends State<SplashPage> {
       //   await Permission.locationWhenInUse.request();
       // }
       //第三方加载
-      await AppUpgrade().checkUpgrade(context);
+      // await AppUpgrade().checkUpgrade(context);
       MainInitialize.initJPush();
       EquatableConfig.stringify = true;
       AMapFlutterLocation.updatePrivacyShow(true, true);

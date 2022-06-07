@@ -27,6 +27,10 @@ FireModel _$FireModelFromJson(Map<String, dynamic> json) => FireModel(
           ? null
           : ElderlyCareEquipmentReminder.fromJson(
               json['elderlyCareEquipmentReminder'] as Map<String, dynamic>),
+      workOrderAlert: json['workOrderAlert'] == null
+          ? null
+          : WorkOrderAlert.fromJson(
+              json['workOrderAlert'] as Map<String, dynamic>),
     );
 
 FireAlarm _$FireAlarmFromJson(Map<String, dynamic> json) => FireAlarm(
@@ -58,4 +62,11 @@ ElderlyCareEquipmentReminder _$ElderlyCareEquipmentReminderFromJson(
       deviceNo: json['deviceNo'] as String,
       deviceType: json['deviceType'] as int,
       content: json['content'] as String,
+    );
+
+WorkOrderAlert _$WorkOrderAlertFromJson(Map<String, dynamic> json) =>
+    WorkOrderAlert(
+      workOrderId: json['workOrderId'] as int,
+      content: json['content'] as String,
+      time: json['time'] as String,
     );

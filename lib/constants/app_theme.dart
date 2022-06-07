@@ -9,9 +9,9 @@ class AppTheme {
       extensions: <ThemeExtension<dynamic>>[
         MyAppStyle(
           mainColor: Colors.blue,
-          bodyText3: TextStyle(
-            fontSize: 30.sp,
-            color: const Color(0xFF333333),
+          dialogContentText: TextStyle(
+            fontSize: 28.sp,
+            color: Colors.black.withOpacity(0.85),
           ),
         )
       ],
@@ -187,14 +187,20 @@ class SystemStyle {
 
 @immutable
 class MyAppStyle extends ThemeExtension<MyAppStyle> {
-  final TextStyle? bodyText3;
+  final TextStyle? dialogContentText;
+  final TextStyle? dialogActionButtonText;
   final Color? mainColor;
 
   @override
-  MyAppStyle copyWith({Color? mainColor, TextStyle? bodyText3}) {
+  MyAppStyle copyWith(
+      {Color? mainColor,
+      TextStyle? dialogContentText,
+      TextStyle? dialogActionButtonText}) {
     return MyAppStyle(
         mainColor: mainColor ?? this.mainColor,
-        bodyText3: bodyText3 ?? this.bodyText3);
+        dialogContentText: dialogContentText ?? this.dialogContentText,
+        dialogActionButtonText:
+            dialogActionButtonText ?? this.dialogActionButtonText);
   }
 
   @override
@@ -203,13 +209,16 @@ class MyAppStyle extends ThemeExtension<MyAppStyle> {
       return this;
     }
     return MyAppStyle(
-      mainColor: Color.lerp(mainColor, other.mainColor, t),
-      bodyText3: TextStyle.lerp(bodyText3, other.bodyText3, t),
-    );
+        mainColor: Color.lerp(mainColor, other.mainColor, t),
+        dialogContentText:
+            TextStyle.lerp(dialogContentText, other.dialogContentText, t),
+        dialogActionButtonText: TextStyle.lerp(
+            dialogActionButtonText, other.dialogActionButtonText, t));
   }
 
   const MyAppStyle({
-    this.bodyText3,
+    this.dialogContentText,
     this.mainColor,
+    this.dialogActionButtonText,
   });
 }

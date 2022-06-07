@@ -127,13 +127,9 @@ dependencies:
   like_button: ^2.0.4
   #图片扩展
   extended_image: ^6.1.0
-  #本地缓存
-  sp_util: ^2.0.0
-  #系统通知栏消息
-  flutter_local_notifications: ^9.5.3+1
   #app更新
-  aku_app_upgrade:
-    path: ../aku_app_upgrade
+#  aku_app_upgrade:
+#    path: ../aku_app_upgrade
 
 dev_dependencies:
   flutter_test:

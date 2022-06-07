@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:aku_new_community/constants/app_theme.dart';
+import 'package:aku_new_community/ui/function_and_service/work_order/work_order_detail_page.dart';
+import 'package:aku_new_community/widget/dialog/bee_custom_dialog.dart';
+import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,41 +21,47 @@ class FireDialog {
   static fireAlarm(String content) async {
     LoggerData.addData(content);
     var json = jsonDecode(content);
-    int type = json['type'] as int;
-
-    await Get.dialog(
-      CupertinoAlertDialog(
-        title: getImage(type),
-        content: Column(
-          children: [
-            Text(
-              getTitle(type),
-              style: TextStyle(color: Colors.black, fontSize: 34.sp),
-            ),
-            10.hb,
-            Text(
-              getContent(json, type),
-              style: TextStyle(color: Colors.black, fontSize: 26.sp),
-              textAlign: TextAlign.start,
-            ),
-          ],
-        ),
-        actions: [
-          CupertinoDialogAction(
-            child: Text('确认'),
-            onPressed: () => Get.back(),
-          ),
-          if (DeveloperUtil.dev)
-            CupertinoDialogAction(
-              child: Text('清除所有弹窗'),
-              onPressed: () => Get.offAll(
-                () => TabNavigator(),
+    var alarmModel = FireModel.fromJson(json);
+    if (alarmModel.type == 6) {
+      await await Get.dialog(
+        BeeCustomDialog(
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                '暂不理会',
+                style: UserTool.myAppStyle.dialogActionButtonText!
+                    .copyWith(color: Colors.black.withOpacity(0.45)),
               ),
             ),
-        ],
-      ),
-      barrierDismissible: false,
-    );
+            MaterialButton(
+              onPressed: () {
+                Get.to(WorkOrderDetailPage(
+                    id: alarmModel.workOrderAlert!.workOrderId));
+              },
+              child: Text(
+                '前往确认',
+                style: UserTool.myAppStyle.dialogActionButtonText,
+              ),
+            )
+          ],
+          content: Padding(
+              padding: EdgeInsets.all(32.w),
+              child: Text(
+                '您有一单报事报修已完成，请立即确认',
+                style: UserTool.myAppStyle.dialogContentText,
+              )),
+        ),
+        barrierDismissible: false,
+      );
+    } else {
+      await Get.dialog(
+        getDialog(alarmModel),
+        barrierDismissible: false,
+      );
+    }
   }
 
   static String getTitle(int type) {
@@ -71,9 +81,39 @@ class FireDialog {
     }
   }
 
-  static String getContent(dynamic json, int type) {
-    var alarmModel = FireModel.fromJson(json);
-    switch (type) {
+  static Widget getDialog(FireModel alarmModel) {
+    return CupertinoAlertDialog(
+      title: getImage(alarmModel.type),
+      content: Column(
+        children: [
+          Text(
+            getTitle(alarmModel.type),
+            style: TextStyle(color: Colors.black, fontSize: 34.sp),
+          ),
+          10.hb,
+          Text(
+            getContent(alarmModel),
+            style: TextStyle(color: Colors.black, fontSize: 26.sp),
+            textAlign: TextAlign.start,
+          ),
+        ],
+      ),
+      actions: [
+        CupertinoDialogAction(
+          child: Text('确认'),
+          onPressed: () => Get.back(),
+        ),
+        if (DeveloperUtil.dev)
+          CupertinoDialogAction(
+            child: Text('清除所有弹窗'),
+            onPressed: () => Get.offAll(() => TabNavigator()),
+          ),
+      ],
+    );
+  }
+
+  static String getContent(FireModel alarmModel) {
+    switch (alarmModel.type) {
       case 1:
         return '于${DateUtil.formatDateStr(alarmModel.fireAlarm!.time, format: DateFormats.zh_y_mo_d_h_m)},'
             '${alarmModel.fireAlarm!.deviceName}附近出现了火灾报警，请各位业主、租户保持镇静，不要慌乱，有序开始撤离！';
