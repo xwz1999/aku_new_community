@@ -144,6 +144,9 @@ class _Message {
 
   ///所有评论消息
   String get allComment => '/app/user/message/commentMessage';
+
+  ///查询所有的app信息
+  String get list => '/app/user/message/list';
 }
 
 class _Community {

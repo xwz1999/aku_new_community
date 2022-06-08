@@ -12,6 +12,8 @@ import 'package:aku_new_community/pages/message_center_page/announce/announce_vi
 import 'package:aku_new_community/ui/community/notice/notice_detail_page.dart';
 import 'package:aku_new_community/widget/bee_image_network.dart';
 
+import '../../../models/message/message_list_model.dart';
+
 class AnnounceCard extends StatelessWidget {
   final ListDateModel modelList;
   final int index;
@@ -50,7 +52,7 @@ class AnnounceCard extends StatelessWidget {
     );
   }
 
-  Widget _card(HomeAnnounceModel model) {
+  Widget _card(MessageListModel model) {
     return InkWell(
       onTap: () {
         Get.to(() => NoticeDetailPage(id: model.id));
@@ -68,21 +70,21 @@ class AnnounceCard extends StatelessWidget {
           children: [
 
 
-            '${DateUtil.formatDateStr(model.createDate, format: 'dd日 HH:mm')}'
+            '${DateUtil.formatDateStr(model.sendDate, format: 'dd日 HH:mm')}'
                 .text
                 .size(28.sp)
                 .color(ktextSubColor)
                 .make(),
             32.w.heightBox,
-            Container(
-              width: double.infinity,
-              height: 258.w,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w)),
-              child: BeeImageNetwork(
-                imgs: model.imgList,
-              ),
-            ),
+            // Container(
+            //   width: double.infinity,
+            //   height: 258.w,
+            //   clipBehavior: Clip.antiAliasWithSaveLayer,
+            //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.w)),
+            //   child: BeeImageNetwork(
+            //     imgs: model.imgList,
+            //   ),
+            // ),
             32.w.heightBox,
 
             '${model.title}'.text.size(36.sp).black.bold.make(),
