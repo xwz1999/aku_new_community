@@ -13,7 +13,7 @@ class MessageListModel extends Equatable {
   final String content;
   final String sendDate;
   final int jumpId;
-  final int onlyId;
+  final int? onlyId;
 
   DateTime? get sendDt => DateUtil.getDateTime(sendDate);
 

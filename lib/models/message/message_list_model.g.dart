@@ -15,5 +15,5 @@ MessageListModel _$MessageListModelFromJson(Map<String, dynamic> json) =>
       content: json['content'] as String,
       sendDate: json['sendDate'] as String,
       jumpId: json['jumpId'] as int,
-      onlyId: json['onlyId'] as int,
+      onlyId: json['onlyId'] as int?,
     );

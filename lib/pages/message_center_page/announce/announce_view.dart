@@ -1,5 +1,6 @@
 
 import 'package:aku_new_community/models/home/home_announce_model.dart';
+import 'package:aku_new_community/models/message/message_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class ListDateModel {
   final String month;
   final int index;
   final String year;
-  final List<HomeAnnounceModel> models;
+  final List<MessageListModel> models;
 
   ListDateModel(this.month, this.models, this.index, this.year);
 }
@@ -34,10 +35,10 @@ class _AnnounceViewState extends State<AnnounceView> {
   late AutoScrollController _autoScrollController;
 
   List<ListDateModel> _modelLists = [];
-  List<HomeAnnounceModel> _innerModelList = [];
+  List<MessageListModel> _innerModelList = [];
   String _headMonth = '';
 
-  void monthListDepart(List<HomeAnnounceModel> models) {
+  void monthListDepart(List<MessageListModel> models) {
     for (var item in models) {
       var index =
           _modelLists.indexWhere((element) => element.month == item.month);
@@ -115,12 +116,13 @@ class _AnnounceViewState extends State<AnnounceView> {
               _page = 1;
               _modelLists.clear();
               _innerModelList.clear();
-              var base = await NetUtil().getList(SAASAPI.announce.list, params: {
+              var base = await NetUtil().getList(SAASAPI.message.list, params: {
                 'pageNum': _page,
                 'size': _size,
+                'type':5,
               });
               _innerModelList =
-                  base.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
+                  base.rows.map((e) => MessageListModel.fromJson(e)).toList();
               monthListDepart(_innerModelList);
               if (_modelLists.isNotEmpty) {
                 _headMonth = _modelLists[0].month;
@@ -130,13 +132,14 @@ class _AnnounceViewState extends State<AnnounceView> {
             },
             onLoad: () async {
               _page++;
-              var base = await NetUtil().getList(SAASAPI.announce.list, params: {
+              var base = await NetUtil().getList(SAASAPI.message.list, params: {
                 'pageNum': _page,
                 'size': _size,
+                'type':5,
               });
               if (base.total > _modelLists.length) {
                 _innerModelList =
-                    base.rows.map((e) => HomeAnnounceModel.fromJson(e)).toList();
+                    base.rows.map((e) => MessageListModel.fromJson(e)).toList();
                 monthListDepart(_innerModelList);
                 setState(() {});
               } else {
