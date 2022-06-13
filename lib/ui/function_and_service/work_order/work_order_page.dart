@@ -69,7 +69,7 @@ class _WorkOrderPageState extends State<WorkOrderPage>
           children: _tabs
               .mapIndexed((e, index) => WorkOrderView(
                     refreshController: _refreshControllers[index],
-                    index: index,
+                    index: index==1?index:index+1,
                   ))
               .toList()),
     );
