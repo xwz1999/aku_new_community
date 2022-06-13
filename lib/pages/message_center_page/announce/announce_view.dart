@@ -119,7 +119,7 @@ class _AnnounceViewState extends State<AnnounceView> {
               var base = await NetUtil().getList(SAASAPI.message.list, params: {
                 'pageNum': _page,
                 'size': _size,
-                'type':5,
+                'type':null,
               });
               _innerModelList =
                   base.rows.map((e) => MessageListModel.fromJson(e)).toList();
@@ -135,7 +135,7 @@ class _AnnounceViewState extends State<AnnounceView> {
               var base = await NetUtil().getList(SAASAPI.message.list, params: {
                 'pageNum': _page,
                 'size': _size,
-                'type':5,
+                'type':null,
               });
               if (base.total > _modelLists.length) {
                 _innerModelList =
@@ -143,7 +143,6 @@ class _AnnounceViewState extends State<AnnounceView> {
                 monthListDepart(_innerModelList);
                 setState(() {});
               } else {
-                print('1111111');
                 _refreshController.finishLoadCallBack!(noMore: true);
               }
             },
