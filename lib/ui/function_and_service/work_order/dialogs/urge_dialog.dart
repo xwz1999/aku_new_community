@@ -16,18 +16,27 @@ class UrgeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 32.w),
-      child: Column(
-        children: [
-          120.hb,
-          '确认发送提醒？'.text.size(36.sp).black.bold.isIntrinsic.make(),
-          40.hb,
-          '确认后，会对服务人员发送尽快完成任务的通知'.text.size(28.sp).isIntrinsic.make(),
-          150.hb,
-          BeeLongButton(onPressed: onConfirm, text: '确认提醒')
-        ],
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        margin: EdgeInsets.all(40.w),
+        width: double.infinity,
+        height: 380.h,
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.w),
+        ),
+        child: Column(
+          children: [
+            100.hb,
+            '确认发送提醒？'.text.size(36.sp).black.bold.isIntrinsic.make(),
+            40.hb,
+            '确认后，会对服务人员发送尽快完成任务的通知'.text.size(28.sp).isIntrinsic.make(),
+            50.hb,
+            BeeLongButton(onPressed: onConfirm, text: '确认提醒')
+          ],
+        ),
       ),
     );
   }
