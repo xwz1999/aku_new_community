@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:aku_new_community/pages/property/property_page.dart';
 import 'package:aku_new_community/ui/home/application/all_application_new.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +55,9 @@ class _TabNavigatorState extends State<TabNavigator>
       HomePage(),
       MarketPage(),
       // PropertyPage(),
-      AllApplicationNewPage(),
+      Platform.isAndroid ? OpeningCodePage() : AllApplicationNewPage(),
+
+      ///android的时候开门码 ios的时候全部应用
       CommunityPage(),
       PersonalIndex(
         refreshController: _refreshController,
@@ -165,7 +169,10 @@ class _TabNavigatorState extends State<TabNavigator>
                   borderRadius: BorderRadius.circular(54.w),
                   color: Color(0xFFFDE019),
                 ),
-                child: Assets.home.icKaimen.image(width: 80.w, height: 80.w),
+                child: Platform.isAndroid
+                    ? Assets.home.icKaimenAndroid
+                        .image(width: 80.w, height: 80.w)
+                    : Assets.home.icKaimenIos.image(width: 80.w, height: 80.w),
               ),
             ),
           ),

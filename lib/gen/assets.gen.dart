@@ -134,9 +134,13 @@ class $AssetsHomeGen {
   AssetGenImage get icGonggao =>
       const AssetGenImage('assets/home/ic_gonggao.png');
 
-  /// File path: assets/home/ic_kaimen.png
-  AssetGenImage get icKaimen =>
-      const AssetGenImage('assets/home/ic_kaimen.png');
+  /// File path: assets/home/ic_kaimen_android.png
+  AssetGenImage get icKaimenAndroid =>
+      const AssetGenImage('assets/home/ic_kaimen_android.png');
+
+  /// File path: assets/home/ic_kaimen_ios.png
+  AssetGenImage get icKaimenIos =>
+      const AssetGenImage('assets/home/ic_kaimen_ios.png');
 
   /// File path: assets/home/ic_ljcw.png
   AssetGenImage get icLjcw => const AssetGenImage('assets/home/ic_ljcw.png');
