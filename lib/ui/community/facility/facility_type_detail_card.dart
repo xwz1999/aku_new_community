@@ -1,4 +1,3 @@
-
 import 'package:aku_new_community/ui/community/facility/facility_preorder_date_picker.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
@@ -111,8 +110,9 @@ class _FacilityTypeDetailCardState extends State<FacilityTypeDetailCard> {
             ],
           ),
           30.hb,
-          Wrap(
-            spacing: 6.5.w,
+          Flex(
+            direction: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               for (int i = 0; i < 25; i++)
                 Text(
