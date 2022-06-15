@@ -53,7 +53,7 @@ class _TabNavigatorState extends State<TabNavigator>
       HomePage(),
       MarketPage(),
       // PropertyPage(),
-      OpeningCodePage(),
+      AllApplicationNewPage(),
       CommunityPage(),
       PersonalIndex(
         refreshController: _refreshController,
@@ -143,14 +143,15 @@ class _TabNavigatorState extends State<TabNavigator>
       Expanded(
         child: GestureDetector(
           onTap: () {
-            Get.to(() => AllApplicationNewPage());
-            // if (UserTool.userProvider.isLogin == false) {
-            //   //暂时隐去一键登录页
-            //   Get.offAll(() => OtherLoginPage());
-            // } else {}
-            // _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
-            // _currentIndex = 2;
-            // setState(() {});
+            //Get.to(() => AllApplicationNewPage());
+
+            if (UserTool.userProvider.isLogin == false) {
+              //暂时隐去一键登录页
+              Get.offAll(() => OtherLoginPage());
+            } else {}
+            _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
+            _currentIndex = 2;
+            setState(() {});
           },
           child: Material(
             color: Colors.transparent,

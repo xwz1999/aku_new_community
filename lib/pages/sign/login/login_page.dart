@@ -1,3 +1,4 @@
+import 'package:aku_new_community/pages/setting_page/agreement_page/privacy_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,6 +100,7 @@ class BottomTip extends StatelessWidget {
                 child: InkWell(
               onTap: () {
                 //TODO:跳转隐私政策
+                //Get.to(() => PrivacyPage());
               },
               child: '《小蜜蜂隐私政策及用户协议》'
                   .text

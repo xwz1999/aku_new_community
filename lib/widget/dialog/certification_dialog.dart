@@ -32,7 +32,7 @@ class CertificationDialog extends StatelessWidget {
                   .color(Colors.black.withOpacity(0.65))
                   .isIntrinsic
                   .make(),
-              64.w.heightBox,
+              62.w.heightBox,
               Row(
                 children: [
                   MaterialButton(
