@@ -1,3 +1,4 @@
+import 'package:aku_new_community/ui/home/application/all_application_new.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -142,13 +143,14 @@ class _TabNavigatorState extends State<TabNavigator>
       Expanded(
         child: GestureDetector(
           onTap: () {
-            if (UserTool.userProvider.isLogin == false) {
-              //暂时隐去一键登录页
-              Get.offAll(() => OtherLoginPage());
-            } else {}
-            _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
-            _currentIndex = 2;
-            setState(() {});
+            Get.to(() => AllApplicationNewPage());
+            // if (UserTool.userProvider.isLogin == false) {
+            //   //暂时隐去一键登录页
+            //   Get.offAll(() => OtherLoginPage());
+            // } else {}
+            // _tabController!.animateTo(2, curve: Curves.easeInOutCubic);
+            // _currentIndex = 2;
+            // setState(() {});
           },
           child: Material(
             color: Colors.transparent,
@@ -181,42 +183,41 @@ class _TabNavigatorState extends State<TabNavigator>
         4,
       ),
     ];
-    return
-        BeeScaffold(
-          body: WillPopScope(
-            onWillPop: () async {
-              if (_lastPressed == null ||
-                  DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
-                //两次点击间隔超过1秒重新计算
-                _lastPressed = DateTime.now();
-                BotToast.showText(text: '再点击一次返回退出');
-                return false;
-              }
-              //否则关闭app
-              WebSocketUtil().closeWebSocket();
-              return true;
-            },
-            child: TabBarView(
-              children: _pages,
-              controller: _tabController,
-              physics: NeverScrollableScrollPhysics(),
-            ),
-          ),
-          bottomNavi: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 750.w, maxHeight: 146.w),
-            child: Container(
-              margin:
+    return BeeScaffold(
+      body: WillPopScope(
+        onWillPop: () async {
+          if (_lastPressed == null ||
+              DateTime.now().difference(_lastPressed!) > Duration(seconds: 1)) {
+            //两次点击间隔超过1秒重新计算
+            _lastPressed = DateTime.now();
+            BotToast.showText(text: '再点击一次返回退出');
+            return false;
+          }
+          //否则关闭app
+          WebSocketUtil().closeWebSocket();
+          return true;
+        },
+        child: TabBarView(
+          children: _pages,
+          controller: _tabController,
+          physics: NeverScrollableScrollPhysics(),
+        ),
+      ),
+      bottomNavi: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 750.w, maxHeight: 146.w),
+        child: Container(
+          margin:
               EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: Assets.home.imgTabdi, fit: BoxFit.fitWidth),
-                  color: Colors.transparent),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: _bottomNav.cast<Widget>().toList(),
-              ),
-            ),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: Assets.home.imgTabdi, fit: BoxFit.fitWidth),
+              color: Colors.transparent),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _bottomNav.cast<Widget>().toList(),
           ),
+        ),
+      ),
     );
   }
 }
