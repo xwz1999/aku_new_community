@@ -1,15 +1,12 @@
-// import 'package:aku_new_community/base/base_style.dart';
-
 import 'dart:ui' as ui;
 
+import 'package:aku_new_community/ui/market/vegetable_market/seasonal_vegetables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
 import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/constants/saas_api.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
@@ -36,6 +33,7 @@ import 'package:aku_new_community/widget/others/rectIndicator.dart';
 import 'category/new_category_page.dart';
 import 'market_home_goods_card.dart';
 import 'order/order_page.dart';
+//import 'package:aku_new_community/ui/market/vegetable_market/seasonal_vegetables.dart';
 
 class MarketPage extends StatefulWidget {
   MarketPage({Key? key}) : super(key: key);
@@ -249,7 +247,6 @@ class _MarketPageState extends State<MarketPage>
       height: 80.w,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-
     final priceButton = MaterialButton(
       onPressed: () async {
         switch (_orderType) {
@@ -471,7 +468,7 @@ class _MarketPageState extends State<MarketPage>
                   Container(
                     height: ScreenUtil().statusBarHeight + kToolbarHeight,
                   ),
-                  // geSearch(),
+                  //geSearch(),
                   50.hb,
                   // getNum(),
                   // 20.hb,
@@ -493,7 +490,13 @@ class _MarketPageState extends State<MarketPage>
 
   ///水果蔬菜banner
   Widget vegetableBannerWidget() {
-    return Assets.images.vegetableBanner.image(width: 712.w, height: 200.w);
+    return GestureDetector(
+      onTap: () {
+        ///创建中
+        Get.to(() => SeasonalVegetables());
+      },
+      child: Assets.images.vegetableBanner.image(width: 712.w, height: 200.w),
+    );
   }
 
   ///积分商城

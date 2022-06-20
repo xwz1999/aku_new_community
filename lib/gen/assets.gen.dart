@@ -775,6 +775,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/like.png
   AssetGenImage get like => const AssetGenImage('assets/icons/like.png');
 
+  /// File path: assets/icons/list.png
+  AssetGenImage get list => const AssetGenImage('assets/icons/list.png');
+
   /// File path: assets/icons/location.png
   AssetGenImage get location =>
       const AssetGenImage('assets/icons/location.png');
