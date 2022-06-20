@@ -512,18 +512,24 @@ class _MarketPageState extends State<MarketPage>
             children: [
               '积分商城'.richText.size(28.sp).italic.bold.black.make(),
               8.wb,
-              Text(
-                '限时兑换',
-                style: TextStyle(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    foreground: Paint()
-                      ..shader = ui.Gradient.linear(
-                          Offset(150, 690), Offset(150, 695), [
-                        Color(0xFFF94B4B),
-                        Color(0xFFF7B86F),
-                      ])),
+              ShaderMask(
+                shaderCallback: (bounds) {
+                  return LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.red,
+                        Colors.yellow,
+                      ]).createShader(bounds);
+                },
+                child: Text(
+                  '限时兑换',
+                  style: TextStyle(
+                      fontSize: 24.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
+                ),
               ),
               Spacer(),
               GestureDetector(
