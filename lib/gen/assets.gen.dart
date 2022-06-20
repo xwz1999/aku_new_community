@@ -1294,6 +1294,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/success.png
   AssetGenImage get success => const AssetGenImage('assets/images/success.png');
 
+  /// File path: assets/images/vegetable_banner.png
+  AssetGenImage get vegetableBanner =>
+      const AssetGenImage('assets/images/vegetable_banner.png');
+
   /// File path: assets/images/white.png
   AssetGenImage get white => const AssetGenImage('assets/images/white.png');
 

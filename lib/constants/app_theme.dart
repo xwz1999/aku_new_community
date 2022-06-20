@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(primarySwatch: Colors.blue).copyWith(
+      useMaterial3: true,
       extensions: <ThemeExtension<dynamic>>[
         MyAppStyle(
           mainColor: Colors.blue,

@@ -56,9 +56,10 @@ class _MarketPageState extends State<MarketPage>
   int _pageCount = 0;
   double MessageHeight = 76.w;
   double bannerHeight = 260.w;
-  double buttonsHeight = 334.w;
+  double buttonsHeight = 340.w;
   double searchHeight = 74.w;
   double hotGoodHeight = 288.w;
+  final double vegetablesBanner = 240.w;
   MarketStatisticsModel? _statistics;
 
   double tabBarHeight = 40.w;
@@ -158,14 +159,8 @@ class _MarketPageState extends State<MarketPage>
           Container(
             height: 530.w,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Color(0xFFFFFFFF),
-                Color(0xFFFFF9D1),
-              ],
-            )),
+              color: Color(0xFFFFF9D1),
+            ),
           ),
           EasyRefresh.custom(
             firstRefresh: false,
@@ -315,7 +310,7 @@ class _MarketPageState extends State<MarketPage>
           key: _sliverAppBarGlobalKey,
           title: geSearch(),
           backgroundColor: Color(0xFFF9F9F9),
-          expandedHeight: MessageHeight+
+          expandedHeight: MessageHeight +
               bannerHeight +
               buttonsHeight +
               //searchHeight +
@@ -323,6 +318,7 @@ class _MarketPageState extends State<MarketPage>
               hotGoodHeight +
               ScreenUtil().statusBarHeight +
               kToolbarHeight +
+              vegetablesBanner +
               //积分商城高度
               172 * 2.w,
           flexibleSpace: _flexibleSpaceBar(context),
@@ -483,6 +479,8 @@ class _MarketPageState extends State<MarketPage>
                   20.hb,
                   _buttonTitle(),
                   20.hb,
+                  vegetableBannerWidget(),
+                  20.hb,
                   _recommend(),
                   20.hb,
                   _integralMarket(),
@@ -493,7 +491,12 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-//积分商城
+  ///水果蔬菜banner
+  Widget vegetableBannerWidget() {
+    return Assets.images.vegetableBanner.image(width: 712.w, height: 200.w);
+  }
+
+  ///积分商城
   Widget _integralMarket() {
     return Container(
       width: 720.w,
@@ -854,14 +857,14 @@ class _MarketPageState extends State<MarketPage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BeeImageNetwork(
-            width: 88.w,
-            height: 88.w,
+            width: 80.w,
+            height: 80.w,
             imgs: item.imgUrls,
           ),
           8.hb,
           Text(
             (item.name ?? '').replaceAll('、', ''),
-            style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
+            style: TextStyle(fontSize: 22.sp, color: ktextPrimary),
           )
         ],
       ),
@@ -881,13 +884,13 @@ class _MarketPageState extends State<MarketPage>
         children: [
           Image.asset(
             Assets.newIcon.allClasses.path,
-            height: 88.w,
-            width: 88.w,
+            height: 80.w,
+            width: 80.w,
           ),
           8.hb,
           Text(
             '全部分类',
-            style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
+            style: TextStyle(fontSize: 22.sp, color: ktextPrimary),
           ),
         ],
       ),

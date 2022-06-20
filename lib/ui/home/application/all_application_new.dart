@@ -26,18 +26,26 @@ class _AllApplicationNewPageState extends State<AllApplicationNewPage> {
       case 0:
         return ['报事报修', '设施预约', '生活缴费', '装修管理'];
       case 1:
-        return [
-          '开门码',
-          '物品出门',
-          '地理信息',
-          '小蜜蜂任务',
-        ];
+        return Platform.isIOS
+            ? [
+                '物品出门',
+                '地理信息',
+                '小蜜蜂任务',
+              ]
+            : [
+                '开门码',
+                '物品出门',
+                '地理信息',
+                '小蜜蜂任务',
+              ];
       case 2:
         return ['便民电话', '问卷调查', '活动投票', '快递包裹', '投诉表扬', '业委会', '社区介绍', '借还管理'];
       case 3:
         return ['服务浏览', '周边企业', '住房说明', '电子商务'];
       case 4:
-        return Platform.isIOS?['任务发布', '周边服务', '共享投屏']:['智慧养老', '任务发布', '周边服务', '共享投屏'];
+        return Platform.isIOS
+            ? ['任务发布', '周边服务', '共享投屏']
+            : ['智慧养老', '任务发布', '周边服务', '共享投屏'];
       case 5:
         return ['自营商城', '邻家宠物', '共享停车', '二手市场'];
       default:
