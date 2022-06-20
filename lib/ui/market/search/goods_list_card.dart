@@ -1,3 +1,4 @@
+import 'package:aku_new_community/ui/market/widget/goods_%20tag_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -76,8 +77,7 @@ class GoodsListCardState extends State<GoodsListCard> {
                   ),
                 ),
                 5.hb,
-                // _getIcon(2),
-                //_getIcon(model.kind??0),
+                GoodsTagWidget(type: widget.model.kind??0),
                 Spacer(),
                 20.hb,
                 RichText(
@@ -195,48 +195,4 @@ class GoodsListCardState extends State<GoodsListCard> {
     return count + '折';
   }
 
-  Widget _getIcon(int type) {
-    if (type == 1) {
-      return Container(
-        width: 86.w,
-        height: 26.w,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4.w),
-          ),
-          gradient: LinearGradient(
-            begin: FractionalOffset.centerLeft,
-            end: FractionalOffset.centerRight,
-            colors: <Color>[Color(0xFFEC5329), Color(0xFFF58123)],
-          ),
-        ),
-        child: Text(
-          '京东自营',
-          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
-        ),
-      );
-    } else if (type == 2) {
-      return Container(
-        alignment: Alignment.center,
-        width: 86.w,
-        height: 30.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4.w),
-          ),
-          gradient: LinearGradient(
-            begin: FractionalOffset.centerLeft,
-            end: FractionalOffset.centerRight,
-            colors: <Color>[Color(0xFFF59B1C), Color(0xFFF5AF16)],
-          ),
-        ),
-        child: Text(
-          '京东POP',
-          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
-        ),
-      );
-    } else
-      return SizedBox();
-  }
 }

@@ -1,3 +1,4 @@
+import 'package:aku_new_community/ui/market/widget/goods_%20tag_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -83,15 +84,15 @@ class MarketHomeGoodsCard extends StatelessWidget {
               style: TextStyle(fontSize: 28.sp, color: ktextPrimary),
             ),
           ),
-          // Padding(
-          //     padding: EdgeInsets.only(
-          //       left: 16.w,
-          //       right: 16.w,
-          //       top: 10.w,
-          //     ),
-          //     child: Container(
-          //       child: _getIcon(1),
-          //     )),
+          Padding(
+              padding: EdgeInsets.only(
+                left: 16.w,
+                right: 16.w,
+                top: 10.w,
+              ),
+              child: Container(
+                child: GoodsTagWidget(type: item.kind??0),
+              )),
           10.hb,
           Padding(
             padding: EdgeInsets.symmetric(
@@ -187,48 +188,4 @@ class MarketHomeGoodsCard extends StatelessWidget {
     return count + '折';
   }
 
-  Widget _getIcon(int type) {
-    if (type == 1) {
-      return Container(
-        width: 86.w,
-        height: 26.w,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4.w),
-          ),
-          gradient: LinearGradient(
-            begin: FractionalOffset.centerLeft,
-            end: FractionalOffset.centerRight,
-            colors: <Color>[Color(0xFFEC5329), Color(0xFFF58123)],
-          ),
-        ),
-        child: Text(
-          '京东自营',
-          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
-        ),
-      );
-    } else if (type == 2) {
-      return Container(
-        alignment: Alignment.center,
-        width: 86.w,
-        height: 30.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4.w),
-          ),
-          gradient: LinearGradient(
-            begin: FractionalOffset.centerLeft,
-            end: FractionalOffset.centerRight,
-            colors: <Color>[Color(0xFFF59B1C), Color(0xFFF5AF16)],
-          ),
-        ),
-        child: Text(
-          '京东POP',
-          style: TextStyle(fontSize: 18.sp, color: kForeGroundColor),
-        ),
-      );
-    } else
-      return SizedBox();
-  }
 }
