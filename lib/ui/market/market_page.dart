@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
+import 'package:aku_new_community/provider/user_provider.dart';
 import 'package:aku_new_community/ui/market/vegetable_market/seasonal_vegetables.dart';
+import 'package:aku_new_community/utils/hive_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -493,7 +495,9 @@ class _MarketPageState extends State<MarketPage>
     return GestureDetector(
       onTap: () {
         ///创建中
-        Get.to(() => SeasonalVegetables());
+        Get.to(() => SeasonalVegetables(
+              searchText: '',
+            ));
       },
       child: Assets.images.vegetableBanner.image(width: 712.w, height: 200.w),
     );
@@ -1046,6 +1050,15 @@ class _MarketPageState extends State<MarketPage>
             // ).expand(),
           ],
         ));
+  }
+
+  ///保存搜索记录
+  saveSearchListToSharedPreferences(String value) async {
+    final userProvider = Provider.of<UserProvider>(Get.context!, listen: false);
+
+    HiveStore.appBox!.put(
+        userProvider.userInfoModel?.id.toString() ?? '' + "userSearhHistory",
+        value);
   }
 
   _goodsTitle(

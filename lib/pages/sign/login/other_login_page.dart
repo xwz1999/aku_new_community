@@ -1,3 +1,4 @@
+import 'package:aku_new_community/utils/headers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -190,9 +191,15 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                       BotToast.showText(text: base.msg);
                     }
                   },
-            text: clockTimer.timerStart
-                ? '${clockTimer.second}秒后重新获取'
-                : '获取验证码'),
+            text:
+                clockTimer.timerStart ? '${clockTimer.second}秒后重新获取' : '获取验证码'),
+        32.hb,
+        IconButton(
+          icon: Icon(Icons.ac_unit_outlined),
+          onPressed: () {
+            //Get.to(() => RootPage());
+          },
+        ),
         24.w.heightBox,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

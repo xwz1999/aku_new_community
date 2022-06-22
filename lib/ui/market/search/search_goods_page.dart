@@ -556,6 +556,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     setState(() {});
   }
 
+  ///热销
   _hotGoodsCard(GoodsPopularModel goodsItem, int index) {
     return GestureDetector(
       onTap: () {

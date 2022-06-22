@@ -17,7 +17,10 @@ import '../../../gen/assets.gen.dart';
 import '../search/search_goods_page.dart';
 
 class SeasonalVegetables extends StatefulWidget {
-  const SeasonalVegetables({Key? key}) : super(key: key);
+  final String searchText;
+
+  const SeasonalVegetables({Key? key, required this.searchText})
+      : super(key: key);
 
   @override
   _SeasonalVegetablesState createState() => _SeasonalVegetablesState();
@@ -53,7 +56,7 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    //final userProvider = Provider.of<UserProvider>(context, listen: false);
     final normalTypeButton = MaterialButton(
       onPressed: () {
         _orderType = OrderType.NORMAL;
@@ -130,17 +133,17 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
             '价格',
             style: TextStyle(
               color: _orderType == OrderType.PRICE_HIGH ||
-                  _orderType == OrderType.PRICE_LOW
+                      _orderType == OrderType.PRICE_LOW
                   ? kBalckSubColor
                   : ktextPrimary,
               fontSize: _orderType == OrderType.PRICE_HIGH ||
-                  _orderType == OrderType.PRICE_LOW
+                      _orderType == OrderType.PRICE_LOW
                   ? 32.sp
                   : 28.sp,
-              // fontWeight: _orderType == OrderType.PRICE_HIGH ||
-              //         _orderType == OrderType.PRICE_LOW
-              //     ? FontWeight.bold
-              //     : FontWeight.normal,
+              fontWeight: _orderType == OrderType.PRICE_HIGH ||
+                      _orderType == OrderType.PRICE_LOW
+                  ? FontWeight.bold
+                  : FontWeight.normal,
             ),
           ),
           // Icon(
@@ -226,33 +229,33 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
                       fontWeight: FontWeight.w300),
                   prefixIcon: _showCategory
                       ? GestureDetector(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 18.w, right: 18.w),
-                      margin: EdgeInsets.all(12.w),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40.w),
-                          color: Color(0xFFF2F2F2)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            '生鲜果蔬',
-                            // widget.categoryName ?? '',
-                            style: TextStyle(
-                              color: ktextSubColor,
-                              fontSize: 24.sp,
+                          child: Container(
+                            padding: EdgeInsets.only(left: 18.w, right: 18.w),
+                            margin: EdgeInsets.all(12.w),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40.w),
+                                color: Color(0xFFF2F2F2)),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '生鲜果蔬',
+                                  //widget.categoryName ?? '',
+                                  style: TextStyle(
+                                    color: ktextSubColor,
+                                    fontSize: 24.sp,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Colors.grey[500],
+                                  size: 30.w,
+                                )
+                              ],
                             ),
+                            height: 44.w,
                           ),
-                          Icon(
-                            Icons.close,
-                            color: Colors.grey[500],
-                            size: 30.w,
-                          )
-                        ],
-                      ),
-                      height: 44.w,
-                    ),
-                  )
+                        )
                       : null,
 
                   //isDense: true,
@@ -272,15 +275,14 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
             20.wb,
             GestureDetector(
               onTap: () {
+                if (TextUtils.isEmpty(_searchText)) return;
+                _startSearch = true;
+                _contentFocusNode.unfocus();
+                _searchText = _searchText.trimLeft();
+                _searchText = _searchText.trimRight();
+                remember();
+                saveSearchListToSharedPreferences(_searchHistory);
                 _refreshController.callRefresh();
-                // if (TextUtils.isEmpty(_searchText)) return;
-                // _startSearch = true;
-                // _contentFocusNode.unfocus();
-                // _searchText = _searchText.trimLeft();
-                // _searchText = _searchText.trimRight();
-                // remember();
-                // saveSearchListToSharedPreferences(_searchHistory);
-
                 setState(() {});
               },
               child: Text(
@@ -299,6 +301,8 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
                   child: _goodsTitle(normalTypeButton, salesTypeButton,
                       priceButton, listButton)),
             ),
+            _searchHistoryWidget(),
+            10.hb,
             Expanded(
                 child: EasyRefresh(
                     firstRefresh: true,
@@ -315,29 +319,28 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
                     child: _onLoad
                         ? const SizedBox()
                         : vegetablesList.isEmpty
-                        ? _getListNull()
-                        : ListView.builder(
-                      itemBuilder: (context, index) {
-                        return Text('');
-                      },
-                      itemCount: vegetablesList.length,
-                    )))
+                            ? _getListNull()
+                            : ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return Text('');
+                                },
+                                itemCount: vegetablesList.length,
+                              )))
           ],
         ));
   }
 
-  _goodsTitle(Widget normalTypeButton,
-      Widget salesTypeButton,
-      Widget priceButton,
-      Widget listButton,) {
+  _goodsTitle(
+    Widget normalTypeButton,
+    Widget salesTypeButton,
+    Widget priceButton,
+    Widget listButton,
+  ) {
     return Container(
       height: 90.w,
       alignment: Alignment.centerLeft,
       color: Colors.white,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       child: Container(
         alignment: Alignment.centerLeft,
         height: 60.w,
@@ -389,9 +392,8 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
               _editingController.text = text;
               _searchText = text;
               setState(() {});
-
               FocusManager.instance.primaryFocus!.unfocus();
-              _refreshController1.callRefresh();
+              _refreshController.callRefresh();
             },
             label: Text(text),
             selected: false,
@@ -403,58 +405,55 @@ class _SeasonalVegetablesState extends State<SeasonalVegetables> {
     return _searchHistory.length == 0
         ? SizedBox()
         : Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          36.hb,
-          Container(
-            child: Container(
-                margin: EdgeInsets.only(left: 15, bottom: 5),
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      '历史搜索',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Spacer(),
-                    (_searchHistory.length > 0)
-                        ? GestureDetector(
-                      onTap: () {
-                        _searchHistory = [];
-                        saveSearchListToSharedPreferences(
-                            _searchHistory);
-                        setState(() {});
-                      },
-                      child: Image.asset(
-                        R.ASSETS_ICONS_DELETE_PNG,
-                        width: 40.w,
-                        height: 40.w,
-                      ),
-                    )
-                        : Container(),
-                    36.wb,
-                  ],
-                )),
-          ),
-          Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            padding: EdgeInsets.only(left: 10, right: 10),
-            child: Wrap(
-              children: choiceChipList,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                36.hb,
+                Container(
+                  child: Container(
+                      margin: EdgeInsets.only(left: 15, bottom: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            '历史搜索',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Spacer(),
+                          (_searchHistory.length > 0)
+                              ? GestureDetector(
+                                  onTap: () {
+                                    _searchHistory = [];
+                                    saveSearchListToSharedPreferences(
+                                        _searchHistory);
+                                    setState(() {});
+                                  },
+                                  child: Image.asset(
+                                    R.ASSETS_ICONS_DELETE_PNG,
+                                    width: 40.w,
+                                    height: 40.w,
+                                  ),
+                                )
+                              : Container(),
+                          36.wb,
+                        ],
+                      )),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Wrap(
+                    children: choiceChipList,
+                  ),
+                ),
+                // Spacer()
+                24.hb,
+              ],
             ),
-          ),
-          // Spacer()
-          24.hb,
-        ],
-      ),
-    );
+          );
   }
 
   ///获取搜索记录

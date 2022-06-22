@@ -19,6 +19,7 @@ import 'package:aku_new_community/widget/bee_scaffold.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 
 import 'account_manager_page.dart';
+import 'blacklist_page/blacklist_page.dart';
 import 'feedback_page/feedback_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -154,6 +155,10 @@ class _SettingsPageState extends State<SettingsPage> {
             _buildTile(
               title: '隐私政策',
               onTap: () => Get.to(() => PrivacyPage()),
+            ),
+            _buildTile(
+              title: '社区黑名单',
+              onTap: () => Get.to(() => blackListPage()),
             ),
           ].sepWidget(
               separate: Divider(
