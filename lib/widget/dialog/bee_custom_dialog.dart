@@ -7,16 +7,21 @@ class BeeCustomDialog extends StatelessWidget {
   final Widget content;
   final double? width;
   final double? height;
+
   const BeeCustomDialog(
-      {Key? key, required this.actions, required this.content,  this.width,  this.height})
+      {Key? key,
+      required this.actions,
+      required this.content,
+      this.width,
+      this.height})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: width?? 600.w,
-        height:height?? 700.w,
+        width: width ?? 600.w,
+        height: height ?? 700.w,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -30,11 +35,13 @@ class BeeCustomDialog extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     stops: [
                   0,
-                  0.3,
+                  0.35,
                 ],
                     colors: [
                   Color(0x33FBE541),
-                  Colors.white,
+                  Color(0x33FBE541).withOpacity(0.01),
+
+                  //Colors.white,
                 ])),
             child: Column(
               children: [

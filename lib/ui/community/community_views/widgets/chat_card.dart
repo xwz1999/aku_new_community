@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:aku_new_community/pages/setting_page/blacklist_page/blacklist_func.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -144,7 +145,10 @@ class _ChatCardState extends State<ChatCard> {
           ),
           20.wb,
           GestureDetector(
-            onTap: () => Get.to(EventDetailPage(dynamicId: widget.model.id,createId: widget.model.createId,)),
+            onTap: () => Get.to(EventDetailPage(
+              dynamicId: widget.model.id,
+              createId: widget.model.createId,
+            )),
             child: Material(
               color: Colors.transparent,
               child: Row(
@@ -247,20 +251,13 @@ class _ChatCardState extends State<ChatCard> {
                 ],
               ),
               Spacer(),
-
               CommunityPopButton(
                 isMyself: _isMyself,
-                onSelect: (dynamic _) async {
+                onSelect: (int value) async {
                   if (LoginUtil.isNotLogin) return;
-                  if (!_isMyself) {
-                    VoidCallback cancel = BotToast.showLoading();
-                    await Future.delayed(
-                        Duration(milliseconds: 500 + Random().nextInt(500)));
-                    cancel();
-                    BotToast.showText(text: '举报成功');
-                  } else {
-                    bool? result = await Get.dialog(CupertinoAlertDialog(
-                      title: '你确定删除吗'.text.isIntrinsic.make(),
+                  if (value == 3) {
+                    await Get.dialog(CupertinoAlertDialog(
+                      title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
                       actions: [
                         CupertinoDialogAction(
                           child: '取消'.text.black.isIntrinsic.make(),
@@ -269,14 +266,45 @@ class _ChatCardState extends State<ChatCard> {
                         CupertinoDialogAction(
                           child:
                               '确定'.text.color(Colors.orange).isIntrinsic.make(),
-                          onPressed: () => Get.back(result: true),
+                          onPressed: () async {
+                            var isShielding =
+                                await BlackListFunc.Block(widget.model.id);
+                            if (isShielding) {
+                              Get.back();
+                            }
+                          },
                         ),
                       ],
                     ));
-
-                    if (result == true) {
-                      await CommunityFunc.deleteDynamic(widget.model.id);
-                      widget.refresh();
+                  } else {
+                    if (!_isMyself) {
+                      VoidCallback cancel = BotToast.showLoading();
+                      await Future.delayed(
+                          Duration(milliseconds: 500 + Random().nextInt(500)));
+                      cancel();
+                      BotToast.showText(text: '举报成功');
+                    } else {
+                      bool? result = await Get.dialog(CupertinoAlertDialog(
+                        title: '你确定删除吗'.text.isIntrinsic.make(),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: '取消'.text.black.isIntrinsic.make(),
+                            onPressed: () => Get.back(),
+                          ),
+                          CupertinoDialogAction(
+                            child: '确定'
+                                .text
+                                .color(Colors.orange)
+                                .isIntrinsic
+                                .make(),
+                            onPressed: () => Get.back(result: true),
+                          ),
+                        ],
+                      ));
+                      if (result == true) {
+                        await CommunityFunc.deleteDynamic(widget.model.id);
+                        widget.refresh();
+                      }
                     }
                   }
                 },
@@ -334,6 +362,10 @@ class CommunityPopButton extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
       itemBuilder: (context) {
         return [
+          PopupMenuItem(
+            child: '拉黑'.text.isIntrinsic.make(),
+            value: 3,
+          ),
           isMyself
               ? PopupMenuItem(
                   child: '删除'.text.isIntrinsic.make(),

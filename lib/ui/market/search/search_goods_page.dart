@@ -26,6 +26,7 @@ enum OrderType {
   SALES,
   PRICE_HIGH,
   PRICE_LOW,
+  LIST,
 }
 
 class SearchGoodsPage extends StatefulWidget {
@@ -129,7 +130,6 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
       height: 80.w,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-
     final priceButton = MaterialButton(
       onPressed: () {
         switch (_orderType) {
@@ -556,6 +556,7 @@ class SearchGoodsPageState extends State<SearchGoodsPage> {
     setState(() {});
   }
 
+  ///热销
   _hotGoodsCard(GoodsPopularModel goodsItem, int index) {
     return GestureDetector(
       onTap: () {

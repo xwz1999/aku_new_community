@@ -100,6 +100,15 @@ class _User {
 
   ///修改用户头像
   String get updateAvatar => '/app/user/updateAvatarImg';
+
+  ///查询黑名单列表
+  String get blackList => '/app/user/community/blackList/list';
+
+  ///取消拉黑用户
+  String get cancelBlock => '/app/user/community/blackList/cancelBlock';
+
+  ///拉黑用户
+  String get Block => '/app/user/community/blackList/block';
 }
 
 class _Login {
@@ -107,7 +116,7 @@ class _Login {
   String get quit => '/app/user/quit';
 
   ///app用户注销
-  String get logOut =>'/app/user/logout';
+  String get logOut => '/app/user/logout';
 
   ///查询所有小区信息
   String get allCommunity => '/app/login/findAllCommunity';
@@ -447,9 +456,10 @@ class _Facilities {
   String get cancel => '/app/user/facilities/cancel';
 }
 
-class _Updater{
+class _Updater {
   ///查询最新的app版本
   String get findNewVersion => '/app/version/findNewVersion';
+
   ///添加新的app版本
   String get insert => '/app/version/insert';
 }
