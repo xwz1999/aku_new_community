@@ -124,7 +124,9 @@ class _OldAgeSupportListPageState extends State<OldAgeSupportListPage> {
               _bracelets = (base.data as List)
                   .map((e) => BraceletListModel.fromJson(e))
                   .toList();
-              setState(() {});
+              if (mounted) {
+                setState(() {});
+              }
             }
           },
           child: _bracelets.isEmpty
