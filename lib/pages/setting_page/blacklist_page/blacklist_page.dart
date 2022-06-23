@@ -2,9 +2,11 @@ import 'package:aku_new_community/base/base_style.dart';
 import 'package:aku_new_community/gen/assets.gen.dart';
 import 'package:aku_new_community/model/user/blacklist_model.dart';
 import 'package:aku_new_community/pages/setting_page/blacklist_page/blacklist_func.dart';
+import 'package:aku_new_community/widget/bee_avatar_widget.dart';
 
 import 'package:aku_new_community/widget/dialog/bee_custom_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'package:flutter/material.dart';
 
@@ -55,11 +57,11 @@ class _blackListPageState extends State<blackListPage> {
   void initState() {
     super.initState();
 
-    // ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
-    // Future.delayed(Duration(milliseconds: 0), () async {
-    //   await _refresh();
-    //   setState(() {});
-    // });
+    ///动态appbar导致 refresh组件刷新判出现问题 首次刷新手动触发
+    Future.delayed(Duration(milliseconds: 0), () async {
+      await _refresh();
+      //setState(() {});
+    });
   }
 
   @override
@@ -68,9 +70,10 @@ class _blackListPageState extends State<blackListPage> {
     super.dispose();
   }
 
-  // Future _refresh() async {
-  //   blackList = await BlackListFunc.getBlackList();
-  // }
+  Future _refresh() async {
+    blackList = await BlackListFunc.getBlackList();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,29 +101,42 @@ class _blackListPageState extends State<blackListPage> {
               ])),
             ),
             Expanded(
-                child: EasyRefresh(
-                    firstRefresh: true,
-                    header: MaterialHeader(),
-                    footer: MaterialFooter(),
-                    controller: _refreshController,
-                    onRefresh: () async {
-                      blackList = await BlackListFunc.getBlackList();
-                      // blackList = [
-                      //   BlacklistModel(
-                      //       id: 0,
-                      //       imgList: [Assets.images.vegetableBanner.path],
-                      //       name: '张天天')
-                      // ];
-                      setState(() {});
-                      // _page
-                    },
-                    onLoad: () async {},
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return _blackList(blackList[index]);
-                      },
-                      itemCount: blackList.length,
-                    )))
+                child:
+                    //     ListView.builder(
+                    //   itemBuilder: (context, index) {
+                    //     //return Text('这是一个开始');
+                    //     return _blackList(blackList[index]);
+                    //   },
+                    //   //itemCount: 6,
+                    //   itemCount: blackList.length,
+                    // )
+                    EasyRefresh(
+                        firstRefresh: true,
+                        header: MaterialHeader(),
+                        //footer: MaterialFooter(),
+                        controller: _refreshController,
+                        onRefresh: () async {
+                          blackList = await BlackListFunc.getBlackList();
+                          // blackList = [
+                          //   BlacklistModel(
+                          //       id: 0,
+                          //       imgList: [Assets.images.vegetableBanner.path],
+                          //       name: '张天天')
+                          // ];
+                          setState(() {});
+                          // _page
+                        },
+                        onLoad: () async {},
+                        child: blackList.isEmpty
+                            ? SizedBox()
+                            : ListView.builder(
+                                itemBuilder: (context, index) {
+                                  //return Text('这是一个开始');
+                                  return _blackList(blackList[index]);
+                                },
+                                //itemCount: 6,
+                                itemCount: blackList.length,
+                              )))
           ],
         ));
   }
@@ -129,19 +145,24 @@ class _blackListPageState extends State<blackListPage> {
     return Column(
       children: [
         ListTile(
-          leading: Container(
-            width: 88.w,
-            height: 88.w,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                image: DecorationImage(
-                    image: ExactAssetImage(
-                      R.ASSETS_IMAGES_PLACEHOLDER_WEBP ?? model.imgList.first,
-                    ),
-                    fit: BoxFit.cover)),
-          ),
+          leading: BeeAvatarWidget(
+            imgs: model.imgList,
+          )
+
+          // Container(
+          //   width: 88.w,
+          //   height: 88.w,
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(40),
+          //       image: DecorationImage(
+          //           image: ExactAssetImage(R.ASSETS_IMAGES_PLACEHOLDER_WEBP
+          //               //?? model.imgList.first,
+          //               ),
+          //           fit: BoxFit.cover)),
+          // )
+          ,
           title: Text(
-            _getText(model.name),
+            model.name == null ? '' : _getText(model.name!),
             style: TextStyle(fontSize: 28.sp, color: ktextSubColor),
           ),
           trailing: GestureDetector(

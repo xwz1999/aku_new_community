@@ -124,7 +124,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
           onSelect: (int value) async {
             if (LoginUtil.isNotLogin) return;
             if (value == 3) {
-              await Get.dialog(CupertinoAlertDialog(
+              bool? result = await Get.dialog(CupertinoAlertDialog(
                 title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
                 actions: [
                   CupertinoDialogAction(
@@ -132,17 +132,23 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     onPressed: () => Get.back(),
                   ),
                   CupertinoDialogAction(
-                    child: '确定'.text.color(Colors.orange).isIntrinsic.make(),
-                    onPressed: () async {
-                      var isShielding =
-                          await BlackListFunc.Block(widget.dynamicId);
-                      if (isShielding) {
-                        Get.back();
-                      }
-                    },
-                  ),
+                      child: '确定'.text.color(Colors.orange).isIntrinsic.make(),
+                      onPressed: () => Get.back(result: true)
+                      // async {
+                      //   var isShielding =
+                      //       await BlackListFunc.Block(widget.dynamicId);
+                      //   if (isShielding) {
+                      //     Get.back();
+                      //   }
+                      // },
+                      ),
                 ],
               ));
+              if (result == true) {
+                await BlackListFunc.Block(widget.dynamicId);
+                Get.back();
+                widget.refresh!();
+              }
             } else {
               if (!_isMyself) {
                 VoidCallback cancel = BotToast.showLoading();

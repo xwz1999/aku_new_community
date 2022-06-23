@@ -188,6 +188,7 @@ class _ChatCardState extends State<ChatCard> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -255,27 +256,68 @@ class _ChatCardState extends State<ChatCard> {
                 isMyself: _isMyself,
                 onSelect: (int value) async {
                   if (LoginUtil.isNotLogin) return;
-                  if (value == 3) {
-                    await Get.dialog(CupertinoAlertDialog(
-                      title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
-                      actions: [
-                        CupertinoDialogAction(
-                          child: '取消'.text.black.isIntrinsic.make(),
-                          onPressed: () => Get.back(),
-                        ),
-                        CupertinoDialogAction(
-                          child:
-                              '确定'.text.color(Colors.orange).isIntrinsic.make(),
-                          onPressed: () async {
-                            var isShielding =
-                                await BlackListFunc.Block(widget.model.id);
-                            if (isShielding) {
-                              Get.back();
-                            }
-                          },
-                        ),
-                      ],
-                    ));
+                  if (widget.model.createId == userProvider.userInfoModel?.id) {
+                    if (value == 3) {
+                      //bool? result =
+                      await Get.dialog(CupertinoAlertDialog(
+                        title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: '取消'.text.black.isIntrinsic.make(),
+                            onPressed: () => Get.back(),
+                          ),
+                          CupertinoDialogAction(
+                            child: '确定'
+                                .text
+                                .color(Colors.orange)
+                                .isIntrinsic
+                                .make(),
+                            onPressed: () //=> Get.back(result: true),
+                                async {
+                              var isShielding =
+                                  await BlackListFunc.Block(widget.model.id);
+                              if (isShielding) {
+                                Get.back();
+                              }
+                            },
+                          ),
+                        ],
+                      )); // if (result == true) {
+                      //   await BlackListFunc.Block(widget.model.id);
+                      //   widget.refresh();
+                      // }
+
+                    } else {
+                      if (!_isMyself) {
+                        VoidCallback cancel = BotToast.showLoading();
+                        await Future.delayed(Duration(
+                            milliseconds: 500 + Random().nextInt(500)));
+                        cancel();
+                        BotToast.showText(text: '举报成功');
+                      } else {
+                        bool? result = await Get.dialog(CupertinoAlertDialog(
+                          title: '你确定删除吗'.text.isIntrinsic.make(),
+                          actions: [
+                            CupertinoDialogAction(
+                              child: '取消'.text.black.isIntrinsic.make(),
+                              onPressed: () => Get.back(),
+                            ),
+                            CupertinoDialogAction(
+                              child: '确定'
+                                  .text
+                                  .color(Colors.orange)
+                                  .isIntrinsic
+                                  .make(),
+                              onPressed: () => Get.back(result: true),
+                            ),
+                          ],
+                        ));
+                        if (result == true) {
+                          await CommunityFunc.deleteDynamic(widget.model.id);
+                          widget.refresh();
+                        }
+                      }
+                    }
                   } else {
                     if (!_isMyself) {
                       VoidCallback cancel = BotToast.showLoading();
@@ -362,19 +404,21 @@ class CommunityPopButton extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.w)),
       itemBuilder: (context) {
         return [
-          PopupMenuItem(
-            child: '拉黑'.text.isIntrinsic.make(),
-            value: 3,
-          ),
-          isMyself
-              ? PopupMenuItem(
-                  child: '删除'.text.isIntrinsic.make(),
-                  value: 0,
-                )
-              : PopupMenuItem(
-                  child: '举报'.text.isIntrinsic.make(),
-                  value: 1,
-                ),
+          if (isMyself)
+            PopupMenuItem(
+              child: '删除'.text.isIntrinsic.make(),
+              value: 0,
+            ),
+          if (!isMyself)
+            PopupMenuItem(
+              child: '举报'.text.isIntrinsic.make(),
+              value: 1,
+            ),
+          if (!isMyself)
+            PopupMenuItem(
+              child: '拉黑'.text.isIntrinsic.make(),
+              value: 3,
+            ),
         ];
       },
       onSelected: onSelect,

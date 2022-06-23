@@ -193,13 +193,13 @@ class _OtherLoginPageState extends State<OtherLoginPage> {
                   },
             text:
                 clockTimer.timerStart ? '${clockTimer.second}秒后重新获取' : '获取验证码'),
-        32.hb,
-        IconButton(
-          icon: Icon(Icons.ac_unit_outlined),
-          onPressed: () {
-            //Get.to(() => RootPage());
-          },
-        ),
+        // 32.hb,
+        // IconButton(
+        //   icon: Icon(Icons.ac_unit_outlined),
+        //   onPressed: () {
+        //     //Get.to(() => RootPage());
+        //   },
+        // ),
         24.w.heightBox,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

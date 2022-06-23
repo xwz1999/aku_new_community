@@ -9,6 +9,8 @@ part of 'blacklist_model.dart';
 BlacklistModel _$BlacklistModelFromJson(Map<String, dynamic> json) =>
     BlacklistModel(
       id: json['id'] as int,
-      imgList: json['imgList'] as List<dynamic>,
-      name: json['name'] as String,
+      imgList: (json['imgList'] as List<dynamic>)
+          .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      name: json['name'] as String?,
     );

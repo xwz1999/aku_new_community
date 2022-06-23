@@ -165,6 +165,7 @@ class _CommunityPageState extends State<CommunityPage>
                 await (getNewInfo());
                 _gambitModels = await CommunityFunc.getListGambit();
                 _hotNewsModels = await CommunityFunc.getHotNews();
+
                 _onload = false;
                 setState(() {});
               },
