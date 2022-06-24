@@ -129,7 +129,10 @@ dependencies:
   extended_image: ^6.1.0
   #app更新
   aku_app_upgrade:
-    git: https://git.oa00.com/mengfucius/aku_app_upgrade.git
+    git:
+      url: https://git.oa00.com/mengfucius/aku_app_upgrade.git
+      ref: 0f4792bfb2
+#    path: ../aku_app_upgrade
 
 dev_dependencies:
   flutter_test:

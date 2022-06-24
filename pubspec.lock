@@ -18,11 +18,9 @@ packages:
   aku_app_upgrade:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "9676d13777c2db074e7f812554eeffaa98458907"
-      url: "https://git.oa00.com/mengfucius/aku_app_upgrade.git"
-    source: git
+      path: "../aku_app_upgrade"
+      relative: true
+    source: path
     version: "0.0.1"
   amap_flutter_base:
     dependency: "direct main"

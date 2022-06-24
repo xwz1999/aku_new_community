@@ -27,7 +27,6 @@ import 'package:aku_new_community/widget/views/bee_grid_image_view.dart';
 class ChatCard extends StatefulWidget {
   final AllDynamicListModel model;
   final VoidCallback refresh;
-
   final bool hideLine;
   final bool canTap;
 
@@ -253,50 +252,13 @@ class _ChatCardState extends State<ChatCard> {
               ),
               Spacer(),
               CommunityPopButton(
-                isMyself: _isMyself,
-                onSelect: (int value) async {
-                  if (LoginUtil.isNotLogin) return;
-                  if (widget.model.createId == userProvider.userInfoModel?.id) {
-                    if (value == 3) {
-                      //bool? result =
-                      await Get.dialog(CupertinoAlertDialog(
-                        title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
-                        actions: [
-                          CupertinoDialogAction(
-                            child: '取消'.text.black.isIntrinsic.make(),
-                            onPressed: () => Get.back(),
-                          ),
-                          CupertinoDialogAction(
-                            child: '确定'
-                                .text
-                                .color(Colors.orange)
-                                .isIntrinsic
-                                .make(),
-                            onPressed: () //=> Get.back(result: true),
-                                async {
-                              var isShielding =
-                                  await BlackListFunc.Block(widget.model.id);
-                              if (isShielding) {
-                                Get.back();
-                              }
-                            },
-                          ),
-                        ],
-                      )); // if (result == true) {
-                      //   await BlackListFunc.Block(widget.model.id);
-                      //   widget.refresh();
-                      // }
-
-                    } else {
-                      if (!_isMyself) {
-                        VoidCallback cancel = BotToast.showLoading();
-                        await Future.delayed(Duration(
-                            milliseconds: 500 + Random().nextInt(500)));
-                        cancel();
-                        BotToast.showText(text: '举报成功');
-                      } else {
-                        bool? result = await Get.dialog(CupertinoAlertDialog(
-                          title: '你确定删除吗'.text.isIntrinsic.make(),
+                  isMyself: _isMyself,
+                  onSelect: (int value) async {
+                    if (LoginUtil.isNotLogin) return;
+                    if (!_isMyself) {
+                      if (value == 3) {
+                        await Get.dialog(CupertinoAlertDialog(
+                          title: '你确定要拉黑他吗'.text.isIntrinsic.make(),
                           actions: [
                             CupertinoDialogAction(
                               child: '取消'.text.black.isIntrinsic.make(),
@@ -308,23 +270,24 @@ class _ChatCardState extends State<ChatCard> {
                                   .color(Colors.orange)
                                   .isIntrinsic
                                   .make(),
-                              onPressed: () => Get.back(result: true),
+                              onPressed: () //=> Get.back(result: true),
+                                  async {
+                                var isShielding =
+                                    await BlackListFunc.Block(widget.model.id);
+                                if (isShielding) {
+                                  Get.back();
+                                }
+                              },
                             ),
                           ],
                         ));
-                        if (result == true) {
-                          await CommunityFunc.deleteDynamic(widget.model.id);
-                          widget.refresh();
-                        }
+                      } else {
+                        VoidCallback cancel = BotToast.showLoading();
+                        await Future.delayed(Duration(
+                            milliseconds: 500 + Random().nextInt(500)));
+                        cancel();
+                        BotToast.showText(text: '举报成功');
                       }
-                    }
-                  } else {
-                    if (!_isMyself) {
-                      VoidCallback cancel = BotToast.showLoading();
-                      await Future.delayed(
-                          Duration(milliseconds: 500 + Random().nextInt(500)));
-                      cancel();
-                      BotToast.showText(text: '举报成功');
                     } else {
                       bool? result = await Get.dialog(CupertinoAlertDialog(
                         title: '你确定删除吗'.text.isIntrinsic.make(),
@@ -348,9 +311,7 @@ class _ChatCardState extends State<ChatCard> {
                         widget.refresh();
                       }
                     }
-                  }
-                },
-              ).paddingOnly(right: 32.w),
+                  }).paddingOnly(right: 32.w),
             ].row(crossAlignment: CrossAxisAlignment.start),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

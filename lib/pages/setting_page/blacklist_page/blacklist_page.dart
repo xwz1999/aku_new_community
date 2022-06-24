@@ -7,6 +7,7 @@ import 'package:aku_new_community/widget/bee_avatar_widget.dart';
 import 'package:aku_new_community/widget/dialog/bee_custom_dialog.dart';
 import 'package:aku_new_community/widget/others/user_tool.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:extended_image/extended_image.dart';
 
 import 'package:flutter/material.dart';
 
@@ -52,6 +53,7 @@ class _blackListPageState extends State<blackListPage> {
   //   }
   // ];
   final EasyRefreshController _refreshController = EasyRefreshController();
+  late LoadState _loadState;
 
   @override
   void initState() {
@@ -117,6 +119,7 @@ class _blackListPageState extends State<blackListPage> {
                         controller: _refreshController,
                         onRefresh: () async {
                           blackList = await BlackListFunc.getBlackList();
+
                           // blackList = [
                           //   BlacklistModel(
                           //       id: 0,
@@ -126,7 +129,19 @@ class _blackListPageState extends State<blackListPage> {
                           setState(() {});
                           // _page
                         },
-                        onLoad: () async {},
+                        onLoad: () async {
+                          _refreshController.finishLoad(noMore: true);
+                          // await Future.delayed(const Duration(seconds: 2), () {
+                          //   setState(() {
+                          //     if (_refreshController.finishLoadCallBack !=
+                          //         null) {
+                          //       return _End();
+                          //     }
+                          //   });
+                          // });
+                          // if (_loadState == LoadState.completed)
+                          //   return _End();
+                        },
                         child: blackList.isEmpty
                             ? SizedBox()
                             : ListView.builder(
@@ -136,9 +151,24 @@ class _blackListPageState extends State<blackListPage> {
                                 },
                                 //itemCount: 6,
                                 itemCount: blackList.length,
-                              )))
+                              ))),
+            //if()
           ],
         ));
+  }
+
+  _End() {
+    return Container(
+      color: Color(0xF000000).withOpacity(0.06),
+      width: MediaQuery.of(context).size.width,
+      height: 75.w,
+      alignment: Alignment.center,
+      child: Text(
+        '后面已经没有其他内容了',
+        style:
+            TextStyle(fontSize: 24.sp, color: Colors.black.withOpacity(0.25)),
+      ),
+    );
   }
 
   _blackList(BlacklistModel model) {
