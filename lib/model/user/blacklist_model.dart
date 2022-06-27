@@ -9,14 +9,16 @@ class BlacklistModel extends Equatable {
   final int id;
   final List<ImgModel> imgList;
   final String? name;
+  final String nickName;
 
   factory BlacklistModel.fromJson(Map<String, dynamic> json) =>
       _$BlacklistModelFromJson(json);
 
-  BlacklistModel({
+  const BlacklistModel({
     required this.id,
     required this.imgList,
-    required this.name,
+    this.name,
+    required this.nickName,
   });
 
   @override
@@ -24,5 +26,6 @@ class BlacklistModel extends Equatable {
         id,
         imgList,
         name,
+        nickName,
       ];
 }

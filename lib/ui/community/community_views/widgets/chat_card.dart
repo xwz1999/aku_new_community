@@ -272,11 +272,10 @@ class _ChatCardState extends State<ChatCard> {
                                   .make(),
                               onPressed: () //=> Get.back(result: true),
                                   async {
-                                var isShielding =
-                                    await BlackListFunc.Block(widget.model.id);
-                                if (isShielding) {
-                                  Get.back();
-                                }
+                                //var isShielding =
+                                await BlackListFunc.Block(
+                                    widget.model.createId);
+                                Get.back();
                               },
                             ),
                           ],
