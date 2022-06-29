@@ -29,7 +29,6 @@ void addVersion() async {
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
   stdout.write('version has been add 👍\n');
-  await uploadVersion();
 }
 
 @Task('add path version number')
@@ -46,7 +45,6 @@ void addVersionPatch() async {
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
   stdout.write('version has been add 👍\n');
-  await uploadVersion();
 }
 
 @Task('add major version number')
@@ -63,7 +61,6 @@ void addVersionMajor() async {
   String result = yamlContent.replaceFirst(version, resultVersion.toString());
   await File(yamlPath).writeAsString(result);
   stdout.write('version has been add 👍\n');
-  await uploadVersion();
 }
 
 @Task()
