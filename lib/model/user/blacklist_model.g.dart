@@ -13,4 +13,5 @@ BlacklistModel _$BlacklistModelFromJson(Map<String, dynamic> json) =>
           .map((e) => ImgModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
+      nickName: json['nickName'] as String,
     );

@@ -102,6 +102,7 @@ class _blackListPageState extends State<blackListPage> {
                         TextStyle(fontSize: 24.sp, color: Color(0xA6000000))),
               ])),
             ),
+            20.hb,
             Expanded(
                 child:
                     //     ListView.builder(
@@ -192,7 +193,7 @@ class _blackListPageState extends State<blackListPage> {
           // )
           ,
           title: Text(
-            model.name == null ? '' : _getText(model.name!),
+            model.nickName ?? '',
             style: TextStyle(fontSize: 28.sp, color: ktextSubColor),
           ),
           trailing: GestureDetector(
@@ -240,13 +241,13 @@ class _blackListPageState extends State<blackListPage> {
     );
   }
 
-  _getText(String name) {
-    String name2 = name.substring(0, 1);
-    for (var i = 0; i < name.length - 1; i++) {
-      name2 += '*';
-    }
-    return name2;
-  }
+// _getText(String name) {
+//   String name2 = name.substring(0, 1);
+//   for (var i = 0; i < name.length - 1; i++) {
+//     name2 += '*';
+//   }
+//   return name2;
+// }
 // _blackList(BlacklistModel model) {
 //   return ListTile(
 //     leading: Container(
