@@ -16,6 +16,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../utils/headers.dart';
+
 class MyOrderCard extends StatefulWidget {
   final MyOrderListModel model;
   final VoidCallback callRefresh;
@@ -119,7 +121,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
             40.w.heightBox,
             ...[
               _rowTile('下单时间', widget.model.arrivalDateString),
-              _rowTile('到达地点', '人才公寓小区北侧门口'),
+              _rowTile('到达地点', '${S.of(context)!.tempPlotName}北侧门口'),
               _rowTile('发货时间', widget.model.sendDateString),
             ].sepWidget(separate: 16.w.heightBox),
             ..._bottomWidget(),

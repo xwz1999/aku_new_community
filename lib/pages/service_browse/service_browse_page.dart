@@ -11,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../utils/headers.dart';
+
 class ServiceBrowsePage extends StatefulWidget {
   ServiceBrowsePage({Key? key}) : super(key: key);
 
@@ -89,7 +91,7 @@ class _ServiceBrowsePageState extends State<ServiceBrowsePage> {
           32.w.heightBox,
           Row(
             children: [
-              '南宁人才公寓'.text.size(20.sp).color(ktextSubColor).make(),
+              S.of(context)!.tempPlotName.text.size(20.sp).color(ktextSubColor).make(),
               Spacer(),
               '发布于 ${DateUtil.formatDateStr(model.createDate, format: 'MM-dd HH:mm')}'
                   .text

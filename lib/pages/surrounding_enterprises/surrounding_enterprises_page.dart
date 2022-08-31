@@ -94,7 +94,7 @@ class _SurroundingEnterprisesPageState
                 Spacer(),
                 Row(
                   children: [
-                    '南宁人才公寓'.text.size(20.sp).color(ktextThirdColor).make(),
+                    S.of(context)!.tempPlotName.text.size(20.sp).color(ktextThirdColor).make(),
                     Spacer(),
                     '发布于：${model.getReleaseDate}'
                         .text

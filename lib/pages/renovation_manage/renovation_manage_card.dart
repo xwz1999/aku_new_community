@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../utils/headers.dart';
+
 class RenovationManageCard extends StatefulWidget {
   final int index;
 
@@ -55,7 +57,7 @@ class _RenovationManageCardState extends State<RenovationManageCard> {
               ],
             ),
             24.w.heightBox,
-            _buildTile(R.ASSETS_ICONS_ARTICLE_NAME_PNG, '小区名称', '人才公寓'),
+            _buildTile(R.ASSETS_ICONS_ARTICLE_NAME_PNG, '小区名称',S.of(context)!.tempPlotName ),
             12.w.heightBox,
             _buildTile(
               R.ASSETS_ICONS_APPOINTMENT_ADDRESS_PNG,
