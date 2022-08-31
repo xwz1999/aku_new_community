@@ -20,7 +20,7 @@ buildApk() async {
   await runAsync('mkdir', arguments: ['-p', Config.apkDir]);
   await runAsync('mv', arguments: [
     Config.buildPath,
-    '${Config.apkDir}/${Config.packageName}_${version}_release_$date.apk'
+    '${Config.apkDir}/binjiang/${Config.packageName}_${version}_release_$date.apk'
   ]);
 }
 
