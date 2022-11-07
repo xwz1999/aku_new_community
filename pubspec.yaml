@@ -94,7 +94,7 @@ dependencies:
   #瀑布流
   waterfall_flow: ^3.0.1
   #扫码组件
-  qr_code_scanner: ^0.4.0
+  qr_code_scanner: ^1.0.0
   #model 插件
   equatable: ^2.0.0
   #pdf文件预览
